@@ -39,39 +39,42 @@ def get_momentum_recommendations(bull_bear_score):
     print(f"Bull/Bear Score: {bull_bear_score}/10 -> Momentum Allocation: {momentum_allocation:.2%}")
 
     try:
-        # Fetch 13 months of monthly data to calculate 12-1 month momentum
+        # Fetch ~16 months of monthly data to ensure we have at least 14 data points for the calculation.
         end_date = datetime.today()
-        # Go back ~400 days to ensure we get at least 13 monthly data points
-        start_date = end_date - timedelta(days=400) 
+        # Increased lookback period to 480 days to ensure enough data points are fetched.
+        start_date = end_date - timedelta(days=480) 
         
-        # Download monthly historical data
-        data = yf.download(MOMENTUM_ETFS, start=start_date, end=end_date, interval='1mo', progress=True)['Adj Close']
+        # Download monthly historical data. auto_adjust=True is the new yfinance default.
+        # It provides adjusted prices in the 'Close' column and removes 'Adj Close'.
+        full_data = yf.download(MOMENTUM_ETFS, start=start_date, end=end_date, interval='1mo', progress=True, auto_adjust=True)
+        
+        if full_data.empty:
+            print("Could not download momentum data. Please check tickers and network connection.")
+            return
+
+        # Use the 'Close' column which is auto-adjusted by yfinance
+        data = full_data['Close']
         
         if data.empty:
-            print("Could not download momentum data. Please check tickers and network connection.")
+            print("Could not extract price data. Please check tickers and network connection.")
             return
 
         # Calculate 12-1 month momentum
         # Formula: (Price 1 month ago / Price 13 months ago) - 1. 
-        # yfinance interval='1mo' returns data for the start of the month, so we need to be careful with indexing.
-        # A simpler way is to use monthly returns and sum them up.
-        # Let's stick to the price ratio for simplicity as per the definition.
-        # We need price from t-1 and t-13 to calculate momentum for t.
-        # The data from yfinance will have the most recent month at the end.
         momentum = (data.shift(1) / data.shift(13)) - 1
         
         # Get the latest momentum scores
         latest_momentum = momentum.iloc[-1].dropna()
 
+        # Fallback for start-of-month scenarios where the last row might be incomplete
+        if len(latest_momentum) < 3 and len(momentum) > 1:
+            print("Last row has insufficient data, attempting to use second to last row.")
+            latest_momentum = momentum.iloc[-2].dropna()
+        
         if len(latest_momentum) < 3:
-            print("Not enough data to rank ETFs for momentum. This can happen if the script is run at the start of a month.")
-            # Let's try the second to last row if the last one is all NaN
-            if momentum.iloc[-2].dropna().empty:
-                 print("Still not enough data on the second to last row.")
-                 return
-            else:
-                 latest_momentum = momentum.iloc[-2].dropna()
-
+            print("Error: Not enough data to rank ETFs for momentum even after fallback.")
+            print("This can happen if the script is run over a weekend or at the very start of a month.")
+            return
 
         # Sort all ETFs by momentum score to show the full comparison
         all_ranked_etfs = latest_momentum.sort_values(ascending=False)
@@ -145,9 +148,12 @@ class KalmanPairsTrader:
             start_date = end_date - timedelta(days=365 * PAIRS_LOOKBACK_YEARS)
             
             # Download daily historical data
-            data = yf.download([self.y_ticker, self.x_ticker], start=start_date, end=end_date, progress=True)['Adj Close']
-            data = data.dropna()
-            
+            full_data_hist = yf.download([self.y_ticker, self.x_ticker], start=start_date, end=end_date, progress=True, auto_adjust=True)
+            if full_data_hist.empty:
+                print(f"Could not fetch historical prices for {pair_name}.")
+                return
+
+            data = full_data_hist['Close'].dropna()
             
             y_prices = data[self.y_ticker]
             x_prices = data[self.x_ticker]
@@ -156,10 +162,12 @@ class KalmanPairsTrader:
             self._initialize_kalman_filter(y_prices, x_prices)
             
             # 3. Fetch the most recent prices for today's signal
-            today_data = yf.download([self.y_ticker, self.x_ticker], period='2d', progress=True)['Adj Close']
-            if today_data.empty or len(today_data) < 2:
+            full_today_data = yf.download([self.y_ticker, self.x_ticker], period='2d', progress=True, auto_adjust=True)
+            if full_today_data.empty or len(full_today_data) < 2:
                 print(f"Could not fetch recent prices for {pair_name}.")
                 return
+
+            today_data = full_today_data['Close']
                 
             y_today = today_data[self.y_ticker].iloc[-1]
             x_today = today_data[self.x_ticker].iloc[-1]
