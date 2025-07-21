@@ -1,1 +1,2 @@
 # Alphagora
+Alphagora is a hybrid trading system that combines ETF sector rotation with mean-reversion strategies in gold and Treasurys, aiming to capture growth while limiting volatility through asymmetric returns.
