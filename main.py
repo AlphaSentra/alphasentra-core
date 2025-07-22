@@ -32,7 +32,7 @@ def main():
     try:
         bull_bear_score = int(input("\nEnter the Bull/Bear Score (1-10, where 10 is most bullish): "))
         momentum.get_momentum_recommendations(bull_bear_score)
-        print("\n")
+
     except ValueError:
         print("Invalid input. Please enter an integer between 1 and 10.")
         return

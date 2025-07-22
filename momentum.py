@@ -40,7 +40,8 @@ def get_momentum_recommendations(bull_bear_score):
     # Calculate allocation based on the score
     momentum_allocation = MOMENTUM_ALLOCATION_MIN + (bull_bear_score - 1) * (MOMENTUM_ALLOCATION_MAX - MOMENTUM_ALLOCATION_MIN) / 9
     print(f"Bull/Bear Score: {bull_bear_score}/10 -> Momentum Allocation: {momentum_allocation:.2%}")
-
+    print("\n" + "")
+    
     try:
         end_date = datetime.today()
 

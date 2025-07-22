@@ -41,10 +41,7 @@ def mean_reversion_engine():
         trader = KalmanPairsTrader(y_ticker, x_ticker)
         trader.get_pairs_recommendations()
 
-    print("\n" + "=" * 100)
-    print("Analysis Complete.")
-    print("=" * 100)
-
+        print("\n" + " ") 
 
 class KalmanPairsTrader:
     """
