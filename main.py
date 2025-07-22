@@ -248,8 +248,7 @@ def main():
     print("Hybrid Portfolio Strategy - Daily Trade Analysis")
     print(f"Date: {datetime.today().strftime('%Y-%m-%d')}")
     print("="*50)
-    print("Disclaimer: This script is for educational purposes only and is not financial advice.")
-    print("It uses publicly available APIs and data may have inaccuracies.")
+
     
     # --- Part 1: Momentum Engine ---
     try:
