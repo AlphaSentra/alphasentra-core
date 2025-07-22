@@ -135,7 +135,7 @@ class KalmanPairsTrader:
             z_score = spread / np.sqrt(pred_obs_cov)
 
             slope, intercept = pred_mean[0], pred_mean[1]
-            print(f"Analysis based on today's prices: {self.y_ticker}=${y_today:.2f}, {self.x_ticker}=${x_today:.2f}")
+            print(f"Analysis based on latest prices: {self.y_ticker}=${y_today:.2f}, {self.x_ticker}=${x_today:.2f}")
             print(f"Kalman Filter State: Slope={slope:.4f}, Intercept={intercept:.4f}")
             print(f"Calculated Spread (Forecast Error): {spread:.4f}")
             print(f"Normalized Z-Score: {z_score:.4f}")
