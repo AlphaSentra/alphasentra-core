@@ -1,3 +1,16 @@
+"""
+Project:     Alphagora Trading System
+File:        main.py
+Author:      Daiviet Huynh
+Created:     2025-07-22
+License:     MIT License
+Repository:  https://github.com/daivieth/Alphagora
+
+Description:
+Main entry point for the Alphagora system, combining ETF sector rotation
+and mean-reversion strategies on gold and treasuries to achieve asymmetrical returns.
+"""
+
 import yfinance as yf
 import pandas as pd
 import numpy as np
