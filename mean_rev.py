@@ -98,7 +98,7 @@ class KalmanPairsTrader:
                     return
                 else:
                     print("Result: Cointegration confirmed. Proceeding with Kalman Filter model.")
-
+                    
             self._initialize_kalman_filter(y_prices, x_prices)
 
             full_today_data = yf.download(
