@@ -9,44 +9,43 @@ Repository:  https://github.com/daivieth/Alphagora
 Description:
 Mean-reversion strategy to achieve asymmetrical returns.
 """
+
 from datetime import datetime, timedelta
 import yfinance as yf
 import numpy as np
 from pykalman import KalmanFilter
+from statsmodels.tsa.stattools import coint  # For cointegration testing
 
 # --- CONFIGURATION ---
 
-# 2. Mean-Reversion Engine Configuration
 PAIRS = {
     'Gold_vs_Miners': ('GLD', 'GDX'),
     'Miners_vs_Gold': ('GDX', 'GLD'),
     'Indices_Long_Short': ('SPY', 'SH'),
-    'Short_vs_Indices': ('SH', 'SPY')
+    'Short_vs_Indices': ('SH', 'SPY'),
 }
 PAIRS_ALLOCATION = 0.25
-PAIRS_LOOKBACK_YEARS = 5  # Years of data for Kalman Filter initialization
+PAIRS_LOOKBACK_YEARS = 1
+ENABLE_COINTEGRATION_TEST = False  # Set to False to skip cointegration check
 
 
 # --- MEAN-REVERSION (PAIRS TRADING) ENGINE ---
 
 def mean_reversion_engine():
-    """
-    Main function to run the mean-reversion engine.
-    """
     print(f"\n--- Mean-Reversion Engine ({PAIRS_ALLOCATION:.0%} Allocation) ---")
     print("Strategy: Kalman Filter-based pairs trading reviewed daily.")
+    if ENABLE_COINTEGRATION_TEST:
+        print("Note: Engle-Granger cointegration test ENABLED.")
+    else:
+        print("Note: Engle-Granger cointegration test DISABLED.")
 
     for pair_name, (y_ticker, x_ticker) in PAIRS.items():
         trader = KalmanPairsTrader(y_ticker, x_ticker)
         trader.get_pairs_recommendations()
+        print("\n")
 
-        print("\n" + " ") 
 
 class KalmanPairsTrader:
-    """
-    Manages the pairs trading logic for a single pair using a Kalman Filter.
-    """
-
     def __init__(self, dependent_etf, independent_etf):
         self.y_ticker = dependent_etf
         self.x_ticker = independent_etf
@@ -55,11 +54,7 @@ class KalmanPairsTrader:
         self.latest_state_cov = None
 
     def _initialize_kalman_filter(self, y_prices, x_prices):
-        """
-        Initializes and fits the Kalman Filter on historical data.
-        """
         obs_mat = np.vstack([x_prices, np.ones(len(x_prices))]).T[:, np.newaxis, :]
-
         self.kf = KalmanFilter(
             n_dim_state=2,
             n_dim_obs=1,
@@ -70,13 +65,9 @@ class KalmanPairsTrader:
             observation_covariance=1.0,
             transition_covariance=np.full((2, 2), 0.0001)
         )
-
         self.latest_state_mean, self.latest_state_cov = self.kf.filter(y_prices.values)
 
     def get_pairs_recommendations(self):
-        """
-        Calculates and prints recommendations for the pairs trading sleeve.
-        """
         pair_name = f"{self.y_ticker}/{self.x_ticker}"
         print(f"\n--- Pairs Trading Analysis: {pair_name} ---\n")
 
@@ -98,6 +89,15 @@ class KalmanPairsTrader:
             data = full_data_hist['Close'].dropna()
             y_prices = data[self.y_ticker]
             x_prices = data[self.x_ticker]
+
+            if ENABLE_COINTEGRATION_TEST:
+                coint_score, p_value, _ = coint(y_prices, x_prices)
+                print(f"Engle-Granger Cointegration Test p-value: {p_value:.4f}")
+                if p_value > 0.05:
+                    print("Result: No significant cointegration found. Skipping pair.")
+                    return
+                else:
+                    print("Result: Cointegration confirmed. Proceeding with Kalman Filter model.")
 
             self._initialize_kalman_filter(y_prices, x_prices)
 
@@ -135,10 +135,11 @@ class KalmanPairsTrader:
             print(f"Kalman Filter State: Slope={slope:.4f}, Intercept={intercept:.4f}")
             print(f"Calculated Spread (Forecast Error): {spread:.4f}")
             print(f"Normalized Z-Score: {z_score:.4f}")
-            print("\n" + "="*100)
-            print("--- PAIRS TRADE INSTRUCTIONS "+ pair_name +" ---")
-            print("="*100)
-            if z_score > 6.0 or z_score < -6.0:
+            print("\n" + "=" * 100)
+            print(f"--- PAIRS TRADE INSTRUCTIONS {pair_name} ---")
+            print("=" * 100)
+
+            if abs(z_score) >= 6.0:
                 print("ACTION: EXIT POSITION (Stop Loss at |z| >= 6.0)")
             elif z_score > 1.0:
                 print(f"ACTION: Short the spread. Short {self.y_ticker}, Long {self.x_ticker}.")
@@ -158,10 +159,13 @@ class KalmanPairsTrader:
                 print("ACTION: No trade. Z-score is within the [-1.0, 1.0] neutral zone.")
                 print("  - If in a position, exit on z-score crossing 0 (Exit position).")
 
-            print("\n" + "="*100)
+            print("\n" + "=" * 100)
 
         except Exception as e:
             print(f"An error occurred in the pairs trading engine for {pair_name}: {e}")
 
 
-# --- END OF MEAN-REVERSION ENGINE ---
+# --- MAIN EXECUTION ---
+
+if __name__ == "__main__":
+    mean_reversion_engine()

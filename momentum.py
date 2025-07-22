@@ -71,9 +71,12 @@ def get_momentum_recommendations(bull_bear_score):
         spy_200dma_latest = spy_200dma_clean.iloc[-1]
 
         if spy_latest < spy_200dma_latest:
-            print("\n--- Market Trend Filter Triggered ---")
+            print("\n")
+            print("="*100)
+            print("--- MOMENTUM TRADE INSTRUCTION: Market Trend Filter Triggered ---")
+            print("="*100)
             print("SPY is trading below its 200-day moving average.")
-            print("No trades should be entered. Consider exiting existing positions.\n")
+            print("No sector ETF trades should be entered. Consider exiting existing positions.\n")
             return
 
         # Fetch ~16 months of monthly data
