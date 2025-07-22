@@ -110,21 +110,27 @@ def get_momentum_recommendations(bull_bear_score):
         all_ranked_etfs = latest_momentum.sort_values(ascending=False)
 
         print("\nFull Ranking of Sector ETFs by Momentum Score (for comparison):")
-        print(all_ranked_etfs.to_string())
+        print("\n" + all_ranked_etfs.to_string())
 
         # Select top 3
         top_3_etfs = all_ranked_etfs.head(3)
 
         # Generate trade instructions
-        print("\n--- MOMENTUM TRADE INSTRUCTIONS ---")
+        print("\n")
+        print("="*100)
+        print("--- MOMENTUM TRADE INSTRUCTIONS ---")
+        print("="*100)
         print(f"1. Adjust total allocation to the momentum sleeve to {momentum_allocation:.2%}.")
         print("2. Sell any currently held sector ETFs that are NOT in the list below.")
         print("3. Buy the following Top 3 ETFs in equal weights:")
+        print("\n")
         for etf, score in top_3_etfs.items():
             weight_per_etf = momentum_allocation / 3
             print(f"   - {etf}: Allocate {weight_per_etf:.2%} of the total portfolio. (Momentum Score: {score:.4f})")
 
     except Exception as e:
         print(f"An error occurred in the momentum engine: {e}")
+
+    print("\n" + "="*100)
 
 # --- END OF MOMENTUM ENGINE ---

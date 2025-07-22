@@ -26,8 +26,7 @@ def main():
     print("Alphagora Trading System - Daily Trade Execution Instructions")
     print(f"Date: {datetime.today().strftime('%Y-%m-%d')}")
     print("="*100)
-
-
+    
     # --- Part 1: Momentum Engine ---
     try:
         bull_bear_score = int(input("\nEnter the Bull/Bear Score (1-10, where 10 is most bullish): "))

@@ -33,7 +33,6 @@ def mean_reversion_engine():
     """
     Main function to run the mean-reversion engine.
     """
-    print("\n" + "=" * 100)
     print(f"\n--- Mean-Reversion Engine ({PAIRS_ALLOCATION:.0%} Allocation) ---")
     print("Strategy: Kalman Filter-based pairs trading reviewed daily.")
 
@@ -136,8 +135,9 @@ class KalmanPairsTrader:
             print(f"Kalman Filter State: Slope={slope:.4f}, Intercept={intercept:.4f}")
             print(f"Calculated Spread (Forecast Error): {spread:.4f}")
             print(f"Normalized Z-Score: {z_score:.4f}")
-
-            print("\n--- PAIRS TRADE INSTRUCTIONS ---")
+            print("\n" + "="*100)
+            print("--- PAIRS TRADE INSTRUCTIONS "+ pair_name +" ---")
+            print("="*100)
             if z_score > 6.0 or z_score < -6.0:
                 print("ACTION: EXIT POSITION (Stop Loss at |z| >= 6.0)")
             elif z_score > 1.0:
@@ -154,6 +154,8 @@ class KalmanPairsTrader:
                 print("ACTION: No trade. Z-score is within the [-1.0, 1.0] neutral zone.")
                 print("  - If in a position, exit on z-score crossing 0 (Take Profit).")
 
+            print("\n" + "="*100)
+            
         except Exception as e:
             print(f"An error occurred in the pairs trading engine for {pair_name}: {e}")
 
