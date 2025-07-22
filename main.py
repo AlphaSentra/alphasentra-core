@@ -27,7 +27,7 @@ MOMENTUM_ALLOCATION_MAX = 0.75  # 75%
 # 2. Mean-Reversion Engine Configuration
 PAIRS = {
     'Gold_vs_Miners': ('GDX', 'GLD'),
-    'Yield_Curve': ('TLT', 'IEF')
+    'Indices_Long_Short': ('SPY', 'SH')
 }
 PAIRS_ALLOCATION = 0.25
 PAIRS_LOOKBACK_YEARS = 5 # Years of data for Kalman Filter initialization
