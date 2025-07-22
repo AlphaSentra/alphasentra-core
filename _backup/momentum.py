@@ -9,11 +9,10 @@ Repository:  https://github.com/daivieth/Alphagora
 Description:
 ETF sector rotation, momentum trading engine.
 """
-
 from datetime import datetime, timedelta
 import yfinance as yf
 import numpy as np
-import pandas as pd  # Required for robust Series/DataFrame handling
+
 
 # --- CONFIGURATION ---
 
@@ -21,6 +20,7 @@ import pandas as pd  # Required for robust Series/DataFrame handling
 MOMENTUM_ETFS = ['XLC', 'XLY', 'XLP', 'XLE', 'XLF', 'XLV', 'XLI', 'XLB', 'XLRE', 'XLK', 'XLU']
 MOMENTUM_ALLOCATION_MIN = 0.50  # 50%
 MOMENTUM_ALLOCATION_MAX = 0.75  # 75%
+
 
 # --- MOMENTUM ENGINE ---
 
@@ -42,72 +42,46 @@ def get_momentum_recommendations(bull_bear_score):
     print(f"Bull/Bear Score: {bull_bear_score}/10 -> Momentum Allocation: {momentum_allocation:.2%}")
 
     try:
+        # Fetch ~16 months of monthly data to ensure we have at least 14 data points for the calculation.
         end_date = datetime.today()
-
-        # --- MARKET FILTER: Check if SPY is trading above 200-day moving average ---
-        spy_data = yf.download("SPY", start=end_date - timedelta(days=300), end=end_date, interval='1d', progress=False, auto_adjust=True)
-        if spy_data.empty or 'Close' not in spy_data:
-            print("Could not retrieve SPY data for market trend check.")
-            return
-
-        spy_close = spy_data['Close']
-
-        # Ensure spy_close is a Series
-        if isinstance(spy_close, pd.DataFrame):
-            spy_close = spy_close.iloc[:, 0]
-
-        spy_200dma_series = spy_close.rolling(window=200).mean()
-
-        # Drop NaNs and get latest values
-        spy_close_clean = spy_close.dropna()
-        spy_200dma_clean = spy_200dma_series.dropna()
-
-        if spy_close_clean.empty or spy_200dma_clean.empty:
-            print("Insufficient SPY data to compute 200-day moving average.")
-            return
-
-        spy_latest = spy_close_clean.iloc[-1]
-        spy_200dma_latest = spy_200dma_clean.iloc[-1]
-
-        if spy_latest < spy_200dma_latest:
-            print("\n--- Market Trend Filter Triggered ---")
-            print("SPY is trading below its 200-day moving average.")
-            print("No trades should be entered. Consider exiting existing positions.\n")
-            return
-
-        # Fetch ~16 months of monthly data
-        start_date = end_date - timedelta(days=480)
-
+        # Increased lookback period to 480 days to ensure enough data points are fetched.
+        start_date = end_date - timedelta(days=480) 
+        
+        # Download monthly historical data. auto_adjust=True is the new yfinance default.
+        # It provides adjusted prices in the 'Close' column and removes 'Adj Close'.
         full_data = yf.download(MOMENTUM_ETFS, start=start_date, end=end_date, interval='1mo', progress=True, auto_adjust=True)
-
+        
         if full_data.empty:
             print("Could not download momentum data. Please check tickers and network connection.")
             return
 
+        # Use the 'Close' column which is auto-adjusted by yfinance
         data = full_data['Close']
-
+        
         if data.empty:
             print("Could not extract price data. Please check tickers and network connection.")
             return
 
         # Calculate 12-1 month momentum
+        # Formula: (Price 1 month ago / Price 13 months ago) - 1. 
         momentum = (data.shift(1) / data.shift(13)) - 1
-
+        
         # Get the latest momentum scores
         latest_momentum = momentum.iloc[-1].dropna()
 
+        # Fallback for start-of-month scenarios where the last row might be incomplete
         if len(latest_momentum) < 3 and len(momentum) > 1:
             print("Last row has insufficient data, attempting to use second to last row.")
             latest_momentum = momentum.iloc[-2].dropna()
-
+        
         if len(latest_momentum) < 3:
             print("Error: Not enough data to rank ETFs for momentum even after fallback.")
             print("This can happen if the script is run over a weekend or at the very start of a month.")
             return
 
-        # Sort all ETFs by momentum score
+        # Sort all ETFs by momentum score to show the full comparison
         all_ranked_etfs = latest_momentum.sort_values(ascending=False)
-
+        
         print("\nFull Ranking of Sector ETFs by Momentum Score (for comparison):")
         print(all_ranked_etfs.to_string())
 

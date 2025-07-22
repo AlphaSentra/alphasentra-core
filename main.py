@@ -8,7 +8,7 @@ Repository:  https://github.com/daivieth/Alphagora
 
 Description:
 Main entry point for the Alphagora system, combining ETF sector rotation
-and mean-reversion strategies on gold and treasuries to achieve asymmetrical returns.
+and mean-reversion strategies on gold and indices ETF to achieve asymmetrical returns.
 """
 
 import momentum as momentum
