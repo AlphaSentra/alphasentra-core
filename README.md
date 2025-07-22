@@ -12,4 +12,12 @@ python3 -m venv yenv
 source yenv/bin/activate
 
 ### 📌 Step 3: Install required packages
-pip install yfinance pandas numpy pykalman
+pip install yfinance pandas numpy pykalman python-dotenv
+
+### 📌 Step 4: Set environment variables
+Create an .env in the root of the directory
+
+with the following lines
+GEMINI_API_KEY=your_actual_gemini_api_key
+ANOTHER_SECRET=value123
+DEBUG_MODE=true
