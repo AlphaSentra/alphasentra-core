@@ -27,7 +27,7 @@ MOMENTUM_ALLOCATION_MAX = 0.75  # 75%
 # 2. Mean-Reversion Engine Configuration
 PAIRS = {
     'Gold_vs_Miners': ('GDX', 'GLD'),
-    'Yield_Curve': ('TLT', 'IEI')
+    'Yield_Curve': ('TLT', 'IEF')
 }
 PAIRS_ALLOCATION = 0.25
 PAIRS_LOOKBACK_YEARS = 5 # Years of data for Kalman Filter initialization
@@ -249,7 +249,7 @@ def main():
     print(f"Date: {datetime.today().strftime('%Y-%m-%d')}")
     print("="*50)
 
-    
+
     # --- Part 1: Momentum Engine ---
     try:
         bull_bear_score = int(input("\nEnter the Bull/Bear Score (1-10, where 10 is most bullish): "))
