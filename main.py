@@ -26,7 +26,7 @@ MOMENTUM_ALLOCATION_MAX = 0.75  # 75%
 
 # 2. Mean-Reversion Engine Configuration
 PAIRS = {
-    'Gold_vs_Miners': ('GDX', 'GLD'),
+    'Gold_vs_Miners': ('GLD', 'GDX'),
     'Indices_Long_Short': ('SPY', 'SH')
 }
 PAIRS_ALLOCATION = 0.25
@@ -244,10 +244,10 @@ def main():
     """
     Main function to run the hybrid strategy analysis.
     """
-    print("="*50)
-    print("Hybrid Portfolio Strategy - Daily Trade Analysis")
+    print("="*100)
+    print("Alphagora Trading System - Daily Trade Analysis")
     print(f"Date: {datetime.today().strftime('%Y-%m-%d')}")
-    print("="*50)
+    print("="*100)
 
 
     # --- Part 1: Momentum Engine ---
@@ -259,7 +259,7 @@ def main():
         return
 
     # --- Part 2: Mean-Reversion Engine ---
-    print("\n" + "="*50)
+    print("\n" + "="*100)
     print(f"\n--- Mean-Reversion Engine ({PAIRS_ALLOCATION:.0%} Allocation) ---")
     print("Strategy: Kalman Filter-based pairs trading reviewed daily.")
     
@@ -267,9 +267,9 @@ def main():
         trader = KalmanPairsTrader(y_ticker, x_ticker)
         trader.get_pairs_recommendations()
 
-    print("\n" + "="*50)
+    print("\n" + "="*100)
     print("Analysis Complete.")
-    print("="*50)
+    print("="*100)
 
 if __name__ == "__main__":
     # Note: To run this script, you need to install the following packages:
