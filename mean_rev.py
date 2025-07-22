@@ -142,20 +142,24 @@ class KalmanPairsTrader:
                 print("ACTION: EXIT POSITION (Stop Loss at |z| >= 6.0)")
             elif z_score > 1.0:
                 print(f"ACTION: Short the spread. Short {self.y_ticker}, Long {self.x_ticker}.")
-                print("  - Tier 1 Entry: |z| > 1.0")
-                print("  - Tier 2 Entry: |z| > 2.0")
-                print("  -... up to Tier 5 at |z| > 5.0")
+                if z_score > 1.0 and z_score <= 2.0: print("  - Tier 1 Entry: |z| > 1.0 ; Allocate up to a total of 2.5% long, 2.5% short of the portfolio.")
+                if z_score > 2.0 and z_score <= 3.0: print("  - Tier 2 Entry: |z| > 2.0 ; Allocate up to a total of 5.0% long, 5.0% short of the portfolio.")
+                if z_score > 3.0 and z_score <= 4.0: print("  - Tier 3 Entry: |z| > 3.0 ; Allocate up to a total of 7.5% long, 7.5% short of the portfolio.")
+                if z_score > 4.0 and z_score <= 5.0: print("  - Tier 4 Entry: |z| > 4.0 ; Allocate up to a total of 10.0% long, 10.0% short of the portfolio.")
+                if z_score > 5.0: print("  - Tier 5 Entry: |z| > 5.0 ; Allocate up to a total of 12.5% long, 12.5% short of the portfolio.")
             elif z_score < -1.0:
                 print(f"ACTION: Long the spread. Long {self.y_ticker}, Short {self.x_ticker}.")
-                print("  - Tier 1 Entry: |z| > 1.0")
-                print("  - Tier 2 Entry: |z| > 2.0")
-                print("  -... up to Tier 5 at |z| > 5.0")
+                if z_score < -1.0 and z_score >= -2.0: print("  - Tier 1 Entry: |z| < -1.0 ; Allocate up to a total of 2.5% long, 2.5% short of the portfolio.")
+                if z_score < -2.0 and z_score >= -3.0: print("  - Tier 2 Entry: |z| < -2.0 ; Allocate up to a total of 5.0% long, 5.0% short of the portfolio.")
+                if z_score < -3.0 and z_score >= -4.0: print("  - Tier 3 Entry: |z| < -3.0 ; Allocate up to a total of 7.5% long, 7.5% short of the portfolio.")
+                if z_score < -4.0 and z_score >= -5.0: print("  - Tier 4 Entry: |z| < -4.0 ; Allocate up to a total of 10.0% long, 10.0% short of the portfolio.")
+                if z_score < -5.0: print("  - Tier 5 Entry: |z| < -5.0 ; Allocate up to a total of 12.5% long, 12.5% short of the portfolio.")
             else:
                 print("ACTION: No trade. Z-score is within the [-1.0, 1.0] neutral zone.")
                 print("  - If in a position, exit on z-score crossing 0 (Take Profit).")
 
             print("\n" + "="*100)
-            
+
         except Exception as e:
             print(f"An error occurred in the pairs trading engine for {pair_name}: {e}")
 
