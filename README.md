@@ -19,6 +19,8 @@ Create an .env in the root of the directory
 
 with the following lines:
 
-<pre> '''GEMINI_API_KEY=your_actual_gemini_api_key''' </pre>
-<pre> '''ANOTHER_SECRET=value123'''<pre>
-<pre> '''DEBUG_MODE=true'''<pre>
+<pre>
+GEMINI_API_KEY=your_actual_gemini_api_key
+ANOTHER_SECRET=value123
+DEBUG_MODE=true
+<pre>
