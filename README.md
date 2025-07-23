@@ -8,7 +8,7 @@ To run this script, you need to make sure of the following steps.
 `brew install python`
 
 ### 📌 Step 2: Create and activate a virtual environment
-`python3 -m venv yenv`
+`python3 -m venv yenv`<br>
 `source yenv/bin/activate`
 
 ### 📌 Step 3: Install required packages
