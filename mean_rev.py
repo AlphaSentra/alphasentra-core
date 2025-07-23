@@ -15,8 +15,8 @@ import yfinance as yf
 import numpy as np
 from pykalman import KalmanFilter
 from statsmodels.tsa.stattools import coint  # For cointegration testing
-from sklearn.linear_model import HuberRegressor
-import pandas as pd
+from helpers import get_beta
+
 
 # --- CONFIGURATION ---
 
@@ -28,26 +28,6 @@ PAIRS = {
 }
 PAIRS_LOOKBACK_YEARS = 1
 ENABLE_COINTEGRATION_TEST = False  # Set to False to skip cointegration check
-
-
-# --- HELPER FUNCTIONS ---
-
-def get_beta(ticker, market='SPY', lookback_years=1):
-    """Estimate beta of a security relative to the market (default: SPY) using HuberRegressor."""
-    end_date = datetime.today()
-    start_date = end_date - timedelta(days=365 * lookback_years)
-
-    data = yf.download([ticker, market], start=start_date, end=end_date, auto_adjust=True, progress=False)['Close']
-    data = data.dropna()
-    if data.empty or len(data) < 50:
-        return None
-
-    returns = np.log(data / data.shift(1)).dropna()
-    X = returns[market].values.reshape(-1, 1)
-    y = returns[ticker].values
-
-    model = HuberRegressor().fit(X, y)
-    return model.coef_[0]
 
 
 # --- MEAN-REVERSION (PAIRS TRADING) ENGINE ---
