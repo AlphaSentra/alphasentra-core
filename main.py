@@ -8,7 +8,7 @@ Repository:  https://github.com/daivieth/Alphagora
 
 Description:
 Main entry point for the Alphagora system, combining ETF sector rotation
-and mean-reversion strategies on gold and indices ETF to achieve asymmetrical returns.
+and mean-reversion strategies to achieve asymmetrical returns.
 """
 
 import momentum as momentum
@@ -20,7 +20,7 @@ from datetime import datetime
 
 def main():
     """
-    Main function to run the hybrid strategy analysis.
+    Main function to run the Alphagora system.
     """
     print("="*100)
     print("Alphagora Trading System - Daily Trade Execution Instructions")
