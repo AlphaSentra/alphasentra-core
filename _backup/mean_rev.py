@@ -15,8 +15,6 @@ import yfinance as yf
 import numpy as np
 from pykalman import KalmanFilter
 from statsmodels.tsa.stattools import coint  # For cointegration testing
-from sklearn.linear_model import HuberRegressor
-import pandas as pd
 
 # --- CONFIGURATION ---
 
@@ -26,34 +24,15 @@ PAIRS = {
     'VEA_vs_VWO': ('VEA', 'VWO'),
     'VWO_vs_VEA': ('VWO', 'VEA'),
 }
+PAIRS_ALLOCATION = 0.25
 PAIRS_LOOKBACK_YEARS = 1
 ENABLE_COINTEGRATION_TEST = False  # Set to False to skip cointegration check
-
-
-# --- HELPER FUNCTIONS ---
-
-def get_beta(ticker, market='SPY', lookback_years=1):
-    """Estimate beta of a security relative to the market (default: SPY) using HuberRegressor."""
-    end_date = datetime.today()
-    start_date = end_date - timedelta(days=365 * lookback_years)
-
-    data = yf.download([ticker, market], start=start_date, end=end_date, auto_adjust=True, progress=False)['Close']
-    data = data.dropna()
-    if data.empty or len(data) < 50:
-        return None
-
-    returns = np.log(data / data.shift(1)).dropna()
-    X = returns[market].values.reshape(-1, 1)
-    y = returns[ticker].values
-
-    model = HuberRegressor().fit(X, y)
-    return model.coef_[0]
 
 
 # --- MEAN-REVERSION (PAIRS TRADING) ENGINE ---
 
 def mean_reversion_engine():
-    print(f"\n--- Mean-Reversion Engine ---")
+    print(f"\n--- Mean-Reversion Engine ({PAIRS_ALLOCATION:.0%} Allocation) ---")
     print("Strategy: Kalman Filter-based pairs trading reviewed daily.")
     if ENABLE_COINTEGRATION_TEST:
         print("Note: Engle-Granger cointegration test ENABLED.")
@@ -156,34 +135,6 @@ class KalmanPairsTrader:
             print(f"Kalman Filter State: Slope={slope:.4f}, Intercept={intercept:.4f}")
             print(f"Calculated Spread (Forecast Error): {spread:.4f}")
             print(f"Normalized Z-Score: {z_score:.4f}")
-
-            # --- BETA ADJUSTED ALLOCATION ---
-            beta_y = get_beta(self.y_ticker)
-            beta_x = get_beta(self.x_ticker)
-
-            if beta_y is None or beta_x is None:
-                print("Warning: Unable to compute beta for one or both tickers. Using default allocation split 50/50.")
-                beta_y = beta_x = 1.0  # fallback equal weighting
-
-            print(f"Beta Estimates: {self.y_ticker} Beta={beta_y:.2f}, {self.x_ticker} Beta={beta_x:.2f}")
-
-            def tier_print(tier):
-                base_alloc_per_tier = 0.025  # 2.5% per tier
-                total_alloc = base_alloc_per_tier * tier
-                beta_y_abs = abs(beta_y)
-                beta_x_abs = abs(beta_x)
-                # Avoid division by zero
-                if beta_y_abs == 0 or beta_x_abs == 0:
-                    alloc_long = alloc_short = total_alloc / 2
-                else:
-                    inv_beta_y = 1 / beta_y_abs
-                    inv_beta_x = 1 / beta_x_abs
-                    inv_sum = inv_beta_y + inv_beta_x
-                    alloc_long = (inv_beta_y / inv_sum) * total_alloc
-                    alloc_short = (inv_beta_x / inv_sum) * total_alloc
-                print(f"  - Tier {tier} Entry: Total allocation {total_alloc:.2%}")
-                print(f"    Allocate {alloc_long:.2%} long ({self.y_ticker}), {alloc_short:.2%} short ({self.x_ticker}).")
-
             print("\n" + "=" * 100)
             print(f"--- PAIRS TRADE INSTRUCTIONS {pair_name} ---")
             print("=" * 100)
@@ -192,28 +143,18 @@ class KalmanPairsTrader:
                 print("ACTION: EXIT POSITION (Stop Loss at |z| >= 6.0)")
             elif z_score > 1.0:
                 print(f"ACTION: Short the spread. Short {self.y_ticker}, Long {self.x_ticker}.")
-                if z_score <= 2.0:
-                    tier_print(1)
-                elif z_score <= 3.0:
-                    tier_print(2)
-                elif z_score <= 4.0:
-                    tier_print(3)
-                elif z_score <= 5.0:
-                    tier_print(4)
-                else:
-                    tier_print(5)
+                if z_score > 1.0 and z_score <= 2.0: print("  - Tier 1 Entry: |z| > 1.0 ; Allocate up to a total of 1.25% long, 1.25% short.")
+                if z_score > 2.0 and z_score <= 3.0: print("  - Tier 2 Entry: |z| > 2.0 ; Allocate up to a total of 2.5% long, 2.5% short.")
+                if z_score > 3.0 and z_score <= 4.0: print("  - Tier 3 Entry: |z| > 3.0 ; Allocate up to a total of 3.25% long, 3.25% short.")
+                if z_score > 4.0 and z_score <= 5.0: print("  - Tier 4 Entry: |z| > 4.0 ; Allocate up to a total of 5.0% long, 5.0% short.")
+                if z_score > 5.0: print("  - Tier 5 Entry: |z| > 5.0 ; Allocate up to a total of 6.25% long, 6.25% short.")
             elif z_score < -1.0:
                 print(f"ACTION: Long the spread. Long {self.y_ticker}, Short {self.x_ticker}.")
-                if z_score >= -2.0:
-                    tier_print(1)
-                elif z_score >= -3.0:
-                    tier_print(2)
-                elif z_score >= -4.0:
-                    tier_print(3)
-                elif z_score >= -5.0:
-                    tier_print(4)
-                else:
-                    tier_print(5)
+                if z_score < -1.0 and z_score >= -2.0: print("  - Tier 1 Entry: |z| < -1.0 ; Allocate up to a total of 1.25% long, 1.25% short.")
+                if z_score < -2.0 and z_score >= -3.0: print("  - Tier 2 Entry: |z| < -2.0 ; Allocate up to a total of 2.5% long, 2.5% short.")
+                if z_score < -3.0 and z_score >= -4.0: print("  - Tier 3 Entry: |z| < -3.0 ; Allocate up to a total of 3.25% long, 3.25% short.")
+                if z_score < -4.0 and z_score >= -5.0: print("  - Tier 4 Entry: |z| < -4.0 ; Allocate up to a total of 5.0% long, 5.0% short.")
+                if z_score < -5.0: print("  - Tier 5 Entry: |z| < -5.0 ; Allocate up to a total of 6.25% long, 6.25% short.")
             else:
                 print("ACTION: No trade. Z-score is within the [-1.0, 1.0] neutral zone.")
                 print("  - If in a position, exit on z-score crossing 0 (Exit position).")

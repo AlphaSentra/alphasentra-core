@@ -2,7 +2,7 @@
 Alphagora is a hybrid trading system that combines ETF sector rotation with mean-reversion strategies, aiming to capture growth while limiting volatility through asymmetric returns.
 
 ## Install Packages
-To run this script, you need to make sure of the following steps.
+To run this script, you need to make sure of the following steps:
 
 ### 📌 Step 1: Make sure Python is installed via Homebrew
 `brew install python`
@@ -12,7 +12,7 @@ To run this script, you need to make sure of the following steps.
 `source yenv/bin/activate`
 
 ### 📌 Step 3: Install required packages
-`pip install yfinance pandas numpy pykalman python-dotenv statsmodels`
+`pip install yfinance pandas numpy pykalman python-dotenv statsmodels scikit-learn`
 
 ## Google Gemini API
 Create an .env in the root of the directory
