@@ -23,8 +23,7 @@ from helpers import get_beta
 PAIRS = {
     'Gold_vs_Miners': ('GLD', 'GDX'),
     'Miners_vs_Gold': ('GDX', 'GLD'),
-    'VEA_vs_VWO': ('VEA', 'VWO'),
-    'VWO_vs_VEA': ('VWO', 'VEA'),
+    'VXX_vs_SVXY': ('VXX', 'SVXY'),
 }
 PAIRS_LOOKBACK_YEARS = 1
 ENABLE_COINTEGRATION_TEST = False  # Set to False to skip cointegration check
