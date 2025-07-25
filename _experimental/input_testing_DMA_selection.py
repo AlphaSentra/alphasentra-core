@@ -13,7 +13,7 @@ def backtest_strategy_ticker_vs_alt_on_dma(
     alt_ticker='GLD',
     benchmark_ticker='SPY',
     dma_period=200,
-    start_date='2007-01-01',
+    start_date='2015-01-01',
     end_date='2025-01-01'
 ):
     # Download data
