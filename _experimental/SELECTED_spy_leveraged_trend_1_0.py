@@ -10,7 +10,7 @@ end_date = "2025-01-01"
 risk_reward_ratio = 2
 leverage = 2
 atr_period = 14
-trend_sma_period = 50
+trend_sma_period = 20
 
 # Download SPY data
 data = yf.download(symbol, start=start_date, end=end_date, auto_adjust=False)
