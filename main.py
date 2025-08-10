@@ -2,42 +2,55 @@
 Project:     Alphagora Trading System
 File:        main.py
 Author:      Daiviet Huynh
-Created:     2025-07-22
+Created:     2025-08-10
 License:     MIT License
 Repository:  https://github.com/daivieth/Alphagora
 
 Description:
-Main entry point for the Alphagora system, combining ETF sector rotation
-and mean-reversion strategies to achieve asymmetrical returns.
+Main entry point for the Alphagora system, allowing users to select between the "all-weather" portfolio or trading system.
 """
 
-import momentum as momentum
-import mean_rev as mean_rev
-from datetime import datetime
+import portfolio_system
+import trading_system
 
-
-# --- MAIN EXECUTION ---
 
 def main():
     """
-    Main function to run the Alphagora system.
+    Main menu function to select which trading system to run.
     """
-    print("="*100)
-    print("Alphagora Trading System - Daily Trade Execution Instructions")
-    print(f"Date: {datetime.today().strftime('%Y-%m-%d')}")
-    print("="*100)
-    
-    # --- Part 1: Momentum Engine ---
-    try:
-        bull_bear_score = int(input("\nEnter the Bull/Bear Score (1-10, where 10 is most bullish): "))
-        momentum.get_momentum_recommendations(bull_bear_score)
+    while True:
+        print("="*100)
+        print("Alphagora 'all-weather' System - Main Menu")
+        print("="*100)
+        print("1. Run Portfolio System")
+        print("2. Run Trading System")
+        print("3. Exit")
+        
+        try:
+            choice = int(input("\nEnter your choice (1-3): "))
+            
+            if choice == 1:
+                print("\n" + "="*100)
+                print("Running Portfolio System")
+                print("="*100)
+                portfolio_system.main()
+            elif choice == 2:
+                print("\n" + "="*100)
+                print("Running Trading System")
+                print("="*100)
+                trading_system.main()
+            elif choice == 3:
+                print("\nExiting Alphagora Trading System. Goodbye!")
+                break
+            else:
+                print("\nInvalid choice. Please enter a number between 1 and 3.")
+                
+        except ValueError:
+            print("\nInvalid input. Please enter an integer.")
+        except KeyboardInterrupt:
+            print("\n\nExiting Alphagora Trading System. Goodbye!")
+            break
 
-    except ValueError:
-        print("Invalid input. Please enter an integer between 1 and 10.")
-        return
-
-    # --- Part 2: Mean-Reversion Engine ---
-    mean_rev.mean_reversion_engine()
 
 if __name__ == "__main__":
     main()
