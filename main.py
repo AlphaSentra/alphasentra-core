@@ -30,14 +30,8 @@ def main():
             choice = int(input("\nEnter your choice (1-3): "))
             
             if choice == 1:
-                print("\n" + "="*100)
-                print("Running Portfolio System")
-                print("="*100)
                 portfolio_system.main()
             elif choice == 2:
-                print("\n" + "="*100)
-                print("Running Trading System")
-                print("="*100)
                 trading_system.main()
             elif choice == 3:
                 print("\nExiting Alphagora Trading System. Goodbye!")

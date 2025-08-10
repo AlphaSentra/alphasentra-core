@@ -23,7 +23,7 @@ def main():
     Main function to run the Alphagora "all-weather" portfolio system.
     """
     print("="*100)
-    print("Alphagora Trading System - Daily Trade Execution Instructions")
+    print("Alphagora Portfolio System - Strategy Execution")
     print(f"Date: {datetime.today().strftime('%Y-%m-%d')}")
     print("="*100)
     
