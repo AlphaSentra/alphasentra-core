@@ -21,8 +21,6 @@ from helpers import get_beta
 # --- CONFIGURATION ---
 
 PAIRS = {
-    'Gold_vs_Miners': ('GLD', 'GDX'),
-    'Miners_vs_Gold': ('GDX', 'GLD'),
     'VXX_vs_SVXY': ('VXX', 'SVXY'),
 }
 PAIRS_LOOKBACK_YEARS = 1

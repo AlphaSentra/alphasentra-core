@@ -10,8 +10,8 @@ Description:
 Main entry point for the Alphagora trading system, implementing the 'all-weather' trading strategy.
 """
 
-import momentum as momentum
-import mean_rev as mean_rev
+import models.momentum as momentum
+import models.mean_rev as mean_rev
 from datetime import datetime
 
 

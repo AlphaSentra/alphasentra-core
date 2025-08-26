@@ -11,8 +11,8 @@ Main entry point for the Alphagora "all-weather" portfolio system, combining ETF
 and mean-reversion gold and volatility strategies to achieve asymmetrical returns.
 """
 
-import momentum as momentum
-import mean_rev as mean_rev
+import models.momentum as momentum
+import models.mean_rev as mean_rev
 from datetime import datetime
 
 
