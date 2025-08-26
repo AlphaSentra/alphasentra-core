@@ -14,13 +14,8 @@ from datetime import datetime, timedelta
 import yfinance as yf
 import numpy as np
 import pandas as pd  # Required for robust Series/DataFrame handling
+from models._config import MOMENTUM_ETFS, MOMENTUM_ALLOCATION_MIN, MOMENTUM_ALLOCATION_MAX
 
-# --- CONFIGURATION ---
-
-# 1. Momentum Engine Configuration
-MOMENTUM_ETFS = ['XLC', 'XLY', 'XLP', 'XLE', 'XLF', 'XLV', 'XLI', 'XLB', 'XLRE', 'XLK', 'XLU']
-MOMENTUM_ALLOCATION_MIN = 0.50  # 50%
-MOMENTUM_ALLOCATION_MAX = 0.75  # 75%
 
 # --- MOMENTUM ENGINE ---
 
