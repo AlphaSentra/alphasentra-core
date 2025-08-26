@@ -21,6 +21,5 @@ with the following lines:
 
 <pre>
 GEMINI_API_KEY=your_actual_gemini_api_key
-ANOTHER_SECRET=value123
 DEBUG_MODE=true
 <pre>
