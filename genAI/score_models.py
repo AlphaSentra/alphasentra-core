@@ -6,44 +6,32 @@ load_dotenv() # Load environment variables from .env file
 
 # Step 1: Configure Gemini API
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))  # Set your Gemini key in environment variable
-print(os.getenv("GEMINI_API_KEY"))  # Debug: Print the API key to ensure it's loaded correctly
 
-# Step 2: Set up the model
-model = genai.GenerativeModel("gemini-pro")
+# Step 2: List available models
+print("Available models:")
+for model_info in genai.list_models():
+    if "generateContent" in model_info.supported_generation_methods:
+        print(f"- {model_info.name}: {model_info.display_name}")
 
-# Step 3: Define the prompt to Gemini
+# Step 3: Set up the Gemini 2.5 Pro model
+model = genai.GenerativeModel("gemini-2.5-flash")
+
+# Step 4: AI prompt
 prompt = """
-You are a financial analyst. Based on this week's market events, provide a bull/bear sentiment score from 1 (very bearish) to 10 (very bullish). 
-
-Assess the following categories:
-1. Macroeconomic indicators (U.S./global CPI, GDP, PMI, jobs, Fed policy)
-2. Corporate earnings and guidance
-3. Market liquidity and positioning (flows, Fed balance sheet, VIX, CFTC)
-4. Geopolitical and policy risks (war, elections, trade)
-5. Sentiment and technicals (breadth, put/call, surveys, media tone)
-
-Give a short reasoning for each category and a final overall score.
-
-Respond in the following JSON format:
-{
-  "macro_score": 0,
-  "macro_comment": "...",
-  "earnings_score": 0,
-  "earnings_comment": "...",
-  "liquidity_score": 0,
-  "liquidity_comment": "...",
-  "geopolitics_score": 0,
-  "geopolitics_comment": "...",
-  "sentiment_score": 0,
-  "sentiment_comment": "...",
-  "overall_score": 0,
-  "overall_comment": "..."
-}
+Execute the following multi-step process to determine a 20-day forward investment strategy for U.S. equity sectors with latest data as of today:
+1.  **Analyze Core Indicators:** For the upcoming 20-day period, analyze the seven key indicator categories: Macroeconomic Indicators, Earnings & Corporate Guidance, Market Liquidity & Flows, Geopolitical & Event Risk, Technical & Sentiment Indicators, Sentiment Surveys & News Tone, and Business Cycle.
+2.  **Score Each Category:** Assign a score from 10 (most bullish) to 1 (most bearish) to each of the seven categories based on your analysis of current data and forward-looking expectations.
+3.  **Calculate Weighted Score:** Apply the following weighting model to the scores from Step 2 to calculate a raw weighted score: Geopolitical (30%), Macroeconomic (20%), Technical/Sentiment (20%), Liquidity (10%), Earnings (10%), Business Cycle (5%), Sentiment Surveys (5%).
+4.  **Synthesize Narratives:** Formulate a coherent "Bull Case" and "Bear Case" for the market over the next 20 days, drawing from your indicator analysis.
+5.  **Determine Final Score:** Based on the relative strength of the bull vs. bear narratives and the raw weighted score, determine a final overall forward bull/bear score from 1 to 10.
+6.  **But also in the selection consideration consider also sectors that have been performing well in the last 3 months, as they may have momentum to continue performing well.
+7.  **Recommend Sectors:** Based on your final score and the key drivers identified in your analysis, identify five sector ETFs suitable for investment from the following list: XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU. Provide a detailed rationale for each selection, explaining how it aligns with your market outlook.
 """
 
-# Step 4: Run prompt
+# Step 5: Run prompt
+print("Sending test prompt to Gemini API...")
 response = model.generate_content(prompt)
 
-# Step 5: Output result
-print("\n=== Bull/Bear Market Sentiment Score ===")
+# Step 6: Output result
+print("\n=== Test Response ===")
 print(response.text)
