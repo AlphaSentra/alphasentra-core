@@ -1,37 +1,73 @@
 import os
+import sys
 import google.generativeai as genai
 from dotenv import load_dotenv
 
+# Add the parent directory to the Python path to ensure imports work
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+if parent_dir not in sys.path:
+    sys.path.append(parent_dir)
+
+from _config import AI_MODEL_PROMPTS
+
 load_dotenv() # Load environment variables from .env file
 
-# Step 1: Configure Gemini API
+# Configure Gemini API
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))  # Set your Gemini key in environment variable
 
-# Step 2: List available models
-print("Available models:")
-for model_info in genai.list_models():
-    if "generateContent" in model_info.supported_generation_methods:
-        print(f"- {model_info.name}: {model_info.display_name}")
-
-# Step 3: Set up the Gemini 2.5 Pro model
+# Set up the Gemini 2.5 Pro model
 model = genai.GenerativeModel("gemini-2.5-flash")
 
-# Step 4: AI prompt
-prompt = """
-Execute the following multi-step process to determine a 20-day forward investment strategy for U.S. equity sectors with latest data as of today:
-1.  **Analyze Core Indicators:** For the upcoming 20-day period, analyze the seven key indicator categories: Macroeconomic Indicators, Earnings & Corporate Guidance, Market Liquidity & Flows, Geopolitical & Event Risk, Technical & Sentiment Indicators, Sentiment Surveys & News Tone, and Business Cycle.
-2.  **Score Each Category:** Assign a score from 10 (most bullish) to 1 (most bearish) to each of the seven categories based on your analysis of current data and forward-looking expectations.
-3.  **Calculate Weighted Score:** Apply the following weighting model to the scores from Step 2 to calculate a raw weighted score: Geopolitical (30%), Macroeconomic (20%), Technical/Sentiment (20%), Liquidity (10%), Earnings (10%), Business Cycle (5%), Sentiment Surveys (5%).
-4.  **Synthesize Narratives:** Formulate a coherent "Bull Case" and "Bear Case" for the market over the next 20 days, drawing from your indicator analysis.
-5.  **Determine Final Score:** Based on the relative strength of the bull vs. bear narratives and the raw weighted score, determine a final overall forward bull/bear score from 1 to 10.
-6.  **But also in the selection consideration consider also sectors that have been performing well in the last 3 months, as they may have momentum to continue performing well.
-7.  **Recommend Sectors:** Based on your final score and the key drivers identified in your analysis, identify five sector ETFs suitable for investment from the following list: XLC, XLY, XLP, XLE, XLF, XLV, XLI, XLB, XLRE, XLK, XLU. Provide a detailed rationale for each selection, explaining how it aligns with your market outlook.
-"""
+def score_model(tickers, model_strategy):
+    """
+    Generate investment recommendations based on AI analysis of market indicators.
+    
+    Parameters:
+    tickers (list): List of ticker symbols to analyze
+    model_strategy (str): Strategy to use for analysis. Options:
+        - "sector_rotation_long_only"
+        - "regional_rotation_long_only"
+        - "fx_long_short"
+        - Any other string for default analysis
+    
+    Returns:
+    str: AI-generated response with trade recommendations
+    """
+    
+    # Create a comma-separated string of tickers for the prompt
+    tickers_str = ", ".join(tickers) if tickers else "No tickers provided"
+    
+    # Define prompts for different strategies
+    if model_strategy == "sector_rotation_long_only":
+        prompt = AI_MODEL_PROMPTS["sector_rotation_long_only"].format(tickers_str=tickers_str)
+        
+    elif model_strategy == "regional_rotation_long_only":
+        prompt = AI_MODEL_PROMPTS["regional_rotation_long_only"].format(tickers_str=tickers_str)
+        
+    elif model_strategy == "fx_long_short":
+        prompt = AI_MODEL_PROMPTS["fx_long_short"].format(tickers_str=tickers_str)
+        
+    else:  # Default strategy
+        prompt = AI_MODEL_PROMPTS["default"].format(tickers_str=tickers_str)
+    
+    # Run prompt and return response
+    try:
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"Error generating content: {str(e)}"
 
-# Step 5: Run prompt
-print("Sending test prompt to Gemini API...")
-response = model.generate_content(prompt)
-
-# Step 6: Output result
-print("\n=== Test Response ===")
-print(response.text)
+# Example usage (can be removed or commented out in production)
+if __name__ == "__main__":
+    # List available models
+    print("Available models:")
+    for model_info in genai.list_models():
+        if "generateContent" in model_info.supported_generation_methods:
+            print(f"- {model_info.name}: {model_info.display_name}")
+    
+    # Testing the function
+    print("\n=== Test Prompt ===")
+    sample_tickers = ['XLC', 'XLY', 'XLP', 'XLE', 'XLF', 'XLV', 'XLI', 'XLB', 'XLRE', 'XLK', 'XLU']
+    result = score_model(sample_tickers, "sector_rotation_long_only")
+    print(result)

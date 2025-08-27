@@ -16,7 +16,7 @@ import numpy as np
 from pykalman import KalmanFilter
 from statsmodels.tsa.stattools import coint  # For cointegration testing
 from helpers import get_beta
-from models._config import PAIRS, PAIRS_LOOKBACK_YEARS, ENABLE_COINTEGRATION_TEST
+from _config import PAIRS, PAIRS_LOOKBACK_YEARS, ENABLE_COINTEGRATION_TEST
 
 
 # --- MEAN-REVERSION (PAIRS TRADING) ENGINE ---

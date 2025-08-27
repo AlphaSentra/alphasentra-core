@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 import yfinance as yf
 import numpy as np
 import pandas as pd  # Required for robust Series/DataFrame handling
-from models._config import MOMENTUM_ETFS, MOMENTUM_ALLOCATION_MIN, MOMENTUM_ALLOCATION_MAX
+from _config import MOMENTUM_ETFS, MOMENTUM_ALLOCATION_MIN, MOMENTUM_ALLOCATION_MAX
 
 
 # --- MOMENTUM ENGINE ---
