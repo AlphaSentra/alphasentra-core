@@ -1,6 +1,6 @@
 """
 Project:     Alphagora Trading System
-File:        momentum.py
+File:        _config.py
 Author:      Daiviet Huynh
 Created:     2025-08-26
 License:     MIT License

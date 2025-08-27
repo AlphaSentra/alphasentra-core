@@ -1,3 +1,15 @@
+"""
+Project:     Alphagora Trading System
+File:        score_models.py
+Author:      Daiviet Huynh
+Created:     2025-08-27
+License:     MIT License
+Repository:  https://github.com/daivieth/Alphagora
+
+Description:
+Run the Generative AI model to score and recommend trades based on various data inputs.
+"""
+
 import os
 import sys
 import google.generativeai as genai
