@@ -23,3 +23,5 @@ with the following lines:
 GEMINI_API_KEY=your_actual_gemini_api_key
 AI_MODEL_PROMPTS={"sector_rotation_long_only": "Agent Prompt with {tickers_str}", "regional_rotation_long_only": "Agent Prompt with {tickers_str}", "fx_long_short": "Agent Prompt with {tickers_str}", "default": "Agent prompt with {tickers_str}"}
 <pre>
+
+For the AI Agent prompt, make sure to provide the variable {ticker_str} and set the return value of the prompt response in JSON format.
