@@ -21,5 +21,5 @@ with the following lines:
 
 <pre>
 GEMINI_API_KEY=your_actual_gemini_api_key
-DEBUG_MODE=true
+AI_MODEL_PROMPTS={"sector_rotation_long_only": "Agent Prompt with {tickers_str}", "regional_rotation_long_only": "Agent Prompt with {tickers_str}", "fx_long_short": "Agent Prompt with {tickers_str}", "default": "Agent prompt with {tickers_str}"}
 <pre>

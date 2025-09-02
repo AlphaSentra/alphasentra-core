@@ -12,6 +12,7 @@ Run the Generative AI model to score and recommend trades based on various data 
 
 import os
 import sys
+import json
 import google.generativeai as genai
 from dotenv import load_dotenv
 
@@ -21,10 +22,15 @@ parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
-from _config import AI_MODEL_PROMPTS
 
 load_dotenv() # Load environment variables from .env file
 
+# Load AI_MODEL_PROMPTS from environment variable
+AI_MODEL_PROMPTS_JSON = os.getenv("AI_MODEL_PROMPTS")
+if AI_MODEL_PROMPTS_JSON:
+    AI_MODEL_PROMPTS = json.loads(AI_MODEL_PROMPTS_JSON)
+else:
+    raise ValueError("AI_MODEL_PROMPTS not found in environment variables")
 # Configure Gemini API
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))  # Set your Gemini key in environment variable
 
