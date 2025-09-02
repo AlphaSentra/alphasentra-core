@@ -7,7 +7,7 @@ License:     MIT License
 Repository:  https://github.com/daivieth/Alphagora
 
 Description:
-Main entry point for the Alphagora system, allowing users to select between the "all-weather" portfolio or trading system.
+Main entry point for the Alphagora system, allowing users to select between the portfolio or trading system.
 """
 
 import portfolio_system
