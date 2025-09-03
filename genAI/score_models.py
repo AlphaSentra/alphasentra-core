@@ -13,6 +13,8 @@ Run the Generative AI model to score and recommend trades based on various data 
 import os
 import sys
 import json
+import threading
+import time
 import google.generativeai as genai
 from dotenv import load_dotenv
 
@@ -21,6 +23,8 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
+
+from config import WEIGHTS, WEIGHTS_PERCENT
 
 
 load_dotenv() # Load environment variables from .env file
@@ -35,7 +39,20 @@ else:
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))  # Set your Gemini key in environment variable
 
 # Set up the Gemini 2.5 Pro model
-model = genai.GenerativeModel("gemini-2.5-flash")
+model = genai.GenerativeModel(os.getenv("GEMINI_MODEL_NAME", "gemini-2.5-flash"))
+
+def _show_progress():
+    """
+    Display a simple progress indicator while waiting for the AI model response.
+    """
+    chars = "|/-\\"
+    idx = 0
+    while not threading.current_thread().stop_progress:
+        print(f"\rGenerating AI response... {chars[idx % len(chars)]}", end="", flush=True)
+        idx += 1
+        time.sleep(0.1)
+    print("\rAI response generated.          ", end="", flush=True)
+    print()  # Move to next line
 
 def score_model(tickers, model_strategy):
     """
@@ -53,12 +70,23 @@ def score_model(tickers, model_strategy):
     str: AI-generated response with trade recommendations
     """
     
+    print("\n=== Model: "+ model_strategy +" ===")
+
     # Create a comma-separated string of tickers for the prompt
     tickers_str = ", ".join(tickers) if tickers else "No tickers provided"
     
     # Define prompts for different strategies
     if model_strategy == "sector_rotation_long_only":
-        prompt = AI_MODEL_PROMPTS["sector_rotation_long_only"].format(tickers_str=tickers_str)
+        prompt = AI_MODEL_PROMPTS["sector_rotation_long_only"].format(
+            tickers_str=tickers_str,
+            geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
+            macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
+            technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
+            liquidity_weight=WEIGHTS_PERCENT['Liquidity'],
+            earnings_weight=WEIGHTS_PERCENT['Earnings'],
+            business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
+            sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys']
+        )
         
     elif model_strategy == "regional_rotation_long_only":
         prompt = AI_MODEL_PROMPTS["regional_rotation_long_only"].format(tickers_str=tickers_str)
@@ -71,9 +99,26 @@ def score_model(tickers, model_strategy):
     
     # Run prompt and return response
     try:
+        # Create a thread for the progress indicator
+        progress_thread = threading.Thread(target=_show_progress)
+        progress_thread.stop_progress = False
+        
+        # Start the progress indicator
+        progress_thread.start()
+        
+        # Generate content (this will block until completion)
         response = model.generate_content(prompt)
+        
+        # Stop the progress indicator
+        progress_thread.stop_progress = True
+        progress_thread.join()
+        
         return response.text
     except Exception as e:
+        # Make sure to stop the progress indicator even if there's an error
+        if 'progress_thread' in locals():
+            progress_thread.stop_progress = True
+            progress_thread.join()
         return f"Error generating content: {str(e)}"
 
 # Example usage (can be removed or commented out in production)
@@ -85,7 +130,6 @@ if __name__ == "__main__":
             print(f"- {model_info.name}: {model_info.display_name}")
     
     # Testing the function
-    print("\n=== Test Prompt ===")
     sample_tickers = ['XLC', 'XLY', 'XLP', 'XLE', 'XLF', 'XLV', 'XLI', 'XLB', 'XLRE', 'XLK', 'XLU']
     result = score_model(sample_tickers, "sector_rotation_long_only")
     print(result)

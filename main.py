@@ -20,7 +20,7 @@ def main():
     """
     while True:
         print("="*100)
-        print("Alphagora 'all-weather' System - Main Menu")
+        print("Alphagora Portfolio & Trading System - Main Menu")
         print("="*100)
         print("1. Run Portfolio System")
         print("2. Run Trading System")
