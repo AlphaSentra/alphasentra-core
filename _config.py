@@ -21,3 +21,25 @@ PAIRS = {
 }
 PAIRS_LOOKBACK_YEARS = 1
 ENABLE_COINTEGRATION_TEST = False  # Set to False to skip cointegration check
+
+# Weight configuration for AI model scoring
+WEIGHTS = {
+    'Geopolitical': 0.30,        # 30%
+    'Macroeconomics': 0.20,      # 20%
+    'Technical_Sentiment': 0.20, # 20%
+    'Liquidity': 0.10,           # 10%
+    'Earnings': 0.10,            # 10%
+    'Business_Cycle': 0.05,      # 5%
+    'Sentiment_Surveys': 0.05    # 5%
+}
+
+# Convert to percentage strings for display
+WEIGHTS_PERCENT = {
+    'Geopolitical': '30%',
+    'Macroeconomics': '20%',
+    'Technical_Sentiment': '20%',
+    'Liquidity': '10%',
+    'Earnings': '10%',
+    'Business_Cycle': '5%',
+    'Sentiment_Surveys': '5%'
+}

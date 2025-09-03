@@ -24,7 +24,7 @@ parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
-from config import WEIGHTS, WEIGHTS_PERCENT
+from _config import WEIGHTS, WEIGHTS_PERCENT
 
 
 load_dotenv() # Load environment variables from .env file
