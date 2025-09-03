@@ -7,7 +7,7 @@ License:     MIT License
 Repository:  https://github.com/daivieth/Alphagora
 
 Description:
-Main entry point for the Alphagora trading system, implementing the 'all-weather' trading strategy.
+Main entry point for the Alphagora trading system.
 """
 
 import models.momentum as momentum

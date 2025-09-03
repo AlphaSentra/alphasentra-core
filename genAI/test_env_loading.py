@@ -1,3 +1,15 @@
+"""
+Project:     Alphagora Trading System
+File:        test_env_loading.py
+Author:      Daiviet Huynh
+Created:     2025-09-03
+License:     MIT License
+Repository:  https://github.com/daivieth/Alphagora
+
+Description:
+Test script to verify loading and parsing of AI_MODEL_PROMPTS from environment variables.
+"""
+
 import os
 import json
 from dotenv import load_dotenv

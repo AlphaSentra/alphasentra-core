@@ -7,8 +7,7 @@ License:     MIT License
 Repository:  https://github.com/daivieth/Alphagora
 
 Description:
-Main entry point for the Alphagora "all-weather" portfolio system, combining ETF regional and sector rotation
-and mean-reversion gold and volatility strategies to achieve asymmetrical returns.
+Main entry point for the portfolio system implementing the momentum and mean-reversion engines.
 """
 
 import models.momentum as momentum
