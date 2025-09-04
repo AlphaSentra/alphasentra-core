@@ -1,5 +1,5 @@
 # Alphagora
-Alphagora is a framework leveraging generative AI to analyze market, economic, and sentiment data across equities, commodities, metals, FX, and ETFs. It delivers research-backed investment and trading recommendations, applying industry and academic best practices to exploit market patterns driven by collective sentiment.
+Alphagora is a framework that leverages generative AI to analyze market, economic, and sentiment data across equities, commodities, metals, FX, and ETFs. It delivers research-backed opinions and investment recommendations, applying industry and academic best practices to identify and exploit market patterns driven by collective sentiment.
 
 ## Install Packages
 To run this script, you need to make sure of the following steps:
