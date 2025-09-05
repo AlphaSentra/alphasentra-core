@@ -64,8 +64,6 @@ def run_sector_rotation_model():
                 result = result[:-3]
                 
             recommendations = json.loads(result)
-
-            print(result)
             
             # Add stop loss prices to recommendations
             # Check if the AI returned recommendations in the expected format
