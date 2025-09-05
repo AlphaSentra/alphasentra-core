@@ -25,11 +25,6 @@ from genAI.ai_prompt import get_gen_ai_response
 
 
 def run_sector_rotation_model():
-    """
-    Run the sector rotation long/short Model using AI analysis.
-    """
-    print("\n=== Sector Rotation Long/Short Model ===")
-    print("Analyzing sector ETFs for long/short opportunities...")
     
     try:
         # Get AI recommendations
@@ -44,14 +39,16 @@ def run_sector_rotation_model():
                 result = result[:-3]
                 
             recommendations = json.loads(result)
-            
-            # Display title if available
-            if 'title' in recommendations:
-                print(f"\n=== {recommendations['title']} ===")
-            
+                        
             # Display market outlook
             if 'market_outlook_narrative' in recommendations:
                 print("\n=== Market Outlook ===")
+                print("")
+                # Display title if available
+                if 'title' in recommendations:
+                    print(f"{recommendations['title']}")
+                    print("")
+
                 for paragraph in recommendations['market_outlook_narrative']:
                     print(paragraph)
                     print()
