@@ -364,4 +364,62 @@ def get_entry_price_recommendations(tickers_with_direction):
             })
     
     return recommendations
+def add_entry_price_to_recommendations(recommendations):
+    """
+    Add entry prices to sector recommendations.
+    
+    Parameters:
+    recommendations (dict): The AI recommendations dictionary
+    
+    Returns:
+    dict: The recommendations dictionary with entry prices added
+    """
+    
+    # Check if sector_recommendations exist in the recommendations
+    if 'sector_recommendations' not in recommendations:
+        print("No sector recommendations found in the AI response")
+        # Check if there's a 'recommendations' key instead (AI might use different naming)
+        if 'recommendations' in recommendations:
+            # Rename 'recommendations' to 'sector_recommendations' for consistency
+            recommendations['sector_recommendations'] = recommendations.pop('recommendations')
+        else:
+            return recommendations
+    
+    # Group tickers by trade direction
+    long_tickers = []
+    short_tickers = []
+    
+    for sector in recommendations['sector_recommendations']:
+        ticker = sector.get('ticker')
+        direction = sector.get('trade_direction', '').upper()
+        
+        if ticker and direction:
+            if direction == 'LONG':
+                long_tickers.append(ticker)
+            elif direction == 'SHORT':
+                short_tickers.append(ticker)
+    
+    # Calculate entry prices for LONG positions
+    if long_tickers:
+        long_entry_prices = calculate_entry_price(long_tickers, 'LONG')
+        
+        # Add entry prices to recommendations
+        for sector in recommendations['sector_recommendations']:
+            if sector.get('trade_direction', '').upper() == 'LONG':
+                ticker = sector.get('ticker')
+                if ticker in long_entry_prices:
+                    sector['entry_price'] = round(long_entry_prices[ticker], 2)
+    
+    # Calculate entry prices for SHORT positions
+    if short_tickers:
+        short_entry_prices = calculate_entry_price(short_tickers, 'SHORT')
+        
+        # Add entry prices to recommendations
+        for sector in recommendations['sector_recommendations']:
+            if sector.get('trade_direction', '').upper() == 'SHORT':
+                ticker = sector.get('ticker')
+                if ticker in short_entry_prices:
+                    sector['entry_price'] = round(short_entry_prices[ticker], 2)
+    
+    return recommendations
 

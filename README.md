@@ -12,7 +12,7 @@ To run this script, you need to make sure of the following steps:
 `source yenv/bin/activate`
 
 ### 📌 Step 3: Install required packages
-`pip install yfinance pandas numpy pykalman python-dotenv statsmodels scikit-learn`
+`pip install yfinance pandas numpy pykalman python-dotenv statsmodels scikit-learn backtrader`
 
 ## Google Gemini API
 Create an .env in the root of the directory

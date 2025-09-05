@@ -26,7 +26,7 @@ load_dotenv()
 
 from _config import SECTOR_ETFS, WEIGHTS_PERCENT
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_stop_loss_to_recommendations
+from helpers import add_stop_loss_to_recommendations, add_entry_price_to_recommendations
 
 # Load AI model prompt from environment variables
 SECTOR_ROTATION_LONG_SHORT_PROMPT = os.getenv("SECTOR_ROTATION_LONG_SHORT_PROMPT")
@@ -74,6 +74,7 @@ def run_sector_rotation_model():
                 recommendations['sector_recommendations'] = recommendations.pop('recommendations')
             
             recommendations = add_stop_loss_to_recommendations(recommendations)
+            recommendations = add_entry_price_to_recommendations(recommendations)
                         
             # Display market outlook
             if 'market_outlook_narrative' in recommendations:
@@ -96,7 +97,8 @@ def run_sector_rotation_model():
                     direction = sector.get('trade_direction', 'N/A')
                     score = sector.get('bull_bear_score', 'N/A')
                     stop_loss = sector.get('stop_loss', 'N/A')
-                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Stop Loss: {stop_loss})")
+                    entry_price = sector.get('entry_price', 'N/A')
+                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss})")
         except json.JSONDecodeError:
             # If JSON parsing fails, display the raw result
             print("\n=== AI Analysis ===")
