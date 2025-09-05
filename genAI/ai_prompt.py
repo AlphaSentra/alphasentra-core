@@ -155,8 +155,3 @@ if __name__ == "__main__":
     for model_info in genai.list_models():
         if "generateContent" in model_info.supported_generation_methods:
             print(f"- {model_info.name}: {model_info.display_name}")
-    
-    # Testing the function
-    sample_tickers = SECTOR_ETFS
-    result = get_gen_ai_response(sample_tickers, "sector_rotation_long_short")
-    print(result)

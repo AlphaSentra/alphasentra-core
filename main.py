@@ -7,11 +7,10 @@ License:     MIT License
 Repository:  https://github.com/daivieth/Alphagora
 
 Description:
-Main entry point for the Alphagora system, allowing users to select between the portfolio or trading system.
+Main entry point for the Alphagora system, allowing users to select model.
 """
 
-import portfolio_system
-import trading_system
+import models.sector_rotation_long_short as sector_rotation
 
 
 def main():
@@ -19,30 +18,30 @@ def main():
     Main menu function to select which trading system to run.
     """
     while True:
+        print("")
         print("="*100)
-        print("Alphagora Portfolio & Trading System - Main Menu")
+        print("Alphagora System - Main Menu")
         print("="*100)
-        print("1. Run Portfolio System")
-        print("2. Run Trading System")
-        print("3. Exit")
+        print("Select from the menu below, the model you want to run:")
+        print("")
+        print("1. Sector Rotation Long/Short Model")
+        print("2. Exit")
         
         try:
-            choice = int(input("\nEnter your choice (1-3): "))
+            choice = int(input("\nEnter your choice (1-2): "))
             
             if choice == 1:
-                portfolio_system.main()
+                sector_rotation.run_sector_rotation_model()
             elif choice == 2:
-                trading_system.main()
-            elif choice == 3:
-                print("\nExiting Alphagora Trading System. Goodbye!")
+                print("\nExiting Alphagora System. Goodbye!")
                 break
             else:
-                print("\nInvalid choice. Please enter a number between 1 and 3.")
+                print("\nInvalid choice. Please enter a number between 1 and 2.")
                 
         except ValueError:
             print("\nInvalid input. Please enter an integer.")
         except KeyboardInterrupt:
-            print("\n\nExiting Alphagora Trading System. Goodbye!")
+            print("\n\nExiting Alphagora System. Goodbye!")
             break
 
 

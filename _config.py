@@ -12,6 +12,7 @@ Store all the variables for configuration for all the models and systems.
 
 # Sector Rotation Model Configuration
 SECTOR_ETFS = ['XLC', 'XLY', 'XLP', 'XLE', 'XLF', 'XLV', 'XLI', 'XLB', 'XLRE', 'XLK', 'XLU']
+MOMENTUM_ETFS = SECTOR_ETFS
 MOMENTUM_ALLOCATION_MIN = 0.50  # 50%
 MOMENTUM_ALLOCATION_MAX = 0.75  # 75%
 
