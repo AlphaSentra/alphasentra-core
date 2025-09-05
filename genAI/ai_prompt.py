@@ -48,13 +48,14 @@ def _show_progress():
         print(f"\rGenerating AI response... {chars[idx % len(chars)]}", end="", flush=True)
         idx += 1
         time.sleep(0.1)
-    print("\rAI response generated.          ", end="", flush=True)
+    print("\rAI response generated.", end="", flush=True)
     print()  # Move to next line
 
 def get_gen_ai_response(tickers, model_strategy, prompt=None):
     
     print("\n=== Model: "+ model_strategy +" using "+ os.getenv("GEMINI_MODEL_NAME", "gemini-2.5-pro") +" ===")
-    
+
+
     # Run prompt and return response
     try:
         # Create a thread for the progress indicator

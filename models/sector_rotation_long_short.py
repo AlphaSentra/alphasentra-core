@@ -26,7 +26,7 @@ load_dotenv()
 
 from _config import SECTOR_ETFS, WEIGHTS_PERCENT
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import calculate_stop_loss_price, add_stop_loss_to_recommendations
+from helpers import add_stop_loss_to_recommendations
 
 # Load AI model prompt from environment variables
 SECTOR_ROTATION_LONG_SHORT_PROMPT = os.getenv("SECTOR_ROTATION_LONG_SHORT_PROMPT")
@@ -64,8 +64,15 @@ def run_sector_rotation_model():
                 result = result[:-3]
                 
             recommendations = json.loads(result)
+
+            print(result)
             
             # Add stop loss prices to recommendations
+            # Check if the AI returned recommendations in the expected format
+            if 'recommendations' in recommendations:
+                # Rename 'recommendations' to 'sector_recommendations' for consistency
+                recommendations['sector_recommendations'] = recommendations.pop('recommendations')
+            
             recommendations = add_stop_loss_to_recommendations(recommendations)
                         
             # Display market outlook

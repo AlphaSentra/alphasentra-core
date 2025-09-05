@@ -192,7 +192,12 @@ def add_stop_loss_to_recommendations(recommendations):
     # Check if sector_recommendations exist in the recommendations
     if 'sector_recommendations' not in recommendations:
         print("No sector recommendations found in the AI response")
-        return recommendations
+        # Check if there's a 'recommendations' key instead (AI might use different naming)
+        if 'recommendations' in recommendations:
+            # Rename 'recommendations' to 'sector_recommendations' for consistency
+            recommendations['sector_recommendations'] = recommendations.pop('recommendations')
+        else:
+            return recommendations
     
     # Group tickers by trade direction
     long_tickers = []
@@ -229,6 +234,134 @@ def add_stop_loss_to_recommendations(recommendations):
                 ticker = sector.get('ticker')
                 if ticker in short_stop_losses:
                     sector['stop_loss'] = round(short_stop_losses[ticker], 2)
+    
+    return recommendations
+
+
+def calculate_entry_price(tickers, trade_direction, period=5):
+    """
+    Calculate an appropriate entry price based on past week's high and low.
+    
+    Parameters:
+    tickers (list): List of ticker symbols as strings
+    trade_direction (str): Trade direction, either "LONG" or "SHORT"
+    period (int): Period for high/low calculations in days (default: 5 for one week)
+    
+    Returns:
+    dict: Dictionary with ticker as key and entry price as value
+    """
+    
+    # Validate trade direction
+    if trade_direction not in ["LONG", "SHORT"]:
+        raise ValueError("Trade direction must be either 'LONG' or 'SHORT'")
+    
+    # Dictionary to store entry prices
+    entry_prices = {}
+
+    print()
+    print("Calculating entry prices...")
+
+    # Fetch data for all tickers
+    for ticker in tickers:
+        try:
+            # Fetch historical data for the last 30 days (to ensure we have enough data for weekly calculations)
+            end_date = datetime.now()
+            start_date = end_date - timedelta(days=30)
+            data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False)
+            
+            if data.empty:
+                print(f"No data available for {ticker}")
+                continue
+            
+            # Get data for the past week only (last 5 trading days)
+            week_data = data.tail(period)
+            
+            if len(week_data) < period:
+                print(f"Not enough data for {ticker} to calculate weekly high/low")
+                continue
+            
+            # Calculate weekly high and low
+            week_high = week_data['High'].max()
+            week_low = week_data['Low'].min()
+            current_close = data['Close'].iloc[-1]
+            
+            # Calculate entry price based on trade direction
+            # For LONG positions, we want to enter slightly below the recent low
+            # For SHORT positions, we want to enter slightly above the recent high
+            # We'll use a small buffer (1% of the price) to avoid slippage
+            buffer = current_close * 0.01
+            
+            if trade_direction == "LONG":
+                # Enter slightly below the recent low
+                entry_price = week_low - buffer
+            else:  # SHORT
+                # Enter slightly above the recent high
+                entry_price = week_high + buffer
+            
+            # Store the result
+            entry_prices[ticker] = max(0, entry_price)  # Ensure non-negative
+            
+        except Exception as e:
+            print(f"Error calculating entry price for {ticker}: {e}")
+            continue
+    
+    return entry_prices
+
+
+def get_entry_price_recommendations(tickers_with_direction):
+    """
+    Return entry prices in the specified JSON format.
+    
+    Parameters:
+    tickers_with_direction (list): List of dictionaries with 'ticker' and 'trade_direction' keys
+    
+    Returns:
+    list: Array of objects with 'ticker', 'trade_direction', and 'entry_price' keys
+    """
+    
+    # Group tickers by trade direction
+    long_tickers = []
+    short_tickers = []
+    
+    for item in tickers_with_direction:
+        ticker = item.get('ticker')
+        direction = item.get('trade_direction', '').upper()
+        
+        if ticker and direction:
+            if direction == 'LONG':
+                long_tickers.append(ticker)
+            elif direction == 'SHORT':
+                short_tickers.append(ticker)
+    
+    # Calculate entry prices for LONG positions
+    long_entry_prices = {}
+    if long_tickers:
+        long_entry_prices = calculate_entry_price(long_tickers, 'LONG')
+    
+    # Calculate entry prices for SHORT positions
+    short_entry_prices = {}
+    if short_tickers:
+        short_entry_prices = calculate_entry_price(short_tickers, 'SHORT')
+    
+    # Combine all results in the required format
+    recommendations = []
+    
+    for item in tickers_with_direction:
+        ticker = item.get('ticker')
+        direction = item.get('trade_direction', '').upper()
+        
+        if ticker and direction:
+            entry_price = None
+            if direction == 'LONG' and ticker in long_entry_prices:
+                entry_price = round(long_entry_prices[ticker], 2)
+            elif direction == 'SHORT' and ticker in short_entry_prices:
+                entry_price = round(short_entry_prices[ticker], 2)
+            
+            recommendations.append({
+                'ticker': ticker,
+                'trade_direction': direction,
+                'entry_price': entry_price if entry_price is not None else 'N/A'
+            })
     
     return recommendations
 
