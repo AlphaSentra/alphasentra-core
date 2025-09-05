@@ -29,12 +29,12 @@ from _config import WEIGHTS, WEIGHTS_PERCENT
 
 load_dotenv() # Load environment variables from .env file
 
-# Load AI_MODEL_PROMPTS from environment variable
-AI_MODEL_PROMPTS_JSON = os.getenv("AI_MODEL_PROMPTS")
-if AI_MODEL_PROMPTS_JSON:
-    AI_MODEL_PROMPTS = json.loads(AI_MODEL_PROMPTS_JSON)
-else:
-    raise ValueError("AI_MODEL_PROMPTS not found in environment variables")
+# Load AI model prompts from environment variables
+SECTOR_ROTATION_LONG_ONLY_PROMPT = os.getenv("SECTOR_ROTATION_LONG_ONLY_PROMPT")
+REGIONAL_ROTATION_LONG_ONLY_PROMPT = os.getenv("REGIONAL_ROTATION_LONG_ONLY_PROMPT")
+FX_LONG_SHORT_PROMPT = os.getenv("FX_LONG_SHORT_PROMPT")
+DEFAULT_PROMPT = os.getenv("DEFAULT_PROMPT")
+
 # Configure Gemini API
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))  # Set your Gemini key in environment variable
 
@@ -77,7 +77,7 @@ def score_model(tickers, model_strategy):
     
     # Define prompts for different strategies
     if model_strategy == "sector_rotation_long_only":
-        prompt = AI_MODEL_PROMPTS["sector_rotation_long_only"].format(
+        prompt = SECTOR_ROTATION_LONG_ONLY_PROMPT.format(
             tickers_str=tickers_str,
             geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
             macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
@@ -89,13 +89,40 @@ def score_model(tickers, model_strategy):
         )
         
     elif model_strategy == "regional_rotation_long_only":
-        prompt = AI_MODEL_PROMPTS["regional_rotation_long_only"].format(tickers_str=tickers_str)
+        prompt = REGIONAL_ROTATION_LONG_ONLY_PROMPT.format(
+            tickers_str=tickers_str,
+            geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
+            macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
+            technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
+            liquidity_weight=WEIGHTS_PERCENT['Liquidity'],
+            earnings_weight=WEIGHTS_PERCENT['Earnings'],
+            business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
+            sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys']
+        )
         
     elif model_strategy == "fx_long_short":
-        prompt = AI_MODEL_PROMPTS["fx_long_short"].format(tickers_str=tickers_str)
+        prompt = FX_LONG_SHORT_PROMPT.format(
+            tickers_str=tickers_str,
+            geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
+            macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
+            technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
+            liquidity_weight=WEIGHTS_PERCENT['Liquidity'],
+            earnings_weight=WEIGHTS_PERCENT['Earnings'],
+            business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
+            sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys']
+        )
         
     else:  # Default strategy
-        prompt = AI_MODEL_PROMPTS["default"].format(tickers_str=tickers_str)
+        prompt = DEFAULT_PROMPT.format(
+            tickers_str=tickers_str,
+            geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
+            macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
+            technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
+            liquidity_weight=WEIGHTS_PERCENT['Liquidity'],
+            earnings_weight=WEIGHTS_PERCENT['Earnings'],
+            business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
+            sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys']
+        )
     
     # Run prompt and return response
     try:
