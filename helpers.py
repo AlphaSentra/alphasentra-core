@@ -242,6 +242,9 @@ def calculate_entry_price(tickers, trade_direction, period=5):
     """
     Calculate an appropriate entry price based on past week's high and low.
     
+    For LONG positions: Entry price is set at the high since the past week to now
+    For SHORT positions: Entry price is set at the low since the past week to now
+    
     Parameters:
     tickers (list): List of ticker symbols as strings
     trade_direction (str): Trade direction, either "LONG" or "SHORT"
@@ -283,20 +286,16 @@ def calculate_entry_price(tickers, trade_direction, period=5):
             # Calculate weekly high and low
             week_high = week_data['High'].max()
             week_low = week_data['Low'].min()
-            current_close = data['Close'].iloc[-1]
             
             # Calculate entry price based on trade direction
-            # For LONG positions, we want to enter slightly below the recent low
-            # For SHORT positions, we want to enter slightly above the recent high
-            # We'll use a small buffer (1% of the price) to avoid slippage
-            buffer = current_close * 0.01
-            
+            # For LONG positions, entry price is at the high since past week to now
+            # For SHORT positions, entry price is at the low since past week to now
             if trade_direction == "LONG":
-                # Enter slightly below the recent low
-                entry_price = week_low - buffer
+                # Enter at the high since past week to now
+                entry_price = week_high
             else:  # SHORT
-                # Enter slightly above the recent high
-                entry_price = week_high + buffer
+                # Enter at the low since past week to now
+                entry_price = week_low
             
             # Store the result
             entry_prices[ticker] = max(0, entry_price)  # Ensure non-negative
