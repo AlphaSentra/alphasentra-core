@@ -1,25 +1,9 @@
-"""
-Project:     Alphagora Trading System
-File:        helpers.py
-Author:      Daiviet Huynh
-Created:     2025-07-22
-License:     MIT License
-Repository:  https://github.com/daivieth/Alphagora
-
-Description:
-Helper functions for the Alphagora Trading System.
-"""
-
-
-
-# --- HELPER FUNCTIONS ---
 import yfinance as yf
 import pandas as pd
 import numpy as np
 import backtrader as bt
 from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
-
 
 def calculate_stop_loss_price(tickers, trade_direction, period=14):
     """
@@ -40,17 +24,16 @@ def calculate_stop_loss_price(tickers, trade_direction, period=14):
     
     # Dictionary to store stop loss prices
     stop_loss_prices = {}
-
-    print()
-    print("Calculating stop loss prices...")
-
+    
     # Fetch data for all tickers
     for ticker in tickers:
         try:
+            print(f"Processing ticker: {ticker} (type: {type(ticker)})")
             # Fetch historical data for the last 60 days
             end_date = datetime.now()
             start_date = end_date - timedelta(days=60)
-            data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False)
+            data = yf.download(ticker, start=start_date, end=end_date, progress=False)
+            print(f"Downloaded data for {ticker}: {type(data)}")
             
             if data.empty:
                 print(f"No data available for {ticker}")
@@ -119,7 +102,6 @@ def calculate_stop_loss_price(tickers, trade_direction, period=14):
     
     return stop_loss_prices
 
-
 def get_stop_loss_recommendations(tickers_with_direction):
     """
     Return stop loss prices in the specified JSON format.
@@ -144,6 +126,9 @@ def get_stop_loss_recommendations(tickers_with_direction):
                 long_tickers.append(ticker)
             elif direction == 'SHORT':
                 short_tickers.append(ticker)
+    
+    print(f"Long tickers: {long_tickers}")
+    print(f"Short tickers: {short_tickers}")
     
     # Calculate stop loss prices for LONG positions
     long_stop_losses = {}
@@ -177,58 +162,22 @@ def get_stop_loss_recommendations(tickers_with_direction):
     
     return recommendations
 
+# Test data
+tickers_with_direction = [
+    {'ticker': 'AAPL', 'trade_direction': 'LONG'},
+    {'ticker': 'GOOGL', 'trade_direction': 'SHORT'},
+    {'ticker': 'MSFT', 'trade_direction': 'LONG'},
+    {'ticker': 'AMZN', 'trade_direction': 'SHORT'}
+]
 
-def add_stop_loss_to_recommendations(recommendations):
-    """
-    Add stop loss prices to sector recommendations.
-    
-    Parameters:
-    recommendations (dict): The AI recommendations dictionary
-    
-    Returns:
-    dict: The recommendations dictionary with stop loss prices added
-    """
-    
-    # Check if sector_recommendations exist in the recommendations
-    if 'sector_recommendations' not in recommendations:
-        print("No sector recommendations found in the AI response")
-        return recommendations
-    
-    # Group tickers by trade direction
-    long_tickers = []
-    short_tickers = []
-    
-    for sector in recommendations['sector_recommendations']:
-        ticker = sector.get('ticker')
-        direction = sector.get('trade_direction', '').upper()
-        
-        if ticker and direction:
-            if direction == 'LONG':
-                long_tickers.append(ticker)
-            elif direction == 'SHORT':
-                short_tickers.append(ticker)
-    
-    # Calculate stop loss prices for LONG positions
-    if long_tickers:
-        long_stop_losses = calculate_stop_loss_price(long_tickers, 'LONG')
-        
-        # Add stop loss prices to recommendations
-        for sector in recommendations['sector_recommendations']:
-            if sector.get('trade_direction', '').upper() == 'LONG':
-                ticker = sector.get('ticker')
-                if ticker in long_stop_losses:
-                    sector['stop_loss'] = round(long_stop_losses[ticker], 2)
-    
-    # Calculate stop loss prices for SHORT positions
-    if short_tickers:
-        short_stop_losses = calculate_stop_loss_price(short_tickers, 'SHORT')
-        
-        # Add stop loss prices to recommendations
-        for sector in recommendations['sector_recommendations']:
-            if sector.get('trade_direction', '').upper() == 'SHORT':
-                ticker = sector.get('ticker')
-                if ticker in short_stop_losses:
-                    sector['stop_loss'] = round(short_stop_losses[ticker], 2)
-    
-    return recommendations
+# Get stop loss recommendations
+print("Testing get_stop_loss_recommendations:")
+recommendations = get_stop_loss_recommendations(tickers_with_direction)
 
+# Print results
+print("Stop Loss Recommendations:")
+print("[")
+for i, rec in enumerate(recommendations):
+    comma = "," if i < len(recommendations) - 1 else ""
+    print(f"  {{'ticker': '{rec['ticker']}', 'trade_direction': '{rec['trade_direction']}', 'stop_loss': {rec['stop_loss']}}}{comma}")
+print("]")

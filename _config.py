@@ -8,6 +8,7 @@ Repository:  https://github.com/daivieth/Alphagora
 
 Description:
 Store all the variables for configuration for all the models and systems.
+Tickers must be in Yahoo Finance format.
 """
 
 # Sector Rotation Model Configuration
@@ -17,18 +18,8 @@ MOMENTUM_ALLOCATION_MIN = 0.50  # 50%
 MOMENTUM_ALLOCATION_MAX = 0.75  # 75%
 
 
-# Weight configuration for AI model scoring
-WEIGHTS = {
-    'Geopolitical': 0.30,        # 30%
-    'Macroeconomics': 0.20,      # 20%
-    'Technical_Sentiment': 0.20, # 20%
-    'Liquidity': 0.10,           # 10%
-    'Earnings': 0.10,            # 10%
-    'Business_Cycle': 0.05,      # 5%
-    'Sentiment_Surveys': 0.05    # 5%
-}
 
-# Convert to percentage strings for display
+# Default weights for various factors in percentage format
 WEIGHTS_PERCENT = {
     'Geopolitical': '30%',
     'Macroeconomics': '20%',

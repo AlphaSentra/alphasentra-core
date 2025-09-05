@@ -24,15 +24,12 @@ parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
-from _config import WEIGHTS, WEIGHTS_PERCENT, SECTOR_ETFS  # Import configuration variables
+from _config import WEIGHTS_PERCENT  # Import configuration variables
 
 
 load_dotenv() # Load environment variables from .env file
 
 # Load AI model prompts from environment variables
-SECTOR_ROTATION_LONG_SHORT_PROMPT = os.getenv("SECTOR_ROTATION_LONG_SHORT_PROMPT")
-REGIONAL_ROTATION_LONG_ONLY_PROMPT = os.getenv("REGIONAL_ROTATION_LONG_ONLY_PROMPT")
-FX_LONG_SHORT_PROMPT = os.getenv("FX_LONG_SHORT_PROMPT")
 DEFAULT_PROMPT = os.getenv("DEFAULT_PROMPT")
 
 # Configure Gemini API
@@ -54,75 +51,9 @@ def _show_progress():
     print("\rAI response generated.          ", end="", flush=True)
     print()  # Move to next line
 
-def get_gen_ai_response(tickers, model_strategy):
-    """
-    Generate investment recommendations based on AI analysis of market indicators.
-    
-    Parameters:
-    tickers (list): List of ticker symbols to analyze
-    model_strategy (str): Strategy to use for analysis. Options:
-        - "sector_rotation_long_short"
-        - "regional_rotation_long_only"
-        - "fx_long_short"
-        - Any other string for default analysis
-    
-    Returns:
-    str: AI-generated response with trade recommendations
-    """
+def get_gen_ai_response(tickers, model_strategy, prompt=None):
     
     print("\n=== Model: "+ model_strategy +" using "+ os.getenv("GEMINI_MODEL_NAME", "gemini-2.5-pro") +" ===")
-
-    # Create a comma-separated string of tickers for the prompt
-    tickers_str = ", ".join(tickers) if tickers else "No tickers provided"
-    
-    # Define prompts for different strategies
-    if model_strategy == "sector_rotation_long_short":
-        prompt = SECTOR_ROTATION_LONG_SHORT_PROMPT.format(
-            tickers_str=tickers_str,
-            geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
-            macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
-            technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
-            liquidity_weight=WEIGHTS_PERCENT['Liquidity'],
-            earnings_weight=WEIGHTS_PERCENT['Earnings'],
-            business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
-            sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys']
-        )
-        
-    elif model_strategy == "regional_rotation_long_only":
-        prompt = REGIONAL_ROTATION_LONG_ONLY_PROMPT.format(
-            tickers_str=tickers_str,
-            geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
-            macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
-            technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
-            liquidity_weight=WEIGHTS_PERCENT['Liquidity'],
-            earnings_weight=WEIGHTS_PERCENT['Earnings'],
-            business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
-            sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys']
-        )
-        
-    elif model_strategy == "fx_long_short":
-        prompt = FX_LONG_SHORT_PROMPT.format(
-            tickers_str=tickers_str,
-            geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
-            macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
-            technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
-            liquidity_weight=WEIGHTS_PERCENT['Liquidity'],
-            earnings_weight=WEIGHTS_PERCENT['Earnings'],
-            business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
-            sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys']
-        )
-        
-    else:  # Default strategy
-        prompt = DEFAULT_PROMPT.format(
-            tickers_str=tickers_str,
-            geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
-            macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
-            technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
-            liquidity_weight=WEIGHTS_PERCENT['Liquidity'],
-            earnings_weight=WEIGHTS_PERCENT['Earnings'],
-            business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
-            sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys']
-        )
     
     # Run prompt and return response
     try:

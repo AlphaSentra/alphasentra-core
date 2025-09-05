@@ -13,6 +13,7 @@ Sector rotation ETF long/short model.
 import sys
 import os
 import json
+from dotenv import load_dotenv
 
 # Add the parent directory to the Python path to ensure imports work
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -20,15 +21,39 @@ parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
-from _config import SECTOR_ETFS
+# Load environment variables
+load_dotenv()
+
+from _config import SECTOR_ETFS, WEIGHTS_PERCENT
 from genAI.ai_prompt import get_gen_ai_response
+from helpers import calculate_stop_loss_price, add_stop_loss_to_recommendations
+
+# Load AI model prompt from environment variables
+SECTOR_ROTATION_LONG_SHORT_PROMPT = os.getenv("SECTOR_ROTATION_LONG_SHORT_PROMPT")
+
+# Format the prompt with the necessary variables
+if SECTOR_ROTATION_LONG_SHORT_PROMPT:
+    # Create a comma-separated string of tickers for the prompt
+    tickers_str = ", ".join(SECTOR_ETFS) if SECTOR_ETFS else "No tickers provided"
+    
+    # Format the prompt with both tickers_str and weights
+    SECTOR_ROTATION_LONG_SHORT_PROMPT = SECTOR_ROTATION_LONG_SHORT_PROMPT.format(
+        tickers_str=tickers_str,
+        geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
+        macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
+        technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
+        liquidity_weight=WEIGHTS_PERCENT['Liquidity'],
+        earnings_weight=WEIGHTS_PERCENT['Earnings'],
+        business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
+        sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys']
+    )
 
 
 def run_sector_rotation_model():
     
     try:
-        # Get AI recommendations
-        result = get_gen_ai_response(SECTOR_ETFS, "sector_rotation_long_short")
+        # Get AI recommendations with None as prompt since it's pre-formatted
+        result = get_gen_ai_response(SECTOR_ETFS, "sector rotation long/short", SECTOR_ROTATION_LONG_SHORT_PROMPT)
         
         # Try to parse the result as JSON
         try:
@@ -39,15 +64,18 @@ def run_sector_rotation_model():
                 result = result[:-3]
                 
             recommendations = json.loads(result)
+            
+            # Add stop loss prices to recommendations
+            recommendations = add_stop_loss_to_recommendations(recommendations)
                         
             # Display market outlook
             if 'market_outlook_narrative' in recommendations:
                 print("\n=== Market Outlook ===")
-                print("")
+                print()
                 # Display title if available
                 if 'title' in recommendations:
                     print(f"{recommendations['title']}")
-                    print("")
+                    print()
 
                 for paragraph in recommendations['market_outlook_narrative']:
                     print(paragraph)
@@ -60,7 +88,8 @@ def run_sector_rotation_model():
                     ticker = sector.get('ticker', 'N/A')
                     direction = sector.get('trade_direction', 'N/A')
                     score = sector.get('bull_bear_score', 'N/A')
-                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10)")
+                    stop_loss = sector.get('stop_loss', 'N/A')
+                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Stop Loss: {stop_loss})")
         except json.JSONDecodeError:
             # If JSON parsing fails, display the raw result
             print("\n=== AI Analysis ===")

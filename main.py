@@ -18,12 +18,12 @@ def main():
     Main menu function to select which trading system to run.
     """
     while True:
-        print("")
+        print()
         print("="*100)
         print("Alphagora System - Main Menu")
         print("="*100)
         print("Select from the menu below, the model you want to run:")
-        print("")
+        print()
         print("1. Sector Rotation Long/Short Model")
         print("2. Exit")
         
