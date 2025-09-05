@@ -11,7 +11,6 @@ Main entry point for the portfolio system implementing the momentum and mean-rev
 """
 
 import models.momentum as momentum
-import models.mean_rev as mean_rev
 from datetime import datetime
 
 
@@ -34,9 +33,6 @@ def main():
     except ValueError:
         print("Invalid input. Please enter an integer between 1 and 10.")
         return
-
-    # --- Part 2: Mean-Reversion Engine ---
-    mean_rev.mean_reversion_engine()
 
 if __name__ == "__main__":
     main()

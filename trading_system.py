@@ -11,7 +11,6 @@ Main entry point for the Alphagora trading system.
 """
 
 import models.momentum as momentum
-import models.mean_rev as mean_rev
 from datetime import datetime
 
 
@@ -40,9 +39,6 @@ def main():
             momentum_score = int(input("Enter momentum score (1-10): "))
             momentum.get_momentum_recommendations(momentum_score)
         elif choice == 2:
-            print("\nExecuting Mean Reversion Trading Strategy...")
-            mean_rev.mean_reversion_engine()
-        elif choice == 3:
             print("Exiting system.")
             return
         else:

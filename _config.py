@@ -10,17 +10,11 @@ Description:
 Store all the variables for configuration for all the models and systems.
 """
 
-# Momentum Engine Configuration
-MOMENTUM_ETFS = ['XLC', 'XLY', 'XLP', 'XLE', 'XLF', 'XLV', 'XLI', 'XLB', 'XLRE', 'XLK', 'XLU']
+# Sector Rotation Model Configuration
+SECTOR_ETFS = ['XLC', 'XLY', 'XLP', 'XLE', 'XLF', 'XLV', 'XLI', 'XLB', 'XLRE', 'XLK', 'XLU']
 MOMENTUM_ALLOCATION_MIN = 0.50  # 50%
 MOMENTUM_ALLOCATION_MAX = 0.75  # 75%
 
-# Mean Reversion Engine Configuration
-PAIRS = {
-    'VXX_vs_SVXY': ('VXX', 'SVXY'),
-}
-PAIRS_LOOKBACK_YEARS = 1
-ENABLE_COINTEGRATION_TEST = False  # Set to False to skip cointegration check
 
 # Weight configuration for AI model scoring
 WEIGHTS = {
