@@ -68,7 +68,6 @@ The [prompt] should return the following JSON as well:
       "trade_direction": "string",
       "bull_bear_score": "integer"
     }
-    // Additional recommendation objects as needed
   ]
 }
 </pre>
