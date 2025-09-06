@@ -50,6 +50,9 @@ if SECTOR_ROTATION_LONG_SHORT_PROMPT:
 
 
 def run_sector_rotation_model():
+    """
+    Run the sector rotation long/short model.
+    """
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
@@ -96,11 +99,36 @@ def run_sector_rotation_model():
             if 'sector_recommendations' in recommendations:
                 print("=== Recommendations ===")
                 for sector in recommendations['sector_recommendations']:
-                    ticker = sector.get('ticker', 'N/A')
-                    direction = sector.get('trade_direction', 'N/A')
-                    score = sector.get('bull_bear_score', 'N/A')
+                    # Extract required fields with better default values
+                    ticker = sector.get('ticker', 'UNKNOWN')
+                    direction = sector.get('trade_direction', 'NONE')
+                    score = sector.get('bull_bear_score', 0)
+                    
+                    # For stop_loss and entry_price, use 'N/A' as default but validate they exist
                     stop_loss = sector.get('stop_loss', 'N/A')
                     entry_price = sector.get('entry_price', 'N/A')
+                    
+                    # Validate that required fields are present
+                    if ticker == 'UNKNOWN':
+                        print("- Warning: Missing ticker information")
+                        continue
+                    
+                    if direction == 'NONE':
+                        print(f"- {ticker}: Warning - Missing trade direction")
+                        direction = 'HOLD'  # Default to HOLD if direction is missing
+                    
+                    # Ensure score is within valid range
+                    if not isinstance(score, int) or score < 1 or score > 10:
+                        print(f"- {ticker}: Warning - Invalid score ({score}), setting to 5")
+                        score = 5
+                    
+                    # Validate stop_loss and entry_price
+                    if stop_loss == 'N/A':
+                        print(f"- {ticker}: Warning - Missing stop loss data")
+                    
+                    if entry_price == 'N/A':
+                        print(f"- {ticker}: Warning - Missing entry price data")
+                    
                     print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss})")
         except json.JSONDecodeError:
             # If JSON parsing fails, display the raw result

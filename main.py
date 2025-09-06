@@ -10,7 +10,7 @@ Description:
 Main entry point for the Alphagora system, allowing users to select model.
 """
 
-import models.sector_rotation_long_short as sector_rotation
+import models.sector_rotation_long_short as sector_rotation_long_short
 
 
 def main():
@@ -31,12 +31,12 @@ def main():
             choice = int(input("\nEnter your choice (1-2): "))
             
             if choice == 1:
-                sector_rotation.run_sector_rotation_model()
+                sector_rotation_long_short.run_sector_rotation_model()
             elif choice == 2:
                 print("\nExiting Alphagora System. Goodbye!")
                 break
             else:
-                print("\nInvalid choice. Please enter a number between 1 and 2.")
+                print("\nInvalid choice. Please select a valid option.")
                 
         except ValueError:
             print("\nInvalid input. Please enter an integer.")
