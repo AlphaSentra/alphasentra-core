@@ -13,6 +13,7 @@ Sector rotation ETF long/short model.
 import sys
 import os
 import json
+import datetime
 from dotenv import load_dotenv
 
 # Add the parent directory to the Python path to ensure imports work
@@ -36,6 +37,9 @@ if SECTOR_ROTATION_LONG_SHORT_PROMPT:
     # Create a comma-separated string of tickers for the prompt
     tickers_str = ", ".join(SECTOR_ETFS) if SECTOR_ETFS else "No tickers provided"
     
+    # Create current date in the format "September 6, 2025"
+    current_date = datetime.datetime.now().strftime("%B %d, %Y")
+    
     # Format the prompt with both tickers_str and weights
     SECTOR_ROTATION_LONG_SHORT_PROMPT = SECTOR_ROTATION_LONG_SHORT_PROMPT.format(
         tickers_str=tickers_str,
@@ -45,7 +49,8 @@ if SECTOR_ROTATION_LONG_SHORT_PROMPT:
         liquidity_weight=WEIGHTS_PERCENT['Liquidity'],
         earnings_weight=WEIGHTS_PERCENT['Earnings'],
         business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
-        sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys']
+        sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys'],
+        current_date=current_date
     )
 
 
@@ -98,6 +103,7 @@ def run_sector_rotation_model():
             # Display sector recommendations
             if 'sector_recommendations' in recommendations:
                 print("=== Recommendations ===")
+                print()
                 for sector in recommendations['sector_recommendations']:
                     # Extract required fields with better default values
                     ticker = sector.get('ticker', 'UNKNOWN')
