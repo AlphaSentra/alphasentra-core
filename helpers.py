@@ -180,7 +180,7 @@ def get_stop_loss_recommendations(tickers_with_direction):
 
 def add_stop_loss_to_recommendations(recommendations):
     """
-    Add stop loss prices to sector recommendations.
+    Add stop loss prices to recommendations.
     
     Parameters:
     recommendations (dict): The AI recommendations dictionary
@@ -188,24 +188,14 @@ def add_stop_loss_to_recommendations(recommendations):
     Returns:
     dict: The recommendations dictionary with stop loss prices added
     """
-    
-    # Check if sector_recommendations exist in the recommendations
-    if 'sector_recommendations' not in recommendations:
-        print("No sector recommendations found in the AI response")
-        # Check if there's a 'recommendations' key instead (AI might use different naming)
-        if 'recommendations' in recommendations:
-            # Rename 'recommendations' to 'sector_recommendations' for consistency
-            recommendations['sector_recommendations'] = recommendations.pop('recommendations')
-        else:
-            return recommendations
-    
+        
     # Group tickers by trade direction
     long_tickers = []
     short_tickers = []
     
-    for sector in recommendations['sector_recommendations']:
-        ticker = sector.get('ticker')
-        direction = sector.get('trade_direction', '').upper()
+    for trade in recommendations['recommendations']:
+        ticker = trade.get('ticker')
+        direction = trade.get('trade_direction', '').upper()
         
         if ticker and direction:
             if direction == 'LONG':
@@ -218,22 +208,22 @@ def add_stop_loss_to_recommendations(recommendations):
         long_stop_losses = calculate_stop_loss_price(long_tickers, 'LONG')
         
         # Add stop loss prices to recommendations
-        for sector in recommendations['sector_recommendations']:
-            if sector.get('trade_direction', '').upper() == 'LONG':
-                ticker = sector.get('ticker')
+        for trade in recommendations['recommendations']:
+            if trade.get('trade_direction', '').upper() == 'LONG':
+                ticker = trade.get('ticker')
                 if ticker in long_stop_losses:
-                    sector['stop_loss'] = round(long_stop_losses[ticker], 2)
+                    trade['stop_loss'] = round(long_stop_losses[ticker], 2)
     
     # Calculate stop loss prices for SHORT positions
     if short_tickers:
         short_stop_losses = calculate_stop_loss_price(short_tickers, 'SHORT')
         
         # Add stop loss prices to recommendations
-        for sector in recommendations['sector_recommendations']:
-            if sector.get('trade_direction', '').upper() == 'SHORT':
-                ticker = sector.get('ticker')
+        for trade in recommendations['recommendations']:
+            if trade.get('trade_direction', '').upper() == 'SHORT':
+                ticker = trade.get('ticker')
                 if ticker in short_stop_losses:
-                    sector['stop_loss'] = round(short_stop_losses[ticker], 2)
+                    trade['stop_loss'] = round(short_stop_losses[ticker], 2)
     
     return recommendations
 
@@ -365,7 +355,7 @@ def get_entry_price_recommendations(tickers_with_direction):
     return recommendations
 def add_entry_price_to_recommendations(recommendations):
     """
-    Add entry prices to sector recommendations.
+    Add entry prices to recommendations.
     
     Parameters:
     recommendations (dict): The AI recommendations dictionary
@@ -373,24 +363,14 @@ def add_entry_price_to_recommendations(recommendations):
     Returns:
     dict: The recommendations dictionary with entry prices added
     """
-    
-    # Check if sector_recommendations exist in the recommendations
-    if 'sector_recommendations' not in recommendations:
-        print("No sector recommendations found in the AI response")
-        # Check if there's a 'recommendations' key instead (AI might use different naming)
-        if 'recommendations' in recommendations:
-            # Rename 'recommendations' to 'sector_recommendations' for consistency
-            recommendations['sector_recommendations'] = recommendations.pop('recommendations')
-        else:
-            return recommendations
-    
+        
     # Group tickers by trade direction
     long_tickers = []
     short_tickers = []
     
-    for sector in recommendations['sector_recommendations']:
-        ticker = sector.get('ticker')
-        direction = sector.get('trade_direction', '').upper()
+    for trade in recommendations['recommendations']:
+        ticker = trade.get('ticker')
+        direction = trade.get('trade_direction', '').upper()
         
         if ticker and direction:
             if direction == 'LONG':
@@ -403,22 +383,22 @@ def add_entry_price_to_recommendations(recommendations):
         long_entry_prices = calculate_entry_price(long_tickers, 'LONG')
         
         # Add entry prices to recommendations
-        for sector in recommendations['sector_recommendations']:
-            if sector.get('trade_direction', '').upper() == 'LONG':
-                ticker = sector.get('ticker')
+        for trade in recommendations['recommendations']:
+            if trade.get('trade_direction', '').upper() == 'LONG':
+                ticker = trade.get('ticker')
                 if ticker in long_entry_prices:
-                    sector['entry_price'] = round(long_entry_prices[ticker], 2)
+                    trade['entry_price'] = round(long_entry_prices[ticker], 2)
     
     # Calculate entry prices for SHORT positions
     if short_tickers:
         short_entry_prices = calculate_entry_price(short_tickers, 'SHORT')
         
         # Add entry prices to recommendations
-        for sector in recommendations['sector_recommendations']:
-            if sector.get('trade_direction', '').upper() == 'SHORT':
-                ticker = sector.get('ticker')
+        for trade in recommendations['recommendations']:
+            if trade.get('trade_direction', '').upper() == 'SHORT':
+                ticker = trade.get('ticker')
                 if ticker in short_entry_prices:
-                    sector['entry_price'] = round(short_entry_prices[ticker], 2)
+                    trade['entry_price'] = round(short_entry_prices[ticker], 2)
     
     return recommendations
 

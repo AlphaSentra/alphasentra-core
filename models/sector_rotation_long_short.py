@@ -43,6 +43,7 @@ if SECTOR_ROTATION_LONG_SHORT_PROMPT:
     # Format the prompt with both tickers_str and weights
     SECTOR_ROTATION_LONG_SHORT_PROMPT = SECTOR_ROTATION_LONG_SHORT_PROMPT.format(
         tickers_str=tickers_str,
+        current_date=current_date,
         geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
         macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
         technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
@@ -50,7 +51,6 @@ if SECTOR_ROTATION_LONG_SHORT_PROMPT:
         earnings_weight=WEIGHTS_PERCENT['Earnings'],
         business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
         sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys'],
-        current_date=current_date
     )
 
 
@@ -70,15 +70,10 @@ def run_sector_rotation_model():
                 result = result[7:]
             if result.endswith("```"):
                 result = result[:-3]
-                
+            # Parse JSON
             recommendations = json.loads(result)
-            
-            # Add stop loss prices to recommendations
-            # Check if the AI returned recommendations in the expected format
-            if 'recommendations' in recommendations:
-                # Rename 'recommendations' to 'sector_recommendations' for consistency
-                recommendations['sector_recommendations'] = recommendations.pop('recommendations')
-            
+
+            # Add stop loss and entry price to each recommendation                       
             recommendations = add_stop_loss_to_recommendations(recommendations)
             recommendations = add_entry_price_to_recommendations(recommendations)
 
@@ -100,19 +95,21 @@ def run_sector_rotation_model():
                     print(paragraph)
                     print()
             
-            # Display sector recommendations
-            if 'sector_recommendations' in recommendations:
+            # Display recommendations
+            # After processing, the recommendations are under 'recommendations' key
+            if 'recommendations' in recommendations:
                 print("=== Recommendations ===")
                 print()
-                for sector in recommendations['sector_recommendations']:
+                for trade in recommendations['recommendations']:
                     # Extract required fields with better default values
-                    ticker = sector.get('ticker', 'UNKNOWN')
-                    direction = sector.get('trade_direction', 'NONE')
-                    score = sector.get('bull_bear_score', 0)
+                    ticker = trade.get('ticker', 'UNKNOWN')
+                    direction = trade.get('trade_direction', 'NONE')
+                    score = trade.get('bull_bear_score', 0)
+                    probability = trade.get('probability', 'N/A')
                     
                     # For stop_loss and entry_price, use 'N/A' as default but validate they exist
-                    stop_loss = sector.get('stop_loss', 'N/A')
-                    entry_price = sector.get('entry_price', 'N/A')
+                    stop_loss = trade.get('stop_loss', 'N/A')
+                    entry_price = trade.get('entry_price', 'N/A')
                     
                     # Validate that required fields are present
                     if ticker == 'UNKNOWN':
@@ -135,7 +132,7 @@ def run_sector_rotation_model():
                     if entry_price == 'N/A':
                         print(f"- {ticker}: Warning - Missing entry price data")
                     
-                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss})")
+                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Probability: {probability}, Entry Price: {entry_price}, Stop Loss: {stop_loss})")
         except json.JSONDecodeError:
             # If JSON parsing fails, display the raw result
             print("\n=== AI Analysis ===")
