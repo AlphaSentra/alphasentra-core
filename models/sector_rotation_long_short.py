@@ -73,6 +73,11 @@ def run_sector_rotation_model():
             
             recommendations = add_stop_loss_to_recommendations(recommendations)
             recommendations = add_entry_price_to_recommendations(recommendations)
+
+            #Display Model Output header
+            print("\n" + "="*100)
+            print("Sector Rotation Long/Short Model")
+            print("="*100)
                         
             # Display market outlook
             if 'market_outlook_narrative' in recommendations:
@@ -89,7 +94,7 @@ def run_sector_rotation_model():
             
             # Display sector recommendations
             if 'sector_recommendations' in recommendations:
-                print("=== Sector Recommendations ===")
+                print("=== Recommendations ===")
                 for sector in recommendations['sector_recommendations']:
                     ticker = sector.get('ticker', 'N/A')
                     direction = sector.get('trade_direction', 'N/A')

@@ -101,8 +101,8 @@ def calculate_stop_loss_price(tickers, trade_direction, period=14):
             # For weaker trends (low ADX), use 2.5x ATR
             atr_multiplier = 2.5 - (adx_strength * 1.0)  # Ranges from 2.5 to 1.5
             
-            # Calculate stop loss distance (doubled)
-            stop_loss_distance = current_atr * atr_multiplier * 2
+            # Calculate stop loss distance
+            stop_loss_distance = current_atr * atr_multiplier
             
             # Calculate stop loss price based on trade direction
             if trade_direction == "LONG":
