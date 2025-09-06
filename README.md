@@ -21,26 +21,54 @@ with the following lines:
 
 <pre>
 GEMINI_API_KEY=your_actual_gemini_api_key
-
-SECTOR_ROTATION_LONG_ONLY_PROMPT="Geopolitical ({geopolitical_weight}), Macroeconomic ({macroeconomic_weight}), Technical/Sentiment ({technical_sentiment_weight}), Liquidity ({liquidity_weight}), Earnings ({earnings_weight}), Business Cycle ({business_cycle_weight}), Sentiment Surveys ({sentiment_surveys_weight}). {tickers_str}."
-
-REGIONAL_ROTATION_LONG_ONLY_PROMPT="Geopolitical ({geopolitical_weight}), Macroeconomic ({macroeconomic_weight}), Technical/Sentiment ({technical_sentiment_weight}), Liquidity ({liquidity_weight}), Earnings ({earnings_weight}), Business Cycle ({business_cycle_weight}), Sentiment Surveys ({sentiment_surveys_weight}). {tickers_str}."
-
-FX_LONG_SHORT_PROMPT="Geopolitical ({geopolitical_weight}), Macroeconomic ({macroeconomic_weight}), Technical/Sentiment ({technical_sentiment_weight}), Liquidity ({liquidity_weight}), Earnings ({earnings_weight}), Business Cycle ({business_cycle_weight}), Sentiment Surveys ({sentiment_surveys_weight}). {tickers_str}."
-
-DEFAULT_PROMPT="Geopolitical ({geopolitical_weight}), Macroeconomic ({macroeconomic_weight}), Technical/Sentiment ({technical_sentiment_weight}), Liquidity ({liquidity_weight}), Earnings ({earnings_weight}), Business Cycle ({business_cycle_weight}), Sentiment Surveys ({sentiment_surveys_weight}). {tickers_str}."
+GEMINI_MODEL_NAME=gemini-2.5-pro
 </pre>
 
-For the AI Agent prompt, make sure to provide the following variables:
+## AI Custom Prompts
+
+For the AI Agent prompt, make sure to provide the following variables in the .env file:
+
+<pre>
+SECTOR_ROTATION_LONG_ONLY_PROMPT="[prompt]"
+REGIONAL_ROTATION_LONG_ONLY_PROMPT=[prompt]"
+FX_LONG_SHORT_PROMPT="[prompt]"
+</pre>
+
+The [prompt] must contain some of the following information:
 
 - Tickers: {ticker_str},
-- Geopolitical ({geopolitical_weight}),
-- Macroeconomic ({macroeconomic_weight}),
-- Technical/Sentiment ({technical_sentiment_weight}),
-- Liquidity ({liquidity_weight}),
-- Earnings ({earnings_weight}),
-- Business Cycle ({business_cycle_weight}),
-- Sentiment Surveys ({sentiment_surveys_weight})
+- Current date: {current_date},
+- Geopolitical: ({geopolitical_weight}),
+- Macroeconomic: ({macroeconomic_weight}),
+- Technical/Sentiment: ({technical_sentiment_weight}),
+- Liquidity: ({liquidity_weight}),
+- Earnings: ({earnings_weight}),
+- Business Cycle: ({business_cycle_weight}),
+- Sentiment Surveys: ({sentiment_surveys_weight})
 
 
-and set the return value of the prompt response in JSON format.
+The [prompt] should return the following JSON as well:
+
+<pre>
+{
+  "title": "string, concise journalist-ready title (~12 words, explicit drivers of price)",
+  "market_outlook_narrative": [
+    "string, first paragraph: key catalysts, events, indicators, or data driving market movements",
+    "string, second paragraph: how these factors impact pricing, provide support or weigh on market",
+    "string, third paragraph: forward-looking view, upcoming events, indicators, outlook"
+  ],
+  "recommendations": [
+    {
+      "ticker": "string, ETF ticker from most suitable to least suitable for investment",
+      "trade_direction": "string, either 'long' or 'short' based on bull_bear_score",
+      "bull_bear_score": "integer, 1-10 reflecting bullish/bearish strength"
+    },
+    {
+      "ticker": "string",
+      "trade_direction": "string",
+      "bull_bear_score": "integer"
+    }
+    // Additional recommendation objects as needed
+  ]
+}
+</pre>
