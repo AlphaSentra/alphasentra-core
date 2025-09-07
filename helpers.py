@@ -19,6 +19,23 @@ import numpy as np
 import backtrader as bt
 from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
+import os
+from dotenv import load_dotenv
+import sys
+
+# Add the parent directory to the Python path to ensure imports work
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+if parent_dir not in sys.path:
+    sys.path.append(parent_dir)
+
+from genAI.ai_prompt import get_gen_ai_response
+
+# Load environment variables
+load_dotenv()
+
+# Load AI model prompt for target price from environment variables
+TARGET_PRICE_PROMPT = os.getenv("TARGET_PRICE")
 
 
 def calculate_trade_levels(tickers, trade_direction, period=14):
@@ -107,12 +124,50 @@ def calculate_trade_levels(tickers, trade_direction, period=14):
             # Calculate stop loss price based on trade direction
             if trade_direction == "LONG":
                 stop_loss_price = current_close - stop_loss_distance
-                # Target price is twice the distance in the opposite direction
-                target_price = current_close + (2 * stop_loss_distance)
             else:  # SHORT
                 stop_loss_price = current_close + stop_loss_distance
-                # Target price is twice the distance in the opposite direction
-                target_price = current_close - (2 * stop_loss_distance)
+            
+            # Calculate entry price for this ticker
+            entry_prices = calculate_entry_price([ticker], trade_direction)
+            entry_price = entry_prices.get(ticker, current_close)  # Fallback to current close if entry price calculation fails
+            
+            # Get target price from AI model if prompt is available
+            if TARGET_PRICE_PROMPT:
+                try:
+                    # Format the prompt with the required variables
+                    formatted_prompt = TARGET_PRICE_PROMPT.format(
+                        trade_direction=trade_direction,
+                        ticker_str=ticker,
+                        entry_price=round(entry_price, 2),
+                        stop_loss=round(stop_loss_price, 2)
+                    )
+                    
+                    # Get AI-generated target price
+                    ai_response = get_gen_ai_response([ticker], "target price", formatted_prompt)
+                    
+                    # Try to parse the response as a float
+                    try:
+                        target_price = float(ai_response.strip())
+                    except ValueError:
+                        print(f"Warning: Could not parse AI response '{ai_response}' as a number for {ticker}. Using fallback calculation.")
+                        # Fallback to original calculation if AI response is not a valid number
+                        if trade_direction == "LONG":
+                            target_price = current_close + (2 * stop_loss_distance)
+                        else:  # SHORT
+                            target_price = current_close - (2 * stop_loss_distance)
+                except Exception as e:
+                    print(f"Warning: Error getting AI target price for {ticker}: {e}. Using fallback calculation.")
+                    # Fallback to original calculation if there's any error
+                    if trade_direction == "LONG":
+                        target_price = current_close + (2 * stop_loss_distance)
+                    else:  # SHORT
+                        target_price = current_close - (2 * stop_loss_distance)
+            else:
+                # Fallback to original calculation if prompt is not available
+                if trade_direction == "LONG":
+                    target_price = current_close + (2 * stop_loss_distance)
+                else:  # SHORT
+                    target_price = current_close - (2 * stop_loss_distance)
             
             # Store the result
             stop_loss_prices[ticker] = {

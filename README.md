@@ -29,26 +29,28 @@ GEMINI_MODEL_NAME=gemini-2.5-pro
 For the AI Agent prompt, make sure to provide the following variables in the .env file:
 
 <pre>
+TARGET_PRICE="[prompt] {ticker_str} {trade_direction} {entry_price} {stop_loss}"
+
 SECTOR_ROTATION_LONG_ONLY_PROMPT="[prompt]"
 REGIONAL_ROTATION_LONG_ONLY_PROMPT=[prompt]"
 FX_LONG_SHORT_PROMPT="[prompt]"
 </pre>
 
-The [prompt] must contain some of the following information:
+Model [prompt] must contain some of the following information:
 
 - Tickers: {ticker_str},
 - Current date: {current_date},
 - Region: {region_str},
-- Geopolitical: ({geopolitical_weight}),
-- Macroeconomic: ({macroeconomic_weight}),
-- Technical/Sentiment: ({technical_sentiment_weight}),
-- Liquidity: ({liquidity_weight}),
-- Earnings: ({earnings_weight}),
-- Business Cycle: ({business_cycle_weight}),
-- Sentiment Surveys: ({sentiment_surveys_weight})
+- Geopolitical: {geopolitical_weight},
+- Macroeconomic: {macroeconomic_weight},
+- Technical/Sentiment: {technical_sentiment_weight},
+- Liquidity: {liquidity_weight},
+- Earnings: {earnings_weight},
+- Business Cycle: {business_cycle_weight},
+- Sentiment Surveys: {sentiment_surveys_weight}
 
 
-The [prompt] should return the following JSON as well:
+Model [prompt] should return the following JSON as well:
 
 <pre>
 {
