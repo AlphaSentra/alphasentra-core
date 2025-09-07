@@ -36,7 +36,7 @@ REGIONAL_ROTATION_LONG_ONLY_PROMPT=[prompt]"
 FX_LONG_SHORT_PROMPT="[prompt]"
 </pre>
 
-Model [prompt] must contain some of the following information:
+**Model [prompt] must contain some of the following information:**
 
 - Tickers: {ticker_str},
 - Current date: {current_date},
@@ -50,7 +50,7 @@ Model [prompt] must contain some of the following information:
 - Sentiment Surveys: {sentiment_surveys_weight}
 
 
-Model [prompt] should return the following JSON as well:
+**Model [prompt] should return the following JSON as well:**
 
 ```
 {
