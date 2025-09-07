@@ -21,9 +21,9 @@ from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
 
 
-def calculate_stop_loss_price(tickers, trade_direction, period=14):
+def calculate_trade_levels(tickers, trade_direction, period=14):
     """
-    Calculate an appropriate stop loss price level based on ADX and ATR indicators.
+    Calculate appropriate stop loss and target price levels based on ADX and ATR indicators.
     
     Parameters:
     tickers (list): List of ticker symbols as strings
@@ -31,7 +31,7 @@ def calculate_stop_loss_price(tickers, trade_direction, period=14):
     period (int): Period for ADX and ATR calculations (default: 14)
     
     Returns:
-    dict: Dictionary with ticker as key and stop loss price as value
+    dict: Dictionary with ticker as key and dict with 'stop_loss' and 'target_price' as values
     """
     
     # Validate trade direction
@@ -107,11 +107,18 @@ def calculate_stop_loss_price(tickers, trade_direction, period=14):
             # Calculate stop loss price based on trade direction
             if trade_direction == "LONG":
                 stop_loss_price = current_close - stop_loss_distance
+                # Target price is twice the distance in the opposite direction
+                target_price = current_close + (2 * stop_loss_distance)
             else:  # SHORT
                 stop_loss_price = current_close + stop_loss_distance
+                # Target price is twice the distance in the opposite direction
+                target_price = current_close - (2 * stop_loss_distance)
             
             # Store the result
-            stop_loss_prices[ticker] = max(0, stop_loss_price)  # Ensure non-negative
+            stop_loss_prices[ticker] = {
+                'stop_loss': max(0, stop_loss_price),  # Ensure non-negative
+                'target_price': max(0, target_price)   # Ensure non-negative
+            }
             
         except Exception as e:
             print(f"Error calculating stop loss for {ticker}: {e}")
@@ -120,15 +127,15 @@ def calculate_stop_loss_price(tickers, trade_direction, period=14):
     return stop_loss_prices
 
 
-def get_stop_loss_recommendations(tickers_with_direction):
+def get_trade_recommendations(tickers_with_direction):
     """
-    Return stop loss prices in the specified JSON format.
+    Return trade recommendations including stop loss and target prices in the specified JSON format.
     
     Parameters:
     tickers_with_direction (list): List of dictionaries with 'ticker' and 'trade_direction' keys
     
     Returns:
-    list: Array of objects with 'ticker', 'trade_direction', and 'stop_loss' keys
+    list: Array of objects with 'ticker', 'trade_direction', 'stop_loss', and 'target_price' keys
     """
     
     # Group tickers by trade direction
@@ -148,12 +155,12 @@ def get_stop_loss_recommendations(tickers_with_direction):
     # Calculate stop loss prices for LONG positions
     long_stop_losses = {}
     if long_tickers:
-        long_stop_losses = calculate_stop_loss_price(long_tickers, 'LONG')
+        long_stop_losses = calculate_trade_levels(long_tickers, 'LONG')
     
     # Calculate stop loss prices for SHORT positions
     short_stop_losses = {}
     if short_tickers:
-        short_stop_losses = calculate_stop_loss_price(short_tickers, 'SHORT')
+        short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT')
     
     # Combine all results in the required format
     recommendations = []
@@ -164,29 +171,35 @@ def get_stop_loss_recommendations(tickers_with_direction):
         
         if ticker and direction:
             stop_loss = None
+            target_price = None
             if direction == 'LONG' and ticker in long_stop_losses:
-                stop_loss = round(long_stop_losses[ticker], 2)
+                stop_loss_data = long_stop_losses[ticker]
+                stop_loss = round(stop_loss_data['stop_loss'], 2)
+                target_price = round(stop_loss_data['target_price'], 2)
             elif direction == 'SHORT' and ticker in short_stop_losses:
-                stop_loss = round(short_stop_losses[ticker], 2)
-            
-            recommendations.append({
-                'ticker': ticker,
-                'trade_direction': direction,
-                'stop_loss': stop_loss if stop_loss is not None else 'N/A'
-            })
+                stop_loss_data = short_stop_losses[ticker]
+                stop_loss = round(stop_loss_data['stop_loss'], 2)
+                target_price = round(stop_loss_data['target_price'], 2)
+        
+        recommendations.append({
+            'ticker': ticker,
+            'trade_direction': direction,
+            'stop_loss': stop_loss if stop_loss is not None else 'N/A',
+            'target_price': target_price if target_price is not None else 'N/A'
+        })
     
     return recommendations
 
 
-def add_stop_loss_to_recommendations(recommendations):
+def add_trade_levels_to_recommendations(recommendations):
     """
-    Add stop loss prices to recommendations.
+    Add stop loss and target prices to recommendations.
     
     Parameters:
     recommendations (dict): The AI recommendations dictionary
     
     Returns:
-    dict: The recommendations dictionary with stop loss prices added
+    dict: The recommendations dictionary with stop loss and target prices added
     """
         
     # Group tickers by trade direction
@@ -205,25 +218,29 @@ def add_stop_loss_to_recommendations(recommendations):
     
     # Calculate stop loss prices for LONG positions
     if long_tickers:
-        long_stop_losses = calculate_stop_loss_price(long_tickers, 'LONG')
+        long_stop_losses = calculate_trade_levels(long_tickers, 'LONG')
         
         # Add stop loss prices to recommendations
         for trade in recommendations['recommendations']:
             if trade.get('trade_direction', '').upper() == 'LONG':
                 ticker = trade.get('ticker')
                 if ticker in long_stop_losses:
-                    trade['stop_loss'] = round(long_stop_losses[ticker], 2)
+                    stop_loss_data = long_stop_losses[ticker]
+                    trade['stop_loss'] = round(stop_loss_data['stop_loss'], 2)
+                    trade['target_price'] = round(stop_loss_data['target_price'], 2)
     
     # Calculate stop loss prices for SHORT positions
     if short_tickers:
-        short_stop_losses = calculate_stop_loss_price(short_tickers, 'SHORT')
+        short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT')
         
         # Add stop loss prices to recommendations
         for trade in recommendations['recommendations']:
             if trade.get('trade_direction', '').upper() == 'SHORT':
                 ticker = trade.get('ticker')
                 if ticker in short_stop_losses:
-                    trade['stop_loss'] = round(short_stop_losses[ticker], 2)
+                    stop_loss_data = short_stop_losses[ticker]
+                    trade['stop_loss'] = round(stop_loss_data['stop_loss'], 2)
+                    trade['target_price'] = round(stop_loss_data['target_price'], 2)
     
     return recommendations
 

@@ -27,7 +27,7 @@ load_dotenv()
 
 from _config import SECTOR_ETFS, WEIGHTS_PERCENT, REGIONS
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_stop_loss_to_recommendations, add_entry_price_to_recommendations
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations
 
 # Load AI model prompt from environment variables
 SECTOR_ROTATION_LONG_SHORT_PROMPT = os.getenv("SECTOR_ROTATION_LONG_SHORT_PROMPT")
@@ -75,8 +75,9 @@ def run_sector_rotation_model():
             # Parse JSON
             recommendations = json.loads(result)
 
-            # Add stop loss and entry price to each recommendation                       
-            recommendations = add_stop_loss_to_recommendations(recommendations)
+            # Add stop loss and target prices to recommendations
+            recommendations = add_trade_levels_to_recommendations(recommendations)
+            # Add entry prices to recommendations
             recommendations = add_entry_price_to_recommendations(recommendations)
 
             #Display Model Output header
@@ -109,8 +110,9 @@ def run_sector_rotation_model():
                     score = trade.get('bull_bear_score', 0)
                     probability = trade.get('probability', 'N/A')
                     
-                    # For stop_loss and entry_price, use 'N/A' as default but validate they exist
+                    # For stop_loss, target_price, and entry_price, use 'N/A' as default but validate they exist
                     stop_loss = trade.get('stop_loss', 'N/A')
+                    target_price = trade.get('target_price', 'N/A')
                     entry_price = trade.get('entry_price', 'N/A')
                     
                     # Validate that required fields are present
@@ -131,10 +133,13 @@ def run_sector_rotation_model():
                     if stop_loss == 'N/A':
                         print(f"- {ticker}: Warning - Missing stop loss data")
                     
+                    if target_price == 'N/A':
+                        print(f"- {ticker}: Warning - Missing target price data")
+                    
                     if entry_price == 'N/A':
                         print(f"- {ticker}: Warning - Missing entry price data")
                     
-                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Probability: {probability}, Entry Price: {entry_price}, Stop Loss: {stop_loss})")
+                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Probability: {probability}, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
         except json.JSONDecodeError:
             # If JSON parsing fails, display the raw result
             print("\n=== AI Analysis ===")
