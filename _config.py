@@ -31,3 +31,6 @@ SECTOR_REGIONS = ['US']
 REGIONAL_ETFS = ['EEM', 'EFA', 'SPY']
 REGIONAL_REGIONS = ['Emerging Markets','China','Taiwan','India','South Korea','Brazil','Japan','UK','France','Germany','Switzerland','Australia', 'US']
 
+# FX Long/Short Model Configuration
+FX_PAIRS = ['EURUSD=X', 'GBPUSD=X', 'USDJPY=X', 'USDCHF=X', 'AUDUSD=X', 'USDCAD=X']
+

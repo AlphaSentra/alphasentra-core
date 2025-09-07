@@ -12,6 +12,7 @@ Main entry point for the Alphagora system, allowing users to select model.
 
 import models.sector_rotation_long_short as sector_rotation_long_short
 import models.regional_rotation_long_short as regional_rotation_long_short
+import models.fx_long_short as fx_long_short
 
 
 def main():
@@ -27,16 +28,19 @@ def main():
         print()
         print("1. Sector Rotation Long/Short Model")
         print("2. Regional Rotation Long/Short Model")
-        print("3. Exit")
+        print("3. FX Long/Short Model")
+        print("4. Exit")
         
         try:
-            choice = int(input("\nEnter your choice (1-3): "))
+            choice = int(input("\nEnter your choice (1-4): "))
             
             if choice == 1:
                 sector_rotation_long_short.run_sector_rotation_model()
             if choice == 2:
                 regional_rotation_long_short.run_regional_rotation_model()
-            elif choice == 3:
+            if choice == 3:
+                fx_long_short.run_fx_model()
+            elif choice == 4:
                 print("\nExiting Alphagora System. Goodbye!")
                 break
             else:
