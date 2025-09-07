@@ -1,13 +1,13 @@
 """
 Project:     Alphagora Trading System
-File:        sector_rotation_long_short.py
+File:        regional_rotation_long_short.py
 Author:      Daiviet Huynh
 Created:     2025-09-05
 License:     MIT License
 Repository:  https://github.com/daivieth/Alphagora
 
 Description:
-Sector rotation ETF long/short model.
+Regional rotation ETF long/short model.
 """
 
 import sys
@@ -25,27 +25,27 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import SECTOR_ETFS, WEIGHTS_PERCENT, SECTOR_REGIONS
+from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations
 
 # Load AI model prompt from environment variables
-SECTOR_ROTATION_LONG_SHORT_PROMPT = os.getenv("SECTOR_ROTATION_LONG_SHORT_PROMPT")
+REGIONAL_ROTATION_LONG_ONLY_PROMPT = os.getenv("REGIONAL_ROTATION_LONG_ONLY_PROMPT")
 
 # Format the prompt with the necessary variables
-if SECTOR_ROTATION_LONG_SHORT_PROMPT:
+if REGIONAL_ROTATION_LONG_ONLY_PROMPT:
     # Create a comma-separated string of tickers for the prompt
-    tickers_str = ", ".join(SECTOR_ETFS) if SECTOR_ETFS else "No tickers provided"
-    sector_regions_str = ", ".join(SECTOR_REGIONS) if SECTOR_REGIONS else "No regions provided"
+    tickers_str = ", ".join(REGIONAL_ETFS) if REGIONAL_ETFS else "No tickers provided"
+    regional_regions_str = ", ".join(REGIONAL_REGIONS) if REGIONAL_REGIONS else "No regions provided"
 
     # Create current date in the format "September 6, 2025"
     current_date = datetime.datetime.now().strftime("%B %d, %Y")
     
     # Format the prompt with both tickers_str and weights
-    SECTOR_ROTATION_LONG_SHORT_PROMPT = SECTOR_ROTATION_LONG_SHORT_PROMPT.format(
+    REGIONAL_ROTATION_LONG_ONLY_PROMPT = REGIONAL_ROTATION_LONG_ONLY_PROMPT.format(
         tickers_str=tickers_str,
         current_date=current_date,
-        sector_regions_str=sector_regions_str,
+        regional_regions_str=regional_regions_str,
         geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
         macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
         technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
@@ -56,14 +56,14 @@ if SECTOR_ROTATION_LONG_SHORT_PROMPT:
     )
 
 
-def run_sector_rotation_model():
+def run_regional_rotation_model():
     """
-    Run the sector rotation long/short model.
+    Run the regional rotation long/short model.
     """
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
-        result = get_gen_ai_response(SECTOR_ETFS, "sector rotation long/short", SECTOR_ROTATION_LONG_SHORT_PROMPT)
+        result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_ONLY_PROMPT)
         
         # Try to parse the result as JSON
         try:
@@ -82,7 +82,7 @@ def run_sector_rotation_model():
 
             #Display Model Output header
             print("\n" + "="*100)
-            print("Sector Rotation Long/Short Model")
+            print("Regional Rotation Long/Short Model")
             print("="*100)
                         
             # Display market outlook
@@ -146,9 +146,9 @@ def run_sector_rotation_model():
             print(result)
             
     except Exception as e:
-        print(f"Error running sector rotation model: {e}")
+        print(f"Error running regional rotation model: {e}")
 
 
 # Testing the function
 if __name__ == "__main__":
-    run_sector_rotation_model()
+    run_regional_rotation_model()

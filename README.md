@@ -26,6 +26,12 @@ GEMINI_API_KEY=your_actual_gemini_api_key
 GEMINI_MODEL_NAME=gemini-2.5-pro
 </pre>
 
+You can select which Gemini model to use. By default, we are using gemini-2.5-pro. The following models are also available:
+- gemini-2.5-flash – optimized for speed and efficiency
+- gemini-2.0-pro – balanced for reasoning and versatility
+- gemini-2.0-flash – lightweight, fast responses with lower cost
+
+
 ## AI Custom Prompts
 
 For the AI Agent prompt, make sure to provide the following variables in the .env file:
@@ -42,7 +48,8 @@ FX_LONG_SHORT_PROMPT="[prompt]"
 
 - Tickers: `{ticker_str}`,
 - Current date: `{current_date}`,
-- Region: `{region_str}`,
+- Sector Region: `{sector_region_str}`,
+- Regional Region: `{regional_region_str}`,
 - Geopolitical: `{geopolitical_weight}`,
 - Macroeconomic: `{macroeconomic_weight}`,
 - Technical/Sentiment: `{technical_sentiment_weight}`,
