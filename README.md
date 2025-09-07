@@ -47,6 +47,7 @@ FX_LONG_SHORT_PROMPT="[prompt]"
 - Current date: `{current_date}`,
 - Sector Region: `{sector_region_str}`,
 - Regional Region: `{regional_region_str}`,
+- FX Region: `{fx_regions_str}`,
 - Geopolitical: `{geopolitical_weight}`,
 - Macroeconomic: `{macroeconomic_weight}`,
 - Technical/Sentiment: `{technical_sentiment_weight}`,
