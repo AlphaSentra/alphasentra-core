@@ -52,7 +52,7 @@ Model [prompt] must contain some of the following information:
 
 Model [prompt] should return the following JSON as well:
 
-<pre>
+```
 {
   "title": "string, concise journalist-ready title (~12 words, explicit drivers of price)",
   "market_outlook_narrative": [
@@ -73,4 +73,4 @@ Model [prompt] should return the following JSON as well:
     }
   ]
 }
-</pre>
+```
