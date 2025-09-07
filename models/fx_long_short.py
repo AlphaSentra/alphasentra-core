@@ -25,15 +25,19 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import FX_PAIRS, WEIGHTS_PERCENT
+from _config import WEIGHTS_PERCENT
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations
 
 
 
-def run_fx_model():
+def run_fx_model(tickers, fx_regions=None):
     """
     Run the FX long/short model.
+    
+    Args:
+        tickers (str): The FX pair ticker to analyze
+        fx_regions (list, optional): List of regions to consider for FX analysis
     """
     
     # Load AI model prompts from environment variables
@@ -45,7 +49,7 @@ def run_fx_model():
     if FACTOR_WEIGHTS_PROMPT:
         try:
             # Call get_gen_ai_response with the FACTOR_WEIGHTS prompt
-            ai_weights_response = get_gen_ai_response(FX_PAIRS, "factor weights", FACTOR_WEIGHTS_PROMPT)
+            ai_weights_response = get_gen_ai_response([tickers], "factor weights", FACTOR_WEIGHTS_PROMPT)
             
             # Try to parse the response as JSON
             try:
@@ -79,7 +83,8 @@ def run_fx_model():
     # Format the prompt with the necessary variables
     if FX_LONG_SHORT_PROMPT:
         # Create a comma-separated string of tickers for the prompt
-        tickers_str = ", ".join(FX_PAIRS) if FX_PAIRS else "No tickers provided"
+        tickers_str = tickers
+        fx_regions_str = ", ".join(fx_regions) if fx_regions else "Global"
 
         # Create current date in the format "September 6, 2025"
         current_date = datetime.datetime.now().strftime("%B %d, %Y")
@@ -90,22 +95,23 @@ def run_fx_model():
         else:
             weights_to_use = WEIGHTS_PERCENT
         
-        # Format the prompt with both tickers_str and weights
+        # Format the prompt with tickers_str and weights
         FX_LONG_SHORT_PROMPT = FX_LONG_SHORT_PROMPT.format(
-            tickers_str=tickers_str,
-            current_date=current_date,
-            geopolitical_weight=weights_to_use['Geopolitical'],
-            macroeconomic_weight=weights_to_use['Macroeconomics'],
-            technical_sentiment_weight=weights_to_use['Technical_Sentiment'],
-            liquidity_weight=weights_to_use['Liquidity'],
-            earnings_weight=weights_to_use['Earnings'],
-            business_cycle_weight=weights_to_use['Business_Cycle'],
-            sentiment_surveys_weight=weights_to_use['Sentiment_Surveys'],
-        )
+                    tickers_str=tickers_str,
+                    current_date=current_date,
+                    fx_regions_str=fx_regions_str,
+                    geopolitical_weight=weights_to_use['Geopolitical'],
+                    macroeconomic_weight=weights_to_use['Macroeconomics'],
+                    technical_sentiment_weight=weights_to_use['Technical_Sentiment'],
+                    liquidity_weight=weights_to_use['Liquidity'],
+                    earnings_weight=weights_to_use['Earnings'],
+                    business_cycle_weight=weights_to_use['Business_Cycle'],
+                    sentiment_surveys_weight=weights_to_use['Sentiment_Surveys'],
+                )
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
-        result = get_gen_ai_response(FX_PAIRS, "fx long/short", FX_LONG_SHORT_PROMPT)
+        result = get_gen_ai_response([tickers], "fx long/short", FX_LONG_SHORT_PROMPT)
         
         # Try to parse the result as JSON
         try:
@@ -147,7 +153,7 @@ def run_fx_model():
                 print()
                 for trade in recommendations['recommendations']:
                     # Extract required fields with better default values
-                    ticker = trade.get('ticker', 'UNKNOWN')
+                    tickers = trade.get('ticker', 'UNKNOWN')
                     direction = trade.get('trade_direction', 'NONE')
                     score = trade.get('bull_bear_score', 0)
                     probability = trade.get('probability', 'N/A')
@@ -158,30 +164,30 @@ def run_fx_model():
                     entry_price = trade.get('entry_price', 'N/A')
                     
                     # Validate that required fields are present
-                    if ticker == 'UNKNOWN':
+                    if tickers == 'UNKNOWN':
                         print("- Warning: Missing ticker information")
                         continue
                     
                     if direction == 'NONE':
-                        print(f"- {ticker}: Warning - Missing trade direction")
+                        print(f"- {tickers}: Warning - Missing trade direction")
                         direction = 'HOLD'  # Default to HOLD if direction is missing
                     
                     # Ensure score is within valid range
                     if not isinstance(score, int) or score < 1 or score > 10:
-                        print(f"- {ticker}: Warning - Invalid score ({score}), setting to 5")
+                        print(f"- {tickers}: Warning - Invalid score ({score}), setting to 5")
                         score = 5
                     
                     # Validate stop_loss and entry_price
                     if stop_loss == 'N/A':
-                        print(f"- {ticker}: Warning - Missing stop loss data")
+                        print(f"- {tickers}: Warning - Missing stop loss data")
                     
                     if target_price == 'N/A':
-                        print(f"- {ticker}: Warning - Missing target price data")
+                        print(f"- {tickers}: Warning - Missing target price data")
                     
                     if entry_price == 'N/A':
-                        print(f"- {ticker}: Warning - Missing entry price data")
+                        print(f"- {tickers}: Warning - Missing entry price data")
                     
-                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Probability: {probability}, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
+                    print(f"- {tickers}: {direction.upper()} (Score: {score}/10, Probability: {probability}, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
         except json.JSONDecodeError:
             # If JSON parsing fails, display the raw result
             print("\n=== AI Analysis ===")
@@ -193,4 +199,5 @@ def run_fx_model():
 
 # Testing the function
 if __name__ == "__main__":
-    run_fx_model()
+    # Example usage with default FX pair and regions
+    run_fx_model('EURUSD=X', ['US', 'Eurozone'])
