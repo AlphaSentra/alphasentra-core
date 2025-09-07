@@ -11,7 +11,8 @@ Store all the variables for configuration for all the models and systems.
 Tickers must be in Yahoo Finance format.
 """
 
-# Default weights for various factors in percentage format
+# Default factor weights used if AI model is not calculating weights
+# These weights are overridden if AI model successfully returns weights
 WEIGHTS_PERCENT = {
     'Geopolitical': '30%',
     'Macroeconomics': '20%',

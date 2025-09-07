@@ -29,37 +29,81 @@ from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations
 
-# Load AI model prompt from environment variables
-REGIONAL_ROTATION_LONG_ONLY_PROMPT = os.getenv("REGIONAL_ROTATION_LONG_ONLY_PROMPT")
-
-# Format the prompt with the necessary variables
-if REGIONAL_ROTATION_LONG_ONLY_PROMPT:
-    # Create a comma-separated string of tickers for the prompt
-    tickers_str = ", ".join(REGIONAL_ETFS) if REGIONAL_ETFS else "No tickers provided"
-    regional_regions_str = ", ".join(REGIONAL_REGIONS) if REGIONAL_REGIONS else "No regions provided"
-
-    # Create current date in the format "September 6, 2025"
-    current_date = datetime.datetime.now().strftime("%B %d, %Y")
-    
-    # Format the prompt with both tickers_str and weights
-    REGIONAL_ROTATION_LONG_ONLY_PROMPT = REGIONAL_ROTATION_LONG_ONLY_PROMPT.format(
-        tickers_str=tickers_str,
-        current_date=current_date,
-        regional_regions_str=regional_regions_str,
-        geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
-        macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
-        technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],
-        liquidity_weight=WEIGHTS_PERCENT['Liquidity'],
-        earnings_weight=WEIGHTS_PERCENT['Earnings'],
-        business_cycle_weight=WEIGHTS_PERCENT['Business_Cycle'],
-        sentiment_surveys_weight=WEIGHTS_PERCENT['Sentiment_Surveys'],
-    )
 
 
 def run_regional_rotation_model():
     """
     Run the regional rotation long/short model.
     """
+    
+    # Load AI model prompts from environment variables
+    REGIONAL_ROTATION_LONG_ONLY_PROMPT = os.getenv("REGIONAL_ROTATION_LONG_ONLY_PROMPT")
+    FACTOR_WEIGHTS_PROMPT = os.getenv("FACTOR_WEIGHTS")
+
+    # Get AI-generated weights
+    ai_weights = None
+    if FACTOR_WEIGHTS_PROMPT:
+        try:
+            # Call get_gen_ai_response with the FACTOR_WEIGHTS prompt
+            ai_weights_response = get_gen_ai_response(REGIONAL_ETFS, "factor weights", FACTOR_WEIGHTS_PROMPT)
+            
+            # Try to parse the response as JSON
+            try:
+                # Remove any markdown code block markers if present
+                if ai_weights_response.startswith("```json"):
+                    ai_weights_response = ai_weights_response[7:]
+                if ai_weights_response.endswith("```"):
+                    ai_weights_response = ai_weights_response[:-3]
+                
+                # Parse JSON to get the weights
+                ai_weights_raw = json.loads(ai_weights_response)            
+                print(ai_weights_raw)
+                
+                # Map AI response keys to the keys used in the main prompt
+                ai_weights = {
+                    'Geopolitical': ai_weights_raw.get('Geopolitical', '30%'),
+                    'Macroeconomics': ai_weights_raw.get('Macroeconomics', '20%'),
+                    'Technical_Sentiment': ai_weights_raw.get('Technical/Sentiment', '20%'),
+                    'Liquidity': ai_weights_raw.get('Liquidity', '10%'),
+                    'Earnings': ai_weights_raw.get('Earnings', '10%'),
+                    'Business_Cycle': ai_weights_raw.get('Business Cycle', '5%'),
+                    'Sentiment_Surveys': ai_weights_raw.get('Sentiment Surveys', '5%')
+                }
+            except json.JSONDecodeError:
+                print(f"Error parsing AI weights response as JSON: {ai_weights_response}")
+                ai_weights = None
+        except Exception as e:
+            print(f"Error getting AI weights: {e}")
+            ai_weights = None
+
+    # Format the prompt with the necessary variables
+    if REGIONAL_ROTATION_LONG_ONLY_PROMPT:
+        # Create a comma-separated string of tickers for the prompt
+        tickers_str = ", ".join(REGIONAL_ETFS) if REGIONAL_ETFS else "No tickers provided"
+        regional_regions_str = ", ".join(REGIONAL_REGIONS) if REGIONAL_REGIONS else "No regions provided"
+
+        # Create current date in the format "September 6, 2025"
+        current_date = datetime.datetime.now().strftime("%B %d, %Y")
+        
+        # Use AI-generated weights if available, otherwise use the hardcoded ones
+        if ai_weights:
+            weights_to_use = ai_weights
+        else:
+            weights_to_use = WEIGHTS_PERCENT
+        
+        # Format the prompt with both tickers_str and weights
+        REGIONAL_ROTATION_LONG_ONLY_PROMPT = REGIONAL_ROTATION_LONG_ONLY_PROMPT.format(
+            tickers_str=tickers_str,
+            current_date=current_date,
+            regional_regions_str=regional_regions_str,
+            geopolitical_weight=weights_to_use['Geopolitical'],
+            macroeconomic_weight=weights_to_use['Macroeconomics'],
+            technical_sentiment_weight=weights_to_use['Technical_Sentiment'],
+            liquidity_weight=weights_to_use['Liquidity'],
+            earnings_weight=weights_to_use['Earnings'],
+            business_cycle_weight=weights_to_use['Business_Cycle'],
+            sentiment_surveys_weight=weights_to_use['Sentiment_Surveys'],
+        )
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
