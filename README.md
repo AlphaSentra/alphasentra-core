@@ -40,16 +40,16 @@ FX_LONG_SHORT_PROMPT="[prompt]"
 
 **Model [prompt] must contain some of the following information:**
 
-- Tickers: {ticker_str},
-- Current date: {current_date},
-- Region: {region_str},
-- Geopolitical: {geopolitical_weight},
-- Macroeconomic: {macroeconomic_weight},
-- Technical/Sentiment: {technical_sentiment_weight},
-- Liquidity: {liquidity_weight},
-- Earnings: {earnings_weight},
-- Business Cycle: {business_cycle_weight},
-- Sentiment Surveys: {sentiment_surveys_weight}
+- Tickers: `{ticker_str}`,
+- Current date: `{current_date}`,
+- Region: `{region_str}`,
+- Geopolitical: `{geopolitical_weight}`,
+- Macroeconomic: `{macroeconomic_weight}`,
+- Technical/Sentiment: `{technical_sentiment_weight}`,
+- Liquidity: `{liquidity_weight}`,
+- Earnings: `{earnings_weight}`,
+- Business Cycle: `{business_cycle_weight}`,
+- Sentiment Surveys: `{sentiment_surveys_weight}`
 
 
 **Model [prompt] should return the following JSON as well:**
