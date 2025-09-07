@@ -26,11 +26,8 @@ GEMINI_API_KEY=your_actual_gemini_api_key
 GEMINI_MODEL_NAME=gemini-2.5-pro
 </pre>
 
-You can select which Gemini model to use. By default, we are using gemini-2.5-pro. The following models are also available:
+You can select which Gemini model to use. By default, we are using gemini-2.5-pro. The following model is also available:
 - gemini-2.5-flash – optimized for speed and efficiency
-- gemini-2.0-pro – balanced for reasoning and versatility
-- gemini-2.0-flash – lightweight, fast responses with lower cost
-
 
 ## AI Custom Prompts
 
