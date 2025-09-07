@@ -80,5 +80,9 @@ FX_LONG_SHORT_PROMPT="[prompt]"
   ]
 }
 ```
+To return the JSON, include the following line in the prompt:
+<pre>
+**JSON Output format:** Return your final recommendations in the following JSON format only, using this exact structure: [title] as a string, [market_outlook_narrative] as an array of strings, and [recommendations] as an array of objects, where each object includes [ticker] as a string, [trade_direction] as a string, [bull_bear_score] as an integer, and [probability] as a string.
+</pre>
 
 The JSON output will be interpreted by the Alphagora engine, which will then process, transform, and securely store the data for further analysis and use within the system.
