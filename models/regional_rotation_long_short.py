@@ -37,7 +37,7 @@ def run_regional_rotation_model():
     """
     
     # Load AI model prompts from environment variables
-    REGIONAL_ROTATION_LONG_ONLY_PROMPT = os.getenv("REGIONAL_ROTATION_LONG_ONLY_PROMPT")
+    REGIONAL_ROTATION_LONG_SHORT_PROMPT = os.getenv("REGIONAL_ROTATION_LONG_SHORT_PROMPT")
     FACTOR_WEIGHTS_PROMPT = os.getenv("FACTOR_WEIGHTS")
 
     # Get AI-generated weights
@@ -77,7 +77,7 @@ def run_regional_rotation_model():
             ai_weights = None
 
     # Format the prompt with the necessary variables
-    if REGIONAL_ROTATION_LONG_ONLY_PROMPT:
+    if REGIONAL_ROTATION_LONG_SHORT_PROMPT:
         # Create a comma-separated string of tickers for the prompt
         tickers_str = ", ".join(REGIONAL_ETFS) if REGIONAL_ETFS else "No tickers provided"
         regional_regions_str = ", ".join(REGIONAL_REGIONS) if REGIONAL_REGIONS else "No regions provided"
@@ -92,7 +92,7 @@ def run_regional_rotation_model():
             weights_to_use = WEIGHTS_PERCENT
         
         # Format the prompt with both tickers_str and weights
-        REGIONAL_ROTATION_LONG_ONLY_PROMPT = REGIONAL_ROTATION_LONG_ONLY_PROMPT.format(
+        REGIONAL_ROTATION_LONG_SHORT_PROMPT = REGIONAL_ROTATION_LONG_SHORT_PROMPT.format(
             tickers_str=tickers_str,
             current_date=current_date,
             regional_regions_str=regional_regions_str,
@@ -107,7 +107,7 @@ def run_regional_rotation_model():
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
-        result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_ONLY_PROMPT)
+        result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_SHORT_PROMPT)
         
         # Try to parse the result as JSON
         try:

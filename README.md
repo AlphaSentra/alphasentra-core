@@ -29,7 +29,7 @@ GEMINI_MODEL_NAME=gemini-2.5-pro
 You can select which Gemini model to use. By default, we are using gemini-2.5-pro. The following model is also available:
 - gemini-2.5-flash – optimized for speed and efficiency
 
-## AI Custom Prompts
+## AI Prompt Instructions
 
 For the AI Agent prompt, make sure to provide the following variables in the .env file:
 
@@ -37,7 +37,7 @@ For the AI Agent prompt, make sure to provide the following variables in the .en
 TARGET_PRICE="[prompt] {ticker_str} {trade_direction} {entry_price} {stop_loss}"
 
 SECTOR_ROTATION_LONG_ONLY_PROMPT="[prompt]"
-REGIONAL_ROTATION_LONG_ONLY_PROMPT=[prompt]"
+REGIONAL_ROTATION_LONG_SHORT_PROMPT=[prompt]"
 FX_LONG_SHORT_PROMPT="[prompt]"
 </pre>
 
@@ -80,3 +80,5 @@ FX_LONG_SHORT_PROMPT="[prompt]"
   ]
 }
 ```
+
+The JSON output will be interpreted by the Alphagora engine, which will then process, transform, and securely store the data for further analysis and use within the system.
