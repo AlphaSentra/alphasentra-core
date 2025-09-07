@@ -61,13 +61,13 @@ def run_sector_rotation_model():
                 
                 # Map AI response keys to the keys used in the main prompt
                 ai_weights = {
-                    'Geopolitical': ai_weights_raw.get('Geopolitical', '30%'),
-                    'Macroeconomics': ai_weights_raw.get('Macroeconomics', '20%'),
-                    'Technical_Sentiment': ai_weights_raw.get('Technical/Sentiment', '20%'),
-                    'Liquidity': ai_weights_raw.get('Liquidity', '10%'),
-                    'Earnings': ai_weights_raw.get('Earnings', '10%'),
-                    'Business_Cycle': ai_weights_raw.get('Business Cycle', '5%'),
-                    'Sentiment_Surveys': ai_weights_raw.get('Sentiment Surveys', '5%')
+                    'Geopolitical': ai_weights_raw.get('Geopolitical', WEIGHTS_PERCENT['Geopolitical']),
+                    'Macroeconomics': ai_weights_raw.get('Macroeconomics', WEIGHTS_PERCENT['Macroeconomics']),
+                    'Technical_Sentiment': ai_weights_raw.get('Technical/Sentiment', WEIGHTS_PERCENT['Technical_Sentiment']),
+                    'Liquidity': ai_weights_raw.get('Liquidity', WEIGHTS_PERCENT['Liquidity']),
+                    'Earnings': ai_weights_raw.get('Earnings', WEIGHTS_PERCENT['Earnings']),
+                    'Business_Cycle': ai_weights_raw.get('Business Cycle', WEIGHTS_PERCENT['Business_Cycle']),
+                    'Sentiment_Surveys': ai_weights_raw.get('Sentiment Surveys', WEIGHTS_PERCENT['Sentiment_Surveys'])
                 }
             except json.JSONDecodeError:
                 print(f"Error parsing AI weights response as JSON: {ai_weights_response}")
