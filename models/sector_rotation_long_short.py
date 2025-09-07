@@ -25,7 +25,7 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import SECTOR_ETFS, WEIGHTS_PERCENT
+from _config import SECTOR_ETFS, WEIGHTS_PERCENT, REGIONS
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_stop_loss_to_recommendations, add_entry_price_to_recommendations
 
@@ -36,7 +36,8 @@ SECTOR_ROTATION_LONG_SHORT_PROMPT = os.getenv("SECTOR_ROTATION_LONG_SHORT_PROMPT
 if SECTOR_ROTATION_LONG_SHORT_PROMPT:
     # Create a comma-separated string of tickers for the prompt
     tickers_str = ", ".join(SECTOR_ETFS) if SECTOR_ETFS else "No tickers provided"
-    
+    regions_str = ", ".join(REGIONS) if REGIONS else "No regions provided"
+
     # Create current date in the format "September 6, 2025"
     current_date = datetime.datetime.now().strftime("%B %d, %Y")
     
@@ -44,6 +45,7 @@ if SECTOR_ROTATION_LONG_SHORT_PROMPT:
     SECTOR_ROTATION_LONG_SHORT_PROMPT = SECTOR_ROTATION_LONG_SHORT_PROMPT.format(
         tickers_str=tickers_str,
         current_date=current_date,
+        regions_str=regions_str,
         geopolitical_weight=WEIGHTS_PERCENT['Geopolitical'],
         macroeconomic_weight=WEIGHTS_PERCENT['Macroeconomics'],
         technical_sentiment_weight=WEIGHTS_PERCENT['Technical_Sentiment'],

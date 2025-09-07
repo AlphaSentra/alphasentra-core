@@ -38,6 +38,7 @@ The [prompt] must contain some of the following information:
 
 - Tickers: {ticker_str},
 - Current date: {current_date},
+- Region: {region_str},
 - Geopolitical: ({geopolitical_weight}),
 - Macroeconomic: ({macroeconomic_weight}),
 - Technical/Sentiment: ({technical_sentiment_weight}),

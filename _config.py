@@ -13,6 +13,7 @@ Tickers must be in Yahoo Finance format.
 
 # Sector Rotation Model Configuration
 SECTOR_ETFS = ['XLC', 'XLY', 'XLP', 'XLE', 'XLF', 'XLV', 'XLI', 'XLB', 'XLRE', 'XLK', 'XLU']
+REGIONS = ['US']
 
 # Regional Rotation Model Configuration
 REGIONAL_ETFS = ['EEM', 'VWO', 'IEMG', 'IEFA', 'VEA', 'VNQ', 'VTI', 'SPY', 'QQQ', 'DIA']
