@@ -19,6 +19,7 @@ import numpy as np
 import backtrader as bt
 from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
+import datetime
 import os
 from dotenv import load_dotenv
 import sys
@@ -498,12 +499,17 @@ def factcheck_market_outlook(market_outlook_narrative):
         print("Warning: FACTCHECK_AI_RESPONSE prompt not found in environment variables")
         return "accurate"  # Default to accurate if prompt is not available
     
+
+    # Create current date in the format "September 6, 2025"
+    current_date = datetime.datetime.now().strftime("%B %d, %Y")
+    
     # Join the narrative paragraphs into a single string
     market_outlook_narrative_str = " ".join(market_outlook_narrative)
     
     # Format the prompt with the market outlook narrative
     factcheck_prompt = FACTCHECK_AI_RESPONSE.format(
-        market_outlook_narrative_str=market_outlook_narrative_str
+        market_outlook_narrative_str=market_outlook_narrative_str,
+        current_date=current_date
     )
     
     try:
@@ -520,6 +526,11 @@ def factcheck_market_outlook(market_outlook_narrative):
             
             # Parse JSON
             factcheck_result = json.loads(factcheck_response)
+
+            # Debug output for factcheck result ###############
+            print(factcheck_prompt)
+            print(f"Factcheck result: {factcheck_result}")
+            ##################################################
             
             # Return the factcheck result
             return factcheck_result.get("factcheck", "accurate")

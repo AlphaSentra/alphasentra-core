@@ -112,7 +112,7 @@ def run_fx_model(tickers, fx_regions=None):
         # Get AI recommendations with None as prompt since it's pre-formatted
         # Keep getting AI recommendations until we get accurate market outlook
         recommendations = None
-        max_attempts = 5  # Limit the number of attempts to avoid infinite loops
+        max_attempts = 3  # Limit the number of attempts to avoid infinite loops
         attempts = 0
         
         while attempts < max_attempts:

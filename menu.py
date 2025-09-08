@@ -5,6 +5,7 @@ Menu definitions for the Alphagora Trading System
 import models.sector_rotation_long_short as sector_rotation_long_short
 import models.regional_rotation_long_short as regional_rotation_long_short
 import models.fx_long_short as fx_long_short
+from helpers import factcheck_market_outlook
 
 # Define menu items as tuples: (description, function)
 MENU_ITEMS = [
