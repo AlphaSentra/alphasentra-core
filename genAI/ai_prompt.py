@@ -77,6 +77,7 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None):
             progress_thread.stop_progress = True
             progress_thread.join()
         return f"Error generating content: {str(e)}"
+    
 def factcheck_market_outlook(market_outlook_narrative):
     """
     Factcheck the market outlook narrative using the AI model.
