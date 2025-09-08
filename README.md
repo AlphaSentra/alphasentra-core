@@ -35,10 +35,14 @@ For the AI Agent prompt, make sure to provide the following variables in the .en
 
 <pre>
 TARGET_PRICE="[prompt] {ticker_str} {trade_direction} {entry_price} {stop_loss}"
+FACTOR_WEIGHTS="[prompt]"
+FACTCHECK_AI_RESPONSE="[prompt]"
 
 SECTOR_ROTATION_LONG_ONLY_PROMPT="[prompt]"
 REGIONAL_ROTATION_LONG_SHORT_PROMPT=[prompt]"
-FX_LONG_SHORT_PROMPT="[prompt]"
+FX_LONG_SHORT_PROMPT="Factcheck the following AI-generated response for accuracy and reliability:
+1. Identify any statements that may be misleading, incorrect, or lack sufficient evidence.
+2. Return a JSON object with one key: [factcheck] with value as string 'accurate' if the response is accurate, or 'inaccurate' if any issues are found."
 </pre>
 
 **Model [prompt] must contain some of the following information:**

@@ -26,7 +26,7 @@ if parent_dir not in sys.path:
 load_dotenv()
 
 from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS
-from genAI.ai_prompt import get_gen_ai_response
+from genAI.ai_prompt import get_gen_ai_response, factcheck_market_outlook
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations
 
 
@@ -107,17 +107,136 @@ def run_regional_rotation_model():
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
-        result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_SHORT_PROMPT)
+        # Keep getting AI recommendations until we get accurate market outlook
+        recommendations = None
+        max_attempts = 5  # Limit the number of attempts to avoid infinite loops
+        attempts = 0
         
-        # Try to parse the result as JSON
-        try:
-            # Remove any markdown code block markers if present
-            if result.startswith("```json"):
-                result = result[7:]
-            if result.endswith("```"):
-                result = result[:-3]
-            # Parse JSON
-            recommendations = json.loads(result)
+        while attempts < max_attempts:
+            attempts += 1
+            print(f"Attempt {attempts} to get accurate market outlook...")
+            
+            result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_SHORT_PROMPT)
+            
+            # Try to parse the result as JSON
+            try:
+                # Remove any markdown code block markers if present
+                if result.startswith("```json"):
+                    result = result[7:]
+                if result.endswith("```"):
+                    result = result[:-3]
+                # Parse JSON
+                recommendations = json.loads(result)
+                
+                # Check if we have a market outlook narrative to factcheck
+                if 'market_outlook_narrative' in recommendations:
+                    # Factcheck the market outlook narrative
+                    factcheck_result = factcheck_market_outlook(recommendations['market_outlook_narrative'])
+                    print(f"Factcheck result: {factcheck_result}")
+                    
+                    if factcheck_result == "accurate":
+                        print("Market outlook is accurate. Proceeding with recommendations.")
+                        
+                        # Add stop loss and target prices to recommendations
+                        recommendations = add_trade_levels_to_recommendations(recommendations)
+                        # Add entry prices to recommendations
+                        recommendations = add_entry_price_to_recommendations(recommendations)
+                        
+                        #Display Model Output header
+                        print("\n" + "="*100)
+                        print("Regional Rotation Long/Short Model")
+                        print("="*100)
+                        
+                        # Display market outlook
+                        if 'market_outlook_narrative' in recommendations:
+                            print("\n=== Market Outlook ===")
+                            print()
+                            # Display title if available
+                            if 'title' in recommendations:
+                                print(f"{recommendations['title']}")
+                                print()
+                            
+                            for paragraph in recommendations['market_outlook_narrative']:
+                                print(paragraph)
+                                print()
+                        
+                        # Display recommendations
+                        # After processing, the recommendations are under 'recommendations' key
+                        if 'recommendations' in recommendations:
+                            print("=== Recommendations ===")
+                            print()
+                            for trade in recommendations['recommendations']:
+                                # Extract required fields with better default values
+                                ticker = trade.get('ticker', 'UNKNOWN')
+                                direction = trade.get('trade_direction', 'NONE')
+                                score = trade.get('bull_bear_score', 0)
+                                probability = trade.get('probability', 'N/A')
+                                
+                                # For stop_loss, target_price, and entry_price, use 'N/A' as default but validate they exist
+                                stop_loss = trade.get('stop_loss', 'N/A')
+                                target_price = trade.get('target_price', 'N/A')
+                                entry_price = trade.get('entry_price', 'N/A')
+                                
+                                # Validate that required fields are present
+                                if ticker == 'UNKNOWN':
+                                    print("- Warning: Missing ticker information")
+                                    continue
+                                
+                                if direction == 'NONE':
+                                    print(f"- {ticker}: Warning - Missing trade direction")
+                                    direction = 'HOLD'  # Default to HOLD if direction is missing
+                                
+                                # Ensure score is within valid range
+                                if not isinstance(score, int) or score < 1 or score > 10:
+                                    print(f"- {ticker}: Warning - Invalid score ({score}), setting to 5")
+                                    score = 5
+                                
+                                # Validate stop_loss and entry_price
+                                if stop_loss == 'N/A':
+                                    print(f"- {ticker}: Warning - Missing stop loss data")
+                                
+                                if target_price == 'N/A':
+                                    print(f"- {ticker}: Warning - Missing target price data")
+                                
+                                if entry_price == 'N/A':
+                                    print(f"- {ticker}: Warning - Missing entry price data")
+                                
+                                print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Probability: {probability}, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
+                        else:
+                            # If JSON parsing fails, display the raw result
+                            print("\n=== AI Analysis ===")
+                            print(result)
+                        
+                        # Return the recommendations when market outlook is accurate
+                        return recommendations
+                    else:
+                        print("Market outlook is inaccurate. Getting new recommendations...")
+                        recommendations = None  # Reset recommendations to get new ones
+                else:
+                    # If there's no market outlook narrative, we can't factcheck, so proceed
+                    print("No market outlook narrative to factcheck. Proceeding with recommendations.")
+                    break  # Exit the loop
+            except json.JSONDecodeError:
+                print(f"Error parsing AI response as JSON: {result}")
+                recommendations = None  # Reset recommendations to get new ones
+        
+        # If we still don't have recommendations after max attempts, get one more try without factchecking
+        if recommendations is None:
+            print(f"Failed to get accurate market outlook after {max_attempts} attempts. Getting final recommendations without factchecking.")
+            result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_SHORT_PROMPT)
+            
+            # Try to parse the result as JSON
+            try:
+                # Remove any markdown code block markers if present
+                if result.startswith("```json"):
+                    result = result[7:]
+                if result.endswith("```"):
+                    result = result[:-3]
+                # Parse JSON
+                recommendations = json.loads(result)
+            except json.JSONDecodeError:
+                print(f"Error parsing final AI response as JSON: {result}")
+                recommendations = None
 
             # Add stop loss and target prices to recommendations
             recommendations = add_trade_levels_to_recommendations(recommendations)
@@ -184,10 +303,13 @@ def run_regional_rotation_model():
                         print(f"- {ticker}: Warning - Missing entry price data")
                     
                     print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Probability: {probability}, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
-        except json.JSONDecodeError:
-            # If JSON parsing fails, display the raw result
-            print("\n=== AI Analysis ===")
-            print(result)
+            else:
+                # If JSON parsing fails, display the raw result
+                print("\n=== AI Analysis ===")
+                print(result)
+            
+            # Return the recommendations even when factchecking fails
+            return recommendations
             
     except Exception as e:
         print(f"Error running regional rotation model: {e}")
