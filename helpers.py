@@ -474,3 +474,59 @@ def add_entry_price_to_recommendations(recommendations):
     
     return recommendations
 
+def factcheck_market_outlook(market_outlook_narrative):
+    """
+    Factcheck the market outlook narrative using the AI model.
+    
+    Args:
+        market_outlook_narrative (list): List of paragraphs in the market outlook narrative
+    
+    Returns:
+        str: 'accurate' if the narrative is accurate, 'inaccurate' otherwise
+    """
+    from dotenv import load_dotenv
+    import os
+    import json
+    
+    # Load environment variables
+    load_dotenv()
+    
+    # Get the factcheck prompt from environment variables
+    FACTCHECK_AI_RESPONSE = os.getenv("FACTCHECK_AI_RESPONSE")
+    
+    if not FACTCHECK_AI_RESPONSE:
+        print("Warning: FACTCHECK_AI_RESPONSE prompt not found in environment variables")
+        return "accurate"  # Default to accurate if prompt is not available
+    
+    # Join the narrative paragraphs into a single string
+    market_outlook_narrative_str = " ".join(market_outlook_narrative)
+    
+    # Format the prompt with the market outlook narrative
+    factcheck_prompt = FACTCHECK_AI_RESPONSE.format(
+        market_outlook_narrative_str=market_outlook_narrative_str
+    )
+    
+    try:
+        # Get AI factcheck response
+        factcheck_response = get_gen_ai_response([], "factcheck", factcheck_prompt)
+        
+        # Try to parse the response as JSON
+        try:
+            # Remove any markdown code block markers if present
+            if factcheck_response.startswith("```json"):
+                factcheck_response = factcheck_response[7:]
+            if factcheck_response.endswith("```"):
+                factcheck_response = factcheck_response[:-3]
+            
+            # Parse JSON
+            factcheck_result = json.loads(factcheck_response)
+            
+            # Return the factcheck result
+            return factcheck_result.get("factcheck", "accurate")
+        except json.JSONDecodeError:
+            print(f"Error parsing factcheck response as JSON: {factcheck_response}")
+            return "accurate"  # Default to accurate if parsing fails
+    except Exception as e:
+        print(f"Error factchecking market outlook: {e}")
+        return "accurate"  # Default to accurate if there's any error
+

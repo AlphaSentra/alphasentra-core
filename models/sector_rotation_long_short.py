@@ -26,8 +26,8 @@ if parent_dir not in sys.path:
 load_dotenv()
 
 from _config import SECTOR_ETFS, WEIGHTS_PERCENT, SECTOR_REGIONS
-from genAI.ai_prompt import get_gen_ai_response, factcheck_market_outlook
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations
+from genAI.ai_prompt import get_gen_ai_response
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, factcheck_market_outlook
 
 
 
