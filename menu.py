@@ -1,5 +1,5 @@
 """
-Menu definitions for the Alphagora Trading System
+Menu definitions
 """
 
 import models.sector_rotation_long_short as sector_rotation_long_short

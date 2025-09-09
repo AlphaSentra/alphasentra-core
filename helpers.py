@@ -1,5 +1,5 @@
 """
-Project:     Alphagora Trading System
+Project:     Alphagora
 File:        helpers.py
 Author:      Daiviet Huynh
 Created:     2025-07-22
@@ -7,7 +7,7 @@ License:     MIT License
 Repository:  https://github.com/daivieth/Alphagora
 
 Description:
-Helper functions for the Alphagora Trading System.
+Helper functions for the Alphagora.
 """
 
 

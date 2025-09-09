@@ -1,5 +1,5 @@
 """
-Project:     Alphagora Trading System
+Project:     Alphagora
 File:        score_models.py
 Author:      Daiviet Huynh
 Created:     2025-08-27

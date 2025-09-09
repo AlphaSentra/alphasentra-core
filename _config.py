@@ -1,5 +1,5 @@
 """
-Project:     Alphagora Trading System
+Project:     Alphagora
 File:        _config.py
 Author:      Daiviet Huynh
 Created:     2025-08-26

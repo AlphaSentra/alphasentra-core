@@ -1,5 +1,5 @@
 """
-Project:     Alphagora Trading System
+Project:     Alphagora
 File:        sector_rotation_long_short.py
 Author:      Daiviet Huynh
 Created:     2025-09-05

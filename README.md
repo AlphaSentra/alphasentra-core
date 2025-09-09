@@ -36,10 +36,11 @@ For the AI Agent prompt, make sure to provide the following variables in the .en
 <pre>
 TARGET_PRICE="[prompt] {ticker_str} {trade_direction} {entry_price} {stop_loss}"
 FACTOR_WEIGHTS="[prompt]"
-FACTCHECK_AI_RESPONSE="Factcheck the following statements as of {current_date}: '{market_outlook_narrative_str}'.
-1. Identify any statements that may be misleading, incorrect, or lack sufficient evidence.
-2. Return a JSON object with one key: [factcheck] with value as string 'accurate' if the response is accurate, or 'inaccurate' if any issues are found, even with one issue it would be considered 'inaccurate'.
-3. provide a brief explanation for your assessment in the [explanation] key."
+FACTCHECK_AI_RESPONSE="Factcheck the following statements as of latest data: '{market_outlook_narrative_str}':
+1. **Identify statements:** Make sure that statements are not misleading, incorrect, or lack sufficient evidence from data that are available as of {current_date}. ignore factcheck for forward looking statements or data in the future.
+2. **Return a JSON object**: JSON with the following structure:
+2.1 Key [factcheck] with value as string 'accurate' if the response is accurate, or 'inaccurate' if any issues are found, even with one issue it would be considered 'inaccurate'.
+2.2 Key [issues] as an array of strings, where each string describes a specific issue found in the response and based on what date. If no issues are found, return an empty array for [issues]."
 
 SECTOR_ROTATION_LONG_ONLY_PROMPT="[prompt]"
 REGIONAL_ROTATION_LONG_SHORT_PROMPT=[prompt]"
