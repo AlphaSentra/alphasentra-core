@@ -10,9 +10,6 @@ Description:
 Main entry point for the Alphagora system, allowing users to select model.
 """
 
-import models.sector_rotation_long_short as sector_rotation_long_short
-import models.regional_rotation_long_short as regional_rotation_long_short
-import models.fx_long_short as fx_long_short
 from menu import MENU_ITEMS
 
 

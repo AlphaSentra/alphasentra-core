@@ -12,7 +12,6 @@ Run the Generative AI model to score and recommend trades based on various data 
 
 import os
 import sys
-import json
 import threading
 import time
 import google.generativeai as genai

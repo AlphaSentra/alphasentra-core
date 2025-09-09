@@ -14,8 +14,6 @@ Helper functions for the Alphagora Trading System.
 
 # --- HELPER FUNCTIONS ---
 import yfinance as yf
-import pandas as pd
-import numpy as np
 import backtrader as bt
 from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
