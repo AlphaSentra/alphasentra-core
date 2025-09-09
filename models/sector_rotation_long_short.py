@@ -170,7 +170,6 @@ def run_sector_rotation_model():
                                 ticker = trade.get('ticker', 'UNKNOWN')
                                 direction = trade.get('trade_direction', 'NONE')
                                 score = trade.get('bull_bear_score', 0)
-                                probability = trade.get('probability', 'N/A')
                                 
                                 # For stop_loss, target_price, and entry_price, use 'N/A' as default but validate they exist
                                 stop_loss = trade.get('stop_loss', 'N/A')
@@ -201,7 +200,7 @@ def run_sector_rotation_model():
                                 if entry_price == 'N/A':
                                     print(f"- {ticker}: Warning - Missing entry price data")
                                 
-                                print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Probability: {probability}, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
+                                print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
                         else:
                             # If JSON parsing fails, display the raw result
                             print("\n=== AI Analysis ===")
@@ -271,7 +270,6 @@ def run_sector_rotation_model():
                     ticker = trade.get('ticker', 'UNKNOWN')
                     direction = trade.get('trade_direction', 'NONE')
                     score = trade.get('bull_bear_score', 0)
-                    probability = trade.get('probability', 'N/A')
                     
                     # For stop_loss, target_price, and entry_price, use 'N/A' as default but validate they exist
                     stop_loss = trade.get('stop_loss', 'N/A')
@@ -302,7 +300,7 @@ def run_sector_rotation_model():
                     if entry_price == 'N/A':
                         print(f"- {ticker}: Warning - Missing entry price data")
                     
-                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Probability: {probability}, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
+                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
             else:
                 # If JSON parsing fails, display the raw result
                 print("\n=== AI Analysis ===")
@@ -312,7 +310,7 @@ def run_sector_rotation_model():
             return recommendations
             
     except Exception as e:
-        print(f"Error running sector rotation model: {e}")
+        print(f"Error in sector_rotation_long_short.py: {e}")
 
 
 # Testing the function

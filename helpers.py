@@ -17,7 +17,6 @@ import yfinance as yf
 import backtrader as bt
 from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
-import datetime
 import os
 from dotenv import load_dotenv
 import sys
@@ -50,135 +49,146 @@ def calculate_trade_levels(tickers, trade_direction, period=14):
     dict: Dictionary with ticker as key and dict with 'stop_loss' and 'target_price' as values
     """
     
-    # Validate trade direction
-    if trade_direction not in ["LONG", "SHORT"]:
-        raise ValueError("Trade direction must be either 'LONG' or 'SHORT'")
-    
-    # Dictionary to store stop loss prices
-    stop_loss_prices = {}
+    try:
+        # Debug: Print the function parameters
+        
+        # Validate trade direction
+        if trade_direction not in ["LONG", "SHORT"]:
+            raise ValueError("Trade direction must be either 'LONG' or 'SHORT'")
+        
+        # Dictionary to store stop loss prices
+        stop_loss_prices = {}
 
-    print()
-    print("Calculating stop loss prices...")
+        print()
+        print("Calculating stop loss prices...")
 
-    # Fetch data for all tickers
-    for ticker in tickers:
-        try:
-            # Fetch historical data for the last 60 days
-            end_date = datetime.now()
-            start_date = end_date - timedelta(days=60)
-            data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False)
-            
-            if data.empty:
-                print(f"No data available for {ticker}")
-                continue
-            
-            # Prepare data for backtrader
-            data_feed = bt.feeds.PandasData(dataname=data)
-            
-            # Create a cerebro instance
-            cerebro = bt.Cerebro()
-            
-            # Add data to cerebro
-            cerebro.adddata(data_feed)
-            
-            # Create a strategy to calculate indicators
-            class IndicatorStrategy(bt.Strategy):
-                def __init__(self):
-                    self.atr = ATR(period=period)
-                    self.adx = ADX(period=period)
+        # Fetch data for all tickers
+        for ticker in tickers:
+            try:
+                # Fetch historical data for the last 60 days
+                end_date = datetime.now()
+                start_date = end_date - timedelta(days=60)
+                data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False)
                 
-                def next(self):
-                    pass  # We don't need to do anything in next()
-            
-            # Add strategy to cerebro
-            cerebro.addstrategy(IndicatorStrategy)
-            
-            # Run cerebro to calculate indicators
-            results = cerebro.run()
-            
-            # Get the strategy instance
-            strategy = results[0]
-            
-            # Get the latest values of indicators
-            current_atr = strategy.atr[0]
-            current_adx = strategy.adx[0]
-            current_close = data['Close'].iloc[-1]
-            
-            # Calculate stop loss based on ADX strength and ATR
-            # Higher ADX means stronger trend, so we can place stop loss further away
-            # Lower ADX means weaker trend, so we place stop loss closer
-            
-            # Normalize ADX (typically ranges from 0 to 100)
-            adx_strength = min(current_adx / 100, 1.0)  # Cap at 1.0
-            
-            # Use ATR as the base for stop loss distance
-            # Multiply by a factor that depends on ADX strength
-            # For stronger trends (high ADX), use 1.5x ATR
-            # For weaker trends (low ADX), use 2.5x ATR
-            atr_multiplier = 2.5 - (adx_strength * 1.0)  # Ranges from 2.5 to 1.5
-            
-            # Calculate stop loss distance
-            stop_loss_distance = current_atr * atr_multiplier
-            
-            # Calculate stop loss price based on trade direction
-            if trade_direction == "LONG":
-                stop_loss_price = current_close - stop_loss_distance
-            else:  # SHORT
-                stop_loss_price = current_close + stop_loss_distance
-            
-            # Calculate entry price for this ticker
-            entry_prices = calculate_entry_price([ticker], trade_direction)
-            entry_price = entry_prices.get(ticker, current_close)  # Fallback to current close if entry price calculation fails
-            
-            # Get target price from AI model if prompt is available
-            if TARGET_PRICE_PROMPT:
-                try:
-                    # Format the prompt with the required variables
-                    formatted_prompt = TARGET_PRICE_PROMPT.format(
-                        trade_direction=trade_direction,
-                        ticker_str=ticker,
-                        entry_price=round(entry_price, 2),
-                        stop_loss=round(stop_loss_price, 2)
-                    )
+                if data.empty:
+                    print(f"No data available for {ticker}")
+                    continue
+                
+                # Prepare data for backtrader
+                data_feed = bt.feeds.PandasData(dataname=data)
+                
+                # Create a cerebro instance
+                cerebro = bt.Cerebro()
+                
+                # Add data to cerebro
+                cerebro.adddata(data_feed)
+                
+                # Create a strategy to calculate indicators
+                class IndicatorStrategy(bt.Strategy):
+                    def __init__(self):
+                        self.atr = ATR(period=period)
+                        self.adx = ADX(period=period)
                     
-                    # Get AI-generated target price
-                    ai_response = get_gen_ai_response([ticker], "target price", formatted_prompt)
-                    
-                    # Try to parse the response as a float
+                    def next(self):
+                        pass  # We don't need to do anything in next()
+                
+                # Add strategy to cerebro
+                cerebro.addstrategy(IndicatorStrategy)
+                
+                # Run cerebro to calculate indicators
+                results = cerebro.run()
+                
+                # Get the strategy instance
+                strategy = results[0]
+                
+                # Get the latest values of indicators
+                current_atr = strategy.atr[0]
+                current_adx = strategy.adx[0]
+                current_close = data['Close'].iloc[-1]
+                
+                # Calculate stop loss based on ADX strength and ATR
+                # Higher ADX means stronger trend, so we can place stop loss further away
+                # Lower ADX means weaker trend, so we place stop loss closer
+                
+                # Normalize ADX (typically ranges from 0 to 100)
+                adx_strength = min(current_adx / 100, 1.0)  # Cap at 1.0
+                
+                # Use ATR as the base for stop loss distance
+                # Multiply by a factor that depends on ADX strength
+                # For stronger trends (high ADX), use 1.5x ATR
+                # For weaker trends (low ADX), use 2.5x ATR
+                atr_multiplier = 2.5 - (adx_strength * 1.0)  # Ranges from 2.5 to 1.5
+                
+                # Calculate stop loss distance
+                stop_loss_distance = current_atr * atr_multiplier
+                
+                # Calculate stop loss price based on trade direction
+                if trade_direction == "LONG":
+                    stop_loss_price = current_close - stop_loss_distance
+                else:  # SHORT
+                    stop_loss_price = current_close + stop_loss_distance
+                
+                # Calculate entry price for this ticker
+                entry_prices = calculate_entry_price([ticker], trade_direction)
+                entry_price = entry_prices.get(ticker, current_close)  # Fallback to current close if entry price calculation fails
+                
+                # Get target price from AI model if prompt is available
+                if TARGET_PRICE_PROMPT:
                     try:
-                        target_price = float(ai_response.strip())
-                    except ValueError:
-                        print(f"Warning: Could not parse AI response '{ai_response}' as a number for {ticker}. Using fallback calculation.")
-                        # Fallback to original calculation if AI response is not a valid number
+                        # Format the prompt with the required variables
+                        formatted_prompt = TARGET_PRICE_PROMPT.format(
+                            trade_direction=trade_direction,
+                            ticker_str=ticker,
+                            entry_price=round(entry_price, 2),
+                            stop_loss=round(stop_loss_price, 2)
+                        )
+                        
+                        # Get AI-generated target price
+                        ai_response = get_gen_ai_response([ticker], "target price", formatted_prompt)
+                        
+                        # Try to parse the response as a float
+                        try:
+                            target_price = float(ai_response.strip())
+                        except ValueError:
+                            print(f"Warning: Could not parse AI response '{ai_response}' as a number for {ticker}. Using fallback calculation.")
+                            # Fallback to original calculation if AI response is not a valid number
+                            if trade_direction == "LONG":
+                                target_price = current_close + (2 * stop_loss_distance)
+                            else:  # SHORT
+                                target_price = current_close - (2 * stop_loss_distance)
+                    except Exception as e:
+                        print(f"Warning: Error getting AI target price for {ticker}: {e}. Using fallback calculation.")
+                        # Fallback to original calculation if there's any error
                         if trade_direction == "LONG":
                             target_price = current_close + (2 * stop_loss_distance)
                         else:  # SHORT
                             target_price = current_close - (2 * stop_loss_distance)
-                except Exception as e:
-                    print(f"Warning: Error getting AI target price for {ticker}: {e}. Using fallback calculation.")
-                    # Fallback to original calculation if there's any error
+                else:
+                    # Fallback to original calculation if prompt is not available
                     if trade_direction == "LONG":
                         target_price = current_close + (2 * stop_loss_distance)
                     else:  # SHORT
                         target_price = current_close - (2 * stop_loss_distance)
-            else:
-                # Fallback to original calculation if prompt is not available
-                if trade_direction == "LONG":
-                    target_price = current_close + (2 * stop_loss_distance)
-                else:  # SHORT
-                    target_price = current_close - (2 * stop_loss_distance)
-            
-            # Store the result
-            stop_loss_prices[ticker] = {
-                'stop_loss': max(0, stop_loss_price),  # Ensure non-negative
-                'target_price': max(0, target_price)   # Ensure non-negative
-            }
-            
-        except Exception as e:
-            print(f"Error calculating stop loss for {ticker}: {e}")
-            continue
-    
-    return stop_loss_prices
+                
+                # Store the result
+                stop_loss_prices[ticker] = {
+                    'stop_loss': max(0, stop_loss_price),  # Ensure non-negative
+                    'target_price': max(0, target_price)   # Ensure non-negative
+                }
+                
+                
+            except Exception as e:
+                print(f"Error calculating stop loss for {ticker}: {e}")
+                import traceback
+                traceback.print_exc()
+                continue
+        
+        return stop_loss_prices
+    except Exception as e:
+        print(f"ERROR in calculate_trade_levels: {e}")
+        import traceback
+        traceback.print_exc()
+        return {}
 
 
 def get_trade_recommendations(tickers_with_direction):
@@ -256,47 +266,60 @@ def add_trade_levels_to_recommendations(recommendations):
     dict: The recommendations dictionary with stop loss and target prices added
     """
         
-    # Group tickers by trade direction
-    long_tickers = []
-    short_tickers = []
-    
-    for trade in recommendations['recommendations']:
-        ticker = trade.get('ticker')
-        direction = trade.get('trade_direction', '').upper()
+    try:
+        # Debug: Print the recommendations structure
         
-        if ticker and direction:
-            if direction == 'LONG':
-                long_tickers.append(ticker)
-            elif direction == 'SHORT':
-                short_tickers.append(ticker)
-    
-    # Calculate stop loss prices for LONG positions
-    if long_tickers:
-        long_stop_losses = calculate_trade_levels(long_tickers, 'LONG')
+        # Check if recommendations has the expected structure
+        if 'recommendations' not in recommendations:
+            return recommendations
         
-        # Add stop loss prices to recommendations
+        # Group tickers by trade direction
+        long_tickers = []
+        short_tickers = []
+        
         for trade in recommendations['recommendations']:
-            if trade.get('trade_direction', '').upper() == 'LONG':
-                ticker = trade.get('ticker')
-                if ticker in long_stop_losses:
-                    stop_loss_data = long_stop_losses[ticker]
-                    trade['stop_loss'] = round(stop_loss_data['stop_loss'], 2)
-                    trade['target_price'] = round(stop_loss_data['target_price'], 2)
-    
-    # Calculate stop loss prices for SHORT positions
-    if short_tickers:
-        short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT')
+            ticker = trade.get('ticker')
+            direction = trade.get('trade_direction', '').upper()
+            
+            if ticker and direction:
+                if direction == 'LONG':
+                    long_tickers.append(ticker)
+                elif direction == 'SHORT':
+                    short_tickers.append(ticker)
         
-        # Add stop loss prices to recommendations
-        for trade in recommendations['recommendations']:
-            if trade.get('trade_direction', '').upper() == 'SHORT':
-                ticker = trade.get('ticker')
-                if ticker in short_stop_losses:
-                    stop_loss_data = short_stop_losses[ticker]
-                    trade['stop_loss'] = round(stop_loss_data['stop_loss'], 2)
-                    trade['target_price'] = round(stop_loss_data['target_price'], 2)
-    
-    return recommendations
+        
+        # Calculate stop loss prices for LONG positions
+        if long_tickers:
+            long_stop_losses = calculate_trade_levels(long_tickers, 'LONG')
+            
+            # Add stop loss prices to recommendations
+            for trade in recommendations['recommendations']:
+                if trade.get('trade_direction', '').upper() == 'LONG':
+                    ticker = trade.get('ticker')
+                    if ticker in long_stop_losses:
+                        stop_loss_data = long_stop_losses[ticker]
+                        trade['stop_loss'] = round(stop_loss_data['stop_loss'], 2)
+                        trade['target_price'] = round(stop_loss_data['target_price'], 2)
+        
+        # Calculate stop loss prices for SHORT positions
+        if short_tickers:
+            short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT')
+            
+            # Add stop loss prices to recommendations
+            for trade in recommendations['recommendations']:
+                if trade.get('trade_direction', '').upper() == 'SHORT':
+                    ticker = trade.get('ticker')
+                    if ticker in short_stop_losses:
+                        stop_loss_data = short_stop_losses[ticker]
+                        trade['stop_loss'] = round(stop_loss_data['stop_loss'], 2)
+                        trade['target_price'] = round(stop_loss_data['target_price'], 2)
+        
+        return recommendations
+    except Exception as e:
+        print(f"ERROR in add_trade_levels_to_recommendations: {e}")
+        import traceback
+        traceback.print_exc()
+        return recommendations
 
 
 def calculate_entry_price(tickers, trade_direction, period=5):
@@ -315,57 +338,68 @@ def calculate_entry_price(tickers, trade_direction, period=5):
     dict: Dictionary with ticker as key and entry price as value
     """
     
-    # Validate trade direction
-    if trade_direction not in ["LONG", "SHORT"]:
-        raise ValueError("Trade direction must be either 'LONG' or 'SHORT'")
-    
-    # Dictionary to store entry prices
-    entry_prices = {}
+    try:
+        # Debug: Print the function parameters
+        
+        # Validate trade direction
+        if trade_direction not in ["LONG", "SHORT"]:
+            raise ValueError("Trade direction must be either 'LONG' or 'SHORT'")
+        
+        # Dictionary to store entry prices
+        entry_prices = {}
 
-    print()
-    print("Calculating entry prices...")
+        print()
+        print("Calculating entry prices...")
 
-    # Fetch data for all tickers
-    for ticker in tickers:
-        try:
-            # Fetch historical data for the last 30 days (to ensure we have enough data for weekly calculations)
-            end_date = datetime.now()
-            start_date = end_date - timedelta(days=30)
-            data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False)
-            
-            if data.empty:
-                print(f"No data available for {ticker}")
+        # Fetch data for all tickers
+        for ticker in tickers:
+            try:
+                # Fetch historical data for the last 30 days (to ensure we have enough data for weekly calculations)
+                end_date = datetime.now()
+                start_date = end_date - timedelta(days=30)
+                data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False)
+                
+                if data.empty:
+                    print(f"No data available for {ticker}")
+                    continue
+                
+                # Get data for the past week only (last 5 trading days)
+                week_data = data.tail(period)
+                
+                if len(week_data) < period:
+                    print(f"Not enough data for {ticker} to calculate weekly high/low")
+                    continue
+                
+                # Calculate weekly high and low
+                week_high = week_data['High'].max()
+                week_low = week_data['Low'].min()
+                
+                # Calculate entry price based on trade direction
+                # For LONG positions, entry price is at the high since past week to now
+                # For SHORT positions, entry price is at the low since past week to now
+                if trade_direction == "LONG":
+                    # Enter at the high since past week to now
+                    entry_price = week_high
+                else:  # SHORT
+                    # Enter at the low since past week to now
+                    entry_price = week_low
+                
+                # Store the result
+                entry_prices[ticker] = max(0, entry_price)  # Ensure non-negative
+                
+                
+            except Exception as e:
+                print(f"Error calculating entry price for {ticker}: {e}")
+                import traceback
+                traceback.print_exc()
                 continue
-            
-            # Get data for the past week only (last 5 trading days)
-            week_data = data.tail(period)
-            
-            if len(week_data) < period:
-                print(f"Not enough data for {ticker} to calculate weekly high/low")
-                continue
-            
-            # Calculate weekly high and low
-            week_high = week_data['High'].max()
-            week_low = week_data['Low'].min()
-            
-            # Calculate entry price based on trade direction
-            # For LONG positions, entry price is at the high since past week to now
-            # For SHORT positions, entry price is at the low since past week to now
-            if trade_direction == "LONG":
-                # Enter at the high since past week to now
-                entry_price = week_high
-            else:  # SHORT
-                # Enter at the low since past week to now
-                entry_price = week_low
-            
-            # Store the result
-            entry_prices[ticker] = max(0, entry_price)  # Ensure non-negative
-            
-        except Exception as e:
-            print(f"Error calculating entry price for {ticker}: {e}")
-            continue
-    
-    return entry_prices
+        
+        return entry_prices
+    except Exception as e:
+        print(f"ERROR in calculate_entry_price: {e}")
+        import traceback
+        traceback.print_exc()
+        return {}
 
 
 def get_entry_price_recommendations(tickers_with_direction):
@@ -435,43 +469,56 @@ def add_entry_price_to_recommendations(recommendations):
     dict: The recommendations dictionary with entry prices added
     """
         
-    # Group tickers by trade direction
-    long_tickers = []
-    short_tickers = []
-    
-    for trade in recommendations['recommendations']:
-        ticker = trade.get('ticker')
-        direction = trade.get('trade_direction', '').upper()
+    try:
+        # Debug: Print the recommendations structure
         
-        if ticker and direction:
-            if direction == 'LONG':
-                long_tickers.append(ticker)
-            elif direction == 'SHORT':
-                short_tickers.append(ticker)
-    
-    # Calculate entry prices for LONG positions
-    if long_tickers:
-        long_entry_prices = calculate_entry_price(long_tickers, 'LONG')
+        # Check if recommendations has the expected structure
+        if 'recommendations' not in recommendations:
+            return recommendations
         
-        # Add entry prices to recommendations
+        # Group tickers by trade direction
+        long_tickers = []
+        short_tickers = []
+        
         for trade in recommendations['recommendations']:
-            if trade.get('trade_direction', '').upper() == 'LONG':
-                ticker = trade.get('ticker')
-                if ticker in long_entry_prices:
-                    trade['entry_price'] = round(long_entry_prices[ticker], 2)
-    
-    # Calculate entry prices for SHORT positions
-    if short_tickers:
-        short_entry_prices = calculate_entry_price(short_tickers, 'SHORT')
+            ticker = trade.get('ticker')
+            direction = trade.get('trade_direction', '').upper()
+            
+            if ticker and direction:
+                if direction == 'LONG':
+                    long_tickers.append(ticker)
+                elif direction == 'SHORT':
+                    short_tickers.append(ticker)
         
-        # Add entry prices to recommendations
-        for trade in recommendations['recommendations']:
-            if trade.get('trade_direction', '').upper() == 'SHORT':
-                ticker = trade.get('ticker')
-                if ticker in short_entry_prices:
-                    trade['entry_price'] = round(short_entry_prices[ticker], 2)
-    
-    return recommendations
+        
+        # Calculate entry prices for LONG positions
+        if long_tickers:
+            long_entry_prices = calculate_entry_price(long_tickers, 'LONG')
+            
+            # Add entry prices to recommendations
+            for trade in recommendations['recommendations']:
+                if trade.get('trade_direction', '').upper() == 'LONG':
+                    ticker = trade.get('ticker')
+                    if ticker in long_entry_prices:
+                        trade['entry_price'] = round(long_entry_prices[ticker], 2)
+        
+        # Calculate entry prices for SHORT positions
+        if short_tickers:
+            short_entry_prices = calculate_entry_price(short_tickers, 'SHORT')
+            
+            # Add entry prices to recommendations
+            for trade in recommendations['recommendations']:
+                if trade.get('trade_direction', '').upper() == 'SHORT':
+                    ticker = trade.get('ticker')
+                    if ticker in short_entry_prices:
+                        trade['entry_price'] = round(short_entry_prices[ticker], 2)
+        
+        return recommendations
+    except Exception as e:
+        print(f"ERROR in add_entry_price_to_recommendations: {e}")
+        import traceback
+        traceback.print_exc()
+        return recommendations
 
 def factcheck_market_outlook(market_outlook_narrative):
     """
@@ -499,7 +546,7 @@ def factcheck_market_outlook(market_outlook_narrative):
     
 
     # Create current date in the format "September 6, 2025"
-    current_date = datetime.datetime.now().strftime("%B %d, %Y")
+    current_date = datetime.now().strftime("%B %d, %Y")
     
     # Join the narrative paragraphs into a single string
     market_outlook_narrative_str = " ".join(market_outlook_narrative)
@@ -512,29 +559,47 @@ def factcheck_market_outlook(market_outlook_narrative):
     
     try:
         # Get AI factcheck response
-        factcheck_response = get_gen_ai_response([], "factcheck", factcheck_prompt)
+        factcheck_response = get_gen_ai_response([], "factcheck", factcheck_prompt)        
         
         # Try to parse the response as JSON
         try:
             # Remove any markdown code block markers if present
-            if factcheck_response.startswith("```json"):
-                factcheck_response = factcheck_response[7:]
-            if factcheck_response.endswith("```"):
-                factcheck_response = factcheck_response[:-3]
+            factcheck_response_clean = factcheck_response.strip()
+            if factcheck_response_clean.startswith("```json"):
+                factcheck_response_clean = factcheck_response_clean[7:]
+            elif factcheck_response_clean.startswith("```"):
+                factcheck_response_clean = factcheck_response_clean[3:]
+            if factcheck_response_clean.endswith("```"):
+                factcheck_response_clean = factcheck_response_clean[:-3]
             
-            # Parse JSON
-            factcheck_result = json.loads(factcheck_response)
+            # Strip whitespace
+            factcheck_response_clean = factcheck_response_clean.strip()
+            
+            # Additional cleaning for common AI response issues
+            # Remove leading/trailing quotes if present
+            if factcheck_response_clean.startswith("'") and factcheck_response_clean.endswith("'"):
+                factcheck_response_clean = factcheck_response_clean[1:-1]
+            elif factcheck_response_clean.startswith('"') and factcheck_response_clean.endswith('"'):
+                factcheck_response_clean = factcheck_response_clean[1:-1]
+            
+            # Try to parse as JSON
+            factcheck_result = json.loads(factcheck_response_clean)
 
-            # Debug output for factcheck result ###############
-            print(factcheck_prompt)
+            # Debug output for factcheck result
             print(f"Factcheck result: {factcheck_result}")
-            ##################################################
             
             # Return the factcheck result
             return factcheck_result.get("factcheck", "accurate")
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as json_error:
             print(f"Error parsing factcheck response as JSON: {factcheck_response}")
-            return "accurate"  # Default to accurate if parsing fails
+            print(f"JSON decode error: {str(json_error)}")
+            # Try to extract factcheck value from string response
+            response_lower = factcheck_response_clean.lower()
+            if "inaccurate" in response_lower:
+                return "inaccurate"
+            elif "accurate" in response_lower:
+                return "accurate"
+
     except Exception as e:
         print(f"Error factchecking market outlook: {e}")
         return "accurate"  # Default to accurate if there's any error

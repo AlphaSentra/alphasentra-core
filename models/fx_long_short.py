@@ -203,7 +203,6 @@ def run_fx_model(tickers, fx_regions=None):
                     tickers = trade.get('ticker', 'UNKNOWN')
                     direction = trade.get('trade_direction', 'NONE')
                     score = trade.get('bull_bear_score', 0)
-                    probability = trade.get('probability', 'N/A')
                     
                     # For stop_loss, target_price, and entry_price, use 'N/A' as default but validate they exist
                     stop_loss = trade.get('stop_loss', 'N/A')
@@ -234,15 +233,14 @@ def run_fx_model(tickers, fx_regions=None):
                     if entry_price == 'N/A':
                         print(f"- {tickers}: Warning - Missing entry price data")
                     
-                    print(f"- {tickers}: {direction.upper()} (Score: {score}/10, Probability: {probability}, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
+                    print(f"- {tickers}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
             else:
                 # If JSON parsing fails, display the raw result
                 print("\n=== AI Analysis ===")
                 print(result)
             
     except Exception as e:
-        print(f"Error running FX model: {e}")
-
+        print(f"Error in fx_long_short.py: {e}")
 
 # Testing the function
 if __name__ == "__main__":
