@@ -39,6 +39,9 @@ def run_fx_model(tickers, fx_regions=None):
         fx_regions (list, optional): List of regions to consider for FX analysis
     """
     
+    # Get Gemini model from environment variable
+    gemini_model = os.getenv("GEMINI_PRO_MODEL")
+    
     # Load AI model prompts from environment variables
     FX_LONG_SHORT_PROMPT = os.getenv("FX_LONG_SHORT_PROMPT")
     FACTOR_WEIGHTS_PROMPT = os.getenv("FACTOR_WEIGHTS")
@@ -48,7 +51,7 @@ def run_fx_model(tickers, fx_regions=None):
     if FACTOR_WEIGHTS_PROMPT:
         try:
             # Call get_gen_ai_response with the FACTOR_WEIGHTS prompt
-            ai_weights_response = get_gen_ai_response([tickers], "factor weights", FACTOR_WEIGHTS_PROMPT)
+            ai_weights_response = get_gen_ai_response([tickers], "factor weights", FACTOR_WEIGHTS_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the response as JSON
             try:
@@ -119,7 +122,7 @@ def run_fx_model(tickers, fx_regions=None):
             attempts += 1
             print(f"Attempt {attempts} to get accurate market outlook...")
             
-            result = get_gen_ai_response([tickers], "fx long/short", FX_LONG_SHORT_PROMPT)
+            result = get_gen_ai_response([tickers], "fx long/short", FX_LONG_SHORT_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the result as JSON
             try:
@@ -134,7 +137,7 @@ def run_fx_model(tickers, fx_regions=None):
                 # Check if we have a market outlook narrative to factcheck
                 if 'market_outlook_narrative' in recommendations:
                     # Factcheck the market outlook narrative
-                    factcheck_result = factcheck_market_outlook(recommendations['market_outlook_narrative'])
+                    factcheck_result = factcheck_market_outlook(recommendations['market_outlook_narrative'], os.getenv("GEMINI_PRO_MODEL"))
                     print(f"Factcheck result: {factcheck_result}")
                     
                     if factcheck_result == "accurate":
@@ -154,7 +157,7 @@ def run_fx_model(tickers, fx_regions=None):
         # If we still don't have recommendations after max attempts, get one more try without factchecking
         if recommendations is None:
             print(f"Failed to get accurate market outlook after {max_attempts} attempts. Getting final recommendations without factchecking.")
-            result = get_gen_ai_response([tickers], "fx long/short", FX_LONG_SHORT_PROMPT)
+            result = get_gen_ai_response([tickers], "fx long/short", FX_LONG_SHORT_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the result as JSON
             try:
@@ -171,9 +174,9 @@ def run_fx_model(tickers, fx_regions=None):
 
         # Add stop loss and target prices to recommendations
         if recommendations:
-            recommendations = add_trade_levels_to_recommendations(recommendations)
+            recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"))
             # Add entry prices to recommendations
-            recommendations = add_entry_price_to_recommendations(recommendations)
+            recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"))
 
             #Display Model Output header
             print("\n" + "="*100)

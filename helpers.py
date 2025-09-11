@@ -36,7 +36,7 @@ load_dotenv()
 TARGET_PRICE_PROMPT = os.getenv("TARGET_PRICE")
 
 
-def calculate_trade_levels(tickers, trade_direction, period=14):
+def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=None):
     """
     Calculate appropriate stop loss and target price levels based on ADX and ATR indicators.
     
@@ -44,6 +44,7 @@ def calculate_trade_levels(tickers, trade_direction, period=14):
     tickers (list): List of ticker symbols as strings
     trade_direction (str): Trade direction, either "LONG" or "SHORT"
     period (int): Period for ADX and ATR calculations (default: 14)
+    gemini_model (str, optional): The Gemini model to use for analysis
     
     Returns:
     dict: Dictionary with ticker as key and dict with 'stop_loss' and 'target_price' as values
@@ -144,7 +145,7 @@ def calculate_trade_levels(tickers, trade_direction, period=14):
                         )
                         
                         # Get AI-generated target price
-                        ai_response = get_gen_ai_response([ticker], "target price", formatted_prompt)
+                        ai_response = get_gen_ai_response([ticker], "target price", formatted_prompt, gemini_model)
                         
                         # Try to parse the response as a float
                         try:
@@ -255,12 +256,13 @@ def get_trade_recommendations(tickers_with_direction):
     return recommendations
 
 
-def add_trade_levels_to_recommendations(recommendations):
+def add_trade_levels_to_recommendations(recommendations, gemini_model=None):
     """
     Add stop loss and target prices to recommendations.
     
     Parameters:
     recommendations (dict): The AI recommendations dictionary
+    gemini_model (str, optional): The Gemini model to use for analysis
     
     Returns:
     dict: The recommendations dictionary with stop loss and target prices added
@@ -290,7 +292,7 @@ def add_trade_levels_to_recommendations(recommendations):
         
         # Calculate stop loss prices for LONG positions
         if long_tickers:
-            long_stop_losses = calculate_trade_levels(long_tickers, 'LONG')
+            long_stop_losses = calculate_trade_levels(long_tickers, 'LONG', gemini_model=gemini_model)
             
             # Add stop loss prices to recommendations
             for trade in recommendations['recommendations']:
@@ -303,7 +305,7 @@ def add_trade_levels_to_recommendations(recommendations):
         
         # Calculate stop loss prices for SHORT positions
         if short_tickers:
-            short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT')
+            short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT', gemini_model=gemini_model)
             
             # Add stop loss prices to recommendations
             for trade in recommendations['recommendations']:
@@ -458,12 +460,13 @@ def get_entry_price_recommendations(tickers_with_direction):
             })
     
     return recommendations
-def add_entry_price_to_recommendations(recommendations):
+def add_entry_price_to_recommendations(recommendations, gemini_model=None):
     """
     Add entry prices to recommendations.
     
     Parameters:
     recommendations (dict): The AI recommendations dictionary
+    gemini_model (str, optional): The Gemini model to use for analysis
     
     Returns:
     dict: The recommendations dictionary with entry prices added
@@ -520,12 +523,13 @@ def add_entry_price_to_recommendations(recommendations):
         traceback.print_exc()
         return recommendations
 
-def factcheck_market_outlook(market_outlook_narrative):
+def factcheck_market_outlook(market_outlook_narrative, gemini_model=None):
     """
     Factcheck the market outlook narrative using the AI model.
     
     Args:
         market_outlook_narrative (list): List of paragraphs in the market outlook narrative
+        gemini_model (str, optional): The Gemini model to use for analysis
     
     Returns:
         str: 'accurate' if the narrative is accurate, 'inaccurate' otherwise
@@ -559,7 +563,7 @@ def factcheck_market_outlook(market_outlook_narrative):
     
     try:
         # Get AI factcheck response
-        factcheck_response = get_gen_ai_response([], "factcheck", factcheck_prompt)        
+        factcheck_response = get_gen_ai_response([], "factcheck", factcheck_prompt, gemini_model)
         
         # Try to parse the response as JSON
         try:

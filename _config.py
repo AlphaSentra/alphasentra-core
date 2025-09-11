@@ -23,6 +23,7 @@ WEIGHTS_PERCENT = {
     'Sentiment_Surveys': '5%'
 }
 
+
 # Sector Rotation Model Configuration
 SECTOR_ETFS = ['XLC', 'XLY', 'XLP', 'XLE', 'XLF', 'XLV', 'XLI', 'XLB', 'XLRE', 'XLK', 'XLU']
 SECTOR_REGIONS = ['US']

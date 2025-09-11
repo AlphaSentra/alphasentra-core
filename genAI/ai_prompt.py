@@ -32,8 +32,9 @@ DEFAULT_PROMPT = os.getenv("DEFAULT_PROMPT")
 # Configure Gemini API
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))  # Set your Gemini key in environment variable
 
-# Set up the Gemini 2.5 Pro model
-model = genai.GenerativeModel(os.getenv("GEMINI_MODEL_NAME", "gemini-2.5-pro"))
+# Get model names from environment variables
+GEMINI_FLASH_MODEL = os.getenv("GEMINI_FLASH_MODEL", "gemini-2.5-flash")
+GEMINI_PRO_MODEL = os.getenv("GEMINI_PRO_MODEL", "gemini-2.5-pro")
 
 def _show_progress():
     """
@@ -48,10 +49,15 @@ def _show_progress():
     print("\rAI response generated.", end="", flush=True)
     print()  # Move to next line
 
-def get_gen_ai_response(tickers, model_strategy, prompt=None):
+def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None):
+    # If no model is specified, use the default model from environment variables
+    if gemini_model is None:
+        gemini_model = os.getenv("GEMINI_MODEL_NAME", "gemini-2.5-pro")
     
-    print("\n=== Model: "+ model_strategy +" using "+ os.getenv("GEMINI_MODEL_NAME", "gemini-2.5-pro") +" ===")
+    print("\n=== Model: "+ model_strategy +" using "+ gemini_model +" ===")
 
+    # Create model instance based on the selected model
+    model = genai.GenerativeModel(gemini_model)
 
     # Run prompt and return response
     try:

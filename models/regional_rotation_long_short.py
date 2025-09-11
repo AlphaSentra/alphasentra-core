@@ -36,6 +36,9 @@ def run_regional_rotation_model():
     Run the regional rotation long/short model.
     """
     
+    # Get Gemini model from environment variable
+    gemini_model = os.getenv("GEMINI_PRO_MODEL")
+    
     # Load AI model prompts from environment variables
     REGIONAL_ROTATION_LONG_SHORT_PROMPT = os.getenv("REGIONAL_ROTATION_LONG_SHORT_PROMPT")
     FACTOR_WEIGHTS_PROMPT = os.getenv("FACTOR_WEIGHTS")
@@ -45,7 +48,7 @@ def run_regional_rotation_model():
     if FACTOR_WEIGHTS_PROMPT:
         try:
             # Call get_gen_ai_response with the FACTOR_WEIGHTS prompt
-            ai_weights_response = get_gen_ai_response(REGIONAL_ETFS, "factor weights", FACTOR_WEIGHTS_PROMPT)
+            ai_weights_response = get_gen_ai_response(REGIONAL_ETFS, "factor weights", FACTOR_WEIGHTS_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the response as JSON
             try:
@@ -116,7 +119,7 @@ def run_regional_rotation_model():
             attempts += 1
             print(f"Attempt {attempts} to get accurate market outlook...")
             
-            result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_SHORT_PROMPT)
+            result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_SHORT_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the result as JSON
             try:
@@ -131,16 +134,16 @@ def run_regional_rotation_model():
                 # Check if we have a market outlook narrative to factcheck
                 if 'market_outlook_narrative' in recommendations:
                     # Factcheck the market outlook narrative
-                    factcheck_result = factcheck_market_outlook(recommendations['market_outlook_narrative'])
+                    factcheck_result = factcheck_market_outlook(recommendations['market_outlook_narrative'], os.getenv("GEMINI_PRO_MODEL"))
                     print(f"Factcheck result: {factcheck_result}")
                     
                     if factcheck_result == "accurate":
                         print("Market outlook is accurate. Proceeding with recommendations.")
                         
                         # Add stop loss and target prices to recommendations
-                        recommendations = add_trade_levels_to_recommendations(recommendations)
+                        recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"))
                         # Add entry prices to recommendations
-                        recommendations = add_entry_price_to_recommendations(recommendations)
+                        recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"))
                         
                         #Display Model Output header
                         print("\n" + "="*100)
@@ -222,7 +225,7 @@ def run_regional_rotation_model():
         # If we still don't have recommendations after max attempts, get one more try without factchecking
         if recommendations is None:
             print(f"Failed to get accurate market outlook after {max_attempts} attempts. Getting final recommendations without factchecking.")
-            result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_SHORT_PROMPT)
+            result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_SHORT_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the result as JSON
             try:
@@ -238,9 +241,9 @@ def run_regional_rotation_model():
                 recommendations = None
 
             # Add stop loss and target prices to recommendations
-            recommendations = add_trade_levels_to_recommendations(recommendations)
+            recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_PRO_MODEL"))
             # Add entry prices to recommendations
-            recommendations = add_entry_price_to_recommendations(recommendations)
+            recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_PRO_MODEL"))
 
             #Display Model Output header
             print("\n" + "="*100)
