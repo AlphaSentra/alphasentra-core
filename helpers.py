@@ -36,7 +36,7 @@ load_dotenv()
 TARGET_PRICE_PROMPT = os.getenv("TARGET_PRICE")
 
 
-def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=None, decimal_digits=2):
+def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=None, decimal_digits=2, recommendation_narrative=None):
     """
     Calculate appropriate stop loss and target price levels based on ADX and ATR indicators.
     
@@ -46,6 +46,7 @@ def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=Non
     period (int): Period for ADX and ATR calculations (default: 14)
     gemini_model (str, optional): The Gemini model to use for analysis
     decimal_digits (int): Number of decimal digits for rounding prices (default: 2)
+    recommendation_narrative (list, optional): List of recommendation narrative paragraphs
     
     Returns:
     dict: Dictionary with ticker as key and dict with 'stop_loss' and 'target_price' as values
@@ -137,12 +138,18 @@ def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=Non
                 # Get target price from AI model if prompt is available
                 if TARGET_PRICE_PROMPT:
                     try:
+                        # Prepare recommendation narrative string
+                        recommendation_narrative_str = ""
+                        if recommendation_narrative:
+                            recommendation_narrative_str = " ".join(recommendation_narrative)
+                        
                         # Format the prompt with the required variables
                         formatted_prompt = TARGET_PRICE_PROMPT.format(
                             trade_direction=trade_direction,
                             ticker_str=ticker,
                             entry_price=round(entry_price, decimal_digits),
-                            stop_loss=round(stop_loss_price, decimal_digits)
+                            stop_loss=round(stop_loss_price, decimal_digits),
+                            recommendation_narrative_str=recommendation_narrative_str
                         )
                         
                         # Get AI-generated target price
@@ -295,7 +302,9 @@ def add_trade_levels_to_recommendations(recommendations, gemini_model=None, deci
         
         # Calculate stop loss prices for LONG positions
         if long_tickers:
-            long_stop_losses = calculate_trade_levels(long_tickers, 'LONG', gemini_model=gemini_model, decimal_digits=decimal_digits)
+            # Get market outlook narrative if available
+            recommendation_narrative = recommendations.get('market_outlook_narrative')
+            long_stop_losses = calculate_trade_levels(long_tickers, 'LONG', gemini_model=gemini_model, decimal_digits=decimal_digits, recommendation_narrative=recommendation_narrative)
             
             # Add stop loss prices to recommendations
             for trade in recommendations['recommendations']:
@@ -308,7 +317,9 @@ def add_trade_levels_to_recommendations(recommendations, gemini_model=None, deci
         
         # Calculate stop loss prices for SHORT positions
         if short_tickers:
-            short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT', gemini_model=gemini_model, decimal_digits=decimal_digits)
+            # Get market outlook narrative if available
+            recommendation_narrative = recommendations.get('market_outlook_narrative')
+            short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT', gemini_model=gemini_model, decimal_digits=decimal_digits, recommendation_narrative=recommendation_narrative)
             
             # Add stop loss prices to recommendations
             for trade in recommendations['recommendations']:
