@@ -141,9 +141,9 @@ def run_regional_rotation_model():
                         print("Market outlook is accurate. Proceeding with recommendations.")
                         
                         # Add stop loss and target prices to recommendations
-                        recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"))
+                        recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"),decimal_digits=1)
                         # Add entry prices to recommendations
-                        recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"))
+                        recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"),decimal_digits=1)
                         
                         #Display Model Output header
                         print("\n" + "="*100)
@@ -241,9 +241,9 @@ def run_regional_rotation_model():
                 recommendations = None
 
             # Add stop loss and target prices to recommendations
-            recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_PRO_MODEL"))
+            recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_PRO_MODEL"),decimal_digits=1)
             # Add entry prices to recommendations
-            recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_PRO_MODEL"))
+            recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_PRO_MODEL"),decimal_digits=1)
 
             #Display Model Output header
             print("\n" + "="*100)

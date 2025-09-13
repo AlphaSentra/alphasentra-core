@@ -52,7 +52,7 @@ def _show_progress():
 def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None):
     # If no model is specified, use the default model from environment variables
     if gemini_model is None:
-        gemini_model = os.getenv("GEMINI_MODEL_NAME", "gemini-2.5-pro")
+        gemini_model = os.getenv("GEMINI_DEFAULT", "gemini-2.5-pro")
     
     print("\n=== Model: "+ model_strategy +" using "+ gemini_model +" ===")
 

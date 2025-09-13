@@ -36,7 +36,7 @@ load_dotenv()
 TARGET_PRICE_PROMPT = os.getenv("TARGET_PRICE")
 
 
-def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=None):
+def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=None, decimal_digits=2):
     """
     Calculate appropriate stop loss and target price levels based on ADX and ATR indicators.
     
@@ -45,6 +45,7 @@ def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=Non
     trade_direction (str): Trade direction, either "LONG" or "SHORT"
     period (int): Period for ADX and ATR calculations (default: 14)
     gemini_model (str, optional): The Gemini model to use for analysis
+    decimal_digits (int): Number of decimal digits for rounding prices (default: 2)
     
     Returns:
     dict: Dictionary with ticker as key and dict with 'stop_loss' and 'target_price' as values
@@ -140,8 +141,8 @@ def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=Non
                         formatted_prompt = TARGET_PRICE_PROMPT.format(
                             trade_direction=trade_direction,
                             ticker_str=ticker,
-                            entry_price=round(entry_price, 2),
-                            stop_loss=round(stop_loss_price, 2)
+                            entry_price=round(entry_price, decimal_digits),
+                            stop_loss=round(stop_loss_price, decimal_digits)
                         )
                         
                         # Get AI-generated target price
@@ -192,12 +193,13 @@ def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=Non
         return {}
 
 
-def get_trade_recommendations(tickers_with_direction):
+def get_trade_recommendations(tickers_with_direction, decimal_digits=2):
     """
     Return trade recommendations including stop loss and target prices in the specified JSON format.
     
     Parameters:
     tickers_with_direction (list): List of dictionaries with 'ticker' and 'trade_direction' keys
+    decimal_digits (int): Number of decimal digits for rounding prices (default: 2)
     
     Returns:
     list: Array of objects with 'ticker', 'trade_direction', 'stop_loss', and 'target_price' keys
@@ -220,12 +222,12 @@ def get_trade_recommendations(tickers_with_direction):
     # Calculate stop loss prices for LONG positions
     long_stop_losses = {}
     if long_tickers:
-        long_stop_losses = calculate_trade_levels(long_tickers, 'LONG')
+        long_stop_losses = calculate_trade_levels(long_tickers, 'LONG', decimal_digits=decimal_digits)
     
     # Calculate stop loss prices for SHORT positions
     short_stop_losses = {}
     if short_tickers:
-        short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT')
+        short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT', decimal_digits=decimal_digits)
     
     # Combine all results in the required format
     recommendations = []
@@ -239,12 +241,12 @@ def get_trade_recommendations(tickers_with_direction):
             target_price = None
             if direction == 'LONG' and ticker in long_stop_losses:
                 stop_loss_data = long_stop_losses[ticker]
-                stop_loss = round(stop_loss_data['stop_loss'], 2)
-                target_price = round(stop_loss_data['target_price'], 2)
+                stop_loss = round(stop_loss_data['stop_loss'], decimal_digits)
+                target_price = round(stop_loss_data['target_price'], decimal_digits)
             elif direction == 'SHORT' and ticker in short_stop_losses:
                 stop_loss_data = short_stop_losses[ticker]
-                stop_loss = round(stop_loss_data['stop_loss'], 2)
-                target_price = round(stop_loss_data['target_price'], 2)
+                stop_loss = round(stop_loss_data['stop_loss'], decimal_digits)
+                target_price = round(stop_loss_data['target_price'], decimal_digits)
         
         recommendations.append({
             'ticker': ticker,
@@ -256,13 +258,14 @@ def get_trade_recommendations(tickers_with_direction):
     return recommendations
 
 
-def add_trade_levels_to_recommendations(recommendations, gemini_model=None):
+def add_trade_levels_to_recommendations(recommendations, gemini_model=None, decimal_digits=2):
     """
     Add stop loss and target prices to recommendations.
     
     Parameters:
     recommendations (dict): The AI recommendations dictionary
     gemini_model (str, optional): The Gemini model to use for analysis
+    decimal_digits (int): Number of decimal digits for rounding prices (default: 2)
     
     Returns:
     dict: The recommendations dictionary with stop loss and target prices added
@@ -292,7 +295,7 @@ def add_trade_levels_to_recommendations(recommendations, gemini_model=None):
         
         # Calculate stop loss prices for LONG positions
         if long_tickers:
-            long_stop_losses = calculate_trade_levels(long_tickers, 'LONG', gemini_model=gemini_model)
+            long_stop_losses = calculate_trade_levels(long_tickers, 'LONG', gemini_model=gemini_model, decimal_digits=decimal_digits)
             
             # Add stop loss prices to recommendations
             for trade in recommendations['recommendations']:
@@ -300,12 +303,12 @@ def add_trade_levels_to_recommendations(recommendations, gemini_model=None):
                     ticker = trade.get('ticker')
                     if ticker in long_stop_losses:
                         stop_loss_data = long_stop_losses[ticker]
-                        trade['stop_loss'] = round(stop_loss_data['stop_loss'], 2)
-                        trade['target_price'] = round(stop_loss_data['target_price'], 2)
+                        trade['stop_loss'] = round(stop_loss_data['stop_loss'], decimal_digits)
+                        trade['target_price'] = round(stop_loss_data['target_price'], decimal_digits)
         
         # Calculate stop loss prices for SHORT positions
         if short_tickers:
-            short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT', gemini_model=gemini_model)
+            short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT', gemini_model=gemini_model, decimal_digits=decimal_digits)
             
             # Add stop loss prices to recommendations
             for trade in recommendations['recommendations']:
@@ -313,8 +316,8 @@ def add_trade_levels_to_recommendations(recommendations, gemini_model=None):
                     ticker = trade.get('ticker')
                     if ticker in short_stop_losses:
                         stop_loss_data = short_stop_losses[ticker]
-                        trade['stop_loss'] = round(stop_loss_data['stop_loss'], 2)
-                        trade['target_price'] = round(stop_loss_data['target_price'], 2)
+                        trade['stop_loss'] = round(stop_loss_data['stop_loss'], decimal_digits)
+                        trade['target_price'] = round(stop_loss_data['target_price'], decimal_digits)
         
         return recommendations
     except Exception as e:
@@ -404,13 +407,14 @@ def calculate_entry_price(tickers, trade_direction, period=5):
         return {}
 
 
-def get_entry_price_recommendations(tickers_with_direction):
+def get_entry_price_recommendations(tickers_with_direction, decimal_digits=2):
     """
     Return entry prices in the specified JSON format.
-    
+
     Parameters:
     tickers_with_direction (list): List of dictionaries with 'ticker' and 'trade_direction' keys
-    
+    decimal_digits (int): Number of decimal digits for rounding prices (default: 2)
+
     Returns:
     list: Array of objects with 'ticker', 'trade_direction', and 'entry_price' keys
     """
@@ -449,9 +453,9 @@ def get_entry_price_recommendations(tickers_with_direction):
         if ticker and direction:
             entry_price = None
             if direction == 'LONG' and ticker in long_entry_prices:
-                entry_price = round(long_entry_prices[ticker], 2)
+                entry_price = round(long_entry_prices[ticker], decimal_digits)
             elif direction == 'SHORT' and ticker in short_entry_prices:
-                entry_price = round(short_entry_prices[ticker], 2)
+                entry_price = round(short_entry_prices[ticker], decimal_digits)
             
             recommendations.append({
                 'ticker': ticker,
@@ -460,14 +464,15 @@ def get_entry_price_recommendations(tickers_with_direction):
             })
     
     return recommendations
-def add_entry_price_to_recommendations(recommendations, gemini_model=None):
+def add_entry_price_to_recommendations(recommendations, gemini_model=None, decimal_digits=2):
     """
     Add entry prices to recommendations.
-    
+
     Parameters:
     recommendations (dict): The AI recommendations dictionary
     gemini_model (str, optional): The Gemini model to use for analysis
-    
+    decimal_digits (int): Number of decimal digits for rounding prices (default: 2)
+
     Returns:
     dict: The recommendations dictionary with entry prices added
     """
@@ -503,7 +508,7 @@ def add_entry_price_to_recommendations(recommendations, gemini_model=None):
                 if trade.get('trade_direction', '').upper() == 'LONG':
                     ticker = trade.get('ticker')
                     if ticker in long_entry_prices:
-                        trade['entry_price'] = round(long_entry_prices[ticker], 2)
+                        trade['entry_price'] = round(long_entry_prices[ticker], decimal_digits)
         
         # Calculate entry prices for SHORT positions
         if short_tickers:
@@ -514,7 +519,7 @@ def add_entry_price_to_recommendations(recommendations, gemini_model=None):
                 if trade.get('trade_direction', '').upper() == 'SHORT':
                     ticker = trade.get('ticker')
                     if ticker in short_entry_prices:
-                        trade['entry_price'] = round(short_entry_prices[ticker], 2)
+                        trade['entry_price'] = round(short_entry_prices[ticker], decimal_digits)
         
         return recommendations
     except Exception as e:
