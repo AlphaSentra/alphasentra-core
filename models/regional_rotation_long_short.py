@@ -1,11 +1,4 @@
 """
-Project:     Alphagora
-File:        regional_rotation_long_short.py
-Author:      Daiviet Huynh
-Created:     2025-09-05
-License:     MIT License
-Repository:  https://github.com/daivieth/Alphagora
-
 Description:
 Regional rotation ETF long/short model.
 """
@@ -25,7 +18,7 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS
+from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS, REGIONAL_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, factcheck_market_outlook
 
@@ -39,16 +32,17 @@ def run_regional_rotation_model():
     # Get Gemini model from environment variable
     gemini_model = os.getenv("GEMINI_PRO_MODEL")
     
-    # Load AI model prompts from environment variables
-    REGIONAL_ROTATION_LONG_SHORT_PROMPT = os.getenv("REGIONAL_ROTATION_LONG_SHORT_PROMPT")
-    FACTOR_WEIGHTS_PROMPT = os.getenv("FACTOR_WEIGHTS")
+    # Use AI model prompts from _config.py (already imported)
 
     # Get AI-generated weights
     ai_weights = None
-    if FACTOR_WEIGHTS_PROMPT:
+    if FACTOR_WEIGHTS:
         try:
-            # Call get_gen_ai_response with the FACTOR_WEIGHTS prompt
-            ai_weights_response = get_gen_ai_response(REGIONAL_ETFS, "factor weights", FACTOR_WEIGHTS_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
+            # Decrypt FACTOR_WEIGHTS first
+            from crypt import decrypt_string
+            decrypted_factor_weights = decrypt_string(FACTOR_WEIGHTS)
+            # Call get_gen_ai_response with the decrypted FACTOR_WEIGHTS prompt
+            ai_weights_response = get_gen_ai_response(REGIONAL_ETFS, "factor weights", decrypted_factor_weights, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the response as JSON
             try:
@@ -81,6 +75,14 @@ def run_regional_rotation_model():
 
     # Format the prompt with the necessary variables
     if REGIONAL_ROTATION_LONG_SHORT_PROMPT:
+        # Decrypt REGIONAL_ROTATION_LONG_SHORT_PROMPT first
+        try:
+            from crypt import decrypt_string
+            decrypted_regional_prompt = decrypt_string(REGIONAL_ROTATION_LONG_SHORT_PROMPT)
+        except Exception as e:
+            print(f"Error decrypting REGIONAL_ROTATION_LONG_SHORT_PROMPT: {e}")
+            decrypted_regional_prompt = REGIONAL_ROTATION_LONG_SHORT_PROMPT  # Fallback to encrypted version
+        
         # Create a comma-separated string of tickers for the prompt
         tickers_str = ", ".join(REGIONAL_ETFS) if REGIONAL_ETFS else "No tickers provided"
         regional_regions_str = ", ".join(REGIONAL_REGIONS) if REGIONAL_REGIONS else "No regions provided"
@@ -95,7 +97,7 @@ def run_regional_rotation_model():
             weights_to_use = WEIGHTS_PERCENT
         
         # Format the prompt with both tickers_str and weights
-        REGIONAL_ROTATION_LONG_SHORT_PROMPT = REGIONAL_ROTATION_LONG_SHORT_PROMPT.format(
+        formatted_prompt = decrypted_regional_prompt.format(
             tickers_str=tickers_str,
             current_date=current_date,
             regional_regions_str=regional_regions_str,
@@ -119,7 +121,7 @@ def run_regional_rotation_model():
             attempts += 1
             print(f"Attempt {attempts} to get accurate market outlook...")
             
-            result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_SHORT_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
+            result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the result as JSON
             try:
@@ -225,7 +227,7 @@ def run_regional_rotation_model():
         # If we still don't have recommendations after max attempts, get one more try without factchecking
         if recommendations is None:
             print(f"Failed to get accurate market outlook after {max_attempts} attempts. Getting final recommendations without factchecking.")
-            result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", REGIONAL_ROTATION_LONG_SHORT_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
+            result = get_gen_ai_response(REGIONAL_ETFS, "regional rotation long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the result as JSON
             try:

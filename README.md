@@ -23,31 +23,19 @@ with the following lines:
 
 <pre>
 GEMINI_API_KEY=your_actual_gemini_api_key
-GEMINI_MODEL_NAME=gemini-2.5-pro
+GEMINI_DEFAULT=gemini-2.5-pro
+GEMINI_FLASH_MODEL=gemini-2.5-pro
+GEMINI_PRO_MODEL=gemini-2.5-pro
+ENCRYPTION_SECRET=provide_the_secret
 </pre>
 
-You can select which Gemini model to use. By default, we are using gemini-2.5-pro. The following model is also available:
-- gemini-2.5-flash – optimized for speed and efficiency
+1. **Gemini API Key**: Provide your Gemini API key using the ```GEMINI_API_KEY``` constant from [Google AI Studio](https://aistudio.google.com). 
+2. **Gemini Model**: You can select which Gemini model to use. By default, we are using gemini-2.5-pro: ```GEMINI_FLASH_MODEL=gemini-2.5-pro```.
+3. **Encryption**: The ```ENCRYPTION_SECRET``` constant is used as the key for encrypting and decrypting the prompt.
 
 ## AI Prompt Instructions
 
-For the AI Agent prompt, make sure to provide the following variables in the .env file:
-
-<pre>
-TARGET_PRICE="[prompt] {ticker_str} {trade_direction} {entry_price} {stop_loss}"
-FACTOR_WEIGHTS="[prompt]"
-FACTCHECK_AI_RESPONSE="Factcheck the following statements as of latest data: '{market_outlook_narrative_str}':
-1. **Identify statements:** Make sure that statements are not misleading, incorrect, or lack sufficient evidence from data that are available as of {current_date}.
-2. **Return a JSON object**: JSON with the following structure:
-2.1 Key [factcheck] with value as string 'accurate' if the response is accurate, or 'inaccurate' if any issues are found, even with one issue it would be considered 'inaccurate'.
-2.2 Key [issues] as an array of strings, where each string describes a specific issue found in the response and based on what date. If no issues are found, return an empty array for [issues]."
-
-SECTOR_ROTATION_LONG_ONLY_PROMPT="[prompt]"
-REGIONAL_ROTATION_LONG_SHORT_PROMPT=[prompt]"
-FX_LONG_SHORT_PROMPT="[prompt]"
-</pre>
-
-**Model [prompt] must contain some of the following information:**
+**Model [prompt] contain some of the following varaibles:**
 
 - Tickers: `{ticker_str}`,
 - Current date: `{current_date}`,

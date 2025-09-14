@@ -1,5 +1,6 @@
 """
-Menu definitions
+Description:
+Define menu items and their corresponding actions for the main menu.
 """
 
 import os

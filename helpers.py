@@ -1,13 +1,6 @@
 """
-Project:     Alphagora
-File:        helpers.py
-Author:      Daiviet Huynh
-Created:     2025-07-22
-License:     MIT License
-Repository:  https://github.com/daivieth/Alphagora
-
 Description:
-Helper functions for the Alphagora.
+Helper functions for calculating trade levels, entry prices, and integrating with AI model.
 """
 
 
@@ -20,10 +13,7 @@ from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
 import sys
-import base64
-from cryptography.fernet import Fernet
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
 
 # Add the parent directory to the Python path to ensure imports work
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -35,6 +25,9 @@ from genAI.ai_prompt import get_gen_ai_response
 
 # Load environment variables
 load_dotenv()
+
+# Import TARGET_PRICE from _config
+from _config import TARGET_PRICE
 
 # Load AI model prompt for target price from environment variables
 TARGET_PRICE_PROMPT = os.getenv("TARGET_PRICE")
@@ -140,15 +133,24 @@ def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=Non
                 entry_price = entry_prices.get(ticker, current_close)  # Fallback to current close if entry price calculation fails
                 
                 # Get target price from AI model if prompt is available
-                if TARGET_PRICE_PROMPT:
+                if TARGET_PRICE_PROMPT or TARGET_PRICE:
                     try:
                         # Prepare recommendation narrative string
                         recommendation_narrative_str = ""
                         if recommendation_narrative:
                             recommendation_narrative_str = " ".join(recommendation_narrative)
                         
+                        # Decrypt TARGET_PRICE if available, otherwise use TARGET_PRICE_PROMPT
+                        target_prompt = TARGET_PRICE_PROMPT if TARGET_PRICE_PROMPT else TARGET_PRICE
+                        try:
+                            from crypt import decrypt_string
+                            decrypted_target_prompt = decrypt_string(target_prompt)
+                        except Exception as e:
+                            print(f"Error decrypting target price prompt: {e}")
+                            decrypted_target_prompt = target_prompt  # Fallback to encrypted version
+                        
                         # Format the prompt with the required variables
-                        formatted_prompt = TARGET_PRICE_PROMPT.format(
+                        formatted_prompt = decrypted_target_prompt.format(
                             trade_direction=trade_direction,
                             ticker_str=ticker,
                             entry_price=round(entry_price, decimal_digits),
@@ -554,20 +556,23 @@ def factcheck_market_outlook(market_outlook_narrative, gemini_model=None):
     Returns:
         str: 'accurate' if the narrative is accurate, 'inaccurate' otherwise
     """
-    from dotenv import load_dotenv
     import os
     import json
     
-    # Load environment variables
-    load_dotenv()
-    
-    # Get the factcheck prompt from environment variables
-    FACTCHECK_AI_RESPONSE = os.getenv("FACTCHECK_AI_RESPONSE")
-    
+    # Import FACTCHECK_AI_RESPONSE from _config
+    from _config import FACTCHECK_AI_RESPONSE
+
     if not FACTCHECK_AI_RESPONSE:
-        print("Warning: FACTCHECK_AI_RESPONSE prompt not found in environment variables")
+        print("Warning: FACTCHECK_AI_RESPONSE prompt not found in _config.py")
         return "accurate"  # Default to accurate if prompt is not available
-    
+
+    # Decrypt FACTCHECK_AI_RESPONSE first
+    try:
+        from crypt import decrypt_string
+        decrypted_factcheck_prompt = decrypt_string(FACTCHECK_AI_RESPONSE)
+    except Exception as e:
+        print(f"Error decrypting FACTCHECK_AI_RESPONSE: {e}")
+        decrypted_factcheck_prompt = FACTCHECK_AI_RESPONSE  # Fallback to encrypted version
 
     # Create current date in the format "September 6, 2025"
     current_date = datetime.now().strftime("%B %d, %Y")
@@ -576,7 +581,7 @@ def factcheck_market_outlook(market_outlook_narrative, gemini_model=None):
     market_outlook_narrative_str = " ".join(market_outlook_narrative)
     
     # Format the prompt with the market outlook narrative
-    factcheck_prompt = FACTCHECK_AI_RESPONSE.format(
+    factcheck_prompt = decrypted_factcheck_prompt.format(
         market_outlook_narrative_str=market_outlook_narrative_str,
         current_date=current_date
     )
@@ -628,95 +633,3 @@ def factcheck_market_outlook(market_outlook_narrative, gemini_model=None):
         print(f"Error factchecking market outlook: {e}")
         return "accurate"  # Default to accurate if there's any error
     
-def encrypt_string(plaintext, secret_key=None):
-    """
-    Encrypt a string using a secret key from environment variables.
-    
-    Parameters:
-    plaintext (str): The string to encrypt
-    secret_key (str, optional): The secret key to use for encryption. 
-                               If None, uses ENCRYPTION_SECRET from .env
-    
-    Returns:
-    str: Base64 encoded encrypted string, or None if encryption fails
-    """
-    try:
-        # Get secret key from environment if not provided
-        if secret_key is None:
-            secret_key = os.getenv("ENCRYPTION_SECRET")
-            if not secret_key:
-                raise ValueError("ENCRYPTION_SECRET not found in environment variables")
-        
-        # Derive a 32-byte key from the secret using PBKDF2
-        salt = b'AlphagoraSalt_'  # Fixed salt for simplicity (in production, use random salt)
-        kdf = PBKDF2HMAC(
-            algorithm=hashes.SHA256(),
-            length=32,
-            salt=salt,
-            iterations=100000,
-        )
-        key = base64.urlsafe_b64encode(kdf.derive(secret_key.encode()))
-        
-        # Create Fernet instance with the derived key
-        fernet = Fernet(key)
-        
-        # Encrypt the plaintext
-        encrypted = fernet.encrypt(plaintext.encode())
-        
-        return encrypted.decode()
-        
-    except ImportError:
-        # Fallback to simple encryption if cryptography is not available
-        print("Warning: cryptography library not installed. Using simple base64 encoding.")
-        return base64.urlsafe_b64encode(plaintext.encode()).decode()
-        
-    except Exception as e:
-        print(f"Error encrypting string: {e}")
-        return None
-
-
-def decrypt_string(encrypted_text, secret_key=None):
-    """
-    Decrypt a string that was encrypted with encrypt_string.
-    
-    Parameters:
-    encrypted_text (str): The encrypted string to decrypt
-    secret_key (str, optional): The secret key to use for decryption.
-                               If None, uses ENCRYPTION_SECRET from .env
-    
-    Returns:
-    str: Decrypted plaintext string, or None if decryption fails
-    """
-    try:
-        # Get secret key from environment if not provided
-        if secret_key is None:
-            secret_key = os.getenv("ENCRYPTION_SECRET")
-            if not secret_key:
-                raise ValueError("ENCRYPTION_SECRET not found in environment variables")
-        
-        # Derive a 32-byte key from the secret using PBKDF2
-        salt = b'AlphagoraSalt_'  # Fixed salt for simplicity (in production, use random salt)
-        kdf = PBKDF2HMAC(
-            algorithm=hashes.SHA256(),
-            length=32,
-            salt=salt,
-            iterations=100000,
-        )
-        key = base64.urlsafe_b64encode(kdf.derive(secret_key.encode()))
-        
-        # Create Fernet instance with the derived key
-        fernet = Fernet(key)
-        
-        # Decrypt the encrypted text
-        decrypted = fernet.decrypt(encrypted_text.encode())
-        
-        return decrypted.decode()
-        
-    except ImportError:
-        # Fallback to simple decryption if cryptography is not available
-        print("Warning: cryptography library not installed. Using simple base64 decoding.")
-        return base64.urlsafe_b64decode(encrypted_text.encode()).decode()
-        
-    except Exception as e:
-        print(f"Error decrypting string: {e}")
-        return None

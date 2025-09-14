@@ -1,11 +1,4 @@
 """
-Project:     Alphagora
-File:        fx_long_short.py
-Author:      Daiviet Huynh
-Created:     2025-09-07
-License:     MIT License
-Repository:  https://github.com/daivieth/Alphagora
-
 Description:
 FX long/short model.
 """
@@ -25,7 +18,7 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import WEIGHTS_PERCENT
+from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, factcheck_market_outlook
 
@@ -42,16 +35,18 @@ def run_fx_model(tickers, fx_regions=None):
     # Get Gemini model from environment variable
     gemini_model = os.getenv("GEMINI_PRO_MODEL")
     
-    # Load AI model prompts from environment variables
-    FX_LONG_SHORT_PROMPT = os.getenv("FX_LONG_SHORT_PROMPT")
-    FACTOR_WEIGHTS_PROMPT = os.getenv("FACTOR_WEIGHTS")
+    # Use AI model prompts from _config.py directly
+    FACTOR_WEIGHTS_PROMPT = FACTOR_WEIGHTS
 
     # Get AI-generated weights
     ai_weights = None
     if FACTOR_WEIGHTS_PROMPT:
         try:
-            # Call get_gen_ai_response with the FACTOR_WEIGHTS prompt
-            ai_weights_response = get_gen_ai_response([tickers], "factor weights", FACTOR_WEIGHTS_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
+            # Decrypt FACTOR_WEIGHTS_PROMPT first
+            from crypt import decrypt_string
+            decrypted_factor_weights = decrypt_string(FACTOR_WEIGHTS_PROMPT)
+            # Call get_gen_ai_response with the decrypted FACTOR_WEIGHTS prompt
+            ai_weights_response = get_gen_ai_response([tickers], "factor weights", decrypted_factor_weights, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the response as JSON
             try:
@@ -84,6 +79,14 @@ def run_fx_model(tickers, fx_regions=None):
 
     # Format the prompt with the necessary variables
     if FX_LONG_SHORT_PROMPT:
+        # Decrypt FX_LONG_SHORT_PROMPT first
+        try:
+            from crypt import decrypt_string
+            decrypted_fx_prompt = decrypt_string(FX_LONG_SHORT_PROMPT)
+        except Exception as e:
+            print(f"Error decrypting FX_LONG_SHORT_PROMPT: {e}")
+            decrypted_fx_prompt = FX_LONG_SHORT_PROMPT  # Fallback to encrypted version
+        
         # Create a comma-separated string of tickers for the prompt
         tickers_str = tickers
         fx_regions_str = ", ".join(fx_regions) if fx_regions else "Global"
@@ -98,7 +101,7 @@ def run_fx_model(tickers, fx_regions=None):
             weights_to_use = WEIGHTS_PERCENT
         
         # Format the prompt with tickers_str and weights
-        FX_LONG_SHORT_PROMPT = FX_LONG_SHORT_PROMPT.format(
+        formatted_prompt = decrypted_fx_prompt.format(
                     tickers_str=tickers_str,
                     current_date=current_date,
                     fx_regions_str=fx_regions_str,
@@ -122,7 +125,7 @@ def run_fx_model(tickers, fx_regions=None):
             attempts += 1
             print(f"Attempt {attempts} to get accurate market outlook...")
             
-            result = get_gen_ai_response([tickers], "fx long/short", FX_LONG_SHORT_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
+            result = get_gen_ai_response([tickers], "fx long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the result as JSON
             try:
@@ -157,7 +160,7 @@ def run_fx_model(tickers, fx_regions=None):
         # If we still don't have recommendations after max attempts, get one more try without factchecking
         if recommendations is None:
             print(f"Failed to get accurate market outlook after {max_attempts} attempts. Getting final recommendations without factchecking.")
-            result = get_gen_ai_response([tickers], "fx long/short", FX_LONG_SHORT_PROMPT, os.getenv("GEMINI_PRO_MODEL"))
+            result = get_gen_ai_response([tickers], "fx long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the result as JSON
             try:

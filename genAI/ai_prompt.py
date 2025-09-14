@@ -1,11 +1,4 @@
 """
-Project:     Alphagora
-File:        score_models.py
-Author:      Daiviet Huynh
-Created:     2025-08-27
-License:     MIT License
-Repository:  https://github.com/daivieth/Alphagora
-
 Description:
 Run the Generative AI model to score and recommend trades based on various data inputs.
 """
@@ -82,12 +75,3 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None)
             progress_thread.stop_progress = True
             progress_thread.join()
         return f"Error generating content: {str(e)}"
-    
-
-# Example usage (can be removed or commented out in production)
-if __name__ == "__main__":
-    # List available models
-    print("Available models:")
-    for model_info in genai.list_models():
-        if "generateContent" in model_info.supported_generation_methods:
-            print(f"- {model_info.name}: {model_info.display_name}")
