@@ -35,7 +35,7 @@ ENCRYPTION_SECRET=provide_the_secret
 
 ## AI Prompt Instructions
 
-**Model [prompt] contain some of the following varaibles:**
+**Model [prompt] contain some of the following variables:**
 
 - Tickers: `{ticker_str}`,
 - Current date: `{current_date}`,
