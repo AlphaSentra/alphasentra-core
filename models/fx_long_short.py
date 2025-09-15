@@ -21,35 +21,9 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, FACTCHECK_AMENDMENT_PROMPT
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, factcheck_market_outlook
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, factcheck_market_outlook, strip_markdown_code_blocks
 
 
-def strip_markdown_code_blocks(text):
-    """
-    Remove markdown code block markers from text.
-    Handles various formats including ```json, ```, and variations with whitespace.
-    """
-    if not isinstance(text, str):
-        return text
-    
-    # Pattern to match markdown code blocks with optional language specifier and whitespace
-    code_block_pattern = r'^```(?:\w*)\s*\n(.*?)\n```\s*$'
-    
-    # Try to match full code block pattern first (including trailing whitespace)
-    match = re.search(code_block_pattern, text, re.DOTALL)
-    if match:
-        return match.group(1).strip()
-    
-    # If no full code block found, try to remove partial markers
-    # Remove starting ``` with optional language and whitespace
-    text = re.sub(r'^```\w*\s*', '', text)
-    text = re.sub(r'^```\s*', '', text)
-    
-    # Remove ending ``` with optional whitespace
-    text = re.sub(r'\n?```\s*$', '', text)
-    text = re.sub(r'\s*```\s*$', '', text)
-    
-    return text.strip()
 
 
 def run_fx_model(tickers, fx_regions=None):
@@ -193,6 +167,7 @@ def run_fx_model(tickers, fx_regions=None):
             if last_inaccurate_recommendations and last_factcheck_result:
                 # Create a prompt that includes the inaccurate recommendations and factcheck result
                 # Use the encrypted FACTCHECK_AMENDMENT_PROMPT constant from _config.py
+                # Variables in FACTCHECK_AMENDMENT_PROMPT are {last_factcheck_result} and {json.dumps(last_inaccurate_recommendations, indent=2)}
                 try:
                     from crypt import decrypt_string
                     decrypted_amendment_prompt = decrypt_string(FACTCHECK_AMENDMENT_PROMPT)

@@ -633,3 +633,32 @@ def factcheck_market_outlook(market_outlook_narrative, gemini_model=None):
         print(f"Error factchecking market outlook: {e}")
         return "accurate"  # Default to accurate if there's any error
     
+def strip_markdown_code_blocks(text):
+    """
+    Remove markdown code block markers from text.
+    Handles various formats including ```json, ```, and variations with whitespace.
+    """
+    import re
+    
+    if not isinstance(text, str):
+        return text
+    
+    # Pattern to match markdown code blocks with optional language specifier and whitespace
+    code_block_pattern = r'^```(?:\w*)\s*\n(.*?)\n```\s*$'
+    
+    # Try to match full code block pattern first (including trailing whitespace)
+    match = re.search(code_block_pattern, text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    
+    # If no full code block found, try to remove partial markers
+    # Remove starting ``` with optional language and whitespace
+    text = re.sub(r'^```\w*\s*', '', text)
+    text = re.sub(r'^```\s*', '', text)
+    
+    # Remove ending ``` with optional whitespace
+    text = re.sub(r'\n?```\s*$', '', text)
+    text = re.sub(r'\s*```\s*$', '', text)
+    
+    return text.strip()
+    
