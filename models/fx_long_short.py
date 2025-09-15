@@ -7,6 +7,7 @@ import sys
 import os
 import json
 import datetime
+import re
 from dotenv import load_dotenv
 
 # Add the parent directory to the Python path to ensure imports work
@@ -21,6 +22,34 @@ load_dotenv()
 from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, factcheck_market_outlook
+
+
+def strip_markdown_code_blocks(text):
+    """
+    Remove markdown code block markers from text.
+    Handles various formats including ```json, ```, and variations with whitespace.
+    """
+    if not isinstance(text, str):
+        return text
+    
+    # Pattern to match markdown code blocks with optional language specifier and whitespace
+    code_block_pattern = r'^```(?:\w*)\s*\n(.*?)\n```\s*$'
+    
+    # Try to match full code block pattern first (including trailing whitespace)
+    match = re.search(code_block_pattern, text, re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    
+    # If no full code block found, try to remove partial markers
+    # Remove starting ``` with optional language and whitespace
+    text = re.sub(r'^```\w*\s*', '', text)
+    text = re.sub(r'^```\s*', '', text)
+    
+    # Remove ending ``` with optional whitespace
+    text = re.sub(r'\n?```\s*$', '', text)
+    text = re.sub(r'\s*```\s*$', '', text)
+    
+    return text.strip()
 
 
 def run_fx_model(tickers, fx_regions=None):
@@ -51,13 +80,10 @@ def run_fx_model(tickers, fx_regions=None):
             # Try to parse the response as JSON
             try:
                 # Remove any markdown code block markers if present
-                if ai_weights_response.startswith("```json"):
-                    ai_weights_response = ai_weights_response[7:]
-                if ai_weights_response.endswith("```"):
-                    ai_weights_response = ai_weights_response[:-3]
+                ai_weights_response = strip_markdown_code_blocks(ai_weights_response)
                 
                 # Parse JSON to get the weights
-                ai_weights_raw = json.loads(ai_weights_response)            
+                ai_weights_raw = json.loads(ai_weights_response)
                 print(ai_weights_raw)
                 
                 # Map AI response keys to the keys used in the main prompt
@@ -118,8 +144,10 @@ def run_fx_model(tickers, fx_regions=None):
         # Get AI recommendations with None as prompt since it's pre-formatted
         # Keep getting AI recommendations until we get accurate market outlook
         recommendations = None
-        max_attempts = 3  # Limit the number of attempts to avoid infinite loops
+        max_attempts = 1  # Limit the number of attempts to avoid infinite loops
         attempts = 0
+        last_inaccurate_recommendations = None
+        last_factcheck_result = None
         
         while attempts < max_attempts:
             attempts += 1
@@ -130,10 +158,7 @@ def run_fx_model(tickers, fx_regions=None):
             # Try to parse the result as JSON
             try:
                 # Remove any markdown code block markers if present
-                if result.startswith("```json"):
-                    result = result[7:]
-                if result.endswith("```"):
-                    result = result[:-3]
+                result = strip_markdown_code_blocks(result)
                 # Parse JSON
                 recommendations = json.loads(result)
                 
@@ -148,6 +173,9 @@ def run_fx_model(tickers, fx_regions=None):
                         break  # Exit the loop if accurate
                     else:
                         print("Market outlook is inaccurate. Getting new recommendations...")
+                        # Store the inaccurate recommendations and factcheck result for potential fallback use
+                        last_inaccurate_recommendations = recommendations
+                        last_factcheck_result = factcheck_result
                         recommendations = None  # Reset recommendations to get new ones
                 else:
                     # If there's no market outlook narrative, we can't factcheck, so proceed
@@ -157,18 +185,28 @@ def run_fx_model(tickers, fx_regions=None):
                 print(f"Error parsing AI response as JSON: {result}")
                 recommendations = None  # Reset recommendations to get new ones
         
-        # If we still don't have recommendations after max attempts, get one more try without factchecking
+        # If we still don't have recommendations after max attempts, get one more try
+        # using the last inaccurate recommendations and factcheck result to rewrite them
         if recommendations is None:
-            print(f"Failed to get accurate market outlook after {max_attempts} attempts. Getting final recommendations without factchecking.")
-            result = get_gen_ai_response([tickers], "fx long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
+            print(f"Failed to get accurate market outlook after {max_attempts} attempts. Getting final recommendations by rewriting inaccurate ones.")
+            
+            if last_inaccurate_recommendations and last_factcheck_result:
+                # Create a prompt that includes the inaccurate recommendations and factcheck result
+                rewrite_prompt = f"""The previous market outlook was factchecked and found to be {last_factcheck_result}.
+Please review and rewrite the following recommendations to ensure they are accurate and fact-based:
+Previous recommendations: {json.dumps(last_inaccurate_recommendations, indent=2)}
+
+Please provide revised recommendations that address the factcheck issues while maintaining the same JSON structure."""
+                
+                result = get_gen_ai_response([tickers], "fx long/short", rewrite_prompt, os.getenv("GEMINI_PRO_MODEL"))
+            else:
+                # Fallback to original prompt if no previous inaccurate recommendations are available
+                result = get_gen_ai_response([tickers], "fx long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the result as JSON
             try:
                 # Remove any markdown code block markers if present
-                if result.startswith("```json"):
-                    result = result[7:]
-                if result.endswith("```"):
-                    result = result[:-3]
+                result = strip_markdown_code_blocks(result)
                 # Parse JSON
                 recommendations = json.loads(result)
             except json.JSONDecodeError:
