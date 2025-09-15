@@ -5,6 +5,7 @@ Alphagora is an agentic AI that leverages generative intelligence to convert mar
 
 ## Install Packages
 To run this script, you need to make sure of the requirements:
+
 `pip install -r requirements.txt`
 
 ## Google Gemini API
@@ -24,7 +25,7 @@ ENCRYPTION_SECRET=provide_the_secret
 2. **Gemini Model**: You can select which Gemini model to use. By default, we are using gemini-2.5-pro: ```GEMINI_FLASH_MODEL=gemini-2.5-pro```.
 3. **Encryption**: The ```ENCRYPTION_SECRET``` constant is used as the key for encrypting and decrypting our proprietary prompt designs.
 
-## AI Prompt Instructions
+## AI Prompt Variables and Output
 
 **Model [prompt] contain some of the following variables:**
 
