@@ -201,11 +201,10 @@ def run_fx_model(tickers, fx_regions=None):
                         previous_recommendations=json.dumps(last_inaccurate_recommendations, indent=2)
                     )
                 except Exception as e:
+                    print("=" * 100)
                     print(f"Error decrypting FACTCHECK_AMENDMENT_PROMPT: {e}")
-                    # Fallback to original hardcoded prompt
-                    rewrite_prompt = f"""The previous content was factchecked and found to be: '{last_factcheck_result}'.
-Please review and rewrite the following recommendations to ensure they are accurate and fact-based: Previous recommendations: {json.dumps(last_inaccurate_recommendations, indent=2)}
-Please provide revised recommendations that address the factcheck issues while maintaining the same JSON structure."""
+                    print("=" * 100)
+                    
                 
                 result = get_gen_ai_response([tickers], "fx long/short", rewrite_prompt, os.getenv("GEMINI_PRO_MODEL"))
             else:
