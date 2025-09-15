@@ -19,7 +19,7 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS
+from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, FACTCHECK_AMENDMENT_PROMPT
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, factcheck_market_outlook
 
@@ -192,10 +192,19 @@ def run_fx_model(tickers, fx_regions=None):
             
             if last_inaccurate_recommendations and last_factcheck_result:
                 # Create a prompt that includes the inaccurate recommendations and factcheck result
-                rewrite_prompt = f"""The previous market outlook was factchecked and found to be {last_factcheck_result}.
-Please review and rewrite the following recommendations to ensure they are accurate and fact-based:
-Previous recommendations: {json.dumps(last_inaccurate_recommendations, indent=2)}
-
+                # Use the encrypted FACTCHECK_AMENDMENT_PROMPT constant from _config.py
+                try:
+                    from crypt import decrypt_string
+                    decrypted_amendment_prompt = decrypt_string(FACTCHECK_AMENDMENT_PROMPT)
+                    rewrite_prompt = decrypted_amendment_prompt.format(
+                        factcheck_result=last_factcheck_result,
+                        previous_recommendations=json.dumps(last_inaccurate_recommendations, indent=2)
+                    )
+                except Exception as e:
+                    print(f"Error decrypting FACTCHECK_AMENDMENT_PROMPT: {e}")
+                    # Fallback to original hardcoded prompt
+                    rewrite_prompt = f"""The previous content was factchecked and found to be: '{last_factcheck_result}'.
+Please review and rewrite the following recommendations to ensure they are accurate and fact-based: Previous recommendations: {json.dumps(last_inaccurate_recommendations, indent=2)}
 Please provide revised recommendations that address the factcheck issues while maintaining the same JSON structure."""
                 
                 result = get_gen_ai_response([tickers], "fx long/short", rewrite_prompt, os.getenv("GEMINI_PRO_MODEL"))

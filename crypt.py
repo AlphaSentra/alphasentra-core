@@ -13,10 +13,12 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 load_dotenv()
 
 #To encrypt strng, paste the content below into CONTENT_TO_ENCRYPT and run this script. The encrypted result will be printed out.
-CONTENT_TO_ENCRYPT = """"""
+CONTENT_TO_ENCRYPT = """The previous content was factchecked and found to be: '{last_factcheck_result}'.
+Please review and rewrite the following recommendations to ensure they are accurate and fact-based: Previous recommendations: {json.dumps(last_inaccurate_recommendations, indent=2)}
+Please provide revised recommendations that address the factcheck issues while maintaining the same JSON structure."""
 
 #To decrypt string, paste the encrypted content below into ENCRYPTED_CONTENT and run this script. The decrypted result will be printed out.
-ENCRYPTED_CONTENT = ''
+ENCRYPTED_CONTENT = 'gAAAAABox-AorrmaPJRRBDI1CqrCWoMqNwGa0YMX-e4_w1G1PvRrts7h8qlR2lZ2yd98pMoo4u_TfZnkiAxu2Lc1MquJ6CZFqD0wz_LYCfyEOAf631E5wKXFumGjE0bpZlpX939VwX4KC6fXk2I_xW8XU_Jxk197uAT0wPtQhTnk8oyzJekKS3aoRepSftxP1fMFsODQtaXB_wy6qiQlTMoNYpwaQVn6xLv5EqIn3Am7OxZahdU_7XK8VSXPDl8wHr1xjhJADx2DeSz26kGQa6sh6z7gS__E5uDK0IkMdOX_3HH1XbbxS7vnT34G2ml22PyA6TV3TaAIk0WZAuA5VJHTYYuzU8ZSiVLfFUnxLQfL8fb_XCg66yZzdEM9QKfSmAsLcpBROZ8Md6hdVP1zCMrOvQdUnGXQUSE3dJ4EiAbXxZbiDkc0C0hSxarxtjCH3JUQhnDfA9SpKoIXk2g5TTuRVxtSoE1L10BEcrrMyInkEJqwMFQusLVTQmbInk734jK0vxPT6qewTMB0wGLO8MuTlpSOkAjBbHPoVNNZyIS_IXRyieOwYsPmd2lIhyNV2jrUeghdz9UU'
 
 def encrypt_string(plaintext, secret_key=None):
     """
