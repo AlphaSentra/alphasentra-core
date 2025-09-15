@@ -165,8 +165,8 @@ def run_fx_model(tickers, fx_regions=None):
                 try:
                     decrypted_amendment_prompt = decrypt_string(FACTCHECK_AMENDMENT_PROMPT)
                     rewrite_prompt = decrypted_amendment_prompt.format(
-                        factcheck_result=last_factcheck_result,
-                        previous_recommendations=json.dumps(last_inaccurate_recommendations, indent=2)
+                        last_factcheck_result=last_factcheck_result,
+                        last_inaccurate_recommendations=json.dumps(last_inaccurate_recommendations, indent=2)
                     )
                 except Exception as e:
                     print("=" * 100)

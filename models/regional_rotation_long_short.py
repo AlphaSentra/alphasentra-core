@@ -24,7 +24,6 @@ from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, factcheck_market_outlook, strip_markdown_code_blocks
 
 
-
 def run_regional_rotation_model(tickers=None, regions=None):
     """
     Run the regional rotation long/short model.
@@ -172,11 +171,7 @@ def run_regional_rotation_model(tickers=None, regions=None):
                 # Use the encrypted FACTCHECK_AMENDMENT_PROMPT constant from _config.py
                 # Variables in FACTCHECK_AMENDMENT_PROMPT are {last_factcheck_result} and {json.dumps(last_inaccurate_recommendations, indent=2)}
                 try:
-                    decrypted_amendment_prompt = decrypt_string(FACTCHECK_AMENDMENT_PROMPT)
-                    # Extract the factcheck status from the result dictionary for the rewrite prompt
-                    #factcheck_status_for_prompt = last_factcheck_result.get("factcheck", "inaccurate") if isinstance(last_factcheck_result, dict) else last_factcheck_result
-                    #factcheck_issues = last_factcheck_result.get("issues", []) if isinstance(last_factcheck_result, dict) else []
-                    
+                    decrypted_amendment_prompt = decrypt_string(FACTCHECK_AMENDMENT_PROMPT)                    
                     rewrite_prompt = decrypted_amendment_prompt.format(
                         factcheck_result=last_factcheck_result,
                         previous_recommendations=json.dumps(last_inaccurate_recommendations, indent=2)
