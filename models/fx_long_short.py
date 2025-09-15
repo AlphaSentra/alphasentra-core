@@ -7,8 +7,8 @@ import sys
 import os
 import json
 import datetime
-import re
 from dotenv import load_dotenv
+from crypt import decrypt_string
 
 # Add the parent directory to the Python path to ensure imports work
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -25,7 +25,6 @@ from helpers import add_trade_levels_to_recommendations, add_entry_price_to_reco
 
 
 
-
 def run_fx_model(tickers, fx_regions=None):
     """
     Run the FX long/short model.
@@ -35,9 +34,6 @@ def run_fx_model(tickers, fx_regions=None):
         fx_regions (list, optional): List of regions to consider for FX analysis
     """
     
-    # Get Gemini model from environment variable
-    gemini_model = os.getenv("GEMINI_PRO_MODEL")
-    
     # Use AI model prompts from _config.py directly
     FACTOR_WEIGHTS_PROMPT = FACTOR_WEIGHTS
 
@@ -46,7 +42,6 @@ def run_fx_model(tickers, fx_regions=None):
     if FACTOR_WEIGHTS_PROMPT:
         try:
             # Decrypt FACTOR_WEIGHTS_PROMPT first
-            from crypt import decrypt_string
             decrypted_factor_weights = decrypt_string(FACTOR_WEIGHTS_PROMPT)
             # Call get_gen_ai_response with the decrypted FACTOR_WEIGHTS prompt
             ai_weights_response = get_gen_ai_response([tickers], "factor weights", decrypted_factor_weights, os.getenv("GEMINI_PRO_MODEL"))
@@ -81,7 +76,6 @@ def run_fx_model(tickers, fx_regions=None):
     if FX_LONG_SHORT_PROMPT:
         # Decrypt FX_LONG_SHORT_PROMPT first
         try:
-            from crypt import decrypt_string
             decrypted_fx_prompt = decrypt_string(FX_LONG_SHORT_PROMPT)
         except Exception as e:
             print(f"Error decrypting FX_LONG_SHORT_PROMPT: {e}")
@@ -169,7 +163,6 @@ def run_fx_model(tickers, fx_regions=None):
                 # Use the encrypted FACTCHECK_AMENDMENT_PROMPT constant from _config.py
                 # Variables in FACTCHECK_AMENDMENT_PROMPT are {last_factcheck_result} and {json.dumps(last_inaccurate_recommendations, indent=2)}
                 try:
-                    from crypt import decrypt_string
                     decrypted_amendment_prompt = decrypt_string(FACTCHECK_AMENDMENT_PROMPT)
                     rewrite_prompt = decrypted_amendment_prompt.format(
                         factcheck_result=last_factcheck_result,
