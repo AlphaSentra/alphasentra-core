@@ -5,15 +5,6 @@ Alphagora is an agentic AI that leverages generative intelligence to convert mar
 
 ## Install Packages
 To run this script, you need to make sure of the following steps:
-
-### 📌 Step 1: Make sure Python is installed via Homebrew
-`brew install python`
-
-### 📌 Step 2: Create and activate a virtual environment
-`python3 -m venv yenv`<br>
-`source yenv/bin/activate`
-
-### 📌 Step 3: Install required packages
 `pip install yfinance pandas numpy pykalman python-dotenv statsmodels scikit-learn backtrader cryptography`
 
 ## Google Gemini API
@@ -31,7 +22,7 @@ ENCRYPTION_SECRET=provide_the_secret
 
 1. **Gemini API Key**: Provide your Gemini API key using the ```GEMINI_API_KEY``` constant from [Google AI Studio](https://aistudio.google.com). 
 2. **Gemini Model**: You can select which Gemini model to use. By default, we are using gemini-2.5-pro: ```GEMINI_FLASH_MODEL=gemini-2.5-pro```.
-3. **Encryption**: The ```ENCRYPTION_SECRET``` constant is used as the key for encrypting and decrypting the prompt.
+3. **Encryption**: The ```ENCRYPTION_SECRET``` constant is used as the key for encrypting and decrypting our proprietary prompt designs.
 
 ## AI Prompt Instructions
 

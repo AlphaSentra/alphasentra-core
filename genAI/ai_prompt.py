@@ -7,7 +7,7 @@ import os
 import sys
 import threading
 import time
-import google.generativeai as genai
+from google import genai
 from dotenv import load_dotenv
 
 # Add the parent directory to the Python path to ensure imports work
@@ -22,8 +22,8 @@ load_dotenv() # Load environment variables from .env file
 # Load AI model prompts from environment variables
 DEFAULT_PROMPT = os.getenv("DEFAULT_PROMPT")
 
-# Configure Gemini API
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))  # Set your Gemini key in environment variable
+# Get the API key from the environment
+api_key = os.getenv("GEMINI_API_KEY")
 
 # Get model names from environment variables
 GEMINI_FLASH_MODEL = os.getenv("GEMINI_FLASH_MODEL", "gemini-2.5-flash")
@@ -49,8 +49,8 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None)
     
     print("\n=== Model: "+ model_strategy +" using "+ gemini_model +" ===")
 
-    # Create model instance based on the selected model
-    model = genai.GenerativeModel(gemini_model)
+    # Create client instance
+    client = genai.Client()
 
     # Run prompt and return response
     try:
@@ -61,8 +61,12 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None)
         # Start the progress indicator
         progress_thread.start()
         
-        # Generate content (this will block until completion)
-        response = model.generate_content(prompt)
+        # Generate content with google search grounding (this will block until completion)
+        response = client.models.generate_content(
+            model=gemini_model,
+            contents=prompt,
+            config={"tools": [{"google_search": {}}]},
+        )
         
         # Stop the progress indicator
         progress_thread.stop_progress = True
@@ -75,3 +79,4 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None)
             progress_thread.stop_progress = True
             progress_thread.join()
         return f"Error generating content: {str(e)}"
+    
