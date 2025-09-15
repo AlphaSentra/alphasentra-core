@@ -4,8 +4,8 @@
 Alphagora is an agentic AI that leverages generative intelligence to convert market, economic, and sentiment data into insights, opinions, and recommendations. It autonomously tests, adapts, and executes strategies to capture patterns driven by collective sentiment.
 
 ## Install Packages
-To run this script, you need to make sure of the following steps:
-`pip install yfinance pandas numpy pykalman python-dotenv statsmodels scikit-learn backtrader cryptography`
+To run this script, you need to make sure of the requirements:
+`pip install -r requirements.txt`
 
 ## Google Gemini API
 Create an .env in the root of the directory

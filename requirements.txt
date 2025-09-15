@@ -1,0 +1,119 @@
+# Core dependencies
+python-dotenv
+google-genai
+google-generativeai
+google-ai-generativelanguage
+
+# Data analysis and financial libraries
+pandas
+numpy
+yfinance
+backtrader
+exchange_calendars
+pandas_market_calendars
+
+# Machine learning and statistics
+scikit-learn
+scipy
+statsmodels
+pykalman
+
+# Data processing and utilities
+requests
+httpx
+beautifulsoup4
+lxml
+joblib
+multitasking
+
+# Cryptography and security
+cryptography
+rsa
+
+# Date and time handling
+python-dateutil
+pytz
+tzdata
+korean-lunar-calendar
+pyluach
+
+# Google API dependencies
+google-api-core
+google-api-python-client
+google-auth
+google-auth-httplib2
+googleapis-common-protos
+grpcio
+grpcio-status
+protobuf
+proto-plus
+
+# Web and networking
+urllib3
+httpcore
+h11
+websockets
+httplib2
+uritemplate
+curl_cffi
+
+# Data validation and serialization
+pydantic
+pydantic-core
+annotated-types
+typing-extensions
+typing-inspection
+
+# Development and debugging tools
+ipython
+jedi
+parso
+prompt-toolkit
+pygments
+decorator
+traitlets
+stack-data
+executing
+asttokens
+pure-eval
+matplotlib-inline
+ipython_pygments_lexers
+pexpect
+ptyprocess
+wcwidth
+
+# Visualization
+matplotlib
+contourpy
+cycler
+fonttools
+kiwisolver
+pillow
+pyparsing
+
+# Other utilities
+cachetools
+certifi
+cffi
+charset-normalizer
+idna
+packaging
+platformdirs
+pyasn1
+pyasn1-modules
+pycparser
+six
+sniffio
+soupsieve
+tenacity
+threadpoolctl
+toolz
+tqdm
+frozendict
+anyio
+
+# Database
+peewee
+
+# Text processing
+patsy
