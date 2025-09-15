@@ -41,7 +41,8 @@ ENCRYPTION_SECRET=provide_the_secret
 - Earnings: `{earnings_weight}`,
 - Business Cycle: `{business_cycle_weight}`,
 - Sentiment Surveys: `{sentiment_surveys_weight}`
-
+- Factcheck_result: `{last_factcheck_result}`
+- Unchecked Recommendations JSON: `{json.dumps(last_inaccurate_recommendations, indent=2)}`
 
 **Model [prompt] should return the following JSON as well:**
 
