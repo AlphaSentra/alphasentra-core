@@ -19,9 +19,9 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, FACTCHECK_AMENDMENT_PROMPT
+from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, factcheck_market_outlook, strip_markdown_code_blocks
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks
 
 
 
@@ -110,105 +110,17 @@ def run_fx_model(tickers, fx_regions=None):
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
-        # Keep getting AI recommendations until we get accurate market outlook
-        recommendations = None
-        max_attempts = 1  # Limit the number of attempts to avoid infinite loops
-        attempts = 0
-        last_inaccurate_recommendations = None
-        last_factcheck_result = None
+        result = get_gen_ai_response([tickers], "fx long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
         
-        while attempts < max_attempts:
-            attempts += 1
-            print(f"Attempt {attempts} to get accurate market outlook...")
-            
-            result = get_gen_ai_response([tickers], "fx long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
-            
-            # Try to parse the result as JSON
-            try:
-                # Remove any markdown code block markers if present
-                result = strip_markdown_code_blocks(result)
-                # Parse JSON
-                recommendations = json.loads(result)
-                
-                # Check if we have a market outlook narrative to factcheck
-                if 'market_outlook_narrative' in recommendations:
-                    # Factcheck the market outlook narrative
-                    factcheck_result = factcheck_market_outlook(recommendations['market_outlook_narrative'], os.getenv("GEMINI_PRO_MODEL"))
-                    print(f"Factcheck result: {factcheck_result}")
-                    
-                    # Extract from factcheck_results JSON: factcheck into factcheck_status, and issues into factcheck_issues
-                    if isinstance(factcheck_result, dict):
-                        factcheck_status = factcheck_result.get("factcheck", "inaccurate")
-                        factcheck_issues = factcheck_result.get("issues", [])
-                    else:
-                        factcheck_status = factcheck_result
-                        factcheck_issues = []
-                    
-                    if factcheck_status == "accurate":
-                        print("Market outlook is accurate. Proceeding with recommendations.")
-                        break  # Exit the loop if accurate
-                    else:
-                        print("Market outlook is inaccurate. Getting new recommendations...")
-                        # Store the inaccurate recommendations and factcheck result for potential fallback use
-                        last_inaccurate_recommendations = recommendations['market_outlook_narrative']
-                        last_factcheck_issues = factcheck_issues
-                        recommendations = None  # Reset recommendations to get new ones
-                else:
-                    # If there's no market outlook narrative, we can't factcheck, so proceed
-                    print("No market outlook narrative to factcheck. Proceeding with recommendations.")
-                    break  # Exit the loop
-            except json.JSONDecodeError:
-                print(f"Error parsing AI response as JSON: {result}")
-                recommendations = None  # Reset recommendations to get new ones
-        
-        # If we still don't have recommendations after max attempts, get one more try
-        # using the last inaccurate recommendations and factcheck result to rewrite them
-        if recommendations is None:
-            print(f"Failed to get accurate market outlook after {max_attempts} attempts. Getting final recommendations by rewriting inaccurate ones.")
-            
-            # Initialize rewrite_prompt with a default value
-            rewrite_prompt = formatted_prompt  # Use the original prompt as fallback
-            
-            if last_inaccurate_recommendations and last_factcheck_issues:
-                # Create a prompt that includes the inaccurate recommendations and factcheck result
-                # Use the encrypted FACTCHECK_AMENDMENT_PROMPT constant from _config.py
-                # Variables in FACTCHECK_AMENDMENT_PROMPT are {last_factcheck_result} and {json.dumps(last_inaccurate_recommendations, indent=2)}
-                try:
-                    decrypted_amendment_prompt = decrypt_string(FACTCHECK_AMENDMENT_PROMPT)
-                    rewrite_prompt = decrypted_amendment_prompt.format(
-                        factcheck_result=last_factcheck_issues,
-                        previous_recommendations=last_inaccurate_recommendations
-                        )
-                except Exception as e:
-                    print("=" * 100)
-                    print(f"Error decrypting FACTCHECK_AMENDMENT_PROMPT: {e}")
-                    print("=" * 100)
-                    # Keep using the original formatted_prompt as rewrite_prompt
-            
-            result = get_gen_ai_response(tickers, "fx long/short", rewrite_prompt, os.getenv("GEMINI_PRO_MODEL"))
-            
-            # Adjust variable recommendations which is a JSON to replace the key market_outlook_narrative with result content
-            if result:
-                try:
-                    # Parse the result JSON
-                    result_data = json.loads(result)
-                    # Replace market_outlook_narrative with the result content
-                    if 'market_outlook_narrative' in result_data:
-                        result_data['market_outlook_narrative'] = result
-                    
-                    # Use the modified result_data as recommendations
-                    recommendations = result_data
-                except json.JSONDecodeError:
-                    print(f"Error parsing result JSON: {result}")
-                    # If JSON parsing fails, try to parse the original result
-                    try:
-                        # Remove any markdown code block markers if present
-                        result = strip_markdown_code_blocks(result)
-                        # Parse JSON
-                        recommendations = json.loads(result)
-                    except json.JSONDecodeError:
-                        print(f"Error parsing final AI response as JSON: {result}")
-                        recommendations = None
+        # Try to parse the result as JSON
+        try:
+            # Remove any markdown code block markers if present
+            result = strip_markdown_code_blocks(result)
+            # Parse JSON
+            recommendations = json.loads(result)
+        except json.JSONDecodeError:
+            print(f"Error parsing AI response as JSON: {result}")
+            recommendations = None
 
         # Add stop loss and target prices to recommendations
         if recommendations:

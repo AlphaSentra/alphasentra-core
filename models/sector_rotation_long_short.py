@@ -19,9 +19,9 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import SECTOR_ETFS, WEIGHTS_PERCENT, SECTOR_REGIONS, SECTOR_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, FACTCHECK_AMENDMENT_PROMPT
+from _config import SECTOR_ETFS, WEIGHTS_PERCENT, SECTOR_REGIONS, SECTOR_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, factcheck_market_outlook, strip_markdown_code_blocks
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks
 
 
 def run_sector_rotation_model(sector_etfs=None, sector_regions=None):
@@ -122,7 +122,6 @@ def run_sector_rotation_model(sector_etfs=None, sector_regions=None):
         max_attempts = 1  # Limit the number of attempts to avoid infinite loops
         attempts = 0
         last_inaccurate_recommendations = None
-        last_factcheck_result = None
         
         while attempts < max_attempts:
             attempts += 1
@@ -137,66 +136,22 @@ def run_sector_rotation_model(sector_etfs=None, sector_regions=None):
                 # Parse JSON
                 recommendations = json.loads(result)
                 
-                # Check if we have a market outlook narrative to factcheck
+                # Check if we have a market outlook narrative
                 if 'market_outlook_narrative' in recommendations:
-                    # Factcheck the market outlook narrative
-                    factcheck_result = factcheck_market_outlook(recommendations['market_outlook_narrative'], os.getenv("GEMINI_PRO_MODEL"))
-                    print(f"Factcheck result: {factcheck_result}")
-
-                    # Extract from factcheck_results JSON: factcheck into factcheck_status, and issues into factcheck_issues
-                    if isinstance(factcheck_result, dict):
-                        factcheck_status = factcheck_result.get("factcheck", "inaccurate")
-                        factcheck_issues = factcheck_result.get("issues", [])
-                    else:
-                        # Handle case where factcheck_result is a string (error message)
-                        factcheck_status = "inaccurate"
-                        factcheck_issues = []
-                    
-                    if factcheck_status == "accurate":
-                        print("Market outlook is accurate. Proceeding with recommendations.")
-                        break  # Exit the loop if accurate
-                    else:
-                        print("Market outlook is inaccurate. Getting new recommendations...")
-                        # Store the inaccurate recommendations and factcheck result for potential fallback use
-                        last_inaccurate_recommendations = recommendations.get("market_outlook_narrative", "")
-                        last_factcheck_issues = factcheck_issues
-                        recommendations = None  # Reset recommendations to get new ones
+                    print("Market outlook narrative found. Proceeding with recommendations.")
+                    break  # Exit the loop
                 else:
-                    # If there's no market outlook narrative, we can't factcheck, so proceed
-                    print("No market outlook narrative to factcheck. Proceeding with recommendations.")
+                    # If there's no market outlook narrative, proceed anyway
+                    print("No market outlook narrative found. Proceeding with recommendations.")
                     break  # Exit the loop
             except json.JSONDecodeError:
                 print(f"Error parsing AI response as JSON: {result}")
                 recommendations = None  # Reset recommendations to get new ones
         
         # If we still don't have recommendations after max attempts, get one more try
-        # using the last inaccurate recommendations and factcheck result to rewrite them
         if recommendations is None:
-            print(f"Failed to get accurate market outlook after {max_attempts} attempts. Getting final recommendations by rewriting inaccurate ones.")
-            
-            if last_inaccurate_recommendations and last_factcheck_result:
-                # Create a prompt that includes the inaccurate recommendations and factcheck result
-                # Use the encrypted FACTCHECK_AMENDMENT_PROMPT constant from _config.py
-                # Variables in FACTCHECK_AMENDMENT_PROMPT are {last_factcheck_result} and {json.dumps(last_inaccurate_recommendations, indent=2)}
-                
-                # Initialize rewrite_prompt with fallback value first
-                rewrite_prompt = formatted_prompt  # Fallback to original prompt
-                
-                try:
-                    decrypted_amendment_prompt = decrypt_string(FACTCHECK_AMENDMENT_PROMPT)
-                    rewrite_prompt = decrypted_amendment_prompt.format(
-                        factcheck_result=last_factcheck_result,
-                        previous_recommendations=last_inaccurate_recommendations
-                    )
-                except Exception as e:
-                    print("=" * 100)
-                    print(f"Error decrypting FACTCHECK_AMENDMENT_PROMPT: {e}")
-                    print("=" * 100)
-                
-                result = get_gen_ai_response(sector_etfs, "sector rotation long/short", rewrite_prompt, os.getenv("GEMINI_PRO_MODEL"))
-            else:
-                # Fallback to original prompt if no previous inaccurate recommendations are available
-                result = get_gen_ai_response(sector_etfs, "sector rotation long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
+            print(f"Failed to get recommendations after {max_attempts} attempts. Getting final recommendations.")
+            result = get_gen_ai_response(sector_etfs, "sector rotation long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the result as JSON
             try:
