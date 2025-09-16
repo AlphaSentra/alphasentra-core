@@ -141,17 +141,22 @@ def run_regional_rotation_model(tickers=None, regions=None):
                     factcheck_result = factcheck_market_outlook(recommendations['market_outlook_narrative'], os.getenv("GEMINI_PRO_MODEL"))
                     print(f"Factcheck result: {factcheck_result}")
                     
-                    # Extract the factcheck status from the result dictionary
-                    factcheck_status = factcheck_result.get("factcheck", "accurate") if isinstance(factcheck_result, dict) else factcheck_result
+                    # Extract from factcheck_results JSON: factcheck into factcheck_status and factcheck_issues
+                    if isinstance(factcheck_result, dict):
+                        factcheck_status = factcheck_result.get("factcheck", "inaccurate")
+                        factcheck_issues = factcheck_result.get("issues", [])
+                    else:
+                        factcheck_status = factcheck_result
+                        factcheck_issues = []
                     
                     if factcheck_status == "accurate":
                         print("Market outlook is accurate. Proceeding with recommendations.")
                         break  # Exit the loop if accurate
                     else:
                         print("Market outlook is inaccurate. Getting new recommendations...")
-                        # Store the inaccurate recommendations and factcheck result for potential fallback use
-                        last_inaccurate_recommendations = recommendations
-                        last_factcheck_result = factcheck_result
+                        # Store the inaccurate recommendations and factcheck issues for potential fallback use
+                        last_inaccurate_recommendations = recommendations.get("market_outlook_narrative", "")
+                        last_factcheck_issues = factcheck_issues
                         recommendations = None  # Reset recommendations to get new ones
                 else:
                     # If there's no market outlook narrative, we can't factcheck, so proceed
@@ -166,15 +171,18 @@ def run_regional_rotation_model(tickers=None, regions=None):
         if recommendations is None:
             print(f"Failed to get accurate market outlook after {max_attempts} attempts. Getting final recommendations by rewriting inaccurate ones.")
             
-            if last_inaccurate_recommendations and last_factcheck_result:
-                # Create a prompt that includes the inaccurate recommendations and factcheck result
+            # Initialize rewrite_prompt with formatted_prompt as fallback
+            rewrite_prompt = formatted_prompt  # Fallback to original prompt
+            
+            if last_inaccurate_recommendations and last_factcheck_issues:
+                # Create a prompt that includes the inaccurate recommendations and factcheck issues
                 # Use the encrypted FACTCHECK_AMENDMENT_PROMPT constant from _config.py
-                # Variables in FACTCHECK_AMENDMENT_PROMPT are {last_factcheck_result} and {json.dumps(last_inaccurate_recommendations, indent=2)}
+                # Variables in FACTCHECK_AMENDMENT_PROMPT are {last_factcheck_result} and {previous_recommendations}
                 try:
-                    decrypted_amendment_prompt = decrypt_string(FACTCHECK_AMENDMENT_PROMPT)                    
+                    decrypted_amendment_prompt = decrypt_string(FACTCHECK_AMENDMENT_PROMPT)
                     rewrite_prompt = decrypted_amendment_prompt.format(
-                        factcheck_result=last_factcheck_result,
-                        previous_recommendations=json.dumps(last_inaccurate_recommendations, indent=2)
+                        factcheck_result=last_factcheck_issues,
+                        previous_recommendations=last_inaccurate_recommendations
                     )
                 except Exception as e:
                     print("=" * 100)

@@ -618,7 +618,8 @@ def factcheck_market_outlook(market_outlook_narrative, gemini_model=None):
             print(f"Factcheck result: {factcheck_result}")
             
             # Return the factcheck result
-            return factcheck_result.get("factcheck", "accurate")
+            return factcheck_result
+        
         except json.JSONDecodeError as json_error:
             print(f"Error parsing factcheck response as JSON: {factcheck_response}")
             print(f"JSON decode error: {str(json_error)}")
