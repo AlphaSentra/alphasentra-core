@@ -24,23 +24,22 @@ from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks
 
 
-def run_sector_rotation_model(sector_etfs=None, sector_regions=None):
+def run_sector_rotation_model(tickers=None, sector_regions=None):
     """
     Run the sector rotation long/short model.
     
     Args:
-        sector_etfs (list, optional): List of sector ETF tickers to analyze
-        sector_regions (list, optional): List of regions to consider for sector analysis
+        tickers (str): The sector ETF tickers to analyze
+        regions (list, optional): List of regions to consider for sector analysis
     """
-    
     # Use default sector ETFs if none provided
-    if sector_etfs is None:
-        sector_etfs = SECTOR_ETFS
+    if tickers is None:
+        tickers = SECTOR_ETFS
         
     # Use default sector regions if none provided
     if sector_regions is None:
         sector_regions = SECTOR_REGIONS
-    
+
     # Use AI model prompts from _config.py directly
     FACTOR_WEIGHTS_PROMPT = FACTOR_WEIGHTS
 
@@ -51,7 +50,7 @@ def run_sector_rotation_model(sector_etfs=None, sector_regions=None):
             # Decrypt FACTOR_WEIGHTS_PROMPT first
             decrypted_factor_weights = decrypt_string(FACTOR_WEIGHTS_PROMPT)
             # Call get_gen_ai_response with the decrypted FACTOR_WEIGHTS prompt
-            ai_weights_response = get_gen_ai_response(sector_etfs, "factor weights", decrypted_factor_weights, os.getenv("GEMINI_PRO_MODEL"))
+            ai_weights_response = get_gen_ai_response(tickers, "factor weights", decrypted_factor_weights, os.getenv("GEMINI_PRO_MODEL"))
             
             # Try to parse the response as JSON
             try:
@@ -89,7 +88,7 @@ def run_sector_rotation_model(sector_etfs=None, sector_regions=None):
             decrypted_sector_prompt = SECTOR_ROTATION_LONG_SHORT_PROMPT  # Fallback to encrypted version
         
         # Create a comma-separated string of tickers for the prompt
-        tickers_str = ", ".join(sector_etfs) if sector_etfs else "No tickers provided"
+        tickers_str = tickers
         sector_regions_str = ", ".join(sector_regions) if sector_regions else "No regions provided"
 
         # Create current date in the format "September 6, 2025"
@@ -117,57 +116,23 @@ def run_sector_rotation_model(sector_etfs=None, sector_regions=None):
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
-        # Keep getting AI recommendations until we get accurate market outlook
-        recommendations = None
-        max_attempts = 1  # Limit the number of attempts to avoid infinite loops
-        attempts = 0
-        last_inaccurate_recommendations = None
+        result = get_gen_ai_response(tickers, "sector rotation long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
         
-        while attempts < max_attempts:
-            attempts += 1
-            print(f"Attempt {attempts} to get accurate market outlook...")
-            
-            result = get_gen_ai_response(sector_etfs, "sector rotation long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
-            
-            # Try to parse the result as JSON
-            try:
-                # Remove any markdown code block markers if present
-                result = strip_markdown_code_blocks(result)
-                # Parse JSON
-                recommendations = json.loads(result)
-                
-                # Check if we have a market outlook narrative
-                if 'market_outlook_narrative' in recommendations:
-                    print("Market outlook narrative found. Proceeding with recommendations.")
-                    break  # Exit the loop
-                else:
-                    # If there's no market outlook narrative, proceed anyway
-                    print("No market outlook narrative found. Proceeding with recommendations.")
-                    break  # Exit the loop
-            except json.JSONDecodeError:
-                print(f"Error parsing AI response as JSON: {result}")
-                recommendations = None  # Reset recommendations to get new ones
-        
-        # If we still don't have recommendations after max attempts, get one more try
-        if recommendations is None:
-            print(f"Failed to get recommendations after {max_attempts} attempts. Getting final recommendations.")
-            result = get_gen_ai_response(sector_etfs, "sector rotation long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
-            
-            # Try to parse the result as JSON
-            try:
-                # Remove any markdown code block markers if present
-                result = strip_markdown_code_blocks(result)
-                # Parse JSON
-                recommendations = json.loads(result)
-            except json.JSONDecodeError:
-                print(f"Error parsing final AI response as JSON: {result}")
-                recommendations = None
+        # Try to parse the result as JSON
+        try:
+            # Remove any markdown code block markers if present
+            result = strip_markdown_code_blocks(result)
+            # Parse JSON
+            recommendations = json.loads(result)
+        except json.JSONDecodeError:
+            print(f"Error parsing AI response as JSON: {result}")
+            recommendations = None
 
         # Add stop loss and target prices to recommendations
         if recommendations:
-            recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=1)
+            recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=4)
             # Add entry prices to recommendations
-            recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=1)
+            recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=4)
 
             #Display Model Output header
             print("\n" + "="*100)
@@ -238,5 +203,5 @@ def run_sector_rotation_model(sector_etfs=None, sector_regions=None):
 
 # Testing the function
 if __name__ == "__main__":
-    # Example usage with default sector ETFs and regions
-    run_sector_rotation_model()
+    # Example usage with sector ETF and regions
+    run_sector_rotation_model('XLK', ['US', 'Global'])

@@ -7,8 +7,8 @@ import sys
 import os
 import json
 import datetime
-from crypt import decrypt_string
 from dotenv import load_dotenv
+from crypt import decrypt_string
 
 # Add the parent directory to the Python path to ensure imports work
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -29,16 +29,16 @@ def run_regional_rotation_model(tickers=None, regions=None):
     Run the regional rotation long/short model.
     
     Args:
-        tickers (list, optional): List of ETF tickers to analyze. Defaults to REGIONAL_ETFS from config.
-        regions (list, optional): List of regions to consider for regional analysis. Defaults to REGIONAL_REGIONS from config.
+        tickers (list): List of ETF tickers to analyze.
+        regional_regions (list, optional): List of regions to consider for regional analysis.
     """
-    
+
     # Use default tickers and regions if not provided
     if tickers is None:
         tickers = REGIONAL_ETFS
     if regions is None:
         regions = REGIONAL_REGIONS
-    
+
     # Use AI model prompts from _config.py directly
     FACTOR_WEIGHTS_PROMPT = FACTOR_WEIGHTS
 
@@ -115,57 +115,24 @@ def run_regional_rotation_model(tickers=None, regions=None):
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
-        # Keep getting AI recommendations until we get accurate market outlook
-        recommendations = None
-        max_attempts = 1  # Limit the number of attempts to avoid infinite loops
-        attempts = 0
-        last_inaccurate_recommendations = None
+        result = get_gen_ai_response(tickers, "regional rotation long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
         
-        while attempts < max_attempts:
-            attempts += 1
-            print(f"Attempt {attempts} to get accurate market outlook...")
+        # Try to parse the result as JSON
+        try:
+            # Remove any markdown code block markers if present
+            result = strip_markdown_code_blocks(result)
+            # Parse JSON
+            recommendations = json.loads(result)
             
-            result = get_gen_ai_response(tickers, "regional rotation long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
-            
-            # Try to parse the result as JSON
-            try:
-                # Remove any markdown code block markers if present
-                result = strip_markdown_code_blocks(result)
-                # Parse JSON
-                recommendations = json.loads(result)
-                
-                # Check if we have a market outlook narrative
-                if 'market_outlook_narrative' in recommendations:
-                    print("Market outlook available. Proceeding with recommendations.")
-                    break  # Exit the loop
-                else:
-                    # If there's no market outlook narrative, proceed anyway
-                    print("No market outlook narrative. Proceeding with recommendations.")
-                    break  # Exit the loop
-            except json.JSONDecodeError:
-                print(f"Error parsing AI response as JSON: {result}")
-                recommendations = None  # Reset recommendations to get new ones
-        
-        # If we still don't have recommendations after max attempts, get one more try
-        if recommendations is None:
-            print(f"Failed to get recommendations after {max_attempts} attempts. Getting final recommendations.")
-            result = get_gen_ai_response(tickers, "regional rotation long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
-            
-            # Try to parse the result as JSON
-            try:
-                # Remove any markdown code block markers if present
-                result = strip_markdown_code_blocks(result)
-                # Parse JSON
-                recommendations = json.loads(result)
-            except json.JSONDecodeError:
-                print(f"Error parsing final AI response as JSON: {result}")
-                recommendations = None
+        except json.JSONDecodeError:
+            print(f"Error parsing AI response as JSON: {result}")
+            recommendations = None
 
         # Add stop loss and target prices to recommendations
         if recommendations:
-            recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=1)
+            recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=4)
             # Add entry prices to recommendations
-            recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=1)
+            recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=4)
 
             #Display Model Output header
             print("\n" + "="*100)
@@ -236,4 +203,4 @@ def run_regional_rotation_model(tickers=None, regions=None):
 
 # Testing the function
 if __name__ == "__main__":
-    run_regional_rotation_model()
+    run_regional_rotation_model(['EFA', 'EEM'], ['US', 'Global'])
