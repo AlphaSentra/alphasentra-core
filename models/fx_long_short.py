@@ -124,9 +124,9 @@ def run_fx_model(tickers, fx_regions=None):
 
         if recommendations:
             # Add stop loss and target prices to recommendations
-            recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=4)
+            recommendations = add_trade_levels_to_recommendations(recommendations, decimal_digits=4)
             # Add entry prices to recommendations
-            recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=4)
+            recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits=4)
 
             #Display Model Output header
             print("\n" + "="*100)

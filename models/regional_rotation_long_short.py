@@ -130,9 +130,9 @@ def run_regional_rotation_model(tickers=None, regions=None):
 
         if recommendations:
             # Add stop loss and target prices to recommendations
-            recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=4)
+            recommendations = add_trade_levels_to_recommendations(recommendations, decimal_digits=1)
             # Add entry prices to recommendations
-            recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=4)
+            recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits=1)
 
             #Display Model Output header
             print("\n" + "="*100)

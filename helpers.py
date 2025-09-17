@@ -26,14 +26,8 @@ from genAI.ai_prompt import get_gen_ai_response
 # Load environment variables
 load_dotenv()
 
-# Import TARGET_PRICE from _config
-from _config import TARGET_PRICE
 
-# Load AI model prompt for target price from environment variables
-TARGET_PRICE_PROMPT = os.getenv("TARGET_PRICE")
-
-
-def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=None, decimal_digits=2, recommendation_narrative=None):
+def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2):
     """
     Calculate appropriate stop loss and target price levels based on ADX and ATR indicators.
     
@@ -41,9 +35,7 @@ def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=Non
     tickers (list): List of ticker symbols as strings
     trade_direction (str): Trade direction, either "LONG" or "SHORT"
     period (int): Period for ADX and ATR calculations (default: 14)
-    gemini_model (str, optional): The Gemini model to use for analysis
     decimal_digits (int): Number of decimal digits for rounding prices (default: 2)
-    recommendation_narrative (list, optional): List of recommendation narrative paragraphs
     
     Returns:
     dict: Dictionary with ticker as key and dict with 'stop_loss' and 'target_price' as values
@@ -260,8 +252,7 @@ def add_trade_levels_to_recommendations(recommendations, gemini_model=None, deci
         # Calculate stop loss prices for LONG positions
         if long_tickers:
             # Get market outlook narrative if available
-            recommendation_narrative = recommendations.get('market_outlook_narrative')
-            long_stop_losses = calculate_trade_levels(long_tickers, 'LONG', gemini_model=gemini_model, decimal_digits=decimal_digits, recommendation_narrative=recommendation_narrative)
+            long_stop_losses = calculate_trade_levels(long_tickers, 'LONG', decimal_digits=decimal_digits)
             
             # Add stop loss prices to recommendations
             for trade in recommendations['recommendations']:
@@ -275,8 +266,7 @@ def add_trade_levels_to_recommendations(recommendations, gemini_model=None, deci
         # Calculate stop loss prices for SHORT positions
         if short_tickers:
             # Get market outlook narrative if available
-            recommendation_narrative = recommendations.get('market_outlook_narrative')
-            short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT', gemini_model=gemini_model, decimal_digits=decimal_digits, recommendation_narrative=recommendation_narrative)
+            short_stop_losses = calculate_trade_levels(short_tickers, 'SHORT', decimal_digits=decimal_digits)
             
             # Add stop loss prices to recommendations
             for trade in recommendations['recommendations']:
@@ -374,64 +364,6 @@ def calculate_entry_price(tickers, trade_direction, period=5):
         traceback.print_exc()
         return {}
 
-
-def get_entry_price_recommendations(tickers_with_direction, decimal_digits=2):
-    """
-    Return entry prices in the specified JSON format.
-
-    Parameters:
-    tickers_with_direction (list): List of dictionaries with 'ticker' and 'trade_direction' keys
-    decimal_digits (int): Number of decimal digits for rounding prices (default: 2)
-
-    Returns:
-    list: Array of objects with 'ticker', 'trade_direction', and 'entry_price' keys
-    """
-    
-    # Group tickers by trade direction
-    long_tickers = []
-    short_tickers = []
-    
-    for item in tickers_with_direction:
-        ticker = item.get('ticker')
-        direction = item.get('trade_direction', '').upper()
-        
-        if ticker and direction:
-            if direction == 'LONG':
-                long_tickers.append(ticker)
-            elif direction == 'SHORT':
-                short_tickers.append(ticker)
-    
-    # Calculate entry prices for LONG positions
-    long_entry_prices = {}
-    if long_tickers:
-        long_entry_prices = calculate_entry_price(long_tickers, 'LONG')
-    
-    # Calculate entry prices for SHORT positions
-    short_entry_prices = {}
-    if short_tickers:
-        short_entry_prices = calculate_entry_price(short_tickers, 'SHORT')
-    
-    # Combine all results in the required format
-    recommendations = []
-    
-    for item in tickers_with_direction:
-        ticker = item.get('ticker')
-        direction = item.get('trade_direction', '').upper()
-        
-        if ticker and direction:
-            entry_price = None
-            if direction == 'LONG' and ticker in long_entry_prices:
-                entry_price = round(long_entry_prices[ticker], decimal_digits)
-            elif direction == 'SHORT' and ticker in short_entry_prices:
-                entry_price = round(short_entry_prices[ticker], decimal_digits)
-            
-            recommendations.append({
-                'ticker': ticker,
-                'trade_direction': direction,
-                'entry_price': entry_price if entry_price is not None else 'N/A'
-            })
-    
-    return recommendations
 def add_entry_price_to_recommendations(recommendations, gemini_model=None, decimal_digits=2):
     """
     Add entry prices to recommendations.
@@ -495,95 +427,6 @@ def add_entry_price_to_recommendations(recommendations, gemini_model=None, decim
         import traceback
         traceback.print_exc()
         return recommendations
-
-def factcheck_market_outlook(market_outlook_narrative, gemini_model=None):
-    """
-    Factcheck the market outlook narrative using the AI model.
-    
-    Args:
-        market_outlook_narrative (list): List of paragraphs in the market outlook narrative
-        gemini_model (str, optional): The Gemini model to use for analysis
-    
-    Returns:
-        str: 'accurate' if the narrative is accurate, 'inaccurate' otherwise
-    """
-    import os
-    import json
-    
-    # Import FACTCHECK_AI_RESPONSE from _config
-    from _config import FACTCHECK_AI_RESPONSE
-
-    if not FACTCHECK_AI_RESPONSE:
-        print("Warning: FACTCHECK_AI_RESPONSE prompt not found in _config.py")
-        return "accurate"  # Default to accurate if prompt is not available
-
-    # Decrypt FACTCHECK_AI_RESPONSE first
-    try:
-        from crypt import decrypt_string
-        decrypted_factcheck_prompt = decrypt_string(FACTCHECK_AI_RESPONSE)
-    except Exception as e:
-        print(f"Error decrypting FACTCHECK_AI_RESPONSE: {e}")
-        decrypted_factcheck_prompt = FACTCHECK_AI_RESPONSE  # Fallback to encrypted version
-
-    # Create current date in the format "September 6, 2025"
-    current_date = datetime.now().strftime("%B %d, %Y")
-    
-    # Join the narrative paragraphs into a single string
-    market_outlook_narrative_str = " ".join(market_outlook_narrative)
-    
-    # Format the prompt with the market outlook narrative
-    factcheck_prompt = decrypted_factcheck_prompt.format(
-        market_outlook_narrative_str=market_outlook_narrative_str,
-        current_date=current_date
-    )
-    
-    try:
-        # Get AI factcheck response
-        factcheck_response = get_gen_ai_response([], "factcheck", factcheck_prompt, gemini_model)
-        
-        # Try to parse the response as JSON
-        try:
-            # Remove any markdown code block markers if present
-            factcheck_response_clean = factcheck_response.strip()
-            if factcheck_response_clean.startswith("```json"):
-                factcheck_response_clean = factcheck_response_clean[7:]
-            elif factcheck_response_clean.startswith("```"):
-                factcheck_response_clean = factcheck_response_clean[3:]
-            if factcheck_response_clean.endswith("```"):
-                factcheck_response_clean = factcheck_response_clean[:-3]
-            
-            # Strip whitespace
-            factcheck_response_clean = factcheck_response_clean.strip()
-            
-            # Additional cleaning for common AI response issues
-            # Remove leading/trailing quotes if present
-            if factcheck_response_clean.startswith("'") and factcheck_response_clean.endswith("'"):
-                factcheck_response_clean = factcheck_response_clean[1:-1]
-            elif factcheck_response_clean.startswith('"') and factcheck_response_clean.endswith('"'):
-                factcheck_response_clean = factcheck_response_clean[1:-1]
-            
-            # Try to parse as JSON
-            factcheck_result = json.loads(factcheck_response_clean)
-
-            # Debug output for factcheck result
-            print(f"Factcheck result: {factcheck_result}")
-            
-            # Return the factcheck result
-            return factcheck_result
-        
-        except json.JSONDecodeError as json_error:
-            print(f"Error parsing factcheck response as JSON: {factcheck_response}")
-            print(f"JSON decode error: {str(json_error)}")
-            # Try to extract factcheck value from string response
-            response_lower = factcheck_response_clean.lower()
-            if "inaccurate" in response_lower:
-                return "inaccurate"
-            elif "accurate" in response_lower:
-                return "accurate"
-
-    except Exception as e:
-        print(f"Error factchecking market outlook: {e}")
-        return "accurate"  # Default to accurate if there's any error
     
 def strip_markdown_code_blocks(text):
     """
