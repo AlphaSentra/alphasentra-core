@@ -128,8 +128,8 @@ def run_regional_rotation_model(tickers=None, regions=None):
             print(f"Error parsing AI response as JSON: {result}")
             recommendations = None
 
-        # Add stop loss and target prices to recommendations
         if recommendations:
+            # Add stop loss and target prices to recommendations
             recommendations = add_trade_levels_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=4)
             # Add entry prices to recommendations
             recommendations = add_entry_price_to_recommendations(recommendations, os.getenv("GEMINI_FLASH_MODEL"), decimal_digits=4)

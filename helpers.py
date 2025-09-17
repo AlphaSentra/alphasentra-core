@@ -132,58 +132,11 @@ def calculate_trade_levels(tickers, trade_direction, period=14, gemini_model=Non
                 entry_prices = calculate_entry_price([ticker], trade_direction)
                 entry_price = entry_prices.get(ticker, current_close)  # Fallback to current close if entry price calculation fails
                 
-                # Get target price from AI model if prompt is available
-                if TARGET_PRICE_PROMPT or TARGET_PRICE:
-                    try:
-                        # Prepare recommendation narrative string
-                        recommendation_narrative_str = ""
-                        if recommendation_narrative:
-                            recommendation_narrative_str = " ".join(recommendation_narrative)
-                        
-                        # Decrypt TARGET_PRICE if available, otherwise use TARGET_PRICE_PROMPT
-                        target_prompt = TARGET_PRICE_PROMPT if TARGET_PRICE_PROMPT else TARGET_PRICE
-                        try:
-                            from crypt import decrypt_string
-                            decrypted_target_prompt = decrypt_string(target_prompt)
-                        except Exception as e:
-                            print(f"Error decrypting target price prompt: {e}")
-                            decrypted_target_prompt = target_prompt  # Fallback to encrypted version
-                        
-                        # Format the prompt with the required variables
-                        formatted_prompt = decrypted_target_prompt.format(
-                            trade_direction=trade_direction,
-                            ticker_str=ticker,
-                            entry_price=round(entry_price, decimal_digits),
-                            stop_loss=round(stop_loss_price, decimal_digits),
-                            recommendation_narrative_str=recommendation_narrative_str
-                        )
-                        
-                        # Get AI-generated target price
-                        ai_response = get_gen_ai_response([ticker], "target price", formatted_prompt, gemini_model)
-                        
-                        # Try to parse the response as a float
-                        try:
-                            target_price = float(ai_response.strip())
-                        except ValueError:
-                            print(f"Warning: Could not parse AI response '{ai_response}' as a number for {ticker}. Using fallback calculation.")
-                            # Fallback to original calculation if AI response is not a valid number
-                            if trade_direction == "LONG":
-                                target_price = current_close + (2 * stop_loss_distance)
-                            else:  # SHORT
-                                target_price = current_close - (2 * stop_loss_distance)
-                    except Exception as e:
-                        print(f"Warning: Error getting AI target price for {ticker}: {e}. Using fallback calculation.")
-                        # Fallback to original calculation if there's any error
-                        if trade_direction == "LONG":
-                            target_price = current_close + (2 * stop_loss_distance)
-                        else:  # SHORT
-                            target_price = current_close - (2 * stop_loss_distance)
-                else:
-                    # Fallback to original calculation if prompt is not available
-                    if trade_direction == "LONG":
-                        target_price = current_close + (2 * stop_loss_distance)
-                    else:  # SHORT
-                        target_price = current_close - (2 * stop_loss_distance)
+                # Calculate target price as fixed 2x stop loss distance
+                if trade_direction == "LONG":
+                    target_price = current_close + (2 * stop_loss_distance)
+                else:  # SHORT
+                    target_price = current_close - (2 * stop_loss_distance)
                 
                 # Store the result
                 stop_loss_prices[ticker] = {
@@ -284,9 +237,7 @@ def add_trade_levels_to_recommendations(recommendations, gemini_model=None, deci
     dict: The recommendations dictionary with stop loss and target prices added
     """
         
-    try:
-        # Debug: Print the recommendations structure
-        
+    try:        
         # Check if recommendations has the expected structure
         if 'recommendations' not in recommendations:
             return recommendations
