@@ -28,14 +28,29 @@ def run_fx_model_with_input():
 
 
 # Define menu items as tuples: (description, function)
+# Use None as function for separator items
 MENU_ITEMS = [
+    # Equity category
+    ("----- EQUITIES -----", None),
+    ("", None),
+    
     ("EQ: U.S. Sector Rotation Model",
      lambda: sector_rotation_long_short.run_sector_rotation_model()),
 
     ("EQ: Regional Rotation Model",
      lambda: regional_rotation_long_short.run_regional_rotation_model()),
 
+    # Currency/FX category
+    ("", None),
+    ("----- CURRENCIES -----", None),
+    ("", None),
+
     ("FX: Forex Model",
-     run_fx_model_with_input)
+     run_fx_model_with_input),
+
+    # Others
+    ("", None),
+    ("----- OTHERS -----", None),
+    ("", None)
 ]
 

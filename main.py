@@ -19,21 +19,35 @@ def print_menu():
     print("=" * 100)
     print("Select from the menu below, the model you want to run:\n")
 
-    for i, (desc, _) in enumerate(MENU_ITEMS, start=1):
-        print(f"{i}. {desc}")
-    print(f"{len(MENU_ITEMS) + 1}. Exit")
+    # Create a list of selectable items (skip separators with None function)
+    selectable_items = []
+    menu_mapping = {}  # Maps displayed number to MENU_ITEMS index
+    
+    displayed_number = 1
+    for i, (desc, action) in enumerate(MENU_ITEMS):
+        if action is not None:  # This is a selectable item
+            print(f"{displayed_number}. {desc}")
+            menu_mapping[displayed_number] = i
+            displayed_number += 1
+        else:  # This is a separator
+            print(f"   {desc}")
+    
+    print(f"{displayed_number}. Exit")
+    return menu_mapping, displayed_number
 
 
 def main():
     while True:
-        print_menu()
+        menu_mapping, exit_number = print_menu()
         try:
             choice = int(input("\nEnter your choice: "))
 
-            if 1 <= choice <= len(MENU_ITEMS):
-                _, action = MENU_ITEMS[choice - 1]
+            if 1 <= choice < exit_number:
+                # Get the actual MENU_ITEMS index from the mapping
+                actual_index = menu_mapping[choice]
+                _, action = MENU_ITEMS[actual_index]
                 action()
-            elif choice == len(MENU_ITEMS) + 1:
+            elif choice == exit_number:
                 print("\nExiting Alphagora. Goodbye!")
                 break
             else:
