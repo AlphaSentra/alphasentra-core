@@ -25,7 +25,7 @@ ENCRYPTION_SECRET=provide_the_secret
 2. **Gemini Model**: You can select which Gemini model to use. By default, we are using gemini-2.5-pro: ```GEMINI_FLASH_MODEL=gemini-2.5-pro```.
 3. **Encryption**: The ```ENCRYPTION_SECRET``` constant is used as the key for encrypting and decrypting our proprietary prompt designs.
 
-Note: To create your own prompt, use the `crypt.py` script to encrypt your own prompt with your own `ENCRYPTION_SECRET`. 
+Note: To create your own prompt, use the `crypt.py` script to encrypt it with your `ENCRYPTION_SECRET`.
 
 ## AI Prompt Variables and Output
 
