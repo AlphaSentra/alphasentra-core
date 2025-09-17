@@ -16,9 +16,9 @@ with the following lines:
 <pre>
 GEMINI_API_KEY=your_actual_gemini_api_key
 GEMINI_DEFAULT=gemini-2.5-pro
-GEMINI_FLASH_MODEL=gemini-2.5-pro
+GEMINI_FLASH_MODEL=gemini-2.5-flash
 GEMINI_PRO_MODEL=gemini-2.5-pro
-ENCRYPTION_SECRET=provide_the_secret
+ENCRYPTION_SECRET=provide_the_encryption_secret
 </pre>
 
 1. **Gemini API Key**: Provide your Gemini API key using the ```GEMINI_API_KEY``` constant from [Google AI Studio](https://aistudio.google.com). 
