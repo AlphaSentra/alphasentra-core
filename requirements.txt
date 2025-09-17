@@ -117,3 +117,4 @@ peewee
 
 # Text processing
 patsy
+vaderSentiment

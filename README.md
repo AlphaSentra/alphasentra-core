@@ -44,7 +44,7 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
 - Business Cycle: `{business_cycle_weight}`,
 - Sentiment Surveys: `{sentiment_surveys_weight}`
 
-**Model [prompt] should return the following JSON as well:**
+**Model [prompt] return the following JSON as well:**
 
 ```
 {

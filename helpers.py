@@ -457,3 +457,47 @@ def strip_markdown_code_blocks(text):
     
     return text.strip()
     
+
+def analyze_sentiment(text):
+    """
+    Analyze sentiment of text using VaderSentiment.
+    Returns a sentiment score between 0 (negative) and 1 (positive).
+    
+    Parameters:
+    text (str or list): Text to analyze. Can be a string or list of strings.
+    
+    Returns:
+    float: Sentiment score between 0.0 and 1.0
+    """
+    from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+    
+    # Initialize Vader sentiment analyzer
+    analyzer = SentimentIntensityAnalyzer()
+    
+    # Convert input to list if it's a string
+    if isinstance(text, str):
+        text = [text]
+    
+    total_score = 0.0
+    
+    for paragraph in text:
+        if not isinstance(paragraph, str):
+            continue
+            
+        # Get sentiment scores using Vader
+        sentiment_scores = analyzer.polarity_scores(paragraph)
+        
+        # Vader returns a compound score between -1 (most negative) and +1 (most positive)
+        # Convert to 0-1 range: (compound_score + 1) / 2
+        vader_score = sentiment_scores['compound']
+        normalized_score = (vader_score + 1) / 2  # Convert from [-1,1] to [0,1]
+        
+        total_score += normalized_score
+    
+    # Calculate average score across all paragraphs
+    if len(text) > 0:
+        average_score = total_score / len(text)
+        # Round to 2 decimal places for cleaner output
+        return round(average_score, 2)
+    else:
+        return 0.5  # Return neutral if no text
