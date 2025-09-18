@@ -130,22 +130,10 @@ def run_fx_model(tickers, fx_regions=None):
             recommendations = add_trade_levels_to_recommendations(recommendations, decimal_digits=4)
             # Add entry prices to recommendations
             recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits=4)
+            # Get sentiment score for market outlook if available
+            sentiment_score = analyze_sentiment(recommendations.get('market_outlook_narrative', ''))
+            recommendations['sentiment_score'] = sentiment_score
             
-            # Add market outlook narrative sentiment score from sentiment analysis
-            # Create a new ordered dictionary to control key order
-            from collections import OrderedDict
-            ordered_recommendations = OrderedDict()
-            
-            # Add all keys in their original order, inserting sentiment_score after market_outlook_narrative
-            for key, value in recommendations.items():
-                ordered_recommendations[key] = value
-                
-                # Insert sentiment_score after market_outlook_narrative
-                if key == 'market_outlook_narrative' and value:
-                    sentiment_score = analyze_sentiment(value)
-                    ordered_recommendations['sentiment_score'] = sentiment_score
-            
-            recommendations = ordered_recommendations
 
             # Display Model Output header
             print("\n" + "="*100)
@@ -168,7 +156,7 @@ def run_fx_model(tickers, fx_regions=None):
             #display sentiment score if available
             if 'sentiment_score' in recommendations:
                 print("=== Sentiment Score ===")
-                print(f"Overall Sentiment: {recommendations['sentiment_score']}")
+                print(f"Sentiment: {recommendations['sentiment_score']}")
                 print()
 
             # Display recommendations
