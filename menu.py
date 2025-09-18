@@ -6,6 +6,7 @@ Define menu items and their corresponding actions for the main menu.
 import models.sector_rotation_long_short as sector_rotation_long_short
 import models.regional_rotation_long_short as regional_rotation_long_short
 import models.fx_long_short as fx_long_short
+import models.holistic as holistic
 
 def run_fx_model_with_input():
     """
@@ -25,6 +26,23 @@ def run_fx_model_with_input():
         fx_long_short.run_fx_model(tickers, regions)
     else:
         print("No tickers provided. Please enter at least one FX ticker.")
+
+def run_holistic_model_with_input():
+    """
+    Run holistic market model with user-provided tickers.
+    """
+    print("\n=== Holistic Market Model Input ===")
+    
+    # Get ticker input
+    ticker_input = input("Enter ticker(s) (comma-separated, e.g., SPY, QQQ, IWM): ").strip()
+    tickers = [t.strip() for t in ticker_input.split(',')] if ticker_input else []
+    
+    if tickers:
+        # Convert list of tickers to comma-separated string for the holistic model
+        tickers_str = ','.join(tickers)
+        holistic.run_holistic_market_model(tickers_str)
+    else:
+        print("No tickers provided. Please enter at least one ticker.")
 
 
 # Define menu items as tuples: (description, function)
@@ -51,6 +69,9 @@ MENU_ITEMS = [
     # Others
     ("", None),
     ("----- OTHERS -----", None),
-    ("", None)
+    ("", None),
+    
+    ("Holistic Market Model",
+     run_holistic_model_with_input)
 ]
 
