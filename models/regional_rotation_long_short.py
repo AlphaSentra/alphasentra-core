@@ -160,6 +160,12 @@ def run_regional_rotation_model(tickers=None, regions=None):
                 print("=== Sentiment Score ===")
                 print(f"Sentiment: {recommendations['sentiment_score']}")
                 print()
+
+            #display rationale if available
+            if 'rationale' in recommendations:
+                print("=== Rationale ===")
+                print(recommendations['rationale'])
+                print()
             
             # Display recommendations
             # After processing, the recommendations are under 'recommendations' key

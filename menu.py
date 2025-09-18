@@ -37,7 +37,7 @@ MENU_ITEMS = [
     ("EQ: U.S. Sector Rotation Model",
      lambda: sector_rotation_long_short.run_sector_rotation_model()),
 
-    ("EQ: Regional Rotation Model",
+    ("EQ: EMs vs. DMs - Regional Rotation Model",
      lambda: regional_rotation_long_short.run_regional_rotation_model()),
 
     # Currency/FX category
