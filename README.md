@@ -66,7 +66,7 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
       "bull_bear_score": "integer"
     }
   ]
-  "recommendations_rationale": "string",
+  "rationale": "string",
   "sentiment_score": "float"
 }
 ```
