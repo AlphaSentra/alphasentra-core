@@ -21,7 +21,7 @@ load_dotenv()
 
 from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS, REGIONAL_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment
 
 
 def run_regional_rotation_model(tickers=None, regions=None):
@@ -133,6 +133,9 @@ def run_regional_rotation_model(tickers=None, regions=None):
             recommendations = add_trade_levels_to_recommendations(recommendations, decimal_digits=1)
             # Add entry prices to recommendations
             recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits=1)
+            # Get sentiment score for market outlook if available
+            sentiment_score = analyze_sentiment(recommendations.get('market_outlook_narrative', ''))
+            recommendations['sentiment_score'] = sentiment_score
 
             #Display Model Output header
             print("\n" + "="*100)
@@ -151,6 +154,12 @@ def run_regional_rotation_model(tickers=None, regions=None):
                 for paragraph in recommendations['market_outlook_narrative']:
                     print(paragraph)
                     print()
+            
+            #display sentiment score if available
+            if 'sentiment_score' in recommendations:
+                print("=== Sentiment Score ===")
+                print(f"Sentiment: {recommendations['sentiment_score']}")
+                print()
             
             # Display recommendations
             # After processing, the recommendations are under 'recommendations' key

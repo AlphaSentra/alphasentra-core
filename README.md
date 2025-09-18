@@ -66,6 +66,8 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
       "bull_bear_score": "integer"
     }
   ]
+  "risk_assessment": "string",
+  "sentiment_score": "float"
 }
 ```
 To return the JSON, include the following line in the prompt:
