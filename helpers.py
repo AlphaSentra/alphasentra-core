@@ -124,11 +124,13 @@ def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2
                 entry_prices = calculate_entry_price([ticker], trade_direction)
                 entry_price = entry_prices.get(ticker, current_close)  # Fallback to current close if entry price calculation fails
                 
-                # Calculate target price as 2.5x stop loss distance
+                # Calculate target price for consistent 1:2.5 risk-reward ratio
+                # Use actual risk distance (entry to stop loss) rather than ATR-based distance
+                risk_distance = abs(entry_price - stop_loss_price)
                 if trade_direction == "LONG":
-                    target_price = current_close + (2.5 * stop_loss_distance)
+                    target_price = entry_price + (2.0 * risk_distance)
                 else:  # SHORT
-                    target_price = current_close - (2.5 * stop_loss_distance)
+                    target_price = entry_price - (2.0 * risk_distance)
                 
                 # Store the result
                 stop_loss_prices[ticker] = {
