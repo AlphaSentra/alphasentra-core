@@ -50,12 +50,12 @@ def run_holistic_market_model(tickers, prompt=None):
             
             # Try to parse the response as JSON
             try:
-                # Remove any markdown code block markers if present
+                # Remove any markdown code block markers if present and extract JSON
                 ai_weights_response = strip_markdown_code_blocks(ai_weights_response)
                 
                 # Parse JSON to get the weights
                 ai_weights_raw = json.loads(ai_weights_response)
-                print(ai_weights_raw)
+                print("AI-generated weights:", ai_weights_raw)
                 
                 # Map AI response keys to the keys used in the main prompt
                 ai_weights = {
@@ -67,8 +67,9 @@ def run_holistic_market_model(tickers, prompt=None):
                     'Business_Cycle': ai_weights_raw.get('Business Cycle', WEIGHTS_PERCENT['Business_Cycle']),
                     'Sentiment_Surveys': ai_weights_raw.get('Sentiment Surveys', WEIGHTS_PERCENT['Sentiment_Surveys'])
                 }
-            except json.JSONDecodeError:
-                print(f"Error parsing AI weights response as JSON: {ai_weights_response}")
+            except json.JSONDecodeError as e:
+                print(f"Error parsing AI weights response as JSON: {e}")
+                print(f"Raw weights response: {ai_weights_response[:200]}...")
                 ai_weights = None
         except Exception as e:
             print(f"Error getting AI weights: {e}")
@@ -121,8 +122,9 @@ def run_holistic_market_model(tickers, prompt=None):
             result = strip_markdown_code_blocks(result)
             # Parse JSON
             recommendations = json.loads(result)
-        except json.JSONDecodeError:
-            print(f"Error parsing AI response as JSON: {result}")
+        except json.JSONDecodeError as e:
+            print(f"Error parsing AI response as JSON: {e}")
+            print(f"Raw response content: {result[:200]}...")  # Show first 200 chars for debugging
             recommendations = None
 
         if recommendations:

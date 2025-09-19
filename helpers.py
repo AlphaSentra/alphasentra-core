@@ -432,8 +432,9 @@ def add_entry_price_to_recommendations(recommendations, gemini_model=None, decim
     
 def strip_markdown_code_blocks(text):
     """
-    Remove markdown code block markers from text.
+    Remove markdown code block markers from text and extract JSON content.
     Handles various formats including ```json, ```, and variations with whitespace.
+    Also extracts JSON content from the end of response strings when markdown formatting is incomplete.
     """
     import re
     
@@ -448,7 +449,12 @@ def strip_markdown_code_blocks(text):
     if match:
         return match.group(1).strip()
     
-    # If no full code block found, try to remove partial markers
+    # If no full code block found, try to extract JSON from the string
+    json_content = extract_json_from_text(text)
+    if json_content:
+        return json_content
+    
+    # If no JSON found, try to remove partial markdown markers
     # Remove starting ``` with optional language and whitespace
     text = re.sub(r'^```\w*\s*', '', text)
     text = re.sub(r'^```\s*', '', text)
@@ -458,6 +464,75 @@ def strip_markdown_code_blocks(text):
     text = re.sub(r'\s*```\s*$', '', text)
     
     return text.strip()
+
+
+def extract_json_from_text(text):
+    """
+    Extract JSON content from text, focusing on content at the end of strings.
+    Handles various JSON formats and validates the extracted content.
+    """
+    import re
+    import json
+    
+    if not isinstance(text, str):
+        return None
+    
+    # Strategy: Look for JSON content at the end of the text
+    # This handles the most common case where AI responses have JSON at the end
+    
+    # Pattern 1: Look for complete JSON object at the end
+    # This pattern captures complete JSON objects at the end of text
+    end_json_pattern = r'(\{(?:[^{}]|\{[^{}]*\})*\})\s*$'
+    end_match = re.search(end_json_pattern, text, re.DOTALL)
+    if end_match:
+        try:
+            json_content = end_match.group(1).strip()
+            json.loads(json_content)  # Validate it's proper JSON
+            return json_content
+        except (json.JSONDecodeError, ValueError):
+            pass
+    
+    # Pattern 2: Look for JSON array at the end
+    array_pattern = r'(\[.*\])\s*$'
+    array_match = re.search(array_pattern, text, re.DOTALL)
+    if array_match:
+        try:
+            json_content = array_match.group(1).strip()
+            json.loads(json_content)  # Validate it's proper JSON
+            return json_content
+        except (json.JSONDecodeError, ValueError):
+            pass
+    
+    # Pattern 3: Look for JSON preceded by common AI response patterns
+    # This handles cases like "text: {json}" or "text\n{json}"
+    ai_json_patterns = [
+        r'(?:analysis|recommendation|result|response|output)[:\s]*(\{.*\})\s*$',
+        r'(?:^|\n)[^{}]*(\{.*\})\s*$',
+    ]
+    
+    for pattern in ai_json_patterns:
+        match = re.search(pattern, text, re.DOTALL | re.IGNORECASE)
+        if match:
+            try:
+                json_content = match.group(1).strip()
+                json.loads(json_content)  # Validate it's proper JSON
+                return json_content
+            except (json.JSONDecodeError, ValueError):
+                continue
+    
+    # If no JSON found at the end, try to find any valid JSON in the text
+    # This is a fallback for cases where JSON might be embedded elsewhere
+    json_pattern = r'(\{(?:[^{}]|\{[^{}]*\})*\})'
+    json_matches = re.findall(json_pattern, text, re.DOTALL)
+    for json_match in reversed(json_matches):  # Try from end to start
+        try:
+            json_content = json_match.strip()
+            json.loads(json_content)  # Validate it's proper JSON
+            return json_content
+        except (json.JSONDecodeError, ValueError):
+            continue
+    
+    return None
     
 
 def analyze_sentiment(text):
@@ -503,3 +578,48 @@ def analyze_sentiment(text):
         return round(average_score, 2)
     else:
         return 0.5  # Return neutral if no text
+
+
+# Test function for JSON extraction
+def test_json_extraction():
+    """
+    Test the JSON extraction functionality with various input formats.
+    """
+    test_cases = [
+        # Complete markdown code block
+        "```json\n{\"key\": \"value\"}\n```",
+        # JSON at the end of text
+        "Some analysis text here\n{\"key\": \"value\"}",
+        # JSON array
+        "Analysis\n[{\"ticker\": \"AAPL\", \"score\": 8}]",
+        # Multiple JSON objects - should extract the last one
+        "First: {\"old\": \"data\"}\nSecond: {\"new\": \"data\"}",
+        # Invalid JSON mixed with valid JSON
+        "Invalid: {not json}\nValid: {\"valid\": true}",
+        # Real-world AI response example
+        "Based on my analysis of market conditions, here are my recommendations:\n\n{\"market_outlook\": \"bullish\", \"recommendations\": [{\"ticker\": \"SPY\", \"trade_direction\": \"LONG\", \"score\": 8}]}",
+        # Complex nested JSON
+        "Analysis complete: {\"data\": {\"nested\": {\"value\": 42}}, \"array\": [1, 2, 3]}",
+        # JSON with trailing whitespace
+        "Result: {\"status\": \"success\"}   \n   ",
+    ]
+    
+    print("Testing JSON extraction functionality:")
+    print("=" * 50)
+    
+    for i, test_case in enumerate(test_cases, 1):
+        print(f"\nTest {i}:")
+        print(f"Input: {test_case}")
+        result = strip_markdown_code_blocks(test_case)
+        print(f"Extracted: {result}")
+        
+        # Test if it's valid JSON
+        try:
+            import json
+            parsed = json.loads(result)
+            print(f"✓ Valid JSON: {parsed}")
+        except json.JSONDecodeError:
+            print("✗ Not valid JSON")
+    
+    print("\n" + "=" * 50)
+    print("JSON extraction test completed.")

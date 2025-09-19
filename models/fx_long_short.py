@@ -68,8 +68,9 @@ def run_fx_model(tickers, fx_regions=None):
                     'Business_Cycle': ai_weights_raw.get('Business Cycle', WEIGHTS_PERCENT['Business_Cycle']),
                     'Sentiment_Surveys': ai_weights_raw.get('Sentiment Surveys', WEIGHTS_PERCENT['Sentiment_Surveys'])
                 }
-            except json.JSONDecodeError:
-                print(f"Error parsing AI weights response as JSON: {ai_weights_response}")
+            except json.JSONDecodeError as e:
+                print(f"Error parsing AI weights response as JSON: {e}")
+                print(f"Raw weights response: {ai_weights_response[:200]}...")
                 ai_weights = None
         except Exception as e:
             print(f"Error getting AI weights: {e}")
@@ -121,8 +122,9 @@ def run_fx_model(tickers, fx_regions=None):
             result = strip_markdown_code_blocks(result)
             # Parse JSON
             recommendations = json.loads(result)
-        except json.JSONDecodeError:
-            print(f"Error parsing AI response as JSON: {result}")
+        except json.JSONDecodeError as e:
+            print(f"Error parsing AI response as JSON: {e}")
+            print(f"Raw response content: {result[:200]}...")  # Show first 200 chars for debugging
             recommendations = None
 
         if recommendations:
