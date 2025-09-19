@@ -4,7 +4,7 @@ File:        main.py
 Author:      Daiviet Huynh
 Created:     2025-08-10
 License:     MIT License
-Repository:  https://github.com/daivieth/Alphagora
+Repository:  https://github.com/Alphagora-Edge/Alphagora
 
 Description:
 Main entry point for the Alphagora, allowing users to select model.
