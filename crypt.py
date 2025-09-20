@@ -13,7 +13,10 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 load_dotenv()
 
 #To encrypt strng, paste the content below into CONTENT_TO_ENCRYPT and run this script. The encrypted result will be printed out.
-CONTENT_TO_ENCRYPT = """ """
+CONTENT_TO_ENCRYPT = """
+
+
+"""
 
 #To decrypt string, paste the encrypted content below into ENCRYPTED_CONTENT and run this script. The decrypted result will be printed out.
 ENCRYPTED_CONTENT = ''

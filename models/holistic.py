@@ -175,11 +175,28 @@ def run_holistic_market_model(tickers, prompt=None):
                 print(f"Sentiment: {recommendations['sentiment_score']}")
                 print()
 
-            #display rationale if available
+            # Display rationale if available
             if 'rationale' in recommendations:
                 print("=== Rationale ===")
                 print()
                 print(recommendations['rationale'])
+                print()
+
+            # Display analysis if available
+            if 'analysis' in recommendations:
+                print("=== Analysis ===")
+                print()
+                print(recommendations['analysis'])
+                print()
+            
+            # Display sources if available
+            if 'sources' in recommendations:
+                print("=== Sources ===")
+                print()
+                for source in recommendations['sources']:
+                    source_name = source.get('source_name', 'Unknown Source')
+                    source_title = source.get('source_title', 'No Title')
+                    print(f"- **{source_name}**: {source_title}")
                 print()
             
             # Display recommendations
