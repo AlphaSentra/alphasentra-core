@@ -622,4 +622,19 @@ def test_json_extraction():
             print("✗ Not valid JSON")
     
     print("\n" + "=" * 50)
-    print("JSON extraction test completed.")
+def get_current_gmt_timestamp():
+    """
+    Get the current date and time in GMT timezone.
+    
+    Returns:
+    str: Current timestamp in ISO 8601 format with GMT timezone
+    """
+    from datetime import datetime, timezone
+    
+    # Get current UTC time
+    current_utc = datetime.now(timezone.utc)
+    
+    # Format as ISO 8601 with 'Z' for UTC/GMT
+    return current_utc.isoformat(timespec='seconds').replace('+00:00', 'Z')
+
+

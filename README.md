@@ -44,10 +44,11 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
 - Business Cycle: `{business_cycle_weight}`,
 - Sentiment Surveys: `{sentiment_surveys_weight}`
 
-**Model [prompt] return the following JSON as well:**
+**Model JSON Object:**
 
 ```
 {
+  "timestamp_gmt": "Date and time"
   "title": "string, concise journalist-ready title (~12 words, explicit drivers of price)",
   "market_outlook_narrative": [
     "string, first paragraph: key catalysts, events, indicators, or data driving market movements",
@@ -70,7 +71,7 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
   "sentiment_score": "float"
 }
 ```
-To return the JSON, include the following line in the prompt:
+The prompt should return the JSON object, including the following structure:
 <pre>
 **JSON Output format**: Return your final recommendations in the following JSON format only. With this exact structure: [title] as a string, [market_outlook_narrative] as an array of strings. [rationale] as a string, and [recommendations] as an array of objects, where each object has, [ticker] as a string, [trade_direction] as string, [bull_bear_score] as integer.
 </pre>

@@ -21,7 +21,7 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp
 
 
 
@@ -127,6 +127,7 @@ def run_fx_model(tickers, fx_regions=None):
             print(f"Raw response content: {result[:200]}...")  # Show first 200 chars for debugging
             recommendations = None
 
+        # --------------------- Add additional data to recommendations ---------------------    
         if recommendations:
             # Add stop loss and target prices to recommendations
             recommendations = add_trade_levels_to_recommendations(recommendations, decimal_digits=4)
@@ -134,18 +135,29 @@ def run_fx_model(tickers, fx_regions=None):
             recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits=4)
             # Get sentiment score for market outlook if available
             sentiment_score = analyze_sentiment(recommendations.get('market_outlook_narrative', ''))
-            recommendations['sentiment_score'] = sentiment_score
+            recommendations['sentiment_score'] = sentiment_score            
+            # Add current GMT timestamp to recommendations
+            recommendations['timestamp_gmt'] = get_current_gmt_timestamp()
+        # -----------------------------------------------------------------------------------
             
-
             # Display Model Output header
             print("\n" + "="*100)
             print("FX Long/Short Model")
             print("="*100)
-                        
+            print()
+
+            # Display timestamp if available
+            if 'timestamp_gmt' in recommendations:
+                print("=== Timestamp ===")
+                print()
+                print(f"Timestamp (GMT): {recommendations['timestamp_gmt']}")
+                print()
+
             # Display market outlook
             if 'market_outlook_narrative' in recommendations:
                 print("\n=== Market Outlook ===")
                 print()
+
                 # Display title if available
                 if 'title' in recommendations:
                     print(f"{recommendations['title']}")
@@ -158,12 +170,14 @@ def run_fx_model(tickers, fx_regions=None):
             #display sentiment score if available
             if 'sentiment_score' in recommendations:
                 print("=== Sentiment Score ===")
+                print()
                 print(f"Sentiment: {recommendations['sentiment_score']}")
                 print()
 
             #display rationale if available
             if 'rationale' in recommendations:
                 print("=== Rationale ===")
+                print()
                 print(recommendations['rationale'])
                 print()
             
