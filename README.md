@@ -49,26 +49,27 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
 ```
 {
   "timestamp_gmt": "Date and time"
-  "title": "string, concise journalist-ready title (~12 words, explicit drivers of price)",
+  "title": "string",
   "market_outlook_narrative": [
-    "string, first paragraph: key catalysts, events, indicators, or data driving market movements",
-    "string, second paragraph: how these factors impact pricing, provide support or weigh on market",
-    "string, third paragraph: forward-looking view, upcoming events, indicators, outlook"
+    "string",
+    "string"
+  ],
+  "rationale": "string",
+  "analysis": "<h1>string</h1><p>string</p>",
+  "sources": [
+    {
+      "source_name": "string",
+      "source_title": "string",
+      "source_url": "string"
+    }
   ],
   "recommendations": [
     {
-      "ticker": "string, ETF ticker from most suitable to least suitable for investment",
-      "trade_direction": "string, either 'long' or 'short' based on bull_bear_score",
-      "bull_bear_score": "integer, 1-10 reflecting bullish/bearish strength"
-    },
-    {
       "ticker": "string",
       "trade_direction": "string",
-      "bull_bear_score": "integer"
+      "bull_bear_score": 0
     }
   ]
-  "rationale": "string",
-  "sentiment_score": "float"
 }
 ```
 The prompt should return the JSON object, including the following structure:

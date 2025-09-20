@@ -128,7 +128,7 @@ def run_holistic_market_model(tickers, prompt=None):
             recommendations = None
 
 
-        # --------------------- Add additional data to recommendations ---------------------
+        # --------------------- Add additional data to JSON Model ---------------------
         if recommendations:
             # Add stop loss and target prices to recommendations
             recommendations = add_trade_levels_to_recommendations(recommendations, decimal_digits=4)
@@ -168,7 +168,7 @@ def run_holistic_market_model(tickers, prompt=None):
                     print(paragraph)
                     print()
             
-            #display sentiment score if available
+            # Display sentiment score if available
             if 'sentiment_score' in recommendations:
                 print("=== Sentiment Score ===")
                 print()
@@ -196,7 +196,7 @@ def run_holistic_market_model(tickers, prompt=None):
                 for source in recommendations['sources']:
                     source_name = source.get('source_name', 'Unknown Source')
                     source_title = source.get('source_title', 'No Title')
-                    print(f"- **{source_name}**: {source_title}")
+                    print(f"- {source_name}: {source_title}")
                 print()
             
             # Display recommendations

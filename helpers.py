@@ -579,49 +579,6 @@ def analyze_sentiment(text):
     else:
         return 0.5  # Return neutral if no text
 
-
-# Test function for JSON extraction
-def test_json_extraction():
-    """
-    Test the JSON extraction functionality with various input formats.
-    """
-    test_cases = [
-        # Complete markdown code block
-        "```json\n{\"key\": \"value\"}\n```",
-        # JSON at the end of text
-        "Some analysis text here\n{\"key\": \"value\"}",
-        # JSON array
-        "Analysis\n[{\"ticker\": \"AAPL\", \"score\": 8}]",
-        # Multiple JSON objects - should extract the last one
-        "First: {\"old\": \"data\"}\nSecond: {\"new\": \"data\"}",
-        # Invalid JSON mixed with valid JSON
-        "Invalid: {not json}\nValid: {\"valid\": true}",
-        # Real-world AI response example
-        "Based on my analysis of market conditions, here are my recommendations:\n\n{\"market_outlook\": \"bullish\", \"recommendations\": [{\"ticker\": \"SPY\", \"trade_direction\": \"LONG\", \"score\": 8}]}",
-        # Complex nested JSON
-        "Analysis complete: {\"data\": {\"nested\": {\"value\": 42}}, \"array\": [1, 2, 3]}",
-        # JSON with trailing whitespace
-        "Result: {\"status\": \"success\"}   \n   ",
-    ]
-    
-    print("Testing JSON extraction functionality:")
-    print("=" * 50)
-    
-    for i, test_case in enumerate(test_cases, 1):
-        print(f"\nTest {i}:")
-        print(f"Input: {test_case}")
-        result = strip_markdown_code_blocks(test_case)
-        print(f"Extracted: {result}")
-        
-        # Test if it's valid JSON
-        try:
-            import json
-            parsed = json.loads(result)
-            print(f"✓ Valid JSON: {parsed}")
-        except json.JSONDecodeError:
-            print("✗ Not valid JSON")
-    
-    print("\n" + "=" * 50)
 def get_current_gmt_timestamp():
     """
     Get the current date and time in GMT timezone.
