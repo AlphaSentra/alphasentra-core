@@ -1,6 +1,6 @@
 """
 Description:
-Run the Generative AI model to score and recommend trades based on various data inputs.
+Functions to interact with Google's Gemini generative AI models.
 """
 
 import os
@@ -43,6 +43,16 @@ def _show_progress():
     print()  # Move to next line
 
 def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None):
+    """
+    Get a response from the Gemini generative AI model based on the selected strategy.
+    Parameters:
+    tickers (list): List of stock tickers to include in the prompt
+    model_strategy (str): The strategy to use ("Flash" or "Pro")
+    prompt (str, optional): Custom prompt to use. If None, uses DEFAULT_PROMPT from environment variables.
+    gemini_model (str, optional): Specific Gemini model to use. If None, uses default model based on strategy.
+    Returns:
+    str: The AI model's response text
+    """
     # If no model is specified, use the default model from environment variables
     if gemini_model is None:
         gemini_model = os.getenv("GEMINI_DEFAULT", "gemini-2.5-pro")

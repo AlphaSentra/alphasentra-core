@@ -24,7 +24,7 @@ from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp
 
 
-def run_holistic_market_model(tickers, prompt=None):
+def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
     """
     Run the holistic market model.
     
@@ -131,9 +131,9 @@ def run_holistic_market_model(tickers, prompt=None):
         # --------------------- Add additional data to JSON Model ---------------------
         if recommendations:
             # Add stop loss and target prices to recommendations
-            recommendations = add_trade_levels_to_recommendations(recommendations, decimal_digits=4)
+            recommendations = add_trade_levels_to_recommendations(recommendations, decimal_digits)
             # Add entry prices to recommendations
-            recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits=4)
+            recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits)
             # Get sentiment score for market outlook if available
             sentiment_score = analyze_sentiment(recommendations.get('market_outlook_narrative', ''))
             recommendations['sentiment_score'] = sentiment_score            

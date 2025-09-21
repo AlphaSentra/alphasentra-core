@@ -22,7 +22,7 @@ ENCRYPTION_SECRET=provide_the_encryption_secret
 </pre>
 
 1. **Gemini API Key**: Provide your Gemini API key using the ```GEMINI_API_KEY``` constant from [Google AI Studio](https://aistudio.google.com). 
-2. **Gemini Model**: You can select which Gemini model to use. By default, we are using gemini-2.5-pro: ```GEMINI_FLASH_MODEL=gemini-2.5-pro```.
+2. **Gemini Model**: You can select which Gemini model to use. By default, we are using gemini-2.5-pro: ```GEMINI_PRO_MODEL=gemini-2.5-pro```.
 3. **Encryption**: The ```ENCRYPTION_SECRET``` constant is used as the key for encrypting and decrypting our proprietary prompt designs.
 
 Note: To create your own prompt, use the `crypt.py` script to encrypt it with your `ENCRYPTION_SECRET`.
@@ -48,7 +48,6 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
 
 ```
 {
-  "timestamp_gmt": "Date and time"
   "title": "string",
   "market_outlook_narrative": [
     "string",

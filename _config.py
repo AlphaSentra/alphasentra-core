@@ -1,7 +1,7 @@
 """
 Description:
 Store all the variables for configuration for all the models and systems.
-Tickers must be in Yahoo Finance format.
+Tickers must be in Yahoo Finance format. (in the future, we can add other sources/formats)
 """
 
 # Default launguage for the system
