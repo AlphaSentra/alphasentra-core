@@ -349,8 +349,8 @@ def calculate_entry_price(tickers, trade_direction, period=5):
                     # Enter at the low since past week to now
                     entry_price = week_low
                 
-                # Store the result
-                entry_prices[ticker] = max(0, entry_price)  # Ensure non-negative
+                # Store the result as Python float
+                entry_prices[ticker] = float(max(0, entry_price))  # Ensure non-negative
                 
                 
             except Exception as e:
@@ -368,7 +368,7 @@ def calculate_entry_price(tickers, trade_direction, period=5):
 
 def add_entry_price_to_recommendations(recommendations, gemini_model=None, decimal_digits=2):
     """
-    Add entry prices to recommendations.
+    Add entry prices and current prices to recommendations.
 
     Parameters:
     recommendations (dict): The AI recommendations dictionary
@@ -376,7 +376,7 @@ def add_entry_price_to_recommendations(recommendations, gemini_model=None, decim
     decimal_digits (int): Number of decimal digits for rounding prices (default: 2)
 
     Returns:
-    dict: The recommendations dictionary with entry prices added
+    dict: The recommendations dictionary with entry prices and current prices added
     """
         
     try:
@@ -385,6 +385,20 @@ def add_entry_price_to_recommendations(recommendations, gemini_model=None, decim
         # Check if recommendations has the expected structure
         if 'recommendations' not in recommendations:
             return recommendations
+        
+        # Get all unique tickers from recommendations
+        all_tickers = []
+        for trade in recommendations['recommendations']:
+            ticker = trade.get('ticker')
+            if ticker and ticker not in all_tickers:
+                all_tickers.append(ticker)
+        
+        # Get current prices for all tickers
+        current_prices = {}
+        for ticker in all_tickers:
+            current_price = get_current_price(ticker)
+            if current_price is not None:
+                current_prices[ticker] = round(current_price, decimal_digits)
         
         # Group tickers by trade direction
         long_tickers = []
@@ -400,6 +414,11 @@ def add_entry_price_to_recommendations(recommendations, gemini_model=None, decim
                 elif direction == 'SHORT':
                     short_tickers.append(ticker)
         
+        # Add current prices to all recommendations
+        for trade in recommendations['recommendations']:
+            ticker = trade.get('ticker')
+            if ticker in current_prices:
+                trade['price'] = current_prices[ticker]
         
         # Calculate entry prices for LONG positions
         if long_tickers:
@@ -430,6 +449,33 @@ def add_entry_price_to_recommendations(recommendations, gemini_model=None, decim
         traceback.print_exc()
         return recommendations
     
+def get_current_price(ticker):
+    """
+    Get the current market price for a given ticker.
+    
+    Parameters:
+    ticker (str): Ticker symbol
+    
+    Returns:
+    float: Current market price, or None if unavailable
+    """
+    try:
+        # Fetch current data for the ticker
+        stock = yf.Ticker(ticker)
+        current_data = stock.history(period='1d')
+        
+        if current_data.empty:
+            print(f"No current data available for {ticker}")
+            return None
+        
+        # Get the most recent closing price and convert to Python float
+        current_price = current_data['Close'].iloc[-1]
+        return float(current_price)
+        
+    except Exception as e:
+        print(f"Error getting current price for {ticker}: {e}")
+        return None
+
 def strip_markdown_code_blocks(text):
     """
     Remove markdown code block markers from text and extract JSON content.
@@ -593,5 +639,3 @@ def get_current_gmt_timestamp():
     
     # Format as ISO 8601 with 'Z' for UTC/GMT
     return current_utc.isoformat(timespec='seconds').replace('+00:00', 'Z')
-
-
