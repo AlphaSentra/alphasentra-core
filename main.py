@@ -11,11 +11,12 @@ Main entry point for the Alphagora, allowing users to select model.
 """
 
 from menu import MENU_ITEMS
+from _config import LANGUAGE
 
 
 def print_menu():
     print("\n" + "=" * 100)
-    print("Alphagora - Main Menu")
+    print("Alphagora - Main Menu - " + LANGUAGE.upper())
     print("=" * 100)
     print("Select from the menu below, the model you want to run:\n")
 

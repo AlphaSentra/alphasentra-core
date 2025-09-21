@@ -19,7 +19,7 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS
+from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp
 
@@ -139,6 +139,8 @@ def run_holistic_market_model(tickers, prompt=None):
             recommendations['sentiment_score'] = sentiment_score            
             # Add current GMT timestamp to recommendations
             recommendations['timestamp_gmt'] = get_current_gmt_timestamp()
+            # Add language code to recommendations
+            recommendations['language_code'] = LANGUAGE
         # -----------------------------------------------------------------------------------            
 
             # Display Model Output header
