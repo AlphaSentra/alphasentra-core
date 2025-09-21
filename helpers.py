@@ -6,7 +6,7 @@ Helper functions
 
 
 # --- HELPER FUNCTIONS ---
-from genAI.data.price import calculate_trade_levels, calculate_entry_price, get_current_price
+from data.price import calculate_trade_levels, calculate_entry_price, get_current_price
 import backtrader as bt
 from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
