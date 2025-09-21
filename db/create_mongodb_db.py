@@ -40,6 +40,13 @@ def create_alphagora_database():
         # Collection name
         collection_name = 'documents'
         
+
+        print()
+        print("=" * 100)
+        print("Creating 'alphagora' database with 'documents' collection...")
+        print("=" * 100)
+        print()
+
         # Check if collection already exists
         if collection_name in db.list_collection_names():
             print(f"Collection '{collection_name}' already exists. Skipping creation.")
@@ -50,10 +57,10 @@ def create_alphagora_database():
             '$jsonSchema': {
                 'bsonType': 'object',
                 'required': [
+                    'title',
                     'market_outlook_narrative',
                     'rationale',
                     'analysis',
-                    'sources',
                     'recommendations',
                     'sentiment_score',
                     'timestamp_gmt',
@@ -162,9 +169,9 @@ def create_alphagora_database():
         
         print(f"Successfully created database 'alphagora' with collection '{collection_name}'")
         print("Collection schema validation rules applied:")
-        print("   - Required fields: market_outlook_narrative, rationale, analysis, sources, recommendations, sentiment_score, timestamp_gmt, language_code")
-        print("   - Optional field: title")
-        print("   - Indexes created: timestamp_gmt, sentiment_score, language_code")
+        print("   - Required fields: title, market_outlook_narrative, rationale, analysis, recommendations, sentiment_score, timestamp_gmt, language_code")
+        print("   - Optional field: sources")
+        print("   - Indexes created: timestamp_gmt, sentiment_score, language_code, recommendations.ticker")
         
         return True
         

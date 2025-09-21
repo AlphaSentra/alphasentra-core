@@ -114,6 +114,7 @@ anyio
 
 # Database
 peewee
+pymongo
 
 # Text processing
 patsy

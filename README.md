@@ -8,10 +8,24 @@ To run this script, you need to make sure of the requirements:
 
 `pip install -r requirements.txt`
 
-## Google Gemini API
-Create an .env in the root of the directory
 
-with the following lines:
+## Environment Variables
+Create a `.env` file in the root of the project. This file should include sensitive configuration such as database connections, API keys, and the encryption secret.
+
+### Database Configuration
+Add the following database settings to your `.env`:
+
+<pre>
+MONGODB_HOST=localhost
+MONGODB_PORT=27017
+MONGODB_DATABASE=alphagora
+MONGODB_USERNAME=username
+MONGODB_PASSWORD=password
+MONGODB_AUTH_SOURCE=admin
+</pre>
+
+### Google Gemini API
+Include your Google Gemini API credentials and encryption secret:
 
 <pre>
 GEMINI_API_KEY=your_actual_gemini_api_key

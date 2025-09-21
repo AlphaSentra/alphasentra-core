@@ -7,6 +7,7 @@ import models.sector_rotation_long_short as sector_rotation_long_short
 import models.regional_rotation_long_short as regional_rotation_long_short
 import models.fx_long_short as fx_long_short
 import models.holistic as holistic
+import db.create_mongodb_db as create_mongodb_db
 
 def run_fx_model_with_input():
     """
@@ -72,6 +73,15 @@ MENU_ITEMS = [
     ("", None),
     
     ("Holistic Market Model",
-     run_holistic_model_with_input)
+     run_holistic_model_with_input),
+    
+    # Configuration
+    ("", None),
+    ("----- CONFIG -----", None),
+    ("", None),
+
+    ("Configure database connection settings",
+     create_mongodb_db.create_alphagora_database)
+
 ]
 
