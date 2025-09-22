@@ -194,6 +194,229 @@ def create_documents_collection(db):
     return success
 
 
+def create_tickers_collection(db):
+    """
+    Creates the 'tickers' collection with schema validation and indexes.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if collection was created or already exists, False on error
+    """
+    collection_name = 'tickers'
+    
+    print()
+    print("=" * 100)
+    print(f"Creating '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+
+    # Create collection with schema validation
+    validator = {
+        '$jsonSchema': {
+            'bsonType': 'object',
+            'required': [
+                'ticker',
+                'name',
+                'region',
+                'prompt',
+                'model_function'
+            ],
+            'properties': {
+                'ticker': {
+                    'bsonType': 'string',
+                                        },
+                'name': {
+                    'bsonType': 'string',
+                                        },
+                'region': {
+                    'bsonType': 'array',
+                    'items': {
+                        'bsonType': 'string'
+                    },
+                                        },
+                'prompt': {
+                    'bsonType': 'string',
+                                        },
+                'model_function': {
+                    'bsonType': 'string',
+                                        }
+            }
+        }
+    }
+    
+    # Define indexes for better query performance
+    indexes = [
+        [('ticker', pymongo.ASCENDING)],
+        [('name', pymongo.ASCENDING)],
+        [('region', pymongo.ASCENDING)]
+    ]
+    
+    # Use the generic function to create the collection
+    success = create_collection_with_schema(db, collection_name, validator, indexes)
+    
+    if success:
+        print(f"Successfully created collection '{collection_name}'")
+        print("Collection schema validation rules applied:")
+        print("   - Required fields: ticker, name, region, prompt, model_function")
+        print("   - Indexes created: ticker, name, region")
+    
+    return success
+
+
+def insert_fx_pairs(db):
+    """
+    Inserts FX currency pairs into the 'tickers' collection.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if insertion was successful, False on error
+    """
+    collection_name = 'tickers'
+    
+    print()
+    print("=" * 100)
+    print(f"Inserting FX pairs into '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+    
+    # Import FX_LONG_SHORT_PROMPT from _config
+    from _config import FX_LONG_SHORT_PROMPT
+    
+    # FX pairs data to insert with prompt and model_function fields
+    fx_pairs = [
+        {"ticker": "EURUSD=X", "name": "Euro / U.S. Dollar", "region": ["Eurozone", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDJPY=X", "name": "U.S. Dollar / Japanese Yen", "region": ["U.S.", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "GBPUSD=X", "name": "British Pound / U.S. Dollar", "region": ["UK", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDCHF=X", "name": "U.S. Dollar / Swiss Franc", "region": ["U.S.", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "AUDUSD=X", "name": "Australian Dollar / U.S. Dollar", "region": ["Australia", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDCAD=X", "name": "U.S. Dollar / Canadian Dollar", "region": ["U.S.", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "NZDUSD=X", "name": "New Zealand Dollar / U.S. Dollar", "region": ["New Zealand", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "EURGBP=X", "name": "Euro / British Pound", "region": ["Eurozone", "UK"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "EURJPY=X", "name": "Euro / Japanese Yen", "region": ["Eurozone", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "GBPJPY=X", "name": "British Pound / Japanese Yen", "region": ["UK", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "EURCHF=X", "name": "Euro / Swiss Franc", "region": ["Eurozone", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "AudJPY=X", "name": "Australian Dollar / Japanese Yen", "region": ["Australia", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "CADJPY=X", "name": "Canadian Dollar / Japanese Yen", "region": ["Canada", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "NZDJPY=X", "name": "New Zealand Dollar / Japanese Yen", "region": ["New Zealand", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "AUDNZD=X", "name": "Australian Dollar / New Zealand Dollar", "region": ["Australia", "New Zealand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "EURCAD=X", "name": "Euro / Canadian Dollar", "region": ["Eurozone", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDTRY=X", "name": "U.S. Dollar / Turkish Lira", "region": ["U.S.", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDZAR=X", "name": "U.S. Dollar / South African Rand", "region": ["U.S.", "South Africa"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "EURTRY=X", "name": "Euro / Turkish Lira", "region": ["Eurozone", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDMXN=X", "name": "U.S. Dollar / Mexican Peso", "region": ["U.S.", "Mexico"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDPLN=X", "name": "U.S. Dollar / Polish Zloty", "region": ["U.S.", "Poland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDSEK=X", "name": "U.S. Dollar / Swedish Krona", "region": ["U.S.", "Sweden"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDNOK=X", "name": "U.S. Dollar / Norwegian Krone", "region": ["U.S.", "Norway"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDTHB=X", "name": "U.S. Dollar / Thai Baht", "region": ["U.S.", "Thailand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDSGD=X", "name": "U.S. Dollar / Singapore Dollar", "region": ["U.S.", "Singapore"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDCNH=X", "name": "U.S. Dollar / Chinese Yuan (Offshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "EURCNH=X", "name": "Euro / Chinese Yuan (Offshore)", "region": ["Eurozone", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDCNY=X", "name": "U.S. Dollar / Chinese Yuan (Onshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "USDRUB=X", "name": "U.S. Dollar / Russian Ruble", "region": ["U.S.", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
+        {"ticker": "EURRUB=X", "name": "Euro / Russian Ruble", "region": ["Eurozone", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"}
+    ]
+    
+    try:
+        collection = db[collection_name]
+        
+        # Check if any FX pairs already exist to avoid duplicates
+        existing_count = collection.count_documents({"ticker": {"$in": [pair["ticker"] for pair in fx_pairs]}})
+        if existing_count > 0:
+            print(f"Found {existing_count} existing FX pairs. Skipping insertion to avoid duplicates.")
+            return True
+        
+        # Insert all FX pairs
+        result = collection.insert_many(fx_pairs)
+        print(f"Successfully inserted {len(result.inserted_ids)} FX pairs into '{collection_name}' collection")
+        return True
+        
+    except pymongo.errors.OperationFailure as e:
+        print(f"MongoDB operation failed for inserting FX pairs: {e}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error inserting FX pairs: {e}")
+        return False
+
+
+def insert_indices(db):
+    """
+    Inserts stock indices into the 'tickers' collection.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if insertion was successful, False on error
+    """
+    collection_name = 'tickers'
+    
+    print()
+    print("=" * 100)
+    print(f"Inserting indices into '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+    
+    # Import HOLISTIC_MARKET_PROMPT from _config
+    from _config import HOLISTIC_MARKET_PROMPT
+    
+    # Indices data to insert with prompt and model_function fields
+    indices = [
+        {"ticker": "^GSPC", "name": "S&P 500", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^NDX", "name": "NASDAQ 100", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^DJI", "name": "Dow Jones Industrial Average", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^RUT", "name": "Russell 2000", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^VIX", "name": "CBOE Volatility Index", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^N225", "name": "Nikkei 225", "region": ["Japan"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^TOPX", "name": "TOPIX", "region": ["Japan"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^GDAXI", "name": "DAX 40", "region": ["Germany"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^FCHI", "name": "CAC 40", "region": ["France"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^FTSE", "name": "FTSE 100", "region": ["UK"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^STOXX50E", "name": "Euro Stoxx 50", "region": ["Eurozone"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^SSMI", "name": "Swiss Market Index (SMI)", "region": ["Switzerland"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^HSI", "name": "Hang Seng Index", "region": ["Hong Kong"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^SSEC", "name": "Shanghai Composite", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "000001.SS", "name": "SSE 50", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "000300.SS", "name": "CSI 300", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "399001.SZ", "name": "Shenzhen Component", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "399006.SZ", "name": "ChiNext Index", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^AXJO", "name": "ASX 200", "region": ["Australia"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^AORD", "name": "All Ordinaries", "region": ["Australia"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^NSEI", "name": "Nifty 50", "region": ["India"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^BSESN", "name": "BSE Sensex", "region": ["India"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^STI", "name": "STI", "region": ["Singapore"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^KS11", "name": "KOSPI", "region": ["South Korea"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^MXX", "name": "IPC Mexico General", "region": ["Mexico"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^BVSP", "name": "Bovespa", "region": ["Brazil"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^SPTSX", "name": "S&P/TSX Composite", "region": ["Canada"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
+        {"ticker": "^NZ50", "name": "NZX 50", "region": ["New Zealand"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"}
+    ]
+    
+    try:
+        collection = db[collection_name]
+        
+        # Check if any indices already exist to avoid duplicates
+        existing_count = collection.count_documents({"ticker": {"$in": [index["ticker"] for index in indices]}})
+        if existing_count > 0:
+            print(f"Found {existing_count} existing indices. Skipping insertion to avoid duplicates.")
+            return True
+        
+        # Insert all indices
+        result = collection.insert_many(indices)
+        print(f"Successfully inserted {len(result.inserted_ids)} indices into '{collection_name}' collection")
+        return True
+        
+    except pymongo.errors.OperationFailure as e:
+        print(f"MongoDB operation failed for inserting indices: {e}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error inserting indices: {e}")
+        return False
+
+
 def create_alphagora_database():
     """
     Creates the 'alphagora' database and 'documents' collection with schema validation.
@@ -222,6 +445,18 @@ def create_alphagora_database():
         
         # Create the documents collection
         success = create_documents_collection(db)
+        
+        # Create the tickers collection
+        if success:
+            success = create_tickers_collection(db)
+        
+        # Insert FX pairs into tickers collection
+        if success:
+            success = insert_fx_pairs(db)
+        
+        # Insert indices into tickers collection
+        if success:
+            success = insert_indices(db)
         
         return success
         
@@ -254,7 +489,9 @@ if __name__ == "__main__":
         mongodb_uri = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_database}"
         print(f"MongoDB Connection: {mongodb_uri}")
     print("Database: alphagora")
-    print("Collection: documents")
+    print("Collections: documents, tickers")
+    print("FX Pairs: 30 currency pairs will be inserted into tickers collection")
+    print("Indices: 28 stock indices will be inserted into tickers collection")
     print("-" * 50)
     
     success = create_alphagora_database()
