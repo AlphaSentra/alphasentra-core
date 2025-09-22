@@ -69,6 +69,7 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
   ],
   "rationale": "string",
   "analysis": "<h1>string</h1><p>string</p>",
+  "market_impact": "integer",
   "sources": [
     {
       "source_name": "string",
@@ -80,7 +81,7 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
     {
       "ticker": "string",
       "trade_direction": "string",
-      "bull_bear_score": 0
+      "bull_bear_score": "integer"
     }
   ]
 }
