@@ -178,6 +178,13 @@ def run_sector_rotation_model(tickers=None, sector_regions=None):
                 print()
                 print(f"Sentiment: {recommendations['sentiment_score']}")
                 print()
+
+            # Display market impact if available
+            if 'market_impact' in recommendations:
+                print("=== Market Impact ===")
+                print()
+                print(f"Market Impact: {recommendations['market_impact']}")
+                print()
             
             # Display rationale if available
             if 'rationale' in recommendations:
