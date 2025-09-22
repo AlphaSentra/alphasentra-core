@@ -82,6 +82,7 @@ def create_documents_collection(db):
                 'analysis',
                 'recommendations',
                 'sentiment_score',
+                'market_impact',
                 'timestamp_gmt',
                 'language_code'
             ],
@@ -161,6 +162,11 @@ def create_documents_collection(db):
                     'minimum': -1.0,
                     'maximum': 1.0,
                                         },
+                'market_impact': {
+                    'bsonType': 'int',
+                    'minimum': -100,
+                    'maximum': 100,
+                                        },
                 'timestamp_gmt': {
                     'bsonType': 'string',
                     'pattern': '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$',
@@ -187,7 +193,7 @@ def create_documents_collection(db):
     if success:
         print(f"Successfully created collection '{collection_name}'")
         print("Collection schema validation rules applied:")
-        print("   - Required fields: title, market_outlook_narrative, rationale, analysis, recommendations, sentiment_score, timestamp_gmt, language_code")
+        print("   - Required fields: title, market_outlook_narrative, rationale, analysis, recommendations, sentiment_score, market_impact, timestamp_gmt, language_code")
         print("   - Optional field: sources")
         print("   - Indexes created: timestamp_gmt, sentiment_score, language_code, recommendations.ticker")
     
