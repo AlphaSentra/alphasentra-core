@@ -11,6 +11,189 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+def create_collection_with_schema(db, collection_name, validator, indexes=None):
+    """
+    Creates a MongoDB collection with schema validation and indexes.
+    
+    Args:
+        db: MongoDB database object
+        collection_name: Name of the collection to create
+        validator: JSON schema validator for the collection
+        indexes: List of index specifications (optional)
+        
+    Returns:
+        bool: True if collection was created or already exists, False on error
+    """
+    try:
+        # Check if collection already exists
+        if collection_name in db.list_collection_names():
+            print(f"Collection '{collection_name}' already exists. Skipping creation.")
+            return True
+        
+        # Create collection with validation
+        db.create_collection(
+            collection_name,
+            validator=validator
+        )
+        
+        # Create indexes if provided
+        if indexes:
+            collection = db[collection_name]
+            for index_spec in indexes:
+                collection.create_index(index_spec)
+        
+        print(f"Successfully created collection '{collection_name}'")
+        return True
+        
+    except pymongo.errors.OperationFailure as e:
+        print(f"MongoDB operation failed for collection '{collection_name}': {e}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error creating collection '{collection_name}': {e}")
+        return False
+
+
+def create_documents_collection(db):
+    """
+    Creates the 'documents' collection with schema validation and indexes.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if collection was created or already exists, False on error
+    """
+    collection_name = 'documents'
+    
+    print()
+    print("=" * 100)
+    print(f"Creating '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+
+    # Create collection with schema validation
+    validator = {
+        '$jsonSchema': {
+            'bsonType': 'object',
+            'required': [
+                'title',
+                'market_outlook_narrative',
+                'rationale',
+                'analysis',
+                'recommendations',
+                'sentiment_score',
+                'timestamp_gmt',
+                'language_code'
+            ],
+            'properties': {
+                'title': {
+                    'bsonType': 'string',
+                                        },
+                'market_outlook_narrative': {
+                    'bsonType': 'array',
+                    'items': {
+                        'bsonType': 'string'
+                    },
+                                        },
+                'rationale': {
+                    'bsonType': 'string',
+                                        },
+                'analysis': {
+                    'bsonType': 'string',
+                                        },
+                'sources': {
+                    'bsonType': 'array',
+                    'items': {
+                        'bsonType': 'object',
+                        'required': ['source_name', 'source_title'],
+                        'properties': {
+                            'source_name': {
+                                'bsonType': 'string',
+                                                                },
+                            'source_title': {
+                                'bsonType': 'string',
+                                                                }
+                        }
+                    },
+                                        },
+                'recommendations': {
+                    'bsonType': 'array',
+                    'items': {
+                        'bsonType': 'object',
+                        'required': [
+                            'ticker',
+                            'trade_direction',
+                            'bull_bear_score',
+                            'stop_loss',
+                            'target_price',
+                            'entry_price',
+                            'price'
+                        ],
+                        'properties': {
+                            'ticker': {
+                                'bsonType': 'string',
+                                                                },
+                            'trade_direction': {
+                                'bsonType': 'string',
+                                                                },
+                            'bull_bear_score': {
+                                'bsonType': 'int',
+                                'minimum': -100,
+                                'maximum': 100,
+                                                                },
+                            'stop_loss': {
+                                'bsonType': 'double',
+                                                                },
+                            'target_price': {
+                                'bsonType': 'double',
+                                                                },
+                            'entry_price': {
+                                'bsonType': 'double',
+                                                                },
+                            'price': {
+                                'bsonType': 'double',
+                                                                }
+                        }
+                    },
+                                        },
+                'sentiment_score': {
+                    'bsonType': 'double',
+                    'minimum': -1.0,
+                    'maximum': 1.0,
+                                        },
+                'timestamp_gmt': {
+                    'bsonType': 'string',
+                    'pattern': '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$',
+                                        },
+                'language_code': {
+                    'bsonType': 'string',
+                    'pattern': '^[a-z]{2}(-[A-Z]{2})?$',
+                                        }
+            }
+        }
+    }
+    
+    # Define indexes for better query performance
+    indexes = [
+        [('timestamp_gmt', pymongo.DESCENDING)],
+        [('sentiment_score', pymongo.DESCENDING)],
+        [('language_code', pymongo.ASCENDING)],
+        [('recommendations.ticker', pymongo.ASCENDING)]
+    ]
+    
+    # Use the generic function to create the collection
+    success = create_collection_with_schema(db, collection_name, validator, indexes)
+    
+    if success:
+        print(f"Successfully created collection '{collection_name}'")
+        print("Collection schema validation rules applied:")
+        print("   - Required fields: title, market_outlook_narrative, rationale, analysis, recommendations, sentiment_score, timestamp_gmt, language_code")
+        print("   - Optional field: sources")
+        print("   - Indexes created: timestamp_gmt, sentiment_score, language_code, recommendations.ticker")
+    
+    return success
+
+
 def create_alphagora_database():
     """
     Creates the 'alphagora' database and 'documents' collection with schema validation.
@@ -37,143 +220,10 @@ def create_alphagora_database():
         # Create or get the database
         db = client[mongodb_database]
         
-        # Collection name
-        collection_name = 'documents'
+        # Create the documents collection
+        success = create_documents_collection(db)
         
-
-        print()
-        print("=" * 100)
-        print("Creating 'alphagora' database with 'documents' collection...")
-        print("=" * 100)
-        print()
-
-        # Check if collection already exists
-        if collection_name in db.list_collection_names():
-            print(f"Collection '{collection_name}' already exists. Skipping creation.")
-            return True
-        
-        # Create collection with schema validation
-        validator = {
-            '$jsonSchema': {
-                'bsonType': 'object',
-                'required': [
-                    'title',
-                    'market_outlook_narrative',
-                    'rationale',
-                    'analysis',
-                    'recommendations',
-                    'sentiment_score',
-                    'timestamp_gmt',
-                    'language_code'
-                ],
-                'properties': {
-                    'title': {
-                        'bsonType': 'string',
-                                            },
-                    'market_outlook_narrative': {
-                        'bsonType': 'array',
-                        'items': {
-                            'bsonType': 'string'
-                        },
-                                            },
-                    'rationale': {
-                        'bsonType': 'string',
-                                            },
-                    'analysis': {
-                        'bsonType': 'string',
-                                            },
-                    'sources': {
-                        'bsonType': 'array',
-                        'items': {
-                            'bsonType': 'object',
-                            'required': ['source_name', 'source_title'],
-                            'properties': {
-                                'source_name': {
-                                    'bsonType': 'string',
-                                                                    },
-                                'source_title': {
-                                    'bsonType': 'string',
-                                                                    }
-                            }
-                        },
-                                            },
-                    'recommendations': {
-                        'bsonType': 'array',
-                        'items': {
-                            'bsonType': 'object',
-                            'required': [
-                                'ticker',
-                                'trade_direction',
-                                'bull_bear_score',
-                                'stop_loss',
-                                'target_price',
-                                'entry_price',
-                                'price'
-                            ],
-                            'properties': {
-                                'ticker': {
-                                    'bsonType': 'string',
-                                                                    },
-                                'trade_direction': {
-                                    'bsonType': 'string',
-                                                                    },
-                                'bull_bear_score': {
-                                    'bsonType': 'int',
-                                    'minimum': -100,
-                                    'maximum': 100,
-                                                                    },
-                                'stop_loss': {
-                                    'bsonType': 'double',
-                                                                    },
-                                'target_price': {
-                                    'bsonType': 'double',
-                                                                    },
-                                'entry_price': {
-                                    'bsonType': 'double',
-                                                                    },
-                                'price': {
-                                    'bsonType': 'double',
-                                                                    }
-                            }
-                        },
-                                            },
-                    'sentiment_score': {
-                        'bsonType': 'double',
-                        'minimum': -1.0,
-                        'maximum': 1.0,
-                                            },
-                    'timestamp_gmt': {
-                        'bsonType': 'string',
-                        'pattern': '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$',
-                                            },
-                    'language_code': {
-                        'bsonType': 'string',
-                        'pattern': '^[a-z]{2}(-[A-Z]{2})?$',
-                                            }
-                }
-            }
-        }
-        
-        # Create collection with validation
-        db.create_collection(
-            collection_name,
-            validator=validator
-        )
-        
-        # Create indexes for better query performance
-        collection = db[collection_name]
-        collection.create_index([('timestamp_gmt', pymongo.DESCENDING)])
-        collection.create_index([('sentiment_score', pymongo.DESCENDING)])
-        collection.create_index([('language_code', pymongo.ASCENDING)])
-        collection.create_index([('recommendations.ticker', pymongo.ASCENDING)])
-        
-        print(f"Successfully created database 'alphagora' with collection '{collection_name}'")
-        print("Collection schema validation rules applied:")
-        print("   - Required fields: title, market_outlook_narrative, rationale, analysis, recommendations, sentiment_score, timestamp_gmt, language_code")
-        print("   - Optional field: sources")
-        print("   - Indexes created: timestamp_gmt, sentiment_score, language_code, recommendations.ticker")
-        
-        return True
+        return success
         
     except pymongo.errors.ServerSelectionTimeoutError:
         print("MongoDB server not found. Please ensure MongoDB is running on localhost:27017")
