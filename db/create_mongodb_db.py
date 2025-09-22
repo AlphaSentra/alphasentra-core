@@ -247,6 +247,9 @@ def create_tickers_collection(db):
                                         },
                 'model_function': {
                     'bsonType': 'string',
+                                        },
+                'asset_class': {
+                    'bsonType': 'string',
                                         }
             }
         }
@@ -266,6 +269,7 @@ def create_tickers_collection(db):
         print(f"Successfully created collection '{collection_name}'")
         print("Collection schema validation rules applied:")
         print("   - Required fields: ticker, name, region, prompt, model_function")
+        print("   - Optional field: asset_class")
         print("   - Indexes created: ticker, name, region")
     
     return success
@@ -294,36 +298,36 @@ def insert_fx_pairs(db):
     
     # FX pairs data to insert with prompt and model_function fields
     fx_pairs = [
-        {"ticker": "EURUSD=X", "name": "Euro / U.S. Dollar", "region": ["Eurozone", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDJPY=X", "name": "U.S. Dollar / Japanese Yen", "region": ["U.S.", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "GBPUSD=X", "name": "British Pound / U.S. Dollar", "region": ["UK", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDCHF=X", "name": "U.S. Dollar / Swiss Franc", "region": ["U.S.", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "AUDUSD=X", "name": "Australian Dollar / U.S. Dollar", "region": ["Australia", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDCAD=X", "name": "U.S. Dollar / Canadian Dollar", "region": ["U.S.", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "NZDUSD=X", "name": "New Zealand Dollar / U.S. Dollar", "region": ["New Zealand", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "EURGBP=X", "name": "Euro / British Pound", "region": ["Eurozone", "UK"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "EURJPY=X", "name": "Euro / Japanese Yen", "region": ["Eurozone", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "GBPJPY=X", "name": "British Pound / Japanese Yen", "region": ["UK", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "EURCHF=X", "name": "Euro / Swiss Franc", "region": ["Eurozone", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "AudJPY=X", "name": "Australian Dollar / Japanese Yen", "region": ["Australia", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "CADJPY=X", "name": "Canadian Dollar / Japanese Yen", "region": ["Canada", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "NZDJPY=X", "name": "New Zealand Dollar / Japanese Yen", "region": ["New Zealand", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "AUDNZD=X", "name": "Australian Dollar / New Zealand Dollar", "region": ["Australia", "New Zealand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "EURCAD=X", "name": "Euro / Canadian Dollar", "region": ["Eurozone", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDTRY=X", "name": "U.S. Dollar / Turkish Lira", "region": ["U.S.", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDZAR=X", "name": "U.S. Dollar / South African Rand", "region": ["U.S.", "South Africa"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "EURTRY=X", "name": "Euro / Turkish Lira", "region": ["Eurozone", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDMXN=X", "name": "U.S. Dollar / Mexican Peso", "region": ["U.S.", "Mexico"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDPLN=X", "name": "U.S. Dollar / Polish Zloty", "region": ["U.S.", "Poland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDSEK=X", "name": "U.S. Dollar / Swedish Krona", "region": ["U.S.", "Sweden"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDNOK=X", "name": "U.S. Dollar / Norwegian Krone", "region": ["U.S.", "Norway"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDTHB=X", "name": "U.S. Dollar / Thai Baht", "region": ["U.S.", "Thailand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDSGD=X", "name": "U.S. Dollar / Singapore Dollar", "region": ["U.S.", "Singapore"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDCNH=X", "name": "U.S. Dollar / Chinese Yuan (Offshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "EURCNH=X", "name": "Euro / Chinese Yuan (Offshore)", "region": ["Eurozone", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDCNY=X", "name": "U.S. Dollar / Chinese Yuan (Onshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "USDRUB=X", "name": "U.S. Dollar / Russian Ruble", "region": ["U.S.", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"},
-        {"ticker": "EURRUB=X", "name": "Euro / Russian Ruble", "region": ["Eurozone", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model"}
+        {"ticker": "EURUSD=X", "name": "Euro / U.S. Dollar", "region": ["Eurozone", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDJPY=X", "name": "U.S. Dollar / Japanese Yen", "region": ["U.S.", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "GBPUSD=X", "name": "British Pound / U.S. Dollar", "region": ["UK", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDCHF=X", "name": "U.S. Dollar / Swiss Franc", "region": ["U.S.", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "AUDUSD=X", "name": "Australian Dollar / U.S. Dollar", "region": ["Australia", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDCAD=X", "name": "U.S. Dollar / Canadian Dollar", "region": ["U.S.", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "NZDUSD=X", "name": "New Zealand Dollar / U.S. Dollar", "region": ["New Zealand", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "EURGBP=X", "name": "Euro / British Pound", "region": ["Eurozone", "UK"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "EURJPY=X", "name": "Euro / Japanese Yen", "region": ["Eurozone", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "GBPJPY=X", "name": "British Pound / Japanese Yen", "region": ["UK", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "EURCHF=X", "name": "Euro / Swiss Franc", "region": ["Eurozone", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "AudJPY=X", "name": "Australian Dollar / Japanese Yen", "region": ["Australia", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "CADJPY=X", "name": "Canadian Dollar / Japanese Yen", "region": ["Canada", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "NZDJPY=X", "name": "New Zealand Dollar / Japanese Yen", "region": ["New Zealand", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "AUDNZD=X", "name": "Australian Dollar / New Zealand Dollar", "region": ["Australia", "New Zealand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "EURCAD=X", "name": "Euro / Canadian Dollar", "region": ["Eurozone", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDTRY=X", "name": "U.S. Dollar / Turkish Lira", "region": ["U.S.", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDZAR=X", "name": "U.S. Dollar / South African Rand", "region": ["U.S.", "South Africa"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "EURTRY=X", "name": "Euro / Turkish Lira", "region": ["Eurozone", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDMXN=X", "name": "U.S. Dollar / Mexican Peso", "region": ["U.S.", "Mexico"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDPLN=X", "name": "U.S. Dollar / Polish Zloty", "region": ["U.S.", "Poland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDSEK=X", "name": "U.S. Dollar / Swedish Krona", "region": ["U.S.", "Sweden"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDNOK=X", "name": "U.S. Dollar / Norwegian Krone", "region": ["U.S.", "Norway"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDTHB=X", "name": "U.S. Dollar / Thai Baht", "region": ["U.S.", "Thailand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDSGD=X", "name": "U.S. Dollar / Singapore Dollar", "region": ["U.S.", "Singapore"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDCNH=X", "name": "U.S. Dollar / Chinese Yuan (Offshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "EURCNH=X", "name": "Euro / Chinese Yuan (Offshore)", "region": ["Eurozone", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDCNY=X", "name": "U.S. Dollar / Chinese Yuan (Onshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "USDRUB=X", "name": "U.S. Dollar / Russian Ruble", "region": ["U.S.", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
+        {"ticker": "EURRUB=X", "name": "Euro / Russian Ruble", "region": ["Eurozone", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"}
     ]
     
     try:
@@ -371,34 +375,34 @@ def insert_indices(db):
     
     # Indices data to insert with prompt and model_function fields
     indices = [
-        {"ticker": "^GSPC", "name": "S&P 500", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^NDX", "name": "NASDAQ 100", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^DJI", "name": "Dow Jones Industrial Average", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^RUT", "name": "Russell 2000", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^VIX", "name": "CBOE Volatility Index", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^N225", "name": "Nikkei 225", "region": ["Japan"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^TOPX", "name": "TOPIX", "region": ["Japan"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^GDAXI", "name": "DAX 40", "region": ["Germany"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^FCHI", "name": "CAC 40", "region": ["France"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^FTSE", "name": "FTSE 100", "region": ["UK"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^STOXX50E", "name": "Euro Stoxx 50", "region": ["Eurozone"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^SSMI", "name": "Swiss Market Index (SMI)", "region": ["Switzerland"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^HSI", "name": "Hang Seng Index", "region": ["Hong Kong"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^SSEC", "name": "Shanghai Composite", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "000001.SS", "name": "SSE 50", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "000300.SS", "name": "CSI 300", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "399001.SZ", "name": "Shenzhen Component", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "399006.SZ", "name": "ChiNext Index", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^AXJO", "name": "ASX 200", "region": ["Australia"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^AORD", "name": "All Ordinaries", "region": ["Australia"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^NSEI", "name": "Nifty 50", "region": ["India"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^BSESN", "name": "BSE Sensex", "region": ["India"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^STI", "name": "STI", "region": ["Singapore"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^KS11", "name": "KOSPI", "region": ["South Korea"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^MXX", "name": "IPC Mexico General", "region": ["Mexico"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^BVSP", "name": "Bovespa", "region": ["Brazil"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^SPTSX", "name": "S&P/TSX Composite", "region": ["Canada"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"},
-        {"ticker": "^NZ50", "name": "NZX 50", "region": ["New Zealand"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model"}
+        {"ticker": "^GSPC", "name": "S&P 500", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^NDX", "name": "NASDAQ 100", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^DJI", "name": "Dow Jones Industrial Average", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^RUT", "name": "Russell 2000", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^VIX", "name": "CBOE Volatility Index", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^N225", "name": "Nikkei 225", "region": ["Japan"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^TOPX", "name": "TOPIX", "region": ["Japan"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^GDAXI", "name": "DAX 40", "region": ["Germany"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^FCHI", "name": "CAC 40", "region": ["France"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^FTSE", "name": "FTSE 100", "region": ["UK"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^STOXX50E", "name": "Euro Stoxx 50", "region": ["Eurozone"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^SSMI", "name": "Swiss Market Index (SMI)", "region": ["Switzerland"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^HSI", "name": "Hang Seng Index", "region": ["Hong Kong"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^SSEC", "name": "Shanghai Composite", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "000001.SS", "name": "SSE 50", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "000300.SS", "name": "CSI 300", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "399001.SZ", "name": "Shenzhen Component", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "399006.SZ", "name": "ChiNext Index", "region": ["China"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^AXJO", "name": "ASX 200", "region": ["Australia"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^AORD", "name": "All Ordinaries", "region": ["Australia"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^NSEI", "name": "Nifty 50", "region": ["India"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^BSESN", "name": "BSE Sensex", "region": ["India"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^STI", "name": "STI", "region": ["Singapore"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^KS11", "name": "KOSPI", "region": ["South Korea"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^MXX", "name": "IPC Mexico General", "region": ["Mexico"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^BVSP", "name": "Bovespa", "region": ["Brazil"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^SPTSX", "name": "S&P/TSX Composite", "region": ["Canada"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"},
+        {"ticker": "^NZ50", "name": "NZX 50", "region": ["New Zealand"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX"}
     ]
     
     try:
