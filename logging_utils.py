@@ -59,7 +59,7 @@ ERROR_CODES = {
     'FALLBACK': 'WARN-0004'
 }
 
-class AlphagoraLogger:
+class AgLogger:
     """Custom logger with file logging and error codes."""
     
     def __init__(self, name: str = 'alphagora'):
@@ -177,7 +177,7 @@ class AlphagoraLogger:
         return {'error_code': error_code, 'unique_id': unique_id}
 
 # Global logger instance
-logger = AlphagoraLogger()
+logger = AgLogger()
 
 # Convenience functions for easy logging
 def log_error(message: str, error_type: str = 'GENERAL', exception: Optional[Exception] = None):
@@ -209,7 +209,7 @@ def get_error_codes():
 def initialize_logging():
     """Initialize logging system - creates log directory if needed."""
     os.makedirs(LOG_DIR, exist_ok=True)
-    return AlphagoraLogger()
+    return AgLogger()
 
 if __name__ == "__main__":
     # Test the logging system

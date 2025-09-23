@@ -404,3 +404,50 @@ def get_current_gmt_timestamp():
     
     # Format as ISO 8601 with 'Z' for UTC/GMT
     return current_utc.isoformat(timespec='seconds').replace('+00:00', 'Z')
+
+def save_to_db(recommendations):
+    """
+    Save recommendations to MongoDB documents collection.
+    
+    Parameters:
+    recommendations (dict): The recommendations dictionary to save
+    
+    Returns:
+    bool: True if successful, False on error
+    """
+    try:
+        import pymongo
+        from pymongo import MongoClient
+        
+        # Get MongoDB connection details from environment variables
+        mongodb_host = os.getenv("MONGODB_HOST", "localhost")
+        mongodb_port = int(os.getenv("MONGODB_PORT", "27017"))
+        mongodb_database = os.getenv("MONGODB_DATABASE", "alphagora")
+        mongodb_username = os.getenv("MONGODB_USERNAME")
+        mongodb_password = os.getenv("MONGODB_PASSWORD")
+        mongodb_auth_source = os.getenv("MONGODB_AUTH_SOURCE", "admin")
+        
+        # Construct MongoDB URI based on whether authentication is provided
+        if mongodb_username and mongodb_password:
+            mongodb_uri = f"mongodb://{mongodb_username}:{mongodb_password}@{mongodb_host}:{mongodb_port}/{mongodb_database}?authSource={mongodb_auth_source}"
+        else:
+            mongodb_uri = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_database}"
+        
+        # Connect to MongoDB
+        client = MongoClient(mongodb_uri)
+        db = client[mongodb_database]
+        collection = db['documents']
+        
+        # Insert the recommendations document
+        result = collection.insert_one(recommendations)
+        return True
+        
+    except pymongo.errors.ServerSelectionTimeoutError:
+        log_error("MongoDB server not found. Please ensure MongoDB is running", "MONGODB_CONNECTION", None)
+        return False
+    except pymongo.errors.OperationFailure as e:
+        log_error("MongoDB operation failed", "MONGODB_OPERATION", e)
+        return False
+    except Exception as e:
+        log_error("Unexpected error saving to database", "DATABASE_SAVE", e)
+        return False
