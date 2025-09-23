@@ -11,6 +11,14 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+# Add the parent directory to the Python path to ensure imports work
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+if parent_dir not in sys.path:
+    sys.path.append(parent_dir)
+
+from logging_utils import log_error, log_warning
+
 def create_collection_with_schema(db, collection_name, validator, indexes=None):
     """
     Creates a MongoDB collection with schema validation and indexes.
@@ -46,10 +54,10 @@ def create_collection_with_schema(db, collection_name, validator, indexes=None):
         return True
         
     except pymongo.errors.OperationFailure as e:
-        print(f"MongoDB operation failed for collection '{collection_name}': {e}")
+        log_error(f"MongoDB operation failed for collection '{collection_name}'", "MONGODB_OPERATION", e)
         return False
     except Exception as e:
-        print(f"Unexpected error creating collection '{collection_name}': {e}")
+        log_error(f"Unexpected error creating collection '{collection_name}'", "COLLECTION_CREATION", e)
         return False
 
 
@@ -345,10 +353,10 @@ def insert_fx_pairs(db):
         return True
         
     except pymongo.errors.OperationFailure as e:
-        print(f"MongoDB operation failed for inserting FX pairs: {e}")
+        log_error("MongoDB operation failed for inserting FX pairs", "MONGODB_OPERATION", e)
         return False
     except Exception as e:
-        print(f"Unexpected error inserting FX pairs: {e}")
+        log_error("Unexpected error inserting FX pairs", "DATA_INSERTION", e)
         return False
 
 
@@ -420,10 +428,10 @@ def insert_indices(db):
         return True
         
     except pymongo.errors.OperationFailure as e:
-        print(f"MongoDB operation failed for inserting indices: {e}")
+        log_error("MongoDB operation failed for inserting indices", "MONGODB_OPERATION", e)
         return False
     except Exception as e:
-        print(f"Unexpected error inserting indices: {e}")
+        log_error("Unexpected error inserting indices", "DATA_INSERTION", e)
         return False
 
 
@@ -471,13 +479,13 @@ def create_alphagora_database():
         return success
         
     except pymongo.errors.ServerSelectionTimeoutError:
-        print("MongoDB server not found. Please ensure MongoDB is running on localhost:27017")
+        log_error("MongoDB server not found. Please ensure MongoDB is running on localhost:27017", "MONGODB_CONNECTION", None)
         return False
     except pymongo.errors.OperationFailure as e:
-        print(f"MongoDB operation failed: {e}")
+        log_error("MongoDB operation failed", "MONGODB_OPERATION", e)
         return False
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        log_error("Unexpected error", "DATABASE_CREATION", e)
         return False
 
 if __name__ == "__main__":

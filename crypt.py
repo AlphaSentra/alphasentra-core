@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from logging_utils import log_error, log_warning
 
 # Load environment variables from .env file
 load_dotenv()
@@ -61,11 +62,11 @@ def encrypt_string(plaintext, secret_key=None):
         
     except ImportError:
         # Fallback to simple encryption if cryptography is not available
-        print("Warning: cryptography library not installed. Using simple base64 encoding.")
+        log_warning("cryptography library not installed. Using simple base64 encoding.", "FALLBACK")
         return base64.urlsafe_b64encode(plaintext.encode()).decode()
         
     except Exception as e:
-        print(f"Error encrypting string: {e}")
+        log_error("Error encrypting string", "ENCRYPTION", e)
         return None
 
 
@@ -108,14 +109,11 @@ def decrypt_string(encrypted_text, secret_key=None):
 
     except ImportError:
         # Fallback to simple decryption if cryptography is not available
-        print("Warning: cryptography library not installed. Using simple base64 decoding.")
+        log_warning("cryptography library not installed. Using simple base64 decoding.", "FALLBACK")
         return base64.urlsafe_b64decode(encrypted_text.encode()).decode()
     
     except Exception as e:
-        print("=" * 100)
-        print("Invalid decryption: ENCRYPTION_SECRET is incorrect or the encrypted text is corrupted.")
-        print("=" * 100)
-        print(f"{e}")
+        log_error("Invalid decryption: ENCRYPTION_SECRET is incorrect or the encrypted text is corrupted", "DECRYPTION", e)
         return None
 
 

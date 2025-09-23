@@ -1,0 +1,4 @@
+2025-09-23 13:25:43,176 - INFO - [INFO] - Logging system initialized successfully
+2025-09-23 13:25:43,177 - WARNING - [WARN-0002] - [f7704044] This is a test warning | From: logging_utils.py:<module>()
+2025-09-23 13:25:43,178 - ERROR - [ERR-0101] - [9b21337f] This is a test error | From: logging_utils.py:<module>()
+2025-09-23 13:25:43,178 - ERROR - [ERR-0303] - [f265b2ee] Caught test exception | Exception: ValueError: Test exception | From: logging_utils.py:<module>()

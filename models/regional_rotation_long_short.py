@@ -22,6 +22,7 @@ load_dotenv()
 from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS, REGIONAL_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp
+from logging_utils import log_error, log_warning
 
 
 def run_regional_rotation_model(tickers=None, regions=None):
@@ -58,7 +59,7 @@ def run_regional_rotation_model(tickers=None, regions=None):
                 
                 # Parse JSON to get the weights
                 ai_weights_raw = json.loads(ai_weights_response)
-                print(ai_weights_raw)
+                # Debug print removed - use logging instead if needed
                 
                 # Map AI response keys to the keys used in the main prompt
                 ai_weights = {
@@ -71,11 +72,11 @@ def run_regional_rotation_model(tickers=None, regions=None):
                     'Sentiment_Surveys': ai_weights_raw.get('Sentiment Surveys', WEIGHTS_PERCENT['Sentiment_Surveys'])
                 }
             except json.JSONDecodeError as e:
-                print(f"Error parsing AI weights response as JSON: {e}")
-                print(f"Raw weights response: {ai_weights_response[:200]}...")
+                log_error("Error parsing AI weights response as JSON", "AI_PARSING", e)
+                log_warning(f"Raw weights response: {ai_weights_response[:200]}...", "DATA_MISSING")
                 ai_weights = None
         except Exception as e:
-            print(f"Error getting AI weights: {e}")
+            log_error("Error getting AI weights", "AI_WEIGHTS", e)
             ai_weights = None
 
     # Format the prompt with the necessary variables
@@ -84,7 +85,7 @@ def run_regional_rotation_model(tickers=None, regions=None):
         try:
             decrypted_regional_prompt = decrypt_string(REGIONAL_ROTATION_LONG_SHORT_PROMPT)
         except Exception as e:
-            print(f"Error decrypting REGIONAL_ROTATION_LONG_SHORT_PROMPT: {e}")
+            log_error("Error decrypting REGIONAL_ROTATION_LONG_SHORT_PROMPT", "DECRYPTION", e)
             decrypted_regional_prompt = REGIONAL_ROTATION_LONG_SHORT_PROMPT  # Fallback to encrypted version
         
         # Create a comma-separated string of tickers for the prompt
@@ -126,8 +127,8 @@ def run_regional_rotation_model(tickers=None, regions=None):
             recommendations = json.loads(result)
             
         except json.JSONDecodeError as e:
-            print(f"Error parsing AI response as JSON: {e}")
-            print(f"Raw response content: {result[:200]}...")  # Show first 200 chars for debugging
+            log_error("Error parsing AI response as JSON", "AI_PARSING", e)
+            log_warning(f"Raw response content: {result[:200]}...", "DATA_MISSING")
             recommendations = None
 
 
@@ -229,27 +230,27 @@ def run_regional_rotation_model(tickers=None, regions=None):
                     
                     # Validate that required fields are present
                     if ticker == 'UNKNOWN':
-                        print("- Warning: Missing ticker information")
+                        log_warning("Missing ticker information", "DATA_MISSING")
                         continue
                     
                     if direction == 'NONE':
-                        print(f"- {ticker}: Warning - Missing trade direction")
+                        log_warning(f"{ticker}: Missing trade direction", "DATA_MISSING")
                         direction = 'HOLD'  # Default to HOLD if direction is missing
                     
                     # Ensure score is within valid range
                     if not isinstance(score, int) or score < 1 or score > 10:
-                        print(f"- {ticker}: Warning - Invalid score ({score}), setting to 5")
+                        log_warning(f"{ticker}: Invalid score ({score}), setting to 5", "DATA_VALIDATION")
                         score = 5
                     
                     # Validate stop_loss and entry_price
                     if stop_loss == 'N/A':
-                        print(f"- {ticker}: Warning - Missing stop loss data")
+                        log_warning(f"{ticker}: Missing stop loss data", "DATA_MISSING")
                     
                     if target_price == 'N/A':
-                        print(f"- {ticker}: Warning - Missing target price data")
+                        log_warning(f"{ticker}: Missing target price data", "DATA_MISSING")
                     
                     if entry_price == 'N/A':
-                        print(f"- {ticker}: Warning - Missing entry price data")
+                        log_warning(f"{ticker}: Missing entry price data", "DATA_MISSING")
                     
                     print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
             else:
@@ -258,7 +259,7 @@ def run_regional_rotation_model(tickers=None, regions=None):
                 print(result)
             
     except Exception as e:
-        print(f"Error in regional_rotation_long_short.py: {e}")
+        log_error("Error in regional_rotation_long_short", "MODEL_EXECUTION", e)
 
 # Testing the function
 if __name__ == "__main__":

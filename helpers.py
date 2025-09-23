@@ -7,9 +7,6 @@ Helper functions
 
 # --- HELPER FUNCTIONS ---
 from data.price import calculate_trade_levels, calculate_entry_price, get_current_price
-import backtrader as bt
-from backtrader.indicators import ATR, ADX
-from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
 import sys
@@ -21,7 +18,7 @@ parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
-from genAI.ai_prompt import get_gen_ai_response
+from logging_utils import log_error
 
 # Load environment variables
 load_dotenv()
@@ -157,9 +154,7 @@ def add_trade_levels_to_recommendations(recommendations, gemini_model=None, deci
         
         return recommendations
     except Exception as e:
-        print(f"ERROR in add_trade_levels_to_recommendations: {e}")
-        import traceback
-        traceback.print_exc()
+        log_error("Error in add_trade_levels_to_recommendations", "TRADE_LEVELS", e)
         return recommendations
 
 
@@ -242,9 +237,7 @@ def add_entry_price_to_recommendations(recommendations, gemini_model=None, decim
         
         return recommendations
     except Exception as e:
-        print(f"ERROR in add_entry_price_to_recommendations: {e}")
-        import traceback
-        traceback.print_exc()
+        log_error("Error in add_entry_price_to_recommendations", "ENTRY_PRICE", e)
         return recommendations
     
 

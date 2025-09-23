@@ -22,6 +22,7 @@ load_dotenv()
 from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp
+from logging_utils import log_error, log_warning
 
 
 def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
@@ -68,11 +69,11 @@ def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
                     'Sentiment_Surveys': ai_weights_raw.get('Sentiment Surveys', WEIGHTS_PERCENT['Sentiment_Surveys'])
                 }
             except json.JSONDecodeError as e:
-                print(f"Error parsing AI weights response as JSON: {e}")
-                print(f"Raw weights response: {ai_weights_response[:200]}...")
+                log_error("Error parsing AI weights response as JSON", "AI_PARSING", e)
+                log_warning(f"Raw weights response: {ai_weights_response[:200]}...", "DATA_MISSING")
                 ai_weights = None
         except Exception as e:
-            print(f"Error getting AI weights: {e}")
+            log_error("Error getting AI weights", "AI_WEIGHTS", e)
             ai_weights = None
 
     # Use provided prompt or fallback to config prompt
@@ -85,7 +86,7 @@ def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
         try:
             decrypted_prompt = decrypt_string(prompt)
         except Exception as e:
-            print(f"Error decrypting prompt: {e}")
+            log_error("Error decrypting prompt", "DECRYPTION", e)
             decrypted_prompt = prompt  # Fallback to encrypted version
         
         # Create a comma-separated string of tickers for the prompt
@@ -123,8 +124,8 @@ def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
             # Parse JSON
             recommendations = json.loads(result)
         except json.JSONDecodeError as e:
-            print(f"Error parsing AI response as JSON: {e}")
-            print(f"Raw response content: {result[:200]}...")  # Show first 200 chars for debugging
+            log_error("Error parsing AI response as JSON", "AI_PARSING", e)
+            log_warning(f"Raw response content: {result[:200]}...", "DATA_MISSING")
             recommendations = None
 
 
@@ -226,27 +227,27 @@ def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
                     
                     # Validate that required fields are present
                     if tickers == 'UNKNOWN':
-                        print("- Warning: Missing ticker information")
+                        log_warning("Missing ticker information", "DATA_MISSING")
                         continue
                     
                     if direction == 'NONE':
-                        print(f"- {tickers}: Warning - Missing trade direction")
+                        log_warning(f"{tickers}: Missing trade direction", "DATA_MISSING")
                         direction = 'HOLD'  # Default to HOLD if direction is missing
                     
                     # Ensure score is within valid range
                     if not isinstance(score, int) or score < 1 or score > 10:
-                        print(f"- {tickers}: Warning - Invalid score ({score}), setting to 5")
+                        log_warning(f"{tickers}: Invalid score ({score}), setting to 5", "DATA_VALIDATION")
                         score = 5
                     
                     # Validate stop_loss and entry_price
                     if stop_loss == 'N/A':
-                        print(f"- {tickers}: Warning - Missing stop loss data")
+                        log_warning(f"{tickers}: Missing stop loss data", "DATA_MISSING")
                     
                     if target_price == 'N/A':
-                        print(f"- {tickers}: Warning - Missing target price data")
+                        log_warning(f"{tickers}: Missing target price data", "DATA_MISSING")
                     
                     if entry_price == 'N/A':
-                        print(f"- {tickers}: Warning - Missing entry price data")
+                        log_warning(f"{tickers}: Missing entry price data", "DATA_MISSING")
                     
                     print(f"- {tickers}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
             else:
@@ -255,7 +256,7 @@ def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
                 print(result)
             
     except Exception as e:
-        print(f"Error in holistic_market_model.py: {e}")
+        log_error("Error in holistic_market_model", "MODEL_EXECUTION", e)
         return None
         
     return recommendations
