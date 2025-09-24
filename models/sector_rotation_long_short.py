@@ -21,7 +21,7 @@ load_dotenv()
 
 from _config import SECTOR_ETFS, WEIGHTS_PERCENT, SECTOR_REGIONS, SECTOR_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db
 from logging_utils import log_error, log_warning
 
 
@@ -259,6 +259,10 @@ def run_sector_rotation_model(tickers=None, sector_regions=None):
             
     except Exception as e:
         log_error("Error in sector_rotation_long_short", "MODEL_EXECUTION", e)
+        
+    # Save recommendations to database
+    if recommendations:
+        save_to_db(recommendations)
 
 # Testing the function
 if __name__ == "__main__":

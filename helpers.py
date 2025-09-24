@@ -407,7 +407,7 @@ def get_current_gmt_timestamp():
 
 def save_to_db(recommendations):
     """
-    Save recommendations to MongoDB documents collection.
+    Save data to MongoDB collections.
     
     Parameters:
     recommendations (dict): The recommendations dictionary to save
