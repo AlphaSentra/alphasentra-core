@@ -81,110 +81,121 @@ def create_documents_collection(db):
 
     # Create collection with schema validation
     validator = {
-        '$jsonSchema': {
-            'bsonType': 'object',
-            'required': [
-                'title',
-                'market_outlook_narrative',
-                'rationale',
-                'analysis',
-                'recommendations',
-                'sentiment_score',
-                'market_impact',
-                'timestamp_gmt',
-                'language_code'
-            ],
-            'properties': {
-                'title': {
-                    'bsonType': 'string',
-                                        },
-                'market_outlook_narrative': {
-                    'bsonType': 'array',
-                    'items': {
-                        'bsonType': 'string'
-                    },
-                                        },
-                'rationale': {
-                    'bsonType': 'string',
-                                        },
-                'analysis': {
-                    'bsonType': 'string',
-                                        },
-                'sources': {
-                    'bsonType': 'array',
-                    'items': {
-                        'bsonType': 'object',
-                        'required': ['source_name', 'source_title'],
-                        'properties': {
-                            'source_name': {
-                                'bsonType': 'string',
-                                                                },
-                            'source_title': {
-                                'bsonType': 'string',
-                                                                }
+    '$jsonSchema': {
+        'bsonType': 'object',
+        'required': [
+            'title',
+            'market_outlook_narrative',
+            'rationale',
+            'analysis',
+            'recommendations',
+            'sentiment_score',
+            'market_impact',
+            'timestamp_gmt',
+            'language_code'
+        ],
+        'properties': {
+            'title': {
+                'bsonType': 'string'
+            },
+            'market_outlook_narrative': {
+                'bsonType': 'array',
+                'items': {
+                    'bsonType': 'string'
+                }
+            },
+            'rationale': {
+                'bsonType': 'string'
+            },
+            'analysis': {
+                'bsonType': 'string'
+            },
+            'sources': {
+                'bsonType': 'array',
+                'items': {
+                    'bsonType': 'object',
+                    'required': ['source_name', 'source_title'],
+                    'properties': {
+                        'source_name': {
+                            'bsonType': 'string'
+                        },
+                        'source_title': {
+                            'bsonType': 'string'
                         }
-                    },
-                                        },
-                'recommendations': {
-                    'bsonType': 'array',
-                    'items': {
-                        'bsonType': 'object',
-                        'required': [
-                            'ticker',
-                            'trade_direction',
-                            'bull_bear_score',
-                            'stop_loss',
-                            'target_price',
-                            'entry_price',
-                            'price'
-                        ],
-                        'properties': {
-                            'ticker': {
-                                'bsonType': 'string',
-                                                                },
-                            'trade_direction': {
-                                'bsonType': 'string',
-                                                                },
-                            'bull_bear_score': {
-                                'bsonType': 'int',
-                                'minimum': -100,
-                                'maximum': 100,
-                                                                },
-                            'stop_loss': {
-                                'bsonType': 'double',
-                                                                },
-                            'target_price': {
-                                'bsonType': 'double',
-                                                                },
-                            'entry_price': {
-                                'bsonType': 'double',
-                                                                },
-                            'price': {
-                                'bsonType': 'double',
-                                                                }
+                    }
+                }
+            },
+            'recommendations': {
+                'bsonType': 'array',
+                'items': {
+                    'bsonType': 'object',
+                    'required': [
+                        'ticker',
+                        'trade_direction',
+                        'bull_bear_score',
+                        'stop_loss',
+                        'target_price',
+                        'entry_price',
+                        'price'
+                    ],
+                    'properties': {
+                        'ticker': {
+                            'bsonType': 'string'
+                        },
+                        'trade_direction': {
+                            'bsonType': 'string'
+                        },
+                        'bull_bear_score': {
+                            'bsonType': 'int',
+                            'minimum': 1,
+                            'maximum': 10
+                        },
+                        'stop_loss': {
+                            'bsonType': 'double'
+                        },
+                        'target_price': {
+                            'bsonType': 'double'
+                        },
+                        'entry_price': {
+                            'bsonType': 'double'
+                        },
+                        'price': {
+                            'bsonType': 'double'
                         }
-                    },
-                                        },
-                'sentiment_score': {
-                    'bsonType': 'double',
-                    'minimum': -1.0,
-                    'maximum': 1.0,
-                                        },
-                'market_impact': {
-                    'bsonType': 'int',
-                    'minimum': -100,
-                    'maximum': 100,
-                                        },
-                'timestamp_gmt': {
-                    'bsonType': 'string',
-                    'pattern': '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$',
-                                        },
-                'language_code': {
-                    'bsonType': 'string',
-                    'pattern': '^[a-z]{2}(-[A-Z]{2})?$',
-                                        }
+                    }
+                }
+            },
+            'sentiment_score': {
+                'bsonType': 'double',
+                'minimum': 0,
+                'maximum': 1.0
+            },
+            'market_impact': {
+                'bsonType': 'int',
+                'minimum': 1,
+                'maximum': 10
+            },
+            'timestamp_gmt': {
+                'bsonType': 'string',
+                'pattern': '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$'
+            },
+            'language_code': {
+                'bsonType': 'string',
+                'pattern': '^[a-z]{2}(-[A-Z]{2})?$'
+            },
+            'importance': {
+                'bsonType': 'int',
+                'minimum': 1,
+                'maximum': 5
+            },
+            'asset_class': {
+                'bsonType': 'string'
+            },
+            'region': {
+                'bsonType': 'string'
             }
         }
+    }
     }
     
     # Define indexes for better query performance
@@ -240,25 +251,34 @@ def create_tickers_collection(db):
             'properties': {
                 'ticker': {
                     'bsonType': 'string',
-                                        },
+                },
                 'name': {
                     'bsonType': 'string',
-                                        },
+                },
                 'region': {
                     'bsonType': 'array',
                     'items': {
                         'bsonType': 'string'
                     },
-                                        },
+                },
                 'prompt': {
                     'bsonType': 'string',
-                                        },
+                },
                 'model_function': {
                     'bsonType': 'string',
-                                        },
+                },
                 'asset_class': {
                     'bsonType': 'string',
-                                        }
+                },
+                'importance': {
+                    'bsonType': 'int',
+                    'minimum': 1,
+                    'maximum': 5,
+                },
+                'recurrence': {
+                    'bsonType': 'string',
+                    'enum': ['multi','once'],
+                }
             }
         }
     }
@@ -306,36 +326,36 @@ def insert_fx_pairs(db):
     
     # FX pairs data to insert with prompt and model_function fields
     fx_pairs = [
-        {"ticker": "EURUSD=X", "name": "Euro / U.S. Dollar", "region": ["Eurozone", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDJPY=X", "name": "U.S. Dollar / Japanese Yen", "region": ["U.S.", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "GBPUSD=X", "name": "British Pound / U.S. Dollar", "region": ["UK", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDCHF=X", "name": "U.S. Dollar / Swiss Franc", "region": ["U.S.", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "AUDUSD=X", "name": "Australian Dollar / U.S. Dollar", "region": ["Australia", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDCAD=X", "name": "U.S. Dollar / Canadian Dollar", "region": ["U.S.", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "NZDUSD=X", "name": "New Zealand Dollar / U.S. Dollar", "region": ["New Zealand", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "EURGBP=X", "name": "Euro / British Pound", "region": ["Eurozone", "UK"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "EURJPY=X", "name": "Euro / Japanese Yen", "region": ["Eurozone", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "GBPJPY=X", "name": "British Pound / Japanese Yen", "region": ["UK", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "EURCHF=X", "name": "Euro / Swiss Franc", "region": ["Eurozone", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "AudJPY=X", "name": "Australian Dollar / Japanese Yen", "region": ["Australia", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "CADJPY=X", "name": "Canadian Dollar / Japanese Yen", "region": ["Canada", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "NZDJPY=X", "name": "New Zealand Dollar / Japanese Yen", "region": ["New Zealand", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "AUDNZD=X", "name": "Australian Dollar / New Zealand Dollar", "region": ["Australia", "New Zealand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "EURCAD=X", "name": "Euro / Canadian Dollar", "region": ["Eurozone", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDTRY=X", "name": "U.S. Dollar / Turkish Lira", "region": ["U.S.", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDZAR=X", "name": "U.S. Dollar / South African Rand", "region": ["U.S.", "South Africa"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "EURTRY=X", "name": "Euro / Turkish Lira", "region": ["Eurozone", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDMXN=X", "name": "U.S. Dollar / Mexican Peso", "region": ["U.S.", "Mexico"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDPLN=X", "name": "U.S. Dollar / Polish Zloty", "region": ["U.S.", "Poland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDSEK=X", "name": "U.S. Dollar / Swedish Krona", "region": ["U.S.", "Sweden"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDNOK=X", "name": "U.S. Dollar / Norwegian Krone", "region": ["U.S.", "Norway"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDTHB=X", "name": "U.S. Dollar / Thai Baht", "region": ["U.S.", "Thailand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDSGD=X", "name": "U.S. Dollar / Singapore Dollar", "region": ["U.S.", "Singapore"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDCNH=X", "name": "U.S. Dollar / Chinese Yuan (Offshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "EURCNH=X", "name": "Euro / Chinese Yuan (Offshore)", "region": ["Eurozone", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDCNY=X", "name": "U.S. Dollar / Chinese Yuan (Onshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "USDRUB=X", "name": "U.S. Dollar / Russian Ruble", "region": ["U.S.", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"},
-        {"ticker": "EURRUB=X", "name": "Euro / Russian Ruble", "region": ["Eurozone", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX"}
+        {"ticker": "EURUSD=X", "name": "Euro / U.S. Dollar", "region": ["Eurozone", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "USDJPY=X", "name": "U.S. Dollar / Japanese Yen", "region": ["U.S.", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "GBPUSD=X", "name": "British Pound / U.S. Dollar", "region": ["UK", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "USDCHF=X", "name": "U.S. Dollar / Swiss Franc", "region": ["U.S.", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "AUDUSD=X", "name": "Australian Dollar / U.S. Dollar", "region": ["Australia", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "USDCAD=X", "name": "U.S. Dollar / Canadian Dollar", "region": ["U.S.", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "NZDUSD=X", "name": "New Zealand Dollar / U.S. Dollar", "region": ["New Zealand", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "EURGBP=X", "name": "Euro / British Pound", "region": ["Eurozone", "UK"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "EURJPY=X", "name": "Euro / Japanese Yen", "region": ["Eurozone", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "GBPJPY=X", "name": "British Pound / Japanese Yen", "region": ["UK", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "EURCHF=X", "name": "Euro / Swiss Franc", "region": ["Eurozone", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "AudJPY=X", "name": "Australian Dollar / Japanese Yen", "region": ["Australia", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "CADJPY=X", "name": "Canadian Dollar / Japanese Yen", "region": ["Canada", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "NZDJPY=X", "name": "New Zealand Dollar / Japanese Yen", "region": ["New Zealand", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "AUDNZD=X", "name": "Australian Dollar / New Zealand Dollar", "region": ["Australia", "New Zealand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "EURCAD=X", "name": "Euro / Canadian Dollar", "region": ["Eurozone", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDTRY=X", "name": "U.S. Dollar / Turkish Lira", "region": ["U.S.", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDZAR=X", "name": "U.S. Dollar / South African Rand", "region": ["U.S.", "South Africa"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "EURTRY=X", "name": "Euro / Turkish Lira", "region": ["Eurozone", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDMXN=X", "name": "U.S. Dollar / Mexican Peso", "region": ["U.S.", "Mexico"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDPLN=X", "name": "U.S. Dollar / Polish Zloty", "region": ["U.S.", "Poland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDSEK=X", "name": "U.S. Dollar / Swedish Krona", "region": ["U.S.", "Sweden"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDNOK=X", "name": "U.S. Dollar / Norwegian Krone", "region": ["U.S.", "Norway"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDTHB=X", "name": "U.S. Dollar / Thai Baht", "region": ["U.S.", "Thailand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDSGD=X", "name": "U.S. Dollar / Singapore Dollar", "region": ["U.S.", "Singapore"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDCNH=X", "name": "U.S. Dollar / Chinese Yuan (Offshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "EURCNH=X", "name": "Euro / Chinese Yuan (Offshore)", "region": ["Eurozone", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDCNY=X", "name": "U.S. Dollar / Chinese Yuan (Onshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDRUB=X", "name": "U.S. Dollar / Russian Ruble", "region": ["U.S.", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "EURRUB=X", "name": "Euro / Russian Ruble", "region": ["Eurozone", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"}
     ]
     
     try:

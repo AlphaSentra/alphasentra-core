@@ -43,6 +43,8 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
 
 ## AI Prompt Variables and Output
 
+### Prompt input variables
+
 **Model [prompt] contain some of the following variables:**
 
 - Tickers: `{ticker_str}`,
@@ -58,34 +60,152 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
 - Business Cycle: `{business_cycle_weight}`,
 - Sentiment Surveys: `{sentiment_surveys_weight}`
 
-**Model JSON Object:**
+**Model Validation:**
 
 ```
 {
-  "title": "string",
-  "market_outlook_narrative": [
-    "string",
-    "string"
-  ],
-  "rationale": "string",
-  "analysis": "<h1>string</h1><p>string</p>",
-  "market_impact": "integer",
-  "sources": [
-    {
-      "source_name": "string",
-      "source_title": "string",
-      "source_url": "string"
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'title',
+      'market_outlook_narrative',
+      'rationale',
+      'analysis',
+      'recommendations',
+      'sentiment_score',
+      'market_impact',
+      'timestamp_gmt',
+      'language_code'
+    ],
+    properties: {
+      title: {
+        bsonType: 'string'
+      },
+      market_outlook_narrative: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'string'
+        }
+      },
+      rationale: {
+        bsonType: 'string'
+      },
+      analysis: {
+        bsonType: 'string'
+      },
+      sources: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'object',
+          required: [
+            'source_name',
+            'source_title'
+          ],
+          properties: {
+            source_name: {
+              bsonType: 'string'
+            },
+            source_title: {
+              bsonType: 'string'
+            }
+          }
+        }
+      },
+      recommendations: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'object',
+          required: [
+            'ticker',
+            'trade_direction',
+            'bull_bear_score',
+            'stop_loss',
+            'target_price',
+            'entry_price',
+            'price'
+          ],
+          properties: {
+            ticker: {
+              bsonType: 'string'
+            },
+            trade_direction: {
+              bsonType: 'string'
+            },
+            bull_bear_score: {
+              bsonType: 'int',
+              minimum: -100,
+              maximum: 100
+            },
+            stop_loss: {
+              bsonType: 'double'
+            },
+            target_price: {
+              bsonType: 'double'
+            },
+            entry_price: {
+              bsonType: 'double'
+            },
+            price: {
+              bsonType: 'double'
+            }
+          }
+        }
+      },
+      sentiment_score: {
+        bsonType: 'double',
+        minimum: 0,
+        maximum: 1
+      },
+      market_impact: {
+        bsonType: 'int',
+        minimum: 1,
+        maximum: 10
+      },
+      timestamp_gmt: {
+        bsonType: 'string',
+        pattern: '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$'
+      },
+      language_code: {
+        bsonType: 'string',
+        pattern: '^[a-z]{2}(-[A-Z]{2})?$'
+      },
+      importance: {
+        bsonType: 'int',
+        minimum: 1,
+        maximum: 5
+      },
+      asset_class: {
+        bsonType: 'string'
+      },
+      region: {
+        bsonType: 'string'
+      }
     }
-  ],
-  "recommendations": [
-    {
-      "ticker": "string",
-      "trade_direction": "string",
-      "bull_bear_score": "integer"
-    }
-  ]
+  }
 }
 ```
+
+Importance represents how we classify the significance of the information, where 1 is most important and 5 is least important:
+
+1. Thematic market research coverage
+2. Major economic data releases
+3. Earnings reports and trending topics in the equity market
+4. Daily coverage of popular instruments
+5. Daily coverage of other or exotic instruments
+
+We categorise asset classes as follows:
+
+- FX: Foreign Exchange pairs
+- IC: Indices
+- EQ: Equities
+- EN: Energy
+- ME: Metals
+- AG: Agriculture
+- LI: Livestock and meat
+- CR: Crypto
+
+### Prompt output
+
 The prompt should return the JSON object, including the following structure:
 <pre>
  **JSON Output format**: YOUR RESPONSE MUST BE A VALID JSON OBJECT. DO NOT INCLUDE ANY ADDITIONAL TEXT OR EXPLANATIONS. With this exact structure: [title] as a string, [market_outlook_narrative] as an array of strings. [rationale] as a string. [market_impact] as an integer. [analysis] as a string in HTML format. [sources] as an array of objects, where each object has, [source_name] as strong, [source_title] as a string, and [source_url] as a string. On the same level as [sources], [recommendations] as an array of objects, where each object has, [ticker] as a string, [trade_direction] as string, [bull_bear_score] as integer.
