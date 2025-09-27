@@ -19,7 +19,7 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS, REGIONAL_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE
+from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS, REGIONAL_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, REGIONAL_ASSET_CLASS, REGIONAL_IMPORTANCE
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback
 from logging_utils import log_error, log_warning
@@ -109,6 +109,12 @@ def run_regional_rotation_model(tickers=None, regions=None):
             recommendations['timestamp_gmt'] = get_current_gmt_timestamp()
             # Add language code to recommendations
             recommendations['language_code'] = LANGUAGE
+            # Add regions to recommendations
+            recommendations['regions'] = REGIONAL_REGIONS
+            # Add asset classes to recommendations
+            recommendations['asset_class'] = REGIONAL_ASSET_CLASS
+            #Add importance
+            recommendations['importance'] = REGIONAL_IMPORTANCE
         # -----------------------------------------------------------------------------------
 
             #Display Model Output header

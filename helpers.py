@@ -3,13 +3,19 @@ Description:
 Helper functions
 """
 
-
-
-# --- HELPER FUNCTIONS ---
 from data.price import calculate_trade_levels, calculate_entry_price, get_current_price
 import os
 from dotenv import load_dotenv
 import sys
+
+# MongoDB imports - handle optional dependency
+try:
+    import pymongo
+    from pymongo import MongoClient
+    PYMONGO_AVAILABLE = True
+except ImportError:
+    PYMONGO_AVAILABLE = False
+    log_warning("pymongo not available - database functions will be limited", "MONGODB_DEPENDENCY")
 
 
 # Add the parent directory to the Python path to ensure imports work
@@ -22,9 +28,6 @@ from logging_utils import log_error, log_info, log_warning
 
 # Load environment variables
 load_dotenv()
-
-
-
 
 def get_trade_recommendations(tickers_with_direction, decimal_digits=2):
     """
@@ -156,7 +159,6 @@ def add_trade_levels_to_recommendations(recommendations, gemini_model=None, deci
     except Exception as e:
         log_error("Error in add_trade_levels_to_recommendations", "TRADE_LEVELS", e)
         return recommendations
-
 
 
 def add_entry_price_to_recommendations(recommendations, gemini_model=None, decimal_digits=2):
@@ -390,6 +392,7 @@ def analyze_sentiment(text):
     else:
         return 0.5  # Return neutral if no text
 
+
 def get_current_gmt_timestamp():
     """
     Get the current date and time in GMT timezone.
@@ -404,6 +407,7 @@ def get_current_gmt_timestamp():
     
     # Format as ISO 8601 with 'Z' for UTC/GMT
     return current_utc.isoformat(timespec='seconds').replace('+00:00', 'Z')
+
 
 class DatabaseManager:
     """
@@ -425,8 +429,8 @@ class DatabaseManager:
         """
         if self._client is None:
             try:
-                import pymongo
-                from pymongo import MongoClient
+                if not PYMONGO_AVAILABLE:
+                    raise ImportError("pymongo not available")
                 
                 # Get MongoDB connection details from environment variables
                 mongodb_host = os.getenv("MONGODB_HOST", "localhost")
@@ -480,7 +484,9 @@ def save_to_db(recommendations):
     bool: True if successful, False on error
     """
     try:
-        import pymongo
+        if not PYMONGO_AVAILABLE:
+            log_error("pymongo not available - cannot save to database", "MONGODB_DEPENDENCY", None)
+            return False
         
         # Use DatabaseManager for connection pooling
         client = DatabaseManager().get_client()
@@ -512,6 +518,8 @@ from pymongo.errors import AutoReconnect, NetworkTimeout, ConnectionFailure, Ope
     wait=wait_exponential(multiplier=1, min=1, max=10),
     retry=retry_if_exception_type((AutoReconnect, NetworkTimeout, ConnectionFailure))
 )
+
+
 def save_to_db_with_retry(recommendations):
     """
     Save to database with automatic retry for network issues.
@@ -616,6 +624,7 @@ def save_to_db_with_fallback(recommendations):
         log_error("Critical error in database save with fallback", "DATABASE_CRITICAL", e)
         return False
 
+
 def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=None):
     """
     Get AI-generated factor weights for market analysis with MongoDB caching.
@@ -639,7 +648,9 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
     
     # First check if we have cached weights for today in MongoDB
     try:
-        import pymongo
+        if not PYMONGO_AVAILABLE:
+            # Skip cache check if pymongo not available
+            return None
         
         # Use DatabaseManager for connection pooling
         client = DatabaseManager().get_client()
@@ -694,12 +705,15 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
                 
                 # Store the new weights in MongoDB for future use
                 try:
-                    collection.insert_one({
-                        "date": date.today().isoformat(),
-                        "timestamp": datetime.now().isoformat(),
-                        "weights": ai_weights
-                    })
-                    print("Saved new weights to database for caching")
+                    if PYMONGO_AVAILABLE:
+                        collection.insert_one({
+                            "date": date.today().isoformat(),
+                            "timestamp": datetime.now().isoformat(),
+                            "weights": ai_weights
+                        })
+                        print("Saved new weights to database for caching")
+                    else:
+                        log_warning("pymongo not available - skipping weight caching", "MONGODB_DEPENDENCY")
                 except Exception as e:
                     log_error("Error saving weights to MongoDB", "MONGODB_SAVE", e)
                 
@@ -712,3 +726,139 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
             ai_weights = None
     
     return ai_weights
+
+
+def get_regions(tickers):
+    """
+    Get regions for given tickers from database tickers collection.
+    
+    Parameters:
+    tickers (str or list): Ticker symbols to get regions for
+    
+    Returns:
+    list: List of unique regions, or empty list if no regions found or error occurs
+    """
+    # If tickers is a string, split by comma and strip whitespace
+    if isinstance(tickers, str):
+        ticker_list = [t.strip() for t in tickers.split(',')]
+    else:
+        ticker_list = tickers
+    
+    regions_from_db = []
+    
+    try:
+        if not PYMONGO_AVAILABLE:
+            return []
+        
+        # Use DatabaseManager for connection pooling
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        collection = db['tickers']
+        
+        # Query database for tickers and get their regions
+        ticker_docs = collection.find({"ticker": {"$in": ticker_list}})
+        
+        for doc in ticker_docs:
+            if 'region' in doc and isinstance(doc['region'], list):
+                regions_from_db.extend(doc['region'])
+        
+        # Remove duplicates and return
+        if regions_from_db:
+            return list(set(regions_from_db))
+        else:
+            return []
+        
+    except Exception as e:
+        log_error("Error getting regions from database", "DATABASE_REGIONS", e)
+        return []
+
+
+def get_asset_classes(tickers):
+    """
+    Get asset classes for given tickers from database tickers collection.
+    
+    Parameters:
+    tickers (str or list): Ticker symbols to get asset classes for
+    
+    Returns:
+    list: List of unique asset classes, or empty list if no asset classes found or error occurs
+    """
+    # If tickers is a string, split by comma and strip whitespace
+    if isinstance(tickers, str):
+        ticker_list = [t.strip() for t in tickers.split(',')]
+    else:
+        ticker_list = tickers
+    
+    asset_classes_from_db = []
+    
+    try:
+        if not PYMONGO_AVAILABLE:
+            return []
+        
+        # Use DatabaseManager for connection pooling
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        collection = db['tickers']
+        
+        # Query database for tickers and get their asset classes
+        ticker_docs = collection.find({"ticker": {"$in": ticker_list}})
+        
+        for doc in ticker_docs:
+            if 'asset_class' in doc and isinstance(doc['asset_class'], str):
+                asset_classes_from_db.append(doc['asset_class'])
+        
+        # Remove duplicates and return
+        if asset_classes_from_db:
+            return list(set(asset_classes_from_db))
+        else:
+            return []
+        
+    except Exception as e:
+        log_error("Error getting asset classes from database", "DATABASE_ASSET_CLASSES", e)
+        return []
+
+
+def get_importance(tickers):
+    """
+    Get importance for given tickers from database tickers collection.
+    
+    Parameters:
+    tickers (str or list): Ticker symbols to get importance for
+    
+    Returns:
+    int: Average importance value (1-5), or 3 (neutral) if no importance values found or error occurs
+    """
+    # If tickers is a string, split by comma and strip whitespace
+    if isinstance(tickers, str):
+        ticker_list = [t.strip() for t in tickers.split(',')]
+    else:
+        ticker_list = tickers
+    
+    importance_values = []
+    
+    try:
+        if not PYMONGO_AVAILABLE:
+            return 5  # Return neutral importance if pymongo not available
+        
+        # Use DatabaseManager for connection pooling
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        collection = db['tickers']
+        
+        # Query database for tickers and get their importance values
+        ticker_docs = collection.find({"ticker": {"$in": ticker_list}})
+        
+        for doc in ticker_docs:
+            if 'importance' in doc and isinstance(doc['importance'], int):
+                importance_values.append(doc['importance'])
+        
+        # Calculate average importance if we have values
+        if importance_values:
+            average_importance = sum(importance_values) / len(importance_values)
+            return round(average_importance)
+        else:
+            return 5  # Return neutral importance if no values found
+        
+    except Exception as e:
+        log_error("Error getting importance from database", "DATABASE_IMPORTANCE", e)
+        return 5  # Return neutral importance on error

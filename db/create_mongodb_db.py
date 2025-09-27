@@ -189,12 +189,8 @@ def create_documents_collection(db):
                 'minimum': 1,
                 'maximum': 5
             },
-            'asset_class': {
-                'bsonType': 'string'
-            },
-            'region': {
-                'bsonType': 'string'
-            }
+            'asset_class': {},
+            'region': {}
         }
     }
     }
@@ -256,21 +252,14 @@ def create_tickers_collection(db):
                 'name': {
                     'bsonType': 'string',
                 },
-                'region': {
-                    'bsonType': 'array',
-                    'items': {
-                        'bsonType': 'string'
-                    },
-                },
+                'region': {},
                 'prompt': {
                     'bsonType': 'string',
                 },
                 'model_function': {
                     'bsonType': 'string',
                 },
-                'asset_class': {
-                    'bsonType': 'string',
-                },
+                'asset_class': {},
                 'importance': {
                     'bsonType': 'int',
                     'minimum': 1,
@@ -327,13 +316,13 @@ def insert_fx_pairs(db):
     
     # FX pairs data to insert with prompt and model_function fields
     fx_pairs = [
-        {"ticker": "EURUSD=X", "name": "Euro / U.S. Dollar", "region": ["Eurozone", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
-        {"ticker": "USDJPY=X", "name": "U.S. Dollar / Japanese Yen", "region": ["U.S.", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
-        {"ticker": "GBPUSD=X", "name": "British Pound / U.S. Dollar", "region": ["UK", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
-        {"ticker": "USDCHF=X", "name": "U.S. Dollar / Swiss Franc", "region": ["U.S.", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
-        {"ticker": "AUDUSD=X", "name": "Australian Dollar / U.S. Dollar", "region": ["Australia", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
-        {"ticker": "USDCAD=X", "name": "U.S. Dollar / Canadian Dollar", "region": ["U.S.", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
-        {"ticker": "NZDUSD=X", "name": "New Zealand Dollar / U.S. Dollar", "region": ["New Zealand", "U.S."], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "EURUSD=X", "name": "Euro / U.S. Dollar", "region": ["Eurozone", "US"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "USDJPY=X", "name": "U.S. Dollar / Japanese Yen", "region": ["US", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "GBPUSD=X", "name": "British Pound / U.S. Dollar", "region": ["UK", "US"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "USDCHF=X", "name": "U.S. Dollar / Swiss Franc", "region": ["US", "Switzerland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "AUDUSD=X", "name": "Australian Dollar / U.S. Dollar", "region": ["Australia", "US"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "USDCAD=X", "name": "U.S. Dollar / Canadian Dollar", "region": ["US", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "NZDUSD=X", "name": "New Zealand Dollar / U.S. Dollar", "region": ["New Zealand", "US"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
         {"ticker": "EURGBP=X", "name": "Euro / British Pound", "region": ["Eurozone", "UK"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
         {"ticker": "EURJPY=X", "name": "Euro / Japanese Yen", "region": ["Eurozone", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
         {"ticker": "GBPJPY=X", "name": "British Pound / Japanese Yen", "region": ["UK", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
@@ -343,19 +332,20 @@ def insert_fx_pairs(db):
         {"ticker": "NZDJPY=X", "name": "New Zealand Dollar / Japanese Yen", "region": ["New Zealand", "Japan"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
         {"ticker": "AUDNZD=X", "name": "Australian Dollar / New Zealand Dollar", "region": ["Australia", "New Zealand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
         {"ticker": "EURCAD=X", "name": "Euro / Canadian Dollar", "region": ["Eurozone", "Canada"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
-        {"ticker": "USDTRY=X", "name": "U.S. Dollar / Turkish Lira", "region": ["U.S.", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
-        {"ticker": "USDZAR=X", "name": "U.S. Dollar / South African Rand", "region": ["U.S.", "South Africa"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDTRY=X", "name": "U.S. Dollar / Turkish Lira", "region": ["US", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDZAR=X", "name": "U.S. Dollar / South African Rand", "region": ["US", "South Africa"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
         {"ticker": "EURTRY=X", "name": "Euro / Turkish Lira", "region": ["Eurozone", "Turkey"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
-        {"ticker": "USDMXN=X", "name": "U.S. Dollar / Mexican Peso", "region": ["U.S.", "Mexico"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
-        {"ticker": "USDPLN=X", "name": "U.S. Dollar / Polish Zloty", "region": ["U.S.", "Poland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
-        {"ticker": "USDSEK=X", "name": "U.S. Dollar / Swedish Krona", "region": ["U.S.", "Sweden"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
-        {"ticker": "USDNOK=X", "name": "U.S. Dollar / Norwegian Krone", "region": ["U.S.", "Norway"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
-        {"ticker": "USDTHB=X", "name": "U.S. Dollar / Thai Baht", "region": ["U.S.", "Thailand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
-        {"ticker": "USDSGD=X", "name": "U.S. Dollar / Singapore Dollar", "region": ["U.S.", "Singapore"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
-        {"ticker": "USDCNH=X", "name": "U.S. Dollar / Chinese Yuan (Offshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDMXN=X", "name": "U.S. Dollar / Mexican Peso", "region": ["US", "Mexico"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDPLN=X", "name": "U.S. Dollar / Polish Zloty", "region": ["US", "Poland"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDSEK=X", "name": "U.S. Dollar / Swedish Krona", "region": ["US", "Sweden"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDNOK=X", "name": "U.S. Dollar / Norwegian Krone", "region": ["US", "Norway"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDTHB=X", "name": "U.S. Dollar / Thai Baht", "region": ["US", "Thailand"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDSGD=X", "name": "U.S. Dollar / Singapore Dollar", "region": ["US", "Singapore"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDCNH=X", "name": "U.S. Dollar / Chinese Yuan (Offshore)", "region": ["US", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
         {"ticker": "EURCNH=X", "name": "Euro / Chinese Yuan (Offshore)", "region": ["Eurozone", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
-        {"ticker": "USDCNY=X", "name": "U.S. Dollar / Chinese Yuan (Onshore)", "region": ["U.S.", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
-        {"ticker": "USDRUB=X", "name": "U.S. Dollar / Russian Ruble", "region": ["U.S.", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDCNY=X", "name": "U.S. Dollar / Chinese Yuan (Onshore)", "region": ["US", "China"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "USDRUB=X", "name": "U.S. Dollar / Russian Ruble", "region": ["US", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"},
+        {"ticker": "DX=F", "name": "U.S. Dollar Index", "region": ["US"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 4, "recurrence": "multi"},
         {"ticker": "EURRUB=X", "name": "Euro / Russian Ruble", "region": ["Eurozone", "Russia"], "prompt": FX_LONG_SHORT_PROMPT, "model_function": "run_fx_model", "asset_class": "FX", "importance": 5, "recurrence": "multi"}
     ]
     
@@ -404,11 +394,11 @@ def insert_indices(db):
     
     # Indices data to insert with prompt and model_function fields
     indices = [
-        {"ticker": "^GSPC", "name": "S&P 500", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
-        {"ticker": "^NDX", "name": "NASDAQ 100", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
-        {"ticker": "^DJI", "name": "Dow Jones Industrial Average", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
-        {"ticker": "^RUT", "name": "Russell 2000", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
-        {"ticker": "^VIX", "name": "CBOE Volatility Index", "region": ["USA"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "^GSPC", "name": "S&P 500", "region": ["US"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "^NDX", "name": "NASDAQ 100", "region": ["US"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "^DJI", "name": "Dow Jones Industrial Average", "region": ["US"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "^RUT", "name": "Russell 2000", "region": ["US"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
+        {"ticker": "^VIX", "name": "CBOE Volatility Index", "region": ["US"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
         {"ticker": "^N225", "name": "Nikkei 225", "region": ["Japan"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
         {"ticker": "^TOPX", "name": "TOPIX", "region": ["Japan"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},
         {"ticker": "^GDAXI", "name": "DAX 40", "region": ["Germany"], "prompt": HOLISTIC_MARKET_PROMPT, "model_function": "run_holistic_market_model", "asset_class": "IX", "importance": 4, "recurrence": "multi"},

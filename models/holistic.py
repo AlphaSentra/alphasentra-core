@@ -21,7 +21,7 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance
 from logging_utils import log_error, log_warning, log_info
 
 
@@ -106,7 +106,13 @@ def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
             recommendations['timestamp_gmt'] = get_current_gmt_timestamp()
             # Add language code to recommendations
             recommendations['language_code'] = LANGUAGE
-        # -----------------------------------------------------------------------------------            
+            # Add regions to recommendations
+            recommendations['regions'] = get_regions(tickers)
+            # Add asset classes to recommendations
+            recommendations['asset_class'] = get_asset_classes(tickers)
+            #Add importance
+            recommendations['importance'] = get_importance(tickers)
+        # -----------------------------------------------------------------------------------
 
             # Display Model Output header
             print("\n" + "="*100)

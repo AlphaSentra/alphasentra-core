@@ -40,3 +40,8 @@ Let's break... | From: holistic.py:run_holistic_market_model()
   "title": "US Equities Driven by Fed Rate Cuts and Resilient Tech Amid Global Risks",
   "market_outlook_narrative": [
     "The US equity market is experiencing a period of cautious optimism, primar... | From: sector_rotation_long_short.py:run_sector_rotation_model()
+2025-09-27 17:49:19,851 - ERROR - [ERR-0001] - [7483bc80] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('68d7c12f0e0614626cf89e44'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'asset_class', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'string'}, 'reason': 'type did not match', 'consideredValue': ['EQ'], 'consideredType': 'array'}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-09-27 17:49:19,851 - WARNING - [ERR-0001] - [32b08d82] Database save failed | From: helpers.py:save_to_db_with_fallback()
+2025-09-27 17:49:19,851 - WARNING - [ERR-0003] - [8bd8c696] Failed to save recommendations to database | From: sector_rotation_long_short.py:run_sector_rotation_model()
+2025-09-27 17:59:50,083 - ERROR - [ERR-0103] - [f8379659] Error parsing AI weights response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_ai_weights()
+2025-09-27 17:59:50,083 - WARNING - [WARN-0002] - [228017c2] Raw weights response: Error generating content: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)... | From: helpers.py:get_ai_weights()

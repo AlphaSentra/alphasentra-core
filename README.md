@@ -64,124 +64,122 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
 
 ```
 {
-    validator = {
-    '$jsonSchema': {
-        'bsonType': 'object',
-        'required': [
-            'title',
-            'market_outlook_narrative',
-            'rationale',
-            'analysis',
-            'recommendations',
-            'sentiment_score',
-            'market_impact',
-            'timestamp_gmt',
-            'language_code'
-        ],
-        'properties': {
-            'title': {
-                'bsonType': 'string'
-            },
-            'market_outlook_narrative': {
-                'bsonType': 'array',
-                'items': {
-                    'bsonType': 'string'
-                }
-            },
-            'rationale': {
-                'bsonType': 'string'
-            },
-            'analysis': {
-                'bsonType': 'string'
-            },
-            'key_takeaways': {},
-            'sources': {
-                'bsonType': 'array',
-                'items': {
-                    'bsonType': 'object',
-                    'required': ['source_name', 'source_title'],
-                    'properties': {
-                        'source_name': {
-                            'bsonType': 'string'
-                        },
-                        'source_title': {
-                            'bsonType': 'string'
-                        }
-                    }
-                }
-            },
-            'recommendations': {
-                'bsonType': 'array',
-                'items': {
-                    'bsonType': 'object',
-                    'required': [
-                        'ticker',
-                        'trade_direction',
-                        'bull_bear_score',
-                        'stop_loss',
-                        'target_price',
-                        'entry_price',
-                        'price'
-                    ],
-                    'properties': {
-                        'ticker': {
-                            'bsonType': 'string'
-                        },
-                        'trade_direction': {
-                            'bsonType': 'string'
-                        },
-                        'bull_bear_score': {
-                            'bsonType': 'int',
-                            'minimum': 1,
-                            'maximum': 10
-                        },
-                        'stop_loss': {
-                            'bsonType': 'double'
-                        },
-                        'target_price': {
-                            'bsonType': 'double'
-                        },
-                        'entry_price': {
-                            'bsonType': 'double'
-                        },
-                        'price': {
-                            'bsonType': 'double'
-                        }
-                    }
-                }
-            },
-            'sentiment_score': {
-                'bsonType': 'double',
-                'minimum': 0,
-                'maximum': 1.0
-            },
-            'market_impact': {
-                'bsonType': 'int',
-                'minimum': 1,
-                'maximum': 10
-            },
-            'timestamp_gmt': {
-                'bsonType': 'string',
-                'pattern': '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$'
-            },
-            'language_code': {
-                'bsonType': 'string',
-                'pattern': '^[a-z]{2}(-[A-Z]{2})?$'
-            },
-            'importance': {
-                'bsonType': 'int',
-                'minimum': 1,
-                'maximum': 5
-            },
-            'asset_class': {
-                'bsonType': 'string'
-            },
-            'region': {
-                'bsonType': 'string'
-            }
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'title',
+      'market_outlook_narrative',
+      'rationale',
+      'analysis',
+      'recommendations',
+      'sentiment_score',
+      'market_impact',
+      'timestamp_gmt',
+      'language_code'
+    ],
+    properties: {
+      title: {
+        bsonType: 'string'
+      },
+      market_outlook_narrative: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'string'
         }
+      },
+      rationale: {
+        bsonType: 'string'
+      },
+      analysis: {
+        bsonType: 'string'
+      },
+      key_takeaways: {},
+      sources: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'object',
+          required: [
+            'source_name',
+            'source_title'
+          ],
+          properties: {
+            source_name: {
+              bsonType: 'string'
+            },
+            source_title: {
+              bsonType: 'string'
+            }
+          }
+        }
+      },
+      recommendations: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'object',
+          required: [
+            'ticker',
+            'trade_direction',
+            'bull_bear_score',
+            'stop_loss',
+            'target_price',
+            'entry_price',
+            'price'
+          ],
+          properties: {
+            ticker: {
+              bsonType: 'string'
+            },
+            trade_direction: {
+              bsonType: 'string'
+            },
+            bull_bear_score: {
+              bsonType: 'int',
+              minimum: 1,
+              maximum: 10
+            },
+            stop_loss: {
+              bsonType: 'double'
+            },
+            target_price: {
+              bsonType: 'double'
+            },
+            entry_price: {
+              bsonType: 'double'
+            },
+            price: {
+              bsonType: 'double'
+            }
+          }
+        }
+      },
+      sentiment_score: {
+        bsonType: 'double',
+        minimum: 0,
+        maximum: 1
+      },
+      market_impact: {
+        bsonType: 'int',
+        minimum: 1,
+        maximum: 10
+      },
+      timestamp_gmt: {
+        bsonType: 'string',
+        pattern: '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$'
+      },
+      language_code: {
+        bsonType: 'string',
+        pattern: '^[a-z]{2}(-[A-Z]{2})?$'
+      },
+      importance: {
+        bsonType: 'int',
+        minimum: 1,
+        maximum: 5
+      },
+      asset_class: {},
+      region: {}
     }
-    }
+  }
+}
 ```
 
 Importance represents how we classify the significance of the information, where 1 is most important and 5 is least important:
