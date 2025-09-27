@@ -110,6 +110,9 @@ def create_documents_collection(db):
             'analysis': {
                 'bsonType': 'string'
             },
+            'key_takeaways': {
+                'bsonType': 'string'
+            },
             'sources': {
                 'bsonType': 'array',
                 'items': {

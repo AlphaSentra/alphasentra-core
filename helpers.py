@@ -548,8 +548,7 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
                     collection.insert_one({
                         "date": date.today().isoformat(),
                         "timestamp": datetime.now().isoformat(),
-                        "weights": ai_weights,
-                        "tickers": tickers if isinstance(tickers, list) else [tickers]
+                        "weights": ai_weights
                     })
                     print("Saved new weights to database for caching")
                 except Exception as e:
