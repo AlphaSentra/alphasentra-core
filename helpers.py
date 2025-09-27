@@ -862,3 +862,72 @@ def get_importance(tickers):
     except Exception as e:
         log_error("Error getting importance from database", "DATABASE_IMPORTANCE", e)
         return 5  # Return neutral importance on error
+
+
+def get_factors(tickers, current_date, prompt=None):
+    """
+    Get AI-generated factors analysis for given tickers.
+    
+    Parameters:
+    tickers (str or list): Ticker symbols to analyze
+    current_date (str): Current date in format "Month Day, Year"
+    prompt (str, optional): Custom prompt to use. If None, uses FX_FACTORS_PROMPT from _config
+    
+    Returns:
+    list: Array containing the generated JSON properties as factors
+    """
+    from _config import FX_FACTORS_PROMPT
+    from crypt import decrypt_string
+    from genAI.ai_prompt import get_gen_ai_response
+    import json
+    
+    try:
+        # Use provided prompt or default to FX_FACTORS_PROMPT
+        if prompt is None:
+            prompt = FX_FACTORS_PROMPT
+        
+        # Decrypt the prompt if it's encrypted
+        try:
+            decrypted_prompt = decrypt_string(prompt)
+        except Exception as e:
+            log_error("Error decrypting factors prompt", "DECRYPTION", e)
+            decrypted_prompt = prompt  # Fallback to encrypted version
+        
+        # Format the prompt with tickers and current date
+        if isinstance(tickers, list):
+            tickers_str = ", ".join(tickers)
+        else:
+            tickers_str = tickers
+            
+        formatted_prompt = decrypted_prompt.format(
+            tickers_str=tickers_str,
+            current_date=current_date
+        )
+        
+        # Get AI response
+        ai_response = get_gen_ai_response([tickers_str], "factors analysis", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
+        
+        # Remove any markdown code block markers if present
+        ai_response = strip_markdown_code_blocks(ai_response)
+        
+        # Parse JSON response
+        factors_data = json.loads(ai_response)
+        
+        # Convert the JSON object to an array of its properties
+        # Each property becomes a factor object in the array
+        factors_array = []
+        for key, value in factors_data.items():
+            factors_array.append({
+                'name': key,
+                'value': value
+            })
+        
+        return factors_array
+        
+    except json.JSONDecodeError as e:
+        log_error("Error parsing factors response as JSON", "AI_PARSING", e)
+        log_warning(f"Raw factors response: {ai_response[:200]}...", "DATA_MISSING")
+        return []
+    except Exception as e:
+        log_error("Error getting factors analysis", "FACTORS_ANALYSIS", e)
+        return []

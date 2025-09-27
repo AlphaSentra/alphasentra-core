@@ -112,7 +112,7 @@ def run_sector_rotation_model(tickers=None, sector_regions=None):
             recommendations['regions'] = SECTOR_REGIONS
             # Add asset classes to recommendations
             recommendations['asset_class'] = SECTOR_ASSET_CLASS
-            #Add importance
+            # Add importance
             recommendations['importance'] = SECTOR_IMPORTANCE
         # -----------------------------------------------------------------------------------
 

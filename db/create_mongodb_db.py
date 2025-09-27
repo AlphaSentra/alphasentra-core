@@ -176,6 +176,7 @@ def create_documents_collection(db):
                 'minimum': 1,
                 'maximum': 10
             },
+            'factors':{},
             'timestamp_gmt': {
                 'bsonType': 'string',
                 'pattern': '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$'

@@ -162,6 +162,7 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
         minimum: 1,
         maximum: 10
       },
+      factors: {},
       timestamp_gmt: {
         bsonType: 'string',
         pattern: '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$'

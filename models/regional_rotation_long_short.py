@@ -113,7 +113,7 @@ def run_regional_rotation_model(tickers=None, regions=None):
             recommendations['regions'] = REGIONAL_REGIONS
             # Add asset classes to recommendations
             recommendations['asset_class'] = REGIONAL_ASSET_CLASS
-            #Add importance
+            # Add importance
             recommendations['importance'] = REGIONAL_IMPORTANCE
         # -----------------------------------------------------------------------------------
 
