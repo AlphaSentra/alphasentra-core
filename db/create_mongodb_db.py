@@ -455,6 +455,87 @@ def insert_indices(db):
         return False
 
 
+def create_weight_factors_collection(db):
+    """
+    Creates the 'weight_factors' collection with schema validation and indexes.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if collection was created or already exists, False on error
+    """
+    collection_name = 'weight_factors'
+    
+    print()
+    print("=" * 100)
+    print(f"Creating '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+
+    # Create collection with schema validation
+    validator = {
+        '$jsonSchema': {
+            'bsonType': 'object',
+            'required': [
+                'date'
+            ],
+            'properties': {
+                'date': {
+                    'bsonType': 'string',
+                    'pattern': '^\\d{4}-\\d{2}-\\d{2}$'
+                },
+                'Geopolitical': {
+                    'bsonType': 'string',
+                    'pattern': '^\\d+%$'
+                },
+                'Macroneconomics': {
+                    'bsonType': 'string',
+                    'pattern': '^\\d+%$'
+                },
+                'Technical_Sentiment': {
+                    'bsonType': 'string',
+                    'pattern': '^\\d+%$'
+                },
+                'Liquidity': {
+                    'bsonType': 'string',
+                    'pattern': '^\\d+%$'
+                },
+                'Earnings': {
+                    'bsonType': 'string',
+                    'pattern': '^\\d+%$'
+                },
+                'Business_Cycle': {
+                    'bsonType': 'string',
+                    'pattern': '^\\d+%$'
+                },
+                'Sentiment_Surveys': {
+                    'bsonType': 'string',
+                    'pattern': '^\\d+%$'
+                }
+            }
+        }
+    }
+    
+    # Define indexes for better query performance
+    indexes = [
+        [('date', pymongo.DESCENDING)]
+    ]
+    
+    # Use the generic function to create the collection
+    success = create_collection_with_schema(db, collection_name, validator, indexes)
+    
+    if success:
+        print(f"Successfully created collection '{collection_name}'")
+        print("Collection schema validation rules applied:")
+        print("   - Required field: date")
+        print("   - Optional fields: Geopolitical, Macroneconomics, Technical_Sentiment, Liquidity, Earnings, Business_Cycle, Sentiment_Surveys")
+        print("   - All percentage fields must follow pattern: 'number%' (e.g., '30%')")
+        print("   - Index created: date")
+    
+    return success
+
+
 def create_alphagora_database():
     """
     Creates the 'alphagora' database and 'documents' collection with schema validation.
@@ -496,6 +577,10 @@ def create_alphagora_database():
         if success:
             success = insert_indices(db)
         
+        # Create weight_factors collection
+        if success:
+            success = create_weight_factors_collection(db)
+        
         return success
         
     except pymongo.errors.ServerSelectionTimeoutError:
@@ -527,7 +612,7 @@ if __name__ == "__main__":
         mongodb_uri = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_database}"
         print(f"MongoDB Connection: {mongodb_uri}")
     print("Database: alphagora")
-    print("Collections: documents, tickers")
+    print("Collections: documents, tickers, weight_factors")
     print("FX Pairs: 30 currency pairs will be inserted into tickers collection")
     print("Indices: 28 stock indices will be inserted into tickers collection")
     print("-" * 50)

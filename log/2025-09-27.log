@@ -1,0 +1,4 @@
+2025-09-27 10:46:42,031 - ERROR - [ERR-0103] - [f430ab91] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: holistic.py:run_holistic_market_model()
+2025-09-27 10:46:42,032 - WARNING - [WARN-0002] - [044424ac] Raw response content: The user wants a detailed 20-day forward trading strategy for SPY, based on current data as of September 27, 2025. I need to follow a specific multi-step process and output a JSON object.
+
+Let's break... | From: holistic.py:run_holistic_market_model()

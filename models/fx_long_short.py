@@ -21,7 +21,7 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights
 from logging_utils import log_error, log_warning
 
 
@@ -38,44 +38,8 @@ def run_fx_model(tickers, fx_regions=None):
         dict: The recommendations dictionary with sentiment score if available
     """
     
-    # Use AI model prompts from _config.py directly
-    FACTOR_WEIGHTS_PROMPT = FACTOR_WEIGHTS
-
-    # Get AI-generated weights
-    ai_weights = None
-    if FACTOR_WEIGHTS_PROMPT:
-        try:
-            # Decrypt FACTOR_WEIGHTS_PROMPT first
-            decrypted_factor_weights = decrypt_string(FACTOR_WEIGHTS_PROMPT)
-            # Call get_gen_ai_response with the decrypted FACTOR_WEIGHTS prompt
-            ai_weights_response = get_gen_ai_response([tickers], "factor weights", decrypted_factor_weights, os.getenv("GEMINI_PRO_MODEL"))
-            
-            # Try to parse the response as JSON
-            try:
-                # Remove any markdown code block markers if present
-                ai_weights_response = strip_markdown_code_blocks(ai_weights_response)
-                
-                # Parse JSON to get the weights
-                ai_weights_raw = json.loads(ai_weights_response)
-                print(ai_weights_raw)
-                
-                # Map AI response keys to the keys used in the main prompt
-                ai_weights = {
-                    'Geopolitical': ai_weights_raw.get('Geopolitical', WEIGHTS_PERCENT['Geopolitical']),
-                    'Macroeconomics': ai_weights_raw.get('Macroeconomics', WEIGHTS_PERCENT['Macroeconomics']),
-                    'Technical_Sentiment': ai_weights_raw.get('Technical/Sentiment', WEIGHTS_PERCENT['Technical_Sentiment']),
-                    'Liquidity': ai_weights_raw.get('Liquidity', WEIGHTS_PERCENT['Liquidity']),
-                    'Earnings': ai_weights_raw.get('Earnings', WEIGHTS_PERCENT['Earnings']),
-                    'Business_Cycle': ai_weights_raw.get('Business Cycle', WEIGHTS_PERCENT['Business_Cycle']),
-                    'Sentiment_Surveys': ai_weights_raw.get('Sentiment Surveys', WEIGHTS_PERCENT['Sentiment_Surveys'])
-                }
-            except json.JSONDecodeError as e:
-                log_error("Error parsing AI weights response as JSON", "AI_PARSING", e)
-                log_warning(f"Raw weights response: {ai_weights_response[:200]}...", "DATA_MISSING")
-                ai_weights = None
-        except Exception as e:
-            log_error("Error getting AI weights", "AI_WEIGHTS", e)
-            ai_weights = None
+    # Get AI-generated weights using helper function
+    ai_weights = get_ai_weights([tickers], FACTOR_WEIGHTS, WEIGHTS_PERCENT, os.getenv("GEMINI_PRO_MODEL"))
 
     # Format the prompt with the necessary variables
     if FX_LONG_SHORT_PROMPT:

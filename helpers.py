@@ -451,3 +451,116 @@ def save_to_db(recommendations):
     except Exception as e:
         log_error("Unexpected error saving to database", "DATABASE_SAVE", e)
         return False
+
+def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=None):
+    """
+    Get AI-generated factor weights for market analysis with MongoDB caching.
+    Checks if weights exist in database for today's date before calling AI.
+    
+    Parameters:
+    tickers (str or list): The tickers to analyze
+    factor_weights_prompt (str): The encrypted factor weights prompt
+    weights_percent (dict): Default weights to use as fallback
+    model_name (str, optional): The AI model name to use
+    
+    Returns:
+    dict: AI-generated weights or None if error occurs
+    """
+    import os
+    from crypt import decrypt_string
+    from genAI.ai_prompt import get_gen_ai_response
+    from logging_utils import log_error, log_warning
+    import json
+    from datetime import datetime, date
+    
+    # First check if we have cached weights for today in MongoDB
+    try:
+        import pymongo
+        from pymongo import MongoClient
+        
+        # Get MongoDB connection details from environment variables
+        mongodb_host = os.getenv("MONGODB_HOST", "localhost")
+        mongodb_port = int(os.getenv("MONGODB_PORT", "27017"))
+        mongodb_database = os.getenv("MONGODB_DATABASE", "alphagora")
+        mongodb_username = os.getenv("MONGODB_USERNAME")
+        mongodb_password = os.getenv("MONGODB_PASSWORD")
+        mongodb_auth_source = os.getenv("MONGODB_AUTH_SOURCE", "admin")
+        
+        # Construct MongoDB URI based on whether authentication is provided
+        if mongodb_username and mongodb_password:
+            mongodb_uri = f"mongodb://{mongodb_username}:{mongodb_password}@{mongodb_host}:{mongodb_port}/{mongodb_database}?authSource={mongodb_auth_source}"
+        else:
+            mongodb_uri = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_database}"
+        
+        # Connect to MongoDB
+        client = MongoClient(mongodb_uri)
+        db = client[mongodb_database]
+        collection = db['weight_factors']
+        
+        # Check if we have weights for today
+        today = date.today().isoformat()
+        cached_weights = collection.find_one({"date": today})
+        
+        if cached_weights:
+            print("Using cached weights from database")
+            return cached_weights['weights']
+            
+    except Exception as e:
+        log_error("Error checking cached weights in MongoDB", "MONGODB_CACHE", e)
+        # Continue to generate new weights if cache check fails
+    
+    # If no cached weights found, generate new ones using AI
+    ai_weights = None
+    if factor_weights_prompt:
+        try:
+            # Decrypt FACTOR_WEIGHTS_PROMPT first
+            decrypted_factor_weights = decrypt_string(factor_weights_prompt)
+            
+            # Use default model if not provided
+            if model_name is None:
+                model_name = os.getenv("GEMINI_PRO_MODEL")
+            
+            # Call get_gen_ai_response with the decrypted FACTOR_WEIGHTS prompt
+            ai_weights_response = get_gen_ai_response(tickers, "factor weights", decrypted_factor_weights, model_name)
+            
+            # Try to parse the response as JSON
+            try:
+                # Remove any markdown code block markers if present and extract JSON
+                ai_weights_response = strip_markdown_code_blocks(ai_weights_response)
+                
+                # Parse JSON to get the weights
+                ai_weights_raw = json.loads(ai_weights_response)
+                print("AI-generated weights:", ai_weights_raw)
+                
+                # Map AI response keys to the keys used in the main prompt
+                ai_weights = {
+                    'Geopolitical': ai_weights_raw.get('Geopolitical', weights_percent['Geopolitical']),
+                    'Macroeconomics': ai_weights_raw.get('Macroeconomics', weights_percent['Macroeconomics']),
+                    'Technical_Sentiment': ai_weights_raw.get('Technical/Sentiment', weights_percent['Technical_Sentiment']),
+                    'Liquidity': ai_weights_raw.get('Liquidity', weights_percent['Liquidity']),
+                    'Earnings': ai_weights_raw.get('Earnings', weights_percent['Earnings']),
+                    'Business_Cycle': ai_weights_raw.get('Business Cycle', weights_percent['Business_Cycle']),
+                    'Sentiment_Surveys': ai_weights_raw.get('Sentiment Surveys', weights_percent['Sentiment_Surveys'])
+                }
+                
+                # Store the new weights in MongoDB for future use
+                try:
+                    collection.insert_one({
+                        "date": date.today().isoformat(),
+                        "timestamp": datetime.now().isoformat(),
+                        "weights": ai_weights,
+                        "tickers": tickers if isinstance(tickers, list) else [tickers]
+                    })
+                    print("Saved new weights to database for caching")
+                except Exception as e:
+                    log_error("Error saving weights to MongoDB", "MONGODB_SAVE", e)
+                
+            except json.JSONDecodeError as e:
+                log_error("Error parsing AI weights response as JSON", "AI_PARSING", e)
+                log_warning(f"Raw weights response: {ai_weights_response[:200]}...", "DATA_MISSING")
+                ai_weights = None
+        except Exception as e:
+            log_error("Error getting AI weights", "AI_WEIGHTS", e)
+            ai_weights = None
+    
+    return ai_weights
