@@ -193,7 +193,7 @@ Importance represents how we classify the significance of the information, where
 We categorise asset classes as follows:
 
 - FX: Foreign Exchange pairs
-- IC: Indices
+- IX: Indices
 - EQ: Equities
 - EN: Energy
 - ME: Metals
