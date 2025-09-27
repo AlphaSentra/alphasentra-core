@@ -21,8 +21,8 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights
-from logging_utils import log_error, log_warning
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback
+from logging_utils import log_error, log_warning, log_info
 
 
 def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
@@ -223,9 +223,11 @@ def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
         log_error("Error in holistic_market_model", "MODEL_EXECUTION", e)
         return None
         
-    # Save recommendations to database
+    # Save recommendations to database with robust error handling
     if recommendations:
-        save_to_db(recommendations)
+        success = save_to_db_with_fallback(recommendations)
+        if not success:
+            log_warning("Failed to save recommendations to database", "DATABASE")
         
     return recommendations
 

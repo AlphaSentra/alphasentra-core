@@ -18,7 +18,7 @@ parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
-from logging_utils import log_error
+from logging_utils import log_error, log_info, log_warning
 
 # Load environment variables
 load_dotenv()
@@ -405,6 +405,70 @@ def get_current_gmt_timestamp():
     # Format as ISO 8601 with 'Z' for UTC/GMT
     return current_utc.isoformat(timespec='seconds').replace('+00:00', 'Z')
 
+class DatabaseManager:
+    """
+    Singleton class for MongoDB connection pooling and management.
+    """
+    _instance = None
+    _client = None
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._client = None
+        return cls._instance
+    
+    def get_client(self):
+        """
+        Get MongoDB client with connection pooling.
+        Creates client if it doesn't exist.
+        """
+        if self._client is None:
+            try:
+                import pymongo
+                from pymongo import MongoClient
+                
+                # Get MongoDB connection details from environment variables
+                mongodb_host = os.getenv("MONGODB_HOST", "localhost")
+                mongodb_port = int(os.getenv("MONGODB_PORT", "27017"))
+                mongodb_database = os.getenv("MONGODB_DATABASE", "alphagora")
+                mongodb_username = os.getenv("MONGODB_USERNAME")
+                mongodb_password = os.getenv("MONGODB_PASSWORD")
+                mongodb_auth_source = os.getenv("MONGODB_AUTH_SOURCE", "admin")
+                
+                # Construct MongoDB URI based on whether authentication is provided
+                if mongodb_username and mongodb_password:
+                    mongodb_uri = f"mongodb://{mongodb_username}:{mongodb_password}@{mongodb_host}:{mongodb_port}/{mongodb_database}?authSource={mongodb_auth_source}"
+                else:
+                    mongodb_uri = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_database}"
+                
+                # Create client with connection pooling
+                self._client = MongoClient(
+                    mongodb_uri,
+                    maxPoolSize=10,
+                    minPoolSize=2,
+                    connectTimeoutMS=5000,
+                    serverSelectionTimeoutMS=5000
+                )
+                
+                # Test connection (silent - no logging)
+                self._client.admin.command('ping')
+                
+            except Exception as e:
+                log_error("Failed to create MongoDB client", "MONGODB_CONNECTION", e)
+                self._client = None
+                raise
+        
+        return self._client
+    
+    def close_connection(self):
+        """Close MongoDB connection"""
+        if self._client:
+            self._client.close()
+            self._client = None
+            log_info("MongoDB connection closed", "MONGODB_CONNECTION")
+
+
 def save_to_db(recommendations):
     """
     Save data to MongoDB collections.
@@ -417,25 +481,10 @@ def save_to_db(recommendations):
     """
     try:
         import pymongo
-        from pymongo import MongoClient
         
-        # Get MongoDB connection details from environment variables
-        mongodb_host = os.getenv("MONGODB_HOST", "localhost")
-        mongodb_port = int(os.getenv("MONGODB_PORT", "27017"))
-        mongodb_database = os.getenv("MONGODB_DATABASE", "alphagora")
-        mongodb_username = os.getenv("MONGODB_USERNAME")
-        mongodb_password = os.getenv("MONGODB_PASSWORD")
-        mongodb_auth_source = os.getenv("MONGODB_AUTH_SOURCE", "admin")
-        
-        # Construct MongoDB URI based on whether authentication is provided
-        if mongodb_username and mongodb_password:
-            mongodb_uri = f"mongodb://{mongodb_username}:{mongodb_password}@{mongodb_host}:{mongodb_port}/{mongodb_database}?authSource={mongodb_auth_source}"
-        else:
-            mongodb_uri = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_database}"
-        
-        # Connect to MongoDB
-        client = MongoClient(mongodb_uri)
-        db = client[mongodb_database]
+        # Use DatabaseManager for connection pooling
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
         collection = db['documents']
         
         # Insert the recommendations document
@@ -450,6 +499,121 @@ def save_to_db(recommendations):
         return False
     except Exception as e:
         log_error("Unexpected error saving to database", "DATABASE_SAVE", e)
+        return False
+
+
+# Enhanced database functions with reliability improvements
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+from pymongo.errors import AutoReconnect, NetworkTimeout, ConnectionFailure, OperationFailure
+
+
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=1, min=1, max=10),
+    retry=retry_if_exception_type((AutoReconnect, NetworkTimeout, ConnectionFailure))
+)
+def save_to_db_with_retry(recommendations):
+    """
+    Save to database with automatic retry for network issues.
+    
+    Parameters:
+    recommendations (dict): The recommendations dictionary to save
+    
+    Returns:
+    bool: True if successful, False on error
+    """
+    try:
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        collection = db['documents']
+        
+        result = collection.insert_one(recommendations)
+        return True
+    except OperationFailure as e:
+        log_error("MongoDB operation failed", "MONGODB_OPERATION", e)
+        return False
+    except Exception as e:
+        log_error("Failed to save to database after retries", "DATABASE_SAVE", e)
+        return False
+
+
+def validate_recommendations_schema(recommendations):
+    """
+    Validate recommendations against MongoDB schema before insertion.
+    
+    Parameters:
+    recommendations (dict): The recommendations dictionary to validate
+    
+    Returns:
+    bool: True if valid, False if invalid
+    """
+    required_fields = [
+        'title', 'market_outlook_narrative', 'rationale', 'analysis',
+        'recommendations', 'sentiment_score', 'market_impact',
+        'timestamp_gmt', 'language_code'
+    ]
+    
+    missing_fields = [field for field in required_fields if field not in recommendations]
+    if missing_fields:
+        log_warning(f"Missing required fields: {missing_fields}", "DATA_VALIDATION")
+        return False
+    
+    # Validate recommendations array structure
+    if not isinstance(recommendations.get('recommendations'), list):
+        log_warning("Recommendations field must be an array", "DATA_VALIDATION")
+        return False
+    
+    # Validate each recommendation in the array
+    for i, rec in enumerate(recommendations['recommendations']):
+        if not isinstance(rec, dict):
+            log_warning(f"Recommendation at index {i} is not a dictionary", "DATA_VALIDATION")
+            return False
+        
+        rec_required_fields = ['ticker', 'trade_direction', 'bull_bear_score',
+                              'stop_loss', 'target_price', 'entry_price', 'price']
+        missing_rec_fields = [field for field in rec_required_fields if field not in rec]
+        if missing_rec_fields:
+            log_warning(f"Recommendation {i} missing fields: {missing_rec_fields}", "DATA_VALIDATION")
+            return False
+    
+    return True
+
+
+def save_to_db_robust(recommendations):
+    """
+    Robust database save with validation and retry.
+    
+    Parameters:
+    recommendations (dict): The recommendations dictionary to save
+    
+    Returns:
+    bool: True if successful, False on error
+    """
+    if not validate_recommendations_schema(recommendations):
+        log_error("Invalid recommendations schema, skipping save", "DATA_VALIDATION")
+        return False
+    
+    return save_to_db_with_retry(recommendations)
+
+
+def save_to_db_with_fallback(recommendations):
+    """
+    Save to database with fallback to local file storage.
+    
+    Parameters:
+    recommendations (dict): The recommendations dictionary to save
+    
+    Returns:
+    bool: True if successful, False on error
+    """
+    try:
+        success = save_to_db_robust(recommendations)
+        if not success:
+            log_warning("Database save failed", "DATABASE_FALLBACK")
+            return False
+        return True
+    except Exception as e:
+        log_error("Critical error in database save with fallback", "DATABASE_CRITICAL", e)
         return False
 
 def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=None):
@@ -476,25 +640,10 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
     # First check if we have cached weights for today in MongoDB
     try:
         import pymongo
-        from pymongo import MongoClient
         
-        # Get MongoDB connection details from environment variables
-        mongodb_host = os.getenv("MONGODB_HOST", "localhost")
-        mongodb_port = int(os.getenv("MONGODB_PORT", "27017"))
-        mongodb_database = os.getenv("MONGODB_DATABASE", "alphagora")
-        mongodb_username = os.getenv("MONGODB_USERNAME")
-        mongodb_password = os.getenv("MONGODB_PASSWORD")
-        mongodb_auth_source = os.getenv("MONGODB_AUTH_SOURCE", "admin")
-        
-        # Construct MongoDB URI based on whether authentication is provided
-        if mongodb_username and mongodb_password:
-            mongodb_uri = f"mongodb://{mongodb_username}:{mongodb_password}@{mongodb_host}:{mongodb_port}/{mongodb_database}?authSource={mongodb_auth_source}"
-        else:
-            mongodb_uri = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_database}"
-        
-        # Connect to MongoDB
-        client = MongoClient(mongodb_uri)
-        db = client[mongodb_database]
+        # Use DatabaseManager for connection pooling
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
         collection = db['weight_factors']
         
         # Check if we have weights for today

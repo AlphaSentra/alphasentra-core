@@ -94,9 +94,7 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
             'analysis': {
                 'bsonType': 'string'
             },
-            'key_takeaways': {
-                'bsonType': 'string'
-            },
+            'key_takeaways': {},
             'sources': {
                 'bsonType': 'array',
                 'items': {

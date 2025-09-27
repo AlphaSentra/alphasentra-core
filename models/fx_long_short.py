@@ -21,7 +21,7 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback
 from logging_utils import log_error, log_warning
 
 
@@ -222,9 +222,11 @@ def run_fx_model(tickers, fx_regions=None):
         log_error("Error in fx_long_short", "MODEL_EXECUTION", e)
         return None
         
-    # Save recommendations to database
+    # Save recommendations to database with robust error handling
     if recommendations:
-        save_to_db(recommendations)
+        success = save_to_db_with_fallback(recommendations)
+        if not success:
+            log_warning("Failed to save recommendations to database", "DATABASE")
         
     return recommendations
 
