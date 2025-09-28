@@ -222,18 +222,22 @@ def get_current_price(ticker):
     float: Current market price, or None if unavailable
     """
     try:
-        # Fetch current data for the ticker
+        # Fetch data with multiple periods to get latest available price
         stock = yf.Ticker(ticker)
-        current_data = stock.history(period='1d')
         
-        if current_data.empty:
-            print(f"No current data available for {ticker}")
-            return None
+        # Try multiple periods to get the latest available data
+        periods = ['1d', '5d', '1mo', '3mo']
         
-        # Get the most recent closing price and convert to Python float
-        current_price = current_data['Close'].iloc[-1]
-        return float(current_price)
+        for period in periods:
+            data = stock.history(period=period)
+            if not data.empty:
+                # Get the most recent closing price
+                latest_price = data['Close'].iloc[-1]
+                return float(latest_price)
+        
+        print(f"No data available for {ticker} with any period")
+        return None
         
     except Exception as e:
-        print(f"Error getting current price for {ticker}: {e}")
+        print(f"Error getting price data for {ticker}: {e}")
         return None

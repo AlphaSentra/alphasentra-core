@@ -206,7 +206,7 @@ We categorise asset classes as follows:
 
 The prompt should return the JSON object, including the following structure:
 <pre>
- **JSON Output format**: YOUR RESPONSE MUST BE A VALID JSON OBJECT. DO NOT INCLUDE ANY ADDITIONAL TEXT OR EXPLANATIONS. With this exact structure: [title] as a string, [market_outlook_narrative] as an array of strings. [rationale] as a string. [market_impact] as an integer. [analysis] as a string in HTML format. [sources] as an array of objects, where each object has, [source_name] as strong, [source_title] as a string, and [source_url] as a string. On the same level as [sources], [recommendations] as an array of objects, where each object has, [ticker] as a string, [trade_direction] as string, [bull_bear_score] as integer.
+ **JSON Output format**: YOUR RESPONSE MUST BE A VALID JSON OBJECT. DO NOT INCLUDE ANY ADDITIONAL TEXT OR EXPLANATIONS. With this exact structure: [title] as a string, [market_outlook_narrative] as an array of strings. [rationale] as a string. [market_impact] as an integer. [analysis] as a string in HTML format. [key_takeaways] as a string in HTML format. [sources] as an array of objects, where each object has, [source_name] as strong, [source_title] as a string, and [source_url] as a string. On the same level as [sources], [recommendations] as an array of objects, where each object has, [ticker] as a string, [trade_direction] as string, [bull_bear_score] as integer.
 </pre>
 
 The JSON output will be interpreted by the Alphagora engine, which will then process, transform, and securely store the data for further analysis and use within the system.

@@ -45,6 +45,42 @@ def run_holistic_model_with_input():
     else:
         print("No tickers provided. Please enter at least one ticker.")
 
+def run_index_model_with_input():
+    """
+    Run index model with user-provided ticker using IX_INDEX_LONG_SHORT_PROMPT and IX_INDEX_FACTORS_PROMPT.
+    """
+    print("\n=== Index Model Input ===")
+    
+    # Get ticker input
+    ticker_input = input("Enter index ticker(s) (comma-separated, e.g., SPY, QQQ, IWM, DIA): ").strip()
+    tickers = [t.strip() for t in ticker_input.split(',')] if ticker_input else []
+    
+    if tickers:
+        # Convert list of tickers to comma-separated string for the holistic model
+        tickers_str = ','.join(tickers)
+        from _config import IX_INDEX_LONG_SHORT_PROMPT, IX_INDEX_FACTORS_PROMPT
+        holistic.run_holistic_market_model(tickers_str, prompt=IX_INDEX_LONG_SHORT_PROMPT, factors=IX_INDEX_FACTORS_PROMPT)
+    else:
+        print("No tickers provided. Please enter at least one index ticker.")
+
+def run_equity_model_with_input():
+    """
+    Run equity model with user-provided ticker using EQ_EQUITY_LONG_SHORT_PROMPT and EQ_EQUITY_FACTORS_PROMPT.
+    """
+    print("\n=== Equity Model Input ===")
+    
+    # Get ticker input
+    ticker_input = input("Enter equity ticker(s) (comma-separated, e.g., AAPL, MSFT, GOOGL): ").strip()
+    tickers = [t.strip() for t in ticker_input.split(',')] if ticker_input else []
+    
+    if tickers:
+        # Convert list of tickers to comma-separated string for the holistic model
+        tickers_str = ','.join(tickers)
+        from _config import EQ_EQUITY_LONG_SHORT_PROMPT, EQ_EQUITY_FACTORS_PROMPT
+        holistic.run_holistic_market_model(tickers_str, prompt=EQ_EQUITY_LONG_SHORT_PROMPT, factors=EQ_EQUITY_FACTORS_PROMPT)
+    else:
+        print("No tickers provided. Please enter at least one equity ticker.")
+
 
 # Define menu items as tuples: (description, function)
 # Use None as function for separator items
@@ -58,6 +94,12 @@ MENU_ITEMS = [
 
     ("EQ: EMs vs. DMs - Regional Rotation Model",
      lambda: regional_rotation_long_short.run_regional_rotation_model()),
+
+    ("EQ: Equity Model",
+     run_equity_model_with_input),
+
+    ("IX: Indices Model",
+     run_index_model_with_input),
 
     # Currency/FX category
     ("", None),

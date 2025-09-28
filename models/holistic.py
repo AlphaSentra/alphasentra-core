@@ -21,11 +21,11 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors
 from logging_utils import log_error, log_warning, log_info
 
 
-def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
+def run_holistic_market_model(tickers, prompt=None, factors=None, region=None, asset_class=None, importance=None, decimal_digits=4):
     """
     Run the holistic market model.
     
@@ -107,11 +107,17 @@ def run_holistic_market_model(tickers, prompt=None, decimal_digits=4):
             # Add language code to recommendations
             recommendations['language_code'] = LANGUAGE
             # Add regions to recommendations
-            recommendations['regions'] = get_regions(tickers)
+            if region is not None:
+                recommendations['regions'] = get_regions(tickers)
             # Add asset classes to recommendations
-            recommendations['asset_class'] = get_asset_classes(tickers)
+            if asset_class is not None:
+                recommendations['asset_class'] = get_asset_classes(tickers)
             #Add importance
-            recommendations['importance'] = get_importance(tickers)
+            if importance is not None:
+                recommendations['importance'] = get_importance(tickers)
+            # Add to factors
+            if factors is not None:
+                recommendations['factors'] = get_factors(tickers,current_date,prompt=factors)            
         # -----------------------------------------------------------------------------------
 
             # Display Model Output header
