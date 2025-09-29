@@ -913,20 +913,42 @@ def get_factors(tickers, name=None, current_date=None, prompt=None):
         
         # Remove any markdown code block markers if present
         ai_response = strip_markdown_code_blocks(ai_response)
-        
         # Parse JSON response
         factors_data = json.loads(ai_response)
         
-        # Convert the JSON object to an array of its properties
-        # Each property becomes a factor object in the array
+        # Convert any format to dictionary (JSON object) format
+        factors_dict = {}
+        
+        if isinstance(factors_data, dict):
+            # Already in dictionary format - use as-is
+            factors_dict = factors_data
+        elif isinstance(factors_data, list):
+            # Convert list to dictionary format
+            for i, item in enumerate(factors_data):
+                if isinstance(item, dict):
+                    # If item has 'name' and 'value', use them
+                    if 'name' in item and 'value' in item:
+                        factors_dict[item['name']] = item['value']
+                    else:
+                        # Use index-based key for dictionary items
+                        factors_dict[f"factor_{i}"] = item
+                else:
+                    # Use index-based key for non-dictionary items
+                    factors_dict[f"factor_{i}"] = item
+        else:
+            log_error(f"Unexpected factors response format: {type(factors_data)}", "FACTORS_FORMAT", None)
+            return {}
+        
+        # Convert the dictionary to the expected array of factor objects format
         factors_array = []
-        for key, value in factors_data.items():
+        for key, value in factors_dict.items():
             factors_array.append({
                 'name': key,
                 'value': value
             })
         
         return factors_array
+        
         
     except json.JSONDecodeError as e:
         log_error("Error parsing factors response as JSON", "AI_PARSING", e)

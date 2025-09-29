@@ -87,6 +87,30 @@ def run_equity_model_with_input():
     else:
         print("No tickers provided. Please enter at least one equity ticker.")
 
+def run_en_model_with_input():
+    """
+    Run energy commodities model with user-provided ticker using EN_ENERGY_LONG_SHORT_PROMPT and EN_ENERGY_FACTORS_PROMPT.
+    """
+    print("\n=== Energy Commodities Model Input ===")
+    
+    # Get ticker input
+    ticker_input = input("Enter energy commodity ticker(s) (comma-separated, e.g., CL=F, NG=F, BZ=F): ").strip()
+    tickers = [t.strip() for t in ticker_input.split(',')] if ticker_input else []
+    
+    # Get commodity name input
+    commodity_input = input("Enter commodity name(s) (comma-separated, e.g., Crude Oil, Natural Gas, Brent Crude): ").strip()
+    commodities = [c.strip() for c in commodity_input.split(',')] if commodity_input else []
+    
+    if tickers:
+        # Convert list of tickers to comma-separated string for the holistic model
+        tickers_str = ','.join(tickers)
+        # Convert list of commodities to comma-separated string
+        commodities_str = ','.join(commodities) if commodities else None
+        from _config import EN_ENERGY_LONG_SHORT_PROMPT, EN_ENERGY_FACTORS_PROMPT
+        holistic.run_holistic_market_model(tickers_str, name=commodities_str, prompt=EN_ENERGY_LONG_SHORT_PROMPT, factors=EN_ENERGY_FACTORS_PROMPT)
+    else:
+        print("No tickers provided. Please enter at least one energy commodity ticker.")
+
 
 # Define menu items as tuples: (description, function)
 # Use None as function for separator items
@@ -106,30 +130,38 @@ MENU_ITEMS = [
 
     ("IX: Indices Model",
      run_index_model_with_input),
+# Currency/FX category
+("", None),
+("----- CURRENCIES -----", None),
+("", None),
 
-    # Currency/FX category
-    ("", None),
-    ("----- CURRENCIES -----", None),
-    ("", None),
+("FX: Forex Model",
+ run_fx_model_with_input),
 
-    ("FX: Forex Model",
-     run_fx_model_with_input),
+# Commodities category
+("", None),
+("----- COMMODITIES -----", None),
+("", None),
 
-    # Others
-    ("", None),
-    ("----- OTHERS -----", None),
-    ("", None),
-    
-    ("Holistic Market Model",
-     run_holistic_model_with_input),
-    
-    # Configuration
-    ("", None),
-    ("----- CONFIG -----", None),
-    ("", None),
+("EN: Energy Commodities Model",
+ run_en_model_with_input),
 
-    ("Configure database connection settings",
-     create_mongodb_db.create_alphagora_database)
+# Others
+("", None),
+("----- OTHERS -----", None),
+("", None),
+
+("Holistic Market Model",
+ run_holistic_model_with_input),
+
+# Configuration
+("", None),
+("----- CONFIG -----", None),
+("", None),
+
+("Configure database connection settings",
+ create_mongodb_db.create_alphagora_database)
+
 
 ]
 

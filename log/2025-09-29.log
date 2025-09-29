@@ -16,3 +16,32 @@
 2025-09-29 11:54:57,103 - WARNING - [ERR-0003] - [ee50872f] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
 2025-09-29 11:57:34,020 - ERROR - [ERR-0103] - [61cb69b9] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()
 2025-09-29 11:57:34,022 - WARNING - [WARN-0002] - [6ff5b8aa] Raw factors response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:get_factors()
+2025-09-29 12:38:12,169 - ERROR - [ERR-0103] - [130d4bb5] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()
+2025-09-29 12:38:12,171 - WARNING - [WARN-0002] - [e1eb82ca] Raw factors response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:get_factors()
+2025-09-29 13:32:23,717 - ERROR - [ERR-0103] - [9289064b] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting ',' delimiter: line 10 column 5761 (char 8702) | From: holistic.py:run_holistic_market_model()
+2025-09-29 13:32:23,719 - WARNING - [WARN-0002] - [2504789b] Raw response content: {
+  "title": "Geopolitical Tensions and Supply Disruptions Drive Crude Oil Higher Amid Demand Uncertainty",
+  "market_outlook_narrative": [
+    "Crude Oil (CL=F) prices have experienced a significant ... | From: holistic.py:run_holistic_market_model()
+2025-09-29 13:33:38,794 - ERROR - [ERR-0001] - [37060fcd] Error getting factors analysis | Exception: KeyError: 'commodities_str' | From: helpers.py:get_factors()
+2025-09-29 13:44:35,585 - ERROR - [ERR-0001] - [08ba7594] Error getting factors analysis | Exception: KeyError: 'commodities_str' | From: helpers.py:get_factors()
+2025-09-29 13:44:35,587 - WARNING - [WARN-0002] - [569b581b] CF=F: Missing stop loss data | From: holistic.py:run_holistic_market_model()
+2025-09-29 13:44:35,587 - WARNING - [WARN-0002] - [3a403374] CF=F: Missing target price data | From: holistic.py:run_holistic_market_model()
+2025-09-29 13:44:35,587 - WARNING - [WARN-0002] - [6ff7b9d7] CF=F: Missing entry price data | From: holistic.py:run_holistic_market_model()
+2025-09-29 13:44:35,587 - WARNING - [ERR-0303] - [a4285fc3] Recommendation 0 missing fields: ['stop_loss', 'target_price', 'entry_price', 'price'] | From: helpers.py:validate_recommendations_schema()
+2025-09-29 13:44:35,587 - ERROR - [ERR-0303] - [3629017b] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-09-29 13:44:35,587 - WARNING - [ERR-0001] - [347934f7] Database save failed | From: helpers.py:save_to_db_with_fallback()
+2025-09-29 13:44:35,587 - WARNING - [ERR-0003] - [6677aa6a] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-09-29 13:46:32,214 - ERROR - [ERR-0001] - [f9240f17] Error getting factors analysis | Exception: KeyError: 'commodities_str' | From: helpers.py:get_factors()
+2025-09-29 13:59:06,677 - ERROR - [ERR-0001] - [1125d5bd] Error getting factors analysis | Exception: KeyError: 'commodities_str' | From: helpers.py:get_factors()
+2025-09-29 13:59:06,678 - WARNING - [ERR-0303] - [b77a6039] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-09-29 13:59:06,678 - ERROR - [ERR-0303] - [815f500b] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-09-29 13:59:06,678 - WARNING - [ERR-0001] - [0c5f0595] Database save failed | From: helpers.py:save_to_db_with_fallback()
+2025-09-29 13:59:06,678 - WARNING - [ERR-0003] - [612fb7ef] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-09-29 14:07:01,310 - ERROR - [ERR-0001] - [53147603] Error getting factors analysis | Exception: AttributeError: 'list' object has no attribute 'items' | From: helpers.py:get_factors()
+2025-09-29 15:05:08,432 - ERROR - [ERR-0001] - [089e8dbe] Error getting factors analysis | Exception: AttributeError: 'list' object has no attribute 'items' | From: helpers.py:get_factors()
+2025-09-29 15:28:12,647 - ERROR - [ERR-0103] - [b555c3f0] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting ',' delimiter: line 11 column 2124 (char 6138) | From: holistic.py:run_holistic_market_model()
+2025-09-29 15:28:12,649 - WARNING - [WARN-0002] - [6552a0f3] Raw response content: {
+  "title": "Crude Oil Faces Downward Pressure Amid OPEC+ Supply Hikes and Swelling Global Inventories",
+  "market_outlook_narrative": [
+    "As of late September 2025, the crude oil market is grappl... | From: holistic.py:run_holistic_market_model()
