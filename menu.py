@@ -73,11 +73,17 @@ def run_equity_model_with_input():
     ticker_input = input("Enter equity ticker(s) (comma-separated, e.g., AAPL, MSFT, GOOGL): ").strip()
     tickers = [t.strip() for t in ticker_input.split(',')] if ticker_input else []
     
+    # Get company name input
+    company_input = input("Enter company name(s) (comma-separated, e.g., Apple Inc., Microsoft Corporation, Alphabet Inc.): ").strip()
+    companies = [c.strip() for c in company_input.split(',')] if company_input else []
+    
     if tickers:
         # Convert list of tickers to comma-separated string for the holistic model
         tickers_str = ','.join(tickers)
+        # Convert list of companies to comma-separated string
+        companies_str = ','.join(companies) if companies else None
         from _config import EQ_EQUITY_LONG_SHORT_PROMPT, EQ_EQUITY_FACTORS_PROMPT
-        holistic.run_holistic_market_model(tickers_str, prompt=EQ_EQUITY_LONG_SHORT_PROMPT, factors=EQ_EQUITY_FACTORS_PROMPT)
+        holistic.run_holistic_market_model(tickers_str, name=companies_str, prompt=EQ_EQUITY_LONG_SHORT_PROMPT, factors=EQ_EQUITY_FACTORS_PROMPT)
     else:
         print("No tickers provided. Please enter at least one equity ticker.")
 

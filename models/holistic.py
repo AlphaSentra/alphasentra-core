@@ -25,7 +25,7 @@ from helpers import add_trade_levels_to_recommendations, add_entry_price_to_reco
 from logging_utils import log_error, log_warning, log_info
 
 
-def run_holistic_market_model(tickers, prompt=None, factors=None, region=None, asset_class=None, importance=None, decimal_digits=4):
+def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, region=None, asset_class=None, importance=None, decimal_digits=4):
     """
     Run the holistic market model.
     
@@ -55,6 +55,8 @@ def run_holistic_market_model(tickers, prompt=None, factors=None, region=None, a
         
         # Create a comma-separated string of tickers for the prompt
         tickers_str = tickers
+        # Use provided name of instrument
+        instrument_name = name
         # Create current date in the format "September 6, 2025"
         current_date = datetime.datetime.now().strftime("%B %d, %Y")
         
@@ -67,6 +69,7 @@ def run_holistic_market_model(tickers, prompt=None, factors=None, region=None, a
         # Format the prompt with tickers_str and weights
         formatted_prompt = decrypted_prompt.format(
                     tickers_str=tickers_str,
+                    instrument_name=instrument_name,
                     current_date=current_date,
                     geopolitical_weight=weights_to_use['Geopolitical'],
                     macroeconomic_weight=weights_to_use['Macroeconomics'],
@@ -117,7 +120,7 @@ def run_holistic_market_model(tickers, prompt=None, factors=None, region=None, a
                 recommendations['importance'] = get_importance(tickers)
             # Add to factors
             if factors is not None:
-                recommendations['factors'] = get_factors(tickers,current_date,prompt=factors)            
+                recommendations['factors'] = get_factors(tickers, name, current_date, prompt=factors)            
         # -----------------------------------------------------------------------------------
 
             # Display Model Output header

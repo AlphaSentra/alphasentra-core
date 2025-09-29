@@ -864,7 +864,7 @@ def get_importance(tickers):
         return 5  # Return neutral importance on error
 
 
-def get_factors(tickers, current_date, prompt=None):
+def get_factors(tickers, name=None, current_date=None, prompt=None):
     """
     Get AI-generated factors analysis for given tickers.
     
@@ -898,9 +898,13 @@ def get_factors(tickers, current_date, prompt=None):
             tickers_str = ", ".join(tickers)
         else:
             tickers_str = tickers
+
+        # Get Name for instrument_name if provided
+        instrument_name = name
             
         formatted_prompt = decrypted_prompt.format(
             tickers_str=tickers_str,
+            instrument_name=instrument_name,
             current_date=current_date
         )
         

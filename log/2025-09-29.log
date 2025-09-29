@@ -1,0 +1,18 @@
+2025-09-29 08:56:20,008 - ERROR - [ERR-0103] - [0b9487e3] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()
+2025-09-29 08:56:20,008 - WARNING - [WARN-0002] - [fc25ee96] Raw factors response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:get_factors()
+2025-09-29 09:32:30,035 - ERROR - [ERR-0103] - [c9638a86] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting ',' delimiter: line 10 column 3311 (char 6080) | From: holistic.py:run_holistic_market_model()
+2025-09-29 09:32:30,036 - WARNING - [WARN-0002] - [48a1fb69] Raw response content: {
+  "title": "Central Bank Easing and Tech Resilience Counter Geopolitical and Inflationary Headwinds",
+  "market_outlook_narrative": [
+    "Global equity markets are navigating a complex landscape ma... | From: holistic.py:run_holistic_market_model()
+2025-09-29 10:12:29,964 - ERROR - [ERR-0103] - [237ff60d] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: sector_rotation_long_short.py:run_sector_rotation_model()
+2025-09-29 10:12:29,965 - WARNING - [WARN-0002] - [9df74bd4] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}... | From: sector_rotation_long_short.py:run_sector_rotation_model()
+2025-09-29 10:38:57,287 - ERROR - [ERR-0001] - [81460c3a] Error getting factors analysis | Exception: AttributeError: 'list' object has no attribute 'items' | From: helpers.py:get_factors()
+2025-09-29 11:54:57,102 - ERROR - [ERR-0103] - [94b86c38] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()
+2025-09-29 11:54:57,103 - WARNING - [WARN-0002] - [5b095594] Raw factors response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:get_factors()
+2025-09-29 11:54:57,103 - WARNING - [ERR-0303] - [6afcc148] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-09-29 11:54:57,103 - ERROR - [ERR-0303] - [ff5ca9fc] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-09-29 11:54:57,103 - WARNING - [ERR-0001] - [6e4a8f01] Database save failed | From: helpers.py:save_to_db_with_fallback()
+2025-09-29 11:54:57,103 - WARNING - [ERR-0003] - [ee50872f] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-09-29 11:57:34,020 - ERROR - [ERR-0103] - [61cb69b9] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()
+2025-09-29 11:57:34,022 - WARNING - [WARN-0002] - [6ff5b8aa] Raw factors response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:get_factors()

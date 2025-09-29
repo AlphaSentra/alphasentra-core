@@ -27,3 +27,9 @@
 2025-09-28 14:57:28,044 - WARNING - [WARN-0002] - [ee896bf5] Raw response content: {"title": "Global Headwinds and Tech Resilience Shape Apple's Near-Term Trajectory", "market_outlook_narrative": ["Global equities are navigating a complex landscape marked by persistent inflationary ... | From: holistic.py:run_holistic_market_model()
 2025-09-28 15:17:34,531 - ERROR - [ERR-0103] - [6812bf14] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: holistic.py:run_holistic_market_model()
 2025-09-28 15:17:34,532 - WARNING - [WARN-0002] - [7996cd1f] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}... | From: holistic.py:run_holistic_market_model()
+2025-09-28 15:59:14,812 - ERROR - [ERR-0001] - [2269aa52] Error getting factors analysis | Exception: AttributeError: 'list' object has no attribute 'items' | From: helpers.py:get_factors()
+2025-09-28 16:03:45,940 - ERROR - [ERR-0103] - [3f90506d] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting ',' delimiter: line 10 column 5813 (char 8670) | From: holistic.py:run_holistic_market_model()
+2025-09-28 16:03:45,942 - WARNING - [WARN-0002] - [f8729c2e] Raw response content: {
+  "title": "Global Headwinds Offset by Resilient Corporate Earnings and Shifting Central Bank Policies",
+  "market_outlook_narrative": [
+    "Global financial markets are navigating a complex landsc... | From: holistic.py:run_holistic_market_model()
