@@ -112,6 +112,31 @@ def run_en_model_with_input():
         print("No tickers provided. Please enter at least one energy commodity ticker.")
 
 
+def run_me_model_with_input():
+    """
+    Run metals commodities model with user-provided ticker using ME_METALS_LONG_SHORT_PROMPT and ME_METALS_FACTORS_PROMPT.
+    """
+    print("\n=== Metals Commodities Model Input ===")
+    
+    # Get ticker input
+    ticker_input = input("Enter metals commodity ticker(s) (comma-separated, e.g., GC=F, SI=F, HG=F): ").strip()
+    tickers = [t.strip() for t in ticker_input.split(',')] if ticker_input else []
+    
+    # Get commodity name input
+    commodity_input = input("Enter commodity name(s) (comma-separated, e.g., Gold, Silver, Copper): ").strip()
+    commodities = [c.strip() for c in commodity_input.split(',')] if commodity_input else []
+    
+    if tickers:
+        # Convert list of tickers to comma-separated string for the holistic model
+        tickers_str = ','.join(tickers)
+        # Convert list of commodities to comma-separated string
+        commodities_str = ','.join(commodities) if commodities else None
+        from _config import ME_METALS_LONG_SHORT_PROMPT, ME_METALS_FACTORS_PROMPT
+        holistic.run_holistic_market_model(tickers_str, name=commodities_str, prompt=ME_METALS_LONG_SHORT_PROMPT, factors=ME_METALS_FACTORS_PROMPT)
+    else:
+        print("No tickers provided. Please enter at least one metals commodity ticker.")
+
+
 # Define menu items as tuples: (description, function)
 # Use None as function for separator items
 MENU_ITEMS = [
@@ -145,6 +170,9 @@ MENU_ITEMS = [
 
 ("EN: Energy Commodities Model",
  run_en_model_with_input),
+
+("ME: Metals Commodities Model",
+ run_me_model_with_input),
 
 # Others
 ("", None),

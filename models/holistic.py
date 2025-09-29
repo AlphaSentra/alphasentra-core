@@ -21,7 +21,7 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text
 from logging_utils import log_error, log_warning, log_info
 
 
@@ -84,15 +84,26 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
         # Get AI recommendations with None as prompt since it's pre-formatted
         result = get_gen_ai_response([tickers], "holistic market", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
         
-        # Try to parse the result as JSON
+        # Enhanced JSON parsing with repair capabilities
         try:
             # Remove any markdown code block markers if present
             result = strip_markdown_code_blocks(result)
-            # Parse JSON
-            recommendations = json.loads(result)
+            
+            # Use the enhanced JSON extraction with repair capabilities
+            json_content = extract_json_from_text(result)
+            
+            if json_content:
+                # Parse the extracted JSON
+                recommendations = json.loads(json_content)
+                log_info("Successfully parsed AI response as JSON")
+            else:
+                log_error("Failed to extract valid JSON from AI response", "AI_PARSING_FAILED")
+                log_warning(f"Raw response content: {result[:500]}...", "DATA_MISSING")
+                recommendations = None
+                
         except json.JSONDecodeError as e:
-            log_error("Error parsing AI response as JSON", "AI_PARSING", e)
-            log_warning(f"Raw response content: {result[:200]}...", "DATA_MISSING")
+            log_error("Error parsing AI response as JSON after extraction", "AI_PARSING", e)
+            log_warning(f"Raw response content: {result[:500]}...", "DATA_MISSING")
             recommendations = None
 
 

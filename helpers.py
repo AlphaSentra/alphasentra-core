@@ -283,12 +283,18 @@ def extract_json_from_text(text):
     """
     Extract JSON content from text, focusing on content at the end of strings.
     Handles various JSON formats and validates the extracted content.
+    Includes JSON repair capabilities for common AI response issues.
     """
     import re
     import json
+    from logging_utils import log_warning, log_error
     
-    if not isinstance(text, str):
+    if not isinstance(text, str) or not text.strip():
+        log_warning("Empty or non-string text provided to extract_json_from_text", "JSON_EXTRACTION")
         return None
+    
+    # Enhanced logging for debugging
+    log_warning(f"Attempting to extract JSON from text (length: {len(text)} chars)", "JSON_EXTRACTION")
     
     # Strategy: Look for JSON content at the end of the text
     # This handles the most common case where AI responses have JSON at the end
@@ -300,10 +306,18 @@ def extract_json_from_text(text):
     if end_match:
         try:
             json_content = end_match.group(1).strip()
-            json.loads(json_content)  # Validate it's proper JSON
-            return json_content
-        except (json.JSONDecodeError, ValueError):
-            pass
+            # Validate JSON structure before parsing
+            if validate_json_structure(json_content):
+                parsed_json = json.loads(json_content)
+                log_warning("Successfully extracted JSON using end object pattern", "JSON_EXTRACTION_SUCCESS")
+                return json_content
+        except (json.JSONDecodeError, ValueError) as e:
+            # Try to repair malformed JSON before giving up
+            log_warning(f"JSON parsing failed for end object pattern: {str(e)}", "JSON_EXTRACTION_ATTEMPT")
+            repaired_json = repair_json_content(json_content, str(e))
+            if repaired_json:
+                log_warning("Successfully repaired JSON from end object pattern", "JSON_REPAIR_SUCCESS")
+                return repaired_json
     
     # Pattern 2: Look for JSON array at the end
     array_pattern = r'(\[.*\])\s*$'
@@ -311,16 +325,26 @@ def extract_json_from_text(text):
     if array_match:
         try:
             json_content = array_match.group(1).strip()
-            json.loads(json_content)  # Validate it's proper JSON
-            return json_content
-        except (json.JSONDecodeError, ValueError):
-            pass
+            # Validate JSON structure before parsing
+            if validate_json_structure(json_content):
+                parsed_json = json.loads(json_content)
+                log_warning("Successfully extracted JSON using array pattern", "JSON_EXTRACTION_SUCCESS")
+                return json_content
+        except (json.JSONDecodeError, ValueError) as e:
+            # Try to repair malformed JSON before giving up
+            log_warning(f"JSON parsing failed for array pattern: {str(e)}", "JSON_EXTRACTION_ATTEMPT")
+            repaired_json = repair_json_content(json_content, str(e))
+            if repaired_json:
+                log_warning("Successfully repaired JSON from array pattern", "JSON_REPAIR_SUCCESS")
+                return repaired_json
     
     # Pattern 3: Look for JSON preceded by common AI response patterns
     # This handles cases like "text: {json}" or "text\n{json}"
     ai_json_patterns = [
         r'(?:analysis|recommendation|result|response|output)[:\s]*(\{.*\})\s*$',
         r'(?:^|\n)[^{}]*(\{.*\})\s*$',
+        r'```json\s*(\{.*\})\s*```',  # Markdown code blocks
+        r'```\s*(\{.*\})\s*```',      # Generic code blocks
     ]
     
     for pattern in ai_json_patterns:
@@ -328,9 +352,18 @@ def extract_json_from_text(text):
         if match:
             try:
                 json_content = match.group(1).strip()
-                json.loads(json_content)  # Validate it's proper JSON
-                return json_content
-            except (json.JSONDecodeError, ValueError):
+                # Validate JSON structure before parsing
+                if validate_json_structure(json_content):
+                    parsed_json = json.loads(json_content)
+                    log_warning(f"Successfully extracted JSON using pattern: {pattern[:50]}...", "JSON_EXTRACTION_SUCCESS")
+                    return json_content
+            except (json.JSONDecodeError, ValueError) as e:
+                # Try to repair malformed JSON before giving up
+                log_warning(f"JSON parsing failed for pattern {pattern[:50]}...: {str(e)}", "JSON_EXTRACTION_ATTEMPT")
+                repaired_json = repair_json_content(json_content, str(e))
+                if repaired_json:
+                    log_warning(f"Successfully repaired JSON from pattern: {pattern[:50]}...", "JSON_REPAIR_SUCCESS")
+                    return repaired_json
                 continue
     
     # If no JSON found at the end, try to find any valid JSON in the text
@@ -340,13 +373,245 @@ def extract_json_from_text(text):
     for json_match in reversed(json_matches):  # Try from end to start
         try:
             json_content = json_match.strip()
-            json.loads(json_content)  # Validate it's proper JSON
-            return json_content
-        except (json.JSONDecodeError, ValueError):
+            # Validate JSON structure before parsing
+            if validate_json_structure(json_content):
+                parsed_json = json.loads(json_content)
+                log_warning("Successfully extracted JSON using fallback pattern", "JSON_EXTRACTION_SUCCESS")
+                return json_content
+        except (json.JSONDecodeError, ValueError) as e:
+            # Try to repair malformed JSON before giving up
+            log_warning(f"JSON parsing failed for fallback pattern: {str(e)}", "JSON_EXTRACTION_ATTEMPT")
+            repaired_json = repair_json_content(json_content, str(e))
+            if repaired_json:
+                log_warning("Successfully repaired JSON from fallback pattern", "JSON_REPAIR_SUCCESS")
+                return repaired_json
             continue
     
+    log_error("Failed to extract any valid JSON from text", "JSON_EXTRACTION_FAILED")
+    log_error(f"Text preview: {text[:500]}...", "JSON_EXTRACTION_FAILED")
     return None
     
+    
+def validate_json_structure(json_content):
+    """
+    Validate basic JSON structure before attempting to parse.
+    This helps avoid unnecessary parsing attempts on clearly invalid content.
+    
+    Parameters:
+    json_content (str): JSON content to validate
+    
+    Returns:
+    bool: True if structure appears valid, False otherwise
+    """
+    import re
+    
+    if not json_content or not isinstance(json_content, str):
+        return False
+    
+    # Check if content starts and ends with proper brackets
+    trimmed = json_content.strip()
+    if not trimmed:
+        return False
+    
+    # Must start with { or [ and end with } or ]
+    if not ((trimmed.startswith('{') and trimmed.endswith('}')) or
+            (trimmed.startswith('[') and trimmed.endswith(']'))):
+        return False
+    
+    # Basic balance check for braces/brackets
+    brace_count = trimmed.count('{') - trimmed.count('}')
+    bracket_count = trimmed.count('[') - trimmed.count(']')
+    if brace_count != 0 or bracket_count != 0:
+        return False
+    
+    # Check for basic JSON structure patterns
+    # At minimum should have some key-value pairs or array elements
+    if trimmed.startswith('{'):
+        # Object should have at least one key-value pair pattern
+        if not re.search(r'"[^"]*"\s*:', trimmed):
+            return False
+    elif trimmed.startswith('['):
+        # Array should have at least one element
+        if len(trimmed) <= 2:  # Just []
+            return False
+    
+    return True
+    
+    
+def repair_json_content(json_content, error_message=""):
+    """
+    Attempt to repair common JSON issues in AI responses.
+    Handles missing comma delimiters, unquoted keys, and other common problems.
+    
+    Parameters:
+    json_content (str): The malformed JSON content
+    error_message (str): The JSONDecodeError message for targeted repair
+    
+    Returns:
+    str: Repaired JSON content if successful, None if repair fails
+    """
+    import re
+    import json
+    from logging_utils import log_warning, log_error
+    
+    if not json_content:
+        return None
+    
+    original_content = json_content
+    
+    try:
+        # First try to parse as-is (might be valid after all)
+        json.loads(json_content)
+        return json_content
+    except json.JSONDecodeError as e:
+        # Store the specific error for targeted repair
+        error_msg = str(e)
+        
+    # Enhanced comma delimiter repair with comprehensive pattern matching
+    if "Expecting ',' delimiter" in error_msg:
+        try:
+            # Extract position information from error message
+            position_match = re.search(r'line (\d+) column (\d+) \(char (\d+)\)', error_msg)
+            if position_match:
+                char_pos = int(position_match.group(3))
+                
+                # Enhanced comma insertion logic with context analysis
+                if char_pos < len(json_content):
+                    # Analyze the context around the error position
+                    context_start = max(0, char_pos - 20)
+                    context_end = min(len(json_content), char_pos + 20)
+                    context = json_content[context_start:context_end]
+                    
+                    # Pattern 1: Missing comma between objects: }{ or ]{
+                    if (char_pos > 0 and json_content[char_pos-1] in ['}', ']'] and
+                        json_content[char_pos] == '{'):
+                        repaired_content = json_content[:char_pos] + ',' + json_content[char_pos:]
+                        json.loads(repaired_content)
+                        log_warning(f"Repaired missing comma between objects at position {char_pos}", "JSON_REPAIR")
+                        return repaired_content
+                    
+                    # Pattern 2: Missing comma after value before object: value{
+                    if (char_pos > 0 and json_content[char_pos-1].isalnum() and
+                        json_content[char_pos] == '{'):
+                        repaired_content = json_content[:char_pos] + ',' + json_content[char_pos:]
+                        json.loads(repaired_content)
+                        log_warning(f"Repaired missing comma after value before object at position {char_pos}", "JSON_REPAIR")
+                        return repaired_content
+                    
+                    # Pattern 3: Missing comma after object before value: }value
+                    if (char_pos > 0 and json_content[char_pos-1] == '}' and
+                        json_content[char_pos].isalnum()):
+                        repaired_content = json_content[:char_pos] + ',' + json_content[char_pos:]
+                        json.loads(repaired_content)
+                        log_warning(f"Repaired missing comma after object before value at position {char_pos}", "JSON_REPAIR")
+                        return repaired_content
+                    
+                    # Pattern 4: Missing comma between array elements: valuevalue
+                    if (char_pos > 0 and json_content[char_pos-1].isalnum() and
+                        json_content[char_pos].isalnum()):
+                        repaired_content = json_content[:char_pos] + ',' + json_content[char_pos:]
+                        json.loads(repaired_content)
+                        log_warning(f"Repaired missing comma between array elements at position {char_pos}", "JSON_REPAIR")
+                        return repaired_content
+                        
+        except (ValueError, IndexError, json.JSONDecodeError):
+            pass  # Fall through to other repair strategies
+    
+    # Enhanced unquoted key repair with better pattern matching
+    unquoted_key_patterns = [
+        r'([{,])\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*:',  # Basic pattern
+        r'([{,])\s*([a-zA-Z_][a-zA-Z0-9_]*\s+[a-zA-Z0-9_]+)\s*:',  # Multi-word keys
+        r'([{,])\s*([a-zA-Z_][a-zA-Z0-9_]*[-][a-zA-Z0-9_]+)\s*:',  # Hyphenated keys
+    ]
+    
+    for pattern in unquoted_key_patterns:
+        def quote_key(match):
+            return f'{match.group(1)} "{match.group(2)}":'
+        
+        repaired_content = re.sub(pattern, quote_key, json_content)
+        if repaired_content != json_content:
+            try:
+                json.loads(repaired_content)
+                log_warning("Repaired unquoted keys in JSON", "JSON_REPAIR")
+                return repaired_content
+            except json.JSONDecodeError:
+                continue  # Try next pattern
+    
+    # Enhanced trailing comma handling
+    trailing_comma_patterns = [
+        r',\s*([}\]])',  # Comma before closing brace/bracket
+        r',\s*$',        # Comma at end
+    ]
+    
+    for pattern in trailing_comma_patterns:
+        repaired_content = re.sub(pattern, r'\1', json_content)
+        if repaired_content != json_content:
+            try:
+                json.loads(repaired_content)
+                log_warning("Removed trailing comma from JSON", "JSON_REPAIR")
+                return repaired_content
+            except json.JSONDecodeError:
+                continue
+    
+    # Enhanced single quote to double quote conversion
+    if "'" in json_content:
+        # Only convert single quotes that are likely to be string delimiters
+        # Avoid converting apostrophes within words
+        single_quote_pattern = r"'(.*?)'"
+        def replace_quotes(match):
+            return f'"{match.group(1)}"'
+        
+        repaired_content = re.sub(single_quote_pattern, replace_quotes, json_content)
+        if repaired_content != json_content:
+            try:
+                json.loads(repaired_content)
+                log_warning("Converted single quotes to double quotes in JSON", "JSON_REPAIR")
+                return repaired_content
+            except json.JSONDecodeError:
+                pass
+    
+    # Enhanced JSON substring extraction with validation
+    json_patterns = [
+        r'(\{(?:[^{}]|\{[^{}]*\}){0,50}\})',  # Objects (limit depth)
+        r'(\[(?:[^\[\]]|\[[^\[\]]*\]){0,50}\])',  # Arrays (limit depth)
+    ]
+    
+    best_candidate = None
+    best_length = 0
+    
+    for pattern in json_patterns:
+        matches = re.findall(pattern, json_content, re.DOTALL)
+        for match in matches:
+            if len(match) > best_length:  # Prefer longer matches
+                try:
+                    json.loads(match)
+                    best_candidate = match
+                    best_length = len(match)
+                except json.JSONDecodeError:
+                    continue
+    
+    if best_candidate:
+        log_warning(f"Extracted valid JSON substring ({best_length} chars) from malformed content", "JSON_REPAIR")
+        return best_candidate
+    
+    # Comprehensive error logging for debugging
+    log_error(f"JSON repair failed for content. Original error: {error_msg}", "JSON_REPAIR_FAILED")
+    log_error(f"Content preview: {json_content[:500]}...", "JSON_REPAIR_FAILED")
+    
+    # Log the specific error position if available
+    if "char" in error_msg:
+        try:
+            char_match = re.search(r'char (\d+)', error_msg)
+            if char_match:
+                error_pos = int(char_match.group(1))
+                context_start = max(0, error_pos - 50)
+                context_end = min(len(json_content), error_pos + 50)
+                error_context = json_content[context_start:context_end]
+                log_error(f"Error context around position {error_pos}: ...{error_context}...", "JSON_REPAIR_FAILED")
+        except (ValueError, IndexError):
+            pass
+    
+    return None
 
 def analyze_sentiment(text):
     """
@@ -470,7 +735,7 @@ class DatabaseManager:
         if self._client:
             self._client.close()
             self._client = None
-            log_info("MongoDB connection closed", "MONGODB_CONNECTION")
+            log_info("MongoDB connection closed")
 
 
 def save_to_db(recommendations):

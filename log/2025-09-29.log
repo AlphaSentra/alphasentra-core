@@ -45,3 +45,68 @@
   "title": "Crude Oil Faces Downward Pressure Amid OPEC+ Supply Hikes and Swelling Global Inventories",
   "market_outlook_narrative": [
     "As of late September 2025, the crude oil market is grappl... | From: holistic.py:run_holistic_market_model()
+2025-09-29 17:50:55,152 - WARNING - [ERR-0001] - [0f04c5be] Attempting to extract JSON from text (length: 24259 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 17:50:55,154 - WARNING - [ERR-0001] - [645bc6fc] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 6332 (char 8714) | From: helpers.py:extract_json_from_text()
+2025-09-29 17:50:55,158 - ERROR - [ERR-0404] - [4faaa43c] Error in holistic_market_model | Exception: PatternError: invalid group reference 1 at position 1 | From: holistic.py:run_holistic_market_model()
+2025-09-29 17:52:46,409 - WARNING - [ERR-0001] - [e8f755a0] Attempting to extract JSON from text (length: 24198 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 17:52:46,413 - WARNING - [ERR-0001] - [b196d3e7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 17:52:46,414 - ERROR - [ERR-0404] - [8b2df421] Error in holistic_market_model | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: holistic.py:run_holistic_market_model()
+2025-09-29 17:54:50,152 - WARNING - [ERR-0001] - [abe7b85f] Attempting to extract JSON from text (length: 11284 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 17:54:50,155 - WARNING - [ERR-0001] - [f5bc518e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 17:54:50,158 - ERROR - [ERR-0404] - [8cb7a9fd] Error in holistic_market_model | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: holistic.py:run_holistic_market_model()
+2025-09-29 17:57:35,857 - WARNING - [ERR-0001] - [9e13239e] Attempting to extract JSON from text (length: 12528 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 17:57:35,858 - WARNING - [ERR-0001] - [015fddd4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 17:57:35,858 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 18:15:58,141 - WARNING - [ERR-0001] - [8ed67203] Attempting to extract JSON from text (length: 30758 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 18:15:58,144 - WARNING - [ERR-0001] - [9fc15315] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 18:15:58,144 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 18:24:29,590 - WARNING - [ERR-0001] - [3719070c] Attempting to extract JSON from text (length: 23221 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 18:24:29,593 - WARNING - [ERR-0001] - [b7732a1d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 18:24:29,593 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 19:58:22,432 - WARNING - [ERR-0001] - [a4d42a47] Attempting to extract JSON from text (length: 24300 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 19:58:22,434 - WARNING - [ERR-0001] - [1fecfd3d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 19:58:22,434 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 20:00:55,674 - WARNING - [ERR-0001] - [5dd839c1] Attempting to extract JSON from text (length: 28774 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:00:55,678 - WARNING - [ERR-0001] - [d583e4e9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 20:00:55,678 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 20:03:10,238 - WARNING - [ERR-0001] - [3b847ea1] Attempting to extract JSON from text (length: 1703 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:03:10,243 - ERROR - [ERR-0001] - [8094f0c1] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-09-29 20:03:10,244 - ERROR - [ERR-0001] - [e974d961] Text preview: Error generating content: 502 Bad Gateway. {'message': '<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">\n  <title>Error 502 (Server Error)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/r... | From: helpers.py:extract_json_from_text()
+2025-09-29 20:03:10,245 - WARNING - [ERR-0001] - [575a0489] Attempting to extract JSON from text (length: 1703 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:03:10,246 - ERROR - [ERR-0001] - [a88842b7] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-09-29 20:03:10,246 - ERROR - [ERR-0001] - [8b7ee0a6] Text preview: Error generating content: 502 Bad Gateway. {'message': '<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">\n  <title>Error 502 (Server Error)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/r... | From: helpers.py:extract_json_from_text()
+2025-09-29 20:03:10,247 - ERROR - [ERR-0001] - [9aac9567] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-09-29 20:03:10,247 - WARNING - [WARN-0002] - [1a691880] Raw response content: Error generating content: 502 Bad Gateway. {'message': '<!DOCTYPE html>\n<html lang=en>\n  <meta charset=utf-8>\n  <meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">\n  <title>Error 502 (Server Error)!!1</title>\n  <style>\n    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/r... | From: holistic.py:run_holistic_market_model()
+2025-09-29 20:05:47,913 - WARNING - [ERR-0001] - [19fa566d] Attempting to extract JSON from text (length: 25333 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:05:47,918 - WARNING - [ERR-0001] - [cd4ecc54] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 20:05:47,920 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 20:08:26,981 - WARNING - [ERR-0001] - [36cd694f] Attempting to extract JSON from text (length: 26350 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:08:26,985 - WARNING - [ERR-0001] - [a426d094] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 20:08:26,985 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 20:11:38,188 - WARNING - [ERR-0001] - [327e016c] Attempting to extract JSON from text (length: 28437 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:11:38,192 - WARNING - [ERR-0001] - [53da25f4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 20:11:38,192 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 20:16:35,190 - WARNING - [ERR-0001] - [5c2a3f14] Attempting to extract JSON from text (length: 28277 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:16:35,193 - WARNING - [ERR-0001] - [c4434982] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 20:16:35,193 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 20:19:49,767 - WARNING - [ERR-0001] - [d854813f] Attempting to extract JSON from text (length: 21911 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:19:49,775 - WARNING - [ERR-0001] - [f2c0e212] JSON parsing failed for pattern ```json\s*(\{.*\})\s*```...: Expecting ',' delimiter: line 10 column 1216 (char 4645) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:19:49,779 - ERROR - [ERR-0404] - [183211e9] Error in holistic_market_model | Exception: PatternError: invalid group reference 1 at position 1 | From: holistic.py:run_holistic_market_model()
+2025-09-29 20:21:45,481 - WARNING - [ERR-0001] - [773b9f06] Attempting to extract JSON from text (length: 27651 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:21:45,483 - WARNING - [ERR-0001] - [fbe562f4] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 6815 (char 9913) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:21:45,484 - ERROR - [ERR-0404] - [28687492] Error in holistic_market_model | Exception: PatternError: invalid group reference 1 at position 1 | From: holistic.py:run_holistic_market_model()
+2025-09-29 20:24:41,474 - WARNING - [ERR-0001] - [277869a5] Attempting to extract JSON from text (length: 22312 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:24:41,477 - WARNING - [ERR-0001] - [70229501] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 6623 (char 9547) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:24:41,478 - ERROR - [ERR-0404] - [87be1cf5] Error in holistic_market_model | Exception: PatternError: invalid group reference 1 at position 1 | From: holistic.py:run_holistic_market_model()
+2025-09-29 20:28:28,562 - WARNING - [ERR-0001] - [98d6ed8d] Attempting to extract JSON from text (length: 31773 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:28:28,566 - WARNING - [ERR-0001] - [b49b9c9f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 20:28:28,568 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 20:32:49,191 - WARNING - [ERR-0001] - [f1bf0f03] Attempting to extract JSON from text (length: 32350 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:32:49,197 - WARNING - [ERR-0001] - [20543e12] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 20:32:49,201 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 20:36:34,275 - WARNING - [ERR-0001] - [fff334d8] Attempting to extract JSON from text (length: 29087 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:36:34,278 - WARNING - [ERR-0001] - [c09c187e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 20:36:34,280 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-29 20:54:41,485 - WARNING - [ERR-0001] - [1bc8dc56] Attempting to extract JSON from text (length: 23266 chars) | From: helpers.py:extract_json_from_text()
+2025-09-29 20:54:41,487 - WARNING - [ERR-0001] - [498242da] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-29 20:54:41,487 - INFO - [INFO] - Successfully parsed AI response as JSON
