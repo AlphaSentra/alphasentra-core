@@ -544,14 +544,26 @@ def repair_json_content(json_content, error_message=""):
     ]
     
     for pattern in trailing_comma_patterns:
-        repaired_content = re.sub(pattern, r'\1', json_content)
-        if repaired_content != json_content:
-            try:
-                json.loads(repaired_content)
-                log_warning("Removed trailing comma from JSON", "JSON_REPAIR")
-                return repaired_content
-            except json.JSONDecodeError:
-                continue
+        try:
+            compiled_pattern = re.compile(pattern)
+            num_groups = len(compiled_pattern.groups())
+            if num_groups > 0:
+                replacement = r'\1'
+            else:
+                replacement = ''  # Remove the comma without preserving any group
+            
+            repaired_content = re.sub(compiled_pattern, replacement, json_content)
+            
+            if repaired_content != json_content:
+                try:
+                    json.loads(repaired_content)
+                    log_warning("Removed trailing comma from JSON", "JSON_REPAIR")
+                    return repaired_content
+                except json.JSONDecodeError:
+                    continue
+        except re.error as regex_error:
+            log_warning(f"Regex compilation error in trailing comma pattern '{pattern}': {regex_error}", "JSON_REPAIR_REGEX")
+            continue
     
     # Enhanced single quote to double quote conversion
     if "'" in json_content:

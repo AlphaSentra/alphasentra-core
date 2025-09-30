@@ -1,0 +1,21 @@
+2025-09-30 08:45:16,765 - WARNING - [ERR-0001] - [2447852b] Attempting to extract JSON from text (length: 27885 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 08:45:16,766 - WARNING - [ERR-0001] - [384fd288] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 08:45:16,767 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 08:49:49,396 - WARNING - [ERR-0001] - [e7bf8024] Attempting to extract JSON from text (length: 23259 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 08:49:49,400 - WARNING - [ERR-0001] - [fe86a6c2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 08:49:49,402 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 09:47:35,778 - WARNING - [ERR-0001] - [b40361a2] Attempting to extract JSON from text (length: 22653 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 09:47:35,785 - WARNING - [ERR-0001] - [c1adfd90] JSON parsing failed for pattern ```json\s*(\{.*\})\s*```...: Expecting ',' delimiter: line 10 column 7011 (char 9757) | From: helpers.py:extract_json_from_text()
+2025-09-30 09:47:35,788 - ERROR - [ERR-0404] - [7725f3d1] Error in holistic_market_model | Exception: PatternError: invalid group reference 1 at position 1 | From: holistic.py:run_holistic_market_model()
+2025-09-30 09:59:44,397 - WARNING - [ERR-0001] - [33b607a2] Attempting to extract JSON from text (length: 79280 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 09:59:44,435 - WARNING - [ERR-0001] - [7e340bec] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 09:59:44,437 - WARNING - [ERR-0001] - [590b07a5] Attempting to extract JSON from text (length: 400 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 09:59:44,437 - WARNING - [ERR-0001] - [718d2aa6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 09:59:44,437 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 10:00:25,497 - WARNING - [ERR-0303] - [73e53bc5] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-09-30 10:00:25,498 - ERROR - [ERR-0303] - [6ee97047] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-09-30 10:00:25,500 - WARNING - [ERR-0001] - [9f6882b6] Database save failed | From: helpers.py:save_to_db_with_fallback()
+2025-09-30 10:00:25,501 - WARNING - [ERR-0003] - [65057ad2] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-09-30 10:31:02,613 - WARNING - [ERR-0001] - [e94101a6] Attempting to extract JSON from text (length: 26505 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 10:31:02,616 - WARNING - [ERR-0001] - [5b2ed8cf] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 10:31:02,617 - INFO - [INFO] - Successfully parsed AI response as JSON
