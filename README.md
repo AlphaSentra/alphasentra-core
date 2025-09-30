@@ -48,7 +48,7 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
 **Model [prompt] contain some of the following variables:**
 
 - Tickers: `{ticker_str}`,
-- Instrument Name: `{instrument_name}`
+- Instrument Name: `{instrument_name}`,
 - Current date: `{current_date}`,
 - Sector Region: `{sector_region_str}`,
 - Regional Region: `{regional_region_str}`,
