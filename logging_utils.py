@@ -10,6 +10,21 @@ import inspect
 from datetime import datetime
 from typing import Optional
 
+class ColoredFormatter(logging.Formatter):
+    def format(self, record):
+        if record.levelno >= logging.ERROR:
+            color = '\033[91m'
+        elif record.levelno == logging.WARNING:
+            color = '\033[93m'
+        elif record.levelno == logging.INFO:
+            color = '\033[92m'
+        else:
+            color = ''
+        formatted = super().format(record)
+        if color:
+            formatted = f"{color}{formatted}\033[0m"
+        return formatted
+
 # Ensure log directory exists
 LOG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'log')
 os.makedirs(LOG_DIR, exist_ok=True)
@@ -70,21 +85,21 @@ class AgLogger:
         # Remove existing handlers to avoid duplicates
         self.logger.handlers.clear()
         
-        # Create formatter
-        formatter = logging.Formatter(
-            '%(asctime)s - %(levelname)s - [%(error_code)s] - %(message)s'
-        )
+        # Create formatters
+        fmt = '%(asctime)s - %(levelname)s - [%(error_code)s] - %(message)s'
+        plain_formatter = logging.Formatter(fmt)
+        colored_formatter = ColoredFormatter(fmt)
         
         # File handler - log to daily files
         log_file = os.path.join(LOG_DIR, f'{datetime.now().strftime("%Y-%m-%d")}.log')
         file_handler = logging.FileHandler(log_file, encoding='utf-8')
         file_handler.setLevel(logging.DEBUG)
-        file_handler.setFormatter(formatter)
+        file_handler.setFormatter(plain_formatter)
         
         # Console handler - for development
         console_handler = logging.StreamHandler()
         console_handler.setLevel(logging.INFO)
-        console_handler.setFormatter(formatter)
+        console_handler.setFormatter(colored_formatter)
         
         self.logger.addHandler(file_handler)
         self.logger.addHandler(console_handler)

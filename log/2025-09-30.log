@@ -28,3 +28,9 @@
 2025-09-30 12:28:56,441 - WARNING - [ERR-0001] - [f9a873f7] Attempting to extract JSON from text (length: 18265 chars) | From: helpers.py:extract_json_from_text()
 2025-09-30 12:28:56,443 - WARNING - [ERR-0001] - [5a5f9524] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
 2025-09-30 12:28:56,443 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 12:46:47,832 - WARNING - [ERR-0001] - [37cc47be] Attempting to extract JSON from text (length: 19690 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 12:46:47,836 - WARNING - [ERR-0001] - [673a99d9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 12:46:47,836 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 12:50:51,862 - WARNING - [ERR-0001] - [edd26064] Attempting to extract JSON from text (length: 28293 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 12:50:51,864 - WARNING - [ERR-0001] - [2db199a1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 12:50:51,864 - INFO - [INFO] - Successfully parsed AI response as JSON
