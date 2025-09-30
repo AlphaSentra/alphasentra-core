@@ -115,7 +115,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
             recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits)
             # Get sentiment score for market outlook if available
             sentiment_score = analyze_sentiment(recommendations.get('market_outlook_narrative', ''))
-            recommendations['sentiment_score'] = sentiment_score            
+            recommendations['sentiment_score'] = sentiment_score
             # Add current GMT timestamp to recommendations
             recommendations['timestamp_gmt'] = get_current_gmt_timestamp()
             # Add language code to recommendations
@@ -131,7 +131,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
                 recommendations['importance'] = get_importance(tickers)
             # Add to factors
             if factors is not None:
-                recommendations['factors'] = get_factors(tickers, name, current_date, prompt=factors)            
+                recommendations['factors'] = get_factors(tickers, name, current_date, prompt=factors)
         # -----------------------------------------------------------------------------------
 
             # Display Model Output header
