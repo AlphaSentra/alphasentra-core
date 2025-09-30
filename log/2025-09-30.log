@@ -34,3 +34,7 @@
 2025-09-30 12:50:51,862 - WARNING - [ERR-0001] - [edd26064] Attempting to extract JSON from text (length: 28293 chars) | From: helpers.py:extract_json_from_text()
 2025-09-30 12:50:51,864 - WARNING - [ERR-0001] - [2db199a1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
 2025-09-30 12:50:51,864 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 13:11:05,087 - WARNING - [ERR-0001] - [756f3247] Attempting to extract JSON from text (length: 26474 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 13:11:05,090 - WARNING - [ERR-0001] - [8a4277df] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 13:11:05,090 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 13:11:06,922 - ERROR - [ERR-0001] - [032e2d0f] Error getting factors analysis | Exception: ValueError: Single '}' encountered in format string | From: helpers.py:get_factors()
