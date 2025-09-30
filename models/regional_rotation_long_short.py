@@ -19,9 +19,9 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS, REGIONAL_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, REGIONAL_ASSET_CLASS, REGIONAL_IMPORTANCE
+from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS, REGIONAL_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, REGIONAL_ASSET_CLASS, REGIONAL_IMPORTANCE, REGIONAL_ETFS_NAME, REGIONAL_FACTORS_PROMPT
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, get_ai_weights, save_to_db_with_fallback, get_factors
 from logging_utils import log_error, log_warning
 
 
@@ -115,6 +115,8 @@ def run_regional_rotation_model(tickers=None, regions=None):
             recommendations['asset_class'] = REGIONAL_ASSET_CLASS
             # Add importance
             recommendations['importance'] = REGIONAL_IMPORTANCE
+            # Add to factors
+            recommendations['factors'] = get_factors(tickers, REGIONAL_ETFS_NAME, current_date, prompt=REGIONAL_FACTORS_PROMPT)
         # -----------------------------------------------------------------------------------
 
             #Display Model Output header
@@ -233,7 +235,7 @@ def run_regional_rotation_model(tickers=None, regions=None):
         
     # Save recommendations to database with robust error handling
     if recommendations:
-        success = save_to_db_with_fallback(recommendations)
+        success = save_to_db_with_fallback(recommendations, flag_document_generated=False)
         if not success:
             log_warning("Failed to save recommendations to database", "DATABASE")
 

@@ -881,22 +881,46 @@ def save_to_db_robust(recommendations):
     return save_to_db_with_retry(recommendations)
 
 
-def save_to_db_with_fallback(recommendations):
+def save_to_db_with_fallback(recommendations, flag_document_generated: bool = True):
     """
     Save to database with fallback to local file storage.
     
     Parameters:
     recommendations (dict): The recommendations dictionary to save
+    flag_document_generated (bool): Whether to set document_generated to True in tickers collection
     
     Returns:
     bool: True if successful, False on error
     """
     try:
         success = save_to_db_robust(recommendations)
-        if not success:
-            log_warning("Database save failed", "DATABASE_FALLBACK")
+        if success:
+            if flag_document_generated:
+                # Update document_generated flag for tickers
+                if 'recommendations' in recommendations and isinstance(recommendations['recommendations'], list):
+                    tickers_set = set()
+                    for trade in recommendations['recommendations']:
+                        ticker = trade.get('ticker')
+                        if ticker:
+                            tickers_set.add(ticker)
+                    
+                    if tickers_set:
+                        client = DatabaseManager().get_client()
+                        db_name = os.getenv("MONGODB_DATABASE", "alphagora")
+                        db = client[db_name]
+                        tickers_coll = db['tickers']
+                        for ticker in tickers_set:
+                            tickers_coll.update_one({"ticker": ticker}, {"$set": {"document_generated": True}})
+                        print()
+                        log_info(f"Updated document_generated flag to True for tickers: {list(tickers_set)}")
+                    else:
+                        log_warning("No recommendations found in saved document, skipping flag update", "FLAG_UPDATE")
+                else:
+                    log_warning("No recommendations found in saved document, skipping flag update", "FLAG_UPDATE")
+        else:
+            log_warning("Database save failed, skipping flag update", "DATABASE_FALLBACK")
             return False
-        return True
+        return success
     except Exception as e:
         log_error("Critical error in database save with fallback", "DATABASE_CRITICAL", e)
         return False
