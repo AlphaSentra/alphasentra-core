@@ -184,6 +184,31 @@ def run_li_model_with_input():
     else:
         print("No tickers provided. Please enter at least one livestock commodity ticker.")
 
+def run_cr_model_with_input():
+    """
+    Run crypto model with user-provided ticker using CR_CRYPTO_LONG_SHORT_PROMPT and CR_CRYPTO_FACTORS_PROMPT.
+    """
+    print("\n=== Crypto Model Input ===")
+    
+    # Get ticker input
+    ticker_input = input("Enter crypto ticker(s) (comma-separated, e.g., BTC-USD, ETH-USD): ").strip()
+    tickers = [t.strip() for t in ticker_input.split(',')] if ticker_input else []
+    
+    # Get crypto name input
+    name_input = input("Enter crypto name(s) (comma-separated, e.g., Bitcoin, Ethereum): ").strip()
+    names = [n.strip() for n in name_input.split(',')] if name_input else []
+    
+    if tickers:
+        # Convert list of tickers to comma-separated string for the holistic model
+        tickers_str = ','.join(tickers)
+        # Convert list of names to comma-separated string
+        names_str = ','.join(names) if names else None
+        from _config import CR_CRYPTO_LONG_SHORT_PROMPT, CR_CRYPTO_FACTORS_PROMPT
+        holistic.run_holistic_market_model(tickers_str, name=names_str, prompt=CR_CRYPTO_LONG_SHORT_PROMPT, factors=CR_CRYPTO_FACTORS_PROMPT)
+    else:
+        print("No tickers provided. Please enter at least one crypto ticker.")
+
+
 # Define menu items as tuples: (description, function)
 # Use None as function for separator items
 MENU_ITEMS = [
@@ -227,6 +252,14 @@ MENU_ITEMS = [
 ("LI: Livestock Commodities Model",
  run_li_model_with_input),
 
+# Cryptocurrency category
+("", None),
+("----- CRYPTOCURRENCY -----", None),
+("", None),
+
+("CR: Crypto Model",
+ run_cr_model_with_input),
+
 # Others
 ("", None),
 ("----- OTHERS -----", None),
@@ -242,6 +275,5 @@ MENU_ITEMS = [
 
 ("Configure database connection settings",
  create_mongodb_db.create_alphagora_database)
-
 
 ]

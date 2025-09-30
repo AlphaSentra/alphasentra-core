@@ -38,3 +38,9 @@
 2025-09-30 13:11:05,090 - WARNING - [ERR-0001] - [8a4277df] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
 2025-09-30 13:11:05,090 - INFO - [INFO] - Successfully parsed AI response as JSON
 2025-09-30 13:11:06,922 - ERROR - [ERR-0001] - [032e2d0f] Error getting factors analysis | Exception: ValueError: Single '}' encountered in format string | From: helpers.py:get_factors()
+2025-09-30 13:47:39,169 - WARNING - [ERR-0001] - [0343ccfb] Attempting to extract JSON from text (length: 19885 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 13:47:39,171 - WARNING - [ERR-0001] - [b0fff48f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 13:47:39,171 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 13:58:16,935 - WARNING - [ERR-0001] - [8dfbbcc4] Attempting to extract JSON from text (length: 15347 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 13:58:16,938 - WARNING - [ERR-0001] - [a1b8bd02] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 13:58:16,938 - INFO - [INFO] - Successfully parsed AI response as JSON
