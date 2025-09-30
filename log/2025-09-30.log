@@ -44,3 +44,21 @@
 2025-09-30 13:58:16,935 - WARNING - [ERR-0001] - [8dfbbcc4] Attempting to extract JSON from text (length: 15347 chars) | From: helpers.py:extract_json_from_text()
 2025-09-30 13:58:16,938 - WARNING - [ERR-0001] - [a1b8bd02] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
 2025-09-30 13:58:16,938 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 14:08:03,872 - WARNING - [ERR-0001] - [674f28cd] Attempting to extract JSON from text (length: 19722 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 14:08:03,873 - WARNING - [ERR-0001] - [bce2298e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 14:08:03,876 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 14:37:55,780 - WARNING - [ERR-0001] - [b3a81462] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2025-09-30 14:37:55,782 - ERROR - [ERR-0001] - [8828410a] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-09-30 14:37:55,782 - ERROR - [ERR-0404] - [03814eba] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2025-09-30 14:42:46,820 - WARNING - [ERR-0001] - [218417ba] Attempting to extract JSON from text (length: 23660 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 14:42:46,824 - WARNING - [ERR-0001] - [0271f6c0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 14:42:46,825 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 15:21:53,990 - WARNING - [ERR-0001] - [54615bbf] Attempting to extract JSON from text (length: 27263 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 15:21:53,992 - WARNING - [ERR-0001] - [cfc228e3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 15:21:53,993 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 15:25:16,933 - WARNING - [ERR-0001] - [43e2fcae] Attempting to extract JSON from text (length: 17999 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 15:25:16,940 - WARNING - [ERR-0001] - [ebac8bc6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 15:25:16,942 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-09-30 15:34:55,406 - WARNING - [ERR-0001] - [27b967f1] Attempting to extract JSON from text (length: 54615 chars) | From: helpers.py:extract_json_from_text()
+2025-09-30 15:34:55,409 - WARNING - [ERR-0001] - [6c923244] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-09-30 15:34:55,409 - INFO - [INFO] - Successfully parsed AI response as JSON
