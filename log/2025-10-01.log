@@ -30,3 +30,10 @@
 2025-10-01 10:28:17,707 - WARNING - [ERR-0001] - [72bd41b7] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
 2025-10-01 10:28:17,708 - WARNING - [ERR-0003] - [01ade135] Failed to save recommendations to database | From: sector_rotation_long_short.py:run_sector_rotation_model()
 2025-10-01 11:07:15,217 - ERROR - [ERR-0001] - [e0a038f4] MongoDB operation failed for collection 'tickers' | Exception: OperationFailure: Unknown $jsonSchema keyword: decimal, full error: {'ok': 0.0, 'errmsg': 'Unknown $jsonSchema keyword: decimal', 'code': 9, 'codeName': 'FailedToParse'} | From: create_mongodb_db.py:create_collection_with_schema()
+2025-10-01 14:25:17,210 - WARNING - [ERR-0001] - [bf47b984] Attempting to extract JSON from text (length: 24228 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 14:25:17,212 - WARNING - [ERR-0001] - [04218ab5] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 11 column 5337 (char 9121) | From: helpers.py:extract_json_from_text()
+2025-10-01 14:25:17,214 - ERROR - [ERR-0404] - [e56453c7] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-01 14:30:32,998 - WARNING - [ERR-0001] - [e54d8df4] Attempting to extract JSON from text (length: 22657 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 14:30:33,004 - WARNING - [ERR-0001] - [7994d37d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 14:30:33,007 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 14:31:02,156 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']

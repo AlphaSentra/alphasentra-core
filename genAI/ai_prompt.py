@@ -7,6 +7,8 @@ import os
 import sys
 import threading
 import time
+import random
+import ast
 from google import genai
 from dotenv import load_dotenv
 
@@ -22,8 +24,29 @@ load_dotenv() # Load environment variables from .env file
 # Load AI model prompts from environment variables
 DEFAULT_PROMPT = os.getenv("DEFAULT_PROMPT")
 
-# Get the API key from the environment
-api_key = os.getenv("GEMINI_API_KEY")
+def get_random_api_key():
+    """
+    Get a random API key from the GEMINI_API_KEY array stored in environment variables.
+    Returns:
+    str: A randomly selected API key from the array
+    """
+    api_keys_str = os.getenv("GEMINI_API_KEY")
+    if not api_keys_str:
+        raise ValueError("GEMINI_API_KEY environment variable not found")
+    
+    try:
+        # Parse the string as a Python list using ast.literal_eval for safety
+        api_keys = ast.literal_eval(api_keys_str)
+        if not isinstance(api_keys, list) or len(api_keys) == 0:
+            raise ValueError("GEMINI_API_KEY must be a non-empty list of API keys")
+        
+        # Randomly select one API key from the list
+        return random.choice(api_keys)
+    except (ValueError, SyntaxError) as e:
+        raise ValueError(f"Invalid GEMINI_API_KEY format: {e}")
+
+# Get a random API key from the environment
+api_key = get_random_api_key()
 
 # Get model names from environment variables
 GEMINI_FLASH_MODEL = os.getenv("GEMINI_FLASH_MODEL", "gemini-2.5-flash")
@@ -59,8 +82,8 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None)
     
     print("\n=== Model: "+ model_strategy +" using "+ gemini_model +" ===")
 
-    # Create client instance
-    client = genai.Client()
+    # Create client instance with the selected API key
+    client = genai.Client(api_key=api_key)
 
     # Run prompt and return response
     try:
