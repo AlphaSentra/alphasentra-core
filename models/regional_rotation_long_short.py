@@ -30,8 +30,10 @@ def run_regional_rotation_model(tickers=None, regions=None, decimal_digits=1, ba
     Run the regional rotation long/short model.
     
     Args:
-        tickers (list): List of ETF tickers to analyze.
-        regional_regions (list, optional): List of regions to consider for regional analysis.
+        tickers (list, optional): List of ETF tickers to analyze. Defaults to REGIONAL_ETFS.
+        regions (list, optional): List of regions to consider for regional analysis. Defaults to REGIONAL_REGIONS.
+        decimal_digits (int, optional): Number of decimal places for price calculations. Defaults to 1.
+        batch_mode (bool, optional): If batch_mode is True then don't print() any information. Defaults to False.
     """
 
     # Use default tickers and regions if not provided
@@ -119,116 +121,117 @@ def run_regional_rotation_model(tickers=None, regions=None, decimal_digits=1, ba
             recommendations['factors'] = get_factors(tickers, REGIONAL_ETFS_NAME, current_date, prompt=REGIONAL_FACTORS_PROMPT)
         # -----------------------------------------------------------------------------------
 
-            #Display Model Output header
-            print("\n" + "="*100)
-            print("Regional Rotation Long/Short Model")
-            print("="*100)
-            print()
-
-            # Display timestamp if available
-            if 'timestamp_gmt' in recommendations:
-                print("=== Timestamp ===")
-                print()
-                print(f"Timestamp (GMT): {recommendations['timestamp_gmt']}")
+            if not batch_mode:
+                #Display Model Output header
+                print("\n" + "="*100)
+                print("Regional Rotation Long/Short Model")
+                print("="*100)
                 print()
 
-            # Display market outlook
-            if 'market_outlook_narrative' in recommendations:
-                print("\n=== Market Outlook ===")
-                print()
-
-                # Display title if available
-                if 'title' in recommendations:
-                    print(f"{recommendations['title']}")
+                # Display timestamp if available
+                if 'timestamp_gmt' in recommendations:
+                    print("=== Timestamp ===")
+                    print()
+                    print(f"Timestamp (GMT): {recommendations['timestamp_gmt']}")
                     print()
 
-                for paragraph in recommendations['market_outlook_narrative']:
-                    print(paragraph)
+                # Display market outlook
+                if 'market_outlook_narrative' in recommendations:
+                    print("\n=== Market Outlook ===")
                     print()
-            
-            # Display sentiment score if available
-            if 'sentiment_score' in recommendations:
-                print("=== Sentiment Score ===")
-                print()
-                print(f"Sentiment: {recommendations['sentiment_score']}")
-                print()
 
-            # Display market impact if available
-            if 'market_impact' in recommendations:
-                print("=== Market Impact ===")
-                print()
-                print(f"Market Impact: {recommendations['market_impact']}")
-                print()
+                    # Display title if available
+                    if 'title' in recommendations:
+                        print(f"{recommendations['title']}")
+                        print()
 
-            # Display rationale if available
-            if 'rationale' in recommendations:
-                print("=== Rationale ===")
-                print()
-                print(recommendations['rationale'])
-                print()
+                    for paragraph in recommendations['market_outlook_narrative']:
+                        print(paragraph)
+                        print()
+                
+                # Display sentiment score if available
+                if 'sentiment_score' in recommendations:
+                    print("=== Sentiment Score ===")
+                    print()
+                    print(f"Sentiment: {recommendations['sentiment_score']}")
+                    print()
 
-            # Display analysis if available
-            if 'analysis' in recommendations:
-                print("=== Analysis ===")
-                print()
-                print(recommendations['analysis'])
-                print()
-            
-            # Display sources if available
-            if 'sources' in recommendations:
-                print("=== Sources ===")
-                print()
-                for source in recommendations['sources']:
-                    source_name = source.get('source_name', 'Unknown Source')
-                    source_title = source.get('source_title', 'No Title')
-                    print(f"- {source_name}: {source_title}")
-                print()
+                # Display market impact if available
+                if 'market_impact' in recommendations:
+                    print("=== Market Impact ===")
+                    print()
+                    print(f"Market Impact: {recommendations['market_impact']}")
+                    print()
 
-            # Display recommendations
-            # After processing, the recommendations are under 'recommendations' key
-            if 'recommendations' in recommendations:
-                print("=== Recommendations ===")
-                print()
-                for trade in recommendations['recommendations']:
-                    # Extract required fields with better default values
-                    ticker = trade.get('ticker', 'UNKNOWN')
-                    direction = trade.get('trade_direction', 'NONE')
-                    score = trade.get('bull_bear_score', 0)
-                    
-                    # For stop_loss, target_price, and entry_price, use 'N/A' as default but validate they exist
-                    stop_loss = trade.get('stop_loss', 'N/A')
-                    target_price = trade.get('target_price', 'N/A')
-                    entry_price = trade.get('entry_price', 'N/A')
-                    
-                    # Validate that required fields are present
-                    if ticker == 'UNKNOWN':
-                        log_warning("Missing ticker information", "DATA_MISSING")
-                        continue
-                    
-                    if direction == 'NONE':
-                        log_warning(f"{ticker}: Missing trade direction", "DATA_MISSING")
-                        direction = 'HOLD'  # Default to HOLD if direction is missing
-                    
-                    # Ensure score is within valid range
-                    if not isinstance(score, int) or score < 1 or score > 10:
-                        log_warning(f"{ticker}: Invalid score ({score}), setting to 5", "DATA_VALIDATION")
-                        score = 5
-                    
-                    # Validate stop_loss and entry_price
-                    if stop_loss == 'N/A':
-                        log_warning(f"{ticker}: Missing stop loss data", "DATA_MISSING")
-                    
-                    if target_price == 'N/A':
-                        log_warning(f"{ticker}: Missing target price data", "DATA_MISSING")
-                    
-                    if entry_price == 'N/A':
-                        log_warning(f"{ticker}: Missing entry price data", "DATA_MISSING")
-                    
-                    print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
-            else:
-                # If JSON parsing fails, display the raw result
-                print("\n=== AI Analysis ===")
-                print(result)
+                # Display rationale if available
+                if 'rationale' in recommendations:
+                    print("=== Rationale ===")
+                    print()
+                    print(recommendations['rationale'])
+                    print()
+
+                # Display analysis if available
+                if 'analysis' in recommendations:
+                    print("=== Analysis ===")
+                    print()
+                    print(recommendations['analysis'])
+                    print()
+                
+                # Display sources if available
+                if 'sources' in recommendations:
+                    print("=== Sources ===")
+                    print()
+                    for source in recommendations['sources']:
+                        source_name = source.get('source_name', 'Unknown Source')
+                        source_title = source.get('source_title', 'No Title')
+                        print(f"- {source_name}: {source_title}")
+                    print()
+
+                # Display recommendations
+                # After processing, the recommendations are under 'recommendations' key
+                if 'recommendations' in recommendations:
+                    print("=== Recommendations ===")
+                    print()
+                    for trade in recommendations['recommendations']:
+                        # Extract required fields with better default values
+                        ticker = trade.get('ticker', 'UNKNOWN')
+                        direction = trade.get('trade_direction', 'NONE')
+                        score = trade.get('bull_bear_score', 0)
+                        
+                        # For stop_loss, target_price, and entry_price, use 'N/A' as default but validate they exist
+                        stop_loss = trade.get('stop_loss', 'N/A')
+                        target_price = trade.get('target_price', 'N/A')
+                        entry_price = trade.get('entry_price', 'N/A')
+                        
+                        # Validate that required fields are present
+                        if ticker == 'UNKNOWN':
+                            log_warning("Missing ticker information", "DATA_MISSING")
+                            continue
+                        
+                        if direction == 'NONE':
+                            log_warning(f"{ticker}: Missing trade direction", "DATA_MISSING")
+                            direction = 'HOLD'  # Default to HOLD if direction is missing
+                        
+                        # Ensure score is within valid range
+                        if not isinstance(score, int) or score < 1 or score > 10:
+                            log_warning(f"{ticker}: Invalid score ({score}), setting to 5", "DATA_VALIDATION")
+                            score = 5
+                        
+                        # Validate stop_loss and entry_price
+                        if stop_loss == 'N/A':
+                            log_warning(f"{ticker}: Missing stop loss data", "DATA_MISSING")
+                        
+                        if target_price == 'N/A':
+                            log_warning(f"{ticker}: Missing target price data", "DATA_MISSING")
+                        
+                        if entry_price == 'N/A':
+                            log_warning(f"{ticker}: Missing entry price data", "DATA_MISSING")
+                        
+                        print(f"- {ticker}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
+                else:
+                    # If JSON parsing fails, display the raw result
+                    print("\n=== AI Analysis ===")
+                    print(result)
             
     except Exception as e:
         log_error("Error in regional_rotation_long_short", "MODEL_EXECUTION", e)

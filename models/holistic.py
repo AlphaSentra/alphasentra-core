@@ -31,7 +31,15 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
     
     Args:
         tickers (str): The tickers to analyze
+        name (str, optional): Name of the instrument
         prompt (str, optional): Custom prompt to use. If None, uses HOLISTIC_MARKET_PROMPT from _config.py
+        factors (str, optional): Factors prompt for additional analysis
+        region (str, optional): Region for analysis
+        asset_class (str, optional): Asset class for analysis
+        importance (str, optional): Importance level for analysis
+        decimal_digits (int, optional): Number of decimal places for price calculations. Defaults to 2.
+        flag_document_generated (bool, optional): Whether to save the generated document to the database. Defaults to True.
+        batch_mode (bool, optional): If batch_mode is True, then don't print() any information. Defaults to False.
         
     Returns:
         dict: The recommendations dictionary with sentiment score if available
@@ -134,116 +142,117 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
                 recommendations['factors'] = get_factors(tickers, name, current_date, prompt=factors)
         # -----------------------------------------------------------------------------------
 
-            # Display Model Output header
-            print("\n" + "="*100)
-            print("Holistic Market Model")
-            print("="*100)
-            print()
-
-            # Display timestamp if available
-            if 'timestamp_gmt' in recommendations:
-                print("=== Timestamp ===")
-                print()
-                print(f"Timestamp (GMT): {recommendations['timestamp_gmt']}")
+            if not batch_mode:
+                # Display Model Output header
+                print("\n" + "="*100)
+                print("Holistic Market Model")
+                print("="*100)
                 print()
 
-            # Display market outlook
-            if 'market_outlook_narrative' in recommendations:
-                print("\n=== Market Outlook ===")
-                print()
-
-                # Display title if available
-                if 'title' in recommendations:
-                    print(f"{recommendations['title']}")
+                # Display timestamp if available
+                if 'timestamp_gmt' in recommendations:
+                    print("=== Timestamp ===")
+                    print()
+                    print(f"Timestamp (GMT): {recommendations['timestamp_gmt']}")
                     print()
 
-                for paragraph in recommendations['market_outlook_narrative']:
-                    print(paragraph)
+                # Display market outlook
+                if 'market_outlook_narrative' in recommendations:
+                    print("\n=== Market Outlook ===")
                     print()
-            
-            # Display sentiment score if available
-            if 'sentiment_score' in recommendations:
-                print("=== Sentiment Score ===")
-                print()
-                print(f"Sentiment: {recommendations['sentiment_score']}")
-                print()
-            
-            # Display market impact if available
-            if 'market_impact' in recommendations:
-                print("=== Market Impact ===")
-                print()
-                print(f"Market Impact: {recommendations['market_impact']}")
-                print()
 
-            # Display rationale if available
-            if 'rationale' in recommendations:
-                print("=== Rationale ===")
-                print()
-                print(recommendations['rationale'])
-                print()
+                    # Display title if available
+                    if 'title' in recommendations:
+                        print(f"{recommendations['title']}")
+                        print()
 
-            # Display analysis if available
-            if 'analysis' in recommendations:
-                print("=== Analysis ===")
-                print()
-                print(recommendations['analysis'])
-                print()
-            
-            # Display sources if available
-            if 'sources' in recommendations:
-                print("=== Sources ===")
-                print()
-                for source in recommendations['sources']:
-                    source_name = source.get('source_name', 'Unknown Source')
-                    source_title = source.get('source_title', 'No Title')
-                    print(f"- {source_name}: {source_title}")
-                print()
-            
-            # Display recommendations
-            # After processing, the recommendations are under 'recommendations' key
-            if 'recommendations' in recommendations:
-                print("=== Recommendations ===")
-                print()
-                for trade in recommendations['recommendations']:
-                    # Extract required fields with better default values
-                    tickers = trade.get('ticker', 'UNKNOWN')
-                    direction = trade.get('trade_direction', 'NONE')
-                    score = trade.get('bull_bear_score', 0)
-                    
-                    # For stop_loss, target_price, and entry_price, use 'N/A' as default but validate they exist
-                    stop_loss = trade.get('stop_loss', 'N/A')
-                    target_price = trade.get('target_price', 'N/A')
-                    entry_price = trade.get('entry_price', 'N/A')
-                    
-                    # Validate that required fields are present
-                    if tickers == 'UNKNOWN':
-                        log_warning("Missing ticker information", "DATA_MISSING")
-                        continue
-                    
-                    if direction == 'NONE':
-                        log_warning(f"{tickers}: Missing trade direction", "DATA_MISSING")
-                        direction = 'HOLD'  # Default to HOLD if direction is missing
-                    
-                    # Ensure score is within valid range
-                    if not isinstance(score, int) or score < 1 or score > 10:
-                        log_warning(f"{tickers}: Invalid score ({score}), setting to 5", "DATA_VALIDATION")
-                        score = 5
-                    
-                    # Validate stop_loss and entry_price
-                    if stop_loss == 'N/A':
-                        log_warning(f"{tickers}: Missing stop loss data", "DATA_MISSING")
-                    
-                    if target_price == 'N/A':
-                        log_warning(f"{tickers}: Missing target price data", "DATA_MISSING")
-                    
-                    if entry_price == 'N/A':
-                        log_warning(f"{tickers}: Missing entry price data", "DATA_MISSING")
-                    
-                    print(f"- {tickers}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
-            else:
-                # If JSON parsing fails, display the raw result
-                print("\n=== AI Analysis ===")
-                print(result)
+                    for paragraph in recommendations['market_outlook_narrative']:
+                        print(paragraph)
+                        print()
+                
+                # Display sentiment score if available
+                if 'sentiment_score' in recommendations:
+                    print("=== Sentiment Score ===")
+                    print()
+                    print(f"Sentiment: {recommendations['sentiment_score']}")
+                    print()
+
+                # Display market impact if available
+                if 'market_impact' in recommendations:
+                    print("=== Market Impact ===")
+                    print()
+                    print(f"Market Impact: {recommendations['market_impact']}")
+                    print()
+
+                # Display rationale if available
+                if 'rationale' in recommendations:
+                    print("=== Rationale ===")
+                    print()
+                    print(recommendations['rationale'])
+                    print()
+
+                # Display analysis if available
+                if 'analysis' in recommendations:
+                    print("=== Analysis ===")
+                    print()
+                    print(recommendations['analysis'])
+                    print()
+                
+                # Display sources if available
+                if 'sources' in recommendations:
+                    print("=== Sources ===")
+                    print()
+                    for source in recommendations['sources']:
+                        source_name = source.get('source_name', 'Unknown Source')
+                        source_title = source.get('source_title', 'No Title')
+                        print(f"- {source_name}: {source_title}")
+                    print()
+
+                # Display recommendations
+                # After processing, the recommendations are under 'recommendations' key
+                if 'recommendations' in recommendations:
+                    print("=== Recommendations ===")
+                    print()
+                    for trade in recommendations['recommendations']:
+                        # Extract required fields with better default values
+                        tickers = trade.get('ticker', 'UNKNOWN')
+                        direction = trade.get('trade_direction', 'NONE')
+                        score = trade.get('bull_bear_score', 0)
+                        
+                        # For stop_loss, target_price, and entry_price, use 'N/A' as default but validate they exist
+                        stop_loss = trade.get('stop_loss', 'N/A')
+                        target_price = trade.get('target_price', 'N/A')
+                        entry_price = trade.get('entry_price', 'N/A')
+                        
+                        # Validate that required fields are present
+                        if tickers == 'UNKNOWN':
+                            log_warning("Missing ticker information", "DATA_MISSING")
+                            continue
+                        
+                        if direction == 'NONE':
+                            log_warning(f"{tickers}: Missing trade direction", "DATA_MISSING")
+                            direction = 'HOLD'  # Default to HOLD if direction is missing
+                        
+                        # Ensure score is within valid range
+                        if not isinstance(score, int) or score < 1 or score > 10:
+                            log_warning(f"{tickers}: Invalid score ({score}), setting to 5", "DATA_VALIDATION")
+                            score = 5
+                        
+                        # Validate stop_loss and entry_price
+                        if stop_loss == 'N/A':
+                            log_warning(f"{tickers}: Missing stop loss data", "DATA_MISSING")
+                        
+                        if target_price == 'N/A':
+                            log_warning(f"{tickers}: Missing target price data", "DATA_MISSING")
+                        
+                        if entry_price == 'N/A':
+                            log_warning(f"{tickers}: Missing entry price data", "DATA_MISSING")
+                        
+                        print(f"- {tickers}: {direction.upper()} (Score: {score}/10, Entry Price: {entry_price}, Stop Loss: {stop_loss}, Target Price: {target_price})")
+                else:
+                    # If JSON parsing fails, display the raw result
+                    print("\n=== AI Analysis ===")
+                    print(result)
             
     except Exception as e:
         log_error("Error in holistic_market_model", "MODEL_EXECUTION", e)
