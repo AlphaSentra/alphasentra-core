@@ -769,6 +769,103 @@ def insert_crypto_assets(db):
         log_error("Unexpected error inserting crypto assets", "DATA_INSERTION", e)
         return False
 
+def insert_pipeline_data(db):
+    """
+    Inserts initial pipeline data into the 'pipeline' collection.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if insertion was successful, False on error
+    """
+    collection_name = 'pipeline'
+    
+    print()
+    print("=" * 100)
+    print(f"Inserting pipeline data into '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+    
+    # Pipeline data to insert
+    pipeline_data = [
+        {"model_function": "run_sector_rotation_model", "recurrence":"multi", "task_completed": False},     
+        {"model_function": "run_regional_rotation_model",  "recurrence":"multi", "task_completed": False}
+    ]
+    
+    try:
+        collection = db[collection_name]
+        
+        # Check if any pipeline data already exists to avoid duplicates
+        existing_count = collection.count_documents({"model_function": {"$in": [item["model_function"] for item in pipeline_data]}})
+        if existing_count > 0:
+            print(f"Found {existing_count} existing pipeline entries. Skipping insertion to avoid duplicates.")
+            return True
+        
+        # Insert all pipeline data
+        result = collection.insert_many(pipeline_data)
+        print(f"Successfully inserted {len(result.inserted_ids)} pipeline entries into '{collection_name}' collection")
+        return True
+        
+    except pymongo.errors.OperationFailure as e:
+        log_error("MongoDB operation failed for inserting pipeline data", "MONGODB_OPERATION", e)
+        return False
+    except Exception as e:
+        log_error("Unexpected error inserting pipeline data", "DATA_INSERTION", e)
+        return False
+
+
+def insert_asset_classes_data(db):
+    """
+    Inserts initial asset classes data into the 'asset_classes' collection.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if insertion was successful, False on error
+    """
+    collection_name = 'asset_classes'
+    
+    print()
+    print("=" * 100)
+    print(f"Inserting asset classes data into '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+    
+    # Asset classes data to insert
+    asset_classes_data = [
+        {"Code": "FX", "Description": "Foreign Exchange Pairs"},
+        {"Code": "EQ", "Description": "Equities and Stocks"},
+        {"Code": "IX", "Description": "Stock Indices"},
+        {"Code": "EN", "Description": "Energy Commodities"},
+        {"Code": "ME", "Description": "Metal Commodities"},
+        {"Code": "AG", "Description": "Agricultural Commodities"},
+        {"Code": "LI", "Description": "Livestock Commodities"},
+        {"Code": "CR", "Description": "Cryptocurrencies"}
+    ]
+    
+    try:
+        collection = db[collection_name]
+        
+        # Check if any asset classes already exist to avoid duplicates
+        existing_count = collection.count_documents({"Code": {"$in": [item["Code"] for item in asset_classes_data]}})
+        if existing_count > 0:
+            print(f"Found {existing_count} existing asset classes. Skipping insertion to avoid duplicates.")
+            return True
+        
+        # Insert all asset classes data
+        result = collection.insert_many(asset_classes_data)
+        print(f"Successfully inserted {len(result.inserted_ids)} asset classes into '{collection_name}' collection")
+        return True
+        
+    except pymongo.errors.OperationFailure as e:
+        log_error("MongoDB operation failed for inserting asset classes data", "MONGODB_OPERATION", e)
+        return False
+    except Exception as e:
+        log_error("Unexpected error inserting asset classes data", "DATA_INSERTION", e)
+        return False
+
 def create_weight_factors_collection(db):
     """
     Creates the 'weight_factors' collection with schema validation and indexes.
@@ -850,81 +947,172 @@ def create_weight_factors_collection(db):
     return success
 
 
+def create_pipeline_collection(db):
+    """
+    Creates the 'pipeline' collection with schema validation.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if collection was created or already exists, False on error
+    """
+    collection_name = 'pipeline'
+    
+    print()
+    print("=" * 100)
+    print(f"Creating '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+
+    # Create collection with schema validation
+    validator = {
+        '$jsonSchema': {
+            'bsonType': 'object',
+            'required': [
+                'model_function',
+                'task_completed'
+            ],
+            'properties': {
+                'model_function': {
+                    'bsonType': 'string'
+                },
+                'recurrence': {
+                    'bsonType': 'string'
+                },
+                'task_completed': {
+                    'bsonType': 'bool'
+                }
+            }
+        }
+    }
+    
+    # No indexes specified
+    indexes = None
+    
+    # Use the generic function to create the collection
+    success = create_collection_with_schema(db, collection_name, validator, indexes)
+    
+    if success:
+        print(f"Successfully created collection '{collection_name}'")
+        print("Collection schema validation rules applied:")
+        print("   - Required fields: model_function, task_completed")
+    
+    return success
+
+
+def create_asset_classes_collection(db):
+    """
+    Creates the 'asset_classes' collection with schema validation.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if collection was created or already exists, False on error
+    """
+    collection_name = 'asset_classes'
+    
+    print()
+    print("=" * 100)
+    print(f"Creating '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+
+    # Create collection with schema validation
+    validator = {
+        '$jsonSchema': {
+            'bsonType': 'object',
+            'required': [
+                'Code',
+                'Description'
+            ],
+            'properties': {
+                'Code': {
+                    'bsonType': 'string',
+                    'description': 'Asset class code must be a string'
+                },
+                'Description': {
+                    'bsonType': 'string',
+                    'description': 'Asset class description must be a string'
+                }
+            }
+        }
+    }
+    
+    # No indexes specified
+    indexes = None
+    
+    # Use the generic function to create the collection
+    success = create_collection_with_schema(db, collection_name, validator, indexes)
+    
+    if success:
+        print(f"Successfully created collection '{collection_name}'")
+        print("Collection schema validation rules applied:")
+        print("   - Required fields: Code, Description")
+    
+    return success
+
 def create_alphagora_database():
     """
-    Creates the 'alphagora' database and 'documents' collection with schema validation.
-    Returns True if successful, False otherwise.
+    Creates the 'alphagora' database and required collections with schema validation.
+    Performs sequential data insertions. Returns True if all steps succeed, False otherwise.
     """
     try:
-        # Connect to MongoDB using MONGODB_URI from environment variables
-        # Get MongoDB connection details from environment variables
-        mongodb_host = os.getenv("MONGODB_HOST", "localhost")
-        mongodb_port = int(os.getenv("MONGODB_PORT", "27017"))
-        mongodb_database = os.getenv("MONGODB_DATABASE", "alphagora")
-        mongodb_username = os.getenv("MONGODB_USERNAME")
-        mongodb_password = os.getenv("MONGODB_PASSWORD")
-        mongodb_auth_source = os.getenv("MONGODB_AUTH_SOURCE", "admin")
+        # Fetch MongoDB connection details from environment variables
+        config = {
+            'host': os.getenv("MONGODB_HOST", "localhost"),
+            'port': int(os.getenv("MONGODB_PORT", "27017")),
+            'database': os.getenv("MONGODB_DATABASE", "alphagora"),
+            'username': os.getenv("MONGODB_USERNAME"),
+            'password': os.getenv("MONGODB_PASSWORD"),
+            'auth_source': os.getenv("MONGODB_AUTH_SOURCE", "admin")
+        }
         
-        # Construct MongoDB URI based on whether authentication is provided
-        if mongodb_username and mongodb_password:
-            mongodb_uri = f"mongodb://{mongodb_username}:{mongodb_password}@{mongodb_host}:{mongodb_port}/{mongodb_database}?authSource={mongodb_auth_source}"
+        # Construct URI
+        if config['username'] and config['password']:
+            uri = f"mongodb://{config['username']}:{config['password']}@{config['host']}:{config['port']}/{config['database']}?authSource={config['auth_source']}"
         else:
-            mongodb_uri = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_database}"
+            uri = f"mongodb://{config['host']}:{config['port']}/{config['database']}"
         
-        client = MongoClient(mongodb_uri)
-        
-        # Create or get the database
-        db = client[mongodb_database]
-        
-        # Create the documents collection
-        success = create_documents_collection(db)
-        
-        # Create the tickers collection
-        if success:
-            success = create_tickers_collection(db)
-        
-        # Insert FX pairs into tickers collection
-        if success:
-            success = insert_fx_pairs(db)
-        
-        # Insert indices into tickers collection
-        if success:
-            success = insert_indices(db)
-        
-        # Insert energy commodities into tickers collection
-        if success:
-            success = insert_energy_commodities(db)
-        
-        # Insert metal commodities into tickers collection
-        if success:
-            success = insert_metal_commodities(db)
-        
-            # Insert agriculture commodities into tickers collection
-            if success:
-                success = insert_agriculture_commodities(db)
-        
-            # Insert livestock commodities into tickers collection
-            if success:
-                success = insert_livestock_commodities(db)
+        # Use context manager for client
+        with MongoClient(uri) as client:
+            db = client[config['database']]
             
-            # Insert crypto assets into tickers collection
-            if success:
-                success = insert_crypto_assets(db)
-        
-        # Create weight_factors collection
-        if success:
-            success = create_weight_factors_collection(db)
-        
-        return success
-        
+            # Define sequential operations as a list of functions
+            operations = [
+                create_documents_collection,
+                create_tickers_collection,
+                create_pipeline_collection,
+                create_asset_classes_collection,
+                insert_asset_classes_data,
+                insert_pipeline_data,
+                insert_fx_pairs,
+                insert_indices,
+                insert_energy_commodities,
+                insert_metal_commodities,
+                insert_agriculture_commodities,
+                insert_livestock_commodities,
+                insert_crypto_assets,
+                create_weight_factors_collection
+            ]
+            
+            # Execute operations sequentially, passing db to each
+            for op in operations:
+                if not op(db):
+                    log_error("Failed during sequential operation", "DATABASE_SETUP", None)
+                    return False
+            
+            return True
+            
     except pymongo.errors.ServerSelectionTimeoutError:
-        log_error("MongoDB server not found. Please ensure MongoDB is running on localhost:27017", "MONGODB_CONNECTION", None)
+        log_error("MongoDB server not found. Ensure MongoDB is running on the specified host/port.", "MONGODB_CONNECTION", None)
         return False
     except pymongo.errors.OperationFailure as e:
         log_error("MongoDB operation failed", "MONGODB_OPERATION", e)
         return False
     except Exception as e:
-        log_error("Unexpected error", "DATABASE_CREATION", e)
+        log_error("Unexpected error during database creation", "DATABASE_CREATION", e)
         return False
 
 if __name__ == "__main__":

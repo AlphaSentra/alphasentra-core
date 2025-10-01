@@ -237,53 +237,54 @@ MENU_ITEMS = [
 
     ("IX: Indices Model",
      run_index_model_with_input),
-# Currency/FX category
-("", None),
-("----- CURRENCIES -----", None),
-("", None),
 
-("FX: Forex Model",
- run_fx_model_with_input),
+    # Currency/FX category
+    ("", None),
+    ("----- CURRENCIES -----", None),
+    ("", None),
 
-# Commodities category
-("", None),
-("----- COMMODITIES -----", None),
-("", None),
+    ("FX: Forex Model",
+    run_fx_model_with_input),
 
-("EN: Energy Commodities Model",
- run_en_model_with_input),
+    # Commodities category
+    ("", None),
+    ("----- COMMODITIES -----", None),
+    ("", None),
 
-("ME: Metals Commodities Model",
- run_me_model_with_input),
+    ("EN: Energy Commodities Model",
+    run_en_model_with_input),
 
-("AG: Agricultural Commodities Model",
- run_ag_model_with_input),
+    ("ME: Metals Commodities Model",
+    run_me_model_with_input),
 
-("LI: Livestock Commodities Model",
- run_li_model_with_input),
+    ("AG: Agricultural Commodities Model",
+    run_ag_model_with_input),
 
-# Cryptocurrency category
-("", None),
-("----- CRYPTOCURRENCY -----", None),
-("", None),
+    ("LI: Livestock Commodities Model",
+    run_li_model_with_input),
 
-("CR: Crypto Model",
- run_cr_model_with_input),
+    # Cryptocurrency category
+    ("", None),
+    ("----- CRYPTOCURRENCY -----", None),
+    ("", None),
 
-# Others
-("", None),
-("----- OTHERS -----", None),
-("", None),
+    ("CR: Crypto Model",
+    run_cr_model_with_input),
 
-("Holistic Market Model",
- run_holistic_model_with_input),
+    # Others
+    ("", None),
+    ("----- OTHERS -----", None),
+    ("", None),
 
-# Configuration
-("", None),
-("----- CONFIG -----", None),
-("", None),
+    ("Holistic Market Model",
+    run_holistic_model_with_input),
 
-("Configure database connection settings",
- create_mongodb_db.create_alphagora_database)
+    # Configuration
+    ("", None),
+    ("----- CONFIG -----", None),
+    ("", None),
+
+    ("Configure database connection settings",
+    create_mongodb_db.create_alphagora_database)
 
 ]
