@@ -25,7 +25,7 @@ from helpers import add_trade_levels_to_recommendations, add_entry_price_to_reco
 from logging_utils import log_error, log_warning, log_info
 
 
-def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, region=None, asset_class=None, importance=None, decimal_digits=4):
+def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, region=None, asset_class=None, importance=None, decimal_digits=2, flag_document_generated: bool = True):
     """
     Run the holistic market model.
     
@@ -251,7 +251,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
         
     # Save recommendations to database with robust error handling
     if recommendations:
-        success = save_to_db_with_fallback(recommendations)
+        success = save_to_db_with_fallback(recommendations, flag_document_generated=flag_document_generated)
         if not success:
             log_warning("Failed to save recommendations to database", "DATABASE")
         

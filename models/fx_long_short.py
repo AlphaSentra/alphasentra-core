@@ -26,7 +26,7 @@ from logging_utils import log_error, log_warning
 
 
 
-def run_fx_model(tickers, fx_regions=None):
+def run_fx_model(tickers, fx_regions=None, decimal_digits=4, flag_document_generated: bool = True):
     """
     Run the FX long/short model.
     
@@ -95,9 +95,9 @@ def run_fx_model(tickers, fx_regions=None):
         # --------------------- Add additional data to JSON Model ---------------------    
         if recommendations:
             # Add stop loss and target prices to recommendations
-            recommendations = add_trade_levels_to_recommendations(recommendations, decimal_digits=4)
+            recommendations = add_trade_levels_to_recommendations(recommendations, decimal_digits=decimal_digits)
             # Add entry prices to recommendations
-            recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits=4)
+            recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits=decimal_digits)
             # Get sentiment score for market outlook if available
             sentiment_score = analyze_sentiment(recommendations.get('market_outlook_narrative', ''))
             recommendations['sentiment_score'] = sentiment_score            
@@ -232,7 +232,7 @@ def run_fx_model(tickers, fx_regions=None):
         
     # Save recommendations to database with robust error handling
     if recommendations:
-        success = save_to_db_with_fallback(recommendations)
+        success = save_to_db_with_fallback(recommendations, flag_document_generated=flag_document_generated)
         if not success:
             log_warning("Failed to save recommendations to database", "DATABASE")
         

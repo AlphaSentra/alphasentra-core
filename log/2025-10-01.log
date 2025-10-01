@@ -1,0 +1,32 @@
+2025-10-01 08:11:18,354 - WARNING - [ERR-0001] - [1d5c0f03] Attempting to extract JSON from text (length: 98221 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 08:11:18,390 - WARNING - [ERR-0001] - [5e8c315e] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 08:11:18,391 - WARNING - [ERR-0001] - [f1476654] Attempting to extract JSON from text (length: 536 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 08:11:18,391 - WARNING - [ERR-0001] - [98ea979e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 08:11:18,391 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 08:11:47,280 - WARNING - [ERR-0303] - [9ff4760c] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-01 08:11:47,281 - ERROR - [ERR-0303] - [a0bc6d28] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-01 08:11:47,281 - WARNING - [ERR-0001] - [c0f2af99] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-01 08:11:47,281 - WARNING - [ERR-0003] - [29a2de84] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-01 08:13:53,109 - WARNING - [ERR-0001] - [250e1cba] Attempting to extract JSON from text (length: 20579 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 08:13:53,112 - WARNING - [ERR-0001] - [92d713e2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 08:13:53,112 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 08:14:43,076 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NG=F']
+2025-10-01 08:26:02,567 - WARNING - [ERR-0001] - [e47416a4] Attempting to extract JSON from text (length: 30355 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 08:26:02,571 - WARNING - [ERR-0001] - [f3caa4cd] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 08:26:02,571 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 08:26:24,680 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMC.AX']
+2025-10-01 08:47:03,256 - WARNING - [ERR-0001] - [dcf64449] Attempting to extract JSON from text (length: 30729 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 08:47:03,261 - WARNING - [ERR-0001] - [af12ec83] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 08:47:03,265 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 08:47:31,262 - ERROR - [ERR-0103] - [7de6db2f] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting ',' delimiter: line 23 column 154 (char 2078) | From: helpers.py:get_factors()
+2025-10-01 08:47:31,263 - WARNING - [WARN-0002] - [4ce3cf8d] Raw factors response: {
+  "company_fundamentals": {
+    "description": "CBA's FY25 cash profit grew 4% to $10.3 billion, aligned with expectations, driven by solid lending growth in home and business sectors. However, prof... | From: helpers.py:get_factors()
+2025-10-01 08:47:31,333 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CBA.AX']
+2025-10-01 10:27:45,233 - WARNING - [ERR-0001] - [062175f7] Attempting to extract JSON from text (length: 78796 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 10:27:45,253 - WARNING - [ERR-0001] - [24a41f49] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 10:28:17,704 - WARNING - [ERR-0303] - [75ea43c5] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-01 10:28:17,706 - ERROR - [ERR-0303] - [f41ac8c9] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-01 10:28:17,707 - WARNING - [ERR-0001] - [72bd41b7] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-01 10:28:17,708 - WARNING - [ERR-0003] - [01ade135] Failed to save recommendations to database | From: sector_rotation_long_short.py:run_sector_rotation_model()
+2025-10-01 11:07:15,217 - ERROR - [ERR-0001] - [e0a038f4] MongoDB operation failed for collection 'tickers' | Exception: OperationFailure: Unknown $jsonSchema keyword: decimal, full error: {'ok': 0.0, 'errmsg': 'Unknown $jsonSchema keyword: decimal', 'code': 9, 'codeName': 'FailedToParse'} | From: create_mongodb_db.py:create_collection_with_schema()
