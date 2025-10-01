@@ -26,29 +26,34 @@ from logging_utils import log_error, log_warning
 
 
 
-def run_fx_model(tickers, fx_regions=None, decimal_digits=4, flag_document_generated: bool = True):
+def run_fx_model(tickers, fx_regions=None, prompt=None, decimal_digits=4, flag_document_generated: bool = True):
     """
     Run the FX long/short model.
     
     Args:
         tickers (str): The FX pair ticker to analyze
         fx_regions (list, optional): List of regions to consider for FX analysis
+        prompt (str, optional): Custom prompt to use. If None, uses FX_LONG_SHORT_PROMPT from _config.py
         
     Returns:
         dict: The recommendations dictionary with sentiment score if available
     """
     
+    # Use provided prompt or fallback to config prompt
+    if prompt is None:
+        prompt = FX_LONG_SHORT_PROMPT
+    
     # Get AI-generated weights using helper function
     ai_weights = get_ai_weights([tickers], FACTOR_WEIGHTS, WEIGHTS_PERCENT, os.getenv("GEMINI_PRO_MODEL"))
 
     # Format the prompt with the necessary variables
-    if FX_LONG_SHORT_PROMPT:
-        # Decrypt FX_LONG_SHORT_PROMPT first
+    if prompt:
+        # Decrypt the prompt first
         try:
-            decrypted_fx_prompt = decrypt_string(FX_LONG_SHORT_PROMPT)
+            decrypted_prompt = decrypt_string(prompt)
         except Exception as e:
-            log_error("Error decrypting FX_LONG_SHORT_PROMPT", "DECRYPTION", e)
-            decrypted_fx_prompt = FX_LONG_SHORT_PROMPT  # Fallback to encrypted version
+            log_error("Error decrypting prompt", "DECRYPTION", e)
+            decrypted_prompt = prompt  # Fallback to encrypted version
         
         # Create a comma-separated string of tickers for the prompt
         tickers_str = tickers
@@ -64,7 +69,7 @@ def run_fx_model(tickers, fx_regions=None, decimal_digits=4, flag_document_gener
             weights_to_use = WEIGHTS_PERCENT
         
         # Format the prompt with tickers_str and weights
-        formatted_prompt = decrypted_fx_prompt.format(
+        formatted_prompt = decrypted_prompt.format(
                     tickers_str=tickers_str,
                     current_date=current_date,
                     fx_regions_str=fx_regions_str,

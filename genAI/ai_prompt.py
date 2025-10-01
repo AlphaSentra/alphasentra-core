@@ -45,9 +45,6 @@ def get_random_api_key():
     except (ValueError, SyntaxError) as e:
         raise ValueError(f"Invalid GEMINI_API_KEY format: {e}")
 
-# Get a random API key from the environment
-api_key = get_random_api_key()
-
 # Get model names from environment variables
 GEMINI_FLASH_MODEL = os.getenv("GEMINI_FLASH_MODEL", "gemini-2.5-flash")
 GEMINI_PRO_MODEL = os.getenv("GEMINI_PRO_MODEL", "gemini-2.5-pro")
@@ -82,7 +79,8 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None)
     
     print("\n=== Model: "+ model_strategy +" using "+ gemini_model +" ===")
 
-    # Create client instance with the selected API key
+    # Create client instance with a randomly selected API key for each call
+    api_key = get_random_api_key()
     client = genai.Client(api_key=api_key)
 
     # Run prompt and return response
