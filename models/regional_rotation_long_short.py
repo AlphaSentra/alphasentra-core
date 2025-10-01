@@ -25,7 +25,7 @@ from helpers import add_trade_levels_to_recommendations, add_entry_price_to_reco
 from logging_utils import log_error, log_warning
 
 
-def run_regional_rotation_model(tickers=None, regions=None, decimal_digits=1):
+def run_regional_rotation_model(tickers=None, regions=None, decimal_digits=1, batch_mode: bool = False):
     """
     Run the regional rotation long/short model.
     

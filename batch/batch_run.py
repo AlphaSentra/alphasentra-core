@@ -22,6 +22,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import pymongo
 from pymongo.errors import OperationFailure
 from logging_utils import log_error, log_warning
+from _config import BATCH_SIZE
 
 # Load environment variables
 load_dotenv()
@@ -121,6 +122,8 @@ def process_ticker(doc):
             kwargs['prompt'] = prompt
         if 'factors' in sig.parameters:
             kwargs['factors'] = factors
+        if 'batch_mode' in sig.parameters:
+            kwargs['batch_mode'] = True
         
         # Call the function with filtered kwargs
         func(**kwargs)
@@ -144,7 +147,7 @@ def process_ticker(doc):
         log_error(f"Error processing ticker {doc.get('ticker')}", "TICKER_PROCESSING", e)
         return False
 
-def run_batch_processing(max_workers=5):
+def run_batch_processing(max_workers=BATCH_SIZE):
     """
     Main batch processing function using multi-threading.
     

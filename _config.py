@@ -7,6 +7,10 @@ Tickers must be in Yahoo Finance format. (in the future, we can add other source
 # Default language for the system
 LANGUAGE='en'
 
+# Batch processing configuration
+# Number of tickers to process in each batch
+BATCH_SIZE = 10
+
 # Default factor weights used if AI model is not calculating weights
 # These weights are overridden if AI model successfully returns weights
 WEIGHTS_PERCENT = {

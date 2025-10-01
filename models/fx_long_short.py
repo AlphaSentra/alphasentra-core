@@ -26,7 +26,7 @@ from logging_utils import log_error, log_warning
 
 
 
-def run_fx_model(tickers, fx_regions=None, prompt=None, decimal_digits=4, flag_document_generated: bool = True):
+def run_fx_model(tickers, fx_regions=None, prompt=None, decimal_digits=4, flag_document_generated: bool = True, batch_mode: bool = False):
     """
     Run the FX long/short model.
     

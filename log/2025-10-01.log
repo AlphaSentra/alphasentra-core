@@ -551,3 +551,43 @@
 2025-10-01 17:15:00,408 - WARNING - [ERR-0001] - [1ea1b4da] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
 2025-10-01 17:15:00,409 - WARNING - [ERR-0003] - [b49825f3] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
 2025-10-01 17:15:00,410 - ERROR - [ERR-0001] - [b7d21482] Error processing ticker ^SSEC | Exception: NotImplementedError: Collection objects do not implement truth value testing or bool(). Please compare with None instead: collection is not None | From: batch_run.py:process_ticker()
+2025-10-01 19:13:45,588 - WARNING - [ERR-0001] - [7be8f183] Attempting to extract JSON from text (length: 19379 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:13:45,589 - WARNING - [ERR-0001] - [02bb06c6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 19:13:45,589 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 19:14:22,678 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['VXX']
+2025-10-01 19:16:24,378 - WARNING - [ERR-0001] - [3741a869] Attempting to extract JSON from text (length: 18509 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:16:24,381 - WARNING - [ERR-0001] - [6c2dbfee] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 19:16:24,382 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 19:17:01,236 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-10-01 19:23:16,130 - WARNING - [ERR-0001] - [6209b97e] Attempting to extract JSON from text (length: 27141 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:23:16,134 - WARNING - [ERR-0001] - [d051af10] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 19:23:16,137 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 19:23:48,386 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PLTR']
+2025-10-01 19:28:27,328 - WARNING - [ERR-0001] - [f9fd5bd3] Attempting to extract JSON from text (length: 25075 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:28:27,331 - WARNING - [ERR-0001] - [7f01e4ff] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 19:28:27,331 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 19:28:59,211 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NVDA']
+2025-10-01 19:33:17,646 - WARNING - [ERR-0001] - [568e7ca9] Attempting to extract JSON from text (length: 29858 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:33:17,649 - WARNING - [ERR-0001] - [7c8c6243] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 6200 (char 8759) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:33:17,652 - ERROR - [ERR-0404] - [ede8aafd] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-01 19:36:18,467 - WARNING - [ERR-0001] - [f1936186] Attempting to extract JSON from text (length: 18942 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:36:18,470 - WARNING - [ERR-0001] - [713e0f69] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 5205 (char 7848) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:36:18,472 - ERROR - [ERR-0404] - [d6e49135] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-01 19:37:56,489 - WARNING - [ERR-0001] - [f1b70865] Attempting to extract JSON from text (length: 22684 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:37:56,492 - WARNING - [ERR-0001] - [31e3591b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 19:37:56,493 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 19:38:30,818 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2025-10-01 19:42:11,867 - WARNING - [ERR-0001] - [acc6ad2d] Attempting to extract JSON from text (length: 21499 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:42:11,880 - WARNING - [ERR-0001] - [5fba47c3] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-01 19:42:11,880 - WARNING - [ERR-0001] - [4a10932c] Attempting to extract JSON from text (length: 21488 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:42:11,881 - WARNING - [ERR-0001] - [57551ab2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 19:42:11,884 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 19:42:41,857 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLD']
+2025-10-01 19:57:48,071 - WARNING - [ERR-0001] - [b12e6c1e] Attempting to extract JSON from text (length: 29487 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 19:57:48,072 - WARNING - [ERR-0001] - [a8298a7a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 19:57:48,072 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 19:58:33,513 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
+2025-10-01 20:03:11,033 - WARNING - [ERR-0001] - [702d9d25] Attempting to extract JSON from text (length: 28325 chars) | From: helpers.py:extract_json_from_text()
+2025-10-01 20:03:11,036 - WARNING - [ERR-0001] - [4e14bc80] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-01 20:03:11,036 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-01 20:03:49,748 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
