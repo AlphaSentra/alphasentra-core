@@ -28,7 +28,7 @@ MONGODB_AUTH_SOURCE=admin
 Include your Google Gemini API credentials and encryption secret:
 
 <pre>
-GEMINI_API_KEY=your_actual_gemini_api_key
+GEMINI_API_KEY=['your_actual_gemini_api_key_1','your_actual_gemini_api_key_2']
 GEMINI_DEFAULT=gemini-2.5-pro
 GEMINI_FLASH_MODEL=gemini-2.5-flash
 GEMINI_PRO_MODEL=gemini-2.5-pro
