@@ -60,11 +60,11 @@ def derive_module_and_func(model_function, model_name=None):
 
 # No hardcoded dictionary - use derivation function instead
 
-def get_mongodb_connection():
+def get_mongodb_collection(collection_name="tickers"):
     """
-    Establish MongoDB connection.
+    Establish MongoDB connection and return specified collection.
     Returns:
-        pymongo.collection.Collection: Tickers collection
+        pymongo.collection.Collection: Specified collection
     """
     try:
         if MONGODB_USERNAME and MONGODB_PASSWORD:
@@ -74,9 +74,9 @@ def get_mongodb_connection():
         
         client = pymongo.MongoClient(uri)
         db = client[MONGODB_DATABASE]
-        return db["tickers"]
+        return db[collection_name]
     except Exception as e:
-        log_error("Failed to connect to MongoDB", "MONGODB_CONNECTION", e)
+        log_error(f"Failed to connect to MongoDB for {collection_name}", "MONGODB_CONNECTION", e)
         return None
 
 def process_ticker(doc):
@@ -129,7 +129,7 @@ def process_ticker(doc):
         func(**kwargs)
         
         # If successful (no exception), update the document
-        tickers_coll = get_mongodb_connection()
+        tickers_coll = get_mongodb_collection("tickers")
         if tickers_coll:
             result = tickers_coll.update_one(
                 {"_id": doc["_id"]},
@@ -147,6 +147,63 @@ def process_ticker(doc):
         log_error(f"Error processing ticker {doc.get('ticker')}", "TICKER_PROCESSING", e)
         return False
 
+def process_pipeline(doc):
+    """
+    Process a single pipeline document: import and call the model function, then update flag.
+    
+    Args:
+        doc (dict): Pipeline document from MongoDB
+    """
+    try:
+        model_function = doc.get("model_function")
+        if not model_function:
+            log_warning(f"No model_function for pipeline", "INVALID_FUNCTION")
+            return False
+        
+        model_name = doc.get("model_name")  # Assume optional field in doc for py file name
+        module_info = derive_module_and_func(model_function, model_name)
+        if not module_info:
+            log_warning(f"Cannot derive module for model_function: {model_function}", "INVALID_FUNCTION")
+            return False
+        
+        module_name, func_name = module_info
+        
+        # Dynamically import the module and function
+        try:
+            module = importlib.import_module(f"models.{module_name}")
+            func = getattr(module, func_name)
+        except (ImportError, AttributeError) as e:
+            log_warning(f"Failed to import {module_name}.{func_name}: {e}", "IMPORT_ERROR")
+            return False
+        
+        # Prepare parameters for pipeline functions
+        decimal = 2  # Default for ETFs/indices
+        
+        # kwargs based on function signature (known: batch_mode and decimal_digits)
+        kwargs = {'batch_mode': True, 'decimal_digits': decimal}
+        
+        # Call the function
+        func(**kwargs)
+        
+        # If successful (no exception), update the document
+        pipelines_coll = get_mongodb_collection("pipeline")
+        if pipelines_coll:
+            result = pipelines_coll.update_one(
+                {"_id": doc["_id"]},
+                {"$set": {"task_completed": True}}
+            )
+            if result.modified_count > 0:
+                print(f"Successfully updated task_completed for {model_function}")
+                return True
+            else:
+                log_warning(f"Failed to update document for {model_function}", "DB_UPDATE")
+                return False
+        return False
+        
+    except Exception as e:
+        log_error(f"Error processing pipeline {doc.get('model_function')}", "PIPELINE_PROCESSING", e)
+        return False
+
 def run_batch_processing(max_workers=BATCH_SIZE):
     """
     Main batch processing function using multi-threading.
@@ -156,7 +213,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
     """
     print("Starting multi-threaded batch processing...")
     
-    tickers_coll = get_mongodb_connection()
+    tickers_coll = get_mongodb_collection("tickers")
     if tickers_coll is None:
         print("Failed to connect to database. Exiting.")
         return
@@ -184,6 +241,38 @@ def run_batch_processing(max_workers=BATCH_SIZE):
                 log_error(f"Thread generated an exception for {doc['ticker']}", "THREAD_ERROR", exc)
     
     print(f"Batch processing completed. Successful: {successful}/{len(pending_tickers)}")
+
+    # Process pipelines
+    print("\nStarting multi-threaded pipeline processing...")
+    
+    pipelines_coll = get_mongodb_collection("pipeline")
+    if pipelines_coll is None:
+        print("Failed to connect to database for pipelines. Skipping.")
+        return
+    
+    # Find pipelines where task_completed == False
+    pending_pipelines = list(pipelines_coll.find({"task_completed": False}))
+    if not pending_pipelines:
+        print("No pending pipelines to process.")
+        return
+    
+    print(f"Found {len(pending_pipelines)} pending pipelines to process.")
+    
+    successful_pipelines = 0
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        # Submit all tasks
+        future_to_doc = {executor.submit(process_pipeline, doc): doc for doc in pending_pipelines}
+        
+        # Collect results
+        for future in as_completed(future_to_doc):
+            doc = future_to_doc[future]
+            try:
+                if future.result():
+                    successful_pipelines += 1
+            except Exception as exc:
+                log_error(f"Thread generated an exception for pipeline {doc.get('model_function')}", "THREAD_ERROR_PIPELINE", exc)
+    
+    print(f"Pipeline processing completed. Successful: {successful_pipelines}/{len(pending_pipelines)}")
 
 if __name__ == "__main__":
     run_batch_processing()
