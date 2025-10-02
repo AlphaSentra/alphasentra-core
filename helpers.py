@@ -710,18 +710,25 @@ class DatabaseManager:
                     raise ImportError("pymongo not available")
                 
                 # Get MongoDB connection details from environment variables
-                mongodb_host = os.getenv("MONGODB_HOST", "localhost")
-                mongodb_port = int(os.getenv("MONGODB_PORT", "27017"))
+                use_mongodb_srv = os.getenv("USE_MONGODB_SRV", "false").lower() == "true"
                 mongodb_database = os.getenv("MONGODB_DATABASE", "alphagora")
                 mongodb_username = os.getenv("MONGODB_USERNAME")
                 mongodb_password = os.getenv("MONGODB_PASSWORD")
                 mongodb_auth_source = os.getenv("MONGODB_AUTH_SOURCE", "admin")
                 
-                # Construct MongoDB URI based on whether authentication is provided
-                if mongodb_username and mongodb_password:
-                    mongodb_uri = f"mongodb://{mongodb_username}:{mongodb_password}@{mongodb_host}:{mongodb_port}/{mongodb_database}?authSource={mongodb_auth_source}"
+                # Construct MongoDB URI based on USE_MONGODB_SRV
+                if use_mongodb_srv:
+                    mongodb_srv = os.getenv("MONGODB_SRV")
+                    if not mongodb_srv:
+                        raise ValueError("MONGODB_SRV environment variable is required when USE_MONGODB_SRV is true")
+                    mongodb_uri = f"{mongodb_srv}"
                 else:
-                    mongodb_uri = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_database}"
+                    mongodb_host = os.getenv("MONGODB_HOST", "localhost")
+                    mongodb_port = int(os.getenv("MONGODB_PORT", "27017"))
+                    if mongodb_username and mongodb_password:
+                        mongodb_uri = f"mongodb://{mongodb_username}:{mongodb_password}@{mongodb_host}:{mongodb_port}/{mongodb_database}?authSource={mongodb_auth_source}"
+                    else:
+                        mongodb_uri = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_database}"
                 
                 # Create client with connection pooling
                 self._client = MongoClient(

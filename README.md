@@ -14,14 +14,17 @@ Create a `.env` file in the root of the project. This file should include sensit
 
 ### Database Configuration
 Add the following database settings to your `.env`:
+If `USE_MONGODB_SRV` is `true` the connection string `MONGODB_SRV` will be used, otherwise `MONGODB_HOST`, `MONGO_PORT`, `MONGODB_DATABASE`, `MONGODB_USERNAME`, `MONGODB_PASSWORD`, and `MONGODB_AUTH_SOURCE` will be used.
 
 <pre>
+USE_MONGODB_SRV=true
 MONGODB_HOST=localhost
 MONGODB_PORT=27017
 MONGODB_DATABASE=alphagora
 MONGODB_USERNAME=username
 MONGODB_PASSWORD=password
 MONGODB_AUTH_SOURCE=admin
+MONGODB_SRV='mongodb+srv://alphagora_db_user:{db_password}@cluster0.9x59erc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 </pre>
 
 ### Google Gemini API
