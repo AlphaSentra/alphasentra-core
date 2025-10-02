@@ -23,17 +23,13 @@ import pymongo
 from pymongo.errors import OperationFailure
 from logging_utils import log_error, log_warning, log_info
 from _config import BATCH_SIZE
+from helpers import DatabaseManager
 
 # Load environment variables
 load_dotenv()
 
-# MongoDB configuration
-MONGODB_HOST = os.getenv("MONGODB_HOST", "localhost")
-MONGODB_PORT = int(os.getenv("MONGODB_PORT", "27017"))
+# MongoDB database name
 MONGODB_DATABASE = os.getenv("MONGODB_DATABASE", "alphagora")
-MONGODB_USERNAME = os.getenv("MONGODB_USERNAME")
-MONGODB_PASSWORD = os.getenv("MONGODB_PASSWORD")
-MONGODB_AUTH_SOURCE = os.getenv("MONGODB_AUTH_SOURCE", "admin")
 
 def derive_module_and_func(model_function, model_name=None):
     """
@@ -60,24 +56,6 @@ def derive_module_and_func(model_function, model_name=None):
 
 # No hardcoded dictionary - use derivation function instead
 
-def get_mongodb_collection(collection_name="tickers"):
-    """
-    Establish MongoDB connection and return specified collection.
-    Returns:
-        pymongo.collection.Collection: Specified collection
-    """
-    try:
-        if MONGODB_USERNAME and MONGODB_PASSWORD:
-            uri = f"mongodb://{MONGODB_USERNAME}:{MONGODB_PASSWORD}@{MONGODB_HOST}:{MONGODB_PORT}/{MONGODB_DATABASE}?authSource={MONGODB_AUTH_SOURCE}"
-        else:
-            uri = f"mongodb://{MONGODB_HOST}:{MONGODB_PORT}/{MONGODB_DATABASE}"
-        
-        client = pymongo.MongoClient(uri)
-        db = client[MONGODB_DATABASE]
-        return db[collection_name]
-    except Exception as e:
-        log_error(f"Failed to connect to MongoDB for {collection_name}", "MONGODB_CONNECTION", e)
-        return None
 
 def process_ticker(doc):
     """
@@ -129,7 +107,9 @@ def process_ticker(doc):
         func(**kwargs)
         
         # If successful (no exception), update the document
-        tickers_coll = get_mongodb_collection("tickers")
+        client = DatabaseManager().get_client()
+        db = client[MONGODB_DATABASE]
+        tickers_coll = db['tickers']
         if tickers_coll:
             result = tickers_coll.update_one(
                 {"_id": doc["_id"]},
@@ -186,7 +166,9 @@ def process_pipeline(doc):
         func(**kwargs)
         
         # If successful (no exception), update the document
-        pipelines_coll = get_mongodb_collection("pipeline")
+        client = DatabaseManager().get_client()
+        db = client[MONGODB_DATABASE]
+        pipelines_coll = db['pipeline']
         if pipelines_coll is not None:
             result = pipelines_coll.update_one(
                 {"_id": doc["_id"]},
@@ -199,7 +181,6 @@ def process_pipeline(doc):
                 log_warning(f"Failed to update document for {model_function}", "DB_UPDATE")
                 return False
         return False
-        
     except Exception as e:
         log_error(f"Error processing pipeline {doc.get('model_function')}", "PIPELINE_PROCESSING", e)
         return False
@@ -213,7 +194,9 @@ def run_batch_processing(max_workers=BATCH_SIZE):
     """
     print("Starting multi-threaded batch processing...")
     
-    tickers_coll = get_mongodb_collection("tickers")
+    client = DatabaseManager().get_client()
+    db = client[MONGODB_DATABASE]
+    tickers_coll = db['tickers']
     if tickers_coll is None:
         print("Failed to connect to database. Exiting.")
         return
@@ -226,7 +209,6 @@ def run_batch_processing(max_workers=BATCH_SIZE):
     
     print(f"Found {len(pending_tickers)} pending tickers to process.")
     
-    successful = 0
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         # Submit all tasks
         future_to_doc = {executor.submit(process_ticker, doc): doc for doc in pending_tickers}
@@ -235,17 +217,16 @@ def run_batch_processing(max_workers=BATCH_SIZE):
         for future in as_completed(future_to_doc):
             doc = future_to_doc[future]
             try:
-                if future.result():
-                    successful += 1
+                future.result()
             except Exception as exc:
                 log_error(f"Thread generated an exception for {doc['ticker']}", "THREAD_ERROR", exc)
-    
-    log_info(f"Batch processing completed. Successful: {successful}/{len(pending_tickers)}")
+                
+        log_info(f"Batch processing completed. Processed {len(pending_tickers)} tickers")
 
     # Process pipelines
     print("\nStarting multi-threaded pipeline processing...")
     
-    pipelines_coll = get_mongodb_collection("pipeline")
+    pipelines_coll = db['pipeline']
     if pipelines_coll is None:
         print("Failed to connect to database for pipelines. Skipping.")
         return

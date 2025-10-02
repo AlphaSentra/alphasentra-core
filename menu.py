@@ -9,6 +9,7 @@ import models.fx_long_short as fx_long_short
 import models.holistic as holistic
 import db.create_mongodb_db as create_mongodb_db
 import batch.batch_run as batch_run
+import batch.reset_dataset as reset_dataset
 
 def run_fx_model_with_input():
     """
@@ -229,6 +230,16 @@ def run_batch_with_confirmation():
         batch_run.run_batch_processing()
     else:
         print("Batch processing cancelled.")
+
+def run_reset_dataset_with_confirmation():
+    """
+    Run dataset reset with user confirmation.
+    """
+    confirm = input("Press y to reset dataset or n to cancel: ").strip().lower()
+    if confirm == 'y':
+        reset_dataset.reset_all()
+    else:
+        print("Dataset reset cancelled.")
 # Define menu items as tuples: (description, function)
 # Use None as function for separator items
 MENU_ITEMS = [
@@ -299,5 +310,8 @@ MENU_ITEMS = [
 
     ("Run Batch for data collection",
      run_batch_with_confirmation),
+
+    ("Reset dataset",
+     run_reset_dataset_with_confirmation),
 
 ]

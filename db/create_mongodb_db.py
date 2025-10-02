@@ -1,4 +1,5 @@
 """
+Description:
 Script to create MongoDB database 'alphagora' with collection 'documents'.
 """
 
@@ -10,6 +11,8 @@ from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
+
+from helpers import DatabaseManager
 
 # Add the parent directory to the Python path to ensure imports work
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -1039,52 +1042,41 @@ def create_alphagora_database():
     Performs sequential data insertions. Returns True if all steps succeed, False otherwise.
     """
     try:
-        # Fetch MongoDB connection details from environment variables
-        config = {
-            'host': os.getenv("MONGODB_HOST", "localhost"),
-            'port': int(os.getenv("MONGODB_PORT", "27017")),
-            'database': os.getenv("MONGODB_DATABASE", "alphagora"),
-            'username': os.getenv("MONGODB_USERNAME"),
-            'password': os.getenv("MONGODB_PASSWORD"),
-            'auth_source': os.getenv("MONGODB_AUTH_SOURCE", "admin")
-        }
+        # Get database name from environment
+        database = os.getenv("MONGODB_DATABASE", "alphagora")
         
-        # Construct URI
-        if config['username'] and config['password']:
-            uri = f"mongodb://{config['username']}:{config['password']}@{config['host']}:{config['port']}/{config['database']}?authSource={config['auth_source']}"
-        else:
-            uri = f"mongodb://{config['host']}:{config['port']}/{config['database']}"
+        # Use DatabaseManager for connection
+        client = DatabaseManager().get_client()
+        db = client[database]
         
-        # Use context manager for client
-        with MongoClient(uri) as client:
-            db = client[config['database']]
-            
-            # Define sequential operations as a list of functions
-            operations = [
-                create_documents_collection,
-                create_tickers_collection,
-                create_pipeline_collection,
-                create_asset_classes_collection,
-                insert_asset_classes_data,
-                insert_pipeline_data,
-                insert_fx_pairs,
-                insert_indices,
-                insert_energy_commodities,
-                insert_metal_commodities,
-                insert_agriculture_commodities,
-                insert_livestock_commodities,
-                insert_crypto_assets,
-                create_weight_factors_collection
-            ]
-            
-            # Execute operations sequentially, passing db to each
-            for op in operations:
-                if not op(db):
-                    log_error("Failed during sequential operation", "DATABASE_SETUP", None)
-                    return False
-            
-            return True
-            
+        # Define sequential operations as a list of functions
+        operations = [
+            create_documents_collection,
+            create_tickers_collection,
+            create_pipeline_collection,
+            create_asset_classes_collection,
+            insert_asset_classes_data,
+            insert_pipeline_data,
+            insert_fx_pairs,
+            insert_indices,
+            insert_energy_commodities,
+            insert_metal_commodities,
+            insert_agriculture_commodities,
+            insert_livestock_commodities,
+            insert_crypto_assets,
+            create_weight_factors_collection
+        ]
+        
+        # Execute operations sequentially, passing db to each
+        for op in operations:
+            if not op(db):
+                log_error("Failed during sequential operation", "DATABASE_SETUP", None)
+                return False
+        
+        # Close connection after all operations
+        DatabaseManager().close_connection()
+        return True
+        
     except pymongo.errors.ServerSelectionTimeoutError:
         log_error("MongoDB server not found. Ensure MongoDB is running on the specified host/port.", "MONGODB_CONNECTION", None)
         return False
@@ -1098,30 +1090,23 @@ def create_alphagora_database():
 if __name__ == "__main__":
     print("Starting alphagora database creation...")
     
-    # Get MongoDB connection details from environment variables
-    mongodb_host = os.getenv("MONGODB_HOST", "localhost")
-    mongodb_port = int(os.getenv("MONGODB_PORT", "27017"))
-    mongodb_database = os.getenv("MONGODB_DATABASE", "alphagora")
-    mongodb_username = os.getenv("MONGODB_USERNAME")
-    mongodb_password = os.getenv("MONGODB_PASSWORD")
-    mongodb_auth_source = os.getenv("MONGODB_AUTH_SOURCE", "admin")
-    
-    # Construct MongoDB URI based on whether authentication is provided
-    if mongodb_username and mongodb_password:
-        mongodb_uri = f"mongodb://{mongodb_username}:{mongodb_password}@{mongodb_host}:{mongodb_port}/{mongodb_database}?authSource={mongodb_auth_source}"
-        print(f"MongoDB Connection: mongodb://{mongodb_username}:******@{mongodb_host}:{mongodb_port}/{mongodb_database}?authSource={mongodb_auth_source}")
-    else:
-        mongodb_uri = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_database}"
-        print(f"MongoDB Connection: {mongodb_uri}")
-    print("Database: alphagora")
-    print("-" * 50)
-    
-    success = create_alphagora_database()
-    
-    if success:
+    # Use DatabaseManager to get connection details
+    try:
+        client = DatabaseManager().get_client()
+        db_name = os.getenv("MONGODB_DATABASE", "alphagora")
+        print(f"MongoDB Database: {db_name}")
         print("-" * 50)
-        print("Database setup completed successfully!")
-    else:
-        print("-" * 50)
-        print("Database setup failed. Please check the error messages above.")
+        
+        success = create_alphagora_database()
+        
+        if success:
+            print("-" * 50)
+            print("Database setup completed successfully!")
+        else:
+            print("-" * 50)
+            print("Database setup failed. Please check the error messages above.")
+            sys.exit(1)
+            
+    except Exception as e:
+        print(f"Failed to initialize DatabaseManager: {e}")
         sys.exit(1)
