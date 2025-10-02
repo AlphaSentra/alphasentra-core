@@ -105,22 +105,6 @@ def process_ticker(doc):
         
         # Call the function with filtered kwargs
         func(**kwargs)
-        
-        # If successful (no exception), update the document
-        client = DatabaseManager().get_client()
-        db = client[MONGODB_DATABASE]
-        tickers_coll = db['tickers']
-        if tickers_coll:
-            result = tickers_coll.update_one(
-                {"_id": doc["_id"]},
-                {"$set": {"document_generated": True}}
-            )
-            if result.modified_count > 0:
-                print(f"Successfully updated document_generated for {doc['ticker']}")
-                return True
-            else:
-                log_warning(f"Failed to update document for {doc['ticker']}", "DB_UPDATE")
-                return False
         return False
         
     except Exception as e:
@@ -164,23 +148,8 @@ def process_pipeline(doc):
         
         # Call the function
         func(**kwargs)
-        
-        # If successful (no exception), update the document
-        client = DatabaseManager().get_client()
-        db = client[MONGODB_DATABASE]
-        pipelines_coll = db['pipeline']
-        if pipelines_coll is not None:
-            result = pipelines_coll.update_one(
-                {"_id": doc["_id"]},
-                {"$set": {"task_completed": True}}
-            )
-            if result.modified_count > 0:
-                print(f"Successfully updated task_completed for {model_function}")
-                return True
-            else:
-                log_warning(f"Failed to update document for {model_function}", "DB_UPDATE")
-                return False
         return False
+    
     except Exception as e:
         log_error(f"Error processing pipeline {doc.get('model_function')}", "PIPELINE_PROCESSING", e)
         return False

@@ -129,17 +129,13 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
             # Add language code to recommendations
             recommendations['language_code'] = LANGUAGE
             # Add regions to recommendations
-            if region is not None:
-                recommendations['regions'] = get_regions(tickers)
+            recommendations['regions'] = get_regions(tickers)
             # Add asset classes to recommendations
-            if asset_class is not None:
-                recommendations['asset_class'] = get_asset_classes(tickers)
+            recommendations['asset_class'] = get_asset_classes(tickers)
             #Add importance
-            if importance is not None:
-                recommendations['importance'] = get_importance(tickers)
+            recommendations['importance'] = get_importance(tickers)
             # Add to factors
-            if factors is not None:
-                recommendations['factors'] = get_factors(tickers, name, current_date, prompt=factors)
+            recommendations['factors'] = get_factors(tickers, name, current_date, prompt=factors)
         # -----------------------------------------------------------------------------------
 
             if not batch_mode:
