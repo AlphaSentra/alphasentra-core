@@ -187,7 +187,7 @@ def process_pipeline(doc):
         
         # If successful (no exception), update the document
         pipelines_coll = get_mongodb_collection("pipeline")
-        if pipelines_coll:
+        if pipelines_coll is not None:
             result = pipelines_coll.update_one(
                 {"_id": doc["_id"]},
                 {"$set": {"task_completed": True}}
@@ -221,7 +221,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
     # Find tickers where document_generated == False
     pending_tickers = list(tickers_coll.find({"document_generated": False}))
     if not pending_tickers:
-        print("No pending tickers to process.")
+        log_info("No pending tickers to process.")
         return
     
     print(f"Found {len(pending_tickers)} pending tickers to process.")
@@ -253,7 +253,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
     # Find pipelines where task_completed == False
     pending_pipelines = list(pipelines_coll.find({"task_completed": False}))
     if not pending_pipelines:
-        print("No pending pipelines to process.")
+        log_info("No pending pipelines to process.")
         return
     
     print(f"Found {len(pending_pipelines)} pending pipelines to process.")
