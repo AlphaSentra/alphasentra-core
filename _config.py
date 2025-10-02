@@ -9,7 +9,7 @@ LANGUAGE='en'
 
 # Batch processing configuration
 # Number of tickers to process in each batch
-BATCH_SIZE = 10
+BATCH_SIZE = 20
 
 # Default factor weights used if AI model is not calculating weights
 # These weights are overridden if AI model successfully returns weights

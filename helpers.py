@@ -963,7 +963,6 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
         cached_weights = collection.find_one({"date": today})
         
         if cached_weights:
-            print("Using cached weights from database")
             return cached_weights['weights']
             
     except Exception as e:

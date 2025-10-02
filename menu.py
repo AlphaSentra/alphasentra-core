@@ -8,6 +8,7 @@ import models.regional_rotation_long_short as regional_rotation_long_short
 import models.fx_long_short as fx_long_short
 import models.holistic as holistic
 import db.create_mongodb_db as create_mongodb_db
+import batch.batch_run as batch_run
 
 def run_fx_model_with_input():
     """
@@ -219,6 +220,15 @@ def run_cr_model_with_input():
         print("No tickers provided. Please enter at least one crypto ticker.")
 
 
+def run_batch_with_confirmation():
+    """
+    Run batch processing with user confirmation.
+    """
+    confirm = input("Press y to run or n to not run the batch: ").strip().lower()
+    if confirm == 'y':
+        batch_run.run_batch_processing()
+    else:
+        print("Batch processing cancelled.")
 # Define menu items as tuples: (description, function)
 # Use None as function for separator items
 MENU_ITEMS = [
@@ -285,6 +295,9 @@ MENU_ITEMS = [
     ("", None),
 
     ("Configure database connection settings",
-    create_mongodb_db.create_alphagora_database)
+    create_mongodb_db.create_alphagora_database),
+
+    ("Run Batch for data collection",
+     run_batch_with_confirmation),
 
 ]

@@ -8,6 +8,9 @@ import backtrader as bt
 from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
 
+import logging
+
+logger = logging.getLogger(__name__)
 
 def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2):
     """
@@ -31,8 +34,7 @@ def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2
         # Dictionary to store stop loss prices
         stop_loss_prices = {}
 
-        print()
-        print("Calculating stop loss prices...")
+        logger.info("Calculating stop loss prices...")
 
         # Fetch data for all tickers
         for ticker in tickers:
@@ -43,7 +45,7 @@ def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2
                 data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False)
                 
                 if data.empty:
-                    print(f"No data available for {ticker}")
+                    logger.error(f"No data available for {ticker}")
                     continue
                 
                 # Prepare data for backtrader
@@ -120,16 +122,14 @@ def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2
                 
                 
             except Exception as e:
-                print(f"Error calculating stop loss for {ticker}: {e}")
-                import traceback
-                traceback.print_exc()
+                logger.error(f"Error calculating stop loss for {ticker}: {e}")
+                logger.exception("Traceback for stop loss calculation error")
                 continue
         
         return stop_loss_prices
     except Exception as e:
-        print(f"ERROR in calculate_trade_levels: {e}")
-        import traceback
-        traceback.print_exc()
+        logger.error(f"ERROR in calculate_trade_levels: {e}")
+        logger.exception("Traceback for calculate_trade_levels error")
         return {}
 
 
@@ -157,8 +157,7 @@ def calculate_entry_price(tickers, trade_direction, period=5):
         # Dictionary to store entry prices
         entry_prices = {}
 
-        print()
-        print("Calculating entry prices...")
+        logger.info("Calculating entry prices...")
 
         # Fetch data for all tickers
         for ticker in tickers:
@@ -169,14 +168,14 @@ def calculate_entry_price(tickers, trade_direction, period=5):
                 data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False)
                 
                 if data.empty:
-                    print(f"No data available for {ticker}")
+                    logger.error(f"No data available for {ticker}")
                     continue
                 
                 # Get data for the past week only (last 5 trading days)
                 week_data = data.tail(period)
                 
                 if len(week_data) < period:
-                    print(f"Not enough data for {ticker} to calculate weekly high/low")
+                    logger.warning(f"Not enough data for {ticker} to calculate weekly high/low")
                     continue
                 
                 # Calculate weekly high and low
@@ -198,16 +197,14 @@ def calculate_entry_price(tickers, trade_direction, period=5):
                 
                 
             except Exception as e:
-                print(f"Error calculating entry price for {ticker}: {e}")
-                import traceback
-                traceback.print_exc()
+                logger.error(f"Error calculating entry price for {ticker}: {e}")
+                logger.exception("Traceback for entry price calculation error")
                 continue
         
         return entry_prices
     except Exception as e:
-        print(f"ERROR in calculate_entry_price: {e}")
-        import traceback
-        traceback.print_exc()
+        logger.error(f"ERROR in calculate_entry_price: {e}")
+        logger.exception("Traceback for calculate_entry_price error")
         return {}
 
 
@@ -235,9 +232,9 @@ def get_current_price(ticker):
                 latest_price = data['Close'].iloc[-1]
                 return float(latest_price)
         
-        print(f"No data available for {ticker} with any period")
+        logger.error(f"No data available for {ticker} with any period")
         return None
         
     except Exception as e:
-        print(f"Error getting price data for {ticker}: {e}")
+        logger.error(f"Error getting price data for {ticker}: {e}")
         return None

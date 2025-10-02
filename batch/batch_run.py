@@ -21,7 +21,7 @@ import inspect
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import pymongo
 from pymongo.errors import OperationFailure
-from logging_utils import log_error, log_warning
+from logging_utils import log_error, log_warning, log_info
 from _config import BATCH_SIZE
 
 # Load environment variables
@@ -240,7 +240,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
             except Exception as exc:
                 log_error(f"Thread generated an exception for {doc['ticker']}", "THREAD_ERROR", exc)
     
-    print(f"Batch processing completed. Successful: {successful}/{len(pending_tickers)}")
+    log_info(f"Batch processing completed. Successful: {successful}/{len(pending_tickers)}")
 
     # Process pipelines
     print("\nStarting multi-threaded pipeline processing...")
@@ -272,7 +272,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
             except Exception as exc:
                 log_error(f"Thread generated an exception for pipeline {doc.get('model_function')}", "THREAD_ERROR_PIPELINE", exc)
     
-    print(f"Pipeline processing completed. Successful: {successful_pipelines}/{len(pending_pipelines)}")
+    log_info(f"Pipeline processing completed. Successful: {successful_pipelines}/{len(pending_pipelines)}")
 
 if __name__ == "__main__":
     run_batch_processing()
