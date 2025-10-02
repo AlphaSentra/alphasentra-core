@@ -19,7 +19,7 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import SECTOR_ETFS, WEIGHTS_PERCENT, SECTOR_REGIONS, SECTOR_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, SECTOR_ASSET_CLASS, SECTOR_IMPORTANCE, SECTOR_ETFS_NAME, SECTOR_FACTORS_PROMPT
+from _config import SECTOR_ETFS, WEIGHTS_PERCENT, SECTOR_REGIONS, SECTOR_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, SECTOR_ASSET_CLASS, SECTOR_IMPORTANCE, SECTOR_ETFS_NAME, SECTOR_FACTORS_PROMPT, SECTOR_TAG
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, get_ai_weights, save_to_db_with_fallback, get_factors
 from logging_utils import log_error, log_warning
@@ -117,7 +117,9 @@ def run_sector_rotation_model(tickers=None, sector_regions=None, decimal_digits=
             # Add importance
             recommendations['importance'] = SECTOR_IMPORTANCE
             # Add to factors
-            recommendations['factors'] = get_factors(tickers, SECTOR_ETFS_NAME, current_date, prompt=SECTOR_FACTORS_PROMPT)            
+            recommendations['factors'] = get_factors(tickers, SECTOR_ETFS_NAME, current_date, prompt=SECTOR_FACTORS_PROMPT)
+            # Add tag
+            recommendations['tag'] = SECTOR_TAG
         # -----------------------------------------------------------------------------------
 
             if not batch_mode:

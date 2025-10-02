@@ -76,6 +76,7 @@ SECTOR_ROTATION_LONG_SHORT_PROMPT = """gAAAAABo14ItvByL_j6wtIl0RRzsSpEcNOTXju-Ok
 SECTOR_FACTORS_PROMPT = IX_INDEX_FACTORS_PROMPT
 SECTOR_ASSET_CLASS = ['EQ']
 SECTOR_IMPORTANCE = 5
+SECTOR_TAG = 'US Market Outlook'
 
 # Regional Rotation Model Configuration
 REGIONAL_ETFS = ['EEM', 'EFA', 'SPY']
@@ -85,4 +86,5 @@ REGIONAL_ROTATION_LONG_SHORT_PROMPT = """gAAAAABo14IF_par-J-LmcF6U7-XXu5ZAQZwq18
 REGIONAL_FACTORS_PROMPT = IX_INDEX_FACTORS_PROMPT
 REGIONAL_ASSET_CLASS = ['EQ']
 REGIONAL_IMPORTANCE = 5
+REGIONAL_TAG = 'Global Equity Outlook'
 # ----------------------------------------------------------------------------------------------

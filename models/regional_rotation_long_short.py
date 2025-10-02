@@ -19,7 +19,7 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS, REGIONAL_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, REGIONAL_ASSET_CLASS, REGIONAL_IMPORTANCE, REGIONAL_ETFS_NAME, REGIONAL_FACTORS_PROMPT
+from _config import REGIONAL_ETFS, WEIGHTS_PERCENT, REGIONAL_REGIONS, REGIONAL_ROTATION_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, REGIONAL_ASSET_CLASS, REGIONAL_IMPORTANCE, REGIONAL_ETFS_NAME, REGIONAL_FACTORS_PROMPT, REGIONAL_TAG
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, get_ai_weights, save_to_db_with_fallback, get_factors
 from logging_utils import log_error, log_warning
@@ -119,6 +119,8 @@ def run_regional_rotation_model(tickers=None, regions=None, decimal_digits=1, ba
             recommendations['importance'] = REGIONAL_IMPORTANCE
             # Add to factors
             recommendations['factors'] = get_factors(tickers, REGIONAL_ETFS_NAME, current_date, prompt=REGIONAL_FACTORS_PROMPT)
+            # Add tag
+            recommendations['tag'] = REGIONAL_TAG
         # -----------------------------------------------------------------------------------
 
             if not batch_mode:

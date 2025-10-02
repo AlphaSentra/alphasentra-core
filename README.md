@@ -178,7 +178,10 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
         maximum: 5
       },
       asset_class: {},
-      region: {}
+      region: {},
+      tag: {
+        'bsonType': 'string'
+      }      
     }
   }
 }

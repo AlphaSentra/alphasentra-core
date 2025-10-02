@@ -191,7 +191,10 @@ def create_documents_collection(db):
                 'maximum': 5
             },
             'asset_class': {},
-            'region': {}
+            'region': {},
+            'tag': {
+                'bsonType': 'string'
+            }
         }
     }
     }
