@@ -137,6 +137,39 @@ def delete_once_pipeline():
     except Exception as e:
         logger.error("Failed to delete once pipeline documents", "DATABASE_OPERATION", e)
         return False
+    
+
+def remove_old_weigh_factors():
+    """
+    Remove all documents from the 'weigh_factors' collection where the 'date' field is older than today's date.
+    
+    Returns:
+        int: Number of documents deleted.
+    """
+    try:
+        logger.info("Starting deletion of old weigh_factors documents")
+        
+        # Get MongoDB client using DatabaseManager
+        client = DatabaseManager().get_client()
+        db_name = os.getenv("MONGODB_DATABASE", "alphagora")
+        db = client[db_name]
+        collection = db['weigh_factors']
+
+        from datetime import date
+        today_date = date.today()
+        today_str = today_date.strftime("%Y-%m-%d")
+        result = collection.delete_many({"date": {"$lt": today_str}})
+        deleted_count = result.deleted_count
+        if deleted_count > 0:
+            logger.info(f"Successfully deleted {deleted_count} old documents from 'weigh_factors'.")
+        else:
+            logger.info("No old documents found or deleted in 'weigh_factors'.")
+
+        return True
+
+    except Exception as e:
+        logger.error("Failed to delete old weigh_factors documents", "DATABASE_OPERATION", e)
+        return False
 
 def reset_all():
     """
@@ -153,7 +186,8 @@ def reset_all():
             reset_document_generated() and
             reset_pipeline_completed() and
             delete_once_tickers() and
-            delete_once_pipeline()
+            delete_once_pipeline() and
+            remove_old_weigh_factors()
         )
         
         if success:

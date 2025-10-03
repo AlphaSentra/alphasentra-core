@@ -15,12 +15,9 @@ if parent_dir not in sys.path:
 
 # Now safe to import modules from root
 from dotenv import load_dotenv
-import threading
 import importlib
 import inspect
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import pymongo
-from pymongo.errors import OperationFailure
 from logging_utils import log_error, log_warning, log_info
 from _config import BATCH_SIZE
 from helpers import DatabaseManager

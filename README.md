@@ -31,11 +31,11 @@ MONGODB_SRV='mongodb+srv://alphagora_db_user:{db_password}@cluster0.9x59erc.mong
 Include your Google Gemini API credentials and encryption secret:
 
 <pre>
-GEMINI_API_KEY=['your_actual_gemini_api_key_1','your_actual_gemini_api_key_2']
+GEMINI_API_KEY=['gemini_api_key_1','gemini_api_key_2']
 GEMINI_DEFAULT=gemini-2.5-pro
 GEMINI_FLASH_MODEL=gemini-2.5-flash
 GEMINI_PRO_MODEL=gemini-2.5-pro
-ENCRYPTION_SECRET=provide_the_encryption_secret
+ENCRYPTION_SECRET=encryption-secret
 </pre>
 
 1. **Gemini API Key**: Provide your Gemini API key using the ```GEMINI_API_KEY``` constant from [Google AI Studio](https://aistudio.google.com). 
