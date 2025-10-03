@@ -148,6 +148,23 @@ def process_pipeline(doc):
         
         # Call the function
         func(**kwargs)
+
+        # If successful (no exception), update the document
+        client = DatabaseManager().get_client()
+        db = client[MONGODB_DATABASE]
+        pipelines_coll = db['pipeline']
+        if pipelines_coll is not None:
+            result = pipelines_coll.update_one(
+                {"_id": doc["_id"]},
+                {"$set": {"task_completed": True}}
+            )
+            if result.modified_count > 0:
+                print(f"Successfully updated task_completed for {model_function}")
+                return True
+            else:
+                log_warning(f"Failed to update document for {model_function}", "DB_UPDATE")
+                return False
+
         return False
     
     except Exception as e:
