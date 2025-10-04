@@ -1,10 +1,9 @@
 """
 Description:
-Script to create MongoDB database 'alphagora' with collection 'documents'.
+Script to create MongoDB database 'alphagora'.
 """
 
 import pymongo
-from pymongo import MongoClient
 import sys
 import os
 from dotenv import load_dotenv
@@ -64,9 +63,9 @@ def create_collection_with_schema(db, collection_name, validator, indexes=None):
         return False
 
 
-def create_documents_collection(db):
+def create_insights_collection(db):
     """
-    Creates the 'documents' collection with schema validation and indexes.
+    Creates the 'insights' collection with schema validation and indexes.
     
     Args:
         db: MongoDB database object
@@ -74,7 +73,7 @@ def create_documents_collection(db):
     Returns:
         bool: True if collection was created or already exists, False on error
     """
-    collection_name = 'documents'
+    collection_name = 'insights'
     
     print()
     print("=" * 100)
@@ -1051,7 +1050,7 @@ def create_alphagora_database():
         
         # Define sequential operations as a list of functions
         operations = [
-            create_documents_collection,
+            create_insights_collection,
             create_tickers_collection,
             create_pipeline_collection,
             create_asset_classes_collection,

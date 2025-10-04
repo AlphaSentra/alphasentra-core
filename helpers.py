@@ -775,7 +775,7 @@ def save_to_db(recommendations):
         # Use DatabaseManager for connection pooling
         client = DatabaseManager().get_client()
         db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
-        collection = db['documents']
+        collection = db['insights']
         
         # Insert the recommendations document
         result = collection.insert_one(recommendations)
@@ -817,7 +817,7 @@ def save_to_db_with_retry(recommendations):
     try:
         client = DatabaseManager().get_client()
         db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
-        collection = db['documents']
+        collection = db['insights']
         
         result = collection.insert_one(recommendations)
         return True
