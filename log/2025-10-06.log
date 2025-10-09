@@ -1,0 +1,882 @@
+2025-10-06 09:02:40,214 - WARNING - [ERR-0001] - [b94ec6c3] Attempting to extract JSON from text (length: 30515 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 09:02:40,218 - WARNING - [ERR-0001] - [c700667a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 09:02:40,222 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 09:03:13,064 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MQG.AX']
+2025-10-06 09:14:12,240 - WARNING - [ERR-0001] - [894db4c2] Attempting to extract JSON from text (length: 30709 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 09:14:12,243 - WARNING - [ERR-0001] - [15cc8653] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 09:14:12,244 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 09:15:03,261 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['VXX']
+2025-10-06 09:17:02,873 - WARNING - [ERR-0001] - [517dce00] Attempting to extract JSON from text (length: 13731 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 09:17:02,877 - WARNING - [ERR-0001] - [023b278b] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 4279 (char 6572) | From: helpers.py:extract_json_from_text()
+2025-10-06 09:17:02,882 - ERROR - [ERR-0404] - [505dcfe0] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-06 09:20:51,973 - WARNING - [ERR-0001] - [22413d46] Attempting to extract JSON from text (length: 19377 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 09:20:51,976 - WARNING - [ERR-0001] - [d353c488] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 09:20:51,976 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 09:21:17,487 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-10-06 09:24:22,811 - WARNING - [ERR-0001] - [8eb709cb] Attempting to extract JSON from text (length: 29688 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 09:24:22,814 - WARNING - [ERR-0001] - [6d25406c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 09:24:22,814 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 09:25:02,098 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PLTR']
+2025-10-06 09:49:48,358 - WARNING - [ERR-0001] - [3f5f2a9c] Attempting to extract JSON from text (length: 28063 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 09:49:48,361 - WARNING - [ERR-0001] - [5d4cebac] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 5612 (char 8125) | From: helpers.py:extract_json_from_text()
+2025-10-06 09:49:48,365 - ERROR - [ERR-0404] - [6a214fc1] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-06 09:51:24,731 - WARNING - [ERR-0001] - [df398824] Attempting to extract JSON from text (length: 27917 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 09:51:24,734 - WARNING - [ERR-0001] - [3eeaac34] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 09:51:24,734 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 09:51:53,247 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NVDA']
+2025-10-06 09:56:18,369 - WARNING - [ERR-0001] - [6b5da38c] Attempting to extract JSON from text (length: 26503 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 09:56:18,372 - WARNING - [ERR-0001] - [1e20d04e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 09:56:18,373 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 09:56:49,822 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2025-10-06 10:03:18,316 - WARNING - [ERR-0001] - [2aaa1056] Attempting to extract JSON from text (length: 81086 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:03:18,367 - WARNING - [ERR-0001] - [4bb09798] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:03:18,367 - WARNING - [ERR-0001] - [97f053db] Attempting to extract JSON from text (length: 393 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:03:18,367 - WARNING - [ERR-0001] - [d6a23c35] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:03:18,367 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:03:57,583 - WARNING - [ERR-0303] - [2d7f7da3] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 10:03:57,587 - ERROR - [ERR-0303] - [4bc84a42] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 10:03:57,588 - WARNING - [ERR-0001] - [58705ea3] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 10:03:57,589 - WARNING - [ERR-0003] - [551d7378] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:19:44,979 - WARNING - [ERR-0001] - [8902ace9] Attempting to extract JSON from text (length: 104245 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:19:45,025 - WARNING - [ERR-0001] - [cf083497] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:19:45,026 - WARNING - [ERR-0001] - [14045ec9] Attempting to extract JSON from text (length: 556 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:19:45,027 - WARNING - [ERR-0001] - [eb3273e7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:19:45,027 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:20:17,469 - WARNING - [ERR-0303] - [5801fcdf] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 10:20:17,471 - ERROR - [ERR-0303] - [a66a964f] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 10:20:17,474 - WARNING - [ERR-0001] - [1ca34aba] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 10:20:17,476 - WARNING - [ERR-0003] - [464977ed] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:21:47,409 - WARNING - [ERR-0001] - [0e7b8ef9] Attempting to extract JSON from text (length: 21383 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:21:47,414 - WARNING - [ERR-0001] - [5381b686] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:21:47,415 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:22:21,567 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLD']
+2025-10-06 10:24:08,865 - WARNING - [ERR-0001] - [b08829e6] Attempting to extract JSON from text (length: 13218 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:24:08,869 - WARNING - [ERR-0001] - [aa4670a8] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 5504 (char 7938) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:24:08,872 - ERROR - [ERR-0404] - [14aad21c] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:27:51,226 - WARNING - [ERR-0001] - [ae5dc015] Attempting to extract JSON from text (length: 27660 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:27:51,229 - WARNING - [ERR-0001] - [2e84f359] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 6610 (char 10194) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:27:51,231 - ERROR - [ERR-0404] - [e77512ca] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:33:31,218 - WARNING - [ERR-0001] - [ba5ddf5c] Attempting to extract JSON from text (length: 23561 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:33:31,222 - WARNING - [ERR-0001] - [fe1810d7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:33:31,222 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:34:05,460 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
+2025-10-06 10:39:28,386 - WARNING - [ERR-0001] - [6ca29347] Attempting to extract JSON from text (length: 22491 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:39:28,388 - WARNING - [ERR-0001] - [8d29ed34] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:39:28,389 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:39:56,783 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
+2025-10-06 10:44:50,225 - INFO - [INFO] - Starting comprehensive dataset reset
+2025-10-06 10:44:50,229 - INFO - [INFO] - Starting reset of document_generated field in tickers collection
+2025-10-06 10:44:50,571 - INFO - [INFO] - Successfully updated 93 documents in tickers collection
+2025-10-06 10:44:50,571 - INFO - [INFO] - Reset of document_generated field completed
+2025-10-06 10:44:50,571 - INFO - [INFO] - Starting reset of task_completed field in pipeline collection
+2025-10-06 10:44:50,856 - INFO - [INFO] - Successfully updated 2 documents in pipeline collection
+2025-10-06 10:44:50,857 - INFO - [INFO] - Reset of task_completed field completed
+2025-10-06 10:44:50,857 - INFO - [INFO] - Starting deletion of tickers with recurrence 'once'
+2025-10-06 10:44:51,121 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from tickers collection
+2025-10-06 10:44:51,124 - INFO - [INFO] - Deletion of once tickers completed
+2025-10-06 10:44:51,128 - INFO - [INFO] - Starting deletion of pipeline documents with recurrence 'once'
+2025-10-06 10:44:51,390 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from pipeline collection
+2025-10-06 10:44:51,391 - INFO - [INFO] - Deletion of once pipeline documents completed
+2025-10-06 10:44:51,391 - INFO - [INFO] - Starting deletion of old weigh_factors documents
+2025-10-06 10:44:51,659 - INFO - [INFO] - No old documents found or deleted in 'weigh_factors'.
+2025-10-06 10:44:51,659 - INFO - [INFO] - All reset operations completed successfully
+2025-10-06 10:45:02,628 - WARNING - [ERR-0001] - [12eeddde] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,628 - ERROR - [ERR-0001] - [3b07368a] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,628 - ERROR - [ERR-0001] - [768dad5c] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,631 - ERROR - [ERR-0103] - [96703bdc] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:02,631 - WARNING - [WARN-0002] - [538ce305] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:02,763 - WARNING - [ERR-0001] - [2ed03449] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,767 - ERROR - [ERR-0001] - [c70dd7a6] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,767 - ERROR - [ERR-0001] - [f76267cc] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,767 - ERROR - [ERR-0103] - [575c2a86] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:02,767 - WARNING - [WARN-0002] - [b30e9355] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:02,974 - WARNING - [ERR-0001] - [cff3a05b] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,974 - WARNING - [ERR-0001] - [8afc5fc3] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,974 - ERROR - [ERR-0001] - [996e9a0f] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,974 - WARNING - [ERR-0001] - [fa7a8f37] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,975 - WARNING - [ERR-0001] - [13d4cb7d] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,978 - ERROR - [ERR-0001] - [e38ff28e] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,978 - ERROR - [ERR-0001] - [ac856489] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,978 - ERROR - [ERR-0001] - [e549ad7e] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,978 - ERROR - [ERR-0001] - [c7a1e9d1] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,978 - ERROR - [ERR-0001] - [e81e665c] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,978 - ERROR - [ERR-0001] - [ebdee0ae] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,978 - ERROR - [ERR-0103] - [ed339a5e] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:02,979 - ERROR - [ERR-0103] - [67b1392e] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:02,979 - ERROR - [ERR-0001] - [c4434144] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:02,982 - ERROR - [ERR-0103] - [a32db370] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:02,982 - WARNING - [WARN-0002] - [beda4850] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:02,982 - WARNING - [WARN-0002] - [3d532170] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:02,986 - ERROR - [ERR-0103] - [a88b30af] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:02,986 - WARNING - [WARN-0002] - [d672a733] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:02,987 - WARNING - [WARN-0002] - [21915452] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,068 - WARNING - [ERR-0001] - [54de5c2d] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,072 - ERROR - [ERR-0001] - [1d34576e] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,072 - ERROR - [ERR-0001] - [f51c9eb3] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,072 - ERROR - [ERR-0103] - [ba5ea9ed] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,072 - WARNING - [WARN-0002] - [68a1a4e7] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,188 - WARNING - [ERR-0001] - [2b15b51c] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,188 - ERROR - [ERR-0001] - [8c3e1b8a] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,188 - ERROR - [ERR-0001] - [90e45570] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,188 - ERROR - [ERR-0103] - [e70e60f1] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,189 - WARNING - [WARN-0002] - [f7963b4c] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,529 - WARNING - [ERR-0001] - [a12892ab] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,530 - ERROR - [ERR-0001] - [9db4ece8] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,530 - ERROR - [ERR-0001] - [8c3e95cb] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,530 - ERROR - [ERR-0103] - [07f762d3] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,530 - WARNING - [WARN-0002] - [3909d929] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,532 - WARNING - [ERR-0001] - [8c4b7e91] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,532 - ERROR - [ERR-0001] - [2432c68d] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,532 - ERROR - [ERR-0001] - [937fce04] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,532 - ERROR - [ERR-0103] - [0b4cb5b0] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,532 - WARNING - [WARN-0002] - [e7515b9a] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,898 - WARNING - [ERR-0001] - [59519edf] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,898 - WARNING - [ERR-0001] - [c528f623] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,898 - WARNING - [ERR-0001] - [5f1ab793] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,899 - WARNING - [ERR-0001] - [7c33a0c6] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,900 - ERROR - [ERR-0001] - [c9cbe104] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,900 - ERROR - [ERR-0001] - [cc4b1661] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,900 - ERROR - [ERR-0001] - [b55d5f9c] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,900 - ERROR - [ERR-0001] - [dedd887f] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,900 - ERROR - [ERR-0001] - [4c28a776] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,900 - ERROR - [ERR-0001] - [5bafff17] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,900 - ERROR - [ERR-0001] - [66d0bb79] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,901 - ERROR - [ERR-0001] - [7e4ad07e] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:03,901 - ERROR - [ERR-0103] - [f9173ebb] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,901 - ERROR - [ERR-0103] - [96f996b7] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,901 - ERROR - [ERR-0103] - [21627aad] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,905 - ERROR - [ERR-0103] - [7a95bab7] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,905 - WARNING - [WARN-0002] - [76091805] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,909 - WARNING - [WARN-0002] - [d432076e] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,909 - WARNING - [WARN-0002] - [409e5b55] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:03,909 - WARNING - [WARN-0002] - [4abe672a] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:45:47,312 - WARNING - [ERR-0001] - [34ba10e9] Attempting to extract JSON from text (length: 11321 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:47,314 - WARNING - [ERR-0001] - [847f4509] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:47,315 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:45:49,395 - WARNING - [ERR-0001] - [74349f54] Attempting to extract JSON from text (length: 1024 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:49,397 - ERROR - [ERR-0001] - [c3bb2ba3] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:49,397 - ERROR - [ERR-0001] - [eeb19f91] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10\nPlease retry in 10.621523527s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.QuotaFailu... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:49,398 - ERROR - [ERR-0103] - [d5256e29] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()
+2025-10-06 10:45:49,398 - WARNING - [WARN-0002] - [79304d44] Raw factors response: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, h... | From: helpers.py:get_factors()
+2025-10-06 10:45:49,958 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^NDX']
+2025-10-06 10:45:50,728 - WARNING - [ERR-0001] - [437fd7c3] Attempting to extract JSON from text (length: 1022 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:50,729 - ERROR - [ERR-0001] - [1493432f] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:50,729 - ERROR - [ERR-0001] - [bcab686e] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10\nPlease retry in 9.334231772s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.QuotaFailur... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:50,730 - WARNING - [ERR-0001] - [4fef10bb] Attempting to extract JSON from text (length: 1022 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:50,730 - ERROR - [ERR-0001] - [0634679c] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:50,731 - ERROR - [ERR-0001] - [6d561b8d] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10\nPlease retry in 9.334231772s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.QuotaFailur... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:45:50,731 - ERROR - [ERR-0001] - [6dab3780] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:45:50,731 - WARNING - [WARN-0002] - [c6d579a2] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 10\nPlease retry in 9.334231772s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.QuotaFailur... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:46:09,775 - WARNING - [ERR-0001] - [63651476] Attempting to extract JSON from text (length: 9928 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:46:09,777 - WARNING - [ERR-0001] - [99726de7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:46:09,777 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:46:16,963 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURCAD=X']
+2025-10-06 10:46:24,157 - WARNING - [ERR-0001] - [c2033e15] Attempting to extract JSON from text (length: 20131 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:46:24,160 - WARNING - [ERR-0001] - [0bd86e38] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:46:24,162 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:46:27,007 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GBPUSD=X']
+2025-10-06 10:46:27,819 - WARNING - [ERR-0001] - [d50a1350] Attempting to extract JSON from text (length: 24116 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:46:27,820 - WARNING - [ERR-0001] - [39b0a7a9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:46:27,820 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:46:44,834 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^VIX']
+2025-10-06 10:46:46,724 - WARNING - [ERR-0303] - [d02574d7] Recommendation 0 missing fields: ['stop_loss', 'target_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 10:46:46,725 - ERROR - [ERR-0303] - [2ee50333] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 10:46:46,725 - WARNING - [ERR-0001] - [d055c0ef] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 10:46:46,725 - WARNING - [ERR-0003] - [e0c5e036] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:46:55,685 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^FCHI']
+2025-10-06 10:47:01,857 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CADJPY=X']
+2025-10-06 10:47:02,020 - WARNING - [ERR-0001] - [3195a587] Attempting to extract JSON from text (length: 40695 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:02,055 - WARNING - [ERR-0001] - [0bef1420] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:02,481 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDTRY=X']
+2025-10-06 10:47:02,493 - WARNING - [ERR-0001] - [0fe38d87] Attempting to extract JSON from text (length: 32881 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:02,495 - WARNING - [ERR-0001] - [5ba42e5d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:02,496 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:47:05,614 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDZAR=X']
+2025-10-06 10:47:12,792 - WARNING - [ERR-0001] - [d9866fa2] Attempting to extract JSON from text (length: 33291 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:12,796 - WARNING - [ERR-0001] - [bebdd9a4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:12,796 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:47:17,369 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURUSD=X']
+2025-10-06 10:47:33,894 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDRUB=X']
+2025-10-06 10:47:36,629 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NZDUSD=X']
+2025-10-06 10:47:37,109 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['DX=F']
+2025-10-06 10:47:40,451 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^DJI']
+2025-10-06 10:47:40,904 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^GDAXI']
+2025-10-06 10:47:41,687 - WARNING - [ERR-0001] - [d6f9ac16] Attempting to extract JSON from text (length: 27541 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:41,689 - WARNING - [ERR-0001] - [f60c5577] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:41,689 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:47:44,822 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NZDJPY=X']
+2025-10-06 10:47:45,754 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDJPY=X']
+2025-10-06 10:47:47,617 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GBPJPY=X']
+2025-10-06 10:47:48,410 - WARNING - [ERR-0001] - [e6ebd528] Attempting to extract JSON from text (length: 24334 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:48,413 - WARNING - [ERR-0001] - [193b6e7c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:48,418 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:47:49,920 - WARNING - [ERR-0001] - [408af6c2] Attempting to extract JSON from text (length: 18275 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:49,926 - WARNING - [ERR-0001] - [441d3da0] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:49,927 - WARNING - [ERR-0001] - [1274f827] Attempting to extract JSON from text (length: 18264 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:49,928 - WARNING - [ERR-0001] - [19282d9a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:47:49,928 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:47:50,110 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDCAD=X']
+2025-10-06 10:47:51,062 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDNZD=X']
+2025-10-06 10:48:06,926 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDPLN=X']
+2025-10-06 10:48:07,919 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDCHF=X']
+2025-10-06 10:48:14,936 - WARNING - [ERR-0001] - [cb25e45f] Attempting to extract JSON from text (length: 14472 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:48:14,938 - WARNING - [ERR-0001] - [c29c23b8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:48:14,941 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:48:15,576 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^HSI']
+2025-10-06 10:48:18,799 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['000300.SS']
+2025-10-06 10:48:20,382 - WARNING - [ERR-0001] - [a242e117] Attempting to extract JSON from text (length: 30505 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:48:20,385 - WARNING - [ERR-0001] - [01e9c08b] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 1157 (char 4427) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:48:20,388 - ERROR - [ERR-0404] - [80bf5d93] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:48:31,365 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^N225']
+2025-10-06 10:48:32,749 - WARNING - [ERR-0001] - [8b79d379] Attempting to extract JSON from text (length: 24202 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:48:32,751 - WARNING - [ERR-0001] - [bbcae4d6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:48:32,751 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:48:52,503 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^AORD']
+2025-10-06 10:48:55,440 - WARNING - [ERR-0001] - [ea6238ef] Attempting to extract JSON from text (length: 18130 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:48:55,444 - WARNING - [ERR-0001] - [80079b4b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:48:55,446 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:48:55,530 - WARNING - [ERR-0001] - [4664530f] Attempting to extract JSON from text (length: 33864 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:48:55,533 - WARNING - [ERR-0001] - [e1ca476a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:48:55,536 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:02,308 - WARNING - [ERR-0001] - [6c8297c8] Attempting to extract JSON from text (length: 28359 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:02,311 - WARNING - [ERR-0001] - [5ec9832b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:02,311 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:02,952 - WARNING - [ERR-0001] - [e1d825ea] Attempting to extract JSON from text (length: 18285 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:02,955 - WARNING - [ERR-0001] - [8afe1c80] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:02,958 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:06,129 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['000001.SS']
+2025-10-06 10:49:13,099 - WARNING - [ERR-0001] - [899b39b2] Attempting to extract JSON from text (length: 28669 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:13,101 - WARNING - [ERR-0001] - [b953bc6e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:13,102 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:18,171 - WARNING - [ERR-0001] - [af7db405] Attempting to extract JSON from text (length: 17134 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:18,173 - WARNING - [ERR-0001] - [b8c574ac] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:18,173 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:19,013 - WARNING - [ERR-0001] - [4262cada] Attempting to extract JSON from text (length: 24540 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:19,014 - WARNING - [ERR-0001] - [cf6512d9] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 11 column 3254 (char 6433) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:19,022 - ERROR - [ERR-0404] - [c20f9648] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:49:19,364 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^STOXX50E']
+2025-10-06 10:49:24,555 - WARNING - [ERR-0001] - [7d55bd66] Attempting to extract JSON from text (length: 19837 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:24,558 - WARNING - [ERR-0001] - [81ddc01a] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 11 column 4308 (char 8248) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:24,560 - ERROR - [ERR-0404] - [d0ff94b9] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:49:25,633 - WARNING - [ERR-0001] - [adcf6973] Attempting to extract JSON from text (length: 27315 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:25,636 - WARNING - [ERR-0001] - [b4703592] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:25,636 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:26,248 - WARNING - [ERR-0001] - [de666a93] Attempting to extract JSON from text (length: 13093 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:26,249 - WARNING - [ERR-0001] - [39491079] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:26,249 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:26,422 - ERROR - [ERR-0001] - [d8d667b8] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('68e33c46a96da4056a6ec66d'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'recommendations', 'details': [{'operatorName': 'items', 'reason': 'At least one item did not match the sub-schema', 'itemIndex': 0, 'details': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'target_price', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'double'}, 'reason': 'type did not match', 'consideredValue': 0, 'consideredType': 'int'}]}]}]}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-10-06 10:49:26,422 - WARNING - [ERR-0001] - [673bc920] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 10:49:26,423 - WARNING - [ERR-0003] - [8d43a314] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:49:28,275 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^MXX']
+2025-10-06 10:49:30,511 - WARNING - [ERR-0001] - [e450d400] Attempting to extract JSON from text (length: 25676 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:30,513 - WARNING - [ERR-0001] - [c02ae6ec] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:30,513 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:37,245 - WARNING - [ERR-0001] - [8da6f5a6] Attempting to extract JSON from text (length: 16865 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:37,249 - WARNING - [ERR-0001] - [e25a2812] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:37,250 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:37,591 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^AXJO']
+2025-10-06 10:49:38,023 - WARNING - [ERR-0001] - [2d613950] Attempting to extract JSON from text (length: 19392 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:38,024 - WARNING - [ERR-0001] - [504dca6c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:38,024 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:40,102 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['399001.SZ']
+2025-10-06 10:49:43,197 - WARNING - [ERR-0001] - [604a9f70] Attempting to extract JSON from text (length: 31258 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:43,199 - WARNING - [ERR-0001] - [c77ccdd4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:43,199 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:44,543 - WARNING - [ERR-0001] - [f2728683] Attempting to extract JSON from text (length: 25701 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:44,546 - WARNING - [ERR-0001] - [d192734f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:44,548 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:49,259 - WARNING - [ERR-0001] - [1dbae80a] Attempting to extract JSON from text (length: 41602 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:49,262 - WARNING - [ERR-0001] - [bd08ff90] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:49,262 - WARNING - [ERR-0001] - [1eee93f9] Attempting to extract JSON from text (length: 41602 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:49,266 - WARNING - [ERR-0001] - [2ad52400] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:49:49,266 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:49:50,418 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['QA=F']
+2025-10-06 10:49:56,676 - WARNING - [ERR-0303] - [8b6a0bb4] Recommendation 0 missing fields: ['entry_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 10:49:56,677 - ERROR - [ERR-0303] - [4e860350] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 10:49:56,677 - WARNING - [ERR-0001] - [2d4b4525] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 10:49:56,678 - WARNING - [ERR-0003] - [b1bb76b0] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:50:00,473 - WARNING - [ERR-0001] - [4ec95018] Attempting to extract JSON from text (length: 25591 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:00,476 - WARNING - [ERR-0001] - [36d86208] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:00,476 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:50:05,026 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['HO=F']
+2025-10-06 10:50:05,174 - WARNING - [ERR-0303] - [9049d0ad] Recommendation 0 missing fields: ['stop_loss', 'target_price', 'entry_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 10:50:05,174 - ERROR - [ERR-0303] - [81efa700] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 10:50:05,175 - WARNING - [ERR-0001] - [cf657bd7] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 10:50:05,175 - WARNING - [ERR-0003] - [8d493bfd] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:50:06,709 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^GSPTSE']
+2025-10-06 10:50:06,824 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['D1N=F']
+2025-10-06 10:50:09,761 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GC=F']
+2025-10-06 10:50:11,537 - WARNING - [ERR-0001] - [b7b0f3df] Attempting to extract JSON from text (length: 26154 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:11,540 - WARNING - [ERR-0001] - [4f401a71] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:11,540 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:50:13,434 - WARNING - [ERR-0001] - [b1ffc255] Attempting to extract JSON from text (length: 14777 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:13,435 - WARNING - [ERR-0001] - [043f5d4d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:13,435 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:50:16,901 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^NSEI']
+2025-10-06 10:50:17,256 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^STI']
+2025-10-06 10:50:31,850 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^NZ50']
+2025-10-06 10:50:37,851 - WARNING - [ERR-0001] - [23dfd5f2] Attempting to extract JSON from text (length: 21466 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:37,853 - WARNING - [ERR-0001] - [a4d5cfe0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:37,853 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:50:45,184 - WARNING - [ERR-0001] - [f066e184] Attempting to extract JSON from text (length: 23197 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:45,189 - WARNING - [ERR-0001] - [83cd248e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:45,190 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:50:50,235 - WARNING - [ERR-0001] - [9efe0e9b] Attempting to extract JSON from text (length: 25187 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:50,238 - WARNING - [ERR-0001] - [e8be4c71] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:50,238 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:50:51,187 - WARNING - [ERR-0001] - [48ec55c5] Attempting to extract JSON from text (length: 24380 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:51,190 - WARNING - [ERR-0001] - [f54060a2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:51,190 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:50:51,770 - WARNING - [ERR-0001] - [39180b6f] Attempting to extract JSON from text (length: 19355 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:51,770 - WARNING - [ERR-0001] - [17bc2976] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:51,770 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:50:53,074 - ERROR - [ERR-0001] - [32553c35] Error getting factors analysis | Exception: ValueError: Single '}' encountered in format string | From: helpers.py:get_factors()
+2025-10-06 10:50:53,075 - WARNING - [ERR-0303] - [e105a14b] Recommendation 0 missing fields: ['stop_loss', 'target_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 10:50:53,075 - ERROR - [ERR-0303] - [38613be8] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 10:50:53,075 - WARNING - [ERR-0001] - [b595cd6a] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 10:50:53,075 - WARNING - [ERR-0003] - [38040cb4] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:50:55,455 - WARNING - [ERR-0001] - [f4997ff1] Attempting to extract JSON from text (length: 65038 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:55,494 - WARNING - [ERR-0001] - [f6b881dd] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:55,494 - WARNING - [ERR-0001] - [9351eb92] Attempting to extract JSON from text (length: 425 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:55,494 - WARNING - [ERR-0001] - [4a531a1b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:55,494 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:50:56,326 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ZC=F']
+2025-10-06 10:50:59,243 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ZN=F']
+2025-10-06 10:50:59,686 - WARNING - [ERR-0001] - [638edf2d] Attempting to extract JSON from text (length: 21897 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:59,688 - WARNING - [ERR-0001] - [487e47a8] JSON parsing failed for end object pattern: Illegal trailing comma before end of object: line 27 column 230 (char 12715) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:50:59,689 - ERROR - [ERR-0404] - [6cae5119] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:51:06,854 - WARNING - [ERR-0001] - [830f92e3] Attempting to extract JSON from text (length: 25552 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:06,861 - ERROR - [ERR-0001] - [0e1fbc32] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:06,864 - ERROR - [ERR-0001] - [8625cbfe] Text preview: {
+  "title": "Aluminum Futures Surge Amidst Tightening Supply, Elevated Energy Costs, and Robust Demand",
+  "market_outlook_narrative": [
+    "Aluminum futures have demonstrated a notable upward trajectory in early October 2025, extending a rally that saw prices test a three-year high in mid-September. The current market strength is primarily underpinned by significant supply-side constraints and persistent demand from key industrial sectors. China's revised and more restrictive output growth ta... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:06,865 - ERROR - [ERR-0001] - [9d4c8ebe] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:51:06,868 - WARNING - [WARN-0002] - [b76199bf] Raw response content: {
+  "title": "Aluminum Futures Surge Amidst Tightening Supply, Elevated Energy Costs, and Robust Demand",
+  "market_outlook_narrative": [
+    "Aluminum futures have demonstrated a notable upward trajectory in early October 2025, extending a rally that saw prices test a three-year high in mid-September. The current market strength is primarily underpinned by significant supply-side constraints and persistent demand from key industrial sectors. China's revised and more restrictive output growth ta... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:51:11,824 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SI=F']
+2025-10-06 10:51:26,572 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PL=F']
+2025-10-06 10:51:27,368 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^KS11']
+2025-10-06 10:51:30,999 - WARNING - [ERR-0001] - [73c07f4b] Attempting to extract JSON from text (length: 25492 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:31,004 - WARNING - [ERR-0001] - [0ac1b39d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:31,005 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:51:31,035 - WARNING - [ERR-0001] - [094b29b9] Attempting to extract JSON from text (length: 23485 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:31,036 - WARNING - [ERR-0001] - [f2a10caa] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:31,038 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:51:32,905 - WARNING - [ERR-0001] - [12b9fdd2] Attempting to extract JSON from text (length: 29709 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:32,923 - WARNING - [ERR-0001] - [91004749] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:32,924 - WARNING - [ERR-0001] - [94390eb9] Attempting to extract JSON from text (length: 29698 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:32,926 - WARNING - [ERR-0001] - [7736d3a9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:32,927 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:51:38,673 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['HG=F']
+2025-10-06 10:51:42,124 - WARNING - [ERR-0303] - [864911d8] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 10:51:42,126 - ERROR - [ERR-0303] - [5e99aa64] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 10:51:42,126 - WARNING - [ERR-0001] - [1759c36a] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 10:51:42,130 - WARNING - [ERR-0003] - [84b808a6] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:51:42,134 - WARNING - [ERR-0001] - [1a144b29] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 10:51:42,136 - WARNING - [ERR-0001] - [743fd5dc] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:51:42,137 - WARNING - [ERR-0001] - [1f5a6c95] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 10:51:42,140 - WARNING - [ERR-0001] - [b8eece26] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:51:42,140 - WARNING - [ERR-0001] - [83094520] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 10:51:42,141 - WARNING - [ERR-0001] - [96a27ec7] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:51:42,144 - WARNING - [ERR-0001] - [4cfc758f] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 10:51:42,144 - WARNING - [ERR-0001] - [9a0ecf40] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:51:42,148 - WARNING - [ERR-0001] - [c5ad5600] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 10:51:42,148 - WARNING - [ERR-0001] - [88818788] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:51:42,148 - WARNING - [ERR-0001] - [5fda3d28] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:51:42,373 - WARNING - [ERR-0001] - [752fa32a] Attempting to extract JSON from text (length: 27071 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:42,377 - WARNING - [ERR-0001] - [73a66839] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:42,379 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:51:44,018 - ERROR - [ERR-0001] - [c50c292e] Error getting factors analysis | Exception: ValueError: Single '}' encountered in format string | From: helpers.py:get_factors()
+2025-10-06 10:51:44,617 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GF=F']
+2025-10-06 10:51:44,912 - WARNING - [ERR-0001] - [714e1c09] Attempting to extract JSON from text (length: 30742 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:44,914 - WARNING - [ERR-0001] - [4cf6eb6e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:44,914 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:51:49,695 - WARNING - [ERR-0001] - [a7e4c8af] Attempting to extract JSON from text (length: 25143 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:49,697 - WARNING - [ERR-0001] - [c93db073] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:49,697 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:51:50,279 - WARNING - [ERR-0001] - [4b2667b9] Attempting to extract JSON from text (length: 16174 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:50,282 - WARNING - [ERR-0001] - [b375277f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:50,285 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:51:52,621 - WARNING - [ERR-0001] - [74304dd0] Attempting to extract JSON from text (length: 28323 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:52,623 - WARNING - [ERR-0001] - [8f61a55f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:52,623 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:51:54,440 - WARNING - [ERR-0001] - [3c136836] Attempting to extract JSON from text (length: 23059 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:54,442 - WARNING - [ERR-0001] - [638ad4c1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:51:54,442 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:52:04,025 - WARNING - [ERR-0001] - [30392f1d] Attempting to extract JSON from text (length: 19672 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:04,028 - WARNING - [ERR-0001] - [e3b00935] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:04,030 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:52:05,210 - WARNING - [ERR-0001] - [d9864106] Attempting to extract JSON from text (length: 26824 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:05,214 - WARNING - [ERR-0001] - [68ad8725] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:05,216 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:52:05,605 - ERROR - [ERR-0001] - [890e04de] Error getting factors analysis | Exception: ValueError: Single '}' encountered in format string | From: helpers.py:get_factors()
+2025-10-06 10:52:06,156 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['HE=F']
+2025-10-06 10:52:07,498 - WARNING - [ERR-0001] - [c26d5445] Attempting to extract JSON from text (length: 31192 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:07,504 - WARNING - [ERR-0001] - [0fa22021] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 11 column 2571 (char 6489) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:07,510 - ERROR - [ERR-0404] - [9e6cea3e] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:52:09,622 - WARNING - [ERR-0001] - [9d773534] Attempting to extract JSON from text (length: 6447 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:09,625 - WARNING - [ERR-0001] - [08f35abf] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:09,627 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:52:10,191 - WARNING - [ERR-0001] - [da1355a6] Attempting to extract JSON from text (length: 26874 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:10,196 - WARNING - [ERR-0001] - [63f9d26b] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 11 column 4388 (char 8426) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:10,198 - ERROR - [ERR-0404] - [db2d5532] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:52:11,375 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BNB-USD']
+2025-10-06 10:52:12,036 - WARNING - [ERR-0001] - [9b3e83e4] Attempting to extract JSON from text (length: 106400 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:12,090 - WARNING - [ERR-0001] - [bf49295b] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:13,773 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['DOGE-USD']
+2025-10-06 10:52:17,892 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['UNI7083-USD']
+2025-10-06 10:52:18,847 - WARNING - [ERR-0001] - [e9b36e0b] Attempting to extract JSON from text (length: 26505 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:18,860 - WARNING - [ERR-0001] - [062e288a] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:18,860 - WARNING - [ERR-0001] - [9ca6bce2] Attempting to extract JSON from text (length: 26162 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:18,863 - WARNING - [ERR-0001] - [2d4b0109] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:18,866 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:52:21,633 - WARNING - [ERR-0001] - [f9c0eac0] Attempting to extract JSON from text (length: 23253 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:21,635 - WARNING - [ERR-0001] - [7ef9baea] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:21,636 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:52:23,069 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ETH-USD']
+2025-10-06 10:52:23,389 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BTC-USD']
+2025-10-06 10:52:24,029 - WARNING - [ERR-0001] - [86f5daf7] Attempting to extract JSON from text (length: 20038 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:24,031 - WARNING - [ERR-0001] - [d43d02fd] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:24,031 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:52:26,864 - WARNING - [ERR-0001] - [9c1a5048] Attempting to extract JSON from text (length: 19926 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:26,867 - WARNING - [ERR-0001] - [e0f988d8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:26,868 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:52:27,541 - WARNING - [ERR-0001] - [1f66e17e] Attempting to extract JSON from text (length: 3780 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:27,542 - WARNING - [ERR-0001] - [934a8b5e] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:28,098 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['STX4847-USD']
+2025-10-06 10:52:29,223 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SOL-USD']
+2025-10-06 10:52:31,498 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^BSESN']
+2025-10-06 10:52:35,738 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SHIB-USD']
+2025-10-06 10:52:35,829 - WARNING - [ERR-0001] - [a3fb7a55] Attempting to extract JSON from text (length: 25160 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:35,832 - WARNING - [ERR-0001] - [cd8db7a5] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:35,833 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:52:40,891 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AVAX-USD']
+2025-10-06 10:52:41,505 - WARNING - [ERR-0001] - [81fd1d97] Attempting to extract JSON from text (length: 18861 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:41,509 - WARNING - [ERR-0001] - [cc5f21d8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:52:41,511 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:52:50,292 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['XRP-USD']
+2025-10-06 10:52:58,068 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['LTC-USD']
+2025-10-06 10:53:06,080 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['FIL-USD']
+2025-10-06 10:53:07,121 - WARNING - [ERR-0001] - [3d057509] Attempting to extract JSON from text (length: 26043 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:53:07,123 - WARNING - [ERR-0001] - [cd873b41] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:53:07,123 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:53:07,298 - WARNING - [ERR-0303] - [e63e78e2] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 10:53:07,299 - ERROR - [ERR-0303] - [f93b0be6] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 10:53:07,299 - WARNING - [ERR-0001] - [f27f7134] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 10:53:07,299 - WARNING - [ERR-0003] - [3e0c4e11] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:53:17,003 - WARNING - [ERR-0001] - [6a800f77] Attempting to extract JSON from text (length: 25160 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:53:17,005 - WARNING - [ERR-0001] - [90a7d14c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:53:17,007 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:53:20,289 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['TRX-USD']
+2025-10-06 10:53:30,452 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MANA-USD']
+2025-10-06 10:53:38,895 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ALGO-USD']
+2025-10-06 10:53:52,141 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ATOM-USD']
+2025-10-06 10:53:57,589 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['APE-USD']
+2025-10-06 10:55:11,930 - WARNING - [ERR-0001] - [c9c1e58d] Attempting to extract JSON from text (length: 82430 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:55:11,964 - WARNING - [ERR-0001] - [3cc3ac4f] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:55:11,964 - WARNING - [ERR-0001] - [0818858a] Attempting to extract JSON from text (length: 452 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:55:11,965 - WARNING - [ERR-0001] - [047ddeed] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:55:11,968 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 10:55:41,676 - WARNING - [ERR-0303] - [d307c174] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 10:55:41,678 - ERROR - [ERR-0303] - [9a7aaea4] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 10:55:41,678 - WARNING - [ERR-0001] - [11736214] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 10:55:41,678 - WARNING - [ERR-0003] - [73e2667f] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:55:41,679 - INFO - [INFO] - Batch processing completed. Processed 105 tickers
+2025-10-06 10:57:13,672 - WARNING - [ERR-0001] - [8c497ae7] Attempting to extract JSON from text (length: 19066 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:57:13,677 - WARNING - [ERR-0001] - [8b998744] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 10:58:45,572 - INFO - [INFO] - Pipeline processing completed. Successful: 2/2
+2025-10-06 10:59:21,123 - WARNING - [ERR-0001] - [cbde8e9d] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,124 - WARNING - [ERR-0001] - [4d79524a] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,129 - ERROR - [ERR-0001] - [cf2edc69] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,132 - ERROR - [ERR-0001] - [b1c43365] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,133 - ERROR - [ERR-0001] - [85f2fcd3] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,135 - ERROR - [ERR-0001] - [42038604] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,137 - ERROR - [ERR-0103] - [9cc03e4a] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:59:21,138 - WARNING - [ERR-0001] - [16350f6d] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,139 - WARNING - [WARN-0002] - [ecff216d] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:59:21,142 - ERROR - [ERR-0001] - [d5e4b029] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,146 - ERROR - [ERR-0001] - [47957b58] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,146 - WARNING - [ERR-0001] - [c96f1dc0] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,147 - WARNING - [ERR-0001] - [81f33a6e] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,152 - ERROR - [ERR-0001] - [622aec5e] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,154 - ERROR - [ERR-0001] - [e83d708a] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,154 - ERROR - [ERR-0001] - [aa43604f] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,154 - WARNING - [WARN-0002] - [d8ab62e3] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,156 - ERROR - [ERR-0001] - [995e456f] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,157 - ERROR - [ERR-0001] - [48d2c302] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,160 - WARNING - [ERR-0001] - [ae7e8305] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,160 - WARNING - [ERR-0001] - [2bdbca35] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,160 - ERROR - [ERR-0001] - [c234a2e1] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,162 - ERROR - [ERR-0001] - [21fd6b88] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,163 - ERROR - [ERR-0001] - [fbc27c08] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,163 - ERROR - [ERR-0001] - [4f131551] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,166 - ERROR - [ERR-0001] - [66ef3abf] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,167 - ERROR - [ERR-0001] - [4f2dd707] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,167 - WARNING - [WARN-0002] - [c7125b1f] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,167 - WARNING - [WARN-0002] - [f0b4b705] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,312 - WARNING - [ERR-0001] - [bf8c56c0] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,316 - ERROR - [ERR-0001] - [48d77be7] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,319 - ERROR - [ERR-0001] - [52d51afc] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,320 - WARNING - [ERR-0001] - [cf27e5ff] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,321 - ERROR - [ERR-0001] - [da187acc] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,322 - ERROR - [ERR-0001] - [15695fb5] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,325 - ERROR - [ERR-0001] - [31582b77] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,326 - WARNING - [WARN-0002] - [7d29a1f6] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,344 - WARNING - [ERR-0001] - [3a0f2c90] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,346 - ERROR - [ERR-0001] - [dbac3e44] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,347 - ERROR - [ERR-0001] - [f2cb9767] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,347 - WARNING - [ERR-0001] - [2fb65b58] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,347 - ERROR - [ERR-0001] - [8f42bf9a] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,347 - ERROR - [ERR-0001] - [76814851] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,347 - ERROR - [ERR-0001] - [a99449fa] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,350 - WARNING - [WARN-0002] - [2cc6ff05] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,351 - WARNING - [ERR-0001] - [0ee1ee46] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 10:59:21,351 - WARNING - [ERR-0001] - [99517b51] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:59:21,351 - WARNING - [ERR-0001] - [dd8309c0] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 10:59:21,353 - WARNING - [ERR-0001] - [3048b936] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:59:21,354 - WARNING - [ERR-0001] - [3277c12d] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 10:59:21,354 - WARNING - [ERR-0001] - [a75db409] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:59:21,354 - WARNING - [ERR-0001] - [9686aed6] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 10:59:21,354 - WARNING - [ERR-0001] - [f273d7a7] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:59:21,354 - WARNING - [ERR-0001] - [05055b1b] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 10:59:21,355 - WARNING - [ERR-0001] - [66dd412c] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:59:21,355 - WARNING - [ERR-0001] - [e46eed0c] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 10:59:21,510 - WARNING - [ERR-0001] - [157c7b4c] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,510 - ERROR - [ERR-0001] - [954fb329] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,566 - ERROR - [ERR-0001] - [e2360803] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,566 - ERROR - [ERR-0103] - [b2f5d894] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:59:21,566 - WARNING - [WARN-0002] - [8d5620ab] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:59:21,568 - WARNING - [ERR-0001] - [fb4d0400] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,569 - ERROR - [ERR-0001] - [91e616cf] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,569 - ERROR - [ERR-0001] - [ad082bbe] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,569 - WARNING - [ERR-0001] - [e7611c8a] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,569 - ERROR - [ERR-0001] - [69c5d757] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,569 - ERROR - [ERR-0001] - [a8853725] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,569 - ERROR - [ERR-0001] - [578447ab] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,569 - WARNING - [WARN-0002] - [6b044dce] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,900 - WARNING - [ERR-0001] - [b2a1b446] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,901 - ERROR - [ERR-0001] - [58f0f21e] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,901 - ERROR - [ERR-0001] - [dd972940] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,901 - WARNING - [ERR-0001] - [ca71ebb9] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,902 - ERROR - [ERR-0001] - [a22a47ef] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,902 - ERROR - [ERR-0001] - [bf985741] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,902 - ERROR - [ERR-0001] - [148dab36] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,902 - WARNING - [WARN-0002] - [a4f2147b] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,972 - WARNING - [ERR-0001] - [af5e98c9] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,972 - ERROR - [ERR-0001] - [c318e2a4] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,973 - ERROR - [ERR-0001] - [84911eba] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,973 - WARNING - [ERR-0001] - [20abbc2b] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,973 - ERROR - [ERR-0001] - [4cec7ec1] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,974 - ERROR - [ERR-0001] - [8555c738] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:21,975 - ERROR - [ERR-0001] - [6ea588bf] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:21,975 - WARNING - [WARN-0002] - [3d84afe9] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:22,004 - WARNING - [ERR-0001] - [0c5b695f] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,004 - ERROR - [ERR-0001] - [7c3b0aa9] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,005 - ERROR - [ERR-0001] - [f3c36447] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,005 - WARNING - [ERR-0001] - [cb70fb40] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,006 - ERROR - [ERR-0001] - [c6f4525d] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,006 - ERROR - [ERR-0001] - [29b85c56] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,006 - ERROR - [ERR-0001] - [5af590f5] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:22,006 - WARNING - [WARN-0002] - [a2f92e10] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:22,106 - WARNING - [ERR-0001] - [ffbdb863] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,108 - ERROR - [ERR-0001] - [2e05437e] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,109 - ERROR - [ERR-0001] - [c5d7ba64] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,109 - ERROR - [ERR-0103] - [c511aebf] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:59:22,113 - WARNING - [WARN-0002] - [0df08d06] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:59:22,119 - WARNING - [ERR-0001] - [2c0b405c] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,120 - ERROR - [ERR-0001] - [f68b63c6] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,121 - ERROR - [ERR-0001] - [4e39bf58] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,121 - WARNING - [ERR-0001] - [66d985cf] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,125 - ERROR - [ERR-0001] - [9b981a44] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,127 - ERROR - [ERR-0001] - [4d49d5dd] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,128 - ERROR - [ERR-0001] - [ba7b6186] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:22,132 - WARNING - [WARN-0002] - [f8b38655] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:22,283 - WARNING - [ERR-0001] - [1ec42b9f] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,286 - ERROR - [ERR-0001] - [3aaeb588] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,290 - ERROR - [ERR-0001] - [b372a426] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,290 - WARNING - [ERR-0001] - [0c8ded79] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,291 - ERROR - [ERR-0001] - [79fdec6e] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,291 - ERROR - [ERR-0001] - [166da241] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,295 - ERROR - [ERR-0001] - [2ea79e82] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:22,295 - WARNING - [WARN-0002] - [f4b45a45] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 10:59:22,431 - WARNING - [ERR-0001] - [5f179cc5] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,436 - ERROR - [ERR-0001] - [3de42fb8] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,437 - ERROR - [ERR-0001] - [60ce4785] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 10:59:22,438 - ERROR - [ERR-0103] - [6f30e3d3] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 10:59:22,438 - WARNING - [WARN-0002] - [c375ba60] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:00:43,398 - WARNING - [ERR-0001] - [e363064c] Attempting to extract JSON from text (length: 20534 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:00:43,402 - WARNING - [ERR-0001] - [ce763f7a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:00:43,402 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:00:49,587 - WARNING - [ERR-0001] - [dbe81963] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:00:49,588 - ERROR - [ERR-0001] - [aaa74e8e] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:00:49,588 - ERROR - [ERR-0404] - [4fe37740] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:00:50,306 - WARNING - [ERR-0001] - [8bdeb1ee] Attempting to extract JSON from text (length: 18041 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:00:50,308 - WARNING - [ERR-0001] - [81fefcbc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:00:57,703 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURCHF=X']
+2025-10-06 11:00:58,244 - WARNING - [ERR-0001] - [a2635a8f] Attempting to extract JSON from text (length: 33678 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:00:58,259 - WARNING - [ERR-0001] - [a0ddc8cc] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:00:58,262 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:01:02,584 - WARNING - [ERR-0001] - [ec3e1378] Attempting to extract JSON from text (length: 19856 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:01:02,589 - WARNING - [ERR-0001] - [aff863b8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:01:04,392 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURGBP=X']
+2025-10-06 11:01:06,203 - ERROR - [ERR-0103] - [83b94865] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting ',' delimiter: line 10 column 6417 (char 9139) | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:01:06,204 - WARNING - [WARN-0002] - [394d2a69] Raw response content: {
+  "title": "Global Cautiousness Persists, Weighing on Emerging Markets, Bolstering Dollar",
+  "market_outlook_narrative": [
+    "Global financial markets are currently driven by a confluence of elev... | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:01:08,681 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDSEK=X']
+2025-10-06 11:01:10,048 - ERROR - [ERR-0001] - [21283bc4] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('68e33f05a96da4056a6ec698'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'recommendations', 'details': [{'operatorName': 'items', 'reason': 'At least one item did not match the sub-schema', 'itemIndex': 0, 'details': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'target_price', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'double'}, 'reason': 'type did not match', 'consideredValue': 0, 'consideredType': 'int'}]}]}]}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-10-06 11:01:10,051 - WARNING - [ERR-0001] - [471b7540] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 11:01:10,052 - WARNING - [ERR-0003] - [9aff4904] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:01:11,498 - ERROR - [ERR-0103] - [a442169c] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting ',' delimiter: line 11 column 3 (char 8466) | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:01:11,498 - WARNING - [WARN-0002] - [8729b7a6] Raw response content: {
+  "title": "ECB Steadfastness and China's Stimulus Drive Divergent EURCNH Paths",
+  "market_outlook_narrative": [
+    "Global financial markets are navigating a complex landscape shaped by persisten... | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:01:22,410 - ERROR - [ERR-0001] - [31cbdade] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('68e33f12a96da4056a6ec699'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'recommendations', 'details': [{'operatorName': 'items', 'reason': 'At least one item did not match the sub-schema', 'itemIndex': 0, 'details': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'target_price', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'double'}, 'reason': 'type did not match', 'consideredValue': 0, 'consideredType': 'int'}]}]}]}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-10-06 11:01:22,412 - WARNING - [ERR-0001] - [124ff754] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 11:01:22,413 - WARNING - [ERR-0003] - [4364a034] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:01:34,571 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDCNY=X']
+2025-10-06 11:01:35,870 - WARNING - [ERR-0303] - [f5f2c332] Missing required fields: ['recommendations'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 11:01:35,873 - ERROR - [ERR-0303] - [929fbcf7] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 11:01:35,874 - WARNING - [ERR-0001] - [2ea8e92f] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 11:01:35,874 - WARNING - [ERR-0003] - [1b118349] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:01:37,350 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURTRY=X']
+2025-10-06 11:01:49,531 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDUSD=X']
+2025-10-06 11:01:50,292 - WARNING - [ERR-0001] - [2fdbcd3e] Attempting to extract JSON from text (length: 23897 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:01:50,305 - WARNING - [ERR-0001] - [78bbcdc5] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:01:50,306 - WARNING - [ERR-0001] - [1e5f75c6] Attempting to extract JSON from text (length: 23886 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:01:50,307 - WARNING - [ERR-0001] - [fb7aea17] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:01:50,308 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:02:17,495 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^GSPC']
+2025-10-06 11:02:25,209 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDSGD=X']
+2025-10-06 11:05:15,361 - WARNING - [ERR-0001] - [52d2d92b] Attempting to extract JSON from text (length: 103934 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:05:15,412 - WARNING - [ERR-0001] - [d9350003] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:05:52,366 - WARNING - [ERR-0303] - [6b0b0235] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 11:05:52,367 - ERROR - [ERR-0303] - [f4635277] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 11:05:52,367 - WARNING - [ERR-0001] - [6b24456b] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 11:05:52,368 - WARNING - [ERR-0003] - [62221630] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:05:52,369 - INFO - [INFO] - Batch processing completed. Processed 41 tickers
+2025-10-06 11:05:52,648 - INFO - [INFO] - No pending pipelines to process.
+2025-10-06 11:06:18,234 - WARNING - [ERR-0001] - [083a50a6] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:06:18,234 - WARNING - [ERR-0001] - [f4eef639] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:06:18,234 - WARNING - [ERR-0001] - [6b0df133] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:06:18,237 - WARNING - [ERR-0001] - [3b95c35c] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:06:18,237 - WARNING - [ERR-0001] - [3861d0d5] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:06:18,237 - WARNING - [ERR-0001] - [d59b534a] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:06:18,237 - WARNING - [ERR-0001] - [67adc40c] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:06:18,237 - WARNING - [ERR-0001] - [308b1d9f] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:06:18,237 - WARNING - [ERR-0001] - [fa64abaa] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:06:18,237 - WARNING - [ERR-0001] - [74850ef2] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:06:18,237 - WARNING - [ERR-0001] - [d9c1d894] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:06:19,944 - WARNING - [ERR-0001] - [2fa36941] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,945 - ERROR - [ERR-0001] - [3426aee8] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,945 - ERROR - [ERR-0001] - [6f629bc3] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,945 - WARNING - [ERR-0001] - [52cfa8cd] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,946 - WARNING - [ERR-0001] - [47d07fa9] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,946 - ERROR - [ERR-0001] - [52417dfa] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,946 - ERROR - [ERR-0001] - [21329400] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,947 - ERROR - [ERR-0001] - [e73a085e] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,947 - WARNING - [ERR-0001] - [7c308202] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,947 - ERROR - [ERR-0001] - [dd98256c] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,948 - ERROR - [ERR-0001] - [803d96d8] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,948 - ERROR - [ERR-0001] - [e4981ecf] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:19,948 - ERROR - [ERR-0001] - [803de3e2] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:06:19,949 - ERROR - [ERR-0001] - [e0da9699] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:06:19,949 - WARNING - [WARN-0002] - [8efbcb8e] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:06:19,949 - WARNING - [WARN-0002] - [d5f873ee] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:06:20,038 - WARNING - [ERR-0001] - [9a9ccf99] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,038 - ERROR - [ERR-0001] - [2901eef3] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,039 - ERROR - [ERR-0001] - [46300f6d] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,039 - WARNING - [ERR-0001] - [3e732f8b] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,039 - ERROR - [ERR-0001] - [f512735e] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,039 - ERROR - [ERR-0001] - [8b3bfe08] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,040 - ERROR - [ERR-0001] - [42e8fa00] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:06:20,040 - WARNING - [WARN-0002] - [fbcc7197] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:06:20,223 - WARNING - [ERR-0001] - [71c25a08] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,226 - ERROR - [ERR-0001] - [3ed9ce7d] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,230 - ERROR - [ERR-0001] - [4fb92022] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,231 - WARNING - [ERR-0001] - [29dcac9a] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,234 - WARNING - [ERR-0001] - [5243e694] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,234 - ERROR - [ERR-0001] - [46da61da] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,238 - ERROR - [ERR-0001] - [dc09992d] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,238 - ERROR - [ERR-0001] - [01a263b8] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,241 - ERROR - [ERR-0001] - [6c3db963] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,241 - WARNING - [ERR-0001] - [bc10fe43] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,244 - ERROR - [ERR-0001] - [46a923dc] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:06:20,245 - ERROR - [ERR-0001] - [74d6bfeb] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,247 - WARNING - [WARN-0002] - [2b86b616] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:06:20,251 - ERROR - [ERR-0001] - [cff0d399] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,254 - ERROR - [ERR-0001] - [809cd067] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:06:20,257 - WARNING - [WARN-0002] - [2c9a53ec] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:06:20,321 - WARNING - [ERR-0001] - [a401204a] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,323 - ERROR - [ERR-0001] - [e8dc4bce] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,323 - ERROR - [ERR-0001] - [c9312da9] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,327 - ERROR - [ERR-0103] - [02d496c8] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:06:20,328 - WARNING - [WARN-0002] - [a1ebe3e0] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:06:20,428 - WARNING - [ERR-0001] - [330b1117] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,431 - ERROR - [ERR-0001] - [1c1c9475] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,431 - ERROR - [ERR-0001] - [cab61dbb] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:06:20,431 - ERROR - [ERR-0103] - [707c713e] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:06:20,435 - WARNING - [WARN-0002] - [c55feee0] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:07:07,978 - WARNING - [ERR-0001] - [cfc197f4] Attempting to extract JSON from text (length: 14740 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:07,986 - WARNING - [ERR-0001] - [4a49900e] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:07,986 - WARNING - [ERR-0001] - [8f49e1bb] Attempting to extract JSON from text (length: 14729 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:07,987 - WARNING - [ERR-0001] - [eb470bc9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:07,988 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:07:27,812 - WARNING - [ERR-0001] - [e90ab327] Attempting to extract JSON from text (length: 24180 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:27,816 - WARNING - [ERR-0001] - [8a1f378a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:27,817 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:07:29,824 - WARNING - [ERR-0001] - [2b3c64bd] Attempting to extract JSON from text (length: 20890 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:29,826 - WARNING - [ERR-0001] - [1f13c241] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:29,827 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:07:33,286 - WARNING - [ERR-0001] - [c73ac147] Attempting to extract JSON from text (length: 17272 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:33,288 - WARNING - [ERR-0001] - [3a357e61] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:33,288 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:07:35,018 - ERROR - [ERR-0001] - [a79224aa] Error getting factors analysis | Exception: ValueError: Single '}' encountered in format string | From: helpers.py:get_factors()
+2025-10-06 11:07:35,593 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['LE=F']
+2025-10-06 11:07:38,225 - WARNING - [ERR-0001] - [6c356a55] Attempting to extract JSON from text (length: 25217 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:38,227 - WARNING - [ERR-0001] - [8b2d2655] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:38,230 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:07:39,422 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MTF=F']
+2025-10-06 11:07:40,152 - WARNING - [ERR-0001] - [7ace3f9a] Attempting to extract JSON from text (length: 20864 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:40,154 - WARNING - [ERR-0001] - [c0c66bc3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:40,158 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:07:40,626 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PA=F']
+2025-10-06 11:07:56,161 - WARNING - [ERR-0001] - [b5e372c8] Attempting to extract JSON from text (length: 23493 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:56,163 - WARNING - [ERR-0001] - [6a19bc47] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:07:56,167 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:08:00,552 - WARNING - [ERR-0001] - [10cc36c2] Attempting to extract JSON from text (length: 21929 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:08:00,554 - WARNING - [ERR-0001] - [420ab5bc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:08:00,554 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:08:01,603 - WARNING - [ERR-0001] - [c92e0df5] Attempting to extract JSON from text (length: 22767 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:08:01,607 - WARNING - [ERR-0001] - [f700883a] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 11 column 3394 (char 7046) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:08:01,611 - ERROR - [ERR-0404] - [11b7a9fa] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-06 11:08:01,777 - WARNING - [ERR-0001] - [7bb9e3ad] Attempting to extract JSON from text (length: 7668 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:08:01,783 - WARNING - [ERR-0001] - [d87f2c62] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-06 11:08:02,378 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2025-10-06 11:08:11,030 - ERROR - [ERR-0001] - [e2179201] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2025-10-06 11:08:11,729 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['RB=F']
+2025-10-06 11:08:18,249 - ERROR - [ERR-0404] - [8afa196b] Error in fx_long_short | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:08:19,022 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ADA-USD']
+2025-10-06 11:08:39,434 - WARNING - [ERR-0303] - [c0646571] Recommendation 0 missing fields: ['stop_loss', 'target_price', 'entry_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 11:08:39,435 - ERROR - [ERR-0303] - [df1cd38c] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 11:08:39,436 - WARNING - [ERR-0001] - [f7f53428] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 11:08:39,436 - WARNING - [ERR-0003] - [17cf4f12] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:08:40,582 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^RUT']
+2025-10-06 11:08:51,261 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['DOT-USD']
+2025-10-06 11:08:52,181 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDMXN=X']
+2025-10-06 11:08:56,253 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDNOK=X']
+2025-10-06 11:09:01,508 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURRUB=X']
+2025-10-06 11:09:41,562 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDTHB=X']
+2025-10-06 11:09:41,565 - INFO - [INFO] - Batch processing completed. Processed 33 tickers
+2025-10-06 11:09:41,858 - INFO - [INFO] - No pending pipelines to process.
+2025-10-06 11:09:58,103 - WARNING - [ERR-0001] - [087d561f] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:09:58,105 - WARNING - [ERR-0001] - [3b4b0cfc] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:09:58,105 - WARNING - [ERR-0001] - [d4e6434a] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:09:58,106 - WARNING - [ERR-0001] - [e5d17fac] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:09:58,109 - WARNING - [ERR-0001] - [0f4f1192] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:09:58,110 - WARNING - [ERR-0001] - [b2d9fa2e] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:09:58,110 - WARNING - [ERR-0001] - [fbf47c69] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:09:58,111 - WARNING - [ERR-0001] - [76fe4e9d] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:09:58,112 - WARNING - [ERR-0001] - [c52eb484] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:09:58,112 - WARNING - [ERR-0001] - [c4e3dde6] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:09:58,112 - WARNING - [ERR-0001] - [f0309378] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:11:10,883 - WARNING - [ERR-0001] - [3c6c84a1] Attempting to extract JSON from text (length: 25152 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:10,886 - WARNING - [ERR-0001] - [837bd06f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:10,888 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:11:26,556 - WARNING - [ERR-0001] - [505752f3] Attempting to extract JSON from text (length: 24584 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:26,558 - WARNING - [ERR-0001] - [cb538240] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:26,558 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:11:28,472 - WARNING - [ERR-0001] - [d9ff30f3] Attempting to extract JSON from text (length: 29961 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:28,474 - WARNING - [ERR-0001] - [668e5b8f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:28,474 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:11:41,408 - WARNING - [ERR-0001] - [6867ac26] Attempting to extract JSON from text (length: 22194 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:41,412 - WARNING - [ERR-0001] - [c2a6ecc4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:41,412 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:11:41,611 - WARNING - [ERR-0303] - [e92c55cd] Recommendation 0 missing fields: ['stop_loss', 'target_price', 'entry_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 11:11:41,620 - ERROR - [ERR-0303] - [42e0cbdc] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 11:11:41,627 - WARNING - [ERR-0001] - [fa8307b3] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 11:11:41,628 - WARNING - [ERR-0003] - [59e3b4df] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:11:47,407 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NG=F']
+2025-10-06 11:11:49,528 - WARNING - [ERR-0001] - [418c942a] Attempting to extract JSON from text (length: 23638 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:49,532 - WARNING - [ERR-0001] - [015f9916] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:49,533 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:11:50,668 - WARNING - [ERR-0001] - [36b7ef7f] Attempting to extract JSON from text (length: 29248 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:50,670 - WARNING - [ERR-0001] - [82af216d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 11:11:50,672 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 11:11:57,730 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^FTSE']
+2025-10-06 11:12:06,464 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^BVSP']
+2025-10-06 11:12:07,626 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^SSMI']
+2025-10-06 11:12:10,656 - WARNING - [ERR-0001] - [f476fbfa] Attempting to extract JSON from text (length: 6562 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:12:10,661 - WARNING - [ERR-0001] - [77f0c92a] JSON parsing failed for pattern ```json\s*(\{.*\})\s*```...: Extra data: line 35 column 1 (char 2171) | From: helpers.py:extract_json_from_text()
+2025-10-06 11:12:10,664 - ERROR - [ERR-0001] - [f8fd0f79] Error getting factors analysis | Exception: TypeError: 'int' object is not callable | From: helpers.py:get_factors()
+2025-10-06 11:12:10,668 - WARNING - [ERR-0303] - [e8efd21a] Recommendation 0 missing fields: ['stop_loss', 'target_price', 'entry_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 11:12:10,668 - ERROR - [ERR-0303] - [6a2c8dfa] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 11:12:10,668 - WARNING - [ERR-0001] - [5a503632] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 11:12:10,669 - WARNING - [ERR-0003] - [b53cd3a2] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:12:23,225 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BZ=F']
+2025-10-06 11:12:38,947 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ALI=F']
+2025-10-06 11:12:44,630 - WARNING - [ERR-0303] - [48239ca3] Recommendation 0 missing fields: ['entry_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 11:12:44,630 - ERROR - [ERR-0303] - [a1d854ca] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 11:12:44,630 - WARNING - [ERR-0001] - [8e9809b9] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 11:12:44,631 - WARNING - [ERR-0003] - [642711bb] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:15:22,222 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURJPY=X']
+2025-10-06 11:15:22,226 - INFO - [INFO] - Batch processing completed. Processed 21 tickers
+2025-10-06 11:15:22,502 - INFO - [INFO] - No pending pipelines to process.
+2025-10-06 11:16:45,319 - WARNING - [ERR-0001] - [987544a6] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:16:45,320 - WARNING - [ERR-0001] - [e793ff64] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:16:45,320 - WARNING - [ERR-0001] - [4ddf7c05] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:16:45,321 - WARNING - [ERR-0001] - [ac4da664] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:16:45,321 - WARNING - [ERR-0001] - [69f86a55] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:16:45,322 - WARNING - [ERR-0001] - [78d75863] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:16:45,322 - WARNING - [ERR-0001] - [3a3e87c0] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:16:45,323 - WARNING - [ERR-0001] - [abc94a23] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:16:45,324 - WARNING - [ERR-0001] - [fe74c6ba] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:16:45,324 - WARNING - [ERR-0001] - [eff1b2fc] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 11:16:45,325 - WARNING - [ERR-0001] - [ad79c668] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 11:18:36,241 - WARNING - [ERR-0303] - [946609ea] Recommendation 0 missing fields: ['stop_loss', 'target_price', 'entry_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 11:18:36,242 - ERROR - [ERR-0303] - [04abbbef] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 11:18:36,243 - WARNING - [ERR-0001] - [cec305e7] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 11:18:36,247 - WARNING - [ERR-0003] - [1fdcb4ac] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:19:01,629 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDJPY=X']
+2025-10-06 11:19:53,643 - WARNING - [ERR-0303] - [7c420133] Recommendation 0 missing fields: ['stop_loss', 'target_price', 'entry_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 11:19:53,645 - ERROR - [ERR-0303] - [ed54d4c4] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 11:19:53,649 - WARNING - [ERR-0001] - [357f5d03] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 11:19:53,649 - WARNING - [ERR-0003] - [15c7ea7f] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-06 11:19:53,652 - INFO - [INFO] - Batch processing completed. Processed 14 tickers
+2025-10-06 11:19:53,924 - INFO - [INFO] - No pending pipelines to process.
+2025-10-06 12:02:40,675 - WARNING - [ERR-0001] - [a28ffea8] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 12:02:40,677 - WARNING - [ERR-0001] - [b3a158d3] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 12:02:40,677 - WARNING - [ERR-0001] - [1b60301e] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 12:02:40,678 - WARNING - [ERR-0001] - [d748a4e7] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 12:02:40,678 - WARNING - [ERR-0001] - [f7d628f5] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 12:02:40,679 - WARNING - [ERR-0001] - [c04ce041] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 12:02:40,679 - WARNING - [ERR-0001] - [d1d7c177] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 12:02:40,679 - WARNING - [ERR-0001] - [6926e62d] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker AAPL | From: batch_run.py:process_ticker()
+2025-10-06 12:02:40,680 - WARNING - [ERR-0001] - [e33a54a0] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 12:02:40,680 - WARNING - [ERR-0001] - [9e8ac29c] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 12:02:40,680 - WARNING - [ERR-0001] - [2ac94a2f] Failed to import gpt-4.analyze_stock: No module named 'models.gpt-4' for ticker MSFT | From: batch_run.py:process_ticker()
+2025-10-06 12:04:27,016 - WARNING - [ERR-0001] - [765aae3e] Attempting to extract JSON from text (length: 40860 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 12:04:27,046 - WARNING - [ERR-0001] - [b6bba946] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-06 12:04:59,026 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AudJPY=X']
+2025-10-06 12:05:16,480 - WARNING - [ERR-0303] - [a5d3fd4c] Recommendation 0 missing fields: ['stop_loss', 'target_price', 'entry_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 12:05:16,480 - ERROR - [ERR-0303] - [3484f981] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 12:05:16,483 - WARNING - [ERR-0001] - [536a4762] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 12:05:16,483 - WARNING - [ERR-0003] - [8393a649] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-06 12:05:46,795 - WARNING - [ERR-0303] - [cc1b104f] Recommendation 0 missing fields: ['stop_loss', 'target_price', 'entry_price'] | From: helpers.py:validate_recommendations_schema()
+2025-10-06 12:05:46,796 - ERROR - [ERR-0303] - [b899fae2] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-06 12:05:46,797 - WARNING - [ERR-0001] - [c085a444] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-06 12:05:46,798 - WARNING - [ERR-0003] - [7a76083f] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-06 12:05:46,798 - INFO - [INFO] - Batch processing completed. Processed 14 tickers
+2025-10-06 12:05:47,139 - INFO - [INFO] - No pending pipelines to process.
+2025-10-06 12:46:30,614 - INFO - [INFO] - No pending tickers to process.
+2025-10-06 12:57:04,487 - INFO - [INFO] - No pending tickers to process.
+2025-10-06 12:57:12,113 - INFO - [INFO] - No pending tickers to process.
+2025-10-06 13:05:41,541 - WARNING - [ERR-0001] - [7448c615] Attempting to extract JSON from text (length: 33245 chars) | From: helpers.py:extract_json_from_text()
+2025-10-06 13:05:41,545 - WARNING - [ERR-0001] - [78d880b4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-06 13:05:41,545 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-06 13:06:20,082 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SUL.AX']

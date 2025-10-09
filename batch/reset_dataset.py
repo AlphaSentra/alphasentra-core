@@ -139,36 +139,33 @@ def delete_once_pipeline():
         return False
     
 
-def remove_old_weigh_factors():
+def remove_all_weight_factors():
     """
-    Remove all documents from the 'weigh_factors' collection where the 'date' field is older than today's date.
+    Remove all documents from the 'weight_factors' collection.
     
     Returns:
         int: Number of documents deleted.
     """
     try:
-        logger.info("Starting deletion of old weigh_factors documents")
+        logger.info("Starting deletion of all weigh_factors documents")
         
         # Get MongoDB client using DatabaseManager
         client = DatabaseManager().get_client()
         db_name = os.getenv("MONGODB_DATABASE", "alphagora")
         db = client[db_name]
-        collection = db['weigh_factors']
+        collection = db['weight_factors']
 
-        from datetime import date
-        today_date = date.today()
-        today_str = today_date.strftime("%Y-%m-%d")
-        result = collection.delete_many({"date": {"$lt": today_str}})
+        result = collection.delete_many({})
         deleted_count = result.deleted_count
         if deleted_count > 0:
-            logger.info(f"Successfully deleted {deleted_count} old documents from 'weigh_factors'.")
+            logger.info(f"Successfully deleted {deleted_count} documents from 'weight_factors'.")
         else:
-            logger.info("No old documents found or deleted in 'weigh_factors'.")
+            logger.info("No documents found in 'weight_factors'.")
 
         return True
 
     except Exception as e:
-        logger.error("Failed to delete old weigh_factors documents", "DATABASE_OPERATION", e)
+        logger.error("Failed to delete weight_factors documents", "DATABASE_OPERATION", e)
         return False
 
 def reset_all():
@@ -187,7 +184,7 @@ def reset_all():
             reset_pipeline_completed() and
             delete_once_tickers() and
             delete_once_pipeline() and
-            remove_old_weigh_factors()
+            remove_all_weight_factors()
         )
         
         if success:
