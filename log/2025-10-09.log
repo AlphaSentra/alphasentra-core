@@ -2210,3 +2210,75 @@
 2025-10-09 12:20:40,454 - INFO - [INFO] - Starting deletion of all weigh_factors documents
 2025-10-09 12:20:40,794 - INFO - [INFO] - Successfully deleted 63 documents from 'weight_factors'.
 2025-10-09 12:20:40,797 - INFO - [INFO] - All reset operations completed successfully
+2025-10-09 12:38:23,329 - WARNING - [ERR-0001] - [dc784432] Attempting to extract JSON from text (length: 89408 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 12:38:23,353 - WARNING - [ERR-0001] - [4d209180] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 12:38:23,354 - WARNING - [ERR-0001] - [6792b287] Attempting to extract JSON from text (length: 381 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 12:38:23,354 - WARNING - [ERR-0001] - [9c5f3d0a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 12:38:23,354 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 12:39:17,659 - WARNING - [ERR-0303] - [a9f7994e] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-09 12:39:17,660 - ERROR - [ERR-0303] - [04647a0e] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-09 12:39:17,660 - WARNING - [ERR-0001] - [1c4f527b] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-09 12:39:17,661 - WARNING - [ERR-0003] - [8e7aa383] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-09 12:44:07,503 - WARNING - [ERR-0001] - [21b1f273] Attempting to extract JSON from text (length: 24117 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 12:44:07,509 - WARNING - [ERR-0001] - [6ee0f032] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 12:44:07,511 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 12:45:05,228 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['VXX']
+2025-10-09 13:04:40,216 - WARNING - [ERR-0001] - [155f2822] Attempting to extract JSON from text (length: 26222 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:04:40,218 - WARNING - [ERR-0001] - [2534e7ef] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 13:04:40,219 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 13:05:07,800 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-10-09 13:10:35,245 - WARNING - [ERR-0001] - [c50e50d0] Attempting to extract JSON from text (length: 24817 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:10:35,247 - WARNING - [ERR-0001] - [9718d6b3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 13:10:35,247 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 13:11:38,401 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PLTR']
+2025-10-09 13:13:41,691 - WARNING - [ERR-0001] - [4190c26e] Attempting to extract JSON from text (length: 24653 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:13:41,698 - ERROR - [ERR-0001] - [c44c4545] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-09 13:13:41,699 - ERROR - [ERR-0001] - [5f5d265c] Text preview: {
+  "title": "NVIDIA's AI Supremacy and Unprecedented Data Center Demand Propel Valuation to New Peaks",
+  "market_outlook_narrative": [
+    "NVIDIA, the undisputed leader in artificial intelligence (AI) hardware, continues to demonstrate formidable strength, driven by persistent demand for its advanced graphics processing units (GPUs). The company recently reported robust fiscal Q2 2026 earnings, with revenue soaring to $46.7 billion, a 56% increase year-over-year, largely fueled by its data ce... | From: helpers.py:extract_json_from_text()
+2025-10-09 13:13:41,699 - ERROR - [ERR-0001] - [ec10fcfe] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-09 13:13:41,699 - WARNING - [WARN-0002] - [3a08bb9c] Raw response content: {
+  "title": "NVIDIA's AI Supremacy and Unprecedented Data Center Demand Propel Valuation to New Peaks",
+  "market_outlook_narrative": [
+    "NVIDIA, the undisputed leader in artificial intelligence (AI) hardware, continues to demonstrate formidable strength, driven by persistent demand for its advanced graphics processing units (GPUs). The company recently reported robust fiscal Q2 2026 earnings, with revenue soaring to $46.7 billion, a 56% increase year-over-year, largely fueled by its data ce... | From: holistic.py:run_holistic_market_model()
+2025-10-09 13:17:28,252 - WARNING - [ERR-0001] - [2132e5a9] Attempting to extract JSON from text (length: 44225 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:17:28,278 - WARNING - [ERR-0001] - [9ed49472] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 13:17:28,279 - WARNING - [ERR-0001] - [1f87a089] Attempting to extract JSON from text (length: 394 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:17:28,279 - WARNING - [ERR-0001] - [66ba971e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 13:17:28,281 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 13:17:54,561 - WARNING - [ERR-0303] - [5c6b337b] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-09 13:17:54,563 - ERROR - [ERR-0303] - [89f903ba] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-09 13:17:54,563 - WARNING - [ERR-0001] - [45a1baf5] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-09 13:17:54,564 - WARNING - [ERR-0003] - [b7cdfdcf] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-09 13:22:47,403 - WARNING - [ERR-0001] - [2b0658bb] Attempting to extract JSON from text (length: 29343 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:22:47,406 - WARNING - [ERR-0001] - [ee4dbb5d] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 5420 (char 8213) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:22:47,409 - ERROR - [ERR-0404] - [92e3a770] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-09 13:24:20,472 - WARNING - [ERR-0001] - [9ffd6880] Attempting to extract JSON from text (length: 22812 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:24:20,477 - WARNING - [ERR-0001] - [a336d891] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 13:24:20,478 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 13:25:07,368 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NVDA']
+2025-10-09 13:27:49,332 - WARNING - [ERR-0001] - [b04c1f4e] Attempting to extract JSON from text (length: 31262 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:27:49,337 - WARNING - [ERR-0001] - [a50d84cc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 13:27:49,337 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 13:28:20,915 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2025-10-09 13:31:10,551 - WARNING - [ERR-0001] - [29cc6bd4] Attempting to extract JSON from text (length: 29224 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:31:10,553 - WARNING - [ERR-0001] - [af486290] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 13:31:10,553 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 13:31:43,516 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
+2025-10-09 13:36:50,444 - WARNING - [ERR-0001] - [fbcd2a00] Attempting to extract JSON from text (length: 24707 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:36:50,445 - WARNING - [ERR-0001] - [d0f8b017] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 13:36:50,446 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 13:37:23,464 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLD']
+2025-10-09 13:40:36,810 - WARNING - [ERR-0001] - [ce729873] Attempting to extract JSON from text (length: 31553 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:40:36,813 - WARNING - [ERR-0001] - [5328ddff] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 13:40:36,816 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 13:41:11,843 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
+2025-10-09 13:43:48,511 - WARNING - [ERR-0001] - [18d12438] Attempting to extract JSON from text (length: 26300 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:43:48,514 - WARNING - [ERR-0001] - [9e053a37] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 13:43:48,514 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 13:44:28,471 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['IBM']
+2025-10-09 13:53:36,579 - WARNING - [ERR-0001] - [bc27fb44] Attempting to extract JSON from text (length: 33768 chars) | From: helpers.py:extract_json_from_text()
+2025-10-09 13:53:36,581 - WARNING - [ERR-0001] - [7e4b5441] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-09 13:53:36,581 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-09 13:54:11,168 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['INTC']
