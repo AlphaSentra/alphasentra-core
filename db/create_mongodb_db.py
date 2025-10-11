@@ -419,7 +419,7 @@ def insert_indices(db):
         {"ticker": "^NDX", "ticker_tradingview": "CME_MINI:NQ1!", "name": "NASDAQ 100", "region": ["US"], "prompt": IX_INDEX_LONG_SHORT_PROMPT, "factors": IX_INDEX_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
         {"ticker": "^DJI", "ticker_tradingview": "CBOT_MINI:YM1!", "name": "Dow Jones Industrial Average", "region": ["US"], "prompt": IX_INDEX_LONG_SHORT_PROMPT, "factors": IX_INDEX_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
         {"ticker": "^RUT", "ticker_tradingview": "ICEUS:RTY1!", "name": "Russell 2000", "region": ["US"], "prompt": IX_INDEX_LONG_SHORT_PROMPT, "factors": IX_INDEX_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^VIX", "ticker_tradingview": "CBOE:VIX", "name": "CBOE Volatility Index", "region": ["US"], "prompt": IX_INDEX_LONG_SHORT_PROMPT, "factors": IX_INDEX_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
+        {"ticker": "^VIX", "ticker_tradingview": "VX1!", "name": "CBOE Volatility Index", "region": ["US"], "prompt": IX_INDEX_LONG_SHORT_PROMPT, "factors": IX_INDEX_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
         {"ticker": "^N225", "ticker_tradingview": "TVC:NIKKEI", "name": "Nikkei 225", "region": ["Japan"], "prompt": IX_INDEX_LONG_SHORT_PROMPT, "factors": IX_INDEX_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
         {"ticker": "^GDAXI", "ticker_tradingview": "TVC:DE40", "name": "DAX 40", "region": ["Germany"], "prompt": IX_INDEX_LONG_SHORT_PROMPT, "factors": IX_INDEX_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
         {"ticker": "^FCHI", "ticker_tradingview": "TVC:FR40", "name": "CAC 40", "region": ["France"], "prompt": IX_INDEX_LONG_SHORT_PROMPT, "factors": IX_INDEX_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
@@ -767,10 +767,7 @@ def insert_pipeline_data(db):
     print()
     
     # Pipeline data to insert
-    pipeline_data = [
-        {"model_function": "run_sector_rotation_model", "model_name": "sector_rotation_long_short", "recurrence":"multi", "task_completed": False},     
-        {"model_function": "run_regional_rotation_model", "model_name": "regional_rotation_long_short", "recurrence":"multi", "task_completed": False}
-    ]
+    pipeline_data = []
     
     try:
         collection = db[collection_name]
@@ -814,14 +811,14 @@ def insert_asset_classes_data(db):
     
     # Asset classes data to insert
     asset_classes_data = [
-        {"Code": "FX", "Description": "Foreign Exchange Pairs"},
-        {"Code": "EQ", "Description": "Equities and Stocks"},
-        {"Code": "IX", "Description": "Stock Indices"},
-        {"Code": "EN", "Description": "Energy Commodities"},
-        {"Code": "ME", "Description": "Metal Commodities"},
-        {"Code": "AG", "Description": "Agricultural Commodities"},
-        {"Code": "LI", "Description": "Livestock Commodities"},
-        {"Code": "CR", "Description": "Cryptocurrencies"}
+        {"Code": "FX", "Description": "Forex"},
+        {"Code": "EQ", "Description": "Equities"},
+        {"Code": "IX", "Description": "Indices"},
+        {"Code": "EN", "Description": "Energy"},
+        {"Code": "ME", "Description": "Metal"},
+        {"Code": "AG", "Description": "Agricultural"},
+        {"Code": "LI", "Description": "Livestock"},
+        {"Code": "CR", "Description": "Crypto"}
     ]
     
     try:
