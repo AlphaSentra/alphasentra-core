@@ -3,8 +3,6 @@ Description:
 Define menu items and their corresponding actions for the main menu.
 """
 
-import models.sector_rotation_long_short as sector_rotation_long_short
-import models.regional_rotation_long_short as regional_rotation_long_short
 import models.fx_long_short as fx_long_short
 import models.holistic as holistic
 import db.create_mongodb_db as create_mongodb_db
