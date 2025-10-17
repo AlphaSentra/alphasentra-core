@@ -626,7 +626,6 @@ def create_alphagora_database():
             create_pipeline_collection,
             create_asset_classes_collection,
             insert_asset_classes_data,
-            insert_pipeline_data,
             insert_fx_pairs,
             insert_indices,
             insert_energy_commodities,
