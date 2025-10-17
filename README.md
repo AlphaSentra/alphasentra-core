@@ -206,7 +206,6 @@ We categorise asset classes as follows:
 - EN: Energy
 - ME: Metals
 - AG: Agriculture
-- LI: Livestock and meat
 - CR: Crypto
 
 ### Prompt output

@@ -1,0 +1,66 @@
+2025-10-15 11:18:48,623 - WARNING - [ERR-0001] - [cbf17f9f] Attempting to extract JSON from text (length: 23118 chars) | From: helpers.py:extract_json_from_text()
+2025-10-15 11:18:48,624 - WARNING - [ERR-0001] - [57d24bcd] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-15 11:18:48,625 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-15 11:19:35,900 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['VXX']
+2025-10-15 11:21:57,510 - WARNING - [ERR-0001] - [f742f8d8] Attempting to extract JSON from text (length: 22720 chars) | From: helpers.py:extract_json_from_text()
+2025-10-15 11:21:57,512 - WARNING - [ERR-0001] - [62aa2397] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-15 11:21:57,513 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-15 11:22:49,361 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-10-15 11:26:28,302 - WARNING - [ERR-0001] - [fa0355fa] Attempting to extract JSON from text (length: 29379 chars) | From: helpers.py:extract_json_from_text()
+2025-10-15 11:26:28,307 - WARNING - [ERR-0001] - [aa2119c1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-15 11:26:28,308 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-15 11:26:59,641 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PLTR']
+2025-10-15 11:31:29,126 - WARNING - [ERR-0001] - [2bba52e1] Attempting to extract JSON from text (length: 32347 chars) | From: helpers.py:extract_json_from_text()
+2025-10-15 11:31:29,131 - WARNING - [ERR-0001] - [7c16c68b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-15 11:31:29,132 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-15 11:31:57,089 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NVDA']
+2025-10-15 11:34:47,379 - WARNING - [ERR-0001] - [55aa7539] Attempting to extract JSON from text (length: 28389 chars) | From: helpers.py:extract_json_from_text()
+2025-10-15 11:34:47,383 - WARNING - [ERR-0001] - [2d83abe6] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 6828 (char 9482) | From: helpers.py:extract_json_from_text()
+2025-10-15 11:34:47,389 - ERROR - [ERR-0404] - [85c1f364] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-15 11:36:32,065 - WARNING - [ERR-0001] - [8b2f2f32] Attempting to extract JSON from text (length: 32362 chars) | From: helpers.py:extract_json_from_text()
+2025-10-15 11:36:32,069 - WARNING - [ERR-0001] - [0ebd7989] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-15 11:36:32,069 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-15 11:37:17,912 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2025-10-15 11:40:30,436 - WARNING - [ERR-0001] - [deef6769] Attempting to extract JSON from text (length: 31899 chars) | From: helpers.py:extract_json_from_text()
+2025-10-15 11:40:30,439 - WARNING - [ERR-0001] - [a72a3904] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-15 11:40:30,439 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-15 11:40:56,786 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
+2025-10-15 11:49:50,794 - WARNING - [ERR-0001] - [e1d7b7f5] Attempting to extract JSON from text (length: 27420 chars) | From: helpers.py:extract_json_from_text()
+2025-10-15 11:49:50,799 - WARNING - [ERR-0001] - [c76e1afe] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-15 11:49:50,799 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-15 11:50:14,130 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLD']
+2025-10-15 11:55:08,094 - WARNING - [ERR-0001] - [8c00a882] Attempting to extract JSON from text (length: 28192 chars) | From: helpers.py:extract_json_from_text()
+2025-10-15 11:55:08,097 - WARNING - [ERR-0001] - [7d56df43] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-15 11:55:08,098 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-15 11:55:30,760 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
+2025-10-15 12:00:55,142 - WARNING - [ERR-0001] - [960cf6bf] Attempting to extract JSON from text (length: 24200 chars) | From: helpers.py:extract_json_from_text()
+2025-10-15 12:00:55,151 - ERROR - [ERR-0001] - [caf6f868] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-15 12:00:55,152 - ERROR - [ERR-0001] - [09875d05] Text preview: {
+  "title": "IBM's AI and Hybrid Cloud Prowess Fuels Sustained Growth, Prompting a Buy Rating",
+  "market_outlook_narrative": [
+    "International Business Machines (IBM) stands at a pivotal juncture, leveraging its deep expertise in hybrid cloud and artificial intelligence to drive enterprise-wide digital transformation. The company recently announced a strategic partnership with Anthropic, integrating its Claude large language model into IBM's enterprise software portfolio, with early interna... | From: helpers.py:extract_json_from_text()
+2025-10-15 12:00:55,153 - ERROR - [ERR-0001] - [fff22bcb] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-15 12:00:55,154 - WARNING - [WARN-0002] - [98b480a9] Raw response content: {
+  "title": "IBM's AI and Hybrid Cloud Prowess Fuels Sustained Growth, Prompting a Buy Rating",
+  "market_outlook_narrative": [
+    "International Business Machines (IBM) stands at a pivotal juncture, leveraging its deep expertise in hybrid cloud and artificial intelligence to drive enterprise-wide digital transformation. The company recently announced a strategic partnership with Anthropic, integrating its Claude large language model into IBM's enterprise software portfolio, with early interna... | From: holistic.py:run_holistic_market_model()
+2025-10-15 12:02:30,797 - WARNING - [ERR-0001] - [07f8098e] Attempting to extract JSON from text (length: 31067 chars) | From: helpers.py:extract_json_from_text()
+2025-10-15 12:02:30,802 - WARNING - [ERR-0001] - [02182cfc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-15 12:02:30,802 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-15 12:03:05,305 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['IBM']
+2025-10-15 12:14:53,911 - INFO - [INFO] - Starting comprehensive dataset reset
+2025-10-15 12:14:53,915 - INFO - [INFO] - Starting reset of document_generated field in tickers collection
+2025-10-15 12:14:57,016 - INFO - [INFO] - Successfully updated 90 documents in tickers collection
+2025-10-15 12:14:57,016 - INFO - [INFO] - Reset of document_generated field completed
+2025-10-15 12:14:57,017 - INFO - [INFO] - Starting reset of task_completed field in pipeline collection
+2025-10-15 12:14:57,326 - INFO - [INFO] - Successfully updated 2 documents in pipeline collection
+2025-10-15 12:14:57,326 - INFO - [INFO] - Reset of task_completed field completed
+2025-10-15 12:14:57,326 - INFO - [INFO] - Starting deletion of tickers with recurrence 'once'
+2025-10-15 12:14:57,602 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from tickers collection
+2025-10-15 12:14:57,603 - INFO - [INFO] - Deletion of once tickers completed
+2025-10-15 12:14:57,603 - INFO - [INFO] - Starting deletion of pipeline documents with recurrence 'once'
+2025-10-15 12:14:57,876 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from pipeline collection
+2025-10-15 12:14:57,876 - INFO - [INFO] - Deletion of once pipeline documents completed
+2025-10-15 12:14:57,876 - INFO - [INFO] - Starting deletion of all weigh_factors documents
+2025-10-15 12:14:58,157 - INFO - [INFO] - Successfully deleted 17 documents from 'weight_factors'.
+2025-10-15 12:14:58,158 - INFO - [INFO] - All reset operations completed successfully

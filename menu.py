@@ -172,30 +172,6 @@ def run_ag_model_with_input():
     else:
         print("No tickers provided. Please enter at least one agricultural commodity ticker.")
 
-def run_li_model_with_input():
-    """
-    Run livestock commodities model with user-provided ticker using LI_LIVESTOCK_LONG_SHORT_PROMPT and LI_LIVESTOCK_FACTORS_PROMPT.
-    """
-    print("\n=== Livestock Commodities Model Input ===")
-    
-    # Get ticker input
-    ticker_input = input("Enter livestock commodity ticker(s) (comma-separated, e.g., LE=F, HE=F): ").strip()
-    tickers = [t.strip() for t in ticker_input.split(',')] if ticker_input else []
-    
-    # Get commodity name input
-    commodity_input = input("Enter commodity name(s) (comma-separated, e.g., Live Cattle, Lean Hogs): ").strip()
-    commodities = [c.strip() for c in commodity_input.split(',')] if commodity_input else []
-    
-    if tickers:
-        # Convert list of tickers to comma-separated string for the holistic model
-        tickers_str = ','.join(tickers)
-        # Convert list of commodities to comma-separated string
-        commodities_str = ','.join(commodities) if commodities else None
-        from _config import LI_LIVESTOCK_LONG_SHORT_PROMPT, LI_LIVESTOCK_FACTORS_PROMPT
-        holistic.run_holistic_market_model(tickers_str, name=commodities_str, prompt=LI_LIVESTOCK_LONG_SHORT_PROMPT, factors=LI_LIVESTOCK_FACTORS_PROMPT)
-    else:
-        print("No tickers provided. Please enter at least one livestock commodity ticker.")
-
 def run_cr_model_with_input():
     """
     Run crypto model with user-provided ticker using CR_CRYPTO_LONG_SHORT_PROMPT and CR_CRYPTO_FACTORS_PROMPT.
@@ -280,9 +256,6 @@ MENU_ITEMS = [
 
     ("AG: Agricultural Commodities Model",
     run_ag_model_with_input),
-
-    ("LI: Livestock Commodities Model",
-    run_li_model_with_input),
 
     # Cryptocurrency category
     ("", None),

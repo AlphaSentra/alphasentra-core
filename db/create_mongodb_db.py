@@ -633,56 +633,6 @@ def insert_agriculture_commodities(db):
         log_error("Unexpected error inserting agriculture commodities", "DATA_INSERTION", e)
         return False
 
-
-def insert_livestock_commodities(db):
-    """
-    Inserts livestock commodities into the 'tickers' collection.
-    
-    Args:
-        db: MongoDB database object
-        
-    Returns:
-        bool: True if insertion was successful, False on error
-    """
-    collection_name = 'tickers'
-    
-    print()
-    print("=" * 100)
-    print(f"Inserting livestock commodities into '{collection_name}' collection...")
-    print("=" * 100)
-    print()
-    
-    # Import prompts from _config
-    from _config import LI_LIVESTOCK_LONG_SHORT_PROMPT, LI_LIVESTOCK_FACTORS_PROMPT
-    
-    # Livestock commodities data to insert with prompt and model_function fields
-    livestock_commodities = [
-        {"ticker": "LE=F", "ticker_tradingview": "CME:LE1!", "name": "Live Cattle (US)", "region": ["US"], "prompt": LI_LIVESTOCK_LONG_SHORT_PROMPT, "factors": LI_LIVESTOCK_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "LI", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "HE=F", "ticker_tradingview": "CME:HE1!", "name": "Lean Hogs (US)", "region": ["US"], "prompt": LI_LIVESTOCK_LONG_SHORT_PROMPT, "factors": LI_LIVESTOCK_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "LI", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "GF=F", "ticker_tradingview": "CME:GF1!", "name": "Feeder Cattle (US)", "region": ["US"], "prompt": LI_LIVESTOCK_LONG_SHORT_PROMPT, "factors": LI_LIVESTOCK_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "LI", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-    ]
-    
-    try:
-        collection = db[collection_name]
-        
-        # Check if any livestock commodities already exist to avoid duplicates
-        existing_count = collection.count_documents({"ticker": {"$in": [item["ticker"] for item in livestock_commodities]}})
-        if existing_count > 0:
-            print(f"Found {existing_count} existing livestock commodities. Skipping insertion to avoid duplicates.")
-            return True
-        
-        # Insert all livestock commodities
-        result = collection.insert_many(livestock_commodities)
-        print(f"Successfully inserted {len(result.inserted_ids)} livestock commodities into '{collection_name}' collection")
-        return True
-        
-    except pymongo.errors.OperationFailure as e:
-        log_error("MongoDB operation failed for inserting livestock commodities", "MONGODB_OPERATION", e)
-        return False
-    except Exception as e:
-        log_error("Unexpected error inserting livestock commodities", "DATA_INSERTION", e)
-        return False
-
 def insert_crypto_assets(db):
     """
     Inserts crypto assets into the 'tickers' collection.
@@ -817,7 +767,6 @@ def insert_asset_classes_data(db):
         {"Code": "EN", "Description": "Energy"},
         {"Code": "ME", "Description": "Metal"},
         {"Code": "AG", "Description": "Agricultural"},
-        {"Code": "LI", "Description": "Livestock"},
         {"Code": "CR", "Description": "Crypto"}
     ]
     
@@ -1058,7 +1007,6 @@ def create_alphagora_database():
             insert_energy_commodities,
             insert_metal_commodities,
             insert_agriculture_commodities,
-            insert_livestock_commodities,
             insert_crypto_assets,
             create_weight_factors_collection
         ]
