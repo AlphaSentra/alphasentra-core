@@ -6,6 +6,11 @@ Script to create MongoDB database 'alphagora'.
 import pymongo
 from db.fx_data import insert_fx_pairs
 from db.equities_data import insert_equities
+from db.indices_data import insert_indices
+from db.energy_data import insert_energy_commodities
+from db.metal_data import insert_metal_commodities
+from db.agriculture_data import insert_agriculture_commodities
+from db.crypto_data import insert_crypto_assets
 import sys
 import os
 from dotenv import load_dotenv
@@ -316,282 +321,6 @@ def create_tickers_collection(db):
     return success
 
 
-
-
-def insert_indices(db):
-    """
-    Inserts stock indices into the 'tickers' collection.
-    
-    Args:
-        db: MongoDB database object
-        
-    Returns:
-        bool: True if insertion was successful, False on error
-    """
-    collection_name = 'tickers'
-    
-    print()
-    print("=" * 100)
-    print(f"Inserting indices into '{collection_name}' collection...")
-    print("=" * 100)
-    print()
-    
-    # Import IX_INDEX_LONG_SHORT_PROMPT from _config
-    from _config import IX_INDEX_LONG_SHORT_PROMPT, IX_INDEX_FACTORS_PROMPT
-    
-    # Indices data to insert with prompt and model_function fields
-    indices = [
-        {"ticker": "^GSPC", "ticker_tradingview": "SPX500USD", "name": "US SPX 500 Index (S&P 500)", "region": ["US"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "document_generated": False},
-        {"ticker": "^IXIC", "ticker_tradingview": "NAS100USD", "name": "US Tech 100 Index (NASDAQ 100)", "region": ["US"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^DJI", "ticker_tradingview": "US30USD", "name": "US Wall Street 30 Index (Dow Jones)", "region": ["US"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^GDAXI", "ticker_tradingview": "GER30", "name": "Germany 30 Index (DAX)", "region": ["Germany"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^FTSE", "ticker_tradingview": "UK100GBP", "name": "UK 100 Index (FTSE 100)", "region": ["UK"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^N225", "ticker_tradingview": "JP225", "name": "Japan 225 Index (Nikkei)", "region": ["Japan"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^HSI", "ticker_tradingview": "HK50", "name": "Hong Kong 50 Index (Hang Seng)", "region": ["Hong Kong"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^RUT", "ticker_tradingview": "US2000USD", "name": "Russell 2000 Index", "region": ["US"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^STOXX50E", "ticker_tradingview": "EUSTX50", "name": "Euro Stoxx 50 Index", "region": ["Eurozone"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^FCHI", "ticker_tradingview": "FRA40", "name": "France 40 Index (CAC 40)", "region": ["France"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^AXJO", "ticker_tradingview": "AUS200", "name": "Australia 200 Index (ASX 200)", "region": ["Australia"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^SSMI", "ticker_tradingview": "SWI20", "name": "Switzerland 20 Index (SMI)", "region": ["Switzerland"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "^AEX", "ticker_tradingview": "NTH25", "name": "Netherlands 25 Cash Index (AEX)", "region": ["Netherlands"], "prompt": "IX_INDEX_LONG_SHORT_PROMPT", "factors": "IX_INDEX_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "IX, EQ", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False}
-    ]
-    
-    try:
-        collection = db[collection_name]
-        
-        # Check if any indices already exist to avoid duplicates
-        existing_count = collection.count_documents({"ticker": {"$in": [index["ticker"] for index in indices]}})
-        if existing_count > 0:
-            print(f"Found {existing_count} existing indices. Skipping insertion to avoid duplicates.")
-            return True
-        
-        # Insert all indices
-        result = collection.insert_many(indices)
-        print(f"Successfully inserted {len(result.inserted_ids)} indices into '{collection_name}' collection")
-        return True
-        
-    except pymongo.errors.OperationFailure as e:
-        log_error("MongoDB operation failed for inserting indices", "MONGODB_OPERATION", e)
-        return False
-    except Exception as e:
-        log_error("Unexpected error inserting indices", "DATA_INSERTION", e)
-        return False
-
-def insert_energy_commodities(db):
-    """
-    Inserts energy commodities into the 'tickers' collection.
-    
-    Args:
-        db: MongoDB database object
-        
-    Returns:
-        bool: True if insertion was successful, False on error
-    """
-    collection_name = 'tickers'
-    
-    print()
-    print("=" * 100)
-    print(f"Inserting energy commodities into '{collection_name}' collection...")
-    print("=" * 100)
-    print()
-    
-    # Import prompts from _config
-    from _config import EN_ENERGY_LONG_SHORT_PROMPT, EN_ENERGY_FACTORS_PROMPT
-    
-    # Energy commodities data to insert with prompt and model_function fields
-    energy_commodities = [
-        {"ticker": "CL=F", "ticker_tradingview": "TVC:USOIL", "name": "Crude Oil WTI", "region": ["US", "Global"], "prompt": EN_ENERGY_LONG_SHORT_PROMPT, "factors": EN_ENERGY_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "EN", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "BZ=F", "ticker_tradingview": "TVC:UKOIL", "name": "Crude Oil Brent", "region": ["UK", "Global"], "prompt": EN_ENERGY_LONG_SHORT_PROMPT, "factors": EN_ENERGY_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "EN", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "NG=F", "ticker_tradingview": "NATGAS", "name": "Natural Gas", "region": ["US", "Global"], "prompt": EN_ENERGY_LONG_SHORT_PROMPT, "factors": EN_ENERGY_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "EN", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False}
-    ]
-    
-    try:
-        collection = db[collection_name]
-        
-        # Check if any energy commodities already exist to avoid duplicates
-        existing_count = collection.count_documents({"ticker": {"$in": [item["ticker"] for item in energy_commodities]}})
-        if existing_count > 0:
-            print(f"Found {existing_count} existing energy commodities. Skipping insertion to avoid duplicates.")
-            return True
-        
-        # Insert all energy commodities
-        result = collection.insert_many(energy_commodities)
-        print(f"Successfully inserted {len(result.inserted_ids)} energy commodities into '{collection_name}' collection")
-        return True
-        
-    except pymongo.errors.OperationFailure as e:
-        log_error("MongoDB operation failed for inserting energy commodities", "MONGODB_OPERATION", e)
-        return False
-    except Exception as e:
-        log_error("Unexpected error inserting energy commodities", "DATA_INSERTION", e)
-        return False
-
-
-def insert_metal_commodities(db):
-    """
-    Inserts metal commodities into the 'tickers' collection.
-    
-    Args:
-        db: MongoDB database object
-        
-    Returns:
-        bool: True if insertion was successful, False on error
-    """
-    collection_name = 'tickers'
-    
-    print()
-    print("=" * 100)
-    print(f"Inserting metal commodities into '{collection_name}' collection...")
-    print("=" * 100)
-    print()
-    
-    # Import prompts from _config
-    from _config import ME_METALS_LONG_SHORT_PROMPT, ME_METALS_FACTORS_PROMPT
-    
-    # Metal commodities data to insert with prompt and model_function fields
-    metal_commodities = [
-        {"ticker": "XAUUSD", "ticker_tradingview": "OANDA:XAUUSD", "name": "Gold", "region": ["Global"], "prompt": "ME_METALS_LONG_SHORT_PROMPT", "factors": "ME_METALS_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "ME", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "XAGUSD", "ticker_tradingview": "OANDA:XAGUSD", "name": "Silver", "region": ["Global"], "prompt": "ME_METALS_LONG_SHORT_PROMPT", "factors": "ME_METALS_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "ME", "importance": 4, "recurrence": "multi", "decimal":3, "document_generated": False},
-        {"ticker": "XPTUSD", "ticker_tradingview": "OANDA:XPTUSD", "name": "Platinum", "region": ["Global"], "prompt": "ME_METALS_LONG_SHORT_PROMPT", "factors": "ME_METALS_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "ME", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False}
-    ]
-    
-    try:
-        collection = db[collection_name]
-        
-        # Check if any metal commodities already exist to avoid duplicates
-        existing_count = collection.count_documents({"ticker": {"$in": [item["ticker"] for item in metal_commodities]}})
-        if existing_count > 0:
-            print(f"Found {existing_count} existing metal commodities. Skipping insertion to avoid duplicates.")
-            return True
-        
-        # Insert all metal commodities
-        result = collection.insert_many(metal_commodities)
-        print(f"Successfully inserted {len(result.inserted_ids)} metal commodities into '{collection_name}' collection")
-        return True
-        
-    except pymongo.errors.OperationFailure as e:
-        log_error("MongoDB operation failed for inserting metal commodities", "MONGODB_OPERATION", e)
-        return False
-    except Exception as e:
-        log_error("Unexpected error inserting metal commodities", "DATA_INSERTION", e)
-        return False
-
-
-def insert_agriculture_commodities(db):
-    """
-    Inserts agriculture commodities into the 'tickers' collection.
-    
-    Args:
-        db: MongoDB database object
-        
-    Returns:
-        bool: True if insertion was successful, False on error
-    """
-    collection_name = 'tickers'
-    
-    print()
-    print("=" * 100)
-    print(f"Inserting agriculture commodities into '{collection_name}' collection...")
-    print("=" * 100)
-    print()
-    
-    # Import prompts from _config
-    from _config import AG_AGRICULTURE_LONG_SHORT_PROMPT, AG_AGRICULTURE_FACTORS_PROMPT
-    
-    # Agriculture commodities data to insert with prompt and model_function fields
-    agriculture_commodities = [
-        {"ticker": "ZC=F", "ticker_tradingview": "CORN", "name": "Corn", "region": ["US"], "prompt": "AG_AGRICULTURE_LONG_SHORT_PROMPT", "factors": "AG_AGRICULTURE_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "AG", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "ZS=F", "ticker_tradingview": "SOYBEAN", "name": "Soybeans", "region": ["US"], "prompt": "AG_AGRICULTURE_LONG_SHORT_PROMPT", "factors": "AG_AGRICULTURE_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "AG", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "ZL=F", "ticker_tradingview": "SOYOIL", "name": "Soybean Oil", "region": ["US"], "prompt": "AG_AGRICULTURE_LONG_SHORT_PROMPT", "factors": "AG_AGRICULTURE_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "AG", "importance": 4, "recurrence": "multi", "decimal":4, "document_generated": False},
-        {"ticker": "ZW=F", "ticker_tradingview": "WHEAT", "name": "Wheat (US)", "region": ["US"], "prompt": "AG_AGRICULTURE_LONG_SHORT_PROMPT", "factors": "AG_AGRICULTURE_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "AG", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False}
-    ]
-    
-    try:
-        collection = db[collection_name]
-        
-        # Check if any agriculture commodities already exist to avoid duplicates
-        existing_count = collection.count_documents({"ticker": {"$in": [item["ticker"] for item in agriculture_commodities]}})
-        if existing_count > 0:
-            print(f"Found {existing_count} existing agriculture commodities. Skipping insertion to avoid duplicates.")
-            return True
-        
-        # Insert all agriculture commodities
-        result = collection.insert_many(agriculture_commodities)
-        print(f"Successfully inserted {len(result.inserted_ids)} agriculture commodities into '{collection_name}' collection")
-        return True
-        
-    except pymongo.errors.OperationFailure as e:
-        log_error("MongoDB operation failed for inserting agriculture commodities", "MONGODB_OPERATION", e)
-        return False
-    except Exception as e:
-        log_error("Unexpected error inserting agriculture commodities", "DATA_INSERTION", e)
-        return False
-
-def insert_crypto_assets(db):
-    """
-    Inserts crypto assets into the 'tickers' collection.
-    
-    Args:
-        db: MongoDB database object
-        
-    Returns:
-        bool: True if insertion was successful, False on error
-    """
-    collection_name = 'tickers'
-    
-    print()
-    print("=" * 100)
-    print(f"Inserting crypto assets into '{collection_name}' collection...")
-    print("=" * 100)
-    print()
-    
-    # Import prompts from _config
-    from _config import CR_CRYPTO_LONG_SHORT_PROMPT, CR_CRYPTO_FACTORS_PROMPT
-    
-    # Crypto assets data to insert with prompt and model_function fields
-    crypto_assets = [
-        {"ticker": "BTC-USD", "ticker_tradingview": "COINBASE:BTCUSD", "name": "Bitcoin / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "ETH-USD", "ticker_tradingview": "COINBASE:ETHUSD", "name": "Ethereum / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 5, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "BNB-USD", "ticker_tradingview": "COINBASE:BNBUSD", "name": "Binance Coin / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "XRP-USD", "ticker_tradingview": "COINBASE:XRPUSD", "name": "Ripple / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "ADA-USD", "ticker_tradingview": "COINBASE:ADAUSD", "name": "Cardano / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "SOL-USD", "ticker_tradingview": "COINBASE:SOLUSD", "name": "Solana / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "DOGE-USD", "ticker_tradingview": "COINBASE:DOGEUSD", "name": "Dogecoin / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 3, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "DOT-USD", "ticker_tradingview": "COINBASE:DOTUSD", "name": "Polkadot / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "AVAX-USD", "ticker_tradingview": "COINBASE:AVAXUSD", "name": "Avalanche / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "SHIB-USD", "ticker_tradingview": "COINBASE:SHIBUSD", "name": "Shiba Inu / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 3, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "LTC-USD", "ticker_tradingview": "COINBASE:LTCUSD", "name": "Litecoin / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 3, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "UNI7083-USD", "ticker_tradingview": "COINBASE:UNIUSD", "name": "Uniswap / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 3, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "ATOM-USD", "ticker_tradingview": "COINBASE:ATOMUSD", "name": "Cosmos / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "FIL-USD", "ticker_tradingview": "COINBASE:FILUSD", "name": "Filecoin / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 3, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "TRX-USD", "ticker_tradingview": "COINBASE:TRXUSD", "name": "TRON / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 3, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "ALGO-USD", "ticker_tradingview": "COINBASE:ALGOUSD", "name": "Algorand / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 3, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "MANA-USD", "ticker_tradingview": "COINBASE:MANAUSD", "name": "Decentraland / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 3, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "APE-USD", "ticker_tradingview": "COINBASE:APEUSD", "name": "ApeCoin / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 3, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "STX4847-USD", "ticker_tradingview": "COINBASE:STXUSD", "name": "Stacks / U.S. Dollar", "region": ["Global"], "prompt": CR_CRYPTO_LONG_SHORT_PROMPT, "factors": CR_CRYPTO_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "CR", "importance": 3, "recurrence": "multi", "decimal":2, "document_generated": False}
-    ]
-    
-    try:
-        collection = db[collection_name]
-        
-        # Check if any crypto assets already exist to avoid duplicates
-        existing_count = collection.count_documents({"ticker": {"$in": [item["ticker"] for item in crypto_assets]}})
-        if existing_count > 0:
-            print(f"Found {existing_count} existing crypto assets. Skipping insertion to avoid duplicates.")
-            return True
-        
-        # Insert all crypto assets
-        result = collection.insert_many(crypto_assets)
-        print(f"Successfully inserted {len(result.inserted_ids)} crypto assets into '{collection_name}' collection")
-        return True
-        
-    except pymongo.errors.OperationFailure as e:
-        log_error("MongoDB operation failed for inserting crypto assets", "MONGODB_OPERATION", e)
-        return False
-    except Exception as e:
-        log_error("Unexpected error inserting crypto assets", "DATA_INSERTION", e)
-        return False
-
 def insert_pipeline_data(db):
     """
     Inserts initial pipeline data into the 'pipeline' collection.
@@ -684,6 +413,7 @@ def insert_asset_classes_data(db):
     except Exception as e:
         log_error("Unexpected error inserting asset classes data", "DATA_INSERTION", e)
         return False
+
 
 def create_weight_factors_collection(db):
     """
@@ -874,6 +604,7 @@ def create_asset_classes_collection(db):
         print("   - Required fields: Code, Description")
     
     return success
+
 
 def create_alphagora_database():
     """
