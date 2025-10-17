@@ -223,12 +223,6 @@ MENU_ITEMS = [
     ("----- EQUITIES -----", None),
     ("", None),
     
-    ("EQ: U.S. Sector Rotation Model",
-     lambda: sector_rotation_long_short.run_sector_rotation_model()),
-
-    ("EQ: EMs vs. DMs - Regional Rotation Model",
-     lambda: regional_rotation_long_short.run_regional_rotation_model()),
-
     ("EQ: Equity Model",
      run_equity_model_with_input),
 
