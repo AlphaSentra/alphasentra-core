@@ -7914,3 +7914,42 @@
 2025-10-18 00:43:27,658 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['UBER']
 2025-10-18 00:43:27,660 - INFO - [INFO] - Batch processing completed. Processed 553 tickers
 2025-10-18 00:43:27,936 - INFO - [INFO] - No pending pipelines to process.
+2025-10-18 11:12:41,413 - WARNING - [ERR-0001] - [cbfd91a6] Attempting to extract JSON from text (length: 61 chars) | From: helpers.py:extract_json_from_text()
+2025-10-18 11:12:41,414 - ERROR - [ERR-0001] - [a72b79cd] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-18 11:12:41,418 - ERROR - [ERR-0001] - [92cca47f] Text preview: Error generating content: [Errno 54] Connection reset by peer... | From: helpers.py:extract_json_from_text()
+2025-10-18 11:12:41,418 - WARNING - [ERR-0001] - [68c4d06b] Attempting to extract JSON from text (length: 61 chars) | From: helpers.py:extract_json_from_text()
+2025-10-18 11:12:41,418 - ERROR - [ERR-0001] - [2521b935] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-18 11:12:41,419 - ERROR - [ERR-0001] - [34da0a5e] Text preview: Error generating content: [Errno 54] Connection reset by peer... | From: helpers.py:extract_json_from_text()
+2025-10-18 11:12:41,419 - ERROR - [ERR-0001] - [03455650] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-18 11:12:41,422 - WARNING - [WARN-0002] - [33b56459] Raw response content: Error generating content: [Errno 54] Connection reset by peer... | From: holistic.py:run_holistic_market_model()
+2025-10-18 11:15:00,503 - WARNING - [ERR-0001] - [3879ccf1] Attempting to extract JSON from text (length: 20542 chars) | From: helpers.py:extract_json_from_text()
+2025-10-18 11:15:00,506 - WARNING - [ERR-0001] - [58b4f73f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-18 11:15:00,506 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-18 11:15:45,042 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLD']
+2025-10-18 11:33:30,792 - WARNING - [ERR-0001] - [6f1e2e66] Attempting to extract JSON from text (length: 17770 chars) | From: helpers.py:extract_json_from_text()
+2025-10-18 11:33:30,796 - WARNING - [ERR-0001] - [94b09953] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-18 11:33:30,796 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-18 11:34:06,569 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLD']
+2025-10-18 11:46:48,369 - WARNING - [ERR-0001] - [fa847ad9] Attempting to extract JSON from text (length: 24277 chars) | From: helpers.py:extract_json_from_text()
+2025-10-18 11:46:48,372 - WARNING - [ERR-0001] - [6e33599c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-18 11:46:48,372 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-18 11:47:27,810 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLD']
+2025-10-18 11:58:11,050 - WARNING - [ERR-0001] - [b91b5891] Attempting to extract JSON from text (length: 18589 chars) | From: helpers.py:extract_json_from_text()
+2025-10-18 11:58:11,052 - WARNING - [ERR-0001] - [726adb46] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-18 11:58:11,056 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-18 11:58:59,081 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SLV']
+2025-10-18 12:04:31,403 - WARNING - [ERR-0001] - [9a49ea22] Attempting to extract JSON from text (length: 24343 chars) | From: helpers.py:extract_json_from_text()
+2025-10-18 12:04:31,410 - WARNING - [ERR-0001] - [d45772c0] JSON parsing failed for pattern ```json\s*(\{.*\})\s*```...: Expecting ',' delimiter: line 5 column 253 (char 964) | From: helpers.py:extract_json_from_text()
+2025-10-18 12:04:31,411 - ERROR - [ERR-0404] - [79c2de71] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-18 12:05:30,090 - WARNING - [ERR-0001] - [b10ea1f9] Attempting to extract JSON from text (length: 61 chars) | From: helpers.py:extract_json_from_text()
+2025-10-18 12:05:30,093 - ERROR - [ERR-0001] - [605ff9e0] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-18 12:05:30,095 - ERROR - [ERR-0001] - [c03f4e22] Text preview: Error generating content: [Errno 54] Connection reset by peer... | From: helpers.py:extract_json_from_text()
+2025-10-18 12:05:30,096 - WARNING - [ERR-0001] - [66f17898] Attempting to extract JSON from text (length: 61 chars) | From: helpers.py:extract_json_from_text()
+2025-10-18 12:05:30,097 - ERROR - [ERR-0001] - [6f5628c7] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-18 12:05:30,098 - ERROR - [ERR-0001] - [e2837585] Text preview: Error generating content: [Errno 54] Connection reset by peer... | From: helpers.py:extract_json_from_text()
+2025-10-18 12:05:30,101 - ERROR - [ERR-0001] - [0fc92c65] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-18 12:05:30,102 - WARNING - [WARN-0002] - [d30f1261] Raw response content: Error generating content: [Errno 54] Connection reset by peer... | From: holistic.py:run_holistic_market_model()
+2025-10-18 12:07:02,037 - WARNING - [ERR-0001] - [435d716a] Attempting to extract JSON from text (length: 15769 chars) | From: helpers.py:extract_json_from_text()
+2025-10-18 12:07:02,040 - WARNING - [ERR-0001] - [dda154a6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-18 12:07:02,042 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-18 12:07:46,864 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLD']

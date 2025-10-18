@@ -1275,36 +1275,61 @@ def get_factors(tickers, name=None, current_date=None, prompt=None):
         # Parse JSON response
         factors_data = json.loads(ai_response)
         
-        # Convert any format to dictionary (JSON object) format
-        factors_dict = {}
+        factors_array = []
         
-        if isinstance(factors_data, dict):
-            # Already in dictionary format - use as-is
-            factors_dict = factors_data
-        elif isinstance(factors_data, list):
-            # Convert list to dictionary format
-            for i, item in enumerate(factors_data):
-                if isinstance(item, dict):
-                    # If item has 'name' and 'value', use them
-                    if 'name' in item and 'value' in item:
-                        factors_dict[item['name']] = item['value']
+        # Handle special case where factors are nested under "factors" key
+        if isinstance(factors_data, dict) and 'factors' in factors_data and isinstance(factors_data['factors'], list):
+            factors_data = factors_data['factors']
+        
+        if isinstance(factors_data, list):
+            # Process list format directly
+            for item in factors_data:
+                if isinstance(item, dict) and 'name' in item and 'value' in item:
+                    # Handle properly formatted factor items
+                    value = item['value']
+                    if isinstance(value, dict):
+                        description = value.get('description', str(value))
+                        bull_bear_score = value.get('bull_bear_score', 0)
                     else:
-                        # Use index-based key for dictionary items
-                        factors_dict[f"factor_{i}"] = item
+                        description = str(value)
+                        bull_bear_score = 0
+                    
+                    factors_array.append({
+                        'name': item['name'],
+                        'value': {
+                            'description': description,
+                            'bull_bear_score': bull_bear_score
+                        }
+                    })
                 else:
-                    # Use index-based key for non-dictionary items
-                    factors_dict[f"factor_{i}"] = item
+                    # Handle malformed list items
+                    factors_array.append({
+                        'name': f"factor_{len(factors_array)}",
+                        'value': {
+                            'description': str(item),
+                            'bull_bear_score': 0
+                        }
+                    })
+        elif isinstance(factors_data, dict):
+            # Process dictionary format
+            for key, value in factors_data.items():
+                if isinstance(value, dict):
+                    description = value.get('description', str(value))
+                    bull_bear_score = value.get('bull_bear_score', 0)
+                else:
+                    description = str(value)
+                    bull_bear_score = 0
+                
+                factors_array.append({
+                    'name': key,
+                    'value': {
+                        'description': description,
+                        'bull_bear_score': bull_bear_score
+                    }
+                })
         else:
             log_error(f"Unexpected factors response format: {type(factors_data)}", "FACTORS_FORMAT", None)
-            return {}
-        
-        # Convert the dictionary to the expected array of factor objects format
-        factors_array = []
-        for key, value in factors_dict.items():
-            factors_array.append({
-                'name': key,
-                'value': value
-            })
+            return []
         
         return factors_array
         
