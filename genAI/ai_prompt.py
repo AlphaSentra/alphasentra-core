@@ -82,6 +82,7 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None)
 
     # Create client instance with a randomly selected API key for each call
     api_key = get_random_api_key()
+    print(f"API Key: {api_key}")
     client = genai.Client(api_key=api_key)
 
     # Run prompt and return response
