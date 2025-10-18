@@ -25,7 +25,7 @@ from helpers import add_trade_levels_to_recommendations, add_entry_price_to_reco
 from logging_utils import log_error, log_warning, log_info
 
 
-def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, region=None, asset_class=None, importance=None, decimal_digits=2, flag_document_generated: bool = True, batch_mode: bool = False):
+def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, region=None, asset_class=None, importance=None, tag=None, decimal_digits=2, flag_document_generated: bool = True, batch_mode: bool = False):
     """
     Run the holistic market model.
     
