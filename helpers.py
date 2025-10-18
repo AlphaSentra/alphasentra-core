@@ -1274,65 +1274,64 @@ def get_factors(tickers, name=None, current_date=None, prompt=None):
         ai_response = strip_markdown_code_blocks(ai_response)
         # Parse JSON response
         factors_data = json.loads(ai_response)
-        
+
         factors_array = []
-        
-        # Handle special case where factors are nested under "factors" key
-        if isinstance(factors_data, dict) and 'factors' in factors_data and isinstance(factors_data['factors'], list):
+
+        # Process different response formats
+        if isinstance(factors_data, dict) and 'factors' in factors_data:
+            # Handle nested factors structure
             factors_data = factors_data['factors']
         
         if isinstance(factors_data, list):
-            # Process list format directly
             for item in factors_data:
-                if isinstance(item, dict) and 'name' in item and 'value' in item:
-                    # Handle properly formatted factor items
-                    value = item['value']
-                    if isinstance(value, dict):
-                        description = value.get('description', str(value))
-                        bull_bear_score = value.get('bull_bear_score', 0)
-                    else:
-                        description = str(value)
-                        bull_bear_score = 0
-                    
-                    factors_array.append({
-                        'name': item['name'],
-                        'value': {
-                            'description': description,
-                            'bull_bear_score': bull_bear_score
-                        }
-                    })
-                else:
-                    # Handle malformed list items
-                    factors_array.append({
-                        'name': f"factor_{len(factors_array)}",
-                        'value': {
-                            'description': str(item),
-                            'bull_bear_score': 0
-                        }
-                    })
-        elif isinstance(factors_data, dict):
-            # Process dictionary format
-            for key, value in factors_data.items():
-                if isinstance(value, dict):
-                    description = value.get('description', str(value))
-                    bull_bear_score = value.get('bull_bear_score', 0)
-                else:
-                    description = str(value)
-                    bull_bear_score = 0
-                
-                factors_array.append({
-                    'name': key,
-                    'value': {
-                        'description': description,
-                        'bull_bear_score': bull_bear_score
+                # Enforce required structure for each factor
+                factor = {
+                    "name": str(item.get('name', f"factor_{len(factors_array)+1}")),
+                    "value": {
+                        "description": "",
+                        "bull_bear_score": 0
                     }
-                })
-        else:
-            log_error(f"Unexpected factors response format: {type(factors_data)}", "FACTORS_FORMAT", None)
-            return []
+                }
+                
+                # Process value field
+                if 'value' in item:
+                    if isinstance(item['value'], dict):
+                        factor['value']['description'] = str(item['value'].get('description', ''))
+                        factor['value']['bull_bear_score'] = int(item['value'].get('bull_bear_score', 0))
+                    else:
+                        factor['value']['description'] = str(item['value'])
+                
+                factors_array.append(factor)
+                
+        elif isinstance(factors_data, dict):
+            # Convert key-value pairs to factor objects
+            for key, value in factors_data.items():
+                factor = {
+                    "name": str(key),
+                    "value": {
+                        "description": "",
+                        "bull_bear_score": 0
+                    }
+                }
+                
+                if isinstance(value, dict):
+                    factor['value']['description'] = str(value.get('description', ''))
+                    factor['value']['bull_bear_score'] = int(value.get('bull_bear_score', 0))
+                else:
+                    factor['value']['description'] = str(value)
+                
+                factors_array.append(factor)
+                
+        else:  # Fallback for unexpected formats
+            factors_array.append({
+                "name": "default_factor",
+                "value": {
+                    "description": "",
+                    "bull_bear_score": 0
+                }
+            })
         
         return factors_array
-        
         
     except json.JSONDecodeError as e:
         log_error("Error parsing factors response as JSON", "AI_PARSING", e)
