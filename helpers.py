@@ -1301,6 +1301,10 @@ def get_factors(tickers, name=None, current_date=None, prompt=None):
                     else:
                         factor['value']['description'] = str(item['value'])
                 
+                # Skip factor if description is empty
+                if not factor['value']['description']:
+                    continue
+                
                 factors_array.append(factor)
                 
         elif isinstance(factors_data, dict):
@@ -1319,6 +1323,10 @@ def get_factors(tickers, name=None, current_date=None, prompt=None):
                     factor['value']['bull_bear_score'] = int(value.get('bull_bear_score', 0))
                 else:
                     factor['value']['description'] = str(value)
+                
+                # Skip factor if description is empty
+                if not factor['value']['description']:
+                    continue
                 
                 factors_array.append(factor)
                 
