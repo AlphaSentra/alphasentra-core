@@ -1171,6 +1171,58 @@ def get_importance(tickers):
         return 5  # Return neutral importance on error
 
 
+def get_ticker_name(tickers):
+    """
+    Get name(s) for given ticker(s) from database tickers collection.
+    
+    Parameters:
+    tickers (str or list): Ticker symbol(s) to get names for
+    
+    Returns:
+    str/list: Single name string if single ticker input,
+              list of names if multiple tickers input,
+              None if ticker not found or error occurs
+    """
+    # Normalize input to list
+    if isinstance(tickers, str):
+        ticker_list = [tickers]
+        return_single = True
+    else:
+        ticker_list = tickers
+        return_single = False
+    
+    names = []
+    
+    try:
+        if not PYMONGO_AVAILABLE:
+            return None if return_single else []
+        
+        # Use DatabaseManager for connection pooling
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        collection = db['tickers']
+        
+        # Query database for tickers and get their names
+        ticker_docs = collection.find({"ticker": {"$in": ticker_list}})
+        
+        # Create mapping of ticker to name
+        name_map = {doc['ticker']: doc.get('name') for doc in ticker_docs if 'name' in doc}
+        
+        # Get names in original order
+        for ticker in ticker_list:
+            names.append(name_map.get(ticker))
+        
+        # Return appropriate format based on input type
+        if return_single:
+            return names[0] if names else None
+        else:
+            return names
+        
+    except Exception as e:
+        log_error("Error getting ticker names from database", "DATABASE_TICKER_NAMES", e)
+        return None if return_single else []
+
+
 def get_factors(tickers, name=None, current_date=None, prompt=None):
     """
     Get AI-generated factors analysis for given tickers.

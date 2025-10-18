@@ -21,12 +21,12 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, FX_FACTORS_PROMPT
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, get_ticker_name
 from logging_utils import log_error, log_warning
 
 
 
-def run_fx_model(tickers, fx_regions=None, prompt=None, decimal_digits=4, flag_document_generated: bool = True, batch_mode: bool = False):
+def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digits=4, flag_document_generated: bool = True, batch_mode: bool = False):
     """
     Run the FX long/short model.
     
@@ -60,6 +60,9 @@ def run_fx_model(tickers, fx_regions=None, prompt=None, decimal_digits=4, flag_d
         
         # Create a comma-separated string of tickers for the prompt
         tickers_str = tickers
+        # Use provided name of instrument
+        instrument_name = get_ticker_name(tickers)
+
         fx_regions_str = ", ".join(fx_regions) if fx_regions else "Global"
 
         # Create current date in the format "September 6, 2025"
@@ -74,6 +77,7 @@ def run_fx_model(tickers, fx_regions=None, prompt=None, decimal_digits=4, flag_d
         # Format the prompt with tickers_str and weights
         formatted_prompt = decrypted_prompt.format(
                     tickers_str=tickers_str,
+                    instrument_name=instrument_name,
                     current_date=current_date,
                     fx_regions_str=fx_regions_str,
                     geopolitical_weight=weights_to_use['Geopolitical'],

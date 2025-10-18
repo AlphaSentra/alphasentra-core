@@ -21,7 +21,7 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text, get_ticker_name
 from logging_utils import log_error, log_warning, log_info
 
 
@@ -64,7 +64,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
         # Create a comma-separated string of tickers for the prompt
         tickers_str = tickers
         # Use provided name of instrument
-        instrument_name = name
+        instrument_name = get_ticker_name(tickers)
         # Create current date in the format "September 6, 2025"
         current_date = datetime.datetime.now().strftime("%B %d, %Y")
         
@@ -135,7 +135,9 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
             #Add importance
             recommendations['importance'] = get_importance(tickers)
             # Add to factors
-            recommendations['factors'] = get_factors(tickers, name, current_date, prompt=factors)
+            recommendations['factors'] = get_factors(tickers, instrument_name, current_date, prompt=factors)
+            # Add tag
+            if tag is not None: recommendations['tag'] = tag
         # -----------------------------------------------------------------------------------
 
             if not batch_mode:
