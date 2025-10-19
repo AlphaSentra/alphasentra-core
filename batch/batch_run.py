@@ -169,6 +169,7 @@ def process_pipeline(doc, client):
 
 import gc
 import tracemalloc
+import random
 
 def run_batch_processing(max_workers=BATCH_SIZE):
     """
@@ -189,17 +190,20 @@ def run_batch_processing(max_workers=BATCH_SIZE):
         print("Failed to connect to database. Exiting.")
         return
     
-    skip = 0  # Uses imported BATCH_SIZE from _config for document batches
     total_processed = 0
+    batch_number = 1
     
     while True:
         # Get batch of pending tickers
-        pending_tickers = list(tickers_coll.find({"document_generated": False})
-                              .skip(skip).limit(BATCH_SIZE))  # Uses imported BATCH_SIZE
+        # Get random sample of pending tickers
+        pending_tickers = list(tickers_coll.aggregate([
+            {"$match": {"document_generated": False}},
+            {"$sample": {"size": BATCH_SIZE}}
+        ]))
         if not pending_tickers:
             break
             
-        print(f"Processing tickers batch {skip//BATCH_SIZE + 1} ({len(pending_tickers)} documents)")
+        print(f"Processing tickers batch {batch_number} ({len(pending_tickers)} documents)")
         
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             future_to_doc = {executor.submit(process_ticker, doc, client): doc
@@ -213,7 +217,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
                     log_error(f"Thread generated an exception for {doc['ticker']}", "THREAD_ERROR", exc)
         
         total_processed += len(pending_tickers)
-        skip += BATCH_SIZE
+        batch_number += 1
         
         # Explicit cleanup
         del pending_tickers

@@ -141,3 +141,105 @@
 2025-10-19 12:56:53,315 - WARNING - [ERR-0001] - [afef2934] Attempting to extract JSON from text (length: 13439 chars) | From: helpers.py:extract_json_from_text()
 2025-10-19 12:56:53,320 - WARNING - [ERR-0001] - [1ffc6caf] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 6 column 446 (char 2041) | From: helpers.py:extract_json_from_text()
 2025-10-19 12:56:53,328 - ERROR - [ERR-0404] - [8a43faa5] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-19 13:44:14,010 - INFO - [INFO] - MongoDB connection closed
+2025-10-19 13:51:53,686 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDJPY=X']
+2025-10-19 13:59:08,406 - WARNING - [ERR-0001] - [ae3e421c] Attempting to extract JSON from text (length: 17788 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 13:59:08,441 - WARNING - [ERR-0001] - [1e5b2c62] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-19 14:06:57,102 - WARNING - [ERR-0001] - [4d8bcdf6] Attempting to extract JSON from text (length: 18263 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:06:57,105 - WARNING - [ERR-0001] - [5a6ebb85] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 2370 (char 5292) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:06:57,108 - ERROR - [ERR-0404] - [446d0cfb] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-19 14:07:04,750 - WARNING - [ERR-0001] - [498b6993] Attempting to extract JSON from text (length: 17675 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:07:04,753 - WARNING - [ERR-0001] - [fcceaab4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:07:04,754 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:07:06,581 - WARNING - [ERR-0001] - [b53db3ea] Attempting to extract JSON from text (length: 14510 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:07:06,583 - WARNING - [ERR-0001] - [449a96ca] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:07:06,584 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:07:08,217 - WARNING - [ERR-0001] - [a6f64884] Attempting to extract JSON from text (length: 21440 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:07:08,221 - WARNING - [ERR-0001] - [b062dca2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:07:08,224 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:07:31,645 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSI']
+2025-10-19 14:07:39,430 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EA']
+2025-10-19 14:07:41,691 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['RTX']
+2025-10-19 14:07:51,393 - WARNING - [ERR-0001] - [641341b9] Attempting to extract JSON from text (length: 19869 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:07:51,396 - WARNING - [ERR-0001] - [420e56c0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:07:51,397 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:08:17,143 - WARNING - [ERR-0001] - [66059cf8] Attempting to extract JSON from text (length: 7122 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:08:17,153 - WARNING - [ERR-0001] - [ae6c5924] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-19 14:08:17,934 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['LTC-USD']
+2025-10-19 14:09:00,368 - WARNING - [ERR-0001] - [c1435baf] Attempting to extract JSON from text (length: 10064 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:09:00,373 - WARNING - [ERR-0001] - [4c06ead2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:09:00,376 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:09:08,212 - WARNING - [ERR-0001] - [c300ecb0] Attempting to extract JSON from text (length: 14090 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:09:08,215 - WARNING - [ERR-0001] - [0e557f1b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:09:08,216 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:09:32,996 - WARNING - [ERR-0001] - [164dc790] Attempting to extract JSON from text (length: 20747 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:09:32,999 - WARNING - [ERR-0001] - [56fda5f3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:09:33,000 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:09:33,823 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ALV']
+2025-10-19 14:09:43,947 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['TXN']
+2025-10-19 14:09:49,412 - WARNING - [ERR-0001] - [debafe46] Attempting to extract JSON from text (length: 16461 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:09:49,415 - WARNING - [ERR-0001] - [ee183c40] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:09:49,417 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:09:50,837 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDCHF=X']
+2025-10-19 14:10:10,673 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EOG']
+2025-10-19 14:10:19,091 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['WDAY']
+2025-10-19 14:11:04,999 - WARNING - [ERR-0001] - [6bb15c2d] Attempting to extract JSON from text (length: 11215 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:11:05,006 - WARNING - [ERR-0001] - [efc88d6c] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 2831 (char 5150) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:11:05,009 - ERROR - [ERR-0404] - [e61a8457] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-19 14:11:23,924 - WARNING - [ERR-0001] - [ff4637b9] Attempting to extract JSON from text (length: 19031 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:11:23,928 - WARNING - [ERR-0001] - [2fc37e83] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:11:23,928 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:11:31,224 - WARNING - [ERR-0001] - [4587ca5e] Attempting to extract JSON from text (length: 22451 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:11:31,226 - WARNING - [ERR-0001] - [aaaa7a92] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:11:31,227 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:11:42,738 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GBPSGD=X']
+2025-10-19 14:11:53,841 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NVDA']
+2025-10-19 14:12:03,897 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MPC']
+2025-10-19 14:12:47,214 - ERROR - [ERR-0103] - [70ad44ae] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting property name enclosed in double quotes: line 10 column 5 (char 399) | From: helpers.py:get_factors()
+2025-10-19 14:12:47,217 - WARNING - [WARN-0002] - [3ae460b1] Raw factors response: {
+  "factors": [
+    {
+      "name": "central_bank_policy",
+      "value": {
+        "description": "The Reserve Bank of Australia has been easing interest rates amidst a mixed economic outlook, while... | From: helpers.py:get_factors()
+2025-10-19 14:12:48,206 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDSGD=X']
+2025-10-19 14:13:31,931 - WARNING - [ERR-0001] - [325efdf5] Attempting to extract JSON from text (length: 12787 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:13:31,933 - WARNING - [ERR-0001] - [bec961af] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:13:31,936 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:13:36,567 - WARNING - [ERR-0001] - [a045453a] Attempting to extract JSON from text (length: 11525 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:13:36,568 - WARNING - [ERR-0001] - [eb804774] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:13:36,569 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:13:51,142 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['FRC']
+2025-10-19 14:14:03,836 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['WAB']
+2025-10-19 14:14:03,924 - WARNING - [ERR-0001] - [965a723a] Attempting to extract JSON from text (length: 18335 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:14:03,926 - WARNING - [ERR-0001] - [f3bd47fa] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:14:03,926 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:14:06,301 - WARNING - [ERR-0001] - [96a077be] Attempting to extract JSON from text (length: 23235 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:14:06,303 - WARNING - [ERR-0001] - [7aa79538] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:14:06,303 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:14:25,853 - WARNING - [ERR-0001] - [8df0c21c] Attempting to extract JSON from text (length: 24749 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:14:25,857 - WARNING - [ERR-0001] - [e5d49715] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:14:25,858 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:14:30,873 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['APH']
+2025-10-19 14:14:37,424 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['APA']
+2025-10-19 14:14:54,786 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['C']
+2025-10-19 14:15:55,317 - WARNING - [ERR-0001] - [f9ba6137] Attempting to extract JSON from text (length: 16330 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:15:55,321 - WARNING - [ERR-0001] - [658429e6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:15:55,321 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:16:12,873 - WARNING - [ERR-0001] - [b9a52afa] Attempting to extract JSON from text (length: 21453 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:16:12,879 - WARNING - [ERR-0001] - [a1becff6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:16:12,881 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:16:12,957 - WARNING - [ERR-0001] - [1c8e9e1f] Attempting to extract JSON from text (length: 21775 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:16:12,960 - WARNING - [ERR-0001] - [837def23] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 14:16:12,960 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 14:16:18,691 - WARNING - [ERR-0001] - [61c2d2ef] Attempting to extract JSON from text (length: 23458 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:16:18,695 - WARNING - [ERR-0001] - [34b265f6] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 1628 (char 4183) | From: helpers.py:extract_json_from_text()
+2025-10-19 14:16:18,698 - ERROR - [ERR-0404] - [acf1aae2] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-19 14:16:33,358 - ERROR - [ERR-0103] - [268332e3] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting ',' delimiter: line 11 column 5 (char 2513) | From: fx_long_short.py:run_fx_model()
+2025-10-19 14:16:33,360 - WARNING - [WARN-0002] - [ac4b0aff] Raw response content: {
+  "title": "UK Stagflationary Pressures and Global Risk Aversion Drive Pound-Franc Lower",
+  "market_outlook_narrative": [
+    "The British Pound faces significant headwinds as persistent, elevated ... | From: fx_long_short.py:run_fx_model()
+2025-10-19 14:16:36,725 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['IPG']
+2025-10-19 14:16:40,743 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['COF']
+2025-10-19 14:16:52,313 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CMG']
