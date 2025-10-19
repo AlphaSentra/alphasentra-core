@@ -1,160 +1,143 @@
-2025-10-19 09:24:39,816 - INFO - [INFO] - MongoDB connection closed
-2025-10-19 09:24:47,896 - INFO - [INFO] - Starting comprehensive dataset reset
-2025-10-19 09:24:47,897 - INFO - [INFO] - Starting reset of document_generated field in tickers collection
-2025-10-19 09:24:51,053 - INFO - [INFO] - Successfully updated 0 documents in tickers collection
-2025-10-19 09:24:51,053 - INFO - [INFO] - Reset of document_generated field completed
-2025-10-19 09:24:51,053 - INFO - [INFO] - Starting reset of task_completed field in pipeline collection
-2025-10-19 09:24:51,348 - INFO - [INFO] - Successfully updated 0 documents in pipeline collection
-2025-10-19 09:24:51,349 - INFO - [INFO] - Reset of task_completed field completed
-2025-10-19 09:24:51,349 - INFO - [INFO] - Starting deletion of tickers with recurrence 'once'
-2025-10-19 09:24:51,625 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from tickers collection
-2025-10-19 09:24:51,626 - INFO - [INFO] - Deletion of once tickers completed
-2025-10-19 09:24:51,626 - INFO - [INFO] - Starting deletion of pipeline documents with recurrence 'once'
-2025-10-19 09:24:51,902 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from pipeline collection
-2025-10-19 09:24:51,904 - INFO - [INFO] - Deletion of once pipeline documents completed
-2025-10-19 09:24:51,904 - INFO - [INFO] - Starting deletion of all weigh_factors documents
-2025-10-19 09:24:52,186 - INFO - [INFO] - Successfully deleted 5 documents from 'weight_factors'.
-2025-10-19 09:24:52,186 - INFO - [INFO] - All reset operations completed successfully
-2025-10-19 09:25:53,314 - ERROR - [ERR-0001] - [de21a1bf] Thread generated an exception for AUDJPY=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,315 - ERROR - [ERR-0001] - [34da7af7] Thread generated an exception for EURCAD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,315 - ERROR - [ERR-0001] - [f92f42af] Thread generated an exception for CHFJPY=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,316 - ERROR - [ERR-0001] - [03026970] Thread generated an exception for AUDSGD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,316 - ERROR - [ERR-0001] - [04b05c79] Thread generated an exception for EURHUF=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,316 - ERROR - [ERR-0001] - [de246efe] Thread generated an exception for AUDCAD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,317 - ERROR - [ERR-0001] - [0f6de83e] Thread generated an exception for AUDNZD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,317 - ERROR - [ERR-0001] - [7f4305c3] Thread generated an exception for AUDCHF=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,317 - ERROR - [ERR-0001] - [7bfab214] Thread generated an exception for CADCHF=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,318 - ERROR - [ERR-0001] - [eeab1e10] Thread generated an exception for CADJPY=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,318 - ERROR - [ERR-0001] - [c261df8c] Thread generated an exception for EURGBP=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,318 - ERROR - [ERR-0001] - [5b7818a7] Thread generated an exception for EURAUD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,319 - ERROR - [ERR-0001] - [51da81fe] Thread generated an exception for EURHKD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,319 - ERROR - [ERR-0001] - [214fdfde] Thread generated an exception for EURCHF=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,319 - ERROR - [ERR-0001] - [28514d03] Thread generated an exception for AUDUSD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,320 - ERROR - [ERR-0001] - [1553a111] Thread generated an exception for EURJPY=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,320 - ERROR - [ERR-0001] - [23c1de6a] Thread generated an exception for GBPAUD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,321 - ERROR - [ERR-0001] - [6f409b20] Thread generated an exception for GBPCAD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,321 - ERROR - [ERR-0001] - [64ef410c] Thread generated an exception for GBPCHF=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,321 - ERROR - [ERR-0001] - [b1aab889] Thread generated an exception for GBPJPY=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,322 - ERROR - [ERR-0001] - [ba3e4ae6] Thread generated an exception for GBPNZD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,322 - ERROR - [ERR-0001] - [2867f99d] Thread generated an exception for GBPSGD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,322 - ERROR - [ERR-0001] - [8e5d026d] Thread generated an exception for GBPUSD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,323 - ERROR - [ERR-0001] - [55c3f6b9] Thread generated an exception for NZDCAD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,323 - ERROR - [ERR-0001] - [f25762ed] Thread generated an exception for NZDCHF=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,324 - ERROR - [ERR-0001] - [2d1672bb] Thread generated an exception for NZDJPY=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,325 - ERROR - [ERR-0001] - [a5f5dc68] Thread generated an exception for NZDSGD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,325 - ERROR - [ERR-0001] - [dfede00e] Thread generated an exception for NZDUSD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,325 - ERROR - [ERR-0001] - [b2670ec5] Thread generated an exception for SGDJPY=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,326 - ERROR - [ERR-0001] - [bd0f9a7c] Thread generated an exception for USDCAD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,326 - ERROR - [ERR-0001] - [7e109d4f] Thread generated an exception for USDCHF=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,327 - ERROR - [ERR-0001] - [63ac1326] Thread generated an exception for USDCNH=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,328 - ERROR - [ERR-0001] - [45da93b3] Thread generated an exception for USDDKK=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,328 - ERROR - [ERR-0001] - [a4b956c5] Thread generated an exception for USDHUF=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,329 - ERROR - [ERR-0001] - [155fee42] Thread generated an exception for USDJPY=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,329 - ERROR - [ERR-0001] - [d15a9cbd] Thread generated an exception for USDMXN=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,330 - ERROR - [ERR-0001] - [45252117] Thread generated an exception for USDNOK=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,330 - ERROR - [ERR-0001] - [20cc832a] Thread generated an exception for USDSGD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,330 - ERROR - [ERR-0001] - [0fe7a327] Thread generated an exception for ^GSPC | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,331 - ERROR - [ERR-0001] - [0e6fc758] Thread generated an exception for ^IXIC | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,331 - ERROR - [ERR-0001] - [398e1acf] Thread generated an exception for ^DJI | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,332 - ERROR - [ERR-0001] - [f35fd6ae] Thread generated an exception for ^GDAXI | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,332 - ERROR - [ERR-0001] - [704d7fe9] Thread generated an exception for ^FTSE | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,332 - ERROR - [ERR-0001] - [a9885d78] Thread generated an exception for ^N225 | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,333 - ERROR - [ERR-0001] - [45644c38] Thread generated an exception for ^HSI | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,333 - ERROR - [ERR-0001] - [49a118a6] Thread generated an exception for ^RUT | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,333 - ERROR - [ERR-0001] - [e8e3ee30] Thread generated an exception for ^STOXX50E | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,334 - ERROR - [ERR-0001] - [47180ae1] Thread generated an exception for ^FCHI | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,335 - ERROR - [ERR-0001] - [1186d017] Thread generated an exception for ^AXJO | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,335 - ERROR - [ERR-0001] - [05250522] Thread generated an exception for ^SSMI | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,335 - ERROR - [ERR-0001] - [bbfc4769] Thread generated an exception for ^AEX | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,336 - ERROR - [ERR-0001] - [d30ed689] Thread generated an exception for CL=F | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,336 - ERROR - [ERR-0001] - [5b5b1d2a] Thread generated an exception for BZ=F | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,336 - ERROR - [ERR-0001] - [50092b42] Thread generated an exception for NG=F | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,337 - ERROR - [ERR-0001] - [d75fbd9b] Thread generated an exception for XAUUSD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,337 - ERROR - [ERR-0001] - [5bcf144d] Thread generated an exception for XAGUSD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,338 - ERROR - [ERR-0001] - [5c62828f] Thread generated an exception for XPTUSD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,338 - ERROR - [ERR-0001] - [0f7afa47] Thread generated an exception for ZC=F | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,338 - ERROR - [ERR-0001] - [758806a3] Thread generated an exception for ZS=F | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,339 - ERROR - [ERR-0001] - [1ccda2fe] Thread generated an exception for ZL=F | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,339 - ERROR - [ERR-0001] - [697b4d71] Thread generated an exception for ZW=F | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,339 - ERROR - [ERR-0001] - [88be3a88] Thread generated an exception for BTC-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,340 - ERROR - [ERR-0001] - [918bcb88] Thread generated an exception for ETH-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,340 - ERROR - [ERR-0001] - [4b815a1e] Thread generated an exception for BNB-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,341 - ERROR - [ERR-0001] - [56b567a3] Thread generated an exception for XRP-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,341 - ERROR - [ERR-0001] - [8eed0d9f] Thread generated an exception for ADA-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,341 - ERROR - [ERR-0001] - [cd383980] Thread generated an exception for SOL-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,342 - ERROR - [ERR-0001] - [937e8413] Thread generated an exception for DOGE-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,342 - ERROR - [ERR-0001] - [5fe71d04] Thread generated an exception for DOT-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,342 - ERROR - [ERR-0001] - [9d001e87] Thread generated an exception for AVAX-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,343 - ERROR - [ERR-0001] - [7efde3c2] Thread generated an exception for SHIB-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,343 - ERROR - [ERR-0001] - [2f6ac879] Thread generated an exception for LTC-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,343 - ERROR - [ERR-0001] - [7260869d] Thread generated an exception for UNI7083-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,344 - ERROR - [ERR-0001] - [af564064] Thread generated an exception for ATOM-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,344 - ERROR - [ERR-0001] - [400ba329] Thread generated an exception for FIL-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,344 - ERROR - [ERR-0001] - [e2a910d2] Thread generated an exception for TRX-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,345 - ERROR - [ERR-0001] - [ec098c6b] Thread generated an exception for ALGO-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,345 - ERROR - [ERR-0001] - [87d9b586] Thread generated an exception for MANA-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,346 - ERROR - [ERR-0001] - [4b85f0b2] Thread generated an exception for APE-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,346 - ERROR - [ERR-0001] - [64d3c970] Thread generated an exception for STX4847-USD | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,346 - ERROR - [ERR-0001] - [189647ce] Thread generated an exception for NVDA | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,347 - ERROR - [ERR-0001] - [ab6907d6] Thread generated an exception for MSFT | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,347 - ERROR - [ERR-0001] - [3322a19c] Thread generated an exception for AAPL | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,347 - ERROR - [ERR-0001] - [1c4af65f] Thread generated an exception for GOOGL | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,348 - ERROR - [ERR-0001] - [1c41c927] Thread generated an exception for GOOG | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,348 - ERROR - [ERR-0001] - [8ed5c249] Thread generated an exception for AMZN | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,348 - ERROR - [ERR-0001] - [40f3ffc1] Thread generated an exception for META | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,349 - ERROR - [ERR-0001] - [145bfcde] Thread generated an exception for AVGO | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,349 - ERROR - [ERR-0001] - [7e4bab01] Thread generated an exception for TSLA | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,350 - ERROR - [ERR-0001] - [7303bf05] Thread generated an exception for BRK.B | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,350 - ERROR - [ERR-0001] - [7f46e000] Thread generated an exception for JPM | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,350 - ERROR - [ERR-0001] - [8f4907b6] Thread generated an exception for LLY | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,351 - ERROR - [ERR-0001] - [f945af13] Thread generated an exception for V | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,351 - ERROR - [ERR-0001] - [e27d0510] Thread generated an exception for NFLX | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,352 - ERROR - [ERR-0001] - [b64bb263] Thread generated an exception for MA | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,353 - ERROR - [ERR-0001] - [05b78372] Thread generated an exception for ORCL | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,353 - ERROR - [ERR-0001] - [d5c43e79] Thread generated an exception for EURNOK=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,353 - ERROR - [ERR-0001] - [cae374ba] Thread generated an exception for EURSGD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,354 - ERROR - [ERR-0001] - [92eabc50] Thread generated an exception for EURNZD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:25:53,354 - ERROR - [ERR-0001] - [f6c31474] Thread generated an exception for EURUSD=X | Exception: TypeError: process_ticker() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
-2025-10-19 09:33:09,818 - WARNING - [ERR-0001] - [d59776b6] Attempting to extract JSON from text (length: 33495 chars) | From: helpers.py:extract_json_from_text()
-2025-10-19 09:33:09,830 - WARNING - [ERR-0001] - [8bcc16f2] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
-2025-10-19 09:33:15,496 - WARNING - [ERR-0001] - [59441fee] Attempting to extract JSON from text (length: 26576 chars) | From: helpers.py:extract_json_from_text()
-2025-10-19 09:33:15,499 - WARNING - [ERR-0001] - [273b2fbe] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-19 09:33:21,567 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDCHF=X']
-2025-10-19 09:33:24,434 - ERROR - [ERR-0103] - [940b735a] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting property name enclosed in double quotes: line 10 column 5 (char 336) | From: helpers.py:get_factors()
-2025-10-19 09:33:24,439 - WARNING - [WARN-0002] - [1e3300af] Raw factors response: {
+2025-10-19 12:25:45,441 - INFO - [INFO] - MongoDB connection closed
+2025-10-19 12:26:11,884 - INFO - [INFO] - MongoDB connection closed
+2025-10-19 12:26:34,430 - INFO - [INFO] - MongoDB connection closed
+2025-10-19 12:27:37,624 - INFO - [INFO] - MongoDB connection closed
+2025-10-19 12:29:46,199 - ERROR - [ERR-0103] - [91a40ef6] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting property name enclosed in double quotes: line 10 column 5 (char 316) | From: helpers.py:get_factors()
+2025-10-19 12:29:46,201 - WARNING - [WARN-0002] - [8342b150] Raw factors response: {
   "factors": [
     {
       "name": "central_bank_policy",
       "value": {
-        "description": "The RBA has paused after earlier rate cuts and may ease further, while the MAS has maintained its p... | From: helpers.py:get_factors()
-2025-10-19 09:33:25,123 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDSGD=X']
-2025-10-19 09:33:27,396 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDCAD=X']
-2025-10-19 09:33:48,879 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDNZD=X']
-2025-10-19 09:33:59,431 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDJPY=X']
-2025-10-19 09:35:15,554 - WARNING - [ERR-0001] - [87523079] Attempting to extract JSON from text (length: 20262 chars) | From: helpers.py:extract_json_from_text()
-2025-10-19 09:35:15,556 - WARNING - [ERR-0001] - [e8095527] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-19 09:35:33,767 - WARNING - [ERR-0001] - [2263479d] Attempting to extract JSON from text (length: 14025 chars) | From: helpers.py:extract_json_from_text()
-2025-10-19 09:35:33,771 - WARNING - [ERR-0001] - [b7eed999] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
-2025-10-19 09:35:43,373 - WARNING - [ERR-0001] - [603804a7] Attempting to extract JSON from text (length: 22303 chars) | From: helpers.py:extract_json_from_text()
-2025-10-19 09:35:43,389 - WARNING - [ERR-0001] - [514b6d7b] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
-2025-10-19 09:35:46,079 - WARNING - [ERR-0001] - [f5e8df68] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
-2025-10-19 09:35:46,085 - ERROR - [ERR-0001] - [01bebaeb] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
-2025-10-19 09:35:46,088 - ERROR - [ERR-0001] - [639ed44f] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
-2025-10-19 09:35:46,092 - ERROR - [ERR-0103] - [050ed458] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()
-2025-10-19 09:35:46,094 - WARNING - [WARN-0002] - [4301f1d3] Raw factors response: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:get_factors()
-2025-10-19 09:35:46,959 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURCHF=X']
-2025-10-19 09:35:53,803 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURGBP=X']
-2025-10-19 09:36:05,689 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURHUF=X']
-2025-10-19 09:36:23,375 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURHKD=X']
-2025-10-19 09:36:27,915 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURCAD=X']
-2025-10-19 09:37:57,738 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GBPJPY=X']
-2025-10-19 09:38:22,300 - ERROR - [ERR-0103] - [06cf20ed] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting ',' delimiter: line 10 column 5985 (char 8911) | From: fx_long_short.py:run_fx_model()
-2025-10-19 09:38:22,301 - WARNING - [WARN-0002] - [831c14fa] Raw response content: {
-  "title": "Global Headwinds and Divergent Central Banks Point to GBP/AUD Strength",
-  "market_outlook_narrative": [
-    "Global economic momentum as of October 19, 2025, presents a nuanced landscap... | From: fx_long_short.py:run_fx_model()
-2025-10-19 09:38:27,405 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GBPCAD=X']
-2025-10-19 09:38:28,503 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GBPCHF=X']
-2025-10-19 09:39:02,017 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GBPNZD=X']
-2025-10-19 09:40:53,771 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NZDJPY=X']
-2025-10-19 09:41:09,552 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SGDJPY=X']
+        "description": "The RBNZ is aggressively cutting rates due to economic weakness, while the RBA maintains a more cau... | From: helpers.py:get_factors()
+2025-10-19 12:29:46,784 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDNZD=X']
+2025-10-19 12:29:47,811 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDJPY=X']
+2025-10-19 12:30:31,539 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDSGD=X']
+2025-10-19 12:30:40,242 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDCAD=X']
+2025-10-19 12:34:25,012 - INFO - [INFO] - MongoDB connection closed
+2025-10-19 12:36:00,242 - WARNING - [ERR-0001] - [4307945d] Attempting to extract JSON from text (length: 35961 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:36:00,269 - WARNING - [ERR-0001] - [f1f9f17d] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-19 12:36:00,271 - WARNING - [ERR-0001] - [f0ee0060] Attempting to extract JSON from text (length: 25045 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:36:00,273 - WARNING - [ERR-0001] - [565d04c9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:36:00,273 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:36:07,563 - WARNING - [ERR-0001] - [19d30d6d] Attempting to extract JSON from text (length: 10655 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:36:07,564 - WARNING - [ERR-0001] - [e125098e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:36:07,565 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:36:14,735 - WARNING - [ERR-0001] - [dfe2f26a] Attempting to extract JSON from text (length: 22287 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:36:14,736 - WARNING - [ERR-0001] - [454adec4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:36:14,737 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:36:15,297 - WARNING - [ERR-0001] - [a06501c8] Attempting to extract JSON from text (length: 19313 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:36:15,299 - WARNING - [ERR-0001] - [324117e8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:36:15,301 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:36:30,192 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^GDAXI']
+2025-10-19 12:36:33,537 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^IXIC']
+2025-10-19 12:36:37,243 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^FTSE']
+2025-10-19 12:36:40,805 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['^GSPC']
+2025-10-19 12:40:14,914 - WARNING - [ERR-0001] - [28d3a7bc] Attempting to extract JSON from text (length: 81363 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:40:14,960 - WARNING - [ERR-0001] - [fffd6b99] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:40:14,961 - WARNING - [ERR-0001] - [da4ddfb9] Attempting to extract JSON from text (length: 406 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:40:14,962 - WARNING - [ERR-0001] - [7d21736c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:40:14,964 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:40:40,292 - WARNING - [ERR-0303] - [58983116] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-19 12:40:40,294 - ERROR - [ERR-0303] - [8a02e3d0] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-19 12:40:40,298 - WARNING - [ERR-0001] - [98b81372] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-19 12:40:40,304 - WARNING - [ERR-0003] - [f37fa9ba] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-19 12:42:06,938 - INFO - [INFO] - MongoDB connection closed
+2025-10-19 12:44:33,493 - WARNING - [ERR-0001] - [b01efed2] Attempting to extract JSON from text (length: 7884 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:44:33,497 - WARNING - [ERR-0001] - [3842e9cc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:44:33,499 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:44:43,178 - WARNING - [ERR-0001] - [a5662148] Attempting to extract JSON from text (length: 10969 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:44:43,183 - WARNING - [ERR-0001] - [c92f6db9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:44:43,183 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:44:46,202 - WARNING - [ERR-0001] - [f4966a5c] Attempting to extract JSON from text (length: 9692 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:44:46,204 - WARNING - [ERR-0001] - [5238fded] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 3403 (char 5856) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:44:46,211 - ERROR - [ERR-0404] - [e969cf62] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-19 12:44:52,823 - WARNING - [ERR-0001] - [dc912696] Attempting to extract JSON from text (length: 17994 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:44:52,825 - WARNING - [ERR-0001] - [f68119b6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:44:52,828 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:44:53,762 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BZ=F']
+2025-10-19 12:45:14,417 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NG=F']
+2025-10-19 12:45:18,503 - WARNING - [ERR-0001] - [c401c733] Attempting to extract JSON from text (length: 21218 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:45:18,504 - WARNING - [ERR-0001] - [ce8da7f7] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 2359 (char 5177) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:45:18,505 - ERROR - [ERR-0404] - [93858141] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-19 12:45:23,482 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2025-10-19 12:46:33,544 - WARNING - [ERR-0001] - [6ee24fb9] Attempting to extract JSON from text (length: 23164 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:46:33,547 - WARNING - [ERR-0001] - [94dbb51c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:46:33,548 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:46:38,734 - WARNING - [ERR-0001] - [132ba312] Attempting to extract JSON from text (length: 20370 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:46:38,736 - WARNING - [ERR-0001] - [865a60e5] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:46:38,737 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:47:10,087 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ZW=F']
+2025-10-19 12:47:10,618 - ERROR - [ERR-0103] - [607f5850] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting property name enclosed in double quotes: line 10 column 5 (char 747) | From: helpers.py:get_factors()
+2025-10-19 12:47:10,620 - WARNING - [WARN-0002] - [b36f1988] Raw factors response: {
+  "factors": [
+    {
+      "name": "supply_factors",
+      "value": {
+        "description": "Global soybean production is projected to reach a record 425.8 million metric tons for the 2025/2026 sea... | From: helpers.py:get_factors()
+2025-10-19 12:47:11,326 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ZL=F']
+2025-10-19 12:47:11,737 - INFO - [INFO] - Ticker processing completed. Processed 7 tickers
+2025-10-19 12:47:12,044 - INFO - [INFO] - Pipeline processing completed. Successful: 0/0
+2025-10-19 12:47:12,117 - INFO - [INFO] - 
+[Top 10 memory allocations]
+<frozen importlib._bootstrap_external>:784: size=487 KiB, count=4421, average=113 B
+<frozen posixpath>:385: size=249 KiB, count=1494, average=171 B
+<frozen abc>:123: size=105 KiB, count=1099, average=98 B
+/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/linecache.py:172: size=92.4 KiB, count=994, average=95 B
+/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/inspect.py:1028: size=50.7 KiB, count=1, average=50.7 KiB
+/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/inspect.py:1025: size=50.7 KiB, count=1, average=50.7 KiB
+/Users/daivieth/Documents/_G8I/Development/alphagora-context-collection/venv/lib/python3.13/site-packages/pytz/__init__.py:205: size=45.0 KiB, count=599, average=77 B
+/Users/daivieth/Documents/_G8I/Development/alphagora-context-collection/venv/lib/python3.13/site-packages/backtrader/metabase.py:135: size=44.1 KiB, count=163, average=277 B
+/Users/daivieth/Documents/_G8I/Development/alphagora-context-collection/venv/lib/python3.13/site-packages/bson/__init__.py:1176: size=35.3 KiB, count=343, average=105 B
+/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/threading.py:297: size=34.1 KiB, count=92, average=380 B
+2025-10-19 12:48:56,946 - INFO - [INFO] - MongoDB connection closed
+2025-10-19 12:51:57,976 - INFO - [INFO] - MongoDB connection closed
+2025-10-19 12:53:13,629 - WARNING - [ERR-0001] - [b3964d21] Attempting to extract JSON from text (length: 14147 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:53:13,631 - WARNING - [ERR-0001] - [ce226a51] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:53:13,631 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:53:16,740 - WARNING - [ERR-0001] - [3a22535e] Attempting to extract JSON from text (length: 10127 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:53:16,741 - WARNING - [ERR-0001] - [a73cbb4d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:53:16,741 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:53:31,753 - WARNING - [ERR-0001] - [bb8f46c2] Attempting to extract JSON from text (length: 21507 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:53:31,757 - WARNING - [ERR-0001] - [512eeb48] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:53:31,757 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:53:32,820 - WARNING - [ERR-0001] - [8d54bcc0] Attempting to extract JSON from text (length: 18634 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:53:32,833 - WARNING - [ERR-0001] - [d7dfaf2b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:53:32,840 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:53:41,192 - WARNING - [ERR-0001] - [8bdb3e1d] Attempting to extract JSON from text (length: 24292 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:53:41,196 - WARNING - [ERR-0001] - [b686c0d0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:53:41,197 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:53:42,390 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NVDA']
+2025-10-19 12:53:49,860 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOGL']
+2025-10-19 12:53:57,224 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']
+2025-10-19 12:54:02,363 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
+2025-10-19 12:54:11,317 - ERROR - [ERR-0103] - [bd8d722e] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting property name enclosed in double quotes: line 10 column 5 (char 420) | From: helpers.py:get_factors()
+2025-10-19 12:54:11,320 - WARNING - [WARN-0002] - [dea4ee7f] Raw factors response: {
+  "factors": [
+    {
+      "name": "company_fundamentals",
+      "value": {
+        "description": "Microsoft's Q4 FY25 and Q3 FY25 results showed strong revenue, profit, and EPS growth, particularl... | From: helpers.py:get_factors()
+2025-10-19 12:54:11,988 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2025-10-19 12:54:54,729 - WARNING - [ERR-0001] - [e1dcd965] Attempting to extract JSON from text (length: 10990 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:54:54,733 - WARNING - [ERR-0001] - [9475a8ef] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:54:54,740 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:55:13,450 - WARNING - [ERR-0001] - [1fe34faa] Attempting to extract JSON from text (length: 20038 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:55:13,454 - WARNING - [ERR-0001] - [770acc67] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:55:13,454 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:55:19,883 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MA']
+2025-10-19 12:55:21,787 - WARNING - [ERR-0001] - [d6add06e] Attempting to extract JSON from text (length: 18441 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:55:21,790 - WARNING - [ERR-0001] - [0b04bd32] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:55:21,790 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:55:39,113 - WARNING - [ERR-0001] - [94e82d90] Attempting to extract JSON from text (length: 26892 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:55:39,118 - WARNING - [ERR-0001] - [48690312] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:55:39,120 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:55:41,820 - WARNING - [ERR-0001] - [5d883d3d] Attempting to extract JSON from text (length: 23344 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:55:41,823 - WARNING - [ERR-0001] - [53bfb30a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-19 12:55:41,824 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-19 12:55:44,522 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['JPM']
+2025-10-19 12:55:48,815 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['LLY']
+2025-10-19 12:56:06,187 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['V']
+2025-10-19 12:56:07,233 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NFLX']
+2025-10-19 12:56:53,315 - WARNING - [ERR-0001] - [afef2934] Attempting to extract JSON from text (length: 13439 chars) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:56:53,320 - WARNING - [ERR-0001] - [1ffc6caf] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 6 column 446 (char 2041) | From: helpers.py:extract_json_from_text()
+2025-10-19 12:56:53,328 - ERROR - [ERR-0404] - [8a43faa5] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()

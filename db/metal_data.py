@@ -5,7 +5,6 @@ Contains functions for inserting metal commodities data into MongoDB.
 import pymongo
 from logging_utils import log_error
 from _config import ME_METALS_LONG_SHORT_PROMPT, ME_METALS_FACTORS_PROMPT
-
 def insert_metal_commodities(db):
     """
     Inserts metal commodities into the 'tickers' collection.
@@ -26,9 +25,9 @@ def insert_metal_commodities(db):
     
     # Metal commodities data to insert with prompt and model_function fields
     metal_commodities = [
-        {"ticker": "XAUUSD", "ticker_tradingview": "OANDA:XAUUSD", "name": "Gold", "region": ["Global"], "prompt": "ME_METALS_LONG_SHORT_PROMPT", "factors": "ME_METALS_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "ME", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
-        {"ticker": "XAGUSD", "ticker_tradingview": "OANDA:XAGUSD", "name": "Silver", "region": ["Global"], "prompt": "ME_METALS_LONG_SHORT_PROMPT", "factors": "ME_METALS_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "ME", "importance": 4, "recurrence": "multi", "decimal":3, "document_generated": False},
-        {"ticker": "XPTUSD", "ticker_tradingview": "OANDA:XPTUSD", "name": "Platinum", "region": ["Global"], "prompt": "ME_METALS_LONG_SHORT_PROMPT", "factors": "ME_METALS_FACTORS_PROMPT", "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "ME", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False}
+        {"ticker": "XAUUSD", "ticker_tradingview": "OANDA:XAUUSD", "name": "Gold", "region": ["Global"], "prompt": ME_METALS_LONG_SHORT_PROMPT, "factors": ME_METALS_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "ME", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False},
+        {"ticker": "XAGUSD", "ticker_tradingview": "OANDA:XAGUSD", "name": "Silver", "region": ["Global"], "prompt": ME_METALS_LONG_SHORT_PROMPT, "factors": ME_METALS_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "ME", "importance": 4, "recurrence": "multi", "decimal":3, "document_generated": False},
+        {"ticker": "XPTUSD", "ticker_tradingview": "OANDA:XPTUSD", "name": "Platinum", "region": ["Global"], "prompt": ME_METALS_LONG_SHORT_PROMPT, "factors": ME_METALS_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "ME", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": False}
     ]
     
     try:
