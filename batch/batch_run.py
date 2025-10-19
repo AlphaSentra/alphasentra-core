@@ -54,7 +54,7 @@ def derive_module_and_func(model_function, model_name=None):
 # No hardcoded dictionary - use derivation function instead
 
 
-def process_ticker(doc):
+def process_ticker(doc, client):
     """
     Process a single ticker document: import and call the model function, then update flag.
     
@@ -108,7 +108,7 @@ def process_ticker(doc):
         log_error(f"Error processing ticker {doc.get('ticker')}", "TICKER_PROCESSING", e)
         return False
 
-def process_pipeline(doc):
+def process_pipeline(doc, client):
     """
     Process a single pipeline document: import and call the model function, then update flag.
     
@@ -147,7 +147,6 @@ def process_pipeline(doc):
         func(**kwargs)
 
         # If successful (no exception), update the document
-        client = DatabaseManager().get_client()
         db = client[MONGODB_DATABASE]
         pipelines_coll = db['pipeline']
         if pipelines_coll is not None:
@@ -168,45 +167,61 @@ def process_pipeline(doc):
         log_error(f"Error processing pipeline {doc.get('model_function')}", "PIPELINE_PROCESSING", e)
         return False
 
+import gc
+import tracemalloc
+
 def run_batch_processing(max_workers=BATCH_SIZE):
     """
-    Main batch processing function using multi-threading.
+    Main batch processing function using multi-threading with memory optimizations.
     
     Args:
         max_workers (int): Maximum number of threads
     """
+    tracemalloc.start()
     print("Starting multi-threaded batch processing...")
     
     client = DatabaseManager().get_client()
     db = client[MONGODB_DATABASE]
+    
+    # Process tickers in batches
     tickers_coll = db['tickers']
     if tickers_coll is None:
         print("Failed to connect to database. Exiting.")
         return
     
-    # Find tickers where document_generated == False
-    pending_tickers = list(tickers_coll.find({"document_generated": False}))
-    if not pending_tickers:
-        log_info("No pending tickers to process.")
-        return
+    skip = 0  # Uses imported BATCH_SIZE from _config for document batches
+    total_processed = 0
     
-    print(f"Found {len(pending_tickers)} pending tickers to process.")
-    
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        # Submit all tasks
-        future_to_doc = {executor.submit(process_ticker, doc): doc for doc in pending_tickers}
+    while True:
+        # Get batch of pending tickers
+        pending_tickers = list(tickers_coll.find({"document_generated": False})
+                              .skip(skip).limit(BATCH_SIZE))  # Uses imported BATCH_SIZE
+        if not pending_tickers:
+            break
+            
+        print(f"Processing tickers batch {skip//BATCH_SIZE + 1} ({len(pending_tickers)} documents)")
         
-        # Collect results
-        for future in as_completed(future_to_doc):
-            doc = future_to_doc[future]
-            try:
-                future.result()
-            except Exception as exc:
-                log_error(f"Thread generated an exception for {doc['ticker']}", "THREAD_ERROR", exc)
-                
-        log_info(f"Batch processing completed. Processed {len(pending_tickers)} tickers")
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_doc = {executor.submit(process_ticker, doc, client): doc
+                            for doc in pending_tickers}
+            
+            for future in as_completed(future_to_doc):
+                doc = future_to_doc[future]
+                try:
+                    future.result()
+                except Exception as exc:
+                    log_error(f"Thread generated an exception for {doc['ticker']}", "THREAD_ERROR", exc)
+        
+        total_processed += len(pending_tickers)
+        skip += BATCH_SIZE
+        
+        # Explicit cleanup
+        del pending_tickers
+        gc.collect()
+    
+    log_info(f"Ticker processing completed. Processed {total_processed} tickers")
 
-    # Process pipelines
+    # Process pipelines in batches
     print("\nStarting multi-threaded pipeline processing...")
     
     pipelines_coll = db['pipeline']
@@ -214,29 +229,47 @@ def run_batch_processing(max_workers=BATCH_SIZE):
         print("Failed to connect to database for pipelines. Skipping.")
         return
     
-    # Find pipelines where task_completed == False
-    pending_pipelines = list(pipelines_coll.find({"task_completed": False}))
-    if not pending_pipelines:
-        log_info("No pending pipelines to process.")
-        return
+    skip = 0
+    total_successful = 0
+    total_pipelines = 0
     
-    print(f"Found {len(pending_pipelines)} pending pipelines to process.")
-    
-    successful_pipelines = 0
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        # Submit all tasks
-        future_to_doc = {executor.submit(process_pipeline, doc): doc for doc in pending_pipelines}
+    while True:
+        # Get batch of pending pipelines
+        pending_pipelines = list(pipelines_coll.find({"task_completed": False})
+                                .skip(skip).limit(BATCH_SIZE))  # Uses imported BATCH_SIZE
+        if not pending_pipelines:
+            break
+            
+        print(f"Processing pipelines batch {skip//BATCH_SIZE + 1} ({len(pending_pipelines)} documents)")
+        total_pipelines += len(pending_pipelines)
+        batch_successful = 0
         
-        # Collect results
-        for future in as_completed(future_to_doc):
-            doc = future_to_doc[future]
-            try:
-                if future.result():
-                    successful_pipelines += 1
-            except Exception as exc:
-                log_error(f"Thread generated an exception for pipeline {doc.get('model_function')}", "THREAD_ERROR_PIPELINE", exc)
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_doc = {executor.submit(process_pipeline, doc, client): doc
+                            for doc in pending_pipelines}
+            
+            for future in as_completed(future_to_doc):
+                doc = future_to_doc[future]
+                try:
+                    if future.result():
+                        batch_successful += 1
+                except Exception as exc:
+                    log_error(f"Thread generated an exception for pipeline {doc.get('model_function')}", "THREAD_ERROR_PIPELINE", exc)
+        
+        total_successful += batch_successful
+        skip += BATCH_SIZE
+        
+        # Explicit cleanup
+        del pending_pipelines
+        gc.collect()
     
-    log_info(f"Pipeline processing completed. Successful: {successful_pipelines}/{len(pending_pipelines)}")
+    log_info(f"Pipeline processing completed. Successful: {total_successful}/{total_pipelines}")
+    
+    # Memory analysis
+    snapshot = tracemalloc.take_snapshot()
+    top_stats = snapshot.statistics('lineno')
+    mem_report = "\n[Top 10 memory allocations]\n" + "\n".join(str(stat) for stat in top_stats[:10])
+    log_info(mem_report)
 
 if __name__ == "__main__":
     run_batch_processing()
