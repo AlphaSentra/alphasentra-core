@@ -21,6 +21,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from logging_utils import log_error, log_warning, log_info
 from _config import BATCH_SIZE
 from helpers import DatabaseManager
+import gc
+import tracemalloc
 
 # Load environment variables
 load_dotenv()
@@ -177,9 +179,6 @@ def process_pipeline(doc, client):
         log_error(f"Error processing pipeline {doc.get('model_function')}", "PIPELINE_PROCESSING", e)
         return False
 
-import gc
-import tracemalloc
-import random
 
 def run_batch_processing(max_workers=BATCH_SIZE):
     """
