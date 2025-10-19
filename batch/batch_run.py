@@ -96,6 +96,16 @@ def process_ticker(doc, client):
         if 'prompt' in sig.parameters:
             kwargs['prompt'] = prompt
         if 'factors' in sig.parameters:
+            # Refresh factors if empty
+            if not factors:
+                try:
+                    from models.holistic import get_factors
+                    from datetime import datetime
+                    current_date = datetime.now().strftime("%Y-%m-%d")
+                    instrument_name = doc.get("instrument_name", doc["ticker"])
+                    factors = get_factors(tickers_list, instrument_name, current_date, prompt=prompt)
+                except Exception as e:
+                    log_warning(f"Failed to refresh factors for {doc['ticker']}: {str(e)}", "FACTORS_REFRESH")
             kwargs['factors'] = factors
         if 'batch_mode' in sig.parameters:
             kwargs['batch_mode'] = True
