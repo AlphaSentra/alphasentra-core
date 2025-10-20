@@ -115,3 +115,26 @@
 2025-10-20 19:58:50,308 - ERROR - [ERR-0001] - [26a753bc] MongoDB operation failed for collection 'tickers' | Exception: OperationFailure: Unknown type name alias: String, full error: {'ok': 0.0, 'errmsg': 'Unknown type name alias: String', 'code': 2, 'codeName': 'BadValue', '$clusterTime': {'clusterTime': Timestamp(1760965130, 1), 'signature': {'hash': b'\xe5\xf9\xdd\x94\x88\r\xd7\xd1\x17\xc4\x960\x1a\x85\xd2\x14\x1f\x89H~', 'keyId': 7506211452982657031}}, 'operationTime': Timestamp(1760965130, 1)} | From: create_mongodb_db.py:create_collection_with_schema()
 2025-10-20 19:58:50,309 - ERROR - [ERR-0001] - [6e0f997b] Failed during sequential operation | From: create_mongodb_db.py:create_alphagora_database()
 2025-10-20 20:01:00,286 - INFO - [INFO] - MongoDB connection closed
+2025-10-20 20:40:34,376 - ERROR - [ERR-0001] - [bb932e7e] Failed to parse AI response: ```json
+{
+"description": "Apple Inc. (AAPL) is an American multinational technology company that designs, manufactures, and sells consumer electronics, software, and online services, including smartphones, personal computers, tablets, and wearables.",
+"sector": "Technology"
+}
+``` | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-10-20 21:11:16,761 - WARNING - [ERR-0001] - [1a394c12] Attempting to extract JSON from text (length: 23796 chars) | From: helpers.py:extract_json_from_text()
+2025-10-20 21:11:16,763 - WARNING - [ERR-0001] - [0820b13f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-20 21:11:16,764 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-20 21:11:32,586 - WARNING - [ERR-0001] - [7cf428d1] Attempting to extract JSON from text (length: 27540 chars) | From: helpers.py:extract_json_from_text()
+2025-10-20 21:11:32,590 - WARNING - [ERR-0001] - [10354693] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-20 21:11:32,591 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-20 21:11:35,927 - WARNING - [ERR-0001] - [514ae5c1] Attempting to extract JSON from text (length: 27228 chars) | From: helpers.py:extract_json_from_text()
+2025-10-20 21:11:35,930 - WARNING - [ERR-0001] - [92e29161] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-20 21:11:35,931 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-20 21:11:37,023 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURAUD=X']
+2025-10-20 21:12:00,876 - WARNING - [ERR-0001] - [53f7253b] Attempting to extract JSON from text (length: 27010 chars) | From: helpers.py:extract_json_from_text()
+2025-10-20 21:12:00,896 - WARNING - [ERR-0001] - [3a4c917d] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-20 21:12:00,897 - WARNING - [ERR-0001] - [18032bea] Attempting to extract JSON from text (length: 23631 chars) | From: helpers.py:extract_json_from_text()
+2025-10-20 21:12:00,899 - WARNING - [ERR-0001] - [65dcf788] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-20 21:12:00,899 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-20 21:12:01,889 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMP']
+2025-10-20 21:12:17,255 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AZO']

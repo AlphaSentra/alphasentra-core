@@ -8,7 +8,6 @@ import yfinance as yf
 import backtrader as bt
 from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
-
 import logging
 
 logger = logging.getLogger(__name__)
@@ -239,3 +238,74 @@ def get_current_price(ticker):
     except Exception as e:
         logger.error(f"Error getting price data for {ticker}: {e}")
         return None
+    
+
+def calculate_performance_metrics(ticker):
+    """
+    Calculate performance metrics for a ticker using yfinance
+    
+    Parameters:
+    ticker (str): Ticker symbol
+    
+    Returns:
+    dict: Dictionary containing performance metrics with keys:
+        '1y' - 1 year percentage performance (double)
+        '6m' - 6 months percentage performance (double)
+        '3m' - 3 months percentage performance (double)
+        '1m' - 1 month percentage performance (double)
+        '1d' - previous session percentage performance (double)
+    """
+    # Handle case where ticker is passed as a list by mistake
+    if isinstance(ticker, list):
+        if ticker:
+            ticker = ticker[0]
+            logger.warning(f"calculate_performance_metrics received a list, using first element: {ticker}")
+        else:
+            logger.error("calculate_performance_metrics received an empty list")
+            return {}
+    try:
+        stock = yf.Ticker(ticker)
+        end_date = datetime.now()
+        
+        # Get current price
+        current_price = get_current_price(ticker)
+        if current_price is None:
+            return {}
+        
+        # Calculate performance periods
+        periods = {
+            '1y': end_date - timedelta(days=365),
+            '6m': end_date - timedelta(days=180),
+            '3m': end_date - timedelta(days=90),
+            '1m': end_date - timedelta(days=30),
+            '1d': end_date - timedelta(days=1)
+        }
+        
+        performance = {}
+        
+        for period, start_date in periods.items():
+            try:
+                # Get historical price
+                hist = stock.history(start=start_date, end=end_date, interval="1d")
+                if not hist.empty:
+                    start_price = hist['Close'].iloc[0]
+                    performance[period] = ((current_price / start_price) - 1)
+                else:
+                    performance[period] = 0.0
+            except Exception as e:
+                performance[period] = 0.0
+        
+        # Calculate daily performance separately using previous close
+        try:
+            hist = stock.history(period="2d")
+            if len(hist) >= 2:
+                prev_close = hist['Close'].iloc[-2]
+                performance['1d'] = ((current_price / prev_close) - 1)
+        except Exception as e:
+            performance['1d'] = 0.0
+        
+        return performance
+        
+    except Exception as e:
+        print(f"Error calculating performance for {ticker}: {str(e)}")
+        return {}

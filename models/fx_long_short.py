@@ -23,6 +23,7 @@ from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGU
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, get_ticker_name
 from logging_utils import log_error, log_warning
+from models.analysis import run_analysis
 
 
 
@@ -31,7 +32,7 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
     Run the FX long/short model.
     
     Args:
-        tickers (str): The FX pair ticker to analyze
+        tickers (str or list): The FX pair ticker(s) to analyze. If list provided, uses first element.
         fx_regions (list, optional): List of regions to consider for FX analysis
         prompt (str, optional): Custom prompt to use. If None, uses FX_LONG_SHORT_PROMPT from _config.py
         decimal_digits (int, optional): Number of decimal places for price calculations. Defaults to 4.
@@ -41,6 +42,13 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
     Returns:
         dict: The recommendations dictionary with sentiment score if available
     """
+    
+    # Handle case where ticker is passed as a list
+    if isinstance(tickers, list):
+        if tickers:
+            tickers = tickers[0]
+        else:
+            return None
     
     # Use provided prompt or fallback to config prompt
     if prompt is None:
@@ -62,11 +70,11 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
         tickers_str = tickers
         # Use provided name of instrument
         instrument_name = get_ticker_name(tickers)
-
         fx_regions_str = ", ".join(fx_regions) if fx_regions else "Global"
-
         # Create current date in the format "September 6, 2025"
         current_date = datetime.datetime.now().strftime("%B %d, %Y")
+        # Run analysis of the current instrument
+        run_analysis(tickers_str, instrument_name)
         
         # Use AI-generated weights if available, otherwise use the hardcoded ones
         if ai_weights:

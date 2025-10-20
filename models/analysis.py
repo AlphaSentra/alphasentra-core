@@ -1,8 +1,13 @@
 import os
+import re
+import json
 from genAI.ai_prompt import get_gen_ai_response
 from _config import INSTRUMENT_DESCRIPTION_PROMPT
 from crypt import decrypt_string
-import json
+from logging_utils import log_error
+from helpers import DatabaseManager
+from data.price import calculate_performance_metrics
+
 
 def run_analysis(ticker, instrument_name):
     """
@@ -19,41 +24,56 @@ def run_analysis(ticker, instrument_name):
     
     # Format prompt with instrument details
     full_prompt = decrypted_prompt.format(
-        ticker=ticker,
+        tickers_str=ticker,
         instrument_name=instrument_name
     )
     
     # Get AI response
     response_text = get_gen_ai_response(
         tickers=[ticker],
-        model_strategy="Description",
+        model_strategy="Analysis",
         prompt=full_prompt,
         gemini_model="gemini-2.5-flash"
     )
     
     try:
-        # Parse JSON response
+        # Extract JSON from markdown code block if present
+        json_match = re.search(r'```json\s*({.*?})\s*```', response_text, re.DOTALL)
+        if json_match:
+            response_text = json_match.group(1)
+
+        # Parse cleaned JSON response
         response_data = json.loads(response_text)
         description = response_data.get("description", "")
         sector = response_data.get("sector", "")
 
-        # Update tickers collection in MongoDB
-        try:
-            from helpers import DatabaseManager
+        # Update tickers collection in MongoDB with description, sector and performance
+        try:            
+            # Get performance data first
+            # Ensure we pass a single ticker string
+            ticker_str = ticker[0] if isinstance(ticker, list) else ticker
+            performance_data = calculate_performance_metrics(ticker_str)
+            
             client = DatabaseManager().get_client()
             db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
             tickers_coll = db['tickers']
-
-            # Update the current ticker document
+            
+            # Combine both updates into a single operation
             tickers_coll.update_one(
-                {"ticker": ticker},  # Use the function parameter
+                {"ticker": ticker},
                 {"$set": {
                     "description": description,
-                    "sector": sector
+                    "sector": sector,
+                    "1y": performance_data.get('1y', 0.0),
+                    "6m": performance_data.get('6m', 0.0),
+                    "3m": performance_data.get('3m', 0.0),
+                    "1m": performance_data.get('1m', 0.0),
+                    "1d": performance_data.get('1d', 0.0)
                 }}
             )
+
         except Exception as e:
-            print(f"Error updating ticker document: {str(e)}")
+            log_error(f"Error updating ticker document: {str(e)}", "DB_UPDATE", e)
 
         return {
             "description": description,
@@ -61,6 +81,5 @@ def run_analysis(ticker, instrument_name):
         }
     
     except json.JSONDecodeError as e:
-        from logging_utils import log_error
         log_error(f"Failed to parse AI response: {response_text}", "JSON_PARSE", e)
         return

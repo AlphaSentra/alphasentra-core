@@ -23,6 +23,7 @@ from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LAN
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text, get_ticker_name
 from logging_utils import log_error, log_warning, log_info
+from models.analysis import run_analysis
 
 
 def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, region=None, asset_class=None, importance=None, tag=None, decimal_digits=2, flag_document_generated: bool = True, batch_mode: bool = False):
@@ -45,6 +46,13 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
         dict: The recommendations dictionary with sentiment score if available
     """
     
+    # Handle case where ticker is passed as a list
+    if isinstance(tickers, list):
+        if tickers:
+            tickers = tickers[0]
+        else:
+            return None
+        
     # Get AI-generated weights using helper function
     ai_weights = get_ai_weights([tickers], FACTOR_WEIGHTS, WEIGHTS_PERCENT, os.getenv("GEMINI_PRO_MODEL"))
 
@@ -67,7 +75,10 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
         instrument_name = get_ticker_name(tickers)
         # Create current date in the format "September 6, 2025"
         current_date = datetime.datetime.now().strftime("%B %d, %Y")
-        
+
+        # Run analysis of the current instrument
+        run_analysis(tickers_str, instrument_name)
+    
         # Use AI-generated weights if available, otherwise use the hardcoded ones
         if ai_weights:
             weights_to_use = ai_weights
