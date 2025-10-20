@@ -10,6 +10,8 @@ LANGUAGE='en'
 # Batch processing configuration
 # Number of tickers to process in each batch
 BATCH_SIZE = 5
+# Maximum processing time in seconds (4 hours)
+BATCH_TIMEOUT = 4 * 60 * 60
 
 # Default factor weights used if AI model is not calculating weights
 # These weights are overridden if AI model successfully returns weights

@@ -19,7 +19,7 @@ import importlib
 import inspect
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from logging_utils import log_error, log_warning, log_info
-from _config import BATCH_SIZE
+from _config import BATCH_SIZE, BATCH_TIMEOUT
 from helpers import DatabaseManager
 import gc
 import tracemalloc
@@ -180,103 +180,104 @@ def process_pipeline(doc, client):
         return False
 
 
+import time
+
 def run_batch_processing(max_workers=BATCH_SIZE):
     """
     Main batch processing function using multi-threading with memory optimizations.
+    Runs continuously for max 4 hours or until all tickers/pipelines are processed.
     
     Args:
         max_workers (int): Maximum number of threads
     """
     tracemalloc.start()
-    print("Starting multi-threaded batch processing...")
+    print("Starting continuous batch processing with 4-hour timeout...")
     
     client = DatabaseManager().get_client()
     db = client[MONGODB_DATABASE]
     
-    # Process tickers in batches
-    tickers_coll = db['tickers']
-    if tickers_coll is None:
-        print("Failed to connect to database. Exiting.")
-        return
+    TIMEOUT = BATCH_TIMEOUT
+    CHECK_INTERVAL = 60  # Check for new items every 60 seconds
+    start_time = time.time()
     
-    total_processed = 0
-    batch_number = 1
-    
-    while True:
-        # Get batch of pending tickers
-        # Get random sample of pending tickers
-        pending_tickers = list(tickers_coll.aggregate([
-            {"$match": {"document_generated": False}},
-            {"$sample": {"size": BATCH_SIZE}}
-        ]))
-        if not pending_tickers:
+    while time.time() - start_time < TIMEOUT:
+        # Process tickers
+        tickers_processed = 0
+        tickers_coll = db['tickers']
+        if tickers_coll is not None:
+            pending_tickers = list(tickers_coll.aggregate([
+                {"$match": {"document_generated": False}},
+                {"$sample": {"size": BATCH_SIZE}}
+            ]))
+            
+            if pending_tickers:
+                print(f"Processing {len(pending_tickers)} tickers")
+                with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                    future_to_doc = {executor.submit(process_ticker, doc, client): doc
+                                    for doc in pending_tickers}
+                    
+                    for future in as_completed(future_to_doc):
+                        doc = future_to_doc[future]
+                        try:
+                            future.result()
+                            tickers_processed += 1
+                        except Exception as exc:
+                            log_error(f"Thread generated an exception for {doc['ticker']}", "THREAD_ERROR", exc)
+                
+                # Explicit cleanup
+                del pending_tickers
+                gc.collect()
+        
+        # Process pipelines
+        pipelines_processed = 0
+        pipelines_coll = db['pipeline']
+        if pipelines_coll is not None:
+            pending_pipelines = list(pipelines_coll.find({"task_completed": False}).limit(BATCH_SIZE))
+            
+            if pending_pipelines:
+                print(f"Processing {len(pending_pipelines)} pipelines")
+                with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                    future_to_doc = {executor.submit(process_pipeline, doc, client): doc
+                                    for doc in pending_pipelines}
+                    
+                    for future in as_completed(future_to_doc):
+                        doc = future_to_doc[future]
+                        try:
+                            if future.result():
+                                pipelines_processed += 1
+                        except Exception as exc:
+                            log_error(f"Thread generated an exception for pipeline {doc.get('model_function')}", "THREAD_ERROR_PIPELINE", exc)
+                
+                # Explicit cleanup
+                del pending_pipelines
+                gc.collect()
+        
+        # Check completion status
+        remaining_tickers = tickers_coll.count_documents({"document_generated": False}) if tickers_coll is not None else 0
+        remaining_pipelines = pipelines_coll.count_documents({"task_completed": False}) if pipelines_coll is not None else 0
+        
+        log_info(f"Batch cycle completed. Processed: {tickers_processed} tickers, {pipelines_processed} pipelines. Remaining: {remaining_tickers} tickers, {remaining_pipelines} pipelines")
+        
+        # Exit if no more work
+        if remaining_tickers == 0 and remaining_pipelines == 0:
+            log_info("All tickers and pipelines processed successfully!")
             break
             
-        print(f"Processing tickers batch {batch_number} ({len(pending_tickers)} documents)")
-        
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            future_to_doc = {executor.submit(process_ticker, doc, client): doc
-                            for doc in pending_tickers}
-            
-            for future in as_completed(future_to_doc):
-                doc = future_to_doc[future]
-                try:
-                    future.result()
-                except Exception as exc:
-                    log_error(f"Thread generated an exception for {doc['ticker']}", "THREAD_ERROR", exc)
-        
-        total_processed += len(pending_tickers)
-        batch_number += 1
-        
-        # Explicit cleanup
-        del pending_tickers
-        gc.collect()
+        # Sleep before next check if no items were processed
+        if tickers_processed == 0 and pipelines_processed == 0:
+            time.sleep(CHECK_INTERVAL)
     
-    log_info(f"Ticker processing completed. Processed {total_processed} tickers")
-
-    # Process pipelines in batches
-    print("\nStarting multi-threaded pipeline processing...")
+    # Final status report
+    if time.time() - start_time >= TIMEOUT:
+        remaining_tickers = tickers_coll.count_documents({"document_generated": False}) if tickers_coll else 0
+        remaining_pipelines = pipelines_coll.count_documents({"task_completed": False}) if pipelines_coll else 0
+        log_warning(f"Timeout reached after 4 hours. Remaining: {remaining_tickers} tickers, {remaining_pipelines} pipelines", "TIMEOUT")
     
-    pipelines_coll = db['pipeline']
-    if pipelines_coll is None:
-        print("Failed to connect to database for pipelines. Skipping.")
-        return
-    
-    skip = 0
-    total_successful = 0
-    total_pipelines = 0
-    
-    while True:
-        # Get batch of pending pipelines
-        pending_pipelines = list(pipelines_coll.find({"task_completed": False})
-                                .skip(skip).limit(BATCH_SIZE))  # Uses imported BATCH_SIZE
-        if not pending_pipelines:
-            break
-            
-        print(f"Processing pipelines batch {skip//BATCH_SIZE + 1} ({len(pending_pipelines)} documents)")
-        total_pipelines += len(pending_pipelines)
-        batch_successful = 0
-        
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            future_to_doc = {executor.submit(process_pipeline, doc, client): doc
-                            for doc in pending_pipelines}
-            
-            for future in as_completed(future_to_doc):
-                doc = future_to_doc[future]
-                try:
-                    if future.result():
-                        batch_successful += 1
-                except Exception as exc:
-                    log_error(f"Thread generated an exception for pipeline {doc.get('model_function')}", "THREAD_ERROR_PIPELINE", exc)
-        
-        total_successful += batch_successful
-        skip += BATCH_SIZE
-        
-        # Explicit cleanup
-        del pending_pipelines
-        gc.collect()
-    
-    log_info(f"Pipeline processing completed. Successful: {total_successful}/{total_pipelines}")
+    # Memory analysis
+    snapshot = tracemalloc.take_snapshot()
+    top_stats = snapshot.statistics('lineno')
+    mem_report = "\n[Top 10 memory allocations]\n" + "\n".join(str(stat) for stat in top_stats[:10])
+    log_info(mem_report)
     
     # Memory analysis
     snapshot = tracemalloc.take_snapshot()
