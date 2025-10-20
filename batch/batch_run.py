@@ -23,6 +23,7 @@ from _config import BATCH_SIZE, BATCH_TIMEOUT
 from helpers import DatabaseManager
 import gc
 import tracemalloc
+import time
 
 # Load environment variables
 load_dotenv()
@@ -179,8 +180,6 @@ def process_pipeline(doc, client):
         log_error(f"Error processing pipeline {doc.get('model_function')}", "PIPELINE_PROCESSING", e)
         return False
 
-
-import time
 
 def run_batch_processing(max_workers=BATCH_SIZE):
     """

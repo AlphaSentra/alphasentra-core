@@ -287,6 +287,27 @@ def create_tickers_collection(db):
                     'minimum': 1,
                     'maximum': 5,
                 },
+                'sector':{
+                    'bsonType': 'string',
+                },
+                'description':{
+                    'bsonType': 'string',
+                },
+                '1y':{
+                    'bsonType': 'double',
+                },
+                '6m':{
+                    'bsonType': 'double',
+                },
+                '3m':{
+                    'bsonType': 'double',
+                },
+                '1m':{
+                    'bsonType': 'double',
+                },
+                '1d':{
+                    'bsonType': 'double',
+                },
                 'recurrence': {
                     'bsonType': 'string',
                     'enum': ['multi','once'],
