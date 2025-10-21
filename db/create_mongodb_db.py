@@ -199,8 +199,12 @@ def create_insights_collection(db):
                 'minimum': 1,
                 'maximum': 5
             },
-            'asset_class': {},
-            'region': {},
+            'asset_class': {
+                'bsonType': 'string'
+            },
+            'region': {
+                'bsonType': 'string'
+            },
             'tag': {
                 'bsonType': 'string'
             }
@@ -308,6 +312,19 @@ def create_tickers_collection(db):
                 '1d':{
                     'bsonType': 'double',
                 },
+                'cashflow_health': {
+                    'bsonType': 'string'
+                },
+                'profit_health': {
+                    'bsonType': 'string'
+                },
+                'price_momentum': {
+                    'bsonType': 'string'
+                },
+                'growth_health': {
+                    'bsonType': 'string'
+                },
+                'dividend_yield': {},                
                 'recurrence': {
                     'bsonType': 'string',
                     'enum': ['multi','once'],

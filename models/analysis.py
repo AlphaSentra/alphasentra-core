@@ -46,6 +46,11 @@ def run_analysis(ticker, instrument_name):
         response_data = json.loads(response_text)
         description = response_data.get("description", "")
         sector = response_data.get("sector", "")
+        cashflow_health = response_data.get("cashflow_health", "")
+        profit_health = response_data.get("profit_health", "")
+        price_momentum = response_data.get("price_momentum", "")
+        growth_health = response_data.get("growth_health", "")
+        dividend_yield = response_data.get("dividend_yield", "")
 
         # Update tickers collection in MongoDB with description, sector and performance
         try:            
@@ -68,7 +73,12 @@ def run_analysis(ticker, instrument_name):
                     "6m": performance_data.get('6m', 0.0),
                     "3m": performance_data.get('3m', 0.0),
                     "1m": performance_data.get('1m', 0.0),
-                    "1d": performance_data.get('1d', 0.0)
+                    "1d": performance_data.get('1d', 0.0),
+                    "cashflow_health": cashflow_health,
+                    "profit_health": profit_health,
+                    "price_momentum": price_momentum,
+                    "growth_health": growth_health,
+                    "dividend_yield": dividend_yield
                 }}
             )
 
