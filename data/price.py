@@ -2,7 +2,45 @@
 Description:
 Price data functions using yfinance library.
 Centralized location for all price data functions.
+
+# License & Third-Party Notices
+
+## MIT License
+
+Copyright (c) [Year] [Your Name]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Third-Party Libraries
+
+This project uses the following third-party libraries:
+
+- **yfinance** ([MIT License](https://pypi.org/project/yfinance/))  
+
+  Please note: This library fetches data from Yahoo Finance. The data itself
+  is subject to Yahoo Finance's Terms of Service. You may use the data
+  internally within this application, but redistribution or bulk downloads
+  may require additional permissions from Yahoo Finance.
 """
+
 
 import yfinance as yf
 import backtrader as bt
