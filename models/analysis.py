@@ -46,10 +46,23 @@ def run_analysis(ticker, instrument_name):
         response_data = json.loads(response_text)
         description = response_data.get("description", "")
         sector = response_data.get("sector", "")
+        valid_grades = {'A', 'B', 'C', 'D', 'E', 'F'}
+        
         cashflow_health = response_data.get("cashflow_health", "")
+        if cashflow_health not in valid_grades:
+            cashflow_health = "-"
+            
         profit_health = response_data.get("profit_health", "")
+        if profit_health not in valid_grades:
+            profit_health = "-"
+            
         price_momentum = response_data.get("price_momentum", "")
+        if price_momentum not in valid_grades:
+            price_momentum = "-"
+            
         growth_health = response_data.get("growth_health", "")
+        if growth_health not in valid_grades:
+            growth_health = "-"
         dividend_yield = response_data.get("dividend_yield", "")
 
         # Update tickers collection in MongoDB with description, sector and performance
