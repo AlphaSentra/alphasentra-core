@@ -67,8 +67,8 @@ def run_analysis(ticker, instrument_name):
 
         # Growth and Profitability bar and line chart
         gpc_chart_key = "growth_profitability_chart"
-        gpc_chart = response_data.get(gpc_chart_key, {})
-        gpc_title = gpc_chart.get("title", "")
+        gpc_chart = response_data.get(gpc_chart_key) or {}
+        gpc_title = gpc_chart.get("title", "") if gpc_chart else ""
         gpc_x_label = gpc_chart.get("xAxis", {}).get("label", "")
         gpc_x_categories = gpc_chart.get("xAxis", {}).get("categories", [])
         gpc_y_axes = gpc_chart.get("yAxes", [])
@@ -93,8 +93,8 @@ def run_analysis(ticker, instrument_name):
 
         # Financial Health bar chart
         fhc_chart_key = "financial_health_chart"
-        fhc_chart = response_data.get(fhc_chart_key, {})
-        fhc_title = fhc_chart.get("title", "")
+        fhc_chart = response_data.get(fhc_chart_key) or {}
+        fhc_title = fhc_chart.get("title", "") if fhc_chart else ""
         fhc_x_label = fhc_chart.get("xAxis", {}).get("label", "")
         fhc_x_categories = fhc_chart.get("xAxis", {}).get("categories", [])
         fhc_y_axis = fhc_chart.get("yAxis", {})
@@ -116,8 +116,8 @@ def run_analysis(ticker, instrument_name):
 
         # Capital Structure pie chart
         csc_chart_key = "capital_structure_chart"
-        csc_chart = response_data.get(csc_chart_key, {})
-        csc_title = csc_chart.get("title", "")
+        csc_chart = response_data.get(csc_chart_key) or {}
+        csc_title = csc_chart.get("title", "") if csc_chart else ""
         csc_chart_type = csc_chart.get("type", "")
         csc_series_list = csc_chart.get("series", [])
         csc_equity_series = csc_series_list[0] if len(csc_series_list) > 0 else {}
@@ -132,8 +132,8 @@ def run_analysis(ticker, instrument_name):
         
         # Dividend History bar and line chart
         dhc_chart_key = "dividend_history_chart"
-        dhc_chart = response_data.get(dhc_chart_key, {})
-        dhc_title = dhc_chart.get("title", "")
+        dhc_chart = response_data.get(dhc_chart_key) or {}
+        dhc_title = dhc_chart.get("title", "") if dhc_chart else ""
         dhc_x_label = dhc_chart.get("xAxis", {}).get("label", "")
         dhc_x_categories = dhc_chart.get("xAxis", {}).get("categories", [])
         dhc_y_axes = dhc_chart.get("yAxes", [])
