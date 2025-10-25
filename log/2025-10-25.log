@@ -48,3 +48,7 @@
 2025-10-25 17:59:00,286 - ERROR - [ERR-0303] - [796839c1] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
 2025-10-25 17:59:00,287 - WARNING - [ERR-0001] - [2fe43943] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
 2025-10-25 17:59:00,287 - WARNING - [ERR-0003] - [b64ee416] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-25 18:06:38,794 - WARNING - [ERR-0001] - [e87beacd] Attempting to extract JSON from text (length: 11236 chars) | From: helpers.py:extract_json_from_text()
+2025-10-25 18:06:38,797 - WARNING - [ERR-0001] - [9104d4a9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-25 18:06:38,797 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-25 18:07:11,225 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PG']

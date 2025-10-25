@@ -567,17 +567,17 @@ def financial_health_chart(ticker):
                     {
                         "name": "Debt",
                         "type": "bar",
-                        "data": (semi_annual_data['Total Debt'] / 1e3).tolist()
+                        "data": (semi_annual_data['Total Debt'] / 1e6).tolist()
                     },
                     {
                         "name": "Free Cash Flow",
                         "type": "bar",
-                        "data": (semi_annual_data['Free Cash Flow'] / 1e3).tolist()
+                        "data": (semi_annual_data['Free Cash Flow'] / 1e6).tolist()
                     },
                     {
                         "name": "Cash & Equivalents",
                         "type": "bar",
-                        "data": (semi_annual_data['Cash & Cash Equivalents'] / 1e3).tolist()
+                        "data": (semi_annual_data['Cash & Cash Equivalents'] / 1e6).tolist()
                     }
                 ]
             }
