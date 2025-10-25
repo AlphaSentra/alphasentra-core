@@ -115,3 +115,11 @@
 2025-10-25 22:37:39,151 - WARNING - [ERR-0001] - [44997628] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
 2025-10-25 22:37:39,151 - INFO - [INFO] - Successfully parsed AI response as JSON
 2025-10-25 22:38:22,750 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PEP']
+2025-10-25 22:53:59,551 - WARNING - [ERR-0001] - [3c29a6fa] Attempting to extract JSON from text (length: 25451 chars) | From: helpers.py:extract_json_from_text()
+2025-10-25 22:53:59,553 - WARNING - [ERR-0001] - [6c62cf27] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-25 22:53:59,553 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-25 22:54:48,624 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MCD']
+2025-10-25 23:09:05,808 - WARNING - [ERR-0001] - [bf817786] Attempting to extract JSON from text (length: 8695 chars) | From: helpers.py:extract_json_from_text()
+2025-10-25 23:09:05,809 - WARNING - [ERR-0001] - [f410583c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-25 23:09:05,809 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-25 23:09:41,687 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PG']

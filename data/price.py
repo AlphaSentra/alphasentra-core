@@ -592,16 +592,16 @@ def get_capital_structure_chart(ticker):
         latest = balance_sheet.iloc[:,0]
         equity = latest.get('Stockholders Equity', 0)
         debt = latest.get('Total Debt', 0)
-        other_liabilities = latest.get('Other Liabilities', 0)
+        assets = debt + equity
         
         return {
             "capital_structure_chart": {
-                "title": "Capital Structure (Latest)",
+                "title": "Capital Structure",
                 "type": "pie",
                 "series": [
                     {"name": "Equity", "value": float(equity)},
                     {"name": "Debt", "value": float(debt)},
-                    {"name": "Other Liabilities", "value": float(other_liabilities)}
+                    {"name": "Assets", "value": float(assets)}
                 ]
             }
         }
