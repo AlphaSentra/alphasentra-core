@@ -411,8 +411,8 @@ def get_growth_profitability_chart(ticker):
         
         # Extract revenue and net income
         try:
-            revenue = semi_annual[revenue_col].tolist()
-            net_income = semi_annual[net_income_col].tolist()
+            revenue = [x / 1e6 for x in semi_annual[revenue_col].tolist()]
+            net_income = [x / 1e6 for x in semi_annual[net_income_col].tolist()]
         except KeyError as e:
             logger.error(f"Missing required financial metric: {e}")
             return {}
@@ -432,7 +432,7 @@ def get_growth_profitability_chart(ticker):
             "growth_profitability_chart": {
                 "title": f"Company Performance ({periods[0]}–{periods[-1]})",
                 "xAxis": {
-                    "label": "Semi-Annual Period",
+                    "label": "Period",
                     "categories": periods
                 },
                 "yAxes": [
@@ -546,7 +546,7 @@ def financial_health_chart(ticker):
             "financial_health_chart": {
                 "title": f"Financial Health ({periods[0]}–{periods[-1]})" if periods else "Financial Health",
                 "xAxis": {
-                    "label": "Year",
+                    "label": "Period",
                     "categories": periods
                 },
                 "yAxis": {

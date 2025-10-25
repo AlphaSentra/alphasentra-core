@@ -99,3 +99,19 @@
 2025-10-25 21:00:33,196 - WARNING - [ERR-0001] - [3d37ba7f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
 2025-10-25 21:00:33,196 - INFO - [INFO] - Successfully parsed AI response as JSON
 2025-10-25 21:01:15,094 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['JNJ']
+2025-10-25 22:05:47,462 - WARNING - [ERR-0001] - [1f90d476] Attempting to extract JSON from text (length: 21398 chars) | From: helpers.py:extract_json_from_text()
+2025-10-25 22:05:47,464 - WARNING - [ERR-0001] - [f0af618d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-25 22:05:47,464 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-25 22:06:35,644 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PEP']
+2025-10-25 22:14:01,600 - WARNING - [ERR-0001] - [7da9e864] Attempting to extract JSON from text (length: 14591 chars) | From: helpers.py:extract_json_from_text()
+2025-10-25 22:14:01,602 - WARNING - [ERR-0001] - [2d3dc8dc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-25 22:14:01,602 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-25 22:14:48,796 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['KO']
+2025-10-25 22:27:58,654 - WARNING - [ERR-0001] - [4acdd061] Attempting to extract JSON from text (length: 13421 chars) | From: helpers.py:extract_json_from_text()
+2025-10-25 22:27:58,655 - WARNING - [ERR-0001] - [79788e84] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-25 22:27:58,655 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-25 22:28:37,325 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GM']
+2025-10-25 22:37:39,149 - WARNING - [ERR-0001] - [5d959d66] Attempting to extract JSON from text (length: 20872 chars) | From: helpers.py:extract_json_from_text()
+2025-10-25 22:37:39,151 - WARNING - [ERR-0001] - [44997628] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-25 22:37:39,151 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-25 22:38:22,750 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PEP']
