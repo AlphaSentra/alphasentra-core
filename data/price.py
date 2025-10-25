@@ -377,7 +377,7 @@ def get_dividend_yield(ticker):
 
 def get_growth_profitability_chart(ticker):
     """
-    Get growth and profitability chart data for the last five years from Yahoo Finance.
+    Get growth and profitability chart data with semi-annual frequency from Yahoo Finance.
     
     Parameters:
     ticker (str): Ticker symbol
@@ -388,15 +388,15 @@ def get_growth_profitability_chart(ticker):
     try:
         stock = yf.Ticker(ticker)
         
-        # Get annual financial statements
-        financials = stock.financials
+        # Get quarterly financial statements and transpose
+        financials = stock.quarterly_financials.T
         if financials.empty:
             logger.error(f"No financial data available for {ticker}")
             return {}
 
         # Check for required columns with alternative names
-        revenue_col = next((col for col in ['Total Revenue', 'Revenue'] if col in financials.index), None)
-        net_income_col = next((col for col in ['Net Income', 'Net Income Common Stockholders'] if col in financials.index), None)
+        revenue_col = next((col for col in ['Total Revenue', 'Revenue'] if col in financials.columns), None)
+        net_income_col = next((col for col in ['Net Income', 'Net Income Common Stockholders'] if col in financials.columns), None)
         
         if not revenue_col or not net_income_col:
             missing = []
@@ -405,30 +405,34 @@ def get_growth_profitability_chart(ticker):
             logger.error(f"Missing required financial metrics ({', '.join(missing)}) for {ticker}")
             return {}
 
-        # Get last 5 years of data
-        annual = financials.iloc[:, -5:] if financials.shape[1] >= 5 else financials
+        # Convert index to datetime and resample to semi-annual periods
+        financials.index = pd.to_datetime(financials.index)
+        semi_annual = financials.resample('2Q').sum().sort_index(ascending=True).tail(10)
         
         # Extract revenue and net income
         try:
-            revenue = annual.loc[revenue_col].tolist()
-            net_income = annual.loc[net_income_col].tolist()
+            revenue = semi_annual[revenue_col].tolist()
+            net_income = semi_annual[net_income_col].tolist()
         except KeyError as e:
             logger.error(f"Missing required financial metric: {e}")
             return {}
         
-        # Calculate net margin percentages
-        net_margin = [(ni / rev * 100) if rev != 0 else 0 for ni, rev in zip(net_income, revenue)]
+        # Calculate net margin percentages as 2-digit floats
+        net_margin = [round((ni / rev * 100), 2) if rev != 0 else 0.0 for ni, rev in zip(net_income, revenue)]
         
-        # Generate year labels
-        # Extract years from index (handles both string and datetime index)
-        periods = [str(date).split('-')[0] for date in annual.columns]  # Financials are in columns now
+        # Generate period labels (H1/H2 format)
+        periods = []
+        for date in semi_annual.index:
+            year = date.year
+            half = 'H1' if date.month <= 6 else 'H2'
+            periods.append(f"{year}-{half}")
         
         # Create the chart data structure
         chart_data = {
             "growth_profitability_chart": {
                 "title": f"Company Performance ({periods[0]}–{periods[-1]})",
                 "xAxis": {
-                    "label": "Period",
+                    "label": "Semi-Annual Period",
                     "categories": periods
                 },
                 "yAxes": [
