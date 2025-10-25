@@ -37,3 +37,14 @@
 2025-10-25 17:36:21,631 - WARNING - [ERR-0001] - [c2cc9fc2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
 2025-10-25 17:36:21,633 - INFO - [INFO] - Successfully parsed AI response as JSON
 2025-10-25 17:36:48,658 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GM']
+2025-10-25 17:44:42,383 - WARNING - [ERR-0001] - [37be724c] Attempting to extract JSON from text (length: 14424 chars) | From: helpers.py:extract_json_from_text()
+2025-10-25 17:44:42,385 - WARNING - [ERR-0001] - [1d0e74c2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-25 17:44:42,385 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-25 17:45:02,325 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PG']
+2025-10-25 17:58:23,592 - WARNING - [ERR-0001] - [8524dd90] Attempting to extract JSON from text (length: 15932 chars) | From: helpers.py:extract_json_from_text()
+2025-10-25 17:58:23,597 - WARNING - [ERR-0001] - [3c410af5] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-25 17:58:23,597 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-25 17:59:00,286 - WARNING - [ERR-0303] - [b1b4e567] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-25 17:59:00,286 - ERROR - [ERR-0303] - [796839c1] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-25 17:59:00,287 - WARNING - [ERR-0001] - [2fe43943] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-25 17:59:00,287 - WARNING - [ERR-0003] - [b64ee416] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
