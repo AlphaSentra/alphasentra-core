@@ -46,6 +46,7 @@ import yfinance as yf
 import backtrader as bt
 from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
+import pandas as pd
 import logging
 
 logger = logging.getLogger(__name__)
@@ -346,4 +347,363 @@ def calculate_performance_metrics(ticker):
         
     except Exception as e:
         print(f"Error calculating performance for {ticker}: {str(e)}")
+        return {}
+
+def get_dividend_yield(ticker):
+    """
+    Get the latest dividend yield for a given ticker from Yahoo Finance.
+    
+    Parameters:
+    ticker (str): Ticker symbol
+    
+    Returns:
+    float: Dividend yield as a double (e.g., 1% = 0.01), or None if unavailable
+    """
+    try:
+        stock = yf.Ticker(ticker)
+        info = stock.info
+        
+        dividend_yield = info.get('dividendYield')
+        if dividend_yield is not None:
+            return float(dividend_yield) / 100  # Convert percentage to decimal
+        
+        logger.warning(f"No dividend yield data available for {ticker}")
+        return None
+        
+    except Exception as e:
+        logger.error(f"Error getting dividend yield for {ticker}: {e}")
+        return None
+
+
+def get_growth_profitability_chart(ticker):
+    """
+    Get growth and profitability chart data for the last five years from Yahoo Finance.
+    
+    Parameters:
+    ticker (str): Ticker symbol
+    
+    Returns:
+    dict: Formatted chart data with revenue, net income, and net margin in specified format
+    """
+    try:
+        stock = yf.Ticker(ticker)
+        
+        # Get financial statements for the last 5 years
+        financials = stock.financials
+        if financials.empty:
+            logger.error(f"No financial data available for {ticker}")
+            return {}
+        
+        # Get quarterly financials and resample to semi-annual
+        quarterly = stock.quarterly_financials
+        if quarterly.empty:
+            logger.error(f"No quarterly financial data available for {ticker}")
+            return {}
+        
+        # Convert columns to DatetimeIndex and transpose for resampling
+        quarterly = quarterly.T
+        quarterly.index = pd.to_datetime(quarterly.index)
+        
+        # Check for required columns with alternative names
+        revenue_col = next((col for col in ['Total Revenue', 'Revenue'] if col in quarterly.columns), None)
+        net_income_col = next((col for col in ['Net Income', 'Net Income Common Stockholders'] if col in quarterly.columns), None)
+        
+        if not revenue_col or not net_income_col:
+            missing = []
+            if not revenue_col: missing.append('revenue')
+            if not net_income_col: missing.append('net income')
+            logger.error(f"Missing required financial metrics ({', '.join(missing)}) for {ticker}")
+            return {}
+        
+        # Resample to semi-annual periods (H1 and H2) using new frequency convention
+        semi_annual = quarterly.resample('6ME', closed='left').sum()
+        
+        # Get last 11 periods (5.5 years) to ensure we have 5 full years
+        semi_annual = semi_annual.iloc[:, -11:] if len(semi_annual.columns) >= 11 else semi_annual
+        
+        # Extract revenue and net income from columns
+        try:
+            revenue = semi_annual['Total Revenue'].tolist()
+            net_income = semi_annual['Net Income'].tolist()
+        except KeyError as e:
+            logger.error(f"Missing required financial metric: {e}")
+            return {}
+        
+        # Calculate net margin percentages
+        net_margin = [(ni / rev * 100) if rev != 0 else 0 for ni, rev in zip(net_income, revenue)]
+        
+        # Generate period labels (H1 2020, H2 2020, etc.)
+        periods = []
+        for date in semi_annual.index:  # Use index after resampling
+            year = date.year
+            half = 'H1' if date.month <= 6 else 'H2'
+            periods.append(f"{half} {year}")
+        
+        # Create the chart data structure
+        chart_data = {
+            "growth_profitability_chart": {
+                "title": f"Company Performance ({periods[0]}–{periods[-1]})",
+                "xAxis": {
+                    "label": "Period",
+                    "categories": periods
+                },
+                "yAxes": [
+                    {
+                        "id": "revenueIncomeAxis",
+                        "label": "Amount (in millions)",
+                        "type": "bar"
+                    },
+                    {
+                        "id": "marginAxis",
+                        "label": "Net Margin (%)",
+                        "type": "line"
+                    }
+                ],
+                "series": [
+                    {
+                        "name": "Revenue",
+                        "type": "bar",
+                        "yAxisId": "revenueIncomeAxis",
+                        "data": revenue
+                    },
+                    {
+                        "name": "Net Income",
+                        "type": "bar",
+                        "yAxisId": "revenueIncomeAxis",
+                        "data": net_income
+                    },
+                    {
+                        "name": "Net Margin",
+                        "type": "line",
+                        "yAxisId": "marginAxis",
+                        "data": net_margin
+                    }
+                ]
+            }
+        }
+        
+        return chart_data
+        
+    except Exception as e:
+        logger.error(f"Error generating growth/profitability chart for {ticker}: {e}")
+        logger.exception("Traceback for growth/profitability chart error")
+        return {}
+
+def financial_health_chart(ticker):
+    """
+    Get financial health chart data for the last five years from Yahoo Finance.
+    
+    Parameters:
+    ticker (str): Ticker symbol
+    
+    Returns:
+    dict: Formatted chart data with debt, free cash flow, and cash & equivalents in specified format
+    """
+    try:
+        stock = yf.Ticker(ticker)
+        
+        # Get and transpose financial statements immediately
+        cashflow = stock.quarterly_cashflow.T
+        balance_sheet = stock.quarterly_balance_sheet.T
+        
+        if cashflow.empty or balance_sheet.empty:
+            logger.error(f"No financial data available for {ticker}")
+            return {}
+        
+        # Calculate Free Cash Flow if not available
+        if 'Free Cash Flow' not in cashflow:
+            try:
+                cashflow['Free Cash Flow'] = cashflow['Total Cash From Operating Activities'] - cashflow['Capital Expenditures']
+            except KeyError as e:
+                logger.error(f"Missing required columns for Free Cash Flow calculation: {e}")
+                return {}
+        
+        # Find cash column with alternative names
+        cash_col = next((col for col in ['Cash', 'Cash And Cash Equivalents', 'Cash And Short Term Investments']
+                        if col in balance_sheet.columns), None)
+        
+        if not cash_col:
+            logger.error(f"Missing cash-related columns in balance sheet for {ticker}")
+            return {}
+        
+        # Create combined dataframe with required metrics
+        try:
+            data = pd.DataFrame({
+                'Free Cash Flow': cashflow['Free Cash Flow'],
+                'Cash & Cash Equivalents': balance_sheet[cash_col],
+                'Total Debt': balance_sheet['Long Term Debt'] + balance_sheet.get('Short Long Term Debt', 0)
+            })
+        except KeyError as e:
+            logger.error(f"Missing required column: {e}")
+            return {}
+        
+        # Convert index to datetime and filter last 5 years
+        data.index = pd.to_datetime(data.index)
+        data = data[data.index >= pd.Timestamp.now() - pd.DateOffset(years=5)]
+        
+        # Group into semi-annual periods
+        semi_annual_data = data.groupby(data.index.to_period('6M')).sum()
+        
+        # Generate period labels (H1 2020, H2 2020, etc.)
+        periods = []
+        for date in semi_annual_data.index:
+            year = date.year
+            half = 'H1' if date.month <= 6 else 'H2'
+            periods.append(f"{half} {year}")
+        
+        # Create chart data structure
+        chart_data = {
+            "financial_health_chart": {
+                "title": f"Financial Health ({periods[0]}–{periods[-1]})",
+                "xAxis": {
+                    "label": "Period",
+                    "categories": periods
+                },
+                "yAxis": {
+                    "label": "Amount (in millions)",
+                    "type": "bar"
+                },
+                "series": [
+                    {
+                        "name": "Debt",
+                        "type": "bar",
+                        "data": semi_annual_data['Total Debt'].tolist()
+                    },
+                    {
+                        "name": "Free Cash Flow",
+                        "type": "bar",
+                        "data": semi_annual_data['Free Cash Flow'].tolist()
+                    },
+                    {
+                        "name": "Cash & Equivalents",
+                        "type": "bar",
+                        "data": semi_annual_data['Cash & Cash Equivalents'].tolist()
+                    }
+                ]
+            }
+        }
+        
+        return chart_data
+        
+    except Exception as e:
+        logger.error(f"Error generating financial health chart for {ticker}: {e}")
+        logger.exception("Traceback for financial health chart error")
+        return {}
+    
+def get_capital_structure_chart(ticker):
+    """Fetch capital structure data from Yahoo Finance and format as pie chart"""
+    import yfinance as yf
+    try:
+        stock = yf.Ticker(ticker)
+        balance_sheet = stock.balance_sheet
+        if balance_sheet.empty:
+            return None
+            
+        latest = balance_sheet.iloc[:,0]
+        equity = latest.get('Stockholders Equity', 0)
+        debt = latest.get('Total Debt', 0)
+        other_liabilities = latest.get('Other Liabilities', 0)
+        
+        return {
+            "capital_structure_chart": {
+                "title": "Capital Structure (Latest)",
+                "type": "pie",
+                "series": [
+                    {"name": "Equity", "value": float(equity)},
+                    {"name": "Debt", "value": float(debt)},
+                    {"name": "Other Liabilities", "value": float(other_liabilities)}
+                ]
+            }
+        }
+    except Exception as e:
+        print(f"Error fetching capital structure: {e}")
+        return None
+    
+
+def get_dividend_history_chart(ticker):
+    """
+    Get dividend history chart data for the last five years from Yahoo Finance.
+    
+    Parameters:
+    ticker (str): Ticker symbol
+    
+    Returns:
+    dict: Formatted chart data with dividend per share and dividend yield in specified format
+    """
+    try:
+        stock = yf.Ticker(ticker)
+        
+        # Get dividend history for last 5 years
+        dividends = stock.dividends
+        if dividends.empty:
+            logger.error(f"No dividend data available for {ticker}")
+            return {}
+        
+        # Resample to annual dividends using new frequency convention
+        annual_dividends = dividends.resample('YE').sum().tail(5)
+        
+        # Get historical prices for yield calculation
+        history = stock.history(period="5y")
+        if history.empty:
+            logger.error(f"No price history available for {ticker}")
+            return {}
+        
+        # Resample to annual closing prices using new frequency convention
+        annual_prices = history['Close'].resample('YE').last()
+        
+        # Align dividend and price data
+        aligned_data = pd.DataFrame({
+            'dividend': annual_dividends,
+            'price': annual_prices
+        }).dropna()
+        
+        # Calculate dividend yield (dividend / price * 100) and round to 2 decimals
+        aligned_data['yield'] = ((aligned_data['dividend'] / aligned_data['price']) * 100).round(2)
+        
+        # Generate year labels
+        years = [str(idx.year) for idx in aligned_data.index]
+        
+        # Create the chart data structure
+
+        chart_data = {
+            "dividend_history_chart": {
+                "title": f"Dividend History ({years[0]}–{years[-1]})",
+                "xAxis": {
+                    "label": "Period",
+                    "categories": years
+                },
+                "yAxes": [
+                    {
+                        "id": "dividendAxis",
+                        "label": "Dividend per Share",
+                        "type": "bar"
+                    },
+                    {
+                        "id": "yieldAxis",
+                        "label": "Dividend Yield (%)",
+                        "type": "line"
+                    }
+                ],
+                "series": [
+                    {
+                        "name": "Dividend per Share",
+                        "type": "bar",
+                        "yAxisId": "dividendAxis",
+                        "data": aligned_data['dividend'].tolist()
+                    },
+                    {
+                        "name": "Dividend Yield",
+                        "type": "line",
+                        "yAxisId": "yieldAxis",
+                        "data": aligned_data['yield'].tolist()
+                    }
+                ]
+            }
+        }
+        
+        return chart_data
+        
+    except Exception as e:
+        logger.error(f"Error generating dividend history chart for {ticker}: {e}")
+        logger.exception("Traceback for dividend history chart error")
         return {}

@@ -6,7 +6,14 @@ from _config import INSTRUMENT_DESCRIPTION_PROMPT
 from crypt import decrypt_string
 from logging_utils import log_error
 from helpers import DatabaseManager
-from data.price import calculate_performance_metrics
+from data.price import (
+    calculate_performance_metrics,
+    get_dividend_yield,
+    get_growth_profitability_chart,
+    financial_health_chart,
+    get_capital_structure_chart,
+    get_dividend_history_chart
+)
 
 
 def run_analysis(ticker, instrument_name):
@@ -57,18 +64,28 @@ def run_analysis(ticker, instrument_name):
             "profit_health": validate_grade(response_data.get("profit_health", "")),
             "price_momentum": validate_grade(response_data.get("price_momentum", "")),
             "growth_health": validate_grade(response_data.get("growth_health", "")),
-            "dividend_yield": response_data.get("dividend_yield", "")
+            "dividend_yield": round(float(get_dividend_yield(ticker[0] if isinstance(ticker, list) else ticker) or 0.0), 4)  # Returns 0.01 for 1%
         }
         
         # Helper function for chart extraction
         def extract_chart(chart_key):
-            chart = response_data.get(chart_key) or {}
-            return {
-                "title": chart.get("title", ""),
-                "xAxis": chart.get("xAxis", {}),
-                "yAxis": chart.get("yAxis", {}),
-                "series": chart.get("series", [])
+            chart_functions = {
+                "growth_profitability_chart": get_growth_profitability_chart,
+                "financial_health_chart": financial_health_chart,
+                "capital_structure_chart": get_capital_structure_chart,
+                "dividend_history_chart": get_dividend_history_chart
             }
+            
+            if chart_key not in chart_functions:
+                return {
+                    "title": "",
+                    "xAxis": {},
+                    "yAxis": {},
+                    "series": []
+                }
+            
+            chart_data = chart_functions[chart_key](ticker[0] if isinstance(ticker, list) else ticker)
+            return chart_data.get(chart_key, {})
         
         # Process all charts
         charts = {
