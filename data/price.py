@@ -438,7 +438,7 @@ def get_growth_profitability_chart(ticker):
                 "yAxes": [
                     {
                         "id": "revenueIncomeAxis",
-                        "label": "Amount (in millions)",
+                        "label": "in millions",
                         "type": "bar"
                     },
                     {
@@ -550,7 +550,7 @@ def financial_health_chart(ticker):
                     "categories": periods
                 },
                 "yAxis": {
-                    "label": "Amount (in millions)",
+                    "label": "in millions",
                     "type": "bar"
                 },
                 "series": [
