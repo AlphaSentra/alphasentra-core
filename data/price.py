@@ -407,7 +407,7 @@ def get_growth_profitability_chart(ticker):
 
         # Convert index to datetime and resample to semi-annual periods
         financials.index = pd.to_datetime(financials.index)
-        semi_annual = financials.resample('2Q').sum().sort_index(ascending=True).tail(10)
+        semi_annual = financials.resample('2QE').sum().sort_index(ascending=True).tail(10)
         
         # Extract revenue and net income
         try:
@@ -512,7 +512,7 @@ def financial_health_chart(ticker):
         if not financial_data.empty:
             # Convert index to datetime and resample to semi-annual periods
             financial_data.index = pd.to_datetime(financial_data.index)
-            financial_data = financial_data.resample('2Q').sum().sort_index(ascending=True).tail(6)
+            financial_data = financial_data.resample('2QE').sum().sort_index(ascending=True).tail(6)
         
         # --- Prepare Chart Data ---
         # Format values in millions for display
