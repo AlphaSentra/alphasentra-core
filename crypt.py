@@ -16,25 +16,6 @@ load_dotenv()
 #To encrypt strng, paste the content below into CONTENT_TO_ENCRYPT and run this script. The encrypted result will be printed out.
 CONTENT_TO_ENCRYPT = """
 
-YOUR RESPONSE MUST BE A VALID JSON OBJECT. DO NOT INCLUDE ANY ADDITIONAL TEXT OR EXPLANATIONS: Explain in one sentence or describe: {instrument_name} ({tickers_str}) and get the sector in GICS: Information Technology, Health Care, Financials, Consumer Discretionary, Communication Services, Industrials, Consumer Staples, Energy, Utilities, Real Estate, Materials.
-
-[grade] If applicable: evaluate {instrument_name}, ticker: {tickers_str}, fundamental with latest data, and from latest reports or news the following fundamental metrics: [cashflow_health], [profit_health], [price_momentum], [growth_health]. The grade should be from A to F, where A is very good, F is very bad. 
-
-
-Return the following JSON if applicable:
-
-“description”: “string”,
-“sector”: “string”,
-“cashflow_health: “string”,
-“profit_health: “string”,
-“price_momentum: “string”,
-“growth_health: “string”,
-
-
-Return the following JSON If not applicable :
-“description”: “string”,
-“sector”: “string”
-
 
 
 """

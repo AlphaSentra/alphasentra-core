@@ -21,7 +21,7 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text, get_ticker_name
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text, get_ticker_name, get_ticker_performance
 from logging_utils import log_error, log_warning, log_info
 from models.analysis import run_analysis
 
@@ -97,6 +97,11 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
                     earnings_weight=weights_to_use['Earnings'],
                     business_cycle_weight=weights_to_use['Business_Cycle'],
                     sentiment_surveys_weight=weights_to_use['Sentiment_Surveys'],
+                    p1y = get_ticker_performance(tickers, 'p1y'),
+                    p6m = get_ticker_performance(tickers, 'p6m'),
+                    p3m = get_ticker_performance(tickers, 'p3m'),
+                    p1m = get_ticker_performance(tickers, 'p1m'),
+                    p1d = get_ticker_performance(tickers, 'p1d')
                 )
     
     try:

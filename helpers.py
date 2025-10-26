@@ -1348,3 +1348,46 @@ def get_factors(tickers, name=None, current_date=None, prompt=None):
     except Exception as e:
         log_error("Error getting factors analysis", "FACTORS_ANALYSIS", e)
         return []
+
+def get_ticker_performance(ticker, period=None):
+    """
+    Retrieve performance data for a given ticker from the tickers collection.
+    
+    Parameters:
+    ticker (str): The ticker symbol to query
+    period (str, optional): Specific period to retrieve (p1y, p6m, p3m, p1m, p1d). 
+                            If None, returns all periods.
+    
+    Returns:
+    dict: Performance data for the specified period(s) or None if not found
+    """
+    try:
+        if not PYMONGO_AVAILABLE:
+            log_warning("pymongo not available - cannot query performance data", "MONGODB_DEPENDENCY")
+            return None
+
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        collection = db['tickers']
+        
+        ticker_data = collection.find_one({"ticker": ticker})
+        if not ticker_data:
+            return None
+            
+        performance_data = ticker_data.get('performance', {})
+        
+        if period:
+            return {period: performance_data.get(period)}
+        else:
+            # Return all periods, filtering only the required ones
+            return {
+                'p1y': performance_data.get('1y'),
+                'p6m': performance_data.get('6m'),
+                'p3m': performance_data.get('3m'),
+                'p1m': performance_data.get('1m'),
+                'p1d': performance_data.get('1d')
+            }
+            
+    except Exception as e:
+        log_error("Error retrieving ticker performance data", "TICKER_PERFORMANCE", e)
+        return None
