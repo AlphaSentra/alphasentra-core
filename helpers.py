@@ -1377,15 +1377,16 @@ def get_ticker_performance(ticker, period=None):
         performance_data = ticker_data.get('performance', {})
         
         if period:
-            return {period: performance_data.get(period)}
+            value = performance_data.get(period)
+            return {period: f"{round(value * 100, 1)}%" if value is not None else None}
         else:
-            # Return all periods, filtering only the required ones
+            # Return all periods, formatted as percentage strings
             return {
-                'p1y': performance_data.get('1y'),
-                'p6m': performance_data.get('6m'),
-                'p3m': performance_data.get('3m'),
-                'p1m': performance_data.get('1m'),
-                'p1d': performance_data.get('1d')
+                'p1y': f"{round(performance_data.get('1y') * 100, 1)}%" if performance_data.get('1y') is not None else None,
+                'p6m': f"{round(performance_data.get('6m') * 100, 1)}%" if performance_data.get('6m') is not None else None,
+                'p3m': f"{round(performance_data.get('3m') * 100, 1)}%" if performance_data.get('3m') is not None else None,
+                'p1m': f"{round(performance_data.get('1m') * 100, 1)}%" if performance_data.get('1m') is not None else None,
+                'p1d': f"{round(performance_data.get('1d') * 100, 1)}%" if performance_data.get('1d') is not None else None
             }
             
     except Exception as e:
