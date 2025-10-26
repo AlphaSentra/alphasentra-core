@@ -154,3 +154,35 @@
 2025-10-26 18:43:31,717 - WARNING - [ERR-0001] - [947b7e1f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
 2025-10-26 18:43:31,717 - INFO - [INFO] - Successfully parsed AI response as JSON
 2025-10-26 18:44:10,037 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ADBE']
+2025-10-26 20:24:20,792 - ERROR - [ERR-0404] - [cc7dee78] Error in fx_long_short | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: fx_long_short.py:run_fx_model()
+2025-10-26 20:27:48,700 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURUSD=X']
+2025-10-26 20:39:06,630 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GBPUSD=X']
+2025-10-26 20:46:14,643 - WARNING - [ERR-0001] - [d371c891] Attempting to extract JSON from text (length: 91440 chars) | From: helpers.py:extract_json_from_text()
+2025-10-26 20:46:14,682 - WARNING - [ERR-0001] - [0488146d] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-26 20:46:14,682 - WARNING - [ERR-0001] - [a109e3dd] Attempting to extract JSON from text (length: 91429 chars) | From: helpers.py:extract_json_from_text()
+2025-10-26 20:46:14,683 - WARNING - [ERR-0001] - [e50c1da0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-26 20:46:14,684 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-26 20:50:07,320 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
+2025-10-26 21:01:50,512 - WARNING - [ERR-0001] - [2eb309d0] Attempting to extract JSON from text (length: 20865 chars) | From: helpers.py:extract_json_from_text()
+2025-10-26 21:01:50,513 - WARNING - [ERR-0001] - [fd4236cc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-26 21:01:50,513 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-26 21:02:37,108 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
+2025-10-26 21:12:38,839 - WARNING - [ERR-0001] - [ec216448] Attempting to extract JSON from text (length: 180527 chars) | From: helpers.py:extract_json_from_text()
+2025-10-26 21:12:38,992 - WARNING - [ERR-0001] - [2ecc4482] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-10-26 21:12:38,993 - WARNING - [ERR-0001] - [0db7da59] Attempting to extract JSON from text (length: 95 chars) | From: helpers.py:extract_json_from_text()
+2025-10-26 21:12:38,993 - WARNING - [ERR-0001] - [68b2b8bc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-26 21:12:38,993 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-26 21:12:59,582 - WARNING - [ERR-0303] - [6de10481] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
+2025-10-26 21:12:59,582 - ERROR - [ERR-0303] - [1ad11d50] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-10-26 21:12:59,583 - WARNING - [ERR-0001] - [26c35cc6] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-26 21:12:59,583 - WARNING - [ERR-0003] - [3cd68d3e] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-26 21:22:09,960 - WARNING - [ERR-0001] - [ae051f09] Attempting to extract JSON from text (length: 137915 chars) | From: helpers.py:extract_json_from_text()
+2025-10-26 21:22:10,047 - WARNING - [ERR-0001] - [5e8c7418] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-26 21:22:10,047 - WARNING - [ERR-0001] - [2abbb598] Attempting to extract JSON from text (length: 137904 chars) | From: helpers.py:extract_json_from_text()
+2025-10-26 21:22:10,050 - WARNING - [ERR-0001] - [9f28e79b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-26 21:22:10,050 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-26 21:22:58,021 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
+2025-10-26 21:28:50,171 - WARNING - [ERR-0001] - [e52373b0] Attempting to extract JSON from text (length: 19619 chars) | From: helpers.py:extract_json_from_text()
+2025-10-26 21:28:50,172 - WARNING - [ERR-0001] - [c29d1606] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-26 21:28:50,172 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-26 21:29:21,541 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']

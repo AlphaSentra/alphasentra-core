@@ -5,7 +5,7 @@ from genAI.ai_prompt import get_gen_ai_response
 from _config import INSTRUMENT_DESCRIPTION_PROMPT
 from crypt import decrypt_string
 from logging_utils import log_error
-from helpers import DatabaseManager
+from helpers import DatabaseManager, get_asset_classes
 from data.price import (
     calculate_performance_metrics,
     get_dividend_yield,
@@ -54,46 +54,68 @@ def run_analysis(ticker, instrument_name):
         # Helper function for grade validation
         def validate_grade(value):
             valid_grades = {'A', 'B', 'C', 'D', 'E', 'F'}
-            return value if value in valid_grades else "-"
+            return value if value in valid_grades else ""
         
         # Extract and validate core data
-        core_data = {
-            "description": response_data.get("description", ""),
-            "sector": response_data.get("sector", ""),
-            "cashflow_health": validate_grade(response_data.get("cashflow_health", "")),
-            "profit_health": validate_grade(response_data.get("profit_health", "")),
-            "price_momentum": validate_grade(response_data.get("price_momentum", "")),
-            "growth_health": validate_grade(response_data.get("growth_health", "")),
-            "dividend_yield": round(float(get_dividend_yield(ticker[0] if isinstance(ticker, list) else ticker) or 0.0), 4)  # Returns 0.01 for 1%
-        }
+        core_data = {}
+        if response_data.get("description"):
+            core_data["description"] = response_data["description"]
+        if response_data.get("sector"):
+            core_data["sector"] = response_data["sector"]
+        if response_data.get("cashflow_health"):
+            core_data["cashflow_health"] = validate_grade(response_data["cashflow_health"])
+        if response_data.get("profit_health"):
+            core_data["profit_health"] = validate_grade(response_data["profit_health"])
+        if response_data.get("price_momentum"):
+            core_data["price_momentum"] = validate_grade(response_data["price_momentum"])
+        if response_data.get("growth_health"):
+            core_data["growth_health"] = validate_grade(response_data["growth_health"])
         
-        # Helper function for chart extraction
-        def extract_chart(chart_key):
-            chart_functions = {
-                "growth_profitability_chart": get_growth_profitability_chart,
-                "financial_health_chart": financial_health_chart,
-                "capital_structure_chart": get_capital_structure_chart,
-                "dividend_history_chart": get_dividend_history_chart
-            }
+        # Always include dividend_yield
+        core_data["dividend_yield"] = round(float(get_dividend_yield(ticker[0] if isinstance(ticker, list) else ticker) or 0.0), 4)
+        
+        def process_equity_charts(ticker):
+            """Process charts specifically for equity asset class"""
             
-            if chart_key not in chart_functions:
-                return {
-                    "title": "",
-                    "xAxis": {},
-                    "yAxis": {},
-                    "series": []
+            def extract_chart(chart_key):
+                chart_functions = {
+                    "growth_profitability_chart": get_growth_profitability_chart,
+                    "financial_health_chart": financial_health_chart,
+                    "capital_structure_chart": get_capital_structure_chart,
+                    "dividend_history_chart": get_dividend_history_chart
                 }
+                
+                if chart_key not in chart_functions:
+                    return {
+                        "title": "",
+                        "xAxis": {},
+                        "yAxis": {},
+                        "series": []
+                    }
+                
+                # Get asset classes and check if any is 'EQ'
+                ticker_to_check = ticker[0] if isinstance(ticker, list) else ticker
+                asset_classes = get_asset_classes(ticker_to_check)
+                if 'EQ' not in asset_classes:
+                    return {
+                        "title": "",
+                        "xAxis": {},
+                        "yAxis": {},
+                        "series": []
+                    }
+                
+                chart_data = chart_functions[chart_key](ticker_to_check)
+                return chart_data.get(chart_key, {})
             
-            chart_data = chart_functions[chart_key](ticker[0] if isinstance(ticker, list) else ticker)
-            return chart_data.get(chart_key, {})
+            return {
+                "growth_profitability": extract_chart("growth_profitability_chart"),
+                "financial_health": extract_chart("financial_health_chart"),
+                "capital_structure": extract_chart("capital_structure_chart"),
+                "dividend_history": extract_chart("dividend_history_chart")
+            }
         
-        # Process all charts
-        charts = {
-            "growth_profitability": extract_chart("growth_profitability_chart"),
-            "financial_health": extract_chart("financial_health_chart"),
-            "capital_structure": extract_chart("capital_structure_chart"),
-            "dividend_history": extract_chart("dividend_history_chart")
-        }
+        # Process equity charts
+        charts = process_equity_charts(ticker)
         
         # Update database
         try:
