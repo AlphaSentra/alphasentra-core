@@ -841,8 +841,7 @@ def validate_recommendations_schema(recommendations):
     """
     required_fields = [
         'title', 'market_outlook_narrative', 'rationale', 'analysis',
-        'recommendations', 'sentiment_score', 'market_impact',
-        'timestamp_gmt', 'language_code'
+        'recommendations','timestamp_gmt'
     ]
     
     missing_fields = [field for field in required_fields if field not in recommendations]
@@ -865,7 +864,7 @@ def validate_recommendations_schema(recommendations):
                               'stop_loss', 'target_price', 'entry_price', 'price']
         missing_rec_fields = [field for field in rec_required_fields if field not in rec]
         if missing_rec_fields:
-            log_warning(f"Recommendation {i} missing fields: {missing_rec_fields}", "DATA_VALIDATION")
+            log_error(f"Recommendation {i} missing fields: {missing_rec_fields}", "DATA_VALIDATION")
             return False
     
     return True
@@ -925,7 +924,7 @@ def save_to_db_with_fallback(recommendations, flag_document_generated: bool = Tr
                 else:
                     log_warning("No recommendations found in saved document, skipping flag update", "FLAG_UPDATE")
         else:
-            log_warning("Database save failed, skipping flag update", "DATABASE_FALLBACK")
+            log_error("Database save failed, skipping flag update", "DATABASE_FALLBACK")
             return False
         return success
     except Exception as e:
