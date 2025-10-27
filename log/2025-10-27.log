@@ -1,184 +1,1865 @@
-2025-10-27 08:59:18,044 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDUSD=X']
-2025-10-27 09:03:07,832 - WARNING - [ERR-0001] - [cb3a21e8] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
-2025-10-27 09:03:07,832 - ERROR - [ERR-0001] - [431eb347] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
-2025-10-27 09:03:07,833 - ERROR - [ERR-0404] - [79fb2e47] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
-2025-10-27 09:06:21,329 - WARNING - [ERR-0001] - [b3bfa635] Attempting to extract JSON from text (length: 83502 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 09:06:21,332 - WARNING - [ERR-0001] - [ff01e753] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 09:06:21,333 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 09:06:59,448 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['KO']
-2025-10-27 09:14:07,900 - WARNING - [ERR-0001] - [bec13f30] Attempting to extract JSON from text (length: 159869 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 09:14:08,013 - WARNING - [ERR-0001] - [3b6442e1] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
-2025-10-27 09:14:08,013 - WARNING - [ERR-0001] - [82616d53] Attempting to extract JSON from text (length: 159858 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 09:14:08,016 - WARNING - [ERR-0001] - [e04e3db4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 09:14:08,017 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 09:14:23,540 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SBUX']
-2025-10-27 12:28:16,081 - WARNING - [ERR-0001] - [72afcb42] Attempting to extract JSON from text (length: 110462 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 12:28:16,128 - WARNING - [ERR-0001] - [0d341242] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
-2025-10-27 12:28:16,128 - WARNING - [ERR-0001] - [9d70ac45] Attempting to extract JSON from text (length: 110451 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 12:28:16,130 - WARNING - [ERR-0001] - [cb64b587] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 12:28:16,131 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 12:28:58,446 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
-2025-10-27 12:38:46,558 - WARNING - [ERR-0001] - [a08c9719] Attempting to extract JSON from text (length: 174944 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 12:38:46,666 - WARNING - [ERR-0001] - [5a1cf198] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 12:38:46,666 - WARNING - [ERR-0001] - [55838d2c] Attempting to extract JSON from text (length: 124 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 12:38:46,666 - WARNING - [ERR-0001] - [309d74b2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 12:38:46,666 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 12:39:19,454 - WARNING - [ERR-0303] - [9ce928bd] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
-2025-10-27 12:39:19,455 - ERROR - [ERR-0303] - [e30f9eb9] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
-2025-10-27 12:39:19,455 - WARNING - [ERR-0001] - [b0b37d1b] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
-2025-10-27 12:39:19,456 - WARNING - [ERR-0003] - [171dd942] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
-2025-10-27 12:52:55,266 - WARNING - [ERR-0001] - [51b41f3e] Attempting to extract JSON from text (length: 189338 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 12:52:55,381 - WARNING - [ERR-0001] - [4595bc00] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 12:52:55,381 - WARNING - [ERR-0001] - [57ea9148] Attempting to extract JSON from text (length: 125 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 12:52:55,381 - WARNING - [ERR-0001] - [0d4930a2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 12:52:55,381 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 12:53:39,842 - WARNING - [ERR-0303] - [d5fdb49d] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
-2025-10-27 12:53:39,842 - ERROR - [ERR-0303] - [31291228] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
-2025-10-27 12:53:39,842 - WARNING - [ERR-0001] - [b95fd8e5] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
-2025-10-27 12:53:39,843 - WARNING - [ERR-0003] - [b2bc939a] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
-2025-10-27 12:54:18,689 - ERROR - [ERR-0001] - [5e0ebf52] Failed to parse AI response: Palantir Technologies Inc. (PLTR) is an American publicly traded company specializing in software platforms for data integration, analysis, and operational decision-making, serving both government and commercial sectors with products like Gotham, Foundry, Apollo, and AIP.
-
-“description”: “Palantir Technologies Inc. is an American publicly traded company specializing in software platforms for data integration, analysis, and operational decision-making, serving both government and commercial sectors with products like Gotham, Foundry, Apollo, and AIP.”,
-“sector”: “Information Technology”,
-“cashflow_health”: “A”,
-“profit_health”: “A”,
-“price_momentum”: “A”,
-“growth_health”: “A” | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
-2025-10-27 12:59:55,279 - WARNING - [ERR-0001] - [b8352e41] Attempting to extract JSON from text (length: 191099 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 12:59:55,404 - WARNING - [ERR-0001] - [464e64c6] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 12:59:55,404 - WARNING - [ERR-0001] - [57d89074] Attempting to extract JSON from text (length: 127 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 12:59:55,404 - WARNING - [ERR-0001] - [86d78833] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 12:59:55,404 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 13:00:41,361 - WARNING - [ERR-0303] - [0f8b52ae] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
-2025-10-27 13:00:41,362 - ERROR - [ERR-0303] - [6a719b71] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
-2025-10-27 13:00:41,362 - WARNING - [ERR-0001] - [17c5b96d] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
-2025-10-27 13:00:41,362 - WARNING - [ERR-0003] - [b42fec88] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
-2025-10-27 13:05:27,150 - WARNING - [ERR-0001] - [af517cff] Attempting to extract JSON from text (length: 104234 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 13:05:27,153 - WARNING - [ERR-0001] - [773c9e70] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 13:05:27,153 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 13:05:54,791 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NVDA']
-2025-10-27 13:13:24,773 - WARNING - [ERR-0001] - [9e2d980b] Attempting to extract JSON from text (length: 73708 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 13:13:24,775 - WARNING - [ERR-0001] - [64d9aa16] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 13:13:24,776 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 13:13:39,497 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PLTR']
-2025-10-27 13:26:02,774 - WARNING - [ERR-0001] - [0c40ec3c] Attempting to extract JSON from text (length: 177434 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 13:26:02,917 - WARNING - [ERR-0001] - [b12f4c2f] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 13:26:02,917 - WARNING - [ERR-0001] - [15ef1879] Attempting to extract JSON from text (length: 117 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 13:26:02,918 - WARNING - [ERR-0001] - [14aa643c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 13:26:02,918 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 13:26:37,079 - WARNING - [ERR-0303] - [70891a3f] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
-2025-10-27 13:26:37,080 - ERROR - [ERR-0303] - [c23f6b0e] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
-2025-10-27 13:26:37,080 - WARNING - [ERR-0001] - [539e948c] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
-2025-10-27 13:26:37,081 - WARNING - [ERR-0003] - [a218769f] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
-2025-10-27 13:43:04,288 - WARNING - [ERR-0001] - [c694e4d1] Attempting to extract JSON from text (length: 93417 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 13:43:04,290 - WARNING - [ERR-0001] - [44696c57] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 13:43:04,290 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 13:43:42,312 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
-2025-10-27 13:51:58,133 - WARNING - [ERR-0001] - [0957a5c2] Attempting to extract JSON from text (length: 18274 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 13:51:58,142 - WARNING - [ERR-0001] - [a8fcb6cd] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 13:51:58,142 - WARNING - [ERR-0001] - [7c2039ac] Attempting to extract JSON from text (length: 423 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 13:51:58,142 - WARNING - [ERR-0001] - [41709314] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 13:51:58,142 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 13:52:21,904 - WARNING - [ERR-0303] - [98770f15] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations', 'market_impact'] | From: helpers.py:validate_recommendations_schema()
-2025-10-27 13:52:21,905 - ERROR - [ERR-0303] - [690720f7] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
-2025-10-27 13:52:21,905 - WARNING - [ERR-0001] - [80a4bc17] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
-2025-10-27 13:52:21,905 - WARNING - [ERR-0003] - [aa72f772] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
-2025-10-27 13:55:34,442 - WARNING - [ERR-0001] - [d94e0bb5] Attempting to extract JSON from text (length: 12754 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 13:55:34,443 - WARNING - [ERR-0001] - [4f16efe7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 13:55:34,443 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 13:56:12,788 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['IBM']
-2025-10-27 14:04:16,563 - WARNING - [ERR-0001] - [c6a9f74d] Attempting to extract JSON from text (length: 185379 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 14:04:16,682 - WARNING - [ERR-0001] - [7a02488b] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 14:04:16,682 - WARNING - [ERR-0001] - [65616fc6] Attempting to extract JSON from text (length: 140 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 14:04:16,682 - WARNING - [ERR-0001] - [cb0e234a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 14:04:16,682 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 14:05:16,678 - WARNING - [ERR-0303] - [602e34e6] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
-2025-10-27 14:05:16,679 - ERROR - [ERR-0303] - [ba72c447] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
-2025-10-27 14:05:16,679 - WARNING - [ERR-0001] - [58a774f7] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
-2025-10-27 14:05:16,679 - WARNING - [ERR-0003] - [4993c883] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
-2025-10-27 14:12:42,355 - WARNING - [ERR-0001] - [36afdcf5] Attempting to extract JSON from text (length: 189993 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 14:12:42,496 - WARNING - [ERR-0001] - [9e1aeecc] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 14:12:42,496 - WARNING - [ERR-0001] - [130c65dc] Attempting to extract JSON from text (length: 122 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 14:12:42,496 - WARNING - [ERR-0001] - [df578891] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 14:12:42,496 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 14:13:16,569 - WARNING - [ERR-0303] - [2f53cfaa] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
-2025-10-27 14:13:16,570 - ERROR - [ERR-0303] - [53993071] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
-2025-10-27 14:13:16,570 - WARNING - [ERR-0001] - [677e675d] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
-2025-10-27 14:13:16,570 - WARNING - [ERR-0003] - [08b6f248] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
-2025-10-27 14:44:51,309 - WARNING - [ERR-0001] - [31b571ce] Attempting to extract JSON from text (length: 180409 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 14:44:51,435 - WARNING - [ERR-0001] - [7ecfe473] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 14:44:51,435 - WARNING - [ERR-0001] - [ce3c7776] Attempting to extract JSON from text (length: 125 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 14:44:51,435 - WARNING - [ERR-0001] - [d150cbe9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 14:44:51,435 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 14:45:25,413 - WARNING - [ERR-0303] - [0278ef49] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
-2025-10-27 14:45:25,413 - ERROR - [ERR-0303] - [4d8abcfc] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
-2025-10-27 14:45:25,414 - WARNING - [ERR-0001] - [9afe06f3] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
-2025-10-27 14:45:25,414 - WARNING - [ERR-0003] - [1ce6ca4d] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
-2025-10-27 14:51:38,883 - WARNING - [ERR-0001] - [bd5019ff] Attempting to extract JSON from text (length: 120454 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 14:51:38,886 - WARNING - [ERR-0001] - [3604b813] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 14:51:38,887 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 14:53:08,265 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
-2025-10-27 15:22:13,021 - WARNING - [ERR-0001] - [f4e0d93b] Attempting to extract JSON from text (length: 177134 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 15:22:13,141 - WARNING - [ERR-0001] - [4a62615a] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 15:22:13,142 - WARNING - [ERR-0001] - [a6389572] Attempting to extract JSON from text (length: 122 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 15:22:13,142 - WARNING - [ERR-0001] - [9ddd66ff] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 15:22:13,142 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 15:22:48,865 - WARNING - [ERR-0303] - [84a302c7] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
-2025-10-27 15:22:48,866 - ERROR - [ERR-0303] - [fe5d32bc] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
-2025-10-27 15:22:48,866 - ERROR - [ERR-0001] - [ea46cac9] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
-2025-10-27 15:22:48,866 - WARNING - [ERR-0003] - [2fa23865] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
-2025-10-27 15:30:55,058 - INFO - [INFO] - ```json
+2025-10-27 16:11:30,340 - INFO - [INFO] - ```json
 {
-  "title": "Alphabet Inc. (GOOG): AI Deals and Robust Cloud Drive Strong Buy Consensus",
+  "title": "Alphabet Inc. (GOOG): AI Momentum Powers Growth Amidst Earnings Anticipation, Market Leans Bullish",
   "market_outlook_narrative": [
-    "Alphabet Inc. (GOOG) continues to solidify its position as a dominant force in the technology sector, with recent developments underscoring its aggressive stance in artificial intelligence and robust performance across its core businesses. The company's Q2 2025 results saw revenues climb 14% year-over-year, alongside a 19% surge in net income. Key catalysts include a multi-billion dollar expansion deal with AI startup Anthropic for its AI accelerators and continued momentum with its Gemini AI models. Additionally, Google is investing $15 billion in a new AI data center in India, signaling long-term strategic expansion.",
-    "The recent price action for Alphabet shares has been remarkably strong, reaching a new all-time high of $262.51 on October 23, 2025, and trading around $260.51 as of October 24, 2025. This surge is underpinned by a healthy 13.13% revenue growth over the trailing twelve months and a robust P/E ratio, reflecting significant investor confidence. The market is interpreting Alphabet's substantial investments in AI infrastructure and its expanding Google Cloud segment as clear indicators of future growth potential, outweighing any minor sector-specific headwinds. The authorization of a $70 billion share repurchase program and a 5% increase in the quarterly dividend further reinforce positive sentiment, demonstrating strong capital allocation and commitment to shareholder returns.",
-    "Looking forward, market sentiment is leaning decidedly bullish as the company approaches its Q3 2025 earnings release on October 29. Analysts anticipate continued double-digit revenue and EPS growth, driven by sustained demand in Google Cloud and the ongoing monetization of AI initiatives. While competitive pressures and regulatory scrutiny remain factors to monitor, Alphabet's wide economic moat, particularly in search and advertising, coupled with its strategic advancements in AI, position it for sustained long-term expansion. The market is seeing signs that these investments will continue to translate into robust financial performance, supporting a positive trajectory for the stock."
+    "Alphabet Inc. (GOOG), the technology behemoth, stands at a pivotal juncture as it gears up to release its Q3 2025 earnings on October 29th. The company's recent performance has been characterized by aggressive advancements in artificial intelligence, with strong integration of AI across its core services like Search, Google Cloud, and YouTube. News includes a significant restructuring of its ad sales unit to streamline operations and enhance AI-driven efficiency, alongside a substantial lease agreement in India, signaling expansion.",
+    "The market's sustained bullish sentiment around Alphabet is largely fueled by impressive financial results and strategic positioning. The stock has demonstrated robust positive price action over the past year, six months, and three months, reflecting investor confidence in its growth trajectory. This momentum is primarily attributed to strong Q2 2025 results, which saw double-digit revenue and EPS growth, particularly driven by the accelerating performance of Google Cloud and effective monetization of AI initiatives. Despite increasing capital expenditures dedicated to AI infrastructure, the market perceives these investments as crucial for long-term competitive advantage.",
+    "Looking forward, the narrative for Alphabet is one of continued innovation and market leadership. The company's deep investments in quantum AI, coupled with its dominant position in digital advertising and cloud computing, are expected to underpin future growth. While regulatory scrutiny and intensifying competition in the AI landscape remain consistent factors to monitor, the market is seeing signs that Alphabet's ability to evolve and integrate cutting-edge technology will maintain its robust financial health and expand shareholder value."
   ],
-  "rationale": "The market is exhibiting a strong bullish stance on Alphabet (GOOG) as of October 27, 2025, driven by robust financial performance and strategic advancements in artificial intelligence. Recent earnings have shown impressive revenue and net income growth, reinforcing investor confidence in its core advertising and rapidly expanding cloud segments. The company's significant investments in AI, highlighted by major partnerships and infrastructure development, are perceived as powerful catalysts for future profitability. This positive momentum is further supported by substantial shareholder return programs, including a large share buyback and increased dividends. Consequently, the market anticipates continued upside, with a strong consensus among analysts for a 'Strong Buy' rating.",
+  "rationale": "The market anticipates a strong Q3 2025 earnings report for Alphabet Inc. (GOOG), driven by robust growth in its Cloud and Services segments, notably enhanced by aggressive AI integration. Recent price action, showing significant gains over the past year and three months, indicates a prevailing bullish sentiment, with investors shrugging off minor short-term uncertainties from ad sales restructuring and a privacy lawsuit. In the medium term, the company's substantial capital expenditures in AI infrastructure are seen as foundational for sustained growth, further solidifying its competitive edge despite rising competition. Looking to the long term, Alphabet's dominant market positions and pioneering quantum AI research are expected to unlock new monetization avenues and cement its leadership, painting a confident outlook for the stock's appreciation.",
   "market_impact": 8,
-  "analysis": "<h2>Alphabet Inc. (GOOG): A Deep Dive into Financial Health and Strategic Positioning</h2><table style='width:100%; border-collapse: collapse;'><tr><td style='border: 1px solid #ddd; padding: 8px;'><b>Metric</b></td><td style='border: 1px solid #ddd; padding: 8px;'><b>Description</b></td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Revenue Growth</td><td style='border: 1px solid #ddd; padding: 8px;'>Alphabet reported impressive Q2 2025 revenue of $96.43 billion, marking a 14% year-over-year increase. The trailing twelve-month revenue as of June 2025 stood at $371.399 billion, up 13.13% year-over-year, reflecting sustained expansion across its diverse segments.</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Profitability (Margins)</td><td style='border: 1px solid #ddd; padding: 8px;'>Gross profit margin for the latest twelve months is strong at 58.9%, with operating margins typically ranging between 25%-30%. Q1 FY25 saw an operating margin expansion to 34%, with net income rising 19% to $28.2 billion in Q2 2025, demonstrating efficient cost management and strong core business performance.</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Earnings Per Share (EPS) & Growth</td><td style='border: 1px solid #ddd; padding: 8px;'>The company delivered robust EPS of $2.31 in Q2 2025, a 22.22% increase year-over-year. The trailing twelve-month EPS as of June 2025 reached $9.38. Analysts anticipate continued strong EPS, with a consensus forecast of $2.27 for Q3 2025.</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Free Cash Flow (FCF)</td><td style='border: 1px solid #ddd; padding: 8px;'>Alphabet exhibits robust free cash flow generation, with $66.728 billion over the trailing twelve months ending June 2025, representing a 10% year-over-year increase. This strong FCF, despite significant capital expenditures in AI infrastructure, highlights operational efficiency.</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Return on Invested Capital (ROIC)</td><td style='border: 1px solid #ddd; padding: 8px;'>ROIC remains healthy, with the latest twelve months figure at 28.2% and Q2 2025 showing 29.87%. This indicates that Alphabet is effectively deploying its capital to generate strong returns, significantly exceeding its cost of capital.</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Debt Levels and Leverage</td><td style='border: 1px solid #ddd; padding: 8px;'>Alphabet maintains a strong balance sheet with low leverage. Total debt in June 2025 was $35.55 billion, with a debt-to-equity ratio of 0.07 in Q2 2025. The company possesses substantial cash reserves, resulting in negative net debt, reflecting financial prudence.</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Valuation Metrics</td><td style='border: 1px solid #ddd; padding: 8px;'>The stock is currently trading at a trailing P/E ratio of 27.68x as of October 27, 2025, with a forward P/E of 26.28x. While these metrics may appear at a premium, they are supported by the company's strong growth prospects and market leadership.</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Guidance and Forward Outlook</td><td style='border: 1px solid #ddd; padding: 8px;'>Management has provided a conservative but positive outlook, emphasizing continued investment in AI and cloud services. Analysts project strong revenue growth for 2025, driven by AI monetization and cloud expansion. The upcoming Q3 2025 earnings call is highly anticipated for further clarity.</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Competitive Positioning and Moat Strength</td><td style='border: 1px solid #ddd; padding: 8px;'>Alphabet holds a wide economic moat, underpinned by its dominant market share in search (87% in Q1 2025), advertising, Android, and YouTube. Google Cloud is rapidly gaining market share, becoming the third-largest cloud provider, propelled by AI and data analytics leadership.</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Return to Shareholders (Dividends & Buybacks)</td><td style='border: 1px solid #ddd; padding: 8px;'>The company demonstrates a strong commitment to shareholder returns, having authorized a massive $70 billion share repurchase program in Q1 2025. Additionally, Alphabet increased its quarterly dividend by 5% to $0.21 per share in April 2025.</td></tr></table>",
-  "key_takeaways": "<ul><li>Alphabet's financial performance remains robust, characterized by double-digit revenue and earnings growth, particularly in its cloud and advertising segments.</li><li>Strategic investments in Artificial Intelligence, including significant deals and data center expansion, are poised to drive future innovation and monetization.</li><li>The company maintains a strong balance sheet with low debt and impressive free cash flow generation, providing financial flexibility for continued growth.</li><li>Shareholder returns are prioritized through substantial share buybacks and a growing dividend, reflecting management's confidence and a balanced capital allocation strategy.</li><li>Despite competitive and regulatory landscapes, Alphabet's dominant market positions and wide economic moat provide a resilient foundation for sustained long-term value creation.</li></ul>",
+  "analysis": "<h2>Alphabet Inc. (GOOG): Navigating Growth and AI Frontiers</h2><br><table><tr><td><b>Metric</b></td><td><b>Description</b></td></tr><tr><td><b>Revenue Growth</b></td><td>Alphabet reported a 14% year-over-year revenue increase to $96.43 billion in Q2 2025. Analysts anticipate Q3 2025 revenue to reach approximately $99.75 billion to $99.90 billion, indicating continued double-digit growth, with Google Services projected at $84.2 billion and Google Cloud at around $14.1 billion.</td></tr><tr><td><b>Profitability</b></td><td>Q2 2025 operating margin stood at 32.4%, with net income growing 19% year-over-year to $28.2 billion. Google Cloud’s operating income more than doubled to $2.83 billion, achieving a 20.7% operating margin. Gross margin is reported at 58.94%, operating margin at 33.16%, and net margin at 31.12%.</td></tr><tr><td><b>Earnings Per Share (EPS) & Growth</b></td><td>Diluted EPS for Q2 2025 was $2.31, representing a 22% improvement from Q2 2024. For Q3 2025, consensus EPS forecasts range from $2.27 to $2.29, suggesting a 7.1% to 7.9% year-over-year growth. Full-year 2025 EPS estimates are around $8.89 to $9.91.</td></tr><tr><td><b>Free Cash Flow (FCF)</b></td><td>Q2 2025 FCF was $5.3 billion, with a trailing twelve-month FCF of $66.73 billion as of June 2025, a 10% increase year-over-year. Analysts project FCF to reach $140.7 billion by 2029.</td></tr><tr><td><b>Return on Invested Capital (ROIC)</b></td><td>Alphabet’s ROIC was 29.87% in June 2025 and 31.53% for the trailing twelve months, significantly exceeding its Weighted Average Cost of Capital (WACC) of 8.85%, indicating strong capital efficiency and excess returns. The latest reported ROIC is 29.2%.</td></tr><tr><td><b>Debt Levels & Leverage</b></td><td>The company maintains a robust financial position with $95.15 billion in cash and marketable securities against $41.67 billion in debt, resulting in a net cash position of $53.48 billion. The debt-to-equity ratio is a low 0.07.</td></tr><tr><td><b>Valuation Metrics</b></td><td>Alphabet's trailing P/E ratio is between 27.33 and 27.69, with a forward P/E ratio estimated at 25.84 to 28.91. The PEG ratio is around 1.74 to 1.76. Morningstar's fair value estimate for the stock is $237.00.</td></tr><tr><td><b>Guidance & Forward Outlook</b></td><td>Alphabet increased its capital expenditure outlook for FY2025 to approximately $85 billion, up from $75 billion, primarily for AI infrastructure and cloud expansion, signaling continued aggressive investment in growth. Demand for Google Cloud is expected to remain strong into 2026.</td></tr><tr><td><b>Competitive Positioning & Moat Strength</b></td><td>Alphabet holds a wide economic moat, dominating global web search with over 90% market share and maintaining strong positions in digital advertising, Android, and YouTube. Google Cloud is solidifying its position as the third-largest cloud provider, gaining market share driven by AI and data analytics. AI integration, including Gemini, is a key strategic focus.</td></tr><tr><td><b>Return to Shareholders</b></td><td>The company pays a quarterly dividend of $0.21 per share, with an annual dividend of $0.84 and a yield of 0.32%. Alphabet also has an active $70 billion share buyback program, reflecting management's confidence in long-term earnings potential.</td></tr></table>",
+  "key_takeaways": "<ul><li>Alphabet's Q3 2025 earnings are highly anticipated, with strong forecasts for revenue and EPS, propelled by AI and Google Cloud.</li><li>The company's substantial investments in AI infrastructure, with a raised CapEx outlook to $85 billion for 2025, underscore its commitment to long-term growth.</li><li>Alphabet maintains a robust financial profile, characterized by strong profitability, healthy free cash flow, and a significant net cash position.</li><li>Despite market concerns over competition and regulatory scrutiny, Alphabet's wide economic moat and leadership in AI and search continue to drive its competitive advantage.</li><li>Shareholder returns are supported by a consistent dividend program and an active $70 billion share buyback initiative.</li></ul>",
   "sources": [
     {
       "source_name": "FinancialContent",
-      "source_title": "Deep Dive: Alphabet Inc. (GOOG) – Navigating the AI Frontier",
-      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF5P8hmpHHhGon5YyE7rNFOYd7qr3-DH4Jx2BfjZJAx74SeSzzr_JfmMwQrU05NwyUuSj9dZHnRYDLtTqQwRo8N9UwH2-oisVOSh3j8MlEnugxejbNVVFWz9ZBtiQS-DpFPDNwh5j82yjSA-kHbuSISnUdn6oXcYEvj5CIVpEUJvz0Xh0e8hmQduKCNMr005MBNLFeXNqvoZ83oIFYz-Rp4sk2ZjmDHz9-9ZOZXY2MWAMj5oGyW4swE9Vr_pCQBww=="
+      "source_title": "Deep Dive: Alphabet Inc. (GOOG) – Navigating the AI Frontier | FinancialContent",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEyagTHgVzD1I68GJhD12yAUWwAMkvCuJuvLrT822f4jQOuab0kxeV12oLs26vn8v-QeAavCtLF5gC20GQYm-kPx01mz8y3HyoaicTN8vxU2wBe3iX68rqePNW70sU4MVPYf1bJKUyXw4ZNQOW5R8HHmNpUSwqIR5IiULofRFaGEOHZ4WUbi-50NSdfUV04pFF4ImaHTCO1Wo_0Wnw-f7XdLIKvoQoGzk1WJ-zorIJiRPOZpiWhMvNrU2lDfvboCw=="
     },
     {
-      "source_name": "Finbox",
-      "source_title": "Un```json
-{
-  "title": "Alphabet Inc. (GOOG): AI Deals and Robust Cloud Drive Strong Buy Consensus",
-  "market_outlook_narrative": [
-    "Alphabet Inc. (GOOG) continues to solidify its position as a dominant force in the technology sector, with recent developments underscoring its aggressive stance in artificial intelligence and robust performance across its core businesses. The company's Q2 2025 results saw revenues climb 14% year-over-year, alongside a 19% surge in net income. Key catalysts include a multi-billion dollar expansion deal with AI startup Anthropic for its AI accelerators and continued momentum with its Gemini AI models. Additionally, Google is investing $15 billion in a new AI data center in India, signaling long-term strategic expansion. [cite: 1, 7, 30, 37, 38, 39, 45]",
-    "The recent price action for Alphabet shares has been remarkably strong, reaching a new all-time high of $262.51 on October 23, 2025, and trading around $260.51 as of October 24, 2025. This surge is underpinned by a healthy 13.13% revenue growth over the trailing twelve months and a robust P/E ratio, reflecting significant investor confidence. The market is interpreting Alphabet's substantial investments in AI infrastructure and its expanding Google Cloud segment as clear indicators of future growth potential, outweighing any minor sector-specific headwinds. The authorization of a $70 billion share repurchase program and a 5% increase in the quarterly dividend further reinforce positive sentiment, demonstrating strong capital allocation and commitment to shareholder returns. [cite: 1, 7, 13, 15, 23, 37, 40, 45]",
-    "Looking forward, market sentiment is leaning decidedly bullish as the company approaches its Q3 2025 earnings release on October 29. Analysts anticipate continued double-digit revenue and EPS growth, driven by sustained demand in Google Cloud and the ongoing monetization of AI initiatives. While competitive pressures and regulatory scrutiny remain factors to monitor, Alphabet's wide economic moat, particularly in search and advertising, coupled with its strategic advancements in AI, position it for sustained long-term expansion. The market is seeing signs that these investments will continue to translate into robust financial performance, supporting a positive trajectory for the stock. [cite: 1, 6, 22, 30, 39, 41]"
+      "source_name": "AlphaSense",
+      "source_title": "Alphabet Inc Earnings - Analysis & Highlights for Q3 2025 - AlphaSense",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF8OVir54knD4yU-HyhDhy_u06j9gjOHRRp9KwxXcf0skoResVdcTw2WMVNss6GxNvbOtIqiIkep07e8xT4BtzW9rhjHZO-BVZqZ2U-4Lb_ahJnIO9QOsjA3lKsu4rZnEbXQxlRfQ=="
+    },
+    {
+      "source_name": "Seeking Alpha",
+      "source_title": "Alphabet: Brace For Strong Q3 Earnings (NASDAQ:GOOGL) | Seeking Alpha",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQExZFqhkRjbyObu70uOYdKfKA93cqfLkFHeA0N22lTjfgPPWtQU8sPIXra_KAB0GTOs7TSdXBwjhSDA97wEb2MZdlgu4DWsTgrSlKV6vRduB93BeiZe0KkZ1Y2bn5O5mDNHNSESq-ncegEU4kIQHnX5CBYgL0XmFN8uhAPDBzhkt-NXxLVcHHFW7Q=="
+    },
+    {
+      "source_name": "Nasdaq",
+      "source_title": "Buy, Sell or Hold GOOGL Stock Before Q3 Earnings? Here's What to Know | Nasdaq",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEYOxOEhOqcxcXnkBOyVibu3K73zFVgScfasBaoyO8rIHYaCm56G9h_KkzRng0gJIA5y_uCaHSxHBmbZRn3dShZgL_o0akoCYGXxXa5Ip00XivH-SPiMe0otEt1armyqoiNJUKcgcB5A9Fg49jl-5ljC_DUUDlC-GY7q_C1eFHgRBMzOcCfOjfV1yEl5xkjZtw5B3A="
+    },
+    {
+      "source_name": "Morningstar",
+      "source_title": "Going Into Earnings, Is Alphabet Stock a Buy, a Sell, or Fairly Valued? | Morningstar",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQENVhnHetIOfk96Yqb5rOhu8CPp3gY2MabaHqDiJqqUnjVIJmWdTFcyInocKTajTmeOOnTjiU26vTVaptzk7IPRzzedxRXnxblMEFWC-L8-CnBIyBiXTYxUINDySn_a_CDRnsVa7M7Xg6Ef15s928nhWrDAGWKTXZVsnHpvdMq_Cod2SkNGafX2hFM7_5_EpRfygsqeCy6inJXxcySmykU="
+    },
+    {
+      "source_name": "MarketBeat",
+      "source_title": "Alphabet (GOOG) Earnings Date and Reports 2025 - MarketBeat",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGi6fXs3ivFgbt0tXv6Snk5Xk-zvZRfEYEuIPXE4goeysanBhrw26uQSiLrR8fPs3iVytePUmXWwcrPsDrm3am_oMWEgGPrMhSBqjT64HKCipC_1P7HkkgcAfkwkUCp746pdHdV0Ef_me3pGhaFba6e4js="
+    },
+    {
+      "source_name": "IG",
+      "source_title": "Alphabet Q3 2025 earnings preview: Google Cloud & ad revenue in focus - IG",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF40TCD_G7RS716HJZJakw6T2_80bgjWG5mh4IHb6tJEAv1Gr05bAAo1t4RqWAtyOfIvahHXOAYJm3aoELMZv2CCMy0nA80yxYKjyfi2xGS741hn9DDPIaWnrj4kSXEzI9jV5T-wYb_B94Q7Mrs5n1ux_U4yF6U3K3aS2-U2iK36EZgmAtuaz1yWb6eJKF8t01r"
+    },
+    {
+      "source_name": "GuruFocus",
+      "source_title": "Google (GOOG) ROIC % : 29.87% (As of Jun. 2025) - GuruFocus",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHXk8sD4kM91a4gjGf8qVs1ZrKmeB1O2kiYq2TTDcy1Sesou_8mKKPIvl2tGyJm8vW5UiHKjEVEYhEA-31z9Wnqk6oWbKQNVs9GVz3ojtoIXq3I46u_3Ept03NUU8eRU8zvWdc="
+    },
+    {
+      "source_name": "Stock Analysis",
+      "source_title": "Alphabet (GOOG) Dividend History, Dates & Yield - Stock Analysis",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGJbTRFCiT3CIo3_lBjD5vb_8RGiug5ivit4CP8dMTnTlvLev3KfiyxGMTNEy6d_eb1qhgJiZVNlAleHWLG_kO2_KaPdPGOZkVRH8TVcmXmpEaI6LEmZ3gD6vEFRJ6ehLCOwD43zvBbbpxj"
+    },
+    {
+      "source_name": "MarketBeat",
+      "source_title": "Wedbush Has Positive Outlook for Alphabet FY2025 Earnings - MarketBeat",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHzbayfKR9U0AH-QYmC6vvCK4oyXBi6V1w97wJvZ-sKDLs6F8bNeShdD8cLGE6qA473_WRTHlWSMF54QPwsWwTZaP31mZ50EdwsiROaxOeUdkj9pseQrDzAOLTIJ60OgTX_z4rCy7nvhrM-oYk_aCJkFZmU6Yci1adjRZmEQsxS9Kua7fW2pxg0_m24iG5jOa6_58QNIF4dVoFZZS8vbGIUNegrCD-6v5ZjgA=="
+    },
+    {
+      "source_name": "Scribd",
+      "source_title": "GOOG Alphabet Research Equity Report 2025 - Scribd",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBRhV3inBYlI-AfT6UfN221aHJcFCdrpxmAFg5Blp_IjIcaPEOA4WxYwD3r2jkYvTVKBd5oV-JNJTq3IMJlctP3Y3HJBpT33Edir2r05OmfqRAlKxXSqh7EyLmhwV57K3PQG6-nGCubjUjv3G5gPBQxsnX6z5hLJ3812HVdaBExG6b8uZiGFiD-M52n9O4"
+    },
+    {
+      "source_name": "FinanceCharts.com",
+      "source_title": "Alphabet (GOOGL) ROIC - FinanceCharts.com",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFCWWvVu8y79ja1nABKHTHNQjTovV7ipTks0Xgmb6oHO9cEMlRfxuWbOcqUldU9QqQQcBV2oBi2smui_GtW1sMSBq2NkGEpxcIAbcrnZ40KmzPEnKuW2BNyEuN9fUQ7zDaBcsb1uN4phRm-dmbYAZau"
+    },
+    {
+      "source_name": "IG",
+      "source_title": "Alphabet Q3 2025 earnings preview: Google Cloud & ad revenue in focus - IG",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHAYUz8WrPnfzC_hbMUVTXlKSC8FEiGnro1vbGUd5lplK-Ag-BArQRFPhBXcgelEnQEWXLng4iF5UljS3_c6XDoH2_Ez_kcWLh1n5nTIGmpz2YVJNu3grHazJPTuzFRfShd3VE91CtPYQxi9paOKEteoctfhJ84BKucWIda_tD-WoIwZgSJaC3_CQ2cVaE5"
+    },
+    {
+      "source_name": "Seeking Alpha",
+      "source_title": "Alphabet Inc. (GOOG) Stock Valuation Grade & Metrics - Seeking Alpha",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbRYtLmJx16Hs53a8Dzdq-DWkHg86zRcsLbJjx500v5V6JCemw3OMKVHG1JkFXq6KCcMmV1P5yNPFVroFONHreEeCXhMFAw8TmKcrRR4qDPpG9T0VVD5NvLKx2kog32JMGyoAXZ7FNsj1yuCfAk6w6oA=="
+    },
+    {
+      "source_name": "Alphabet Investor Relations",
+      "source_title": "Alphabet Announces Date of Third Quarter 2025 Financial Results Conference Call",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHJ2kYhVwKfR7gvbBBuEetk5CYHjXYXHmLkzsAFp5UPHnQW4gMf9zIPdCoZWGtSZcEPNa3S3s0TRb0o9IaKJrnMbhNAMXvHqMpVdxp-bxIFNny4Rl1EYnwwyE9pHJox_aUoe4smI5LO5RmlWBEa6oGvVUYae5jDz98TDgVHftGq1NdcMJul-x9ojeTuagmhh7TecAHcUGz3JifV7-Ghfb-yVtHAMG8ze6RZACM_7De_iTPRUHQPt7NRb3mIuasI8oGY1r4vrBrLkE0A9hfsg7lglaoLhIIGl0="
+    },
+    {
+      "source_name": "Seeking Alpha",
+      "source_title": "Alphabet: Relentless Bull Run Meets Q3 Earnings (NASDAQ:GOOG) - Seeking Alpha",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEWj9r6wFgu6V2vrqrCh6LgJpVMuFZLC13mEpqNJBawiqou7I3pQwTfYuxGyGceKi7pMLgAPhyioXXIV8TTlYwYHzbn7LPeRn3UNuTyXY88MKXMYSt-IOu8Amb-r9zdxR7E_5M1Sh-5DdX9lFdWScLGTVd_hWOGZizKMy4RYa--h-hp05hKgqqHX247lRaFJs1_5A=="
+    },
+    {
+      "source_name": "Morningstar",
+      "source_title": "GOOG - Alphabet Inc Class C Dividends - Morningstar",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGyKY4XgMq0nCgZnM_hwIhbVhofG45yuqSiclvX5bV1vgIFGICOiyCkp4u3AziYeNrAV-9EpjYvUte5WQ0pneaKB4F1aHRlB92vhoZxfkZPoDnC1AozZDtBHq735kzMJTy5h7vIs36JUsfv3fcx0y0j9g=="
+    },
+    {
+      "source_name": "Stock Analysis",
+      "source_title": "Alphabet (GOOGL) Statistics & Valuation - Stock Analysis",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEhZlLqFpBx7W_UDoeQ75QHX1ABqBR3VIbwHvCXCv6r6p9kI0lNps2w_C1BCTNesR_nF7qjNY7mHAdoVlDfD6v_OHdpaGApXKiT6NK8t6OUxc-CpZ0_Cc3rWDmy3A0SPxDwU1D3kpwtOAUoJxiN"
+    },
+    {
+      "source_name": "RoboForex",
+      "source_title": "Alphabet Inc. (GOOG) stock analysis and forecast for 2025 - RoboForex",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEhD0-TcH6FVg_enwmii-KxXBoP151rImnO942FXI6kSZk1nhCSNyZTmJd0CGE4NTcRLrNKvhngyUUhXimJlqJtm4SgIxH2d12lgwprGS9kHjhbWYvy7G-hcDxVwaqzLljdlrf5-M_k397rMXC-gnzlzmwfB0K2eG5Wd5-H1v1URzoHfF3j5z2bem9KG3acGHfZEveqiLM6KNw="
+    },
+    {
+      "source_name": "GuruFocus",
+      "source_title": "Google (GOOG) Free Cash Flow : $66,728 Mil (TTM As of Jun. 2025) - GuruFocus",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQECpCc-IQ6aGPqs2AkquLNgsod3CnJvnBo6T52FBbv6s5Sor2Q9MPXYBfhHjF4zhX1os037JP2GwUZcpGrWCXGEB2VyolxG-GDm5YBWwBakECXJIloReToADE7RHmHhTtLMkS1WKH_iKb9q6R9dbCNVDNL9"
+    },
+    {
+      "source_name": "Storyboard18",
+      "source_title": "Google restructures ad sales unit, cuts middle management amid AI overhaul",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFd7e1VPLbpq_nS5hdaHwHSXDS_J2vikcS5q03-5ffrDuhAy-d_lkYDWhQRifxaUNPkb5yKrvaOFJz9rf5A2sLvo8K9SPQ8xH8Hscv39yqceXhrxs_3fDbo8c180vSlHpCNpZDxDk8M9IGb4kcXC9Ci8calqfV8T2Ij7r6wNXT2OZGNwKhbKz9ZEAlz66c4TdmZsiBKfZPBM6SmCM4t3gZRDMvgrSyk4b67f6yYwzt4PcPQsesdv3Cr"
+    },
+    {
+      "source_name": "Nasdaq",
+      "source_title": "Alphabet Inc. Class C Capital Stock (GOOG) Earnings Report Date - Nasdaq",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZ3Om1YtdUGEfTuag6mOsVz9zVOXFD3YkxXwBCmKDanU2yQtPPv_tkLQPudSOcN2qwFzQBtpJPj23NlH5CrfCsfu5961YvWp_R_JgsSi1u6rXvE3p1qKSv9uQ8Di1SzMmnMsGBOTwmdFTzk6hnFgjIKYEA7kvf"
+    },
+    {
+      "source_name": "Insurance Journal",
+      "source_title": "Consumers Seek $2.36B From Google After Privacy Verdict - Insurance Journal",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFoBHNr-c8fWkranKSnBiKAtD808Bcl6x8y8quR9zWwaDNJXJRVdKUg5ko89oVNUNqPRRkf-ivCpGqzxVTVbg_61B7AECB8z88VGn_cHVytS8XNuGkglHlU5G6AHuwQKk1uQfVvrBUTERMy172P-iIyHlSfLPHNUlp1lEdfYCIMn"
+    },
+    {
+      "source_name": "Strategic Management Insight",
+      "source_title": "Alphabet (Google) SWOT Analysis 2025 - Strategic Management Insight",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG-kFJuJBQO_bB4ZPJE2Ionsl-glPLB4u9rv45r2IAgOFPESUp7xyCzRfDoNpy9gcZtJWQ40gSqYqStzhKxRK7gBqpUjgwC5drphvLvaAggQi2o2ObTgPTfEh_1LYkk16yyIqBheZ4nD0fcYDr7hTuJTA9Jccf3iFR1YY4mCW35r_ST05lT"
+    },
+    {
+      "source_name": "Barchart.com",
+      "source_title": "Google Stock Is a High-Growth Story With Room to Run in 2025 - Barchart.com",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGFO6FuNIg_vn79uuuf1a2q4jfMkT231QKfxq9j0r9i5Fz8llk59aNHMSJ_632o7S9LlXbqAiOYLUQ2LryViWC4HBnsopaj_VSWy-xhnMv3sIs7Og-ESImaVH-YjV2esfT2dMbq92pCyCArxDsTzuJlGWST36yzDv_a96FY3MEUFa0hst5G7mOnLSMCZiYemzPMVOxoNdDAse16CMJVM0mxbazCPQ=="
+    },
+    {
+      "source_name": "The Motley Fool",
+      "source_title": "$1 Trillion Quantum Leap: 1 Quantum AI Stock Ready to Ride the Wave to 2035 | The Motley Fool",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHdLDR0JNedS8W5kr8ZP8uEd0_quTJxEdpgnEdnKYnRu5ynoWH8AMGk9Y-zne0XS9AjQh5ZBCEWJ3nhZUlHbycaqwyuh5OY3XvJp6j0sXKWbZVmIAII08udy3iCZj3v_LDtDlVJkakvdJA-QlmKSUpe7ULoZbvU6XgLkRHH5yHWwT1qEkQwJ3jsxXpivJTHZccmRiBwYdE5Mg=="
+    },
+    {
+      "source_name": "Seeking Alpha",
+      "source_title": "Alphabet Q3 2025 Earnings Preview: Anthropic Deal Signals Next Phase Of Cloud Acceleration - Seeking Alpha",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEhh6C6cv8llwjbtP8k8VRdyectZj1F9mM_ap0QOQ5h4ycSIZHDHW-ZNqv-73m2nE0oSglnTob-Q_3vImQnMxMRGT3aabJwbtfE3LCJeHDHAjNchtuHUmVyvifVLGAYSF8y-9NdRje2HaluRYf9bPy3RBNKfAQnZddqwc8NHHl8-Ww6pA7RfNF0O5jVPfUlcUdE-X6lICtSm5LBnkUAEQEh_U_brGl9ZjVkdJYPY1uaFYB_wWUYHYVDbSiHa0SQ"
+    }
   ],
-  "rationale": "The market is exhibiting a strong bullish stance on Alphabet (GOOG) as of October 27, 2025, driven by robust financial performance and strategic advancements in artificial intelligence. Recent earnings have shown impressive revenue and net income growth, reinforcing investor confidence in its core advertising and rapidly expanding cloud segments. The company's significant investments in AI, highlighted by major partnerships and infrastructure development, are perceived as powerful catalysts for future profitability. This positive momentum is further supported by substantial shareholder return programs, including a large share buyback and increased dividends. Consequently, the market anticipates continued upside, with a strong consensus among analysts for a 'Strong Buy' rating.",
-  "market_impact": 8,
-  "analysis": "<h2>Alphabet Inc. (GOOG): A Deep Dive into Financial Health and Strategic Positioning</h2><table style='width:100%; border-collapse: collapse;'><tr><td style='border: 1px solid #ddd; padding: 8px;'><b>Metric</b></td><td style='border: 1px solid #ddd; padding: 8px;'><b>Description</b></td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Revenue Growth</td><td style='border: 1px solid #ddd; padding: 8px;'>Alphabet reported impressive Q2 2025 revenue of $96.43 billion, marking a 14% year-over-year increase. The trailing twelve-month revenue as of June 2025 stood at $371.399 billion, up 13.13% year-over-year, reflecting sustained expansion across its diverse segments. [cite: 1, 23, 30]</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Profitability (Margins)</td><td style='border: 1px solid #ddd; padding: 8px;'>Gross profit margin for the latest twelve months is strong at 58.9%, with operating margins typically ranging between 25%-30%. Q1 FY25 saw an operating margin expansion to 34%, with net income rising 19% to $28.2 billion in Q2 2025, demonstrating efficient cost management and strong core business performance. [cite: 1, 4, 5, 11, 13, 30]</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Earnings Per Share (EPS) & Growth</td><td style='border: 1px solid #ddd; padding: 8px;'>The company delivered robust EPS of $2.31 in Q2 2025, a 22.22% increase year-over-year. The trailing twelve-month EPS as of June 2025 reached $9.38. Analysts anticipate continued strong EPS, with a consensus forecast of $2.27 for Q3 2025. [cite: 1, 8, 30, 33, 41]</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Free Cash Flow (FCF)</td><td style='border: 1px solid #ddd; padding: 8px;'>Alphabet exhibits robust free cash flow generation, with $66.728 billion over the trailing twelve months ending June 2025, representing a 10% year-over-year increase. This strong FCF, despite significant capital expenditures in AI infrastructure, highlights operational efficiency. [cite: 1, 20, 21]</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Return on Invested Capital (ROIC)</td><td style='border: 1px solid #ddd; padding: 8px;'>ROIC remains healthy, with the latest twelve months figure at 28.2% and Q2 2025 showing 29.87%. This indicates that Alphabet is effectively deploying its capital to generate strong returns, significantly exceeding its cost of capital. [cite: 14, 28]</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Debt Levels and Leverage</td><td style='border: 1px solid #ddd; padding: 8px;'>Alphabet maintains a strong balance sheet with low leverage. Total debt in June 2025 was $35.55 billion, with a debt-to-equity ratio of 0.07 in Q2 2025. The company possesses substantial cash reserves, resulting in negative net debt, reflecting financial prudence. [cite: 1, 9, 12, 16, 19]</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Valuation Metrics</td><td style='border: 1px solid #ddd; padding: 8px;'>The stock is currently trading at a trailing P/E ratio of 27.68x as of October 27, 2025, with a forward P/E of 26.28x. While these metrics may appear at a premium, they are supported by the company's strong growth prospects and market leadership. [cite: 15, 27]</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Guidance and Forward Outlook</td><td style='border: 1px solid #ddd; padding: 8px;'>Management has provided a conservative but positive outlook, emphasizing continued investment in AI and cloud services. Analysts project strong revenue growth for 2025, driven by AI monetization and cloud expansion. The upcoming Q3 2025 earnings call is highly anticipated for further clarity. [cite: 1, 30, 32, 41]</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Competitive Positioning and Moat Strength</td><td style='border: 1px solid #ddd; padding: 8px;'>Alphabet holds a wide economic moat, underpinned by its dominant market share in search (87% in Q1 2025), advertising, Android, and YouTube. Google Cloud is rapidly gaining market share, becoming the third-largest cloud provider, propelled by AI and data analytics leadership. [cite: 1, 22]</td></tr><tr><td style='border: 1px solid #ddd; padding: 8px;'>Return to Shareholders (Dividends & Buybacks)</td><td style='border: 1px solid #ddd; padding: 8px;'>The company demonstrates a strong commitment to shareholder returns, having authorized a massive $70 billion share repurchase program in Q1 2025. Additionally, Alphabet increased its quarterly dividend by 5% to $0.21 per share in April 2025. [cite: 13, 45, 46]</td></tr></table>",
-  "key_takeaways": "<ul><li>Alphabet's financial performance remains robust, characterized by double-digit revenue and earnings growth, particularly in its cloud and advertising segments. [cite: 1, 7, 23, 30]</li><li>Strategic investments in Artificial Intelligence, including significant deals and data center expansion, are poised to drive future innovation and monetization. [cite: 1, 22, 37, 38, 39]</li><li>The company maintains a strong balance sheet with low debt and impressive free cash flow generation, providing financial flexibility for continued growth. [cite: 1, 12, 16, 19, 20]</li><li>Shareholder returns are prioritized through substantial share buybacks and a growing dividend, reflecting management's confidence and a balanced capital allocation strategy. [cite: 13, 45, 46]</li><li>Despite competitive and regulatory landscapes, Alphabet's dominant market positions and wide economic moat provide a resilient foundation for sustained long-term value creation. [cite: 1, 22]</li></ul>",
-  "sources": [
+  "recommendations": [
     {
-      "source_name": "FinancialContent",
-      "source_title": "Deep Dive: Alphabet Inc. (GOOG) – Navigating the AI Frontier",
-      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF5P8hmpHHhGon5YyE7rNFOYd7qr3-DH4Jx2BfjZJAx74SeSzzr_JfmMwQrU05NwyUuSj9dZHnRYDLtTqQwRo8N9UwH2-oisVOSh3j8MlEnugxejbNVVFWz9ZBtiQS-DpFPDNwh5j82yjSA-kHbuSISnUdn6oXcYEvj5CIVpEUJvz0Xh0e8hmQduKCNMr005MBNLFeXNqvoZ83oIFYz-Rp4sk2ZjmDHz9-9ZOZXY2MWAMj5oGyW4swE9Vr_pCQBww=="
+      "ticker": "GOOG",
+      "trade_direction": "LONG",
+      "bull_bear_score": 8,
+      "stop_loss": 245.00,
+      "target_price": 288.00,
+      "price": 260.00,
+      "entry_price": 258.50
+    }
+  ],
+  "simulation": [
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
     },
     {
-      "source_name": "Finbox",
-      "source_title": "Un
-2025-10-27 15:30:55,114 - WARNING - [ERR-0001] - [78c395a4] Attempting to extract JSON from text (length: 18392 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 15:30:55,120 - WARNING - [ERR-0001] - [cc31a710] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 15:30:55,121 - WARNING - [ERR-0001] - [d6d3f179] Attempting to extract JSON from text (length: 484 chars) | From: helpers.py:extract_json_from_text()
-2025-10-27 15:30:55,121 - WARNING - [ERR-0001] - [e8cf3ce9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
-2025-10-27 15:30:55,121 - INFO - [INFO] - Successfully parsed AI response as JSON
-2025-10-27 15:31:36,183 - WARNING - [WARN-0001] - [5fa65947] {
-      "source_name": "FinancialContent",
-      "source_title": "Deep Dive: Alphabet Inc. (GOOG) – Navigating the AI Frontier",
-      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF5P8hmpHHhGon5YyE7rNFOYd7qr3-DH4Jx2BfjZJAx74SeSzzr_JfmMwQrU05NwyUuSj9dZHnRYDLtTqQwRo8N9UwH2-oisVOSh3j8MlEnugxejbNVVFWz9ZBtiQS-DpFPDNwh5j82yjSA-kHbuSISnUdn6oXcYEvj5CIVpEUJvz0Xh0e8hmQduKCNMr005MBNLFeXNqvoZ83oIFYz-Rp4sk2ZjmDHz9-9ZOZXY2MWAMj5oGyW4swE9Vr_pCQBww=="
-    } | From: holistic.py:run_holistic_market_model()
-2025-10-27 15:31:36,183 - WARNING - [ERR-0303] - [3fbc7c82] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
-2025-10-27 15:31:36,183 - ERROR - [ERR-0303] - [08c81fb6] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
-2025-10-27 15:31:36,183 - ERROR - [ERR-0001] - [fc03231c] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
-2025-10-27 15:31:36,183 - WARNING - [ERR-0003] - [ae71b13f] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+      "profile": "Value Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.6,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.6,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.6,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.6,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.6,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.6,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.6,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.6,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.9,
+      "sentiment": 0.9,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.9,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Day Trader",
+      "conviction": 0.6,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Conservative Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Hedge Fund Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.6,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.6,
+      "sentiment": 0.5,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.7,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Quant Trader",
+      "conviction": 0.8,
+      "sentiment": 0.8,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Long-Term Investor",
+      "conviction": 0.8,
+      "sentiment": 0.7,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "Dividend Investor",
+      "conviction": 0.4,
+      "sentiment": 0.3,
+      "position": "BULLISH"
+    },
+    {
+      "profile": "ESG Investor",
+      "conviction": 0.5,
+      "sentiment": 0.4,
+      "position": "BULLISH"
+    }
+  ],
+  "simulation_summary": [
+    {
+      "profile": "Growth Investor",
+      "conviction": 0.88,
+      "sentiment": 0.78
+    },
+    {
+      "profile": "Value Investor",
+      "conviction": 0.58,
+      "sentiment": 0.48
+    },
+    {
+      "profile": "Momentum Trader",
+      "conviction": 0.88,
+      "sentiment": 0.88
+    },
+    {
+      "profile": "Algorithmic Trader",
+      "conviction": 0.78,
+      "sentiment": 0.78
+    },
+    {
+      "profile": "Institutional Investor",
+      "conviction": 0.78,
+      "sentiment": 0.68
+    },
+    {
+      "profile": "Retail Investor",
+      "conviction": 0.68,
+      "sentiment": 0.58
+    },
+    {
+      "profile": "Fundamental Analyst",
+      "conviction": 0.68,
+      "sentiment": 0.58
+    },
+    {
+      "profile": "Technical Analyst",
+      "conviction": 0.78,
+      "sentiment": 0.78
+    }
+  ]
+}
+```
+2025-10-27 16:11:30,401 - WARNING - [ERR-0001] - [958187c9] Attempting to extract JSON from text (length: 54008 chars) | From: helpers.py:extract_json_from_text()
+2025-10-27 16:11:30,403 - WARNING - [ERR-0001] - [06bb246b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-27 16:11:30,403 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-27 16:12:14,638 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
+2025-10-27 16:21:54,018 - WARNING - [ERR-0001] - [4e4faf77] Attempting to extract JSON from text (length: 64437 chars) | From: helpers.py:extract_json_from_text()
+2025-10-27 16:21:54,020 - WARNING - [ERR-0001] - [8e495273] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-27 16:21:54,021 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-27 16:22:25,580 - ERROR - [ERR-0103] - [b4a725fa] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting property name enclosed in double quotes: line 10 column 5 (char 389) | From: helpers.py:get_factors()
+2025-10-27 16:22:25,581 - WARNING - [WARN-0002] - [b76f885f] Raw factors response: {
+  "factors": [
+    {
+      "name": "supply_production",
+      "value": {
+        "description": "Global gold production is estimated at around 3,200 metric tonnes for 2025, with modest increases in ... | From: helpers.py:get_factors()
+2025-10-27 16:22:26,430 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLD']
+2025-10-27 16:27:56,262 - WARNING - [ERR-0001] - [ee33c3a3] Attempting to extract JSON from text (length: 73356 chars) | From: helpers.py:extract_json_from_text()
+2025-10-27 16:27:56,264 - WARNING - [ERR-0001] - [8e159114] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-27 16:27:56,264 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-27 16:28:33,764 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
+2025-10-27 16:39:12,589 - WARNING - [ERR-0001] - [871c4283] Attempting to extract JSON from text (length: 41005 chars) | From: helpers.py:extract_json_from_text()
+2025-10-27 16:39:12,590 - WARNING - [ERR-0001] - [38795636] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-27 16:39:12,591 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-27 16:39:57,396 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ADBE']
+2025-10-27 16:44:59,880 - INFO - [INFO] - Starting comprehensive dataset reset
+2025-10-27 16:44:59,881 - INFO - [INFO] - Starting reset of document_generated field in tickers collection
+2025-10-27 16:45:00,190 - INFO - [INFO] - Successfully updated 22 documents in tickers collection
+2025-10-27 16:45:00,190 - INFO - [INFO] - Reset of document_generated field completed
+2025-10-27 16:45:00,190 - INFO - [INFO] - Starting reset of task_completed field in pipeline collection
+2025-10-27 16:45:00,498 - INFO - [INFO] - Successfully updated 0 documents in pipeline collection
+2025-10-27 16:45:00,498 - INFO - [INFO] - Reset of task_completed field completed
+2025-10-27 16:45:00,498 - INFO - [INFO] - Starting deletion of tickers with recurrence 'once'
+2025-10-27 16:45:00,805 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from tickers collection
+2025-10-27 16:45:00,805 - INFO - [INFO] - Deletion of once tickers completed
+2025-10-27 16:45:00,805 - INFO - [INFO] - Starting deletion of pipeline documents with recurrence 'once'
+2025-10-27 16:45:01,112 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from pipeline collection
+2025-10-27 16:45:01,112 - INFO - [INFO] - Deletion of once pipeline documents completed
+2025-10-27 16:45:01,112 - INFO - [INFO] - Starting deletion of all weigh_factors documents
+2025-10-27 16:45:01,419 - INFO - [INFO] - Successfully deleted 8 documents from 'weight_factors'.
+2025-10-27 16:45:01,419 - INFO - [INFO] - All reset operations completed successfully
