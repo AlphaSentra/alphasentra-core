@@ -1355,7 +1355,7 @@ def get_ticker_performance(ticker, period=None):
     
     Parameters:
     ticker (str): The ticker symbol to query
-    period (str, optional): Specific period to retrieve (p1y, p6m, p3m, p1m, p1d). 
+    period (str, optional): Specific period to retrieve (p1y, p6m, p3m, p1m, p1w). 
                             If None, returns all periods.
     
     Returns:
@@ -1386,7 +1386,7 @@ def get_ticker_performance(ticker, period=None):
                 'p6m': f"{round(performance_data.get('6m') * 100, 1)}%" if performance_data.get('6m') is not None else None,
                 'p3m': f"{round(performance_data.get('3m') * 100, 1)}%" if performance_data.get('3m') is not None else None,
                 'p1m': f"{round(performance_data.get('1m') * 100, 1)}%" if performance_data.get('1m') is not None else None,
-                'p1d': f"{round(performance_data.get('1d') * 100, 1)}%" if performance_data.get('1d') is not None else None
+                'p1w': f"{round(performance_data.get('1w') * 100, 1)}%" if performance_data.get('1w') is not None else None
             }
             
     except Exception as e:

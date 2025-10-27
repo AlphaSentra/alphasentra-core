@@ -317,7 +317,7 @@ def calculate_performance_metrics(ticker):
             '6m': end_date - timedelta(days=180),
             '3m': end_date - timedelta(days=90),
             '1m': end_date - timedelta(days=30),
-            '1d': end_date - timedelta(days=1)
+            '1w': end_date - timedelta(days=7)
         }
         
         performance = {}

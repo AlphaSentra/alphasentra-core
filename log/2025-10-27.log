@@ -1,0 +1,14 @@
+2025-10-27 08:59:18,044 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AUDUSD=X']
+2025-10-27 09:03:07,832 - WARNING - [ERR-0001] - [cb3a21e8] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2025-10-27 09:03:07,832 - ERROR - [ERR-0001] - [431eb347] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-27 09:03:07,833 - ERROR - [ERR-0404] - [79fb2e47] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2025-10-27 09:06:21,329 - WARNING - [ERR-0001] - [b3bfa635] Attempting to extract JSON from text (length: 83502 chars) | From: helpers.py:extract_json_from_text()
+2025-10-27 09:06:21,332 - WARNING - [ERR-0001] - [ff01e753] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-27 09:06:21,333 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-27 09:06:59,448 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['KO']
+2025-10-27 09:14:07,900 - WARNING - [ERR-0001] - [bec13f30] Attempting to extract JSON from text (length: 159869 chars) | From: helpers.py:extract_json_from_text()
+2025-10-27 09:14:08,013 - WARNING - [ERR-0001] - [3b6442e1] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-27 09:14:08,013 - WARNING - [ERR-0001] - [82616d53] Attempting to extract JSON from text (length: 159858 chars) | From: helpers.py:extract_json_from_text()
+2025-10-27 09:14:08,016 - WARNING - [ERR-0001] - [e04e3db4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-27 09:14:08,017 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-27 09:14:23,540 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SBUX']

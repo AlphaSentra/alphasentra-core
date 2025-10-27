@@ -100,7 +100,8 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
                     p1y = get_ticker_performance(tickers, 'p1y'),
                     p6m = get_ticker_performance(tickers, 'p6m'),
                     p3m = get_ticker_performance(tickers, 'p3m'),
-                    p1m = get_ticker_performance(tickers, 'p1m')
+                    p1m = get_ticker_performance(tickers, 'p1m'),
+                    p1w = get_ticker_performance(tickers, 'p1w')
                 )
     
     try:

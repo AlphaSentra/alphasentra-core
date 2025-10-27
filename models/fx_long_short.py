@@ -98,7 +98,8 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
                     p1y = get_ticker_performance(tickers, 'p1y'),
                     p6m = get_ticker_performance(tickers, 'p6m'),
                     p3m = get_ticker_performance(tickers, 'p3m'),
-                    p1m = get_ticker_performance(tickers, 'p1m')
+                    p1m = get_ticker_performance(tickers, 'p1m'),
+                    p1w = get_ticker_performance(tickers, 'p1w')
                 )
     
     try:
