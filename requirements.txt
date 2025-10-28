@@ -118,4 +118,3 @@ pymongo
 
 # Text processing
 patsy
-vaderSentiment

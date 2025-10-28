@@ -21,7 +21,7 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text, get_ticker_name, get_ticker_performance, calculate_average_sentiment
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text, get_ticker_name, get_ticker_performance, calculate_average_sentiment, calculate_average_conviction
 from logging_utils import log_error, log_warning, log_info
 from models.analysis import run_analysis
 
@@ -139,6 +139,8 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
             recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits)
             # Get sentiment score for market outlook if available
             recommendations['sentiment_score'] = calculate_average_sentiment(recommendations)
+            # Get conviction from simulation if available
+            recommendations['conviction'] = calculate_average_conviction(recommendations)
             # Add current GMT timestamp to recommendations
             recommendations['timestamp_gmt'] = get_current_gmt_timestamp()
             # Add language code to recommendations

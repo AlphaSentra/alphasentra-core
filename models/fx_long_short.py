@@ -124,7 +124,9 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
             # Add entry prices to recommendations
             recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits=decimal_digits)
             # Get sentiment score for market outlook if available
-            recommendations['sentiment_score'] = calculate_average_sentiment(recommendations) 
+            recommendations['sentiment_score'] = calculate_average_sentiment(recommendations)
+            # Get conviction from simulation if available
+            recommendations['conviction'] = calculate_average_sentiment(recommendations)
             # Add current GMT timestamp to recommendations
             recommendations['timestamp_gmt'] = get_current_gmt_timestamp()
             # Add language code to recommendations

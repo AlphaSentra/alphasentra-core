@@ -1367,3 +1367,23 @@ def calculate_average_sentiment(recommendations):
         except (KeyError, ZeroDivisionError):
             return 0.0
     return 0.0
+
+def calculate_average_conviction(recommendations):
+    """
+    Calculate average conviction score from simulation_summary array if available.
+    
+    Parameters:
+    recommendations (dict): The recommendations dictionary containing conviction data
+    
+    Returns:
+    float: Average conviction score or 0 if unavailable
+    """
+    if 'simulation_summary' in recommendations and recommendations['simulation_summary']:
+        try:
+            total = sum(item['conviction'] for item in recommendations['simulation_summary'])
+            conviction_score = (round(total / len(recommendations['simulation_summary']), 2))
+            return conviction_score
+        except (KeyError, ZeroDivisionError):
+            return 0.0
+    return 0.0
+

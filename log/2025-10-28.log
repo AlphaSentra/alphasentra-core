@@ -113,3 +113,15 @@
 2025-10-28 13:53:02,970 - ERROR - [ERR-0103] - [1b4dd4d0] Error parsing factors response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()
 2025-10-28 13:53:02,970 - WARNING - [WARN-0002] - [0fd5e2d5] Raw factors response: Error generating content: [Errno 54] Connection reset by peer... | From: helpers.py:get_factors()
 2025-10-28 13:53:03,982 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURUSD=X']
+2025-10-28 15:00:48,767 - WARNING - [ERR-0001] - [a50c1a24] Attempting to extract JSON from text (length: 61 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 15:00:48,768 - ERROR - [ERR-0001] - [f28f37cf] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-28 15:00:48,768 - ERROR - [ERR-0001] - [f3ef3415] Text preview: Error generating content: [Errno 54] Connection reset by peer... | From: helpers.py:extract_json_from_text()
+2025-10-28 15:00:48,768 - ERROR - [ERR-0103] - [39135017] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: fx_long_short.py:run_fx_model()
+2025-10-28 15:00:48,769 - WARNING - [WARN-0002] - [52cac711] Raw response content: Error generating content: [Errno 54] Connection reset by peer... | From: fx_long_short.py:run_fx_model()
+2025-10-28 15:03:41,542 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURUSD=X']
+2025-10-28 15:10:34,969 - WARNING - [ERR-0001] - [810e2857] Attempting to extract JSON from text (length: 47742 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 15:10:34,988 - WARNING - [ERR-0001] - [e7e2d0ae] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-28 15:10:34,988 - WARNING - [ERR-0001] - [c8a50a4c] Attempting to extract JSON from text (length: 47731 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 15:10:34,989 - WARNING - [ERR-0001] - [8ad4e9cb] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 15:10:34,990 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 15:11:14,915 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ADBE']
