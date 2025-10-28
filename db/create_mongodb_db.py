@@ -169,13 +169,13 @@ def create_insights_collection(db):
             },
             'sentiment_score': {
                 'bsonType': 'double',
-                'minimum': 0,
+                'minimum': -1.0,
                 'maximum': 1.0
             },
-            'market_impact': {
+            'conviction': {
                 'bsonType': 'int',
-                'minimum': 1,
-                'maximum': 10
+                'minimum': -1.0,
+                'maximum': 1.0
             },
             'factors':{},
             'timestamp_gmt': {
