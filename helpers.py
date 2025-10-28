@@ -1113,11 +1113,11 @@ def get_asset_classes(tickers):
             if 'asset_class' in doc and isinstance(doc['asset_class'], str):
                 asset_classes_from_db.append(doc['asset_class'])
         
-        # Remove duplicates and return
+        # Remove duplicates and return as comma-separated string
         if asset_classes_from_db:
-            return list(set(asset_classes_from_db))
+            return ', '.join(set(asset_classes_from_db))
         else:
-            return []
+            return ''
         
     except Exception as e:
         log_error("Error getting asset classes from database", "DATABASE_ASSET_CLASSES", e)

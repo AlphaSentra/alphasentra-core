@@ -93,15 +93,7 @@ def create_insights_collection(db):
     '$jsonSchema': {
         'bsonType': 'object',
         'required': [
-            'title',
-            'market_outlook_narrative',
-            'rationale',
-            'analysis',
-            'recommendations',
-            'sentiment_score',
-            'market_impact',
-            'timestamp_gmt',
-            'language_code'
+            'timestamp_gmt'
         ],
         'properties': {
             'title': {

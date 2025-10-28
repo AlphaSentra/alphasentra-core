@@ -1,0 +1,61 @@
+2025-10-28 06:53:18,547 - WARNING - [ERR-0001] - [43a494be] Attempting to extract JSON from text (length: 57337 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 06:53:18,586 - WARNING - [ERR-0001] - [8d05b6d6] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-28 06:53:18,586 - WARNING - [ERR-0001] - [68a457a3] Attempting to extract JSON from text (length: 52550 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 06:53:18,588 - WARNING - [ERR-0001] - [791d3635] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 06:53:18,589 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 06:53:45,580 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ACF.AX']
+2025-10-28 07:01:07,291 - WARNING - [ERR-0001] - [512f75a8] Attempting to extract JSON from text (length: 41065 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 07:01:07,294 - WARNING - [ERR-0001] - [b430ed9e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 07:01:07,294 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 07:01:41,181 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['FWD.AX']
+2025-10-28 07:13:28,183 - WARNING - [ERR-0001] - [0e97a870] Attempting to extract JSON from text (length: 46027 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 07:13:28,239 - WARNING - [ERR-0001] - [4e5cf03c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 07:13:28,240 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 07:14:03,614 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ACF.AX']
+2025-10-28 07:18:15,383 - WARNING - [ERR-0001] - [e0b212fc] Attempting to extract JSON from text (length: 33598 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 07:18:15,390 - WARNING - [ERR-0001] - [47e830d0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 07:18:15,391 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 07:18:49,534 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['FWD.AX']
+2025-10-28 07:30:51,153 - WARNING - [ERR-0001] - [bd4db1eb] Attempting to extract JSON from text (length: 44564 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 07:30:51,159 - WARNING - [ERR-0001] - [945dc825] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 07:30:51,160 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 07:31:14,216 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['RDDT']
+2025-10-28 08:12:16,092 - WARNING - [ERR-0001] - [fb6f264a] Attempting to extract JSON from text (length: 28696 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 08:12:16,117 - WARNING - [ERR-0001] - [38417558] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-28 08:12:16,120 - WARNING - [ERR-0001] - [56b60fec] Attempting to extract JSON from text (length: 28685 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 08:12:16,124 - WARNING - [ERR-0001] - [2911c894] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 08:12:16,126 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 08:12:44,292 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-10-28 08:20:42,256 - WARNING - [ERR-0001] - [e7765c0b] Attempting to extract JSON from text (length: 63319 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 08:20:42,260 - WARNING - [ERR-0001] - [f4704a51] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 08:20:42,260 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 08:21:17,935 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PLTR']
+2025-10-28 08:29:19,838 - WARNING - [ERR-0001] - [eb9484b5] Attempting to extract JSON from text (length: 54957 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 08:29:19,844 - WARNING - [ERR-0001] - [58ee5952] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 08:29:19,845 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 08:29:55,377 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NVDA']
+2025-10-28 08:36:31,381 - WARNING - [ERR-0001] - [a63d3592] Attempting to extract JSON from text (length: 54957 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 08:36:31,388 - WARNING - [ERR-0001] - [ecaeb62e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 08:36:31,391 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 08:37:02,425 - WARNING - [ERR-0001] - [f652c50d] Attempting to extract JSON from text (length: 10782 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 08:37:02,441 - WARNING - [ERR-0001] - [f52dd15e] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-28 08:37:03,074 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2025-10-28 08:43:51,512 - WARNING - [ERR-0001] - [f752142d] Attempting to extract JSON from text (length: 55029 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 08:43:51,518 - WARNING - [ERR-0001] - [1ca732a1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 08:43:51,519 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 08:44:24,914 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['IBM']
+2025-10-28 08:53:02,939 - WARNING - [ERR-0001] - [aea8c00d] Attempting to extract JSON from text (length: 35501 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 08:53:02,945 - WARNING - [ERR-0001] - [f866013b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 08:53:02,946 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 08:53:39,279 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
+2025-10-28 08:57:27,858 - WARNING - [ERR-0001] - [5a528936] Attempting to extract JSON from text (length: 34429 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 08:57:27,860 - WARNING - [ERR-0001] - [fa92da7e] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 10 column 3468 (char 6301) | From: helpers.py:extract_json_from_text()
+2025-10-28 08:57:27,863 - ERROR - [ERR-0404] - [8675f450] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-28 09:02:19,845 - WARNING - [ERR-0001] - [6a9e8fce] Attempting to extract JSON from text (length: 46260 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 09:02:19,853 - WARNING - [ERR-0001] - [b0b85ecc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 09:02:19,855 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 09:02:52,815 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLD']
+2025-10-28 09:10:05,039 - WARNING - [ERR-0001] - [b2a55ed3] Attempting to extract JSON from text (length: 37051 chars) | From: helpers.py:extract_json_from_text()
+2025-10-28 09:10:05,042 - WARNING - [ERR-0001] - [92b3c99d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-28 09:10:05,042 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-28 09:10:35,217 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
