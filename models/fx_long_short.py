@@ -21,7 +21,7 @@ load_dotenv()
 
 from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, FX_FACTORS_PROMPT
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, analyze_sentiment, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, get_ticker_name, get_ticker_performance
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, get_ticker_name, get_ticker_performance, calculate_average_sentiment
 from logging_utils import log_error, log_warning
 from models.analysis import run_analysis
 
@@ -124,8 +124,7 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
             # Add entry prices to recommendations
             recommendations = add_entry_price_to_recommendations(recommendations, decimal_digits=decimal_digits)
             # Get sentiment score for market outlook if available
-            sentiment_score = analyze_sentiment(recommendations.get('market_outlook_narrative', ''))
-            recommendations['sentiment_score'] = sentiment_score            
+            recommendations['sentiment_score'] = calculate_average_sentiment(recommendations) 
             # Add current GMT timestamp to recommendations
             recommendations['timestamp_gmt'] = get_current_gmt_timestamp()
             # Add language code to recommendations
