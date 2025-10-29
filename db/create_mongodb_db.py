@@ -218,7 +218,7 @@ def create_insights_collection(db):
     if success:
         print(f"Successfully created collection '{collection_name}'")
         print("Collection schema validation rules applied:")
-        print("   - Required fields: title, market_outlook_narrative, rationale, analysis, recommendations, sentiment_score, market_impact, timestamp_gmt, language_code")
+        print("   - Required fields: timestamp_gmt")
         print("   - Optional field: sources")
         print("   - Indexes created: timestamp_gmt, sentiment_score, language_code, timestamp_gmt+importance")
     
