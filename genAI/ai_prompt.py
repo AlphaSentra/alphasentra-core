@@ -31,9 +31,11 @@ def get_random_api_key():
     Returns:
     str: A randomly selected API key from the array
     """
-    api_keys_str = os.getenv("GEMINI_API_KEY")
+    
+    api_keys_str = []
+
     if not api_keys_str:
-        raise ValueError("GEMINI_API_KEY environment variable not found")
+        api_keys_str = os.getenv("GEMINI_API_KEY")
     
     try:
         # Parse the string as a Python list using ast.literal_eval for safety
