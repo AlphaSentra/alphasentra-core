@@ -15,6 +15,8 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.x'
+    - name: Install dependencies
+      run: pip install -r requirements.txt
     - name: Run batch processing - data collection
       run: python main.py -batch
 
@@ -27,5 +29,7 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.x'
+    - name: Install dependencies
+      run: pip install -r requirements.txt
     - name: Run reset dataset
       run: python main.py -reset
