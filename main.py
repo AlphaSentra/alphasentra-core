@@ -10,8 +10,11 @@ Description:
 Main entry point for the AlphaSentra, allowing users to select model.
 """
 
+import argparse
 from menu import MENU_ITEMS
 from _config import LANGUAGE
+from batch.batch_run import run_batch_processing
+from batch.reset_dataset import reset_all
 
 
 def print_menu():
@@ -61,4 +64,16 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-batch", action="store_true",
+                        help="Run batch processing directly")
+    parser.add_argument("-reset", action="store_true",
+                        help="Reset all datasets")
+    args = parser.parse_args()
+    
+    if args.batch:
+        run_batch_processing()
+    elif args.reset:
+        reset_all()
+    else:
+        main()

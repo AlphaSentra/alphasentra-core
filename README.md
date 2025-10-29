@@ -9,6 +9,26 @@ To run this script, you need to make sure of the requirements:
 `pip install -r requirements.txt`
 
 
+## Usage
+
+Run the application interactively:
+```bash
+python main.py
+```
+
+Or run in batch processing mode directly:
+```bash
+python main.py -batch
+```
+
+Reset all datasets:
+```bash
+python main.py -reset
+```
+
+The `-batch` flag executes `run_batch_processing()` without showing the menu interface.
+The `-reset` flag executes `reset_all()` to reset document statuses and clean up one-time records.
+
 ## Environment Variables
 Create a `.env` file in the root of the project. This file should include sensitive configuration such as database connections, API keys, and the encryption secret.
 
