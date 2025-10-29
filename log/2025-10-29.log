@@ -1,0 +1,12 @@
+2025-10-29 10:14:00,937 - ERROR - [ERR-0104] - [cfb0346d] Error getting AI weights | Exception: AttributeError: module 'types' has no attribute 'HttpOptions' | From: helpers.py:get_ai_weights()
+2025-10-29 10:17:27,965 - WARNING - [ERR-0001] - [97a511e9] Attempting to extract JSON from text (length: 38427 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 10:17:27,977 - WARNING - [ERR-0001] - [2e38216b] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2025-10-29 10:18:03,300 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURUSD=X']
+2025-10-29 10:20:31,999 - WARNING - [ERR-0001] - [13bc9fd0] Attempting to extract JSON from text (length: 28325 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 10:20:32,001 - WARNING - [ERR-0001] - [4ca1452b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-29 10:20:32,001 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-29 10:21:22,342 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-10-29 10:26:47,706 - WARNING - [ERR-0001] - [7b941b7d] Attempting to extract JSON from text (length: 39649 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 10:26:47,708 - WARNING - [ERR-0001] - [c267c399] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-29 10:26:47,708 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-29 10:27:22,715 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
