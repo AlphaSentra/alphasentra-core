@@ -176,25 +176,11 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
                     print(f"Sentiment: {recommendations['sentiment_score']}")
                     print()
 
-                # Display market impact if available
-                if 'market_impact' in recommendations:
-                    print("=== Market Impact ===")
-                    print()
-                    print(f"Market Impact: {recommendations['market_impact']}")
-                    print()
-
                 # Display rationale if available
                 if 'rationale' in recommendations:
                     print("=== Rationale ===")
                     print()
                     print(recommendations['rationale'])
-                    print()
-
-                # Display analysis if available
-                if 'analysis' in recommendations:
-                    print("=== Analysis ===")
-                    print()
-                    print(recommendations['analysis'])
                     print()
                 
                 # Display sources if available
