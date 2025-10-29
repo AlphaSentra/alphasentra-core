@@ -81,7 +81,7 @@ def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2
                 # Fetch historical data for the last 60 days
                 end_date = datetime.now()
                 start_date = end_date - timedelta(days=60)
-                data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False)
+                data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False, auto_adjust=False)
                 
                 if data.empty:
                     logger.error(f"No data available for {ticker}")
@@ -204,7 +204,7 @@ def calculate_entry_price(tickers, trade_direction, period=5):
                 # Fetch historical data for the last 30 days (to ensure we have enough data for weekly calculations)
                 end_date = datetime.now()
                 start_date = end_date - timedelta(days=30)
-                data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False)
+                data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False, auto_adjust=False)
                 
                 if data.empty:
                     logger.error(f"No data available for {ticker}")

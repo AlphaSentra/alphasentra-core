@@ -10,3 +10,37 @@
 2025-10-29 10:26:47,708 - WARNING - [ERR-0001] - [c267c399] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
 2025-10-29 10:26:47,708 - INFO - [INFO] - Successfully parsed AI response as JSON
 2025-10-29 10:27:22,715 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-10-29 10:41:52,207 - WARNING - [ERR-0001] - [8f0bc414] Attempting to extract JSON from text (length: 68434 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 10:41:52,209 - WARNING - [ERR-0001] - [6bbfe153] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-29 10:41:52,210 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-29 10:42:33,026 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-10-29 10:47:12,437 - WARNING - [ERR-0001] - [2d90dc89] Attempting to extract JSON from text (length: 42475 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 10:47:12,440 - WARNING - [ERR-0001] - [11861192] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-29 10:47:12,441 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-29 10:47:35,420 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PLTR']
+2025-10-29 10:56:58,051 - WARNING - [ERR-0001] - [19512cd2] Attempting to extract JSON from text (length: 54 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 10:56:58,058 - ERROR - [ERR-0001] - [7b4d2346] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-29 10:56:58,058 - ERROR - [ERR-0001] - [a4d7af11] Text preview: Error generating content: The read operation timed out... | From: helpers.py:extract_json_from_text()
+2025-10-29 10:56:58,059 - WARNING - [ERR-0001] - [0a6a2f1a] Attempting to extract JSON from text (length: 54 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 10:56:58,059 - ERROR - [ERR-0001] - [51082a57] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-29 10:56:58,059 - ERROR - [ERR-0001] - [fcb9a6a6] Text preview: Error generating content: The read operation timed out... | From: helpers.py:extract_json_from_text()
+2025-10-29 10:56:58,059 - ERROR - [ERR-0001] - [00df71a3] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-29 10:56:58,059 - WARNING - [WARN-0002] - [950176de] Raw response content: Error generating content: The read operation timed out... | From: holistic.py:run_holistic_market_model()
+2025-10-29 11:01:06,804 - WARNING - [ERR-0001] - [069d5d58] Attempting to extract JSON from text (length: 34601 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 11:01:06,806 - WARNING - [ERR-0001] - [a8dbf7e0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-29 11:01:06,806 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-29 11:01:38,156 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NVDA']
+2025-10-29 11:10:20,791 - WARNING - [ERR-0001] - [1e001db8] Attempting to extract JSON from text (length: 77833 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 11:10:20,797 - WARNING - [ERR-0001] - [e0325dcb] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-29 11:10:20,798 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-29 11:11:07,532 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2025-10-29 11:19:14,626 - WARNING - [ERR-0001] - [38505989] Attempting to extract JSON from text (length: 67425 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 11:19:14,631 - WARNING - [ERR-0001] - [305c4444] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-29 11:19:14,632 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-29 11:19:45,922 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['IBM']
+2025-10-29 11:25:27,591 - WARNING - [ERR-0001] - [94ca14cb] Attempting to extract JSON from text (length: 40791 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 11:25:27,594 - WARNING - [ERR-0001] - [486e90c6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-29 11:25:27,594 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-29 11:26:00,202 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
+2025-10-29 11:32:58,760 - WARNING - [ERR-0001] - [48591ee9] Attempting to extract JSON from text (length: 51532 chars) | From: helpers.py:extract_json_from_text()
+2025-10-29 11:32:58,790 - ERROR - [ERR-0404] - [4d13215a] Error in holistic_market_model | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: holistic.py:run_holistic_market_model()
