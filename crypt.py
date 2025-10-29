@@ -123,7 +123,7 @@ def main_menu():
     Provides interactive terminal interface for users.
     """
     print("=" * 50)
-    print("Alphagora Encryption/Decryption Tool")
+    print("AlphaSentra Encryption/Decryption Tool")
     print("=" * 50)
     
     while True:

@@ -1,13 +1,13 @@
 """
-Project:     Alphagora
+Project:     AlphaSentra
 File:        main.py
 Author:      Daiviet Huynh
 Created:     2025-08-10
 License:     MIT License
-Repository:  https://github.com/Alphagora-Edge/Alphagora
+Repository:  https://github.com/AlphaSentra
 
 Description:
-Main entry point for the Alphagora, allowing users to select model.
+Main entry point for the AlphaSentra, allowing users to select model.
 """
 
 from menu import MENU_ITEMS
@@ -16,7 +16,7 @@ from _config import LANGUAGE
 
 def print_menu():
     print("\n" + "=" * 100)
-    print("Alphagora - Main Menu - " + LANGUAGE.upper())
+    print("AlphaSentra - Main Menu - " + LANGUAGE.upper())
     print("=" * 100)
     print("Select from the menu below, the model you want to run:\n")
 
@@ -49,14 +49,14 @@ def main():
                 _, action = MENU_ITEMS[actual_index]
                 action()
             elif choice == exit_number:
-                print("\nExiting Alphagora. Goodbye!")
+                print("\nExiting AlphaSentra. Goodbye!")
                 break
             else:
                 print("\nInvalid choice. Please select a valid option.")
         except ValueError:
             print("\nInvalid input. Please enter an integer.")
         except KeyboardInterrupt:
-            print("\n\nExiting Alphagora. Goodbye!")
+            print("\n\nExiting AlphaSentra. Goodbye!")
             break
 
 

@@ -77,7 +77,7 @@ ERROR_CODES = {
 class AgLogger:
     """Custom logger with file logging and error codes."""
     
-    def __init__(self, name: str = 'alphagora'):
+    def __init__(self, name: str = 'alphasentra'):
         self.name = name
         self.logger = logging.getLogger(name)
         self.logger.setLevel(logging.DEBUG)

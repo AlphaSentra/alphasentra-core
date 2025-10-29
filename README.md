@@ -1,7 +1,7 @@
-# Alphagora
+# AlphaSentra
 ![screenshot](img/banner.png)
 
-Alphagora is an agentic AI that leverages generative intelligence to convert market, economic, and sentiment data into insights, opinions, and recommendations. It autonomously tests, adapts, and executes strategies to capture patterns driven by collective sentiment.
+AlphaSentra is an agentic AI that leverages generative intelligence to convert market, economic, and sentiment data into insights, opinions, and recommendations. It autonomously tests, adapts, and executes strategies to capture patterns driven by collective sentiment.
 
 ## Install Packages
 To run this script, you need to make sure of the requirements:
@@ -20,11 +20,11 @@ If `USE_MONGODB_SRV` is `true` the connection string `MONGODB_SRV` will be used,
 USE_MONGODB_SRV=true
 MONGODB_HOST=localhost
 MONGODB_PORT=27017
-MONGODB_DATABASE=alphagora
+MONGODB_DATABASE=alphasentra
 MONGODB_USERNAME=username
 MONGODB_PASSWORD=password
 MONGODB_AUTH_SOURCE=admin
-MONGODB_SRV='mongodb+srv://alphagora_db_user:{db_password}@cluster0.9x59erc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+MONGODB_SRV='mongodb+srv://alphasentra_db_user:{db_password}@cluster0.9x59erc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 </pre>
 
 ### Google Gemini API
@@ -202,4 +202,4 @@ The prompt should return the JSON object, including the following structure:
  **JSON Output format**: YOUR RESPONSE MUST BE A VALID JSON OBJECT. DO NOT INCLUDE ANY ADDITIONAL TEXT OR EXPLANATIONS. With this exact structure: [title] as a string, [market_outlook_narrative] as an array of strings. [rationale] as a string. [analysis] as a string in HTML format. [key_takeaways] as a string in HTML format. [sources] as an array of objects, where each object has, [source_name] as strong, [source_title] as a string, and [source_url] as a string. On the same level as [sources], [recommendations] as an array of objects, where each object has, [ticker] as a string, [trade_direction] as string, [bull_bear_score] as integer.
 </pre>
 
-The JSON output will be interpreted by the Alphagora engine, which will then process, transform, and securely store the data for further analysis and use within the system.
+The JSON output will be interpreted by the AlphaSentra engine, which will then process, transform, and securely store the data for further analysis and use within the system.
