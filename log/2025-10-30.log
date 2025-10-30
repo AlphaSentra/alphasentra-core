@@ -1,0 +1,13 @@
+2025-10-30 10:23:36,750 - WARNING - [ERR-0001] - [632e2285] Attempting to extract JSON from text (length: 39971 chars) | From: helpers.py:extract_json_from_text()
+2025-10-30 10:23:36,751 - WARNING - [ERR-0001] - [c9d4699f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-30 10:23:36,751 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-30 10:24:05,931 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-10-30 10:28:04,831 - WARNING - [ERR-0001] - [1e6f5257] Attempting to extract JSON from text (length: 61135 chars) | From: helpers.py:extract_json_from_text()
+2025-10-30 10:28:04,876 - WARNING - [ERR-0001] - [c8b4cfac] JSON parsing failed for pattern ```json\s*(\{.*\})\s*```...: Expecting ',' delimiter: line 9 column 2979 (char 5730) | From: helpers.py:extract_json_from_text()
+2025-10-30 10:28:04,879 - ERROR - [ERR-0404] - [0675d819] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-10-30 10:33:31,354 - WARNING - [ERR-0001] - [b746ad4d] Attempting to extract JSON from text (length: 52829 chars) | From: helpers.py:extract_json_from_text()
+2025-10-30 10:33:31,360 - WARNING - [ERR-0001] - [2b53a720] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-30 10:33:31,361 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-30 10:34:06,189 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PLTR']
+2025-10-30 10:38:36,842 - WARNING - [ERR-0001] - [51e4971d] Attempting to extract JSON from text (length: 55704 chars) | From: helpers.py:extract_json_from_text()
+2025-10-30 10:38:36,884 - ERROR - [ERR-0404] - [b39207e5] Error in holistic_market_model | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: holistic.py:run_holistic_market_model()
