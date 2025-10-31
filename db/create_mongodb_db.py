@@ -1,6 +1,6 @@
 """
 Description:
-Script to create MongoDB database 'alphagora'.
+Script to create MongoDB database 'alphasentra-core'.
 """
 
 import pymongo
@@ -370,7 +370,9 @@ def insert_pipeline_data(db):
     print()
     
     # Pipeline data to insert
-    pipeline_data = []
+    pipeline_data = [
+        {"model_function": "get_eq_high_conviction_buys", "task_completed": False, "model_name": "eq_hcb", "recurrence": "multi"}
+    ]
     
     try:
         collection = db[collection_name]
@@ -638,12 +640,12 @@ def create_asset_classes_collection(db):
 
 def create_alphagora_database():
     """
-    Creates the 'alphagora' database and required collections with schema validation.
+    Creates the 'alphasentra-core' database and required collections with schema validation.
     Performs sequential data insertions. Returns True if all steps succeed, False otherwise.
     """
     try:
         # Get database name from environment
-        database = os.getenv("MONGODB_DATABASE", "alphagora")
+        database = os.getenv("MONGODB_DATABASE", "alphasentra-core")
         
         # Use DatabaseManager for connection
         client = DatabaseManager().get_client()
@@ -687,12 +689,12 @@ def create_alphagora_database():
         return False
 
 if __name__ == "__main__":
-    print("Starting alphagora database creation...")
+    print("Starting alphasentra-core database creation...")
     
     # Use DatabaseManager to get connection details
     try:
         client = DatabaseManager().get_client()
-        db_name = os.getenv("MONGODB_DATABASE", "alphagora")
+        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
         print(f"MongoDB Database: {db_name}")
         print("-" * 50)
         

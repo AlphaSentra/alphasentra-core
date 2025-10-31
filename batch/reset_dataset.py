@@ -1,5 +1,5 @@
 """
-Comprehensive dataset reset script for the Alphagora system.
+Comprehensive dataset reset script for the Alphasentra system.
 
 This script provides functions to:
 - Reset the document_generated field to False for all tickers in the tickers collection
@@ -32,7 +32,7 @@ def reset_document_generated():
         
         # Get MongoDB client using DatabaseManager
         client = DatabaseManager().get_client()
-        db_name = os.getenv("MONGODB_DATABASE", "alphagora")
+        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
         db = client[db_name]
         collection = db['tickers']
         
@@ -62,7 +62,7 @@ def reset_pipeline_completed():
         
         # Get MongoDB client using DatabaseManager
         client = DatabaseManager().get_client()
-        db_name = os.getenv("MONGODB_DATABASE", "alphagora")
+        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
         db = client[db_name]
         collection = db['pipeline']
         
@@ -92,7 +92,7 @@ def delete_once_tickers():
         
         # Get MongoDB client using DatabaseManager
         client = DatabaseManager().get_client()
-        db_name = os.getenv("MONGODB_DATABASE", "alphagora")
+        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
         db = client[db_name]
         collection = db['tickers']
         
@@ -121,7 +121,7 @@ def delete_once_pipeline():
         
         # Get MongoDB client using DatabaseManager
         client = DatabaseManager().get_client()
-        db_name = os.getenv("MONGODB_DATABASE", "alphagora")
+        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
         db = client[db_name]
         collection = db['pipeline']
         
@@ -151,7 +151,7 @@ def remove_all_weight_factors():
         
         # Get MongoDB client using DatabaseManager
         client = DatabaseManager().get_client()
-        db_name = os.getenv("MONGODB_DATABASE", "alphagora")
+        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
         db = client[db_name]
         collection = db['weight_factors']
 

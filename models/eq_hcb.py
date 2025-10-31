@@ -13,7 +13,7 @@ from datetime import datetime, timedelta, timezone
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from helpers import DatabaseManager
 
-def get_positive_high_conviction_insights():
+def get_eq_high_conviction_buys():
     """
     Fetch insights from last week with positive sentiment and high conviction.
     
@@ -41,9 +41,9 @@ def get_positive_high_conviction_insights():
     min_sentiment_score = 0  # Minimum sentiment score to include
     conviction_threshold = 0.60  # Minimum conviction level to include
     importance_level = 3  # Importance level to set for matched insights
-    p1m_threshold = 0.00  # 1-Month price change threshold (5%)
-    p3m_threshold = 0.00  # 3-Month price change threshold (10%)
-    p6m_threshold = 0.00  # 6-Month price change threshold (15%)    
+    p1m_threshold = 0.01  # 1-Month price change threshold (5%)
+    p3m_threshold = 0.01  # 3-Month price change threshold (10%)
+    p6m_threshold = 0.01  # 6-Month price change threshold (15%)    
 
     # Calculate date range
     now = datetime.now(timezone.utc)

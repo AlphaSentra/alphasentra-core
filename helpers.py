@@ -667,7 +667,7 @@ class DatabaseManager:
                 
                 # Get MongoDB connection details from environment variables
                 use_mongodb_srv = os.getenv("USE_MONGODB_SRV", "false").lower() == "true"
-                mongodb_database = os.getenv("MONGODB_DATABASE", "alphagora")
+                mongodb_database = os.getenv("MONGODB_DATABASE", "alphasentra-core")
                 mongodb_username = os.getenv("MONGODB_USERNAME")
                 mongodb_password = os.getenv("MONGODB_PASSWORD")
                 mongodb_auth_source = os.getenv("MONGODB_AUTH_SOURCE", "admin")
@@ -730,7 +730,7 @@ def save_to_db(recommendations):
         
         # Use DatabaseManager for connection pooling
         client = DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
         collection = db['insights']
         
         # Insert the recommendations document
@@ -772,7 +772,7 @@ def save_to_db_with_retry(recommendations):
     """
     try:
         client = DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
         collection = db['insights']
         
         result = collection.insert_one(recommendations)
@@ -868,7 +868,7 @@ def save_to_db_with_fallback(recommendations, flag_document_generated: bool = Tr
                     
                     if tickers_set:
                         client = DatabaseManager().get_client()
-                        db_name = os.getenv("MONGODB_DATABASE", "alphagora")
+                        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
                         db = client[db_name]
                         tickers_coll = db['tickers']
                         for ticker in tickers_set:
@@ -917,7 +917,7 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
         
         # Use DatabaseManager for connection pooling
         client = DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
         collection = db['weight_factors']
         
         # Check if we have weights for today
@@ -1014,7 +1014,7 @@ def get_regions(tickers):
         
         # Use DatabaseManager for connection pooling
         client = DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
         collection = db['tickers']
         
         # Query database for tickers and get their regions
@@ -1059,7 +1059,7 @@ def get_asset_classes(tickers):
         
         # Use DatabaseManager for connection pooling
         client = DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
         collection = db['tickers']
         
         # Query database for tickers and get their asset classes
@@ -1104,7 +1104,7 @@ def get_importance(tickers):
         
         # Use DatabaseManager for connection pooling
         client = DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
         collection = db['tickers']
         
         # Query database for tickers and get their importance values
@@ -1154,7 +1154,7 @@ def get_ticker_name(tickers):
         
         # Use DatabaseManager for connection pooling
         client = DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
         collection = db['tickers']
         
         # Query database for tickers and get their names
@@ -1322,7 +1322,7 @@ def get_ticker_performance(ticker, period=None):
             return None
 
         client = DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
         collection = db['tickers']
         
         ticker_data = collection.find_one({"ticker": ticker})

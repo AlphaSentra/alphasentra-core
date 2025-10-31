@@ -29,7 +29,7 @@ import time
 load_dotenv()
 
 # MongoDB database name
-MONGODB_DATABASE = os.getenv("MONGODB_DATABASE", "alphagora")
+MONGODB_DATABASE = os.getenv("MONGODB_DATABASE", "alphasentra-core")
 
 def derive_module_and_func(model_function, model_name=None):
     """
