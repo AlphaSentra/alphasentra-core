@@ -17,10 +17,10 @@ def get_positive_high_conviction_insights():
     """
     Fetch insights from last week with positive sentiment and high conviction.
     
-    Retrieves insights from MongoDB that meet the following criteria:
+    Retrieves insights that meet the following criteria:
     - Created within the last 7 days
-    - Positive sentiment score (>0)
-    - High conviction level (>=0.70)
+    - Positive sentiment score
+    - High conviction level
     
     Returns:
         list: A list of insight documents sorted by conviction (descending)
@@ -33,15 +33,17 @@ def get_positive_high_conviction_insights():
         client = DatabaseManager().get_client()
         db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
     except Exception as e:
-        print(f"Database connection failed: {e}")
         return []
     collection = db["insights"]
     
     # Configuration variables
     tag_string = ">high_conviction_buy"
     min_sentiment_score = 0  # Minimum sentiment score to include
-    conviction_threshold = 0.70  # Minimum conviction level to include
+    conviction_threshold = 0.60  # Minimum conviction level to include
     importance_level = 3  # Importance level to set for matched insights
+    p1m_threshold = 0.00  # 1-Month price change threshold (5%)
+    p3m_threshold = 0.00  # 3-Month price change threshold (10%)
+    p6m_threshold = 0.00  # 6-Month price change threshold (15%)    
 
     # Calculate date range
     now = datetime.now(timezone.utc)
@@ -62,33 +64,43 @@ def get_positive_high_conviction_insights():
         ("conviction", pymongo.DESCENDING),
         ("sentiment_score", pymongo.DESCENDING)
     ]))
-    print(f"Found {len(results)} insights:")
+    
+    
     for insight in results:
-        print(f"Updating {insight['_id']}")
-        collection.update_one(
-            {"_id": insight["_id"]},
-            [{
-                "$set": {
-                    "importance": importance_level,
-                    "tag": {
-                        "$cond": [
-                            {"$not": {"$regexMatch": {"input": {"$ifNull": ["$tag", ""]}, "regex": re.escape(tag_string)}}},
-                            {
-                                "$cond": {
-                                    "if": {"$gt": [{"$strLenCP": {"$ifNull": ["$tag", ""]}}, 0]},
-                                    "then": {"$concat": ["$tag", ",", tag_string]},
-                                    "else": tag_string
-                                }
-                            },
-                            "$tag"
-                        ]
+
+
+        # Fetch ticker data for each insight
+        ticker_collection = db["tickers"]
+        if insight.get("recommendations"):
+            ticker = insight["recommendations"][0].get("ticker")
+            if ticker:
+                ticker_data = ticker_collection.find_one({"ticker": ticker})
+                if ticker_data:
+                    p1m = ticker_data.get("1m")
+                    p3m = ticker_data.get("3m")
+                    p6m = ticker_data.get("6m")
+        
+        if p1m >= p1m_threshold and p3m >= p3m_threshold and p6m >= p6m_threshold:
+            collection.update_one(
+                {"_id": insight["_id"]},
+                [{
+                    "$set": {
+                        "importance": importance_level,
+                        "tag": {
+                            "$cond": [
+                                {"$not": {"$regexMatch": {"input": {"$ifNull": ["$tag", ""]}, "regex": re.escape(tag_string)}}},
+                                {
+                                    "$cond": {
+                                        "if": {"$gt": [{"$strLenCP": {"$ifNull": ["$tag", ""]}}, 0]},
+                                        "then": {"$concat": ["$tag", ",", tag_string]},
+                                        "else": tag_string
+                                    }
+                                },
+                                "$tag"
+                            ]
+                        }
                     }
-                }
-            }]
-        )
+                }]
+            )
         
     return results
-
-
-if __name__ == "__main__":
-    get_positive_high_conviction_insights()
