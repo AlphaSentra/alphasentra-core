@@ -13,7 +13,7 @@ from datetime import datetime, timedelta, timezone
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from helpers import DatabaseManager
 
-def get_eq_high_conviction_buys():
+def get_high_conviction_buys():
     """
     Fetch insights from last week with positive sentiment and high conviction.
     
@@ -37,7 +37,7 @@ def get_eq_high_conviction_buys():
     collection = db["insights"]
     
     # Configuration variables
-    tag_string = ">high_conviction_buy"
+    tag_string = ">high conviction buy ↗"
     min_sentiment_score = 0  # Minimum sentiment score to include
     conviction_threshold = 0.60  # Minimum conviction level to include
     importance_level = 3  # Importance level to set for matched insights
@@ -65,7 +65,7 @@ def get_eq_high_conviction_buys():
         ("sentiment_score", pymongo.DESCENDING)
     ]))
     
-    
+
     for insight in results:
 
 
@@ -104,3 +104,6 @@ def get_eq_high_conviction_buys():
             )
         
     return results
+
+if __name__ == "__main__":
+    get_high_conviction_buys()
