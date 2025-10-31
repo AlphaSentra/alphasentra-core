@@ -73,9 +73,9 @@ def update_simulation_with_stochastic(
                 new_s = np.sign(new_s) * abs(new_c)
 
             # Determine position
-            if new_c > 0.3:
+            if new_c > 0:
                 new_position = "BULLISH"
-            elif new_c < -0.3:
+            elif new_c < -0:
                 new_position = "BEARISH"
             else:
                 new_position = "NEUTRAL"
