@@ -6,6 +6,7 @@ from MongoDB with positive sentiment scores. Used for backtesting trading strate
 """
 import os
 import sys
+import re
 import pymongo
 from datetime import datetime, timedelta, timezone
 
@@ -36,6 +37,12 @@ def get_positive_high_conviction_insights():
         return []
     collection = db["insights"]
     
+    # Configuration variables
+    tag_string = ">high_conviction_buy"
+    min_sentiment_score = 0  # Minimum sentiment score to include
+    conviction_threshold = 0.70  # Minimum conviction level to include
+    importance_level = 3  # Importance level to set for matched insights
+
     # Calculate date range
     now = datetime.now(timezone.utc)
     last_week = now - timedelta(days=7)
@@ -47,8 +54,8 @@ def get_positive_high_conviction_insights():
             "$gte": last_week.isoformat(),
             "$lte": now.isoformat()
         },
-        "sentiment_score": {"$gt": 0},
-        "conviction": {"$gte": 0.70}
+        "sentiment_score": {"$gt": min_sentiment_score},
+        "conviction": {"$gte": conviction_threshold}
     }
     
     results = list(collection.find(query).sort([
@@ -60,12 +67,24 @@ def get_positive_high_conviction_insights():
         print(f"Updating {insight['_id']}")
         collection.update_one(
             {"_id": insight["_id"]},
-            {
+            [{
                 "$set": {
-                    "importance": 3,
-                    "tag": ">high_conviction_buy"
+                    "importance": importance_level,
+                    "tag": {
+                        "$cond": [
+                            {"$not": {"$regexMatch": {"input": {"$ifNull": ["$tag", ""]}, "regex": re.escape(tag_string)}}},
+                            {
+                                "$cond": {
+                                    "if": {"$gt": [{"$strLenCP": {"$ifNull": ["$tag", ""]}}, 0]},
+                                    "then": {"$concat": ["$tag", ",", tag_string]},
+                                    "else": tag_string
+                                }
+                            },
+                            "$tag"
+                        ]
+                    }
                 }
-            }
+            }]
         )
         
     return results
