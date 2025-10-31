@@ -44,9 +44,9 @@ def update_simulation_with_stochastic(
             stochastic_s = np.sign(stochastic_s) * abs(stochastic_c)
 
         # Determine position
-        if stochastic_c > 0.3:
+        if stochastic_c > 0:
             final_position = "BULLISH"
-        elif stochastic_c < -0.3:
+        elif stochastic_c < 0:
             final_position = "BEARISH"
         else:
             final_position = "NEUTRAL"
@@ -193,6 +193,21 @@ class Agent:
         }
 
 class MarketSimulator:
+    """Core market simulation engine modeling price dynamics and investor behavior.
+    
+    Attributes:
+        agents (list): Investor agent objects participating in the market
+        price (float): Current market price
+        price_history (list): Record of historical prices
+        volume (float): Current trading volume
+        market_sentiment (float): Aggregate market sentiment (-1.0 to 1.0)
+        
+    Methods:
+        run_time_step: Advance simulation by one time step
+        calculate_market_sentiment: Compute aggregate market mood
+        update_agent_positions: Process individual investor decisions
+        apply_market_impact: Calculate price changes from trading activity
+    """
     """Manages the market environment and the simulation loop."""
     def __init__(self, initial_investors: List[Dict[str, Any]], initial_price: float = 100.0):
         self.initial_price = initial_price
@@ -279,71 +294,4 @@ def process_simulation_data(raw_simulation_data: List[Dict[str, Any]]) -> List[D
     
     return final_states
 
-if __name__ == "__main__":
     
-    def process_simulation_data(raw_simulation_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """Processes simulation data through market simulation and stochastic updates."""
-        processed_simulation_data = [
-            {
-                "profile": entry["profile"],
-                "conviction": entry["conviction"],
-                "sentiment": entry["sentiment"],
-                "position": entry["position"]
-            }
-            for entry in raw_simulation_data
-            if all(k in entry for k in ["profile", "conviction", "sentiment", "position"])
-        ]
-        
-        if not processed_simulation_data:
-            return []
-        
-        # 1. First run agent-based market simulation
-        simulator = MarketSimulator(processed_simulation_data, initial_price=100.0)
-        
-        # Run one time step with example parameters
-        public_info = 0.6  # Example: positive market signal
-        macro_shock = -0.1  # Example: slight negative macro event
-        simulated_states = simulator.run_time_step(public_info, macro_shock)
-        
-        # 2. Then update with stochastic noise
-        final_states = update_simulation_with_stochastic(simulated_states)
-        
-        return final_states
-    
-    if __name__ == "__main__":
-        # Generate initial investor data using stochastic function
-        base_profiles = [
-            {"profile": f"Growth Investor #{random.randint(1, 1000000)}", "conviction": 0.7, "sentiment": 0.6, "position": "BULLISH"},
-            {"profile": f"Value Investor #{random.randint(1, 1000000)}", "conviction": -0.5, "sentiment": -0.35, "position": "BEARISH"},
-            {"profile": f"Momentum Trader #{random.randint(1, 1000000)}", "conviction": 0.3, "sentiment": 0.25, "position": "BULLISH"}
-        ]
-        
-        initial_investors = update_simulation_with_stochastic(base_profiles)
-        
-        if not initial_investors:
-            raise ValueError("No initial investor data generated")
-            
-        # Initialize the Market
-        INITIAL_PRICE = 100.0
-        simulator = MarketSimulator(initial_investors, INITIAL_PRICE)
-
-        # Log Initial (t=0) State
-        log_info(f"Initial state (t=0) - Price: {INITIAL_PRICE}")
-        initial_states = [a.get_state() for a in simulator.agents]
-        for state in initial_states:
-            log_info(f"Agent {state['profile']} - Conviction: {state['conviction']:.4f}, Sentiment: {state['sentiment']:.4f}, Position: {state['position']}, Bias: {state['Recency_Bias']:.4f}")
-
-        # Run Simulation for t=1
-        PUBLIC_INFO_SIGNAL = 0.6
-        MACRO_SHOCK = -0.1
-        log_info(f"External inputs for t=1 - Public Info: {PUBLIC_INFO_SIGNAL}, Macro Shock: {MACRO_SHOCK}")
-        
-        # Run the simulation step
-        final_states_t1 = simulator.run_time_step(PUBLIC_INFO_SIGNAL, MACRO_SHOCK)
-
-        # Log Final (t=1) State
-        log_info("Resulting state (t=1):")
-        for state in final_states_t1:
-            log_info(f"Agent {state['profile']} - Conviction: {state['conviction']:.4f}, Sentiment: {state['sentiment']:.4f}, Position: {state['position']}, P&L: {state['P&L']:.4f}")
-
-        log_info("t=1 values calculated based on market feedback and agent parameters")

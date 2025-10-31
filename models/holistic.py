@@ -154,8 +154,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
             recommendations['importance'] = get_importance(tickers)
             # Add to factors
             recommendations['factors'] = get_factors(tickers, instrument_name, current_date, prompt=factors)
-            # Process simulation data if available
-            # Get simulation data and extract only the required fields
+            # Get simulation data
             recommendations['simulation'] = process_simulation_data(recommendations.get('simulation', []))
             # Add tag
             if tag is not None: recommendations['tag'] = tag
