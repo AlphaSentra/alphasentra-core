@@ -371,7 +371,7 @@ def insert_pipeline_data(db):
     
     # Pipeline data to insert
     pipeline_data = [
-        {"model_function": "get_eq_high_conviction_buys", "task_completed": False, "model_name": "eq_hcb", "recurrence": "multi"}
+        {"model_function": "get_high_conviction_buys", "task_completed": False, "model_name": "hcb", "recurrence": "multi"}
     ]
     
     try:
