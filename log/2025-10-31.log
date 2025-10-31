@@ -753,3 +753,110 @@
 2025-10-31 14:10:01,477 - INFO - [INFO] - Time step t=1 starting
 2025-10-31 14:10:01,479 - INFO - [INFO] - Market state - Net Order: 260, Sentiment: 0.7875, Price Change: 129.9228, New Price: 229.9228
 2025-10-31 14:10:02,166 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
+2025-10-31 15:03:12,481 - INFO - [INFO] - MongoDB connection closed
+2025-10-31 15:04:25,483 - INFO - [INFO] - MongoDB connection closed
+2025-10-31 15:08:17,324 - WARNING - [ERR-0001] - [06e58895] Attempting to extract JSON from text (length: 47482 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:08:17,338 - ERROR - [ERR-0404] - [7c02c508] Error in holistic_market_model | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:08:22,979 - WARNING - [ERR-0001] - [7bde9836] Attempting to extract JSON from text (length: 36722 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:08:22,983 - WARNING - [ERR-0001] - [fd51f876] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-31 15:08:22,985 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-31 15:08:36,035 - WARNING - [ERR-0001] - [7d2b0ecb] Attempting to extract JSON from text (length: 31683 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:08:36,041 - WARNING - [ERR-0001] - [5f582ae9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-31 15:08:36,044 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-31 15:08:46,180 - WARNING - [ERR-0001] - [bd705e3d] Attempting to extract JSON from text (length: 65864 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:08:46,233 - ERROR - [ERR-0404] - [817916a6] Error in holistic_market_model | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:09:07,801 - INFO - [INFO] - Time step t=1 starting
+2025-10-31 15:09:07,805 - INFO - [INFO] - Market state - Net Order: -231, Sentiment: -0.7085, Price Change: -115.4609, New Price: -15.4609
+2025-10-31 15:09:08,681 - INFO - [INFO] - Time step t=1 starting
+2025-10-31 15:09:08,682 - INFO - [INFO] - Market state - Net Order: -230, Sentiment: -0.6267, Price Change: -114.9658, New Price: -14.9658
+2025-10-31 15:09:09,306 - ERROR - [ERR-0001] - [9c25610c] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('69046ea31c6f8090700023bd'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'conviction', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'int'}, 'reason': 'type did not match', 'consideredValue': -0.84, 'consideredType': 'double'}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-10-31 15:09:09,308 - ERROR - [ERR-0001] - [6047ec69] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-31 15:09:09,312 - WARNING - [ERR-0003] - [546f365a] Failed to save recommendations to database | From: fx_long_short.py:run_fx_model()
+2025-10-31 15:09:12,198 - ERROR - [ERR-0001] - [f8ab4c82] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('69046ea41c6f8090700023be'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'conviction', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'int'}, 'reason': 'type did not match', 'consideredValue': 0.01, 'consideredType': 'double'}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-10-31 15:09:12,199 - ERROR - [ERR-0001] - [cbc4cb53] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-31 15:09:12,200 - WARNING - [ERR-0003] - [36470c0b] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:09:15,894 - INFO - [INFO] - Time step t=1 starting
+2025-10-31 15:09:15,895 - INFO - [INFO] - Market state - Net Order: 56, Sentiment: 0.2979, Price Change: 27.9382, New Price: 127.9382
+2025-10-31 15:09:18,456 - ERROR - [ERR-0001] - [b6898fce] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('69046eac1c6f8090700023bf'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'conviction', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'int'}, 'reason': 'type did not match', 'consideredValue': 0.35, 'consideredType': 'double'}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-10-31 15:09:18,457 - ERROR - [ERR-0001] - [b658daa7] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-31 15:09:18,458 - WARNING - [ERR-0003] - [65403cde] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:09:19,709 - INFO - [INFO] - Batch cycle completed. Processed: 5 tickers, 0 pipelines. Remaining: 412 tickers, 0 pipelines
+2025-10-31 15:09:48,826 - WARNING - [ERR-0001] - [32bb9010] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:48,828 - ERROR - [ERR-0001] - [b8df4929] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:48,829 - ERROR - [ERR-0001] - [afcfd348] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:48,829 - WARNING - [ERR-0001] - [5cfa10ef] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:48,830 - ERROR - [ERR-0001] - [6551143d] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:48,831 - ERROR - [ERR-0001] - [09e2485d] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:48,831 - ERROR - [ERR-0001] - [7a6a4708] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:09:48,831 - WARNING - [WARN-0002] - [b56ab77f] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:09:50,079 - WARNING - [ERR-0001] - [c2e4b92e] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:50,081 - ERROR - [ERR-0001] - [83216ec8] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:50,083 - ERROR - [ERR-0001] - [a6e3caf3] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:50,084 - WARNING - [ERR-0001] - [6f762c09] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:50,085 - ERROR - [ERR-0001] - [14f73e44] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:50,087 - ERROR - [ERR-0001] - [72d11492] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:50,088 - ERROR - [ERR-0001] - [de786d9b] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:09:50,089 - WARNING - [WARN-0002] - [3116395f] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:09:52,177 - WARNING - [ERR-0001] - [ea895442] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,178 - ERROR - [ERR-0001] - [23d89455] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,179 - ERROR - [ERR-0001] - [ade96e4f] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,179 - WARNING - [ERR-0001] - [172ef063] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,180 - ERROR - [ERR-0001] - [1a19c8bf] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,181 - ERROR - [ERR-0001] - [389ff78b] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,182 - ERROR - [ERR-0001] - [e37f8d4b] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:09:52,182 - WARNING - [WARN-0002] - [7e73a08e] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:09:52,592 - WARNING - [ERR-0001] - [e6f04178] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,593 - ERROR - [ERR-0001] - [f8113312] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,594 - ERROR - [ERR-0001] - [e27e85b5] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,594 - WARNING - [ERR-0001] - [804bc733] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,596 - ERROR - [ERR-0001] - [e857c6b6] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,597 - ERROR - [ERR-0001] - [2dfc4efb] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: helpers.py:extract_json_from_text()
+2025-10-31 15:09:52,597 - ERROR - [ERR-0001] - [df5ad208] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:09:52,598 - WARNING - [WARN-0002] - [3a449d05] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}}... | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:10:07,275 - ERROR - [ERR-0001] - [c3d5b6b1] Error processing ticker ^N225 | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-10-31 15:10:09,028 - INFO - [INFO] - Batch cycle completed. Processed: 5 tickers, 0 pipelines. Remaining: 412 tickers, 0 pipelines
+2025-10-31 15:10:12,686 - ERROR - [ERR-0001] - [51f92c58] Failed to parse AI response: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource has been exhausted (e.g. check quota).', 'status': 'RESOURCE_EXHAUSTED'}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-10-31 15:12:45,622 - WARNING - [ERR-0001] - [66db9403] Attempting to extract JSON from text (length: 42883 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:12:45,629 - WARNING - [ERR-0001] - [97c588ff] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-31 15:12:45,632 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-31 15:13:06,995 - WARNING - [ERR-0001] - [935550b7] Attempting to extract JSON from text (length: 45123 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:13:06,999 - WARNING - [ERR-0001] - [e8d69bd6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-31 15:13:07,002 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-31 15:13:18,195 - WARNING - [ERR-0001] - [6ae070dd] Attempting to extract JSON from text (length: 63017 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:13:18,200 - WARNING - [ERR-0001] - [3735fbb2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-31 15:13:18,204 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-31 15:13:23,672 - WARNING - [ERR-0001] - [5256e63f] Attempting to extract JSON from text (length: 51347 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:13:23,679 - WARNING - [ERR-0001] - [bda00563] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-31 15:13:23,683 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-31 15:13:29,582 - INFO - [INFO] - Time step t=1 starting
+2025-10-31 15:13:29,585 - INFO - [INFO] - Market state - Net Order: 102, Sentiment: 0.3536, Price Change: 51.0815, New Price: 151.0815
+2025-10-31 15:13:32,135 - ERROR - [ERR-0001] - [784cec90] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('69046fa91c6f8090700023c0'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'conviction', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'int'}, 'reason': 'type did not match', 'consideredValue': 0.62, 'consideredType': 'double'}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-10-31 15:13:32,136 - ERROR - [ERR-0001] - [e78c1428] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-31 15:13:32,137 - WARNING - [ERR-0003] - [71d4fceb] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:13:44,093 - WARNING - [ERR-0001] - [b0a41a30] Attempting to extract JSON from text (length: 9684 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:13:44,101 - ERROR - [ERR-0001] - [9a2f6dd0] Error getting factors analysis | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: helpers.py:get_factors()
+2025-10-31 15:13:44,104 - INFO - [INFO] - Time step t=1 starting
+2025-10-31 15:13:44,104 - INFO - [INFO] - Market state - Net Order: 124, Sentiment: 0.4176, Price Change: 61.975, New Price: 161.975
+2025-10-31 15:13:44,946 - ERROR - [ERR-0001] - [51db3d2a] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('69046fb81c6f8090700023c1'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'conviction', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'int'}, 'reason': 'type did not match', 'consideredValue': 0.38, 'consideredType': 'double'}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-10-31 15:13:44,948 - ERROR - [ERR-0001] - [709af0c7] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-31 15:13:44,949 - WARNING - [ERR-0003] - [e6a8dfa0] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:13:54,026 - INFO - [INFO] - Time step t=1 starting
+2025-10-31 15:13:54,027 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.025, Price Change: -0.2266, New Price: 99.7734
+2025-10-31 15:13:55,878 - ERROR - [ERR-0001] - [e3d7c83a] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('69046fc21c6f8090700023c2'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'conviction', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'int'}, 'reason': 'type did not match', 'consideredValue': 0.53, 'consideredType': 'double'}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-10-31 15:13:55,879 - ERROR - [ERR-0001] - [3e37dc10] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-31 15:13:55,880 - WARNING - [ERR-0003] - [77d34312] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:14:00,839 - WARNING - [ERR-0001] - [dc58878b] Attempting to extract JSON from text (length: 34914 chars) | From: helpers.py:extract_json_from_text()
+2025-10-31 15:14:00,845 - WARNING - [ERR-0001] - [4fafc6df] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-10-31 15:14:00,848 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-10-31 15:14:15,176 - INFO - [INFO] - Time step t=1 starting
+2025-10-31 15:14:15,177 - INFO - [INFO] - Market state - Net Order: 108, Sentiment: 0.1979, Price Change: 53.802, New Price: 153.802
+2025-10-31 15:14:15,757 - ERROR - [ERR-0001] - [2c9cd173] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('69046fd71c6f8090700023c3'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'conviction', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'int'}, 'reason': 'type did not match', 'consideredValue': 0.39, 'consideredType': 'double'}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-10-31 15:14:15,758 - ERROR - [ERR-0001] - [9073b91c] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-31 15:14:15,759 - WARNING - [ERR-0003] - [536dbe6b] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:14:34,144 - INFO - [INFO] - Time step t=1 starting
+2025-10-31 15:14:34,145 - INFO - [INFO] - Market state - Net Order: 188, Sentiment: 0.4853, Price Change: 93.9499, New Price: 193.9499
+2025-10-31 15:14:34,692 - ERROR - [ERR-0001] - [1714113f] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('69046fea1c6f8090700023c4'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'conviction', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'int'}, 'reason': 'type did not match', 'consideredValue': 0.61, 'consideredType': 'double'}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-10-31 15:14:34,693 - ERROR - [ERR-0001] - [79e00729] Database save failed, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-10-31 15:14:34,694 - WARNING - [ERR-0003] - [c4d22a2f] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-10-31 15:14:36,808 - INFO - [INFO] - Batch cycle completed. Processed: 5 tickers, 0 pipelines. Remaining: 412 tickers, 0 pipelines
+2025-10-31 15:14:58,314 - ERROR - [ERR-0001] - [7c241b92] Error processing ticker ^AEX | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()

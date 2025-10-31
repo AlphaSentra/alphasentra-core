@@ -173,7 +173,7 @@ def create_insights_collection(db):
                 'maximum': 1.0
             },
             'conviction': {
-                'bsonType': 'int',
+                'bsonType': 'double',
                 'minimum': -1.0,
                 'maximum': 1.0
             },
