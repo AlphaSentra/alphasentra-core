@@ -24,6 +24,7 @@ from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, get_ticker_name, get_ticker_performance, calculate_average_sentiment
 from logging_utils import log_error, log_warning
 from models.analysis import run_analysis
+from models.simulation import process_simulation_data
 
 
 
@@ -139,6 +140,8 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
             recommendations['importance'] = get_importance(tickers)
             # Add to factors
             recommendations['factors'] = get_factors(tickers,current_date,prompt=FX_FACTORS_PROMPT)
+            # Get simulation data
+            recommendations['simulation'] = process_simulation_data(recommendations.get('simulation', []))
         # -----------------------------------------------------------------------------------
             
             if not batch_mode:
