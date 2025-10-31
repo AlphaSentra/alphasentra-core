@@ -123,7 +123,7 @@ def run_analysis(ticker, instrument_name):
             performance_data = calculate_performance_metrics(ticker_str)
             
             client = DatabaseManager().get_client()
-            db = client[os.getenv("MONGODB_DATABASE", "alphagora")]
+            db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
             tickers_coll = db['tickers']
             
             update_payload = {
