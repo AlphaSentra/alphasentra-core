@@ -57,7 +57,16 @@ def get_positive_high_conviction_insights():
     ]))
     print(f"Found {len(results)} insights:")
     for insight in results:
-        print(insight)
+        print(f"Updating {insight['_id']}")
+        collection.update_one(
+            {"_id": insight["_id"]},
+            {
+                "$set": {
+                    "importance": 3,
+                    "tag": ">high_conviction_buy"
+                }
+            }
+        )
         
     return results
 
