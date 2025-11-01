@@ -371,7 +371,9 @@ def insert_pipeline_data(db):
     
     # Pipeline data to insert
     pipeline_data = [
-        {"model_function": "get_high_conviction_buys", "task_completed": False, "model_name": "hcb", "recurrence": "multi"}
+        {"model_function": "get_high_conviction_buys", "task_completed": False, "model_name": "hcb", "recurrence": "multi"},
+        {"model_function": "unflag_hcb_pipeline_task", "task_completed": False, "model_name": "hcb", "recurrence": "multi"}
+
     ]
     
     try:
@@ -665,6 +667,7 @@ def create_alphagora_database():
             insert_agriculture_commodities,
             insert_crypto_assets,
             insert_equities,
+            insert_pipeline_data,
             create_weight_factors_collection
         ]
         

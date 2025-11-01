@@ -103,8 +103,33 @@ def get_high_conviction_buys():
                     }
                 }]
             )
-        
+    
+    # Uncheck flag for function unflag_hcb_pipeline_task()
+    collection = db["pipeline"]
+    collection.update_one(
+        {"model_function": "unflag_hcb_pipeline_task"},
+        {"$set": {"task_completed": False}}
+    )
+
     return results
+
+
+def unflag_hcb_pipeline_task():
+    """
+    Unflag the HCB pipeline task_completed check.
+    """
+    try:
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+    except Exception as e:
+        return
+    collection = db["pipeline"]
+    
+    collection.update_one(
+        {"model_function": "get_high_conviction_buys"},
+        {"$set": {"task_completed": False}}
+    )
+
 
 if __name__ == "__main__":
     get_high_conviction_buys()
