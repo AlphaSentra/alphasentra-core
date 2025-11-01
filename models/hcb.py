@@ -39,7 +39,7 @@ def get_high_conviction_buys():
     # Configuration variables
     tag_string = ">high conviction buy ↗"
     min_sentiment_score = 0  # Minimum sentiment score to include
-    conviction_threshold = 0.60  # Minimum conviction level to include
+    conviction_threshold = 0.7  # Minimum conviction level to include
     importance_level = 3  # Importance level to set for matched insights
     p1m_threshold = 0.01  # 1-Month price change threshold (5%)
     p3m_threshold = 0.01  # 3-Month price change threshold (10%)
