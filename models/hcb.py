@@ -81,6 +81,7 @@ def get_high_conviction_buys():
                     p6m = ticker_data.get("6m")
         
         if p1m >= p1m_threshold and p3m >= p3m_threshold and p6m >= p6m_threshold:
+            print(ticker, p1m, p3m, p6m)
             collection.update_one(
                 {"_id": insight["_id"]},
                 [{
