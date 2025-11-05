@@ -19,11 +19,12 @@ import importlib
 import inspect
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from logging_utils import log_error, log_warning, log_info
-from _config import BATCH_SIZE, BATCH_TIMEOUT
+from _config import BATCH_SIZE, BATCH_TIMEOUT, BATCH_PAUSE_IN_SECONDS
 from helpers import DatabaseManager
 import gc
 import tracemalloc
 import time
+from tqdm import tqdm
 
 # Load environment variables
 load_dotenv()
@@ -256,6 +257,35 @@ def run_batch_processing(max_workers=BATCH_SIZE):
         remaining_pipelines = pipelines_coll.count_documents({"task_completed": False}) if pipelines_coll is not None else 0
         
         log_info(f"Batch cycle completed. Processed: {tickers_processed} tickers, {pipelines_processed} pipelines. Remaining: {remaining_tickers} tickers, {remaining_pipelines} pipelines")
+        
+        # Add pause with progress bar and memory cleanup
+        if tickers_processed > 0 or pipelines_processed > 0:
+            # Pre-pause memory report
+            snapshot1 = tracemalloc.take_snapshot()
+            top_stats1 = snapshot1.statistics('lineno')
+            mem_usage1 = sum(stat.size for stat in top_stats1[:10])
+            log_info(f"Memory before cleanup: {mem_usage1/1024:.1f} KB")
+
+            try:
+                # Force garbage collection and delete large variables
+                gc.collect()
+                del future_to_doc
+                
+                # Progress bar with memory cleanup every 10 seconds
+                with tqdm(total=BATCH_PAUSE_IN_SECONDS, desc="Time before next batch") as pbar:
+                    for i in range(BATCH_PAUSE_IN_SECONDS):
+                        if i % 10 == 0:
+                            gc.collect()
+                        time.sleep(1)
+                        pbar.update(1)
+
+                # Post-pause memory report
+                snapshot2 = tracemalloc.take_snapshot()
+                top_stats2 = snapshot2.statistics('lineno')
+                mem_usage2 = sum(stat.size for stat in top_stats2[:10])
+                log_info(f"Memory after cleanup: {mem_usage2/1024:.1f} KB (saved {mem_usage1-mem_usage2:.1f} bytes)")
+            except KeyboardInterrupt:
+                log_info("Batch pause interrupted", "PAUSE_INTERRUPTED")
         
         # Exit if no more work
         if remaining_tickers == 0 and remaining_pipelines == 0:
