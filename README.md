@@ -26,8 +26,14 @@ Reset all datasets:
 python main.py -reset
 ```
 
+Enforce database size limit (optional MB value):
+```bash
+python main.py -dblimit [MB]
+```
+
 The `-batch` flag executes `run_batch_processing()` without showing the menu interface.
 The `-reset` flag executes `reset_all()` to reset document statuses and clean up one-time records.
+The `-dblimit` flag executes `enforce_db_size_limit()` to manage database storage quotas.
 
 ## Environment Variables
 Create a `.env` file in the root of the project. This file should include sensitive configuration such as database connections, API keys, and the encryption secret.
