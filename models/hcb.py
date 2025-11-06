@@ -57,7 +57,8 @@ def get_high_conviction_buys():
             "$lte": now.isoformat()
         },
         "sentiment_score": {"$gt": min_sentiment_score},
-        "conviction": {"$gte": conviction_threshold}
+        "conviction": {"$gte": conviction_threshold},
+        "tag": {"$not": {"$regex": re.escape(tag_string)}}
     }
     
     results = list(collection.find(query).sort([

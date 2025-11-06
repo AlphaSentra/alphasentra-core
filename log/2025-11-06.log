@@ -3727,3 +3727,134 @@ However... | From: helpers.py:extract_json_from_text()
 2025-11-06 14:45:27,830 - ERROR - [ERR-0001] - [a0a7fadc] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
 2025-11-06 14:45:28,575 - INFO - [INFO] - Batch cycle completed. Processed: 2 tickers, 0 pipelines. Remaining: 2 tickers, 2 pipelines
 2025-11-06 14:45:28,763 - INFO - [INFO] - Memory before cleanup: 11421.8 KB
+2025-11-06 16:10:11,508 - WARNING - [ERR-0001] - [1445c697] Attempting to extract JSON from text (length: 44490 chars) | From: helpers.py:extract_json_from_text()
+2025-11-06 16:10:11,510 - WARNING - [ERR-0001] - [b23cb7b1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-06 16:10:11,510 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-06 16:10:43,511 - INFO - [INFO] - Time step t=1 starting
+2025-11-06 16:10:43,515 - INFO - [INFO] - Market state - Net Order: 135, Sentiment: 0.1233, Price Change: 67.467, New Price: 167.467
+2025-11-06 16:10:44,929 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-11-06 16:12:56,290 - ERROR - [ERR-0001] - [d97839bd] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:12:56,291 - ERROR - [ERR-0001] - [f50dc020] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:12:56,946 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:13:53,380 - WARNING - [ERR-0001] - [e3738e2e] Attempting to extract JSON from text (length: 47667 chars) | From: helpers.py:extract_json_from_text()
+2025-11-06 16:13:53,385 - WARNING - [ERR-0001] - [8b2d09be] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-06 16:13:53,386 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-06 16:13:57,501 - ERROR - [ERR-0001] - [a70c6783] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:13:57,501 - ERROR - [ERR-0001] - [eb13b7ed] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:13:58,178 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:14:25,917 - INFO - [INFO] - Time step t=1 starting
+2025-11-06 16:14:25,921 - INFO - [INFO] - Market state - Net Order: 48, Sentiment: 0.16, Price Change: 24.0231, New Price: 124.0231
+2025-11-06 16:14:26,956 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['VXX']
+2025-11-06 16:14:58,782 - ERROR - [ERR-0001] - [0ec10ce3] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:14:58,783 - ERROR - [ERR-0001] - [17acc908] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:14:59,465 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:16:00,041 - ERROR - [ERR-0001] - [04fa9941] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:16:00,042 - ERROR - [ERR-0001] - [3fe8faac] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:16:00,729 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:17:01,293 - ERROR - [ERR-0001] - [e2047fd4] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:17:01,293 - ERROR - [ERR-0001] - [1a6891b3] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:17:01,987 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:18:02,547 - ERROR - [ERR-0001] - [5b2245d8] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:18:02,548 - ERROR - [ERR-0001] - [d503483c] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:18:03,213 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:18:14,472 - ERROR - [ERR-0001] - [c145660b] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'decimal_digits' | From: batch_run.py:process_pipeline()
+2025-11-06 16:18:14,472 - ERROR - [ERR-0001] - [d1a353e2] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'decimal_digits' | From: batch_run.py:process_pipeline()
+2025-11-06 16:18:15,207 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:19:03,786 - ERROR - [ERR-0001] - [72f1e0f1] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:19:03,786 - ERROR - [ERR-0001] - [9c381c13] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:19:04,464 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:20:05,086 - ERROR - [ERR-0001] - [36eeb332] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:20:05,087 - ERROR - [ERR-0001] - [833b6ac1] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:20:05,901 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:21:06,459 - ERROR - [ERR-0001] - [00209fb4] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:21:06,460 - ERROR - [ERR-0001] - [a0bb4033] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:21:07,102 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:22:07,674 - ERROR - [ERR-0001] - [966ac50b] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:22:07,675 - ERROR - [ERR-0001] - [77bec664] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:22:08,322 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:23:08,996 - ERROR - [ERR-0001] - [a87d9804] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:23:08,997 - ERROR - [ERR-0001] - [a18ab835] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:23:09,633 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:24:10,333 - ERROR - [ERR-0001] - [40964032] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:24:10,334 - ERROR - [ERR-0001] - [6f8fb1a3] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:24:10,971 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:25:11,571 - ERROR - [ERR-0001] - [b8cfcaa1] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:25:11,572 - ERROR - [ERR-0001] - [5eaffa1c] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:25:12,354 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:26:12,980 - ERROR - [ERR-0001] - [ea7dc8d3] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:26:12,981 - ERROR - [ERR-0001] - [3257a48c] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:26:13,728 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:27:14,302 - ERROR - [ERR-0001] - [46aeac4e] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:27:14,302 - ERROR - [ERR-0001] - [0402ee12] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:27:15,061 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:28:15,685 - ERROR - [ERR-0001] - [b7fc0894] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:28:15,685 - ERROR - [ERR-0001] - [bc40eedd] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:28:16,399 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:29:16,991 - ERROR - [ERR-0001] - [09b7e5b9] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:29:16,993 - ERROR - [ERR-0001] - [ea131d8e] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:29:17,690 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-06 16:30:18,333 - ERROR - [ERR-0001] - [eb5e43c9] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:30:19,035 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:30:36,897 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 2 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:30:36,986 - INFO - [INFO] - Memory before cleanup: 2321.1 KB
+2025-11-06 16:31:19,598 - ERROR - [ERR-0001] - [f3124bdf] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:31:20,311 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:32:20,937 - ERROR - [ERR-0001] - [c6ad938e] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:32:21,622 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:32:38,930 - INFO - [INFO] - Memory after cleanup: 2745.4 KB (saved -434502.0 bytes)
+2025-11-06 16:32:41,412 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 1 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:32:41,517 - INFO - [INFO] - Memory before cleanup: 3147.7 KB
+2025-11-06 16:33:22,193 - ERROR - [ERR-0001] - [b49908aa] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:33:22,865 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:34:23,429 - ERROR - [ERR-0001] - [3b39d3dd] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:34:24,116 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:35:06,115 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 1 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:35:06,204 - INFO - [INFO] - Memory before cleanup: 2317.9 KB
+2025-11-06 16:35:24,677 - ERROR - [ERR-0001] - [da247a93] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:35:25,468 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:36:26,069 - ERROR - [ERR-0001] - [3dd4794c] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:36:26,779 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:37:07,971 - INFO - [INFO] - Memory after cleanup: 2742.6 KB (saved -434914.0 bytes)
+2025-11-06 16:37:09,917 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 1 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:37:10,022 - INFO - [INFO] - Memory before cleanup: 3144.6 KB
+2025-11-06 16:37:27,376 - ERROR - [ERR-0001] - [95f89635] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:37:28,144 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:38:28,770 - ERROR - [ERR-0001] - [993f901f] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:38:29,482 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:39:11,820 - INFO - [INFO] - Memory after cleanup: 3070.9 KB (saved 75488.0 bytes)
+2025-11-06 16:39:30,041 - ERROR - [ERR-0001] - [81a5a568] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:39:30,705 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:40:31,344 - ERROR - [ERR-0001] - [0f76b667] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:40:32,056 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:41:32,680 - ERROR - [ERR-0001] - [6f71e3ec] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:41:33,394 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:42:34,018 - ERROR - [ERR-0001] - [7415d6ed] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:42:34,734 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:43:35,306 - ERROR - [ERR-0001] - [e0c43bd8] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:43:36,070 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:44:36,634 - ERROR - [ERR-0001] - [5a4a8ff8] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:44:37,317 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:45:37,924 - ERROR - [ERR-0001] - [644f9ac6] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:45:38,610 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:46:39,168 - ERROR - [ERR-0001] - [07d5b8f2] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:46:39,951 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:47:40,609 - ERROR - [ERR-0001] - [1a8ab9b0] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:47:41,300 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:47:54,325 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 1 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:47:54,415 - INFO - [INFO] - Memory before cleanup: 2296.0 KB
+2025-11-06 16:48:41,948 - ERROR - [ERR-0001] - [e07f22da] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:48:42,775 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:49:43,975 - ERROR - [ERR-0001] - [a399f1d3] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:49:44,686 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:49:56,261 - INFO - [INFO] - Memory after cleanup: 2721.1 KB (saved -435300.0 bytes)
+2025-11-06 16:49:58,129 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 1 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:49:58,234 - INFO - [INFO] - Memory before cleanup: 3123.4 KB
+2025-11-06 16:50:45,245 - ERROR - [ERR-0001] - [4a2069f3] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:50:45,921 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:51:46,575 - ERROR - [ERR-0001] - [a948b704] Error processing pipeline get_high_conviction_buys | Exception: TypeError: get_high_conviction_buys() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:51:47,287 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:52:00,005 - INFO - [INFO] - Memory after cleanup: 3049.6 KB (saved 75552.0 bytes)
+2025-11-06 16:52:28,148 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 1 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 16:52:28,250 - INFO - [INFO] - Memory before cleanup: 2938.2 KB
+2025-11-06 16:52:47,881 - ERROR - [ERR-0001] - [c3231c2c] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
+2025-11-06 16:52:48,626 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines

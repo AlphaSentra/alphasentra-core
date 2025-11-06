@@ -155,7 +155,12 @@ def process_pipeline(doc, client):
         decimal = 2  # Default for ETFs/indices
         
         # kwargs based on function signature (known: batch_mode and decimal_digits)
-        kwargs = {'batch_mode': True, 'decimal_digits': decimal}
+        sig = inspect.signature(func)
+        kwargs = {}
+        if 'batch_mode' in sig.parameters:
+            kwargs['batch_mode'] = True
+        if 'decimal_digits' in sig.parameters:
+            kwargs['decimal_digits'] = decimal
         
         # Call the function
         func(**kwargs)
