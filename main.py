@@ -15,6 +15,7 @@ from menu import MENU_ITEMS
 from _config import LANGUAGE
 from batch.batch_run import run_batch_processing
 from batch.reset_dataset import reset_all
+from batch.db_quota import enforce_db_size_limit
 
 
 def print_menu():
@@ -69,11 +70,16 @@ if __name__ == "__main__":
                         help="Run batch processing directly")
     parser.add_argument("-reset", action="store_true",
                         help="Reset all datasets")
+    parser.add_argument("-dblimit", nargs='?', const=True, type=int,
+                        help="Enforce database size limit (optional MB value)")
+
     args = parser.parse_args()
     
     if args.batch:
         run_batch_processing()
     elif args.reset:
         reset_all()
+    elif args.dblimit:
+        enforce_db_size_limit()
     else:
         main()

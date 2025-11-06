@@ -3860,3 +3860,6 @@ However... | From: helpers.py:extract_json_from_text()
 2025-11-06 16:52:48,626 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
 2025-11-06 16:53:49,254 - ERROR - [ERR-0001] - [c37609d6] Error processing pipeline unflag_hcb_pipeline_task | Exception: TypeError: unflag_hcb_pipeline_task() got an unexpected keyword argument 'batch_mode' | From: batch_run.py:process_pipeline()
 2025-11-06 16:53:50,068 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-06 20:02:36,900 - INFO - [INFO] - Database size 296.59MB is under limit
+2025-11-06 20:03:29,390 - INFO - [INFO] - Database size 296.59MB is under threshold of 450MB
+2025-11-06 20:09:46,161 - INFO - [INFO] - Database size 296.59MB is under threshold of 450MB

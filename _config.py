@@ -8,11 +8,14 @@ Tickers must be in Yahoo Finance format. (in the future, we can add other source
 LANGUAGE='en'
 
 # Batch processing configuration
-# Number of tickers to process in each batch
+# Number of tickers to process in each batch (Keep at 5 to avoid rate limits)
 BATCH_SIZE = 5
 BATCH_PAUSE_IN_SECONDS = 120
 # Maximum processing time in seconds (5 hours)
 BATCH_TIMEOUT = 5 * 60 * 60
+
+# Database size limit in megabytes
+DB_SIZE_LIMIT_MB = 450
 
 # Default factor weights used if AI model is not calculating weights
 # These weights are overridden if AI model successfully returns weights
