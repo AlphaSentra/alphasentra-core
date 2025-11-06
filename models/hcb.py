@@ -47,13 +47,13 @@ def get_high_conviction_buys():
 
     # Calculate date range
     now = datetime.now(timezone.utc)
-    last_week = now - timedelta(days=7)
+    last_session = now - timedelta(days=1)
     
     # Query documents
     # Convert datetime objects to ISO strings for string comparison
     query = {
         "timestamp_gmt": {
-            "$gte": last_week.isoformat(),
+            "$gte": last_session.isoformat(),
             "$lte": now.isoformat()
         },
         "sentiment_score": {"$gt": min_sentiment_score},
@@ -67,7 +67,9 @@ def get_high_conviction_buys():
     
 
     for insight in results:
-
+        p1m = 0.0
+        p3m = 0.0
+        p6m = 0.0
 
         # Fetch ticker data for each insight
         ticker_collection = db["tickers"]
@@ -76,11 +78,11 @@ def get_high_conviction_buys():
             if ticker:
                 ticker_data = ticker_collection.find_one({"ticker": ticker})
                 if ticker_data:
-                    p1m = ticker_data.get("1m")
-                    p3m = ticker_data.get("3m")
-                    p6m = ticker_data.get("6m")
+                    p1m = ticker_data.get("1m", 0.0) or 0.0
+                    p3m = ticker_data.get("3m", 0.0) or 0.0
+                    p6m = ticker_data.get("6m", 0.0) or 0.0
         
-        if p1m >= p1m_threshold and p3m >= p3m_threshold and p6m >= p6m_threshold:
+        if (p1m or 0.0) >= p1m_threshold and (p3m or 0.0) >= p3m_threshold and (p6m or 0.0) >= p6m_threshold:
             print(ticker, p1m, p3m, p6m)
             collection.update_one(
                 {"_id": insight["_id"]},
