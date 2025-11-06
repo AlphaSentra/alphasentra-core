@@ -21,24 +21,15 @@ jobs:
 
       - name: Create .env from secrets
         run: |
-          # Use simplest format for simple values (no quotes needed)
           echo USE_MONGODB_SRV=${{ secrets.USE_MONGODB_SRV }} >> .env
-          
-          # For MONGODB_SRV: Remove the extra single quotes to avoid parsing errors. 
-          # The value will be a single string, as required by python-dotenv.
           echo MONGODB_SRV=${{ secrets.MONGODB_SRV }} >> .env
-          
           echo MONGODB_HOST=${{ secrets.MONGODB_HOST }} >> .env
           echo MONGODB_PORT=${{ secrets.MONGODB_PORT }} >> .env
           echo MONGODB_DATABASE=${{ secrets.MONGODB_DATABASE }} >> .env
           echo MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} >> .env
           echo MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} >> .env
           echo MONGODB_AUTH_SOURCE=${{ secrets.MONGODB_AUTH_SOURCE }} >> .env
-          
-          # For GEMINI_API_KEY: Keep this format, but be aware your Python code 
-          # must now explicitly parse this string as a JSON/Python list.
           echo GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }} >> .env
-          
           echo GEMINI_DEFAULT=${{ secrets.GEMINI_DEFAULT }} >> .env
           echo GEMINI_FLASH_MODEL=${{ secrets.GEMINI_FLASH_MODEL }} >> .env
           echo GEMINI_PRO_MODEL=${{ secrets.GEMINI_PRO_MODEL }} >> .env
