@@ -11,8 +11,8 @@ LANGUAGE='en'
 # Number of tickers to process in each batch
 BATCH_SIZE = 10
 BATCH_PAUSE_IN_SECONDS = 120
-# Maximum processing time in seconds (4 hours)
-BATCH_TIMEOUT = 4 * 60 * 60
+# Maximum processing time in seconds (5 hours)
+BATCH_TIMEOUT = 5 * 60 * 60
 
 # Default factor weights used if AI model is not calculating weights
 # These weights are overridden if AI model successfully returns weights
