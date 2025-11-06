@@ -9,8 +9,8 @@ LANGUAGE='en'
 
 # Batch processing configuration
 # Number of tickers to process in each batch
-BATCH_SIZE = 20
-BATCH_PAUSE_IN_SECONDS = 180
+BATCH_SIZE = 10
+BATCH_PAUSE_IN_SECONDS = 120
 # Maximum processing time in seconds (4 hours)
 BATCH_TIMEOUT = 4 * 60 * 60
 

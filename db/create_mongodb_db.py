@@ -661,7 +661,7 @@ def create_alphagora_database():
             create_asset_classes_collection,
             insert_asset_classes_data,
             insert_fx_pairs,
-            insert_indices,
+            #insert_indices,
             insert_energy_commodities,
             insert_metal_commodities,
             insert_agriculture_commodities,
