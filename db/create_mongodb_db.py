@@ -209,7 +209,8 @@ def create_insights_collection(db):
         [('timestamp_gmt', pymongo.DESCENDING)],
         [('sentiment_score', pymongo.DESCENDING)],
         [('language_code', pymongo.ASCENDING)],
-        [('timestamp_gmt', pymongo.DESCENDING), ('importance', pymongo.ASCENDING)]   
+        [('timestamp_gmt', pymongo.DESCENDING), ('importance', pymongo.ASCENDING)],
+        [('conviction', pymongo.DESCENDING), ('sentiment_score', pymongo.DESCENDING)]
     ]
     
     # Use the generic function to create the collection
