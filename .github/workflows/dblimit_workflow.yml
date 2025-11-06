@@ -35,10 +35,9 @@ jobs:
           echo "GEMINI_PRO_MODEL=${{ secrets.GEMINI_PRO_MODEL }}" >> .env
           echo "ENCRYPTION_SECRET=${{ secrets.ENCRYPTION_SECRET }}" >> .env
 
-          # Verify environment variables were set
+          # WARNING: Exposing environment variable values in logs
+          echo "SECURITY WARNING: Showing environment variable values exposes secrets"
           echo "Environment variables configured:"
-          grep -o '^[^=]*' .env | while read -r line; do
-            echo "- ${line%%=*}"
-          done
+          cat .env
       - name: Run DB limit check
         run: python main.py -dblimit
