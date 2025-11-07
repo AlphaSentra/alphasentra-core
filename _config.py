@@ -11,8 +11,8 @@ LANGUAGE='en'
 # Number of tickers to process in each batch (Keep at 5 to avoid rate limits)
 BATCH_SIZE = 5
 BATCH_PAUSE_IN_SECONDS = 120
-# Maximum processing time in seconds (5 hours)
-BATCH_TIMEOUT = 5 * 60 * 60
+# Maximum processing time in seconds (6 hours)
+BATCH_TIMEOUT = 6 * 60 * 60
 
 # Database size limit in megabytes
 DB_SIZE_LIMIT_MB = 450
