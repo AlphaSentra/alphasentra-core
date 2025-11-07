@@ -24,19 +24,19 @@ jobs:
 
     - name: Create .env from secrets
       run: |
-        echo USE_MONGODB_SRV=${{ secrets.USE_MONGODB_SRV }} >> .env
-        echo MONGODB_SRV=${{ secrets.MONGODB_SRV }} >> .env
-        echo MONGODB_HOST=${{ secrets.MONGODB_HOST }} >> .env
-        echo MONGODB_PORT=${{ secrets.MONGODB_PORT }} >> .env
-        echo MONGODB_DATABASE=${{ secrets.MONGODB_DATABASE }} >> .env
-        echo MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} >> .env
-        echo MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} >> .env
-        echo MONGODB_AUTH_SOURCE=${{ secrets.MONGODB_AUTH_SOURCE }} >> .env
-        echo GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }} >> .env
-        echo GEMINI_DEFAULT=${{ secrets.GEMINI_DEFAULT }} >> .env
-        echo GEMINI_FLASH_MODEL=${{ secrets.GEMINI_FLASH_MODEL }} >> .env
-        echo GEMINI_PRO_MODEL=${{ secrets.GEMINI_PRO_MODEL }} >> .env
-        echo ENCRYPTION_SECRET=${{ secrets.ENCRYPTION_SECRET }} >> .env
+        echo USE_MONGODB_SRV='${{ secrets.USE_MONGODB_SRV }}' >> .env
+        echo MONGODB_SRV='${{ secrets.MONGODB_SRV }}' >> .env
+        echo MONGODB_HOST='${{ secrets.MONGODB_HOST }}' >> .env
+        echo MONGODB_PORT='${{ secrets.MONGODB_PORT }}' >> .env
+        echo MONGODB_DATABASE='${{ secrets.MONGODB_DATABASE }}' >> .env
+        echo MONGODB_USERNAME='${{ secrets.MONGODB_USERNAME }}' >> .env
+        echo MONGODB_PASSWORD='${{ secrets.MONGODB_PASSWORD }}' >> .env
+        echo MONGODB_AUTH_SOURCE='${{ secrets.MONGODB_AUTH_SOURCE }}' >> .env
+        echo GEMINI_API_KEY='${{ secrets.GEMINI_API_KEY }}' >> .env
+        echo GEMINI_DEFAULT='${{ secrets.GEMINI_DEFAULT }}' >> .env
+        echo GEMINI_FLASH_MODEL='${{ secrets.GEMINI_FLASH_MODEL }}' >> .env
+        echo GEMINI_PRO_MODEL='${{ secrets.GEMINI_PRO_MODEL }}' >> .env
+        echo ENCRYPTION_SECRET='${{ secrets.ENCRYPTION_SECRET }}' >> .env
 
     - name: Run reset process
       run: python main.py -reset
