@@ -943,7 +943,7 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
                 model_name = os.getenv("GEMINI_PRO_MODEL")
             
             # Call get_gen_ai_response with the decrypted FACTOR_WEIGHTS prompt
-            ai_weights_response = get_gen_ai_response(tickers, "factor weights", decrypted_factor_weights, model_name)
+            ai_weights_response = get_gen_ai_response(tickers, "factor weights", decrypted_factor_weights, model_name, batch_mode=False)
             
             # Try to parse the response as JSON
             try:
@@ -1178,7 +1178,7 @@ def get_ticker_name(tickers):
         return None if return_single else []
 
 
-def get_factors(tickers, name=None, current_date=None, prompt=None):
+def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=False):
     """
     Get AI-generated factors analysis for given tickers.
     
@@ -1223,7 +1223,7 @@ def get_factors(tickers, name=None, current_date=None, prompt=None):
         )
         
         # Get AI response
-        ai_response = get_gen_ai_response([tickers_str], "factors analysis", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
+        ai_response = get_gen_ai_response([tickers_str], "factors analysis", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"), batch_mode=False)
         
         # Remove any markdown code block markers if present
         ai_response = strip_markdown_code_blocks(ai_response)

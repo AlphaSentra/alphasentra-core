@@ -107,7 +107,7 @@ def process_ticker(doc, client):
                     from datetime import datetime
                     current_date = datetime.now().strftime("%Y-%m-%d")
                     instrument_name = doc.get("instrument_name", doc["ticker"])
-                    factors = get_factors(tickers_list, instrument_name, current_date, prompt=prompt)
+                    factors = get_factors(tickers_list, instrument_name, current_date, prompt=prompt, batch_mode=True)
                 except Exception as e:
                     log_warning(f"Failed to refresh factors for {doc['ticker']}: {str(e)}", "FACTORS_REFRESH")
             kwargs['factors'] = factors

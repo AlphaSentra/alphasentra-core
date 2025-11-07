@@ -16,7 +16,7 @@ from data.price import (
 )
 
 
-def run_analysis(ticker, instrument_name):
+def run_analysis(ticker, instrument_name, batch_mode=False):
     """
     Analyze instrument using AI to extract description and sector.
     Returns JSON with 'description' and 'sector' fields.
@@ -40,7 +40,8 @@ def run_analysis(ticker, instrument_name):
         tickers=[ticker],
         model_strategy="Analysis",
         prompt=full_prompt,
-        gemini_model="gemini-2.5-flash"
+        gemini_model="gemini-2.5-flash",
+        batch_mode=batch_mode
     )
     
     try:

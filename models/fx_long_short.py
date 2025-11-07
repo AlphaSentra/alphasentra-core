@@ -75,7 +75,7 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
         # Create current date in the format "September 6, 2025"
         current_date = datetime.datetime.now().strftime("%B %d, %Y")
         # Run analysis of the current instrument
-        run_analysis(tickers_str, instrument_name)
+        run_analysis(tickers_str, instrument_name, batch_mode=batch_mode)
         
         # Use AI-generated weights if available, otherwise use the hardcoded ones
         if ai_weights:
@@ -105,7 +105,7 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
-        result = get_gen_ai_response([tickers], "fx long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"))
+        result = get_gen_ai_response([tickers], "fx long/short", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"), batch_mode=batch_mode)
         
         # Try to parse the result as JSON
         try:
@@ -139,7 +139,7 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
             # Add importance
             recommendations['importance'] = get_importance(tickers)
             # Add to factors
-            recommendations['factors'] = get_factors(tickers,current_date,prompt=FX_FACTORS_PROMPT)
+            recommendations['factors'] = get_factors(tickers,current_date,prompt=FX_FACTORS_PROMPT, batch_mode=batch_mode)
             # Get simulation data
             recommendations['simulation'] = process_simulation_data(recommendations.get('simulation', []))
         # -----------------------------------------------------------------------------------

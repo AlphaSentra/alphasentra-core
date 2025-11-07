@@ -52,20 +52,21 @@ def get_random_api_key():
 GEMINI_FLASH_MODEL = os.getenv("GEMINI_FLASH_MODEL", "gemini-2.5-flash")
 GEMINI_PRO_MODEL = os.getenv("GEMINI_PRO_MODEL", "gemini-2.5-pro")
 
-def _show_progress():
+def _show_progress(batch_mode=False):
     """
     Display a simple progress indicator while waiting for the AI model response.
     """
-    chars = "|/-\\"
-    idx = 0
-    while not threading.current_thread().stop_progress:
-        print(f"\rGenerating AI response... {chars[idx % len(chars)]}", end="", flush=True)
-        idx += 1
-        time.sleep(0.1)
-    print("\rAI response generated.", end="", flush=True)
-    print()  # Move to next line
+    if not batch_mode:
+        chars = "|/-\\"
+        idx = 0
+        while not threading.current_thread().stop_progress:
+            print(f"\rGenerating AI response... {chars[idx % len(chars)]}", end="", flush=True)
+            idx += 1
+            time.sleep(0.1)
+        print("\rAI response generated.", end="", flush=True)
+        print()  # Move to next line
 
-def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None):
+def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None, batch_mode=False):
     """
     Get a response from the Gemini generative AI model based on the selected strategy.
     Parameters:
@@ -91,7 +92,7 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None)
     # Run prompt and return response
     try:
         # Create a thread for the progress indicator
-        progress_thread = threading.Thread(target=_show_progress)
+        progress_thread = threading.Thread(target=lambda: _show_progress(batch_mode))
         progress_thread.stop_progress = False
         
         # Start the progress indicator
