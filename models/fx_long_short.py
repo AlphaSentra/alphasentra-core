@@ -56,7 +56,7 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
         prompt = FX_LONG_SHORT_PROMPT
     
     # Get AI-generated weights using helper function
-    ai_weights = get_ai_weights([tickers], FACTOR_WEIGHTS, WEIGHTS_PERCENT, os.getenv("GEMINI_PRO_MODEL"))
+    ai_weights = get_ai_weights([tickers], FACTOR_WEIGHTS, WEIGHTS_PERCENT, os.getenv("GEMINI_PRO_MODEL"), batch_mode=batch_mode)
 
     # Format the prompt with the necessary variables
     if prompt:

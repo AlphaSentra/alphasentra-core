@@ -8,8 +8,8 @@ Tickers must be in Yahoo Finance format. (in the future, we can add other source
 LANGUAGE='en'
 
 # Batch processing configuration
-# Number of tickers to process in each batch (Keep at 5 to avoid rate limits)
-BATCH_SIZE = 5
+# Number of tickers to process in each batch (tested and validated at 5 to avoid rate limits)
+BATCH_SIZE = 10
 BATCH_PAUSE_IN_SECONDS = 120
 # Maximum processing time in seconds (6 hours)
 BATCH_TIMEOUT = 6 * 60 * 60

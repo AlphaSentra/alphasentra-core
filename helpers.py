@@ -888,7 +888,7 @@ def save_to_db_with_fallback(recommendations, flag_document_generated: bool = Tr
         return False
 
 
-def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=None):
+def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=None, batch_mode=False):
     """
     Get AI-generated factor weights for market analysis with MongoDB caching.
     Checks if weights exist in database for today's date before calling AI.
@@ -943,7 +943,7 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
                 model_name = os.getenv("GEMINI_PRO_MODEL")
             
             # Call get_gen_ai_response with the decrypted FACTOR_WEIGHTS prompt
-            ai_weights_response = get_gen_ai_response(tickers, "factor weights", decrypted_factor_weights, model_name, batch_mode=False)
+            ai_weights_response = get_gen_ai_response(tickers, "factor weights", decrypted_factor_weights, model_name, batch_mode=batch_mode)
             
             # Try to parse the response as JSON
             try:
@@ -1223,7 +1223,7 @@ def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=F
         )
         
         # Get AI response
-        ai_response = get_gen_ai_response([tickers_str], "factors analysis", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"), batch_mode=False)
+        ai_response = get_gen_ai_response([tickers_str], "factors analysis", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"), batch_mode=batch_mode)
         
         # Remove any markdown code block markers if present
         ai_response = strip_markdown_code_blocks(ai_response)

@@ -55,7 +55,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
             return None
         
     # Get AI-generated weights using helper function
-    ai_weights = get_ai_weights([tickers], FACTOR_WEIGHTS, WEIGHTS_PERCENT, os.getenv("GEMINI_PRO_MODEL"))
+    ai_weights = get_ai_weights([tickers], FACTOR_WEIGHTS, WEIGHTS_PERCENT, os.getenv("GEMINI_PRO_MODEL"), batch_mode=batch_mode)
 
     # Use provided prompt or fallback to config prompt
     if prompt is None:
