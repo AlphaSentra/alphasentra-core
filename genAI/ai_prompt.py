@@ -27,21 +27,21 @@ DEFAULT_PROMPT = os.getenv("DEFAULT_PROMPT")
 
 def get_random_api_key():
     """
-    Get a random API key from the GEMINI_API_KEY array stored in environment variables.
+    Get a random API key from the GEMINI_API_KEY comma-separated string stored in environment variables.
     Returns:
-    str: A randomly selected API key from the array
+    str: A randomly selected API key from the list
     """
     
-    api_keys_str = []
+    api_keys_str = ""
 
     if not api_keys_str:
         api_keys_str = os.getenv("GEMINI_API_KEY")
     
     try:
-        # Parse the string as a Python list using ast.literal_eval for safety
-        api_keys = ast.literal_eval(api_keys_str)
-        if not isinstance(api_keys, list) or len(api_keys) == 0:
-            raise ValueError("GEMINI_API_KEY must be a non-empty list of API keys")
+        # Split the comma-separated string into a list of API keys
+        api_keys = [key.strip() for key in api_keys_str.split(',') if key.strip()]
+        if len(api_keys) == 0:
+            raise ValueError("GEMINI_API_KEY must contain at least one API key in a comma-separated format")
         
         # Randomly select one API key from the list
         return random.choice(api_keys)

@@ -32,7 +32,7 @@ jobs:
         echo MONGODB_USERNAME='${{ secrets.MONGODB_USERNAME }}' >> .env
         echo MONGODB_PASSWORD='${{ secrets.MONGODB_PASSWORD }}' >> .env
         echo MONGODB_AUTH_SOURCE='${{ secrets.MONGODB_AUTH_SOURCE }}' >> .env
-        echo GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }} >> .env
+        echo GEMINI_API_KEY='${{ secrets.GEMINI_API_KEY }}' >> .env
         echo GEMINI_DEFAULT='${{ secrets.GEMINI_DEFAULT }}' >> .env
         echo GEMINI_FLASH_MODEL='${{ secrets.GEMINI_FLASH_MODEL }}' >> .env
         echo GEMINI_PRO_MODEL='${{ secrets.GEMINI_PRO_MODEL }}' >> .env
