@@ -12,6 +12,7 @@ if parent_dir not in sys.path:
 
 
 from helpers import DatabaseManager
+from data.check_ticker import ticker_exists
 
 # Load environment variables
 load_dotenv()
@@ -96,8 +97,8 @@ def get_trending_instruments(asset_class="equity", model_strategy="Pro", gemini_
         trending_tickers = {instrument['ticker'] for instrument in instruments}
         
         # Find difference
-        new_tickers = list(trending_tickers - existing_tickers)
-        if new_tickers:
+        new_tickers = [ticker for ticker in (trending_tickers - existing_tickers) if ticker_exists(ticker)]
+        if new_tickers:            
             print(f"Found {len(new_tickers)} new tickers not in collection: {new_tickers}")
         else:
             print("All trending tickers already exist in the collection")
