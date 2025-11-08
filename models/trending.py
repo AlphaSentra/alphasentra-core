@@ -161,7 +161,7 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
 
 if __name__ == "__main__":
     print("\n=== Running Trending Instruments Analysis ===")
-    trending = get_trending_instruments(asset_class="EQ")
+    trending = get_trending_instruments(asset_class="CR")
     
     if trending:
         print("\nRecommended Instruments:")
