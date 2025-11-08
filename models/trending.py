@@ -12,7 +12,12 @@ if parent_dir not in sys.path:
 
 
 from helpers import DatabaseManager
+from _config import EQ_EQUITY_LONG_SHORT_PROMPT, EQ_EQUITY_FACTORS_PROMPT, CR_CRYPTO_LONG_SHORT_PROMPT, CR_CRYPTO_FACTORS_PROMPT
 from data.check_ticker import ticker_exists
+from db.create_ticker import create_ticker_document
+from genAI.ai_prompt import get_gen_ai_response
+from _config import EQ_EQUITY_TRENDING_PROMPT, CR_CRYPTO_TRENDING_PROMPT, MARKET
+from crypt import decrypt_string
 
 # Load environment variables
 load_dotenv()
@@ -23,16 +28,63 @@ from logging_utils import log_error, log_warning
 def strip_markdown_code_blocks(text):
     """Remove markdown code block markers from a string"""
     return text.replace('```json', '').replace('```', '').strip()
-from genAI.ai_prompt import get_gen_ai_response
-from _config import EQ_EQUITY_TRENDING_PROMPT, CR_CRYPTO_TRENDING_PROMPT, MARKET
-from crypt import decrypt_string
 
-def get_trending_instruments(asset_class="equity", model_strategy="Pro", gemini_model=None, batch_mode=True):
+def create_new_ticker_documents(asset_class, instruments, new_tickers):
+    """Create ticker documents for new trending instruments in the database.
+    
+    Handles configuration and creation of ticker documents based on asset class,
+    setting appropriate prompts, factors, and model references for each type.
+    
+    Args:
+        asset_class (str): The type of asset ("EQ" for equities, "CR" for crypto)
+        instruments (list): List of instrument dictionaries containing ticker data
+        new_tickers (list): List of ticker strings that need to be created
+        
+    Note:
+        This function has side effects - it creates documents in the database
+        through the create_ticker_document function.
+    """
+    # Configure parameters based on asset class
+    if asset_class == "EQ":
+        prompt = EQ_EQUITY_LONG_SHORT_PROMPT
+        factors = EQ_EQUITY_FACTORS_PROMPT
+        model_function = "run_holistic_market_model"
+        model_name = "holistic"
+    elif asset_class == "CR":
+        prompt = CR_CRYPTO_LONG_SHORT_PROMPT
+        factors = CR_CRYPTO_FACTORS_PROMPT
+        model_function = "run_holistic_market_model"
+        model_name = "holistic"
+    else:
+        prompt = None
+        factors = None
+        model_function = None
+        model_name = None
+
+    for instrument in instruments:
+        if instrument['ticker'] in new_tickers:
+            create_ticker_document(
+                ticker=instrument['ticker'],
+                ticker_tradingview=instrument['ticker_tradingview'],
+                name=instrument['name'],
+                asset_class=asset_class,
+                region=MARKET,
+                prompt=prompt,
+                factors=factors,
+                model_function=model_function,
+                model_name=model_name,
+                importance=5,
+                recurrence="once",
+                decimal=instrument['decimal']
+            )
+
+
+def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_model=None, batch_mode=True):
     """
     Get trending instruments using Gemini AI based on asset class.
     
     Parameters:
-    asset_class (str): Type of assets to analyze (default: "equity")
+    asset_class (str): Type of assets to analyze ("EQ" for equities, "CR" for crypto)
     model_strategy (str): Gemini model strategy to use (default: "Pro")
     gemini_model (str): Specific Gemini model name (optional)
     batch_mode (bool): Whether to run in batch processing mode (default: False)
@@ -98,8 +150,9 @@ def get_trending_instruments(asset_class="equity", model_strategy="Pro", gemini_
         
         # Find difference
         new_tickers = [ticker for ticker in (trending_tickers - existing_tickers) if ticker_exists(ticker)]
-        if new_tickers:            
+        if new_tickers:
             print(f"Found {len(new_tickers)} new tickers not in collection: {new_tickers}")
+            create_new_ticker_documents(asset_class, instruments, new_tickers)
         else:
             print("All trending tickers already exist in the collection")
 
