@@ -17,7 +17,7 @@ if parent_dir not in sys.path:
 from dotenv import load_dotenv
 import importlib
 import inspect
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from multiprocessing import Pool
 from logging_utils import log_error, log_warning, log_info
 from _config import BATCH_SIZE, BATCH_TIMEOUT, BATCH_PAUSE_IN_SECONDS
 from helpers import DatabaseManager
@@ -58,7 +58,7 @@ def derive_module_and_func(model_function, model_name=None):
 # No hardcoded dictionary - use derivation function instead
 
 
-def process_ticker(doc, client):
+def process_ticker(doc):
     """
     Process a single ticker document: import and call the model function, then update flag.
     
@@ -66,6 +66,7 @@ def process_ticker(doc, client):
         doc (dict): Ticker document from MongoDB
     """
     try:
+        client = DatabaseManager().get_client()
         model_function = doc.get("model_function")
         if not model_function:
             log_warning(f"No model_function for ticker {doc.get('ticker')}", "INVALID_FUNCTION")
@@ -122,7 +123,7 @@ def process_ticker(doc, client):
         log_error(f"Error processing ticker {doc.get('ticker')}", "TICKER_PROCESSING", e)
         return False
 
-def process_pipeline(doc, client):
+def process_pipeline(doc):
     """
     Process a single pipeline document: import and call the model function, then update flag.
     
@@ -130,6 +131,7 @@ def process_pipeline(doc, client):
         doc (dict): Pipeline document from MongoDB
     """
     try:
+        client = DatabaseManager().get_client()
         model_function = doc.get("model_function")
         if not model_function:
             log_warning(f"No model_function for pipeline", "INVALID_FUNCTION")
@@ -196,7 +198,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
         max_workers (int): Maximum number of threads
     """
     tracemalloc.start()
-    print("Starting continuous batch processing with 4-hour timeout...")
+    print("Starting continuous batch processing with timeout...")
     
     client = DatabaseManager().get_client()
     db = client[MONGODB_DATABASE]
@@ -217,17 +219,17 @@ def run_batch_processing(max_workers=BATCH_SIZE):
             
             if pending_tickers:
                 print(f"Processing {len(pending_tickers)} tickers")
-                with ThreadPoolExecutor(max_workers=max_workers) as executor:
-                    future_to_doc = {executor.submit(process_ticker, doc, client): doc
-                                    for doc in pending_tickers}
+                with Pool(processes=max_workers) as pool:
+                    results = [pool.apply_async(process_ticker, (doc,))
+                             for doc in pending_tickers]
                     
-                    for future in as_completed(future_to_doc):
-                        doc = future_to_doc[future]
+                    for result in results:
                         try:
-                            future.result()
+                            result.get()
                             tickers_processed += 1
                         except Exception as exc:
-                            log_error(f"Thread generated an exception for {doc['ticker']}", "THREAD_ERROR", exc)
+                            doc = pending_tickers[results.index(result)]
+                            log_error(f"Process generated an exception for {doc['ticker']}", "PROCESS_ERROR", exc)
                 
                 # Explicit cleanup
                 del pending_tickers
@@ -241,17 +243,17 @@ def run_batch_processing(max_workers=BATCH_SIZE):
             
             if pending_pipelines:
                 print(f"Processing {len(pending_pipelines)} pipelines")
-                with ThreadPoolExecutor(max_workers=max_workers) as executor:
-                    future_to_doc = {executor.submit(process_pipeline, doc, client): doc
-                                    for doc in pending_pipelines}
+                with Pool(processes=max_workers) as pool:
+                    results = [pool.apply_async(process_pipeline, (doc,))
+                             for doc in pending_pipelines]
                     
-                    for future in as_completed(future_to_doc):
-                        doc = future_to_doc[future]
+                    for result in results:
                         try:
-                            if future.result():
+                            if result.get():
                                 pipelines_processed += 1
                         except Exception as exc:
-                            log_error(f"Thread generated an exception for pipeline {doc.get('model_function')}", "THREAD_ERROR_PIPELINE", exc)
+                            doc = pending_pipelines[results.index(result)]
+                            log_error(f"Process generated an exception for pipeline {doc.get('model_function')}", "PROCESS_ERROR_PIPELINE", exc)
                 
                 # Explicit cleanup
                 del pending_pipelines
@@ -274,7 +276,6 @@ def run_batch_processing(max_workers=BATCH_SIZE):
             try:
                 # Force garbage collection and delete large variables
                 gc.collect()
-                del future_to_doc
                 
                 # Progress bar with memory cleanup every 10 seconds
                 with tqdm(total=BATCH_PAUSE_IN_SECONDS, desc="Time before next batch") as pbar:
