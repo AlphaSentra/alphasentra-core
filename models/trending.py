@@ -30,7 +30,8 @@ def strip_markdown_code_blocks(text):
     return text.replace('```json', '').replace('```', '').strip()
 
 def create_new_ticker_documents(asset_class, instruments, new_tickers):
-    """Create ticker documents for new trending instruments in the database.
+    """
+    Create ticker documents for new trending instruments in the database.
     
     Handles configuration and creation of ticker documents based on asset class,
     setting appropriate prompts, factors, and model references for each type.
@@ -77,6 +78,56 @@ def create_new_ticker_documents(asset_class, instruments, new_tickers):
                 recurrence="once",
                 decimal=instrument['decimal']
             )
+
+def update_insights_importance_for_trending(instruments):
+    """
+    Update importance and tags in insights collection for trending instruments.
+    
+    Args:
+        instruments (list): List of instrument dictionaries containing ticker data
+    """
+    if not instruments:
+        return
+        
+    try:
+        tag = ">trending ⇧"
+        ticker_list = [instrument['ticker'] for instrument in instruments]
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        insights_collection = db['insights']
+        
+        # Update all documents where any recommendation ticker matches our instruments
+        for ticker in ticker_list:
+            # Find all matching documents
+            cursor = insights_collection.find({"recommendations.ticker": ticker})
+            updated_count = 0
+            
+            for doc in cursor:
+                current_tag = doc.get('tag', '')
+                new_tag = tag
+                
+                # Only add the tag if it's not already present
+                if new_tag not in current_tag:
+                    if current_tag:
+                        updated_tag = f"{current_tag}, {new_tag}"
+                    else:
+                        updated_tag = new_tag
+                else:
+                    updated_tag = current_tag
+                
+                # Update the individual document
+                result = insights_collection.update_one(
+                    {"_id": doc["_id"]},
+                    {"$set": {
+                        "importance": 3,
+                        "tag": updated_tag
+                    }}
+                )
+                updated_count += result.modified_count
+            
+            print(f"Updated {updated_count} insights documents for ticker {ticker}")
+    except Exception as e:
+        log_error("Failed to update insights collection", "DB_UPDATE", e)
 
 
 def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_model=None, batch_mode=True):
@@ -156,61 +207,13 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
         else:
             print("All trending tickers already exist in the collection")
 
-    # Flag importance (set insights importnace to 3 for trending instruments)
-    if instruments:
-        # Update importance in insights collection for matching recommendations
-        try:
-
-            tag = ">trending ⇧"
-
-            ticker_list = [instrument['ticker'] for instrument in instruments]
-            client = DatabaseManager().get_client()
-            db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
-            insights_collection = db['insights']
-            
-            # Update all documents where any recommendation ticker matches our instruments
-            for ticker in ticker_list:
-                # Find all matching documents
-                cursor = insights_collection.find({"recommendations.ticker": ticker})
-                updated_count = 0
-                
-                for doc in cursor:
-                    current_tag = doc.get('tag', '')
-                    new_tag = tag
-                    
-                    # Only add the tag if it's not already present
-                    if new_tag not in current_tag:
-                        if current_tag:
-                            updated_tag = f"{current_tag}, {new_tag}"
-                        else:
-                            updated_tag = new_tag
-                    else:
-                        updated_tag = current_tag
-                    
-                    # Update the individual document
-                    result = insights_collection.update_one(
-                        {"_id": doc["_id"]},
-                        {"$set": {
-                            "importance": 3,
-                            "tag": updated_tag
-                        }}
-                    )
-                    updated_count += result.modified_count
-                
-                print(f"Updated {updated_count} insights documents for ticker {ticker}")
-        except Exception as e:
-            log_error("Failed to update insights collection", "DB_UPDATE", e)
+        # Flag importance (set insights importance to 3 for trending instruments)
+        if instruments:
+            update_insights_importance_for_trending(instruments)
         
     return instruments
 
 
 if __name__ == "__main__":
     print("\n=== Running Trending Instruments Analysis ===")
-    trending = get_trending_instruments(asset_class="EQ")
-    
-    if trending:
-        print("\nRecommended Instruments:")
-        for instrument in trending:
-            print(f"- {instrument['name']} ({instrument['ticker']})")
-    else:
-        print("\nNo trending instruments found")
+    trending = get_trending_instruments(asset_class="CR")
