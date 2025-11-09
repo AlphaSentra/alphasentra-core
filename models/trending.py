@@ -11,7 +11,7 @@ if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
 
-from helpers import DatabaseManager
+from helpers import DatabaseManager, check_pending_ticker_documents
 from _config import EQ_EQUITY_LONG_SHORT_PROMPT, EQ_EQUITY_FACTORS_PROMPT, CR_CRYPTO_LONG_SHORT_PROMPT, CR_CRYPTO_FACTORS_PROMPT
 from data.check_ticker import ticker_exists
 from db.create_ticker import create_ticker_document
@@ -138,28 +138,15 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
     asset_class (str): Type of assets to analyze ("EQ" for equities, "CR" for crypto)
     model_strategy (str): Gemini model strategy to use (default: "Pro")
     gemini_model (str): Specific Gemini model name (optional)
-    batch_mode (bool): Whether to run in batch processing mode (default: False)
+    batch_mode (bool): Whether to run in batch processing mode (default: True)
     
     Returns:
-    str: AI response containing trending instruments analysis
+    list | None: List of instrument dictionaries or None on error
     """
-    # Check if all tickers have document_generated = true
-    try:
-        client = DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
-        tickers_collection = db['tickers']
-        
-        # Count documents where document_generated is not true
-        pending_count = tickers_collection.count_documents({
-            "document_generated": {"$ne": True}
-        })
-        
-        if pending_count > 0:
-            log_info(f"Skipping trending analysis - {pending_count} insights pending generation")
-            return None
-    except Exception as e:
-        log_error("Error checking insights collection status", "DATA_FETCH", e)
-        # Proceed with analysis despite error to avoid complete failure
+    # Check if any tickers have pending document generation
+    if check_pending_ticker_documents():
+        log_info(f"Skipping trending analysis - insights pending generation")
+        return None
 
     # Select prompt based on asset class
     if asset_class.upper() == "EQ":
@@ -197,15 +184,14 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
     except json.JSONDecodeError as e:
         log_error("Error parsing AI response as JSON", "AI_PARSING", e)
         log_warning(f"Raw response content: {response[:200]}...", "DATA_MISSING")
-        instruments = None
+        return None
 
 
     # Extract tickers not present in the tickers collection
     if instruments:
-        # Get all tickers from the collection
+        # Get all tickers from the collection using existing connection
         existing_tickers = set()
         try:
-            # Get MongoDB client and database
             client = DatabaseManager().get_client()
             db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
             tickers_collection = db['tickers']

@@ -713,6 +713,29 @@ class DatabaseManager:
             self._client = None
             log_info("MongoDB connection closed")
 
+def check_pending_ticker_documents() -> bool:
+    """
+    Check if there are any ticker documents pending generation in MongoDB.
+    
+    Returns:
+        bool: True if documents with document_generated ≠ True exist, False otherwise.
+              Returns False and logs error if any exception occurs.
+    """
+    try:
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        
+        # Query for documents where document_generated is not True
+        has_pending = db.tickers.count_documents(
+            {"document_generated": {"$ne": True}}
+        ) > 0
+        log_info(f"Number of pending ticker to process: {db.tickers.count_documents({'document_generated': {'$ne': True}})}")
+        return has_pending
+        
+    except Exception as e:
+        log_error("Error checking ticker documents status", "DATA_FETCH", e)
+        return False
+
 
 def save_to_db(recommendations):
     """
