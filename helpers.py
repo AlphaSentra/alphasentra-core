@@ -25,6 +25,7 @@ if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
 from logging_utils import log_error, log_info, log_warning
+from _config import AI_RESPONSE_MAX_RETRIES
 
 # Load environment variables
 load_dotenv()
@@ -872,16 +873,72 @@ def save_to_db_with_fallback(recommendations, flag_document_generated: bool = Tr
                         db = client[db_name]
                         tickers_coll = db['tickers']
                         for ticker in tickers_set:
-                            tickers_coll.update_one({"ticker": ticker}, {"$set": {"document_generated": True}})
-                        print()
+                            tickers_coll.update_one(
+                                {"ticker": ticker},  # Filter by ticker
+                                {
+                                    "$set": {
+                                        "document_generated": True,
+                                        # Conditionally update recurrence if it's 'once'
+                                        "recurrence": {
+                                            "$cond": {
+                                                "if": {"$eq": ["$recurrence", "once"]},
+                                                "then": "processed",
+                                                "else": "$recurrence"
+                                            }
+                                        }
+                                    }
+                                }
+                            )
+                            
                         log_info(f"Updated document_generated flag to True for tickers: {list(tickers_set)}")
-                    else:
-                        log_warning("No recommendations found in saved document, skipping flag update", "FLAG_UPDATE")
-                else:
-                    log_warning("No recommendations found in saved document, skipping flag update", "FLAG_UPDATE")
         else:
-            log_error("Database save failed, skipping flag update", "DATABASE_FALLBACK")
-            return False
+            log_error("Database save failed, updating fail_count", "DATABASE_FALLBACK")
+            if 'recommendations' in recommendations and isinstance(recommendations['recommendations'], list):
+                tickers_set = set()
+                for trade in recommendations['recommendations']:
+                    ticker = trade.get('ticker')
+                    if ticker:
+                        tickers_set.add(ticker)
+                
+                if tickers_set:
+                    client = DatabaseManager().get_client()
+                    db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
+                    db = client[db_name]
+                    tickers_coll = db['tickers']
+                    for ticker in tickers_set:
+                        tickers_coll.update_one(
+                            {"ticker": ticker},  # Filter by ticker
+                            {
+                                "$inc": {"fail_count": 1},  # Increment fail_count, creates if doesn't exist
+                                "$set": {
+                                    "document_generated": {
+                                        "$cond": {
+                                            "if": {"$gte": [{"$add": ["$fail_count", 1]}, 5]},
+                                            "then": True,
+                                            "else": "$document_generated"  # Keep existing value
+                                        }
+                                    },
+                                    "recurrence": {
+                                        "$cond": {
+                                            "if": {"$gte": [{"$add": ["$fail_count", 1]}, AI_RESPONSE_MAX_RETRIES]},
+                                            "then": "failed",
+                                            "else": {
+                                                "$cond": {
+                                                    "if": {"$eq": ["$recurrence", "once"]},
+                                                    "then": "processed",
+                                                    "else": "$recurrence"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        )
+
+                    else:
+                        log_error("No recommendations found in saved document, skipping flag update", "FLAG_UPDATE")
+                else:
+                    log_error("No recommendations found in saved document, skipping flag update", "FLAG_UPDATE")
         return success
     except Exception as e:
         log_error("Critical error in database save with fallback", "DATABASE_CRITICAL", e)
