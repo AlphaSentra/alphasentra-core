@@ -23,7 +23,7 @@ from crypt import decrypt_string
 load_dotenv()
 
 
-from logging_utils import log_error, log_warning
+from logging_utils import log_error, log_warning, log_info
 
 def strip_markdown_code_blocks(text):
     """Remove markdown code block markers from a string"""
@@ -143,6 +143,24 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
     Returns:
     str: AI response containing trending instruments analysis
     """
+    # Check if all tickers have document_generated = true
+    try:
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        tickers_collection = db['tickers']
+        
+        # Count documents where document_generated is not true
+        pending_count = tickers_collection.count_documents({
+            "document_generated": {"$ne": True}
+        })
+        
+        if pending_count > 0:
+            log_info(f"Skipping trending analysis - {pending_count} insights pending generation")
+            return None
+    except Exception as e:
+        log_error("Error checking insights collection status", "DATA_FETCH", e)
+        # Proceed with analysis despite error to avoid complete failure
+
     # Select prompt based on asset class
     if asset_class.upper() == "EQ":
         prompt = EQ_EQUITY_TRENDING_PROMPT

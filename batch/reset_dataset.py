@@ -22,7 +22,8 @@ logger = AgLogger('reset_dataset')
 
 def reset_document_generated():
     """
-    Reset the document_generated field to False for all documents in the tickers collection.
+    Reset the document_generated field to False for all documents in the tickers collection
+    except those where recurrence is 'processed'.
     
     Returns:
         bool: True if successful, False otherwise
@@ -34,9 +35,9 @@ def reset_document_generated():
         client = DatabaseManager().get_client()
         db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
         db = client[db_name]
-        collection = db['tickers']
+        collection = db['tickers'].find({"recurrence": {"$ne": "processed"}})
         
-        # Update all documents to set document_generated to False
+        # Update all documents to set document_generated to False except 'processed' tickers
         result = collection.update_many(
             filter={},  # Match all documents
             update={"$set": {"document_generated": False}}
