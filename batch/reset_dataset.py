@@ -80,9 +80,10 @@ def reset_pipeline_completed():
         logger.error("Failed to reset task_completed field", "DATABASE_OPERATION", e)
         return False
 
-def delete_once_tickers():
+def delete_tickers():
     """
-    Delete documents in the tickers collection where recurrence is 'once'.
+    Delete documents in the tickers collection where recurrence is
+    'once', or 'processed' with no documents in the insights collection.
     
     Returns:
         bool: True if successful, False otherwise
@@ -100,9 +101,39 @@ def delete_once_tickers():
         result = collection.delete_many(
             filter={"recurrence": "once"}
         )
-        
+
         logger.info(f"Successfully deleted {result.deleted_count} documents with recurrence 'once' from tickers collection")
         logger.info("Deletion of once tickers completed")
+        
+        # Now delete processed tickers with no matching insights
+        logger.info("Starting deletion of processed tickers with no insights")
+        
+        pipeline = [
+            {"$match": {"recurrence": "processed"}},
+            {
+                "$lookup": {
+                    "from": "insights",
+                    "let": {"ticker": "$ticker"},
+                    "pipeline": [
+                        {"$unwind": "$recommendations"},
+                        {"$match": {"$expr": {"$eq": ["$recommendations.ticker", "$$ticker"]}}}
+                    ],
+                    "as": "matching_insights"
+                }
+            },
+            {"$match": {"matching_insights": {"$size": 0}}},
+            {"$project": {"_id": 1}}
+        ]
+        
+        docs_to_delete = collection.aggregate(pipeline)
+        delete_ids = [doc["_id"] for doc in docs_to_delete]
+        
+        if delete_ids:
+            result = collection.delete_many({"_id": {"$in": delete_ids}})
+            logger.info(f"Deleted {result.deleted_count} processed tickers with no insights")
+        else:
+            logger.info("No processed tickers without insights found")
+        
         return True
         
     except Exception as e:
@@ -182,7 +213,7 @@ def reset_all():
         success = (
             reset_document_generated() and
             reset_pipeline_completed() and
-            delete_once_tickers() and
+            delete_tickers() and
             delete_once_pipeline() and
             remove_all_weight_factors()
         )

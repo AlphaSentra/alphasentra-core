@@ -319,8 +319,7 @@ def create_tickers_collection(db):
                 },
                 'dividend_yield': {},                
                 'recurrence': {
-                    'bsonType': 'string',
-                    'enum': ['multi','once'],
+                    'bsonType': 'string'
                 },
                 'decimal': {
                     'bsonType': 'int',

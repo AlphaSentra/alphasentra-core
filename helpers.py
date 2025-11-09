@@ -873,22 +873,24 @@ def save_to_db_with_fallback(recommendations, flag_document_generated: bool = Tr
                         db = client[db_name]
                         tickers_coll = db['tickers']
                         for ticker in tickers_set:
-                            tickers_coll.update_one(
-                                {"ticker": ticker},  # Filter by ticker
-                                {
-                                    "$set": {
-                                        "document_generated": True,
-                                        # Conditionally update recurrence if it's 'once'
-                                        "recurrence": {
-                                            "$cond": {
-                                                "if": {"$eq": ["$recurrence", "once"]},
-                                                "then": "processed",
-                                                "else": "$recurrence"
-                                            }
+                            # First get current recurrence value
+                            ticker_doc = tickers_coll.find_one(
+                                {"ticker": ticker},
+                                {"recurrence": 1}
+                            )
+                            
+                            if ticker_doc:
+                                new_recurrence = "processed" if ticker_doc.get("recurrence") == "once" else ticker_doc.get("recurrence")
+                                
+                                tickers_coll.update_one(
+                                    {"ticker": ticker},
+                                    {
+                                        "$set": {
+                                            "document_generated": True,
+                                            "recurrence": new_recurrence
                                         }
                                     }
-                                }
-                            )
+                                )
                             
                         log_info(f"Updated document_generated flag to True for tickers: {list(tickers_set)}")
         else:
@@ -925,7 +927,7 @@ def save_to_db_with_fallback(recommendations, flag_document_generated: bool = Tr
                                             "else": {
                                                 "$cond": {
                                                     "if": {"$eq": ["$recurrence", "once"]},
-                                                    "then": "processed",
+                                                    "then": "failed",
                                                     "else": "$recurrence"
                                                 }
                                             }
