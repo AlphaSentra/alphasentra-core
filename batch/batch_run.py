@@ -213,7 +213,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
         tickers_coll = db['tickers']
         if tickers_coll is not None:
             pending_tickers = list(tickers_coll.aggregate([
-                {"$match": {"document_generated": False}},
+                {"$match": {"document_generated": False, "recurrence": {"$ne": "processed"}}},
                 {"$sample": {"size": BATCH_SIZE}}
             ]))
             
