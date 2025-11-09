@@ -25,7 +25,7 @@ if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
 from logging_utils import log_error, log_info, log_warning
-from _config import AI_RESPONSE_MAX_RETRIES
+from _config import AI_RESPONSE_MAX_RETRIES, AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS
 
 # Load environment variables
 load_dotenv()
@@ -1272,16 +1272,11 @@ def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=F
     Returns:
     list: Array containing the generated JSON properties as factors
     """
-    from _config import FX_FACTORS_PROMPT
     from crypt import decrypt_string
     from genAI.ai_prompt import get_gen_ai_response
     import json
     
-    try:
-        # Use provided prompt or default to FX_FACTORS_PROMPT
-        if prompt is None:
-            prompt = FX_FACTORS_PROMPT
-        
+    try:        
         # Decrypt the prompt if it's encrypted
         try:
             decrypted_prompt = decrypt_string(prompt)
@@ -1304,77 +1299,85 @@ def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=F
             current_date=current_date
         )
         
-        # Get AI response
-        ai_response = get_gen_ai_response([tickers_str], "factors analysis", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"), batch_mode=batch_mode)
-        
-        # Remove any markdown code block markers if present
-        ai_response = strip_markdown_code_blocks(ai_response)
-        # Parse JSON response
-        factors_data = json.loads(ai_response)
-
         factors_array = []
+        max_retries = AI_RESPONSE_MAX_RETRIES
+        retry_count = 0
+        parse_success = False
+        import time
 
-        # Process different response formats
-        if isinstance(factors_data, dict) and 'factors' in factors_data:
-            # Handle nested factors structure
-            factors_data = factors_data['factors']
-        
-        if isinstance(factors_data, list):
-            for item in factors_data:
-                # Enforce required structure for each factor
-                factor = {
-                    "name": str(item.get('name', f"factor_{len(factors_array)+1}")),
-                    "value": {
-                        "description": "",
-                        "bull_bear_score": 0
-                    }
-                }
+        while retry_count < max_retries and not parse_success:
+            try:
+                # Get fresh AI response each retry
+                ai_response = get_gen_ai_response([tickers_str], "factors analysis", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"), batch_mode=batch_mode)
                 
-                # Process value field
-                if 'value' in item:
-                    if isinstance(item['value'], dict):
-                        factor['value']['description'] = str(item['value'].get('description', ''))
-                        factor['value']['bull_bear_score'] = int(item['value'].get('bull_bear_score', 0))
-                    else:
-                        factor['value']['description'] = str(item['value'])
+                # Remove any markdown code block markers if present
+                ai_response = strip_markdown_code_blocks(ai_response)
                 
-                # Skip factor if description is empty
-                if not factor['value']['description']:
-                    continue
+                # Parse JSON response
+                factors_data = json.loads(ai_response)
+
+                # Process different response formats
+                if isinstance(factors_data, dict) and 'factors' in factors_data:
+                    # Handle nested factors structure
+                    factors_data = factors_data['factors']
                 
-                factors_array.append(factor)
+                if isinstance(factors_data, list):
+                    for item in factors_data:
+                        # Enforce required structure for each factor
+                        factor = {
+                            "name": str(item.get('name', f"factor_{len(factors_array)+1}")),
+                            "value": {
+                                "description": "",
+                                "bull_bear_score": 0
+                            }
+                        }
+                        
+                        # Process value field
+                        if 'value' in item:
+                            if isinstance(item['value'], dict):
+                                factor['value']['description'] = str(item['value'].get('description', ''))
+                                factor['value']['bull_bear_score'] = int(item['value'].get('bull_bear_score', 0))
+                            else:
+                                factor['value']['description'] = str(item['value'])
+                        
+                        # Skip factor if description is empty
+                        if not factor['value']['description']:
+                            continue
+                        
+                        factors_array.append(factor)
+                        
+                elif isinstance(factors_data, dict):
+                    # Convert key-value pairs to factor objects
+                    for key, value in factors_data.items():
+                        factor = {
+                            "name": str(key),
+                            "value": {
+                                "description": "",
+                                "bull_bear_score": 0
+                            }
+                        }
+                        
+                        if isinstance(value, dict):
+                            factor['value']['description'] = str(value.get('description', ''))
+                            factor['value']['bull_bear_score'] = int(value.get('bull_bear_score', 0))
+                        else:
+                            factor['value']['description'] = str(value)
+                        
+                        # Skip factor if description is empty
+                        if not factor['value']['description']:
+                            continue
+                        
+                        factors_array.append(factor)
+                parse_success = True
+            except json.JSONDecodeError as e:
+                retry_count += 1
+                log_error(f"JSON parsing failed (attempt {retry_count}/{max_retries})", "AI_PARSING", e)
+                if retry_count < max_retries:
+                    time.sleep(AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS)
                 
-        elif isinstance(factors_data, dict):
-            # Convert key-value pairs to factor objects
-            for key, value in factors_data.items():
-                factor = {
-                    "name": str(key),
-                    "value": {
-                        "description": "",
-                        "bull_bear_score": 0
-                    }
-                }
-                
-                if isinstance(value, dict):
-                    factor['value']['description'] = str(value.get('description', ''))
-                    factor['value']['bull_bear_score'] = int(value.get('bull_bear_score', 0))
-                else:
-                    factor['value']['description'] = str(value)
-                
-                # Skip factor if description is empty
-                if not factor['value']['description']:
-                    continue
-                
-                factors_array.append(factor)
-                
-        else:  # Fallback for unexpected formats
-            factors_array.append({
-                "name": "default_factor",
-                "value": {
-                    "description": "",
-                    "bull_bear_score": 0
-                }
-            })
+        if not parse_success:
+            log_error("Unexpected format in factors response", "AI_PARSING")
+            factors_array = []
         
         return factors_array
         
