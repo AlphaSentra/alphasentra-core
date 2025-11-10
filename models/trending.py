@@ -16,7 +16,7 @@ from _config import EQ_EQUITY_LONG_SHORT_PROMPT, EQ_EQUITY_FACTORS_PROMPT, CR_CR
 from data.check_ticker import ticker_exists
 from db.create_ticker import create_ticker_document
 from genAI.ai_prompt import get_gen_ai_response
-from _config import EQ_EQUITY_TRENDING_PROMPT, CR_CRYPTO_TRENDING_PROMPT, MARKET
+from _config import EQ_EQUITY_TRENDING_PROMPT, CR_CRYPTO_TRENDING_PROMPT, FX_FOREX_TRENDING_PROMPT,MARKET
 from crypt import decrypt_string
 
 # Load environment variables
@@ -153,6 +153,8 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
         prompt = EQ_EQUITY_TRENDING_PROMPT
     elif asset_class.upper() == "CR":
         prompt = CR_CRYPTO_TRENDING_PROMPT
+    elif asset_class.upper() == "FX":
+        prompt = FX_FOREX_TRENDING_PROMPT
     else:
         raise ValueError(f"Unsupported asset class: {asset_class}")
     
@@ -220,4 +222,4 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
 
 if __name__ == "__main__":
     print("\n=== Running Trending Instruments Analysis ===")
-    trending = get_trending_instruments(asset_class="CR")
+    trending = get_trending_instruments(asset_class="FX")
