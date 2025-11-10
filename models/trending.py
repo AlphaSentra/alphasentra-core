@@ -25,9 +25,77 @@ load_dotenv()
 
 from logging_utils import log_error, log_warning, log_info
 
+def update_ticker_recurrence(instruments):
+    """
+    Update ticker documents' recurrence and document_generated fields for trending instruments.
+    
+    Args:
+        instruments (list): List of instrument dictionaries containing ticker data
+        
+    Returns:
+        None: Updates documents in the tickers collection
+    """
+    try:
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        tickers_collection = db['tickers']
+        
+        for instrument in instruments:
+            ticker = instrument['ticker']
+            result = tickers_collection.update_one(
+                {"ticker": ticker, "recurrence": "processed"},
+                {"$set": {"recurrence": "once", "document_generated": False}}
+            )
+            if result.modified_count > 0:
+                log_info(f"Updated recurrence for ticker {ticker}")
+    except Exception as e:
+        log_error("Failed to update ticker recurrence", "DB_UPDATE", e)
+
+
 def strip_markdown_code_blocks(text):
     """Remove markdown code block markers from a string"""
     return text.replace('```json', '').replace('```', '').strip()
+
+def update_pipeline_run_count(model_function):
+    """Update pipeline run count and task completion status"""
+    try:
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        pipeline_collection = db['pipeline']
+        
+        # Check if document exists first
+        existing_doc = pipeline_collection.find_one({"model_function": model_function})
+        
+        if not existing_doc:
+            # Insert new document with initial run_count
+            pipeline_collection.insert_one({
+                "model_function": model_function,
+                "model_name": "trending",
+                "recurrence": "multi",
+                "run_count": 1,
+                "task_completed": False
+            })
+        else:
+            # Update existing document
+            pipeline_collection.update_one(
+                {"model_function": model_function},
+                {
+                    "$inc": {"run_count": 1},
+                    "$set": {
+                        "task_completed": {
+                            "$cond": {
+                                "if": {"$gte": ["$run_count", 4]},
+                                "then": True,
+                                "else": "$task_completed"
+                            }
+                        }
+                    }
+                }
+            )
+            log_info(f"Updated pipeline run count for {model_function}")
+    except Exception as e:
+        log_error("Failed to update pipeline run count", "DB_UPDATE", e)
+
 
 def create_new_ticker_documents(asset_class, instruments, new_tickers):
     """
@@ -78,6 +146,7 @@ def create_new_ticker_documents(asset_class, instruments, new_tickers):
                 recurrence="once",
                 decimal=instrument['decimal']
             )
+
 
 def update_insights_importance_for_trending(instruments):
     """
@@ -130,7 +199,7 @@ def update_insights_importance_for_trending(instruments):
         log_error("Failed to update insights collection", "DB_UPDATE", e)
 
 
-def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_model=None, batch_mode=True):
+def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_model=None, model_function=None, batch_mode=True):
     """
     Get trending instruments using Gemini AI based on asset class.
     
@@ -211,11 +280,14 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
             print(f"Found {len(new_tickers)} new tickers not in collection: {new_tickers}")
             create_new_ticker_documents(asset_class, instruments, new_tickers)
         else:
-            print("All trending tickers already exist in the collection")
-
+            log_info("All trending tickers already exist in the collection")
+            
+            # Update pipeline run count for this model function
+            update_pipeline_run_count(model_function)
+            
         # Flag importance (set insights importance to 3 for trending instruments)
         if instruments:
-            
+            update_ticker_recurrence(instruments)
             update_insights_importance_for_trending(instruments)
         
     return instruments
@@ -223,15 +295,15 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
 
 def run_trending_analysis_equity():
     """Run trending analysis for Equity asset class"""
-    return get_trending_instruments(asset_class="EQ")
+    return get_trending_instruments(asset_class="EQ", model_function="run_trending_analysis_equity")
 
 def run_trending_analysis_crypto():
     """Run trending analysis for Crypto asset class"""
-    return get_trending_instruments(asset_class="CR")
+    return get_trending_instruments(asset_class="CR", model_function="run_trending_analysis_crypto")
 
 def run_trending_analysis_forex():
     """Run trending analysis for Forex asset class"""
-    return get_trending_instruments(asset_class="FX")
+    return get_trending_instruments(asset_class="FX", model_function="run_trending_analysis_forex")
 
 
 if __name__ == "__main__":
