@@ -20,7 +20,7 @@ import inspect
 from multiprocessing import Pool
 from logging_utils import log_error, log_warning, log_info
 from _config import BATCH_SIZE, BATCH_TIMEOUT, BATCH_PAUSE_IN_SECONDS
-from helpers import DatabaseManager
+from helpers import DatabaseManager, update_ticker_fail_status
 import gc
 import tracemalloc
 import time
@@ -121,6 +121,7 @@ def process_ticker(doc):
         
     except Exception as e:
         log_error(f"Error processing ticker {doc.get('ticker')}", "TICKER_PROCESSING", e)
+        update_ticker_fail_status(doc.get('ticker'))
         return False
 
 def process_pipeline(doc):

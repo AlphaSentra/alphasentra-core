@@ -18,7 +18,7 @@ BATCH_PAUSE_IN_SECONDS = 120
 BATCH_TIMEOUT = 6 * 60 * 60
 
 # AI Response document generation failed retry configuration
-AI_RESPONSE_MAX_RETRIES = 10
+AI_RESPONSE_MAX_RETRIES = 5
 AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS = 30
 
 # Database size limit in megabytes

@@ -215,6 +215,7 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
 
         # Flag importance (set insights importance to 3 for trending instruments)
         if instruments:
+            
             update_insights_importance_for_trending(instruments)
         
     return instruments

@@ -3,6 +3,7 @@ Description:
 Helper functions
 """
 
+from typing import Optional
 from data.price import calculate_trade_levels, calculate_entry_price, get_current_price
 import os
 from dotenv import load_dotenv
@@ -713,6 +714,94 @@ class DatabaseManager:
             self._client = None
             log_info("MongoDB connection closed")
 
+
+def update_ticker_fail_status(ticker: str) -> None:
+    """
+    Update ticker document with failure status, incrementing fail_count and
+    conditionally setting document_generated and recurrence fields.
+    
+    This function fixes the 'Document failed validation' error by executing
+    the conditional logic in Python instead of within the $set operator.
+    
+    Parameters:
+        ticker (str): The ticker symbol to update
+    """
+    try:
+        # Assuming AI_RESPONSE_MAX_RETRIES is an integer accessible in this scope
+        max_retries = AI_RESPONSE_MAX_RETRIES 
+    except NameError:
+        # Fallback if the constant isn't defined
+        max_retries = 10 
+        log_warning("AI_RESPONSE_MAX_RETRIES not found, defaulting to 10.", "TICKER_UPDATE")
+
+
+    client = DatabaseManager().get_client()
+    db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
+    db = client[db_name]
+    tickers_coll: pymongo.collection.Collection = db['tickers']
+    
+    # 1. Get current document state to calculate the conditional updates and for logging
+    current_doc: Optional[dict] = tickers_coll.find_one({"ticker": ticker})
+    if not current_doc:
+        log_warning(f"Ticker {ticker} not found in database", "TICKER_UPDATE")
+        return
+    
+    # Get current values, using safe defaults
+    current_fail_count: int = current_doc.get("fail_count", 0)
+    # Ensure current_recurrence is read as a string for comparison
+    current_recurrence: str = str(current_doc.get("recurrence", ""))
+    current_document_generated: bool = current_doc.get("document_generated", False)
+
+    # 2. CALCULATE the new values based on the state *before* the increment
+    
+    new_fail_count_after_inc: int = current_fail_count + 1
+    
+    # --- Calculate new document_generated value (Must be a simple Python boolean) ---
+    if new_fail_count_after_inc >= max_retries:
+        new_document_generated = True
+    else:
+        # Preserve existing boolean state
+        new_document_generated = current_document_generated
+
+    # --- Calculate new recurrence value (Must be a simple Python string) ---
+    if new_fail_count_after_inc >= max_retries:
+        new_recurrence = "failed"
+    elif current_recurrence == "once":
+        new_recurrence = "failed"
+    else:
+        # Preserve existing string state
+        new_recurrence = current_recurrence
+
+    # 3. Perform atomic update using simple values
+    updated_doc: Optional[dict] = tickers_coll.find_one_and_update(
+        {"ticker": ticker},
+        {
+            # $inc is safe and increments the count
+            "$inc": {"fail_count": 1},
+            # $set uses the calculated, properly typed Python values
+            "$set": {
+                "document_generated": new_document_generated,
+                "recurrence": new_recurrence
+            }
+        },
+        return_document=pymongo.ReturnDocument.AFTER # Ensures the final document is returned
+    )
+    
+    # --- Logging and Error Handling ---
+    if not updated_doc:
+        log_warning(f"Ticker {ticker} update failed for unknown reason")
+        return
+    
+    new_fail_count = updated_doc.get("fail_count", 0)
+    new_recurrence = updated_doc.get("recurrence", "")
+    
+    log_info(f"Updated ticker {ticker} fail_count: {current_fail_count} -> {new_fail_count}")
+    
+    # Check if recurrence changed to "failed"
+    if new_recurrence == "failed" and current_recurrence != "failed":
+        log_info(f"Ticker {ticker} recurrence changed to 'failed' at fail_count {new_fail_count}")
+
+
 def check_pending_ticker_documents() -> bool:
     """
     Check if there are any ticker documents pending generation in MongoDB.
@@ -931,34 +1020,7 @@ def save_to_db_with_fallback(recommendations, flag_document_generated: bool = Tr
                     db = client[db_name]
                     tickers_coll = db['tickers']
                     for ticker in tickers_set:
-                        tickers_coll.update_one(
-                            {"ticker": ticker},  # Filter by ticker
-                            {
-                                "$inc": {"fail_count": 1},  # Increment fail_count, creates if doesn't exist
-                                "$set": {
-                                    "document_generated": {
-                                        "$cond": {
-                                            "if": {"$gte": [{"$add": ["$fail_count", 1]}, 5]},
-                                            "then": True,
-                                            "else": "$document_generated"  # Keep existing value
-                                        }
-                                    },
-                                    "recurrence": {
-                                        "$cond": {
-                                            "if": {"$gte": [{"$add": ["$fail_count", 1]}, AI_RESPONSE_MAX_RETRIES]},
-                                            "then": "failed",
-                                            "else": {
-                                                "$cond": {
-                                                    "if": {"$eq": ["$recurrence", "once"]},
-                                                    "then": "failed",
-                                                    "else": "$recurrence"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        )
+                        update_ticker_fail_status(ticker)
 
                     else:
                         log_error("No recommendations found in saved document, skipping flag update", "FLAG_UPDATE")

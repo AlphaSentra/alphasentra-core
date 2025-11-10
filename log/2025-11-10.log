@@ -40,3 +40,47 @@
 2025-11-10 13:29:01,736 - ERROR - [ERR-0001] - [57b03579] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
 2025-11-10 13:29:07,777 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
 2025-11-10 13:29:07,883 - INFO - [INFO] - Memory before cleanup: 3210.0 KB
+2025-11-10 13:57:12,071 - ERROR - [ERR-0001] - [72aec4f0] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 13:57:13,187 - ERROR - [ERR-0001] - [a9068aa1] Process generated an exception for BRK.B | Exception: OperationFailure: Plan executor error during findAndModify :: caused by :: Document failed validation, full error: {'ok': 0.0, 'errmsg': 'Plan executor error during findAndModify :: caused by :: Document failed validation', 'code': 121, 'codeName': 'DocumentValidationFailure', 'errInfo': {'failingDocumentId': ObjectId('69117e3207983886155f20d9'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'recurrence', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'string'}, 'reason': 'type did not match', 'consideredValue': {'$cond': {'if': {'$gte': [{'$add': ['$fail_count', 1]}, 10]}, 'then': 'failed', 'else': {'$cond': {'if': {'$eq': ['$recurrence', 'once']}, 'then': 'failed', 'else': '$recurrence'}}}}, 'consideredType': 'object'}]}, {'propertyName': 'document_generated', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'bool'}, 'reason': 'type did not match', 'consideredValue': {'$cond': {'if': {'$gte': [{'$add': ['$fail_count', 1]}, 5]}, 'then': True, 'else': '$document_generated'}}, 'consideredType': 'object'}]}]}]}}, '$clusterTime': {'clusterTime': Timestamp(1762757832, 198), 'signature': {'hash': b'\xbf\xef%I\x10:\x99\x98\x9d\x12`\n\xe0\xc5\xdb\xf7|\x8d\x87\x16', 'keyId': 7506211452982657031}}, 'operationTime': Timestamp(1762757832, 198)} | From: batch_run.py:run_batch_processing()
+2025-11-10 13:57:41,498 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 13:57:41,595 - INFO - [INFO] - Memory before cleanup: 2892.2 KB
+2025-11-10 14:10:17,927 - ERROR - [ERR-0001] - [9e91a411] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 14:10:18,872 - ERROR - [ERR-0001] - [2d90a1d1] Process generated an exception for BRK.B | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
+2025-11-10 14:10:25,468 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 14:10:25,564 - INFO - [INFO] - Memory before cleanup: 2894.1 KB
+2025-11-10 14:11:48,417 - ERROR - [ERR-0001] - [bf9d17c7] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 14:11:49,522 - ERROR - [ERR-0001] - [6c42cfa5] Process generated an exception for BRK.B | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
+2025-11-10 14:13:02,016 - ERROR - [ERR-0001] - [b7d869f2] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 14:13:03,021 - ERROR - [ERR-0001] - [b3276176] Process generated an exception for BRK.B | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: batch_run.py:run_batch_processing()
+2025-11-10 14:14:22,673 - ERROR - [ERR-0001] - [78a07b97] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 14:14:23,339 - INFO - [INFO] - Updated ticker BRK.B fail_count: 3 -> 4
+2025-11-10 14:18:14,288 - ERROR - [ERR-0001] - [cae52dc9] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 14:18:14,878 - INFO - [INFO] - Updated ticker BRK.B fail_count: 0 -> 1
+2025-11-10 14:18:14,878 - INFO - [INFO] - Ticker BRK.B recurrence changed to 'failed' at fail_count 1
+2025-11-10 14:18:23,224 - WARNING - [ERR-0001] - [3e0512c3] Failed to update document for unflag_hcb_pipeline_task | From: batch_run.py:process_pipeline()
+2025-11-10 14:18:23,958 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 14:18:24,058 - INFO - [INFO] - Memory before cleanup: 2610.2 KB
+2025-11-10 18:10:14,010 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 1 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-10 18:10:14,108 - INFO - [INFO] - Memory before cleanup: 2610.3 KB
+2025-11-10 18:11:42,743 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 1 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-10 18:11:42,841 - INFO - [INFO] - Memory before cleanup: 2610.3 KB
+2025-11-10 18:19:31,101 - ERROR - [ERR-0001] - [5eb46e39] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 18:19:31,657 - INFO - [INFO] - Updated ticker BRK.B fail_count: 0 -> 1
+2025-11-10 18:19:31,658 - INFO - [INFO] - Ticker BRK.B recurrence changed to 'failed' at fail_count 1
+2025-11-10 18:19:51,291 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 18:19:51,386 - INFO - [INFO] - Memory before cleanup: 2610.2 KB
+2025-11-10 18:21:53,208 - INFO - [INFO] - Memory after cleanup: 2980.5 KB (saved -379249.0 bytes)
+2025-11-10 18:22:19,929 - ERROR - [ERR-0001] - [4622e1f5] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 18:22:20,731 - INFO - [INFO] - Updated ticker BRK.B fail_count: 1 -> 2
+2025-11-10 18:22:26,825 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 18:22:26,934 - INFO - [INFO] - Memory before cleanup: 3428.9 KB
+2025-11-10 18:24:28,761 - INFO - [INFO] - Memory after cleanup: 3325.0 KB (saved 106368.0 bytes)
+2025-11-10 18:24:50,940 - ERROR - [ERR-0001] - [3c961b41] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 18:24:51,526 - INFO - [INFO] - Updated ticker BRK.B fail_count: 2 -> 3
+2025-11-10 18:25:29,518 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 18:25:29,627 - INFO - [INFO] - Memory before cleanup: 3213.1 KB
+2025-11-10 18:27:31,412 - INFO - [INFO] - Memory after cleanup: 3212.8 KB (saved 352.0 bytes)
+2025-11-10 18:27:56,715 - ERROR - [ERR-0001] - [cfa37c34] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 18:27:57,325 - INFO - [INFO] - Updated ticker BRK.B fail_count: 8 -> 9
+2025-11-10 18:28:03,651 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 1 pipelines. Remaining: 0 tickers, 1 pipelines
+2025-11-10 18:28:03,759 - INFO - [INFO] - Memory before cleanup: 3213.0 KB
