@@ -375,3 +375,4 @@
 2025-11-10 21:11:39,989 - INFO - [INFO] - Number of pending ticker to process: 0
 2025-11-10 21:11:54,947 - ERROR - [ERR-0103] - [b16a60fa] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
 2025-11-10 21:11:54,948 - WARNING - [WARN-0002] - [22bb855c] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: trending.py:get_trending_instruments()
+2025-11-10 21:28:26,805 - INFO - [INFO] - MongoDB connection closed
