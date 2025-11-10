@@ -25,35 +25,62 @@ load_dotenv()
 
 from logging_utils import log_error, log_warning, log_info
 
-def update_ticker_recurrence(instruments):
-    """
-    Update ticker documents' recurrence and document_generated fields for trending instruments.
+def update_ticker_recurrence(instruments: list[dict]) -> None:
+    """Update ticker documents' recurrence status based on existing insights.
+    
+    Processes a list of instruments and updates their recurrence status in the database
+    only if there's no existing insights document for the instrument with:
+    - A timestamp equal to or newer than current time
+    - The instrument's ticker in the recommendations list
     
     Args:
-        instruments (list): List of instrument dictionaries containing ticker data
-        
+        instruments: List of instrument dictionaries containing:
+            - ticker (str): The instrument's ticker symbol
+            - ticker_tradingview (str): TradingView formatted ticker
+            - name (str): Full name of the instrument
+            - decimal (int): Decimal precision for pricing
+    
     Returns:
-        None: Updates documents in the tickers collection
+        None: This function only updates database documents
     """
     try:
         client = DatabaseManager().get_client()
         db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
         tickers_collection = db['tickers']
+        insights_collection = db['insights']
+        
+        # Get current datetime in UTC
+        today = datetime.datetime.now(datetime.timezone.utc)
         
         for instrument in instruments:
             ticker = instrument['ticker']
-            result = tickers_collection.update_one(
-                {"ticker": ticker, "recurrence": "processed"},
-                {"$set": {"recurrence": "once", "document_generated": False}}
-            )
-            if result.modified_count > 0:
-                log_info(f"Updated recurrence for ticker {ticker}")
+            
+            # Check if insight exists for current time or newer with this ticker in recommendations
+            existing_insight = insights_collection.find_one({
+                "timestamp_gmt": {"$gte": today.isoformat() + "Z"},
+                "recommendations.ticker": ticker
+            })
+            
+            if not existing_insight:
+                result = tickers_collection.update_one(
+                    {"ticker": ticker, "recurrence": "processed"},
+                    {"$set": {"recurrence": "once", "document_generated": False}}
+                )
+                if result.modified_count > 0:
+                    log_info(f"Updated recurrence for ticker {ticker}")
+                    
     except Exception as e:
         log_error("Failed to update ticker recurrence", "DB_UPDATE", e)
 
 
 def strip_markdown_code_blocks(text):
     """Remove markdown code block markers from a string"""
+    if text is None:
+        log_error("Received None input in strip_markdown_code_blocks")
+        return ""
+    if not isinstance(text, str):
+        log_error(f"Expected string input but got {type(text)}")
+        return str(text)
     return text.replace('```json', '').replace('```', '').strip()
 
 def update_pipeline_run_count(model_function):
@@ -248,6 +275,9 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
     
     # Try to parse the result as JSON
     try:
+        if response is None:
+            log_error("AI response is None", "AI_RESPONSE", ValueError("No response received from AI"))
+            return None
         # Remove any markdown code block markers if present
         result = strip_markdown_code_blocks(response)
         # Parse JSON

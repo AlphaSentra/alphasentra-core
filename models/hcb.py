@@ -11,7 +11,7 @@ import pymongo
 from datetime import datetime, timedelta, timezone
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from helpers import DatabaseManager
+from helpers import DatabaseManager, check_pending_ticker_documents
 
 def get_high_conviction_buys():
     """
@@ -128,10 +128,11 @@ def unflag_hcb_pipeline_task():
         return
     collection = db["pipeline"]
     
-    collection.update_one(
-        {"model_function": "get_high_conviction_buys"},
-        {"$set": {"task_completed": False}}
-    )
+    if check_pending_ticker_documents():
+        collection.update_one(
+            {"model_function": "get_high_conviction_buys"},
+            {"$set": {"task_completed": False}}
+        )
 
 
 if __name__ == "__main__":

@@ -331,3 +331,47 @@
 2025-11-10 20:35:38,907 - INFO - [INFO] - Skipping trending analysis - insights pending generation
 2025-11-10 20:35:39,488 - INFO - [INFO] - Number of pending ticker to process: 1
 2025-11-10 20:35:39,489 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 21:01:30,397 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 21:01:30,399 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 21:01:31,011 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 21:01:31,011 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 21:01:31,601 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 21:01:31,602 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 21:01:52,674 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 21:01:52,675 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 21:01:53,335 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 21:01:53,336 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 21:01:53,907 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 21:01:53,907 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 21:02:57,999 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 21:03:12,288 - INFO - [INFO] - All trending tickers already exist in the collection
+2025-11-10 21:03:12,949 - ERROR - [ERR-0001] - [f4a42411] Failed to update pipeline run count | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('6911e44d23dd82417933b985'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'task_completed', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'bool'}, 'reason': 'type did not match', 'consideredValue': {'$cond': {'if': {'$gte': ['$run_count', 4]}, 'then': True, 'else': '$task_completed'}}, 'consideredType': 'object'}]}]}]}}} | From: trending.py:update_pipeline_run_count()
+2025-11-10 21:03:19,249 - INFO - [INFO] - Updated recurrence for ticker APLD
+2025-11-10 21:04:55,097 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 21:04:55,100 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 21:04:55,711 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 21:04:55,711 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 21:05:49,708 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 21:05:54,309 - ERROR - [ERR-0103] - [d8440175] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
+2025-11-10 21:05:54,309 - WARNING - [WARN-0002] - [42cd8cb3] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: trending.py:get_trending_instruments()
+2025-11-10 21:05:54,864 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 21:06:07,843 - ERROR - [ERR-0103] - [82b007c0] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
+2025-11-10 21:06:07,844 - WARNING - [WARN-0002] - [dd01d7fa] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: trending.py:get_trending_instruments()
+2025-11-10 21:06:08,484 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 21:10:13,040 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 21:10:19,362 - ERROR - [ERR-0103] - [6d29ac8c] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
+2025-11-10 21:10:19,363 - WARNING - [WARN-0002] - [77de046d] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: trending.py:get_trending_instruments()
+2025-11-10 21:10:20,015 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 21:10:40,570 - ERROR - [ERR-0103] - [33dfc8e1] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
+2025-11-10 21:10:40,571 - WARNING - [WARN-0002] - [455a6ff6] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: trending.py:get_trending_instruments()
+2025-11-10 21:10:41,174 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 21:11:01,911 - ERROR - [ERR-0102] - [06a1ba3e] AI response is None | Exception: ValueError: No response received from AI | From: trending.py:get_trending_instruments()
+2025-11-10 21:11:19,445 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 21:11:32,457 - ERROR - [ERR-0103] - [f1fc3aa6] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
+2025-11-10 21:11:32,457 - WARNING - [WARN-0002] - [a9a7163a] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: trending.py:get_trending_instruments()
+2025-11-10 21:11:33,222 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 21:11:39,380 - ERROR - [ERR-0103] - [aea8597f] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
+2025-11-10 21:11:39,381 - WARNING - [WARN-0002] - [7165c201] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: trending.py:get_trending_instruments()
+2025-11-10 21:11:39,989 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 21:11:54,947 - ERROR - [ERR-0103] - [b16a60fa] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
+2025-11-10 21:11:54,948 - WARNING - [WARN-0002] - [22bb855c] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: trending.py:get_trending_instruments()
