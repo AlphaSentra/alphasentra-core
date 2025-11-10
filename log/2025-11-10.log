@@ -7,3 +7,36 @@
 2025-11-10 09:48:35,372 - INFO - [INFO] - Number of pending ticker to process: 0
 2025-11-10 11:46:19,554 - INFO - [INFO] - Number of pending ticker to process: 0
 2025-11-10 12:42:10,104 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 12:54:34,047 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-10 12:56:00,773 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 12:56:00,776 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 12:56:01,387 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 12:56:01,387 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 12:58:20,268 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 12:58:20,270 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 12:58:20,812 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 12:58:20,813 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 12:58:21,344 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-10 12:58:21,344 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-10 13:11:37,443 - ERROR - [ERR-0001] - [2a336013] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 13:11:57,819 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 13:11:57,916 - INFO - [INFO] - Memory before cleanup: 2606.0 KB
+2025-11-10 13:13:59,809 - INFO - [INFO] - Memory after cleanup: 2977.0 KB (saved -379936.0 bytes)
+2025-11-10 13:14:21,557 - ERROR - [ERR-0001] - [747515dc] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 13:14:27,754 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 13:14:27,868 - INFO - [INFO] - Memory before cleanup: 3425.7 KB
+2025-11-10 13:16:29,701 - INFO - [INFO] - Memory after cleanup: 3321.1 KB (saved 107040.0 bytes)
+2025-11-10 13:16:56,512 - ERROR - [ERR-0001] - [fb1242f1] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 13:17:02,728 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 13:17:02,839 - INFO - [INFO] - Memory before cleanup: 3209.0 KB
+2025-11-10 13:24:00,466 - ERROR - [ERR-0001] - [9274289b] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 13:24:06,486 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 13:24:06,583 - INFO - [INFO] - Memory before cleanup: 2606.0 KB
+2025-11-10 13:26:08,379 - INFO - [INFO] - Memory after cleanup: 2976.4 KB (saved -379332.0 bytes)
+2025-11-10 13:26:30,731 - ERROR - [ERR-0001] - [436e3e93] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 13:26:36,784 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 13:26:36,892 - INFO - [INFO] - Memory before cleanup: 3425.3 KB
+2025-11-10 13:28:38,644 - INFO - [INFO] - Memory after cleanup: 3321.8 KB (saved 106016.0 bytes)
+2025-11-10 13:29:01,736 - ERROR - [ERR-0001] - [57b03579] Error processing ticker BRK.B | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2025-11-10 13:29:07,777 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 1 pipelines. Remaining: 1 tickers, 1 pipelines
+2025-11-10 13:29:07,883 - INFO - [INFO] - Memory before cleanup: 3210.0 KB

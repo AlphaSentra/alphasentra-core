@@ -220,6 +220,21 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
     return instruments
 
 
+def run_trending_analysis_equity():
+    """Run trending analysis for Equity asset class"""
+    return get_trending_instruments(asset_class="EQ")
+
+def run_trending_analysis_crypto():
+    """Run trending analysis for Crypto asset class"""
+    return get_trending_instruments(asset_class="CR")
+
+def run_trending_analysis_forex():
+    """Run trending analysis for Forex asset class"""
+    return get_trending_instruments(asset_class="FX")
+
+
 if __name__ == "__main__":
     print("\n=== Running Trending Instruments Analysis ===")
-    trending = get_trending_instruments(asset_class="FX")
+    run_trending_analysis_equity()
+    run_trending_analysis_crypto()
+    run_trending_analysis_forex()
