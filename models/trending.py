@@ -103,20 +103,19 @@ def update_pipeline_run_count(model_function):
                 "task_completed": False
             })
         else:
+            # Retrieve current document to get run_count
+            existing_doc = pipeline_collection.find_one({"model_function": model_function})
+            
+            # Calculate new run_count and task_completed
+            new_run_count = existing_doc['run_count'] + 1
+            task_completed = new_run_count >= 4
+            
             # Update existing document
             pipeline_collection.update_one(
                 {"model_function": model_function},
                 {
                     "$inc": {"run_count": 1},
-                    "$set": {
-                        "task_completed": {
-                            "$cond": {
-                                "if": {"$gte": ["$run_count", 4]},
-                                "then": True,
-                                "else": "$task_completed"
-                            }
-                        }
-                    }
+                    "$set": {"task_completed": task_completed}
                 }
             )
             log_info(f"Updated pipeline run count for {model_function}")
