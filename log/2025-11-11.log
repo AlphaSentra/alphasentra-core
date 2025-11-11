@@ -20,3 +20,1272 @@
 2025-11-11 07:47:47,908 - INFO - [INFO] - Starting deletion of all weigh_factors documents
 2025-11-11 07:47:48,190 - INFO - [INFO] - Successfully deleted 18 documents from 'weight_factors'.
 2025-11-11 07:47:48,191 - INFO - [INFO] - All reset operations completed successfully
+2025-11-11 16:46:41,083 - WARNING - [ERR-0003] - [c5812536] Database size 509.70MB exceeds 400MB limit | From: db_quota.py:enforce_db_size_limit()
+2025-11-11 16:46:43,277 - INFO - [INFO] - Deleted document 69082c527517c299a68df5a3 - new size: 509.57MB
+2025-11-11 16:46:45,017 - INFO - [INFO] - Deleted document 69082c5c7517c299a68df5a4 - new size: 509.42MB
+2025-11-11 16:46:46,553 - INFO - [INFO] - Deleted document 69082c937517c299a68df5a5 - new size: 509.27MB
+2025-11-11 16:46:48,091 - INFO - [INFO] - Deleted document 69082ca97517c299a68df5a6 - new size: 509.10MB
+2025-11-11 16:46:49,283 - INFO - [INFO] - Deleted document 69082d1a7517c299a68df5a7 - new size: 508.96MB
+2025-11-11 16:46:50,640 - INFO - [INFO] - Deleted document 69082d6f7517c299a68df5a8 - new size: 508.81MB
+2025-11-11 16:46:52,185 - INFO - [INFO] - Deleted document 69082dde7517c299a68df5a9 - new size: 508.68MB
+2025-11-11 16:46:54,028 - INFO - [INFO] - Deleted document 69082e0e7517c299a68df5aa - new size: 508.54MB
+2025-11-11 16:46:55,769 - INFO - [INFO] - Deleted document 69082e167517c299a68df5ab - new size: 508.39MB
+2025-11-11 16:46:57,616 - INFO - [INFO] - Deleted document 69082e327517c299a68df5ac - new size: 508.23MB
+2025-11-11 16:46:59,008 - INFO - [INFO] - Deleted document 69082e487517c299a68df5ad - new size: 508.08MB
+2025-11-11 16:47:00,445 - INFO - [INFO] - Deleted document 69082ed97517c299a68df5ae - new size: 507.93MB
+2025-11-11 16:47:02,220 - INFO - [INFO] - Deleted document 69082ef87517c299a68df5af - new size: 507.78MB
+2025-11-11 16:47:04,678 - INFO - [INFO] - Deleted document 69082eff7517c299a68df5b0 - new size: 507.63MB
+2025-11-11 16:47:07,066 - INFO - [INFO] - Deleted document 69082f037517c299a68df5b1 - new size: 507.48MB
+2025-11-11 16:47:09,184 - INFO - [INFO] - Deleted document 69082fcb7517c299a68df5b2 - new size: 507.33MB
+2025-11-11 16:47:11,126 - INFO - [INFO] - Deleted document 69082fd57517c299a68df5b3 - new size: 507.17MB
+2025-11-11 16:47:13,280 - INFO - [INFO] - Deleted document 69082fe67517c299a68df5b4 - new size: 507.00MB
+2025-11-11 16:47:14,778 - INFO - [INFO] - Deleted document 6908307c7517c299a68df5b5 - new size: 506.86MB
+2025-11-11 16:47:16,659 - INFO - [INFO] - Deleted document 690830957517c299a68df5b6 - new size: 506.71MB
+2025-11-11 16:47:18,072 - INFO - [INFO] - Deleted document 690830987517c299a68df5b7 - new size: 506.57MB
+2025-11-11 16:47:19,833 - INFO - [INFO] - Deleted document 690830b57517c299a68df5b8 - new size: 506.40MB
+2025-11-11 16:47:21,785 - INFO - [INFO] - Deleted document 690831517517c299a68df5b9 - new size: 506.25MB
+2025-11-11 16:47:23,891 - INFO - [INFO] - Deleted document 690831547517c299a68df5ba - new size: 506.10MB
+2025-11-11 16:47:25,773 - INFO - [INFO] - Deleted document 690831567517c299a68df5bb - new size: 505.96MB
+2025-11-11 16:47:27,616 - INFO - [INFO] - Deleted document 690831577517c299a68df5bc - new size: 505.82MB
+2025-11-11 16:47:29,318 - INFO - [INFO] - Deleted document 690831737517c299a68df5bd - new size: 505.66MB
+2025-11-11 16:47:30,854 - INFO - [INFO] - Deleted document 690831fa7517c299a68df5be - new size: 505.53MB
+2025-11-11 16:47:32,287 - INFO - [INFO] - Deleted document 690832187517c299a68df5bf - new size: 505.38MB
+2025-11-11 16:47:34,951 - INFO - [INFO] - Deleted document 690832247517c299a68df5c0 - new size: 505.24MB
+2025-11-11 16:47:37,653 - INFO - [INFO] - Deleted document 690832377517c299a68df5c1 - new size: 505.08MB
+2025-11-11 16:47:39,353 - INFO - [INFO] - Deleted document 6908339d7517c299a68df5c2 - new size: 504.94MB
+2025-11-11 16:47:41,235 - INFO - [INFO] - Deleted document 690833ad7517c299a68df5c3 - new size: 504.79MB
+2025-11-11 16:47:42,976 - INFO - [INFO] - Deleted document 690834337517c299a68df5c4 - new size: 504.65MB
+2025-11-11 16:47:44,876 - INFO - [INFO] - Deleted document 690834547517c299a68df5c5 - new size: 504.51MB
+2025-11-11 16:47:47,072 - INFO - [INFO] - Deleted document 6908345e7517c299a68df5c6 - new size: 504.34MB
+2025-11-11 16:47:49,223 - INFO - [INFO] - Deleted document 690834667517c299a68df5c7 - new size: 504.19MB
+2025-11-11 16:47:50,996 - INFO - [INFO] - Deleted document 690834747517c299a68df5c8 - new size: 504.04MB
+2025-11-11 16:47:52,701 - INFO - [INFO] - Deleted document 690835037517c299a68df5c9 - new size: 503.91MB
+2025-11-11 16:47:54,444 - INFO - [INFO] - Deleted document 6908352f7517c299a68df5ca - new size: 503.74MB
+2025-11-11 16:47:56,903 - INFO - [INFO] - Deleted document 690836037517c299a68df5cb - new size: 503.61MB
+2025-11-11 16:47:58,400 - INFO - [INFO] - Deleted document 6908368b7517c299a68df5cc - new size: 503.47MB
+2025-11-11 16:47:59,936 - INFO - [INFO] - Deleted document 6908368c7517c299a68df5cd - new size: 503.34MB
+2025-11-11 16:48:02,865 - INFO - [INFO] - Deleted document 690836a37517c299a68df5ce - new size: 503.19MB
+2025-11-11 16:48:05,261 - INFO - [INFO] - Deleted document 690836c67517c299a68df5cf - new size: 503.03MB
+2025-11-11 16:48:07,040 - INFO - [INFO] - Deleted document 690837407517c299a68df5d0 - new size: 502.89MB
+2025-11-11 16:48:09,191 - INFO - [INFO] - Deleted document 690837547517c299a68df5d1 - new size: 502.75MB
+2025-11-11 16:48:10,825 - INFO - [INFO] - Deleted document 690837697517c299a68df5d2 - new size: 502.61MB
+2025-11-11 16:48:13,217 - INFO - [INFO] - Deleted document 690837917517c299a68df5d3 - new size: 502.43MB
+2025-11-11 16:48:15,130 - INFO - [INFO] - Deleted document 6908445faa64fa992cb19be0 - new size: 502.29MB
+2025-11-11 16:48:16,973 - INFO - [INFO] - Deleted document 69084468aa64fa992cb19be1 - new size: 502.15MB
+2025-11-11 16:48:18,669 - INFO - [INFO] - Deleted document 69084474aa64fa992cb19be2 - new size: 502.00MB
+2025-11-11 16:48:20,389 - INFO - [INFO] - Deleted document 69084487aa64fa992cb19be3 - new size: 501.86MB
+2025-11-11 16:48:22,400 - INFO - [INFO] - Deleted document 6908449caa64fa992cb19be4 - new size: 501.69MB
+2025-11-11 16:48:24,107 - INFO - [INFO] - Deleted document 6908452aaa64fa992cb19be5 - new size: 501.56MB
+2025-11-11 16:48:25,880 - INFO - [INFO] - Deleted document 690845c8aa64fa992cb19be6 - new size: 501.42MB
+2025-11-11 16:48:27,756 - INFO - [INFO] - Deleted document 690845ebaa64fa992cb19be7 - new size: 501.26MB
+2025-11-11 16:48:29,770 - INFO - [INFO] - Deleted document 69084612aa64fa992cb19be8 - new size: 501.09MB
+2025-11-11 16:48:31,390 - INFO - [INFO] - Deleted document 69084631aa64fa992cb19be9 - new size: 500.94MB
+2025-11-11 16:48:32,777 - INFO - [INFO] - Deleted document 690846e8aa64fa992cb19bea - new size: 500.79MB
+2025-11-11 16:48:34,437 - INFO - [INFO] - Deleted document 690846ffaa64fa992cb19beb - new size: 500.65MB
+2025-11-11 16:48:35,784 - INFO - [INFO] - Deleted document 69084706aa64fa992cb19bec - new size: 500.50MB
+2025-11-11 16:48:37,211 - INFO - [INFO] - Deleted document 69084734aa64fa992cb19bed - new size: 500.36MB
+2025-11-11 16:48:38,561 - INFO - [INFO] - Deleted document 690847e3aa64fa992cb19bee - new size: 500.22MB
+2025-11-11 16:48:39,917 - INFO - [INFO] - Deleted document 6908480baa64fa992cb19bef - new size: 500.08MB
+2025-11-11 16:48:41,614 - INFO - [INFO] - Deleted document 69084823aa64fa992cb19bf0 - new size: 499.94MB
+2025-11-11 16:48:42,983 - INFO - [INFO] - Deleted document 69084877aa64fa992cb19bf1 - new size: 499.79MB
+2025-11-11 16:48:44,346 - INFO - [INFO] - Deleted document 6908491baa64fa992cb19bf2 - new size: 499.65MB
+2025-11-11 16:48:45,706 - INFO - [INFO] - Deleted document 69084929aa64fa992cb19bf3 - new size: 499.49MB
+2025-11-11 16:48:47,059 - INFO - [INFO] - Deleted document 69084935aa64fa992cb19bf4 - new size: 499.35MB
+2025-11-11 16:48:48,472 - INFO - [INFO] - Deleted document 690849cdaa64fa992cb19bf5 - new size: 499.22MB
+2025-11-11 16:48:50,254 - INFO - [INFO] - Deleted document 690849d9aa64fa992cb19bf6 - new size: 499.08MB
+2025-11-11 16:48:51,995 - INFO - [INFO] - Deleted document 690849daaa64fa992cb19bf7 - new size: 498.93MB
+2025-11-11 16:48:53,837 - INFO - [INFO] - Deleted document 69084aa7aa64fa992cb19bf8 - new size: 498.78MB
+2025-11-11 16:48:55,885 - INFO - [INFO] - Deleted document 69084aaeaa64fa992cb19bf9 - new size: 498.63MB
+2025-11-11 16:48:57,589 - INFO - [INFO] - Deleted document 69084b64aa64fa992cb19bfa - new size: 498.48MB
+2025-11-11 16:48:59,606 - INFO - [INFO] - Deleted document 69084b84aa64fa992cb19bfb - new size: 498.33MB
+2025-11-11 16:49:01,756 - INFO - [INFO] - Deleted document 69084b86aa64fa992cb19bfc - new size: 498.17MB
+2025-11-11 16:49:03,771 - INFO - [INFO] - Deleted document 69084c37aa64fa992cb19bfd - new size: 498.02MB
+2025-11-11 16:49:05,544 - INFO - [INFO] - Deleted document 69084c4baa64fa992cb19bfe - new size: 497.88MB
+2025-11-11 16:49:07,355 - INFO - [INFO] - Deleted document 69084c63aa64fa992cb19bff - new size: 497.71MB
+2025-11-11 16:49:09,096 - INFO - [INFO] - Deleted document 69084c79aa64fa992cb19c00 - new size: 497.57MB
+2025-11-11 16:49:10,940 - INFO - [INFO] - Deleted document 69084d15aa64fa992cb19c01 - new size: 497.43MB
+2025-11-11 16:49:12,680 - INFO - [INFO] - Deleted document 69084d35aa64fa992cb19c02 - new size: 497.28MB
+2025-11-11 16:49:14,420 - INFO - [INFO] - Deleted document 69084d4caa64fa992cb19c03 - new size: 497.12MB
+2025-11-11 16:49:16,074 - INFO - [INFO] - Deleted document 69084df5aa64fa992cb19c04 - new size: 496.98MB
+2025-11-11 16:49:17,701 - INFO - [INFO] - Deleted document 69084dfeaa64fa992cb19c05 - new size: 496.83MB
+2025-11-11 16:49:19,059 - INFO - [INFO] - Deleted document 69084e0baa64fa992cb19c06 - new size: 496.69MB
+2025-11-11 16:49:20,754 - INFO - [INFO] - Deleted document 69084ec1aa64fa992cb19c07 - new size: 496.54MB
+2025-11-11 16:49:22,376 - INFO - [INFO] - Deleted document 69084ec6aa64fa992cb19c08 - new size: 496.39MB
+2025-11-11 16:49:24,046 - INFO - [INFO] - Deleted document 69084eddaa64fa992cb19c09 - new size: 496.23MB
+2025-11-11 16:49:25,443 - INFO - [INFO] - Deleted document 69084eedaa64fa992cb19c0a - new size: 496.07MB
+2025-11-11 16:49:26,811 - INFO - [INFO] - Deleted document 69084efeaa64fa992cb19c0b - new size: 495.91MB
+2025-11-11 16:49:28,164 - INFO - [INFO] - Deleted document 69084fa7aa64fa992cb19c0c - new size: 495.76MB
+2025-11-11 16:49:29,539 - INFO - [INFO] - Deleted document 69084fc6aa64fa992cb19c0d - new size: 495.60MB
+2025-11-11 16:49:30,664 - INFO - [INFO] - Deleted document 69085021aa64fa992cb19c0e - new size: 495.46MB
+2025-11-11 16:49:31,759 - INFO - [INFO] - Deleted document 690850d5aa64fa992cb19c0f - new size: 495.30MB
+2025-11-11 16:49:32,851 - INFO - [INFO] - Deleted document 690850d9aa64fa992cb19c10 - new size: 495.15MB
+2025-11-11 16:49:34,557 - INFO - [INFO] - Deleted document 690850f3aa64fa992cb19c11 - new size: 494.99MB
+2025-11-11 16:49:35,649 - INFO - [INFO] - Deleted document 69085107aa64fa992cb19c12 - new size: 494.84MB
+2025-11-11 16:49:36,733 - INFO - [INFO] - Deleted document 690851cbaa64fa992cb19c13 - new size: 494.69MB
+2025-11-11 16:49:37,832 - INFO - [INFO] - Deleted document 690851cfaa64fa992cb19c14 - new size: 494.54MB
+2025-11-11 16:49:38,917 - INFO - [INFO] - Deleted document 690851d5aa64fa992cb19c15 - new size: 494.39MB
+2025-11-11 16:49:40,029 - INFO - [INFO] - Deleted document 690853ebaa64fa992cb19c16 - new size: 494.25MB
+2025-11-11 16:49:42,023 - INFO - [INFO] - Deleted document 690853f5aa64fa992cb19c17 - new size: 494.10MB
+2025-11-11 16:49:43,114 - INFO - [INFO] - Deleted document 69085414aa64fa992cb19c18 - new size: 493.95MB
+2025-11-11 16:49:45,325 - INFO - [INFO] - Deleted document 690854f0aa64fa992cb19c19 - new size: 493.80MB
+2025-11-11 16:49:46,683 - INFO - [INFO] - Deleted document 690854f3aa64fa992cb19c1a - new size: 493.64MB
+2025-11-11 16:49:48,355 - INFO - [INFO] - Deleted document 69085515aa64fa992cb19c1b - new size: 493.48MB
+2025-11-11 16:49:49,722 - INFO - [INFO] - Deleted document 690855abaa64fa992cb19c1c - new size: 493.35MB
+2025-11-11 16:49:51,086 - INFO - [INFO] - Deleted document 690855f0aa64fa992cb19c1d - new size: 493.20MB
+2025-11-11 16:49:54,797 - INFO - [INFO] - Deleted document 69085785aa64fa992cb19c1e - new size: 493.04MB
+2025-11-11 16:49:56,427 - INFO - [INFO] - Deleted document 69085794aa64fa992cb19c1f - new size: 492.88MB
+2025-11-11 16:49:57,783 - INFO - [INFO] - Deleted document 69085827aa64fa992cb19c20 - new size: 492.74MB
+2025-11-11 16:49:59,609 - INFO - [INFO] - Deleted document 69085855aa64fa992cb19c21 - new size: 492.59MB
+2025-11-11 16:50:04,057 - INFO - [INFO] - Deleted document 69085881aa64fa992cb19c22 - new size: 492.44MB
+2025-11-11 16:50:05,696 - INFO - [INFO] - Deleted document 6908589aaa64fa992cb19c23 - new size: 492.29MB
+2025-11-11 16:50:07,321 - INFO - [INFO] - Deleted document 69085959aa64fa992cb19c24 - new size: 492.15MB
+2025-11-11 16:50:08,947 - INFO - [INFO] - Deleted document 6908596faa64fa992cb19c25 - new size: 492.00MB
+2025-11-11 16:50:10,605 - INFO - [INFO] - Deleted document 6908597faa64fa992cb19c26 - new size: 491.85MB
+2025-11-11 16:50:12,224 - INFO - [INFO] - Deleted document 69085a0eaa64fa992cb19c27 - new size: 491.71MB
+2025-11-11 16:50:13,579 - INFO - [INFO] - Deleted document 69085bb5aa64fa992cb19c28 - new size: 491.57MB
+2025-11-11 16:50:14,929 - INFO - [INFO] - Deleted document 69085be0aa64fa992cb19c29 - new size: 491.42MB
+2025-11-11 16:50:16,288 - INFO - [INFO] - Deleted document 69085c14aa64fa992cb19c2a - new size: 491.26MB
+2025-11-11 16:50:17,875 - INFO - [INFO] - Deleted document 69085cd5aa64fa992cb19c2b - new size: 491.11MB
+2025-11-11 16:50:19,344 - INFO - [INFO] - Deleted document 69085d0baa64fa992cb19c2c - new size: 490.95MB
+2025-11-11 16:50:20,570 - INFO - [INFO] - Deleted document 69085d48aa64fa992cb19c2d - new size: 490.81MB
+2025-11-11 16:50:22,684 - INFO - [INFO] - Deleted document 69085e0eaa64fa992cb19c2e - new size: 490.66MB
+2025-11-11 16:50:26,372 - INFO - [INFO] - Deleted document 69085e1eaa64fa992cb19c2f - new size: 490.50MB
+2025-11-11 16:50:28,104 - INFO - [INFO] - Deleted document 69085e2eaa64fa992cb19c30 - new size: 490.35MB
+2025-11-11 16:50:29,890 - INFO - [INFO] - Deleted document 69085e66aa64fa992cb19c31 - new size: 490.20MB
+2025-11-11 16:50:32,040 - INFO - [INFO] - Deleted document 69085f21aa64fa992cb19c32 - new size: 490.06MB
+2025-11-11 16:50:34,293 - INFO - [INFO] - Deleted document 69085f45aa64fa992cb19c33 - new size: 489.88MB
+2025-11-11 16:50:36,137 - INFO - [INFO] - Deleted document 69085f48aa64fa992cb19c34 - new size: 489.73MB
+2025-11-11 16:50:37,950 - INFO - [INFO] - Deleted document 69085f52aa64fa992cb19c35 - new size: 489.58MB
+2025-11-11 16:50:39,614 - INFO - [INFO] - Deleted document 69085fffaa64fa992cb19c36 - new size: 489.44MB
+2025-11-11 16:50:41,461 - INFO - [INFO] - Deleted document 69086028aa64fa992cb19c37 - new size: 489.29MB
+2025-11-11 16:50:43,305 - INFO - [INFO] - Deleted document 6908602baa64fa992cb19c38 - new size: 489.13MB
+2025-11-11 16:50:45,047 - INFO - [INFO] - Deleted document 69086047aa64fa992cb19c39 - new size: 488.98MB
+2025-11-11 16:50:46,582 - INFO - [INFO] - Deleted document 69086115aa64fa992cb19c3a - new size: 488.83MB
+2025-11-11 16:50:48,524 - INFO - [INFO] - Deleted document 6908612caa64fa992cb19c3b - new size: 488.67MB
+2025-11-11 16:50:50,575 - INFO - [INFO] - Deleted document 69086150aa64fa992cb19c3c - new size: 488.50MB
+2025-11-11 16:50:52,419 - INFO - [INFO] - Deleted document 69086201aa64fa992cb19c3d - new size: 488.36MB
+2025-11-11 16:50:54,263 - INFO - [INFO] - Deleted document 69086217aa64fa992cb19c3e - new size: 488.22MB
+2025-11-11 16:50:56,105 - INFO - [INFO] - Deleted document 6908621aaa64fa992cb19c3f - new size: 488.08MB
+2025-11-11 16:50:57,910 - INFO - [INFO] - Deleted document 6908623faa64fa992cb19c40 - new size: 487.92MB
+2025-11-11 16:50:59,791 - INFO - [INFO] - Deleted document 69086322aa64fa992cb19c41 - new size: 487.76MB
+2025-11-11 16:51:02,863 - INFO - [INFO] - Deleted document 69086325aa64fa992cb19c42 - new size: 487.61MB
+2025-11-11 16:51:04,809 - INFO - [INFO] - Deleted document 690863dbaa64fa992cb19c43 - new size: 487.47MB
+2025-11-11 16:51:06,652 - INFO - [INFO] - Deleted document 690863efaa64fa992cb19c44 - new size: 487.32MB
+2025-11-11 16:51:08,495 - INFO - [INFO] - Deleted document 6908641caa64fa992cb19c45 - new size: 487.16MB
+2025-11-11 16:51:10,237 - INFO - [INFO] - Deleted document 69086497aa64fa992cb19c46 - new size: 486.99MB
+2025-11-11 16:51:12,079 - INFO - [INFO] - Deleted document 69086547aa64fa992cb19c47 - new size: 486.86MB
+2025-11-11 16:51:14,230 - INFO - [INFO] - Deleted document 69086573aa64fa992cb19c48 - new size: 486.71MB
+2025-11-11 16:51:16,073 - INFO - [INFO] - Deleted document 69086587aa64fa992cb19c49 - new size: 486.55MB
+2025-11-11 16:51:17,878 - INFO - [INFO] - Deleted document 69086639aa64fa992cb19c4a - new size: 486.41MB
+2025-11-11 16:51:19,453 - INFO - [INFO] - Deleted document 6908663caa64fa992cb19c4b - new size: 486.27MB
+2025-11-11 16:51:21,296 - INFO - [INFO] - Deleted document 6908663eaa64fa992cb19c4c - new size: 486.12MB
+2025-11-11 16:51:23,139 - INFO - [INFO] - Deleted document 69086672aa64fa992cb19c4d - new size: 485.97MB
+2025-11-11 16:51:25,290 - INFO - [INFO] - Deleted document 69086740aa64fa992cb19c4e - new size: 485.83MB
+2025-11-11 16:51:27,132 - INFO - [INFO] - Deleted document 6908674baa64fa992cb19c4f - new size: 485.69MB
+2025-11-11 16:51:29,283 - INFO - [INFO] - Deleted document 69086753aa64fa992cb19c50 - new size: 485.53MB
+2025-11-11 16:51:31,058 - INFO - [INFO] - Deleted document 69086821aa64fa992cb19c51 - new size: 485.38MB
+2025-11-11 16:51:33,072 - INFO - [INFO] - Deleted document 69086828aa64fa992cb19c52 - new size: 485.21MB
+2025-11-11 16:51:34,878 - INFO - [INFO] - Deleted document 69086843aa64fa992cb19c53 - new size: 485.05MB
+2025-11-11 16:51:36,861 - INFO - [INFO] - Deleted document 6908684daa64fa992cb19c54 - new size: 484.89MB
+2025-11-11 16:51:39,011 - INFO - [INFO] - Deleted document 6908691daa64fa992cb19c55 - new size: 484.74MB
+2025-11-11 16:51:40,854 - INFO - [INFO] - Deleted document 69086921aa64fa992cb19c56 - new size: 484.59MB
+2025-11-11 16:51:42,697 - INFO - [INFO] - Deleted document 690869e1aa64fa992cb19c57 - new size: 484.45MB
+2025-11-11 16:51:44,541 - INFO - [INFO] - Deleted document 69086a02aa64fa992cb19c58 - new size: 484.29MB
+2025-11-11 16:51:46,383 - INFO - [INFO] - Deleted document 69086a0baa64fa992cb19c59 - new size: 484.13MB
+2025-11-11 16:51:47,883 - INFO - [INFO] - Deleted document 69086ac0aa64fa992cb19c5a - new size: 483.99MB
+2025-11-11 16:51:49,726 - INFO - [INFO] - Deleted document 69086b02aa64fa992cb19c5b - new size: 483.83MB
+2025-11-11 16:51:51,607 - INFO - [INFO] - Deleted document 69086bcaaa64fa992cb19c5c - new size: 483.68MB
+2025-11-11 16:51:53,446 - INFO - [INFO] - Deleted document 69086bebaa64fa992cb19c5d - new size: 483.51MB
+2025-11-11 16:51:54,946 - INFO - [INFO] - Deleted document 69086cc4aa64fa992cb19c5e - new size: 483.37MB
+2025-11-11 16:51:56,728 - INFO - [INFO] - Deleted document 69086cd5aa64fa992cb19c5f - new size: 483.21MB
+2025-11-11 16:51:58,877 - INFO - [INFO] - Deleted document 69086e3aaa64fa992cb19c60 - new size: 483.03MB
+2025-11-11 16:52:00,720 - INFO - [INFO] - Deleted document 69086f70aa64fa992cb19c61 - new size: 482.88MB
+2025-11-11 16:52:02,461 - INFO - [INFO] - Deleted document 69086f75aa64fa992cb19c62 - new size: 482.72MB
+2025-11-11 16:52:04,202 - INFO - [INFO] - Deleted document 6908701faa64fa992cb19c63 - new size: 482.58MB
+2025-11-11 16:52:06,045 - INFO - [INFO] - Deleted document 69087048aa64fa992cb19c64 - new size: 482.44MB
+2025-11-11 16:52:07,850 - INFO - [INFO] - Deleted document 69087057aa64fa992cb19c65 - new size: 482.29MB
+2025-11-11 16:52:09,590 - INFO - [INFO] - Deleted document 690870f6aa64fa992cb19c66 - new size: 482.15MB
+2025-11-11 16:52:11,442 - INFO - [INFO] - Deleted document 6908716aaa64fa992cb19c67 - new size: 481.99MB
+2025-11-11 16:52:13,204 - INFO - [INFO] - Deleted document 6908726baa64fa992cb19c68 - new size: 481.83MB
+2025-11-11 16:52:15,056 - INFO - [INFO] - Deleted document 6908731eaa64fa992cb19c69 - new size: 481.70MB
+2025-11-11 16:52:16,760 - INFO - [INFO] - Deleted document 6908735eaa64fa992cb19c6a - new size: 481.54MB
+2025-11-11 16:52:18,640 - INFO - [INFO] - Deleted document 69087415aa64fa992cb19c6b - new size: 481.41MB
+2025-11-11 16:52:20,357 - INFO - [INFO] - Deleted document 6908742caa64fa992cb19c6c - new size: 481.26MB
+2025-11-11 16:52:22,224 - INFO - [INFO] - Deleted document 69087448aa64fa992cb19c6d - new size: 481.12MB
+2025-11-11 16:52:24,125 - INFO - [INFO] - Deleted document 6908748aaa64fa992cb19c6e - new size: 480.95MB
+2025-11-11 16:52:25,941 - INFO - [INFO] - Deleted document 6908754aaa64fa992cb19c6f - new size: 480.80MB
+2025-11-11 16:52:27,579 - INFO - [INFO] - Deleted document 69087579aa64fa992cb19c70 - new size: 480.65MB
+2025-11-11 16:52:29,210 - INFO - [INFO] - Deleted document 6908769baa64fa992cb19c71 - new size: 480.49MB
+2025-11-11 16:52:30,847 - INFO - [INFO] - Deleted document 69087855aa64fa992cb19c72 - new size: 480.34MB
+2025-11-11 16:52:32,529 - INFO - [INFO] - Deleted document 69087876aa64fa992cb19c73 - new size: 480.18MB
+2025-11-11 16:52:33,889 - INFO - [INFO] - Deleted document 6908794aaa64fa992cb19c74 - new size: 480.04MB
+2025-11-11 16:52:35,245 - INFO - [INFO] - Deleted document 69087a76aa64fa992cb19c75 - new size: 479.90MB
+2025-11-11 16:52:36,605 - INFO - [INFO] - Deleted document 69087aa0aa64fa992cb19c76 - new size: 479.76MB
+2025-11-11 16:52:38,322 - INFO - [INFO] - Deleted document 69087ad0aa64fa992cb19c77 - new size: 479.60MB
+2025-11-11 16:52:40,042 - INFO - [INFO] - Deleted document 69087ad2aa64fa992cb19c78 - new size: 479.46MB
+2025-11-11 16:52:41,663 - INFO - [INFO] - Deleted document 69087af0aa64fa992cb19c79 - new size: 479.29MB
+2025-11-11 16:52:43,335 - INFO - [INFO] - Deleted document 69087e48c370a4bba7122657 - new size: 479.14MB
+2025-11-11 16:52:44,688 - INFO - [INFO] - Deleted document 690881d87f499652385e7cd5 - new size: 479.01MB
+2025-11-11 16:52:46,041 - INFO - [INFO] - Deleted document 690882ca7f499652385e7cd6 - new size: 478.87MB
+2025-11-11 16:52:47,712 - INFO - [INFO] - Deleted document 690888047f499652385e7cd7 - new size: 478.72MB
+2025-11-11 16:52:49,425 - INFO - [INFO] - Deleted document 690950cdd9ba3aa778b0b5c1 - new size: 478.59MB
+2025-11-11 16:52:50,897 - INFO - [INFO] - Deleted document 690950e2d9ba3aa778b0b5c2 - new size: 478.45MB
+2025-11-11 16:52:52,739 - INFO - [INFO] - Deleted document 690950e6d9ba3aa778b0b5c3 - new size: 478.30MB
+2025-11-11 16:52:54,583 - INFO - [INFO] - Deleted document 690950f6d9ba3aa778b0b5c4 - new size: 478.16MB
+2025-11-11 16:52:56,389 - INFO - [INFO] - Deleted document 6909510cd9ba3aa778b0b5c5 - new size: 478.01MB
+2025-11-11 16:52:58,270 - INFO - [INFO] - Deleted document 690951e2d9ba3aa778b0b5c6 - new size: 477.87MB
+2025-11-11 16:53:00,113 - INFO - [INFO] - Deleted document 69095204d9ba3aa778b0b5c7 - new size: 477.71MB
+2025-11-11 16:53:01,956 - INFO - [INFO] - Deleted document 69095219d9ba3aa778b0b5c8 - new size: 477.57MB
+2025-11-11 16:53:03,796 - INFO - [INFO] - Deleted document 69095229d9ba3aa778b0b5c9 - new size: 477.41MB
+2025-11-11 16:53:05,670 - INFO - [INFO] - Deleted document 690952ecd9ba3aa778b0b5ca - new size: 477.26MB
+2025-11-11 16:53:07,486 - INFO - [INFO] - Deleted document 69095301d9ba3aa778b0b5cb - new size: 477.11MB
+2025-11-11 16:53:09,188 - INFO - [INFO] - Deleted document 6909531cd9ba3aa778b0b5cc - new size: 476.97MB
+2025-11-11 16:53:10,623 - INFO - [INFO] - Deleted document 690953ced9ba3aa778b0b5cd - new size: 476.83MB
+2025-11-11 16:53:12,405 - INFO - [INFO] - Deleted document 690953d7d9ba3aa778b0b5ce - new size: 476.68MB
+2025-11-11 16:53:17,038 - INFO - [INFO] - Deleted document 6909540ed9ba3aa778b0b5cf - new size: 476.52MB
+2025-11-11 16:53:18,925 - INFO - [INFO] - Deleted document 690954c6d9ba3aa778b0b5d0 - new size: 476.38MB
+2025-11-11 16:53:20,820 - INFO - [INFO] - Deleted document 690954c8d9ba3aa778b0b5d1 - new size: 476.23MB
+2025-11-11 16:53:22,706 - INFO - [INFO] - Deleted document 690954d1d9ba3aa778b0b5d2 - new size: 476.08MB
+2025-11-11 16:53:24,331 - INFO - [INFO] - Deleted document 690954e4d9ba3aa778b0b5d3 - new size: 475.90MB
+2025-11-11 16:53:25,687 - INFO - [INFO] - Deleted document 690954f0d9ba3aa778b0b5d4 - new size: 475.73MB
+2025-11-11 16:53:26,775 - INFO - [INFO] - Deleted document 6909558fd9ba3aa778b0b5d5 - new size: 475.60MB
+2025-11-11 16:53:27,898 - INFO - [INFO] - Deleted document 69095598d9ba3aa778b0b5d6 - new size: 475.46MB
+2025-11-11 16:53:29,099 - INFO - [INFO] - Deleted document 690955b7d9ba3aa778b0b5d7 - new size: 475.31MB
+2025-11-11 16:53:30,198 - INFO - [INFO] - Deleted document 690955c6d9ba3aa778b0b5d8 - new size: 475.15MB
+2025-11-11 16:53:31,283 - INFO - [INFO] - Deleted document 690955ced9ba3aa778b0b5d9 - new size: 475.00MB
+2025-11-11 16:53:32,371 - INFO - [INFO] - Deleted document 69095692d9ba3aa778b0b5da - new size: 474.85MB
+2025-11-11 16:53:33,503 - INFO - [INFO] - Deleted document 690956a1d9ba3aa778b0b5db - new size: 474.70MB
+2025-11-11 16:53:34,322 - INFO - [INFO] - Deleted document 69095724d9ba3aa778b0b5dc - new size: 474.56MB
+2025-11-11 16:53:35,422 - INFO - [INFO] - Deleted document 69095769d9ba3aa778b0b5dd - new size: 474.41MB
+2025-11-11 16:53:36,670 - INFO - [INFO] - Deleted document 6909576ed9ba3aa778b0b5de - new size: 474.26MB
+2025-11-11 16:53:37,591 - INFO - [INFO] - Deleted document 69095772d9ba3aa778b0b5df - new size: 474.10MB
+2025-11-11 16:53:39,025 - INFO - [INFO] - Deleted document 690958f3d9ba3aa778b0b5e0 - new size: 473.96MB
+2025-11-11 16:53:41,073 - INFO - [INFO] - Deleted document 690958fbd9ba3aa778b0b5e1 - new size: 473.81MB
+2025-11-11 16:53:42,660 - INFO - [INFO] - Deleted document 690958fdd9ba3aa778b0b5e2 - new size: 473.67MB
+2025-11-11 16:53:44,760 - INFO - [INFO] - Deleted document 69095909d9ba3aa778b0b5e3 - new size: 473.53MB
+2025-11-11 16:53:46,441 - INFO - [INFO] - Deleted document 69095995d9ba3aa778b0b5e4 - new size: 473.40MB
+2025-11-11 16:53:48,612 - INFO - [INFO] - Deleted document 690959a6d9ba3aa778b0b5e5 - new size: 473.25MB
+2025-11-11 16:53:50,307 - INFO - [INFO] - Deleted document 690959b9d9ba3aa778b0b5e6 - new size: 473.11MB
+2025-11-11 16:53:52,132 - INFO - [INFO] - Deleted document 690959d5d9ba3aa778b0b5e7 - new size: 472.95MB
+2025-11-11 16:53:54,280 - INFO - [INFO] - Deleted document 690959e3d9ba3aa778b0b5e8 - new size: 472.79MB
+2025-11-11 16:53:56,023 - INFO - [INFO] - Deleted document 69095aa7d9ba3aa778b0b5e9 - new size: 472.64MB
+2025-11-11 16:53:57,867 - INFO - [INFO] - Deleted document 69095abfd9ba3aa778b0b5ea - new size: 472.48MB
+2025-11-11 16:53:59,672 - INFO - [INFO] - Deleted document 69095acad9ba3aa778b0b5eb - new size: 472.33MB
+2025-11-11 16:54:01,451 - INFO - [INFO] - Deleted document 69095accd9ba3aa778b0b5ec - new size: 472.17MB
+2025-11-11 16:54:03,256 - INFO - [INFO] - Deleted document 69095ad2d9ba3aa778b0b5ed - new size: 472.02MB
+2025-11-11 16:54:05,035 - INFO - [INFO] - Deleted document 69095b95d9ba3aa778b0b5ee - new size: 471.87MB
+2025-11-11 16:54:06,841 - INFO - [INFO] - Deleted document 69095b99d9ba3aa778b0b5ef - new size: 471.72MB
+2025-11-11 16:54:08,926 - INFO - [INFO] - Deleted document 69095bb3d9ba3aa778b0b5f0 - new size: 471.57MB
+2025-11-11 16:54:10,667 - INFO - [INFO] - Deleted document 69095bb9d9ba3aa778b0b5f1 - new size: 471.42MB
+2025-11-11 16:54:12,510 - INFO - [INFO] - Deleted document 69095c9cd9ba3aa778b0b5f2 - new size: 471.26MB
+2025-11-11 16:54:14,353 - INFO - [INFO] - Deleted document 69095c9ed9ba3aa778b0b5f3 - new size: 471.11MB
+2025-11-11 16:54:16,158 - INFO - [INFO] - Deleted document 69095cbad9ba3aa778b0b5f4 - new size: 470.94MB
+2025-11-11 16:54:17,900 - INFO - [INFO] - Deleted document 69095d51d9ba3aa778b0b5f5 - new size: 470.80MB
+2025-11-11 16:54:19,640 - INFO - [INFO] - Deleted document 69095d96d9ba3aa778b0b5f6 - new size: 470.65MB
+2025-11-11 16:54:21,727 - INFO - [INFO] - Deleted document 69095da8d9ba3aa778b0b5f7 - new size: 470.49MB
+2025-11-11 16:54:23,467 - INFO - [INFO] - Deleted document 69095da9d9ba3aa778b0b5f8 - new size: 470.33MB
+2025-11-11 16:54:25,515 - INFO - [INFO] - Deleted document 69095dbed9ba3aa778b0b5f9 - new size: 470.17MB
+2025-11-11 16:54:27,319 - INFO - [INFO] - Deleted document 69096751c9a0ae5bb238b83d - new size: 470.04MB
+2025-11-11 16:54:28,997 - INFO - [INFO] - Deleted document 690967edc9a0ae5bb238b83e - new size: 469.91MB
+2025-11-11 16:54:30,840 - INFO - [INFO] - Deleted document 69096821c9a0ae5bb238b83f - new size: 469.75MB
+2025-11-11 16:54:32,683 - INFO - [INFO] - Deleted document 690969f0c9a0ae5bb238b840 - new size: 469.60MB
+2025-11-11 16:54:34,629 - INFO - [INFO] - Deleted document 69096acdc9a0ae5bb238b841 - new size: 469.45MB
+2025-11-11 16:54:36,329 - INFO - [INFO] - Deleted document 69096adac9a0ae5bb238b842 - new size: 469.29MB
+2025-11-11 16:54:38,270 - INFO - [INFO] - Deleted document 69096c5ac9a0ae5bb238b843 - new size: 469.15MB
+2025-11-11 16:54:40,354 - INFO - [INFO] - Deleted document 69096cbac9a0ae5bb238b844 - new size: 468.99MB
+2025-11-11 16:54:42,206 - INFO - [INFO] - Deleted document 69096d89c9a0ae5bb238b845 - new size: 468.86MB
+2025-11-11 16:54:43,883 - INFO - [INFO] - Deleted document 69096dbac9a0ae5bb238b846 - new size: 468.70MB
+2025-11-11 16:54:45,548 - INFO - [INFO] - Deleted document 69096e60c9a0ae5bb238b847 - new size: 468.57MB
+2025-11-11 16:54:46,902 - INFO - [INFO] - Deleted document 69096f05c9a0ae5bb238b848 - new size: 468.44MB
+2025-11-11 16:54:48,281 - INFO - [INFO] - Deleted document 69096f28c9a0ae5bb238b849 - new size: 468.30MB
+2025-11-11 16:54:49,662 - INFO - [INFO] - Deleted document 69096f4dc9a0ae5bb238b84a - new size: 468.15MB
+2025-11-11 16:54:51,115 - INFO - [INFO] - Deleted document 69097067c9a0ae5bb238b84b - new size: 468.00MB
+2025-11-11 16:54:52,306 - INFO - [INFO] - Deleted document 6909716bc9a0ae5bb238b84c - new size: 467.86MB
+2025-11-11 16:54:53,399 - INFO - [INFO] - Deleted document 69097260c9a0ae5bb238b84d - new size: 467.70MB
+2025-11-11 16:54:54,495 - INFO - [INFO] - Deleted document 690972f7c9a0ae5bb238b84e - new size: 467.56MB
+2025-11-11 16:54:55,580 - INFO - [INFO] - Deleted document 69097315c9a0ae5bb238b84f - new size: 467.42MB
+2025-11-11 16:54:57,546 - INFO - [INFO] - Deleted document 6909731ec9a0ae5bb238b850 - new size: 467.28MB
+2025-11-11 16:54:59,222 - INFO - [INFO] - Deleted document 69097336c9a0ae5bb238b851 - new size: 467.12MB
+2025-11-11 16:55:00,587 - INFO - [INFO] - Deleted document 69097431c9a0ae5bb238b852 - new size: 466.98MB
+2025-11-11 16:55:01,940 - INFO - [INFO] - Deleted document 69097460c9a0ae5bb238b853 - new size: 466.83MB
+2025-11-11 16:55:03,054 - INFO - [INFO] - Deleted document 690976efc9a0ae5bb238b854 - new size: 466.68MB
+2025-11-11 16:55:04,799 - INFO - [INFO] - Deleted document 69097703c9a0ae5bb238b855 - new size: 466.52MB
+2025-11-11 16:55:06,152 - INFO - [INFO] - Deleted document 690977c1c9a0ae5bb238b856 - new size: 466.37MB
+2025-11-11 16:55:08,319 - INFO - [INFO] - Deleted document 690977f1c9a0ae5bb238b857 - new size: 466.21MB
+2025-11-11 16:55:10,060 - INFO - [INFO] - Deleted document 69097805c9a0ae5bb238b858 - new size: 466.05MB
+2025-11-11 16:55:11,596 - INFO - [INFO] - Deleted document 69097904c9a0ae5bb238b859 - new size: 465.91MB
+2025-11-11 16:55:13,337 - INFO - [INFO] - Deleted document 69097a15c9a0ae5bb238b85a - new size: 465.75MB
+2025-11-11 16:55:15,078 - INFO - [INFO] - Deleted document 69097adec9a0ae5bb238b85b - new size: 465.60MB
+2025-11-11 16:55:16,736 - INFO - [INFO] - Deleted document 69097ae0c9a0ae5bb238b85c - new size: 465.44MB
+2025-11-11 16:55:18,381 - INFO - [INFO] - Deleted document 69097cdfc9a0ae5bb238b85d - new size: 465.30MB
+2025-11-11 16:55:20,095 - INFO - [INFO] - Deleted document 69097f08f05b37c00ed3367a - new size: 465.15MB
+2025-11-11 16:55:21,938 - INFO - [INFO] - Deleted document 6909800cf05b37c00ed3367d - new size: 465.00MB
+2025-11-11 16:55:23,613 - INFO - [INFO] - Deleted document 69098025f05b37c00ed3367e - new size: 464.84MB
+2025-11-11 16:55:24,979 - INFO - [INFO] - Deleted document 69098037f05b37c00ed3367f - new size: 464.70MB
+2025-11-11 16:55:26,355 - INFO - [INFO] - Deleted document 69098133f05b37c00ed33680 - new size: 464.57MB
+2025-11-11 16:55:28,045 - INFO - [INFO] - Deleted document 6909872b6d13203209bf17ba - new size: 464.43MB
+2025-11-11 16:55:29,669 - INFO - [INFO] - Deleted document 690987706d13203209bf17bb - new size: 464.29MB
+2025-11-11 16:55:31,117 - INFO - [INFO] - Deleted document 690987766d13203209bf17bc - new size: 464.14MB
+2025-11-11 16:55:32,753 - INFO - [INFO] - Deleted document 690987bf6d13203209bf17bd - new size: 463.96MB
+2025-11-11 16:55:34,109 - INFO - [INFO] - Deleted document 690988906d13203209bf17be - new size: 463.83MB
+2025-11-11 16:55:35,461 - INFO - [INFO] - Deleted document 690988a06d13203209bf17bf - new size: 463.69MB
+2025-11-11 16:55:36,890 - INFO - [INFO] - Deleted document 6909890a6d13203209bf17c0 - new size: 463.54MB
+2025-11-11 16:55:38,512 - INFO - [INFO] - Deleted document 690989366d13203209bf17c1 - new size: 463.37MB
+2025-11-11 16:55:39,862 - INFO - [INFO] - Deleted document 69098a926d13203209bf17c2 - new size: 463.21MB
+2025-11-11 16:55:41,292 - INFO - [INFO] - Deleted document 69098a9c6d13203209bf17c3 - new size: 463.05MB
+2025-11-11 16:55:42,657 - INFO - [INFO] - Deleted document 69098aa66d13203209bf17c4 - new size: 462.89MB
+2025-11-11 16:55:44,011 - INFO - [INFO] - Deleted document 69098aaa6d13203209bf17c5 - new size: 462.74MB
+2025-11-11 16:55:48,083 - INFO - [INFO] - Deleted document 69098aac6d13203209bf17c6 - new size: 462.57MB
+2025-11-11 16:55:49,586 - INFO - [INFO] - Deleted document 69098b756d13203209bf17c7 - new size: 462.44MB
+2025-11-11 16:55:50,984 - INFO - [INFO] - Deleted document 69098b786d13203209bf17c8 - new size: 462.29MB
+2025-11-11 16:55:53,170 - INFO - [INFO] - Deleted document 69098bc56d13203209bf17c9 - new size: 462.14MB
+2025-11-11 16:55:54,814 - INFO - [INFO] - Deleted document 69098be16d13203209bf17ca - new size: 461.98MB
+2025-11-11 16:55:56,242 - INFO - [INFO] - Deleted document 69098ca86d13203209bf17cb - new size: 461.84MB
+2025-11-11 16:55:58,030 - INFO - [INFO] - Deleted document 69098cbc6d13203209bf17cc - new size: 461.70MB
+2025-11-11 16:55:59,799 - INFO - [INFO] - Deleted document 69098d256d13203209bf17cd - new size: 461.53MB
+2025-11-11 16:56:01,363 - INFO - [INFO] - Deleted document 69098dd86d13203209bf17ce - new size: 461.39MB
+2025-11-11 16:56:03,103 - INFO - [INFO] - Deleted document 69098ddf6d13203209bf17cf - new size: 461.25MB
+2025-11-11 16:56:04,877 - INFO - [INFO] - Deleted document 69098e4c6d13203209bf17d0 - new size: 461.11MB
+2025-11-11 16:56:07,352 - INFO - [INFO] - Deleted document 69098e566d13203209bf17d1 - new size: 460.96MB
+2025-11-11 16:56:09,151 - INFO - [INFO] - Deleted document 69098fc16d13203209bf17d2 - new size: 460.81MB
+2025-11-11 16:56:11,052 - INFO - [INFO] - Deleted document 69098fd06d13203209bf17d3 - new size: 460.66MB
+2025-11-11 16:56:12,730 - INFO - [INFO] - Deleted document 69098fdd6d13203209bf17d4 - new size: 460.50MB
+2025-11-11 16:56:14,778 - INFO - [INFO] - Deleted document 69098ff16d13203209bf17d5 - new size: 460.35MB
+2025-11-11 16:56:16,518 - INFO - [INFO] - Deleted document 69098ff56d13203209bf17d6 - new size: 460.18MB
+2025-11-11 16:56:18,207 - INFO - [INFO] - Deleted document 690991196d13203209bf17d7 - new size: 460.03MB
+2025-11-11 16:56:19,999 - INFO - [INFO] - Deleted document 690991416d13203209bf17d8 - new size: 459.89MB
+2025-11-11 16:56:21,843 - INFO - [INFO] - Deleted document 690991756d13203209bf17d9 - new size: 459.74MB
+2025-11-11 16:56:23,541 - INFO - [INFO] - Deleted document 690991aa6d13203209bf17da - new size: 459.57MB
+2025-11-11 16:56:25,323 - INFO - [INFO] - Deleted document 690992ef6d13203209bf17db - new size: 459.43MB
+2025-11-11 16:56:27,067 - INFO - [INFO] - Deleted document 6909930e6d13203209bf17dc - new size: 459.27MB
+2025-11-11 16:56:28,693 - INFO - [INFO] - Deleted document 6909932c6d13203209bf17dd - new size: 459.12MB
+2025-11-11 16:56:30,407 - INFO - [INFO] - Deleted document 690994176d13203209bf17de - new size: 458.97MB
+2025-11-11 16:56:32,103 - INFO - [INFO] - Deleted document 690994466d13203209bf17df - new size: 458.81MB
+2025-11-11 16:56:33,459 - INFO - [INFO] - Deleted document 6909944d6d13203209bf17e0 - new size: 458.66MB
+2025-11-11 16:56:35,045 - INFO - [INFO] - Deleted document 690994576d13203209bf17e1 - new size: 458.51MB
+2025-11-11 16:56:36,399 - INFO - [INFO] - Deleted document 690995136d13203209bf17e2 - new size: 458.36MB
+2025-11-11 16:56:37,751 - INFO - [INFO] - Deleted document 690995716d13203209bf17e3 - new size: 458.20MB
+2025-11-11 16:56:39,106 - INFO - [INFO] - Deleted document 690995756d13203209bf17e4 - new size: 458.05MB
+2025-11-11 16:56:41,055 - INFO - [INFO] - Deleted document 6909957e6d13203209bf17e5 - new size: 457.90MB
+2025-11-11 16:56:42,672 - INFO - [INFO] - Deleted document 690995a06d13203209bf17e6 - new size: 457.74MB
+2025-11-11 16:56:44,030 - INFO - [INFO] - Deleted document 690996ae6d13203209bf17e7 - new size: 457.61MB
+2025-11-11 16:56:45,426 - INFO - [INFO] - Deleted document 690996e36d13203209bf17e8 - new size: 457.47MB
+2025-11-11 16:56:46,783 - INFO - [INFO] - Deleted document 690997026d13203209bf17e9 - new size: 457.32MB
+2025-11-11 16:56:48,145 - INFO - [INFO] - Deleted document 6909970e6d13203209bf17eb - new size: 457.15MB
+2025-11-11 16:56:49,498 - INFO - [INFO] - Deleted document 690998146d13203209bf17ec - new size: 457.01MB
+2025-11-11 16:56:50,925 - INFO - [INFO] - Deleted document 690998306d13203209bf17ed - new size: 456.86MB
+2025-11-11 16:56:52,394 - INFO - [INFO] - Deleted document 6909983d6d13203209bf17ee - new size: 456.70MB
+2025-11-11 16:56:53,792 - INFO - [INFO] - Deleted document 690998426d13203209bf17ef - new size: 456.54MB
+2025-11-11 16:56:55,299 - INFO - [INFO] - Deleted document 6909984b6d13203209bf17f0 - new size: 456.38MB
+2025-11-11 16:56:58,492 - INFO - [INFO] - Deleted document 690999816d13203209bf17f1 - new size: 456.22MB
+2025-11-11 16:57:00,243 - INFO - [INFO] - Deleted document 6909999a6d13203209bf17f2 - new size: 456.07MB
+2025-11-11 16:57:02,291 - INFO - [INFO] - Deleted document 690999bb6d13203209bf17f3 - new size: 455.90MB
+2025-11-11 16:57:04,491 - INFO - [INFO] - Deleted document 69099aaa6d13203209bf17f4 - new size: 455.76MB
+2025-11-11 16:57:06,284 - INFO - [INFO] - Deleted document 69099abc6d13203209bf17f5 - new size: 455.62MB
+2025-11-11 16:57:08,247 - INFO - [INFO] - Deleted document 69099bdc6d13203209bf17f6 - new size: 455.47MB
+2025-11-11 16:57:09,938 - INFO - [INFO] - Deleted document 69099be66d13203209bf17f7 - new size: 455.33MB
+2025-11-11 16:57:11,814 - INFO - [INFO] - Deleted document 69099bed6d13203209bf17f8 - new size: 455.18MB
+2025-11-11 16:57:13,514 - INFO - [INFO] - Deleted document 69099c006d13203209bf17f9 - new size: 455.03MB
+2025-11-11 16:57:15,288 - INFO - [INFO] - Deleted document 69099c086d13203209bf17fa - new size: 454.88MB
+2025-11-11 16:57:17,037 - INFO - [INFO] - Deleted document 69099d126d13203209bf17fb - new size: 454.74MB
+2025-11-11 16:57:18,676 - INFO - [INFO] - Deleted document 69099d496d13203209bf17fc - new size: 454.59MB
+2025-11-11 16:57:20,374 - INFO - [INFO] - Deleted document 69099d616d13203209bf17fd - new size: 454.44MB
+2025-11-11 16:57:23,079 - INFO - [INFO] - Deleted document 69099d6f6d13203209bf17fe - new size: 454.29MB
+2025-11-11 16:57:24,921 - INFO - [INFO] - Deleted document 69099d7f6d13203209bf17ff - new size: 454.13MB
+2025-11-11 16:57:26,662 - INFO - [INFO] - Deleted document 69099e646d13203209bf1800 - new size: 453.98MB
+2025-11-11 16:57:28,159 - INFO - [INFO] - Deleted document 69099e7a6d13203209bf1801 - new size: 453.85MB
+2025-11-11 16:57:29,901 - INFO - [INFO] - Deleted document 69099ead6d13203209bf1802 - new size: 453.71MB
+2025-11-11 16:57:31,782 - INFO - [INFO] - Deleted document 69099ed06d13203209bf1803 - new size: 453.55MB
+2025-11-11 16:57:33,482 - INFO - [INFO] - Deleted document 69099ed46d13203209bf1804 - new size: 453.39MB
+2025-11-11 16:57:35,162 - INFO - [INFO] - Deleted document 69099fc06d13203209bf1805 - new size: 453.25MB
+2025-11-11 16:57:36,625 - INFO - [INFO] - Deleted document 69099ff06d13203209bf1806 - new size: 453.12MB
+2025-11-11 16:57:38,438 - INFO - [INFO] - Deleted document 6909a0646d13203209bf1807 - new size: 452.98MB
+2025-11-11 16:57:40,959 - INFO - [INFO] - Deleted document 6909a14c6d13203209bf1808 - new size: 452.82MB
+2025-11-11 16:57:43,538 - INFO - [INFO] - Deleted document 6909a1716d13203209bf1809 - new size: 452.67MB
+2025-11-11 16:57:45,299 - INFO - [INFO] - Deleted document 6909a1786d13203209bf180a - new size: 452.52MB
+2025-11-11 16:57:47,040 - INFO - [INFO] - Deleted document 6909a2386d13203209bf180b - new size: 452.38MB
+2025-11-11 16:57:48,777 - INFO - [INFO] - Deleted document 6909a2476d13203209bf180c - new size: 452.23MB
+2025-11-11 16:57:50,528 - INFO - [INFO] - Deleted document 6909a2496d13203209bf180d - new size: 452.09MB
+2025-11-11 16:57:54,791 - INFO - [INFO] - Deleted document 6909a2526d13203209bf180e - new size: 451.94MB
+2025-11-11 16:57:56,408 - INFO - [INFO] - Deleted document 6909a2606d13203209bf180f - new size: 451.78MB
+2025-11-11 16:57:58,032 - INFO - [INFO] - Deleted document 6909a32b6d13203209bf1810 - new size: 451.64MB
+2025-11-11 16:57:59,702 - INFO - [INFO] - Deleted document 6909a32d6d13203209bf1811 - new size: 451.49MB
+2025-11-11 16:58:01,338 - INFO - [INFO] - Deleted document 6909a3e66d13203209bf1812 - new size: 451.36MB
+2025-11-11 16:58:02,988 - INFO - [INFO] - Deleted document 6909a3ff6d13203209bf1813 - new size: 451.21MB
+2025-11-11 16:58:04,349 - INFO - [INFO] - Deleted document 6909a4116d13203209bf1814 - new size: 451.07MB
+2025-11-11 16:58:05,699 - INFO - [INFO] - Deleted document 6909a4176d13203209bf1815 - new size: 450.93MB
+2025-11-11 16:58:07,073 - INFO - [INFO] - Deleted document 6909a4446d13203209bf1816 - new size: 450.76MB
+2025-11-11 16:58:08,651 - INFO - [INFO] - Deleted document 6909a50b6d13203209bf1817 - new size: 450.62MB
+2025-11-11 16:58:10,011 - INFO - [INFO] - Deleted document 6909a5366d13203209bf1818 - new size: 450.47MB
+2025-11-11 16:58:11,367 - INFO - [INFO] - Deleted document 6909a5716d13203209bf1819 - new size: 450.31MB
+2025-11-11 16:58:12,785 - INFO - [INFO] - Deleted document 6909a5cb6d13203209bf181a - new size: 450.16MB
+2025-11-11 16:58:13,975 - INFO - [INFO] - Deleted document 6909a6d96d13203209bf181b - new size: 450.02MB
+2025-11-11 16:58:15,671 - INFO - [INFO] - Deleted document 6909a7156d13203209bf181c - new size: 449.87MB
+2025-11-11 16:58:17,023 - INFO - [INFO] - Deleted document 6909a71e6d13203209bf181d - new size: 449.71MB
+2025-11-11 16:58:18,395 - INFO - [INFO] - Deleted document 6909a73d6d13203209bf181e - new size: 449.54MB
+2025-11-11 16:58:19,486 - INFO - [INFO] - Deleted document 6909a77e6d13203209bf181f - new size: 449.39MB
+2025-11-11 16:58:20,583 - INFO - [INFO] - Deleted document 6909a84b6d13203209bf1820 - new size: 449.24MB
+2025-11-11 16:58:21,675 - INFO - [INFO] - Deleted document 6909a8716d13203209bf1821 - new size: 449.10MB
+2025-11-11 16:58:23,325 - INFO - [INFO] - Deleted document 6909a88b6d13203209bf1822 - new size: 448.95MB
+2025-11-11 16:58:25,133 - INFO - [INFO] - Deleted document 6909a8916d13203209bf1823 - new size: 448.80MB
+2025-11-11 16:58:26,875 - INFO - [INFO] - Deleted document 6909a8a56d13203209bf1824 - new size: 448.63MB
+2025-11-11 16:58:28,540 - INFO - [INFO] - Deleted document 6909a9dd6d13203209bf1825 - new size: 448.50MB
+2025-11-11 16:58:30,522 - INFO - [INFO] - Deleted document 6909aa006d13203209bf1826 - new size: 448.36MB
+2025-11-11 16:58:32,366 - INFO - [INFO] - Deleted document 6909aa286d13203209bf1827 - new size: 448.21MB
+2025-11-11 16:58:34,209 - INFO - [INFO] - Deleted document 6909aa316d13203209bf1828 - new size: 448.07MB
+2025-11-11 16:58:35,985 - INFO - [INFO] - Deleted document 6909aa326d13203209bf1829 - new size: 447.91MB
+2025-11-11 16:58:37,792 - INFO - [INFO] - Deleted document 6909ab5d6d13203209bf182a - new size: 447.77MB
+2025-11-11 16:58:39,574 - INFO - [INFO] - Deleted document 6909ab856d13203209bf182b - new size: 447.64MB
+2025-11-11 16:58:41,414 - INFO - [INFO] - Deleted document 6909ab876d13203209bf182c - new size: 447.50MB
+2025-11-11 16:58:43,220 - INFO - [INFO] - Deleted document 6909ac6b6d13203209bf182d - new size: 447.35MB
+2025-11-11 16:58:44,999 - INFO - [INFO] - Deleted document 6909ac7e6d13203209bf182e - new size: 447.19MB
+2025-11-11 16:58:46,535 - INFO - [INFO] - Deleted document 6909ac976d13203209bf182f - new size: 447.05MB
+2025-11-11 16:58:48,235 - INFO - [INFO] - Deleted document 6909acad6d13203209bf1830 - new size: 446.89MB
+2025-11-11 16:58:49,979 - INFO - [INFO] - Deleted document 6909ad646d13203209bf1831 - new size: 446.77MB
+2025-11-11 16:58:51,515 - INFO - [INFO] - Deleted document 6909ad7a6d13203209bf1832 - new size: 446.63MB
+2025-11-11 16:58:53,358 - INFO - [INFO] - Deleted document 6909ad996d13203209bf1833 - new size: 446.48MB
+2025-11-11 16:58:55,169 - INFO - [INFO] - Deleted document 6909ae326d13203209bf1834 - new size: 446.35MB
+2025-11-11 16:58:57,143 - INFO - [INFO] - Deleted document 6909ae7a6d13203209bf1835 - new size: 446.20MB
+2025-11-11 16:58:59,045 - INFO - [INFO] - Deleted document 6909aed26d13203209bf1836 - new size: 446.04MB
+2025-11-11 16:59:00,420 - INFO - [INFO] - Deleted document 6909b0bf6d13203209bf1837 - new size: 445.89MB
+2025-11-11 16:59:01,896 - INFO - [INFO] - Deleted document 6909b1bb6d13203209bf1838 - new size: 445.76MB
+2025-11-11 16:59:03,903 - INFO - [INFO] - Deleted document 6909b2116d13203209bf1839 - new size: 445.59MB
+2025-11-11 16:59:05,643 - INFO - [INFO] - Deleted document 6909b31d6d13203209bf183a - new size: 445.46MB
+2025-11-11 16:59:07,417 - INFO - [INFO] - Deleted document 6909b31e6d13203209bf183b - new size: 445.31MB
+2025-11-11 16:59:09,229 - INFO - [INFO] - Deleted document 6909b3886d13203209bf183c - new size: 445.14MB
+2025-11-11 16:59:11,009 - INFO - [INFO] - Deleted document 6909b3c16d13203209bf183d - new size: 444.98MB
+2025-11-11 16:59:12,852 - INFO - [INFO] - Deleted document 6909b5026d13203209bf183e - new size: 444.83MB
+2025-11-11 16:59:14,555 - INFO - [INFO] - Deleted document 6909b5376d13203209bf183f - new size: 444.68MB
+2025-11-11 16:59:16,313 - INFO - [INFO] - Deleted document 6909b5386d13203209bf1840 - new size: 444.53MB
+2025-11-11 16:59:18,028 - INFO - [INFO] - Deleted document 6909b6776d13203209bf1841 - new size: 444.39MB
+2025-11-11 16:59:19,653 - INFO - [INFO] - Deleted document 6909b6996d13203209bf1842 - new size: 444.25MB
+2025-11-11 16:59:21,311 - INFO - [INFO] - Deleted document 6909b6b26d13203209bf1843 - new size: 444.09MB
+2025-11-11 16:59:23,297 - INFO - [INFO] - Deleted document 6909b6c16d13203209bf1844 - new size: 443.94MB
+2025-11-11 16:59:25,038 - INFO - [INFO] - Deleted document 6909b6c96d13203209bf1845 - new size: 443.78MB
+2025-11-11 16:59:26,779 - INFO - [INFO] - Deleted document 6909b8106d13203209bf1846 - new size: 443.63MB
+2025-11-11 16:59:28,439 - INFO - [INFO] - Deleted document 6909b8456d13203209bf1847 - new size: 443.48MB
+2025-11-11 16:59:30,158 - INFO - [INFO] - Deleted document 6909b86a6d13203209bf1848 - new size: 443.32MB
+2025-11-11 16:59:31,939 - INFO - [INFO] - Deleted document 6909b9e0b1fa44aa6bded186 - new size: 443.19MB
+2025-11-11 16:59:33,560 - INFO - [INFO] - Deleted document 6909ba0cb1fa44aa6bded187 - new size: 443.04MB
+2025-11-11 16:59:34,971 - INFO - [INFO] - Deleted document 6909ba23b1fa44aa6bded188 - new size: 442.89MB
+2025-11-11 16:59:36,335 - INFO - [INFO] - Deleted document 6909ba6db1fa44aa6bded189 - new size: 442.73MB
+2025-11-11 16:59:37,694 - INFO - [INFO] - Deleted document 6909bb54b1fa44aa6bded18a - new size: 442.58MB
+2025-11-11 16:59:39,055 - INFO - [INFO] - Deleted document 6909bb7cb1fa44aa6bded18b - new size: 442.43MB
+2025-11-11 16:59:40,418 - INFO - [INFO] - Deleted document 6909bb83b1fa44aa6bded18c - new size: 442.28MB
+2025-11-11 16:59:42,139 - INFO - [INFO] - Deleted document 6909bb96b1fa44aa6bded18d - new size: 442.13MB
+2025-11-11 16:59:43,982 - INFO - [INFO] - Deleted document 6909bca0b1fa44aa6bded18e - new size: 441.98MB
+2025-11-11 16:59:45,684 - INFO - [INFO] - Deleted document 6909bcbdb1fa44aa6bded18f - new size: 441.84MB
+2025-11-11 16:59:47,358 - INFO - [INFO] - Deleted document 6909bcecb1fa44aa6bded190 - new size: 441.68MB
+2025-11-11 16:59:49,021 - INFO - [INFO] - Deleted document 6909bd66b1fa44aa6bded191 - new size: 441.53MB
+2025-11-11 16:59:50,536 - INFO - [INFO] - Deleted document 6909be30b1fa44aa6bded192 - new size: 441.39MB
+2025-11-11 16:59:52,239 - INFO - [INFO] - Deleted document 6909be42b1fa44aa6bded193 - new size: 441.25MB
+2025-11-11 16:59:54,428 - INFO - [INFO] - Deleted document 6909be59b1fa44aa6bded194 - new size: 441.10MB
+2025-11-11 16:59:56,270 - INFO - [INFO] - Deleted document 6909be7eb1fa44aa6bded195 - new size: 440.95MB
+2025-11-11 16:59:58,338 - INFO - [INFO] - Deleted document 6909beb2b1fa44aa6bded196 - new size: 440.78MB
+2025-11-11 16:59:59,989 - INFO - [INFO] - Deleted document 6909bf84b1fa44aa6bded197 - new size: 440.64MB
+2025-11-11 17:00:01,715 - INFO - [INFO] - Deleted document 6909bf95b1fa44aa6bded198 - new size: 440.49MB
+2025-11-11 17:00:03,093 - INFO - [INFO] - Deleted document 6909bfc5b1fa44aa6bded199 - new size: 440.36MB
+2025-11-11 17:00:04,723 - INFO - [INFO] - Deleted document 6909c0bcb1fa44aa6bded19a - new size: 440.22MB
+2025-11-11 17:00:06,478 - INFO - [INFO] - Deleted document 6909c13fb1fa44aa6bded19b - new size: 440.07MB
+2025-11-11 17:00:07,875 - INFO - [INFO] - Deleted document 6909c2eeb1fa44aa6bded19c - new size: 439.94MB
+2025-11-11 17:00:09,236 - INFO - [INFO] - Deleted document 6909c353b1fa44aa6bded19d - new size: 439.80MB
+2025-11-11 17:00:11,002 - INFO - [INFO] - Deleted document 6909c394b1fa44aa6bded19e - new size: 439.64MB
+2025-11-11 17:00:12,791 - INFO - [INFO] - Deleted document 6909c396b1fa44aa6bded19f - new size: 439.48MB
+2025-11-11 17:00:15,420 - INFO - [INFO] - Deleted document 6909c52cb1fa44aa6bded1a0 - new size: 439.34MB
+2025-11-11 17:00:17,262 - INFO - [INFO] - Deleted document 6909c58bb1fa44aa6bded1a1 - new size: 439.19MB
+2025-11-11 17:00:19,003 - INFO - [INFO] - Deleted document 6909c5a3b1fa44aa6bded1a2 - new size: 439.03MB
+2025-11-11 17:00:20,846 - INFO - [INFO] - Deleted document 6909c6d8b1fa44aa6bded1a3 - new size: 438.89MB
+2025-11-11 17:00:22,862 - INFO - [INFO] - Deleted document 6909c6e9b1fa44aa6bded1a4 - new size: 438.75MB
+2025-11-11 17:00:24,669 - INFO - [INFO] - Deleted document 6909c7efb1fa44aa6bded1a5 - new size: 438.59MB
+2025-11-11 17:00:26,375 - INFO - [INFO] - Deleted document 6909c813b1fa44aa6bded1a6 - new size: 438.44MB
+2025-11-11 17:00:28,119 - INFO - [INFO] - Deleted document 6909c845b1fa44aa6bded1a7 - new size: 438.30MB
+2025-11-11 17:00:30,031 - INFO - [INFO] - Deleted document 6909c97eb1fa44aa6bded1a8 - new size: 438.16MB
+2025-11-11 17:00:34,986 - INFO - [INFO] - Deleted document 6909c98cb1fa44aa6bded1a9 - new size: 438.01MB
+2025-11-11 17:00:36,627 - INFO - [INFO] - Deleted document 6909c999b1fa44aa6bded1aa - new size: 437.87MB
+2025-11-11 17:00:38,263 - INFO - [INFO] - Deleted document 6909c9a5b1fa44aa6bded1ab - new size: 437.71MB
+2025-11-11 17:00:39,621 - INFO - [INFO] - Deleted document 6909cabeb1fa44aa6bded1ac - new size: 437.55MB
+2025-11-11 17:00:40,980 - INFO - [INFO] - Deleted document 6909cabfb1fa44aa6bded1ad - new size: 437.40MB
+2025-11-11 17:00:42,424 - INFO - [INFO] - Deleted document 6909cad3b1fa44aa6bded1ae - new size: 437.25MB
+2025-11-11 17:00:43,788 - INFO - [INFO] - Deleted document 6909cb21b1fa44aa6bded1af - new size: 437.08MB
+2025-11-11 17:00:44,882 - INFO - [INFO] - Deleted document 6909cc63b1fa44aa6bded1b0 - new size: 436.94MB
+2025-11-11 17:00:45,970 - INFO - [INFO] - Deleted document 6909cc7eb1fa44aa6bded1b1 - new size: 436.79MB
+2025-11-11 17:00:47,058 - INFO - [INFO] - Deleted document 6909cc7fb1fa44aa6bded1b2 - new size: 436.65MB
+2025-11-11 17:00:48,151 - INFO - [INFO] - Deleted document 6909cd67b1fa44aa6bded1b3 - new size: 436.51MB
+2025-11-11 17:00:49,247 - INFO - [INFO] - Deleted document 6909cdf2b1fa44aa6bded1b4 - new size: 436.32MB
+2025-11-11 17:00:50,336 - INFO - [INFO] - Deleted document 6909cedeb1fa44aa6bded1b5 - new size: 436.17MB
+2025-11-11 17:00:51,177 - INFO - [INFO] - Deleted document 6909cf36b1fa44aa6bded1b6 - new size: 436.02MB
+2025-11-11 17:00:52,264 - INFO - [INFO] - Deleted document 6909cfacb1fa44aa6bded1b7 - new size: 435.87MB
+2025-11-11 17:00:53,089 - INFO - [INFO] - Deleted document 6909d0b9b1fa44aa6bded1b8 - new size: 435.72MB
+2025-11-11 17:00:53,914 - INFO - [INFO] - Deleted document 6909d110b1fa44aa6bded1b9 - new size: 435.57MB
+2025-11-11 17:00:55,242 - INFO - [INFO] - Deleted document 6909d140b1fa44aa6bded1ba - new size: 435.42MB
+2025-11-11 17:00:56,080 - INFO - [INFO] - Deleted document 6909d141b1fa44aa6bded1bb - new size: 435.25MB
+2025-11-11 17:00:57,169 - INFO - [INFO] - Deleted document 6909d276b1fa44aa6bded1bc - new size: 435.11MB
+2025-11-11 17:00:58,287 - INFO - [INFO] - Deleted document 6909d291b1fa44aa6bded1bd - new size: 434.96MB
+2025-11-11 17:01:01,807 - INFO - [INFO] - Deleted document 6909d45cb1fa44aa6bded1be - new size: 434.82MB
+2025-11-11 17:01:03,612 - INFO - [INFO] - Deleted document 6909d47ab1fa44aa6bded1bf - new size: 434.68MB
+2025-11-11 17:01:06,006 - INFO - [INFO] - Deleted document 6909d491b1fa44aa6bded1c0 - new size: 434.53MB
+2025-11-11 17:01:07,746 - INFO - [INFO] - Deleted document 6909d493b1fa44aa6bded1c1 - new size: 434.38MB
+2025-11-11 17:01:11,126 - INFO - [INFO] - Deleted document 6909d56fb1fa44aa6bded1c2 - new size: 434.24MB
+2025-11-11 17:01:12,932 - INFO - [INFO] - Deleted document 6909d570b1fa44aa6bded1c3 - new size: 434.10MB
+2025-11-11 17:01:14,672 - INFO - [INFO] - Deleted document 6909d58bb1fa44aa6bded1c4 - new size: 433.95MB
+2025-11-11 17:01:16,515 - INFO - [INFO] - Deleted document 6909d591b1fa44aa6bded1c5 - new size: 433.80MB
+2025-11-11 17:01:18,358 - INFO - [INFO] - Deleted document 6909d660b1fa44aa6bded1c6 - new size: 433.66MB
+2025-11-11 17:01:20,239 - INFO - [INFO] - Deleted document 6909d68db1fa44aa6bded1c7 - new size: 433.51MB
+2025-11-11 17:01:22,083 - INFO - [INFO] - Deleted document 6909d6a8b1fa44aa6bded1c8 - new size: 433.37MB
+2025-11-11 17:01:23,926 - INFO - [INFO] - Deleted document 6909d6ccb1fa44aa6bded1c9 - new size: 433.22MB
+2025-11-11 17:01:25,549 - INFO - [INFO] - Deleted document 6909d6d5b1fa44aa6bded1ca - new size: 433.07MB
+2025-11-11 17:01:26,956 - INFO - [INFO] - Deleted document 6909d7b8b1fa44aa6bded1cc - new size: 432.93MB
+2025-11-11 17:01:28,893 - INFO - [INFO] - Deleted document 6909d7edb1fa44aa6bded1cd - new size: 432.77MB
+2025-11-11 17:01:30,537 - INFO - [INFO] - Deleted document 6909d7efb1fa44aa6bded1ce - new size: 432.62MB
+2025-11-11 17:01:32,322 - INFO - [INFO] - Deleted document 6909d8c5b1fa44aa6bded1cf - new size: 432.46MB
+2025-11-11 17:01:33,993 - INFO - [INFO] - Deleted document 6909d8cfb1fa44aa6bded1d0 - new size: 432.32MB
+2025-11-11 17:01:35,732 - INFO - [INFO] - Deleted document 6909d8e9b1fa44aa6bded1d1 - new size: 432.16MB
+2025-11-11 17:01:37,199 - INFO - [INFO] - Deleted document 6909d8f8b1fa44aa6bded1d2 - new size: 432.02MB
+2025-11-11 17:01:38,948 - INFO - [INFO] - Deleted document 6909d902b1fa44aa6bded1d3 - new size: 431.87MB
+2025-11-11 17:01:40,608 - INFO - [INFO] - Deleted document 6909da00b1fa44aa6bded1d4 - new size: 431.72MB
+2025-11-11 17:01:42,233 - INFO - [INFO] - Deleted document 6909da0bb1fa44aa6bded1d5 - new size: 431.57MB
+2025-11-11 17:01:44,304 - INFO - [INFO] - Deleted document 6909daebb1fa44aa6bded1d6 - new size: 431.42MB
+2025-11-11 17:01:46,040 - INFO - [INFO] - Deleted document 6909db10b1fa44aa6bded1d8 - new size: 431.26MB
+2025-11-11 17:01:49,787 - INFO - [INFO] - Deleted document 6909dbd1b1fa44aa6bded1d9 - new size: 431.12MB
+2025-11-11 17:01:51,408 - INFO - [INFO] - Deleted document 6909dbeab1fa44aa6bded1da - new size: 430.98MB
+2025-11-11 17:01:53,036 - INFO - [INFO] - Deleted document 6909dc0cb1fa44aa6bded1db - new size: 430.83MB
+2025-11-11 17:01:54,661 - INFO - [INFO] - Deleted document 6909dc31b1fa44aa6bded1dc - new size: 430.65MB
+2025-11-11 17:01:56,018 - INFO - [INFO] - Deleted document 6909dcf0b1fa44aa6bded1dd - new size: 430.51MB
+2025-11-11 17:01:57,390 - INFO - [INFO] - Deleted document 6909dd09b1fa44aa6bded1de - new size: 430.37MB
+2025-11-11 17:01:58,749 - INFO - [INFO] - Deleted document 6909dd1db1fa44aa6bded1df - new size: 430.23MB
+2025-11-11 17:02:00,377 - INFO - [INFO] - Deleted document 6909dd58b1fa44aa6bded1e0 - new size: 430.06MB
+2025-11-11 17:02:01,733 - INFO - [INFO] - Deleted document 6909de94b1fa44aa6bded1e1 - new size: 429.91MB
+2025-11-11 17:02:03,147 - INFO - [INFO] - Deleted document 6909df5cb1fa44aa6bded1e2 - new size: 429.78MB
+2025-11-11 17:02:04,844 - INFO - [INFO] - Deleted document 6909e00ab1fa44aa6bded1e3 - new size: 429.63MB
+2025-11-11 17:02:06,585 - INFO - [INFO] - Deleted document 6909e00ab1fa44aa6bded1e4 - new size: 429.49MB
+2025-11-11 17:02:08,327 - INFO - [INFO] - Deleted document 6909e021b1fa44aa6bded1e5 - new size: 429.33MB
+2025-11-11 17:02:10,107 - INFO - [INFO] - Deleted document 6909e0b8b1fa44aa6bded1e6 - new size: 429.18MB
+2025-11-11 17:02:11,673 - INFO - [INFO] - Deleted document 6909e1e0b1fa44aa6bded1e7 - new size: 429.05MB
+2025-11-11 17:02:13,031 - INFO - [INFO] - Deleted document 6909e1e8b1fa44aa6bded1e8 - new size: 428.91MB
+2025-11-11 17:02:15,126 - INFO - [INFO] - Deleted document 6909e240b1fa44aa6bded1e9 - new size: 428.74MB
+2025-11-11 17:02:16,781 - INFO - [INFO] - Deleted document 6909e340b1fa44aa6bded1ea - new size: 428.59MB
+2025-11-11 17:02:18,608 - INFO - [INFO] - Deleted document 6909e391b1fa44aa6bded1eb - new size: 428.45MB
+2025-11-11 17:02:20,451 - INFO - [INFO] - Deleted document 6909e39bb1fa44aa6bded1ec - new size: 428.30MB
+2025-11-11 17:02:22,601 - INFO - [INFO] - Deleted document 6909e3fdb1fa44aa6bded1ed - new size: 428.14MB
+2025-11-11 17:02:24,445 - INFO - [INFO] - Deleted document 6909e4ffb1fa44aa6bded1ee - new size: 428.00MB
+2025-11-11 17:02:26,266 - INFO - [INFO] - Deleted document 6909e572b1fa44aa6bded1ef - new size: 427.84MB
+2025-11-11 17:02:27,622 - INFO - [INFO] - Deleted document 6909e698b1fa44aa6bded1f0 - new size: 427.70MB
+2025-11-11 17:02:31,868 - INFO - [INFO] - Deleted document 6909e6a4b1fa44aa6bded1f1 - new size: 427.56MB
+2025-11-11 17:02:33,491 - INFO - [INFO] - Deleted document 6909e6abb1fa44aa6bded1f2 - new size: 427.41MB
+2025-11-11 17:02:34,855 - INFO - [INFO] - Deleted document 6909e85ab1fa44aa6bded1f3 - new size: 427.27MB
+2025-11-11 17:02:36,480 - INFO - [INFO] - Deleted document 6909e890b1fa44aa6bded1f4 - new size: 427.12MB
+2025-11-11 17:02:38,154 - INFO - [INFO] - Deleted document 6909e8b4b1fa44aa6bded1f5 - new size: 426.96MB
+2025-11-11 17:02:39,526 - INFO - [INFO] - Deleted document 6909e9c4b1fa44aa6bded1f6 - new size: 426.81MB
+2025-11-11 17:02:41,159 - INFO - [INFO] - Deleted document 6909e9f1b1fa44aa6bded1f7 - new size: 426.65MB
+2025-11-11 17:02:42,514 - INFO - [INFO] - Deleted document 6909ea1ab1fa44aa6bded1f8 - new size: 426.49MB
+2025-11-11 17:02:43,879 - INFO - [INFO] - Deleted document 6909eb46b1fa44aa6bded1f9 - new size: 426.36MB
+2025-11-11 17:02:45,249 - INFO - [INFO] - Deleted document 6909eb78b1fa44aa6bded1fa - new size: 426.21MB
+2025-11-11 17:02:46,336 - INFO - [INFO] - Deleted document 6909eb8fb1fa44aa6bded1fb - new size: 426.06MB
+2025-11-11 17:02:50,211 - INFO - [INFO] - Deleted document 6909ed5eb1fa44aa6bded1fc - new size: 425.89MB
+2025-11-11 17:02:51,376 - INFO - [INFO] - Deleted document 6909ef60b1fa44aa6bded1fd - new size: 425.75MB
+2025-11-11 17:02:52,605 - INFO - [INFO] - Deleted document 6909ef86b1fa44aa6bded1fe - new size: 425.60MB
+2025-11-11 17:02:54,412 - INFO - [INFO] - Deleted document 6909f098b1fa44aa6bded1ff - new size: 425.45MB
+2025-11-11 17:02:56,226 - INFO - [INFO] - Deleted document 6909f0c9b1fa44aa6bded200 - new size: 425.30MB
+2025-11-11 17:02:57,688 - INFO - [INFO] - Deleted document 6909f0e3b1fa44aa6bded201 - new size: 425.16MB
+2025-11-11 17:03:00,593 - INFO - [INFO] - Deleted document 6909f114b1fa44aa6bded202 - new size: 425.00MB
+2025-11-11 17:03:02,846 - INFO - [INFO] - Deleted document 6909f945920ebeaff822557f - new size: 424.85MB
+2025-11-11 17:03:04,471 - INFO - [INFO] - Deleted document 690aaa634a0c185d914bb532 - new size: 424.69MB
+2025-11-11 17:03:07,147 - INFO - [INFO] - Deleted document 690aade37b8994d9d4dce2eb - new size: 424.53MB
+2025-11-11 17:03:09,039 - INFO - [INFO] - Deleted document 690aae017b8994d9d4dce2ec - new size: 424.37MB
+2025-11-11 17:03:10,834 - INFO - [INFO] - Deleted document 690aae227b8994d9d4dce2ed - new size: 424.21MB
+2025-11-11 17:03:12,615 - INFO - [INFO] - Deleted document 690aae267b8994d9d4dce2ee - new size: 424.07MB
+2025-11-11 17:03:14,314 - INFO - [INFO] - Deleted document 690aae277b8994d9d4dce2ef - new size: 423.92MB
+2025-11-11 17:03:16,012 - INFO - [INFO] - Deleted document 690ab99c691d2cd257f64df4 - new size: 423.76MB
+2025-11-11 17:03:17,370 - INFO - [INFO] - Deleted document 690ab9a4691d2cd257f64df5 - new size: 423.62MB
+2025-11-11 17:03:19,048 - INFO - [INFO] - Deleted document 690ab9bb691d2cd257f64df6 - new size: 423.46MB
+2025-11-11 17:03:21,026 - INFO - [INFO] - Deleted document 690abbd3691d2cd257f64df7 - new size: 423.33MB
+2025-11-11 17:03:22,646 - INFO - [INFO] - Deleted document 690abbdd691d2cd257f64df8 - new size: 423.18MB
+2025-11-11 17:03:24,581 - INFO - [INFO] - Deleted document 690abbef691d2cd257f64df9 - new size: 423.01MB
+2025-11-11 17:03:26,478 - INFO - [INFO] - Deleted document 690abc08691d2cd257f64dfa - new size: 422.86MB
+2025-11-11 17:03:28,172 - INFO - [INFO] - Deleted document 690abd1f691d2cd257f64dfb - new size: 422.71MB
+2025-11-11 17:03:29,797 - INFO - [INFO] - Deleted document 690abd42691d2cd257f64dfc - new size: 422.56MB
+2025-11-11 17:03:31,414 - INFO - [INFO] - Deleted document 690abd46691d2cd257f64dfd - new size: 422.40MB
+2025-11-11 17:03:33,033 - INFO - [INFO] - Deleted document 690abd69691d2cd257f64dfe - new size: 422.24MB
+2025-11-11 17:03:34,650 - INFO - [INFO] - Deleted document 690abecf691d2cd257f64dff - new size: 422.09MB
+2025-11-11 17:03:36,003 - INFO - [INFO] - Deleted document 690abeeb691d2cd257f64e00 - new size: 421.94MB
+2025-11-11 17:03:37,358 - INFO - [INFO] - Deleted document 690abfb7691d2cd257f64e01 - new size: 421.81MB
+2025-11-11 17:03:38,716 - INFO - [INFO] - Deleted document 690ac025691d2cd257f64e02 - new size: 421.65MB
+2025-11-11 17:03:39,818 - INFO - [INFO] - Deleted document 690ac0eb691d2cd257f64e03 - new size: 421.51MB
+2025-11-11 17:03:40,902 - INFO - [INFO] - Deleted document 690ac0ec691d2cd257f64e04 - new size: 421.37MB
+2025-11-11 17:03:42,657 - INFO - [INFO] - Deleted document 690ac1d3691d2cd257f64e05 - new size: 421.22MB
+2025-11-11 17:03:46,484 - INFO - [INFO] - Deleted document 690ac20a691d2cd257f64e06 - new size: 421.08MB
+2025-11-11 17:03:48,127 - INFO - [INFO] - Deleted document 690ac326691d2cd257f64e07 - new size: 420.91MB
+2025-11-11 17:03:49,911 - INFO - [INFO] - Deleted document 690ac475691d2cd257f64e08 - new size: 420.76MB
+2025-11-11 17:03:51,560 - INFO - [INFO] - Deleted document 690ac553691d2cd257f64e09 - new size: 420.62MB
+2025-11-11 17:03:53,263 - INFO - [INFO] - Deleted document 690ac777691d2cd257f64e0a - new size: 420.46MB
+2025-11-11 17:03:55,069 - INFO - [INFO] - Deleted document 690ac83c691d2cd257f64e0b - new size: 420.31MB
+2025-11-11 17:03:56,771 - INFO - [INFO] - Deleted document 690ac84a691d2cd257f64e0c - new size: 420.16MB
+2025-11-11 17:03:58,515 - INFO - [INFO] - Deleted document 690ac854691d2cd257f64e0d - new size: 420.00MB
+2025-11-11 17:04:00,664 - INFO - [INFO] - Deleted document 690aca13691d2cd257f64e0e - new size: 419.83MB
+2025-11-11 17:04:02,543 - INFO - [INFO] - Deleted document 690acbd42f6b2eff2c8fa545 - new size: 419.68MB
+2025-11-11 17:04:04,662 - INFO - [INFO] - Deleted document 690acbfb2f6b2eff2c8fa546 - new size: 419.52MB
+2025-11-11 17:04:06,395 - INFO - [INFO] - Deleted document 690acbfc2f6b2eff2c8fa547 - new size: 419.36MB
+2025-11-11 17:04:07,751 - INFO - [INFO] - Deleted document 690acd462f6b2eff2c8fa548 - new size: 419.21MB
+2025-11-11 17:04:09,201 - INFO - [INFO] - Deleted document 690acd732f6b2eff2c8fa549 - new size: 419.08MB
+2025-11-11 17:04:10,857 - INFO - [INFO] - Deleted document 690ace362f6b2eff2c8fa54a - new size: 418.95MB
+2025-11-11 17:04:12,683 - INFO - [INFO] - Deleted document 690ace5b2f6b2eff2c8fa54b - new size: 418.80MB
+2025-11-11 17:04:14,116 - INFO - [INFO] - Deleted document 690ace5f2f6b2eff2c8fa54c - new size: 418.65MB
+2025-11-11 17:04:15,819 - INFO - [INFO] - Deleted document 690ace612f6b2eff2c8fa54d - new size: 418.50MB
+2025-11-11 17:04:17,220 - INFO - [INFO] - Deleted document 690acf012f6b2eff2c8fa54e - new size: 418.36MB
+2025-11-11 17:04:18,622 - INFO - [INFO] - Deleted document 690acf332f6b2eff2c8fa54f - new size: 418.22MB
+2025-11-11 17:04:20,289 - INFO - [INFO] - Deleted document 690ad04c2f6b2eff2c8fa550 - new size: 418.07MB
+2025-11-11 17:04:22,167 - INFO - [INFO] - Deleted document 690ad0f32f6b2eff2c8fa551 - new size: 417.93MB
+2025-11-11 17:04:23,947 - INFO - [INFO] - Deleted document 690ad10c2f6b2eff2c8fa552 - new size: 417.79MB
+2025-11-11 17:04:25,750 - INFO - [INFO] - Deleted document 690ad1232f6b2eff2c8fa553 - new size: 417.65MB
+2025-11-11 17:04:27,448 - INFO - [INFO] - Deleted document 690ad12f2f6b2eff2c8fa554 - new size: 417.50MB
+2025-11-11 17:04:29,068 - INFO - [INFO] - Deleted document 690ad1402f6b2eff2c8fa555 - new size: 417.34MB
+2025-11-11 17:04:30,872 - INFO - [INFO] - Deleted document 690ad18c2f6b2eff2c8fa556 - new size: 417.20MB
+2025-11-11 17:04:32,516 - INFO - [INFO] - Deleted document 690ad25b2f6b2eff2c8fa557 - new size: 417.05MB
+2025-11-11 17:04:35,001 - INFO - [INFO] - Deleted document 690ad2982f6b2eff2c8fa558 - new size: 416.90MB
+2025-11-11 17:04:36,373 - INFO - [INFO] - Deleted document 690ad2a62f6b2eff2c8fa559 - new size: 416.76MB
+2025-11-11 17:04:39,000 - INFO - [INFO] - Deleted document 690ad2be2f6b2eff2c8fa55a - new size: 416.60MB
+2025-11-11 17:04:40,688 - INFO - [INFO] - Deleted document 690ad2c02f6b2eff2c8fa55b - new size: 416.45MB
+2025-11-11 17:04:42,677 - INFO - [INFO] - Deleted document 690ad2cb2f6b2eff2c8fa55c - new size: 416.27MB
+2025-11-11 17:04:44,388 - INFO - [INFO] - Deleted document 690ad3be2f6b2eff2c8fa55e - new size: 416.12MB
+2025-11-11 17:04:46,020 - INFO - [INFO] - Deleted document 690ad3bf2f6b2eff2c8fa55f - new size: 415.97MB
+2025-11-11 17:04:50,324 - INFO - [INFO] - Deleted document 690ad3c62f6b2eff2c8fa560 - new size: 415.81MB
+2025-11-11 17:04:54,421 - INFO - [INFO] - Deleted document 690ad40c2f6b2eff2c8fa561 - new size: 415.64MB
+2025-11-11 17:04:56,469 - INFO - [INFO] - Deleted document 690ad5472f6b2eff2c8fa562 - new size: 415.51MB
+2025-11-11 17:04:58,528 - INFO - [INFO] - Deleted document 690ad5a82f6b2eff2c8fa563 - new size: 415.33MB
+2025-11-11 17:05:00,154 - INFO - [INFO] - Deleted document 690ad6252f6b2eff2c8fa564 - new size: 415.20MB
+2025-11-11 17:05:02,040 - INFO - [INFO] - Deleted document 690ad67f2f6b2eff2c8fa565 - new size: 415.06MB
+2025-11-11 17:05:03,781 - INFO - [INFO] - Deleted document 690ad7282f6b2eff2c8fa566 - new size: 414.91MB
+2025-11-11 17:05:05,522 - INFO - [INFO] - Deleted document 690ae5f7137a096b2e75dee0 - new size: 414.77MB
+2025-11-11 17:05:06,954 - INFO - [INFO] - Deleted document 690ae603137a096b2e75dee2 - new size: 414.61MB
+2025-11-11 17:05:08,660 - INFO - [INFO] - Deleted document 690ae605137a096b2e75dee3 - new size: 414.45MB
+2025-11-11 17:05:11,154 - INFO - [INFO] - Deleted document 690ae62a137a096b2e75dee5 - new size: 414.29MB
+2025-11-11 17:05:13,053 - INFO - [INFO] - Deleted document 690ae62e137a096b2e75dee6 - new size: 414.15MB
+2025-11-11 17:05:15,044 - INFO - [INFO] - Deleted document 690ae62e137a096b2e75dee7 - new size: 414.00MB
+2025-11-11 17:05:16,888 - INFO - [INFO] - Deleted document 690ae7a3137a096b2e75dee8 - new size: 413.84MB
+2025-11-11 17:05:18,693 - INFO - [INFO] - Deleted document 690ae7a8137a096b2e75dee9 - new size: 413.69MB
+2025-11-11 17:05:20,407 - INFO - [INFO] - Deleted document 690ae7ab137a096b2e75deea - new size: 413.54MB
+2025-11-11 17:05:22,213 - INFO - [INFO] - Deleted document 690ae7ac137a096b2e75deeb - new size: 413.39MB
+2025-11-11 17:05:24,001 - INFO - [INFO] - Deleted document 690ae7be137a096b2e75deec - new size: 413.23MB
+2025-11-11 17:05:25,757 - INFO - [INFO] - Deleted document 690ae7bf137a096b2e75deed - new size: 413.09MB
+2025-11-11 17:05:27,574 - INFO - [INFO] - Deleted document 690ae7c8137a096b2e75deee - new size: 412.93MB
+2025-11-11 17:05:29,244 - INFO - [INFO] - Deleted document 690ae7c9137a096b2e75deef - new size: 412.77MB
+2025-11-11 17:05:30,982 - INFO - [INFO] - Deleted document 690ae7d0137a096b2e75def0 - new size: 412.61MB
+2025-11-11 17:05:32,615 - INFO - [INFO] - Deleted document 690ae8b26773f6054ff50ce4 - new size: 412.46MB
+2025-11-11 17:05:34,091 - INFO - [INFO] - Deleted document 690ae8bb6773f6054ff50ce5 - new size: 412.33MB
+2025-11-11 17:05:35,525 - INFO - [INFO] - Deleted document 690ae90a6773f6054ff50ce6 - new size: 412.18MB
+2025-11-11 17:05:36,876 - INFO - [INFO] - Deleted document 690ae91c6773f6054ff50ce7 - new size: 412.04MB
+2025-11-11 17:05:38,550 - INFO - [INFO] - Deleted document 690ae92d6773f6054ff50ce8 - new size: 411.89MB
+2025-11-11 17:05:40,193 - INFO - [INFO] - Deleted document 690ae9336773f6054ff50ce9 - new size: 411.74MB
+2025-11-11 17:05:41,836 - INFO - [INFO] - Deleted document 690ae95a6773f6054ff50cea - new size: 411.58MB
+2025-11-11 17:05:43,573 - INFO - [INFO] - Deleted document 690ae9616773f6054ff50ceb - new size: 411.42MB
+2025-11-11 17:05:45,316 - INFO - [INFO] - Deleted document 690ae9a56773f6054ff50cec - new size: 411.27MB
+2025-11-11 17:05:47,289 - INFO - [INFO] - Deleted document 690aeb196773f6054ff50ced - new size: 411.12MB
+2025-11-11 17:05:49,043 - INFO - [INFO] - Deleted document 690aeb626773f6054ff50cee - new size: 410.98MB
+2025-11-11 17:05:50,779 - INFO - [INFO] - Deleted document 690aec436773f6054ff50cef - new size: 410.84MB
+2025-11-11 17:05:52,558 - INFO - [INFO] - Deleted document 690aec956773f6054ff50cf0 - new size: 410.71MB
+2025-11-11 17:05:54,265 - INFO - [INFO] - Deleted document 690aec9f6773f6054ff50cf1 - new size: 410.57MB
+2025-11-11 17:05:56,006 - INFO - [INFO] - Deleted document 690aecb66773f6054ff50cf2 - new size: 410.42MB
+2025-11-11 17:05:57,835 - INFO - [INFO] - Deleted document 690aeda3d63b0a0ad95e03bb - new size: 410.28MB
+2025-11-11 17:05:59,589 - INFO - [INFO] - Deleted document 690aedc0d63b0a0ad95e03bc - new size: 410.13MB
+2025-11-11 17:06:01,291 - INFO - [INFO] - Deleted document 690aedc9d63b0a0ad95e03bd - new size: 409.99MB
+2025-11-11 17:06:05,054 - INFO - [INFO] - Deleted document 690aedd5d63b0a0ad95e03be - new size: 409.85MB
+2025-11-11 17:06:06,675 - INFO - [INFO] - Deleted document 690aedd8d63b0a0ad95e03bf - new size: 409.69MB
+2025-11-11 17:06:08,301 - INFO - [INFO] - Deleted document 690aedfad63b0a0ad95e03c0 - new size: 409.52MB
+2025-11-11 17:06:10,034 - INFO - [INFO] - Deleted document 690aee01d63b0a0ad95e03c1 - new size: 409.36MB
+2025-11-11 17:06:11,398 - INFO - [INFO] - Deleted document 690aefa9d63b0a0ad95e03c2 - new size: 409.21MB
+2025-11-11 17:06:12,757 - INFO - [INFO] - Deleted document 690aefbad63b0a0ad95e03c3 - new size: 409.07MB
+2025-11-11 17:06:14,512 - INFO - [INFO] - Deleted document 690aefdfd63b0a0ad95e03c4 - new size: 408.92MB
+2025-11-11 17:06:16,128 - INFO - [INFO] - Deleted document 690aefe1d63b0a0ad95e03c5 - new size: 408.78MB
+2025-11-11 17:06:17,480 - INFO - [INFO] - Deleted document 690aefe3d63b0a0ad95e03c6 - new size: 408.64MB
+2025-11-11 17:06:18,841 - INFO - [INFO] - Deleted document 690aefecd63b0a0ad95e03c7 - new size: 408.49MB
+2025-11-11 17:06:20,467 - INFO - [INFO] - Deleted document 690aefefd63b0a0ad95e03c8 - new size: 408.33MB
+2025-11-11 17:06:21,820 - INFO - [INFO] - Deleted document 690aeff6d63b0a0ad95e03c9 - new size: 408.19MB
+2025-11-11 17:06:23,450 - INFO - [INFO] - Deleted document 690aeffed63b0a0ad95e03ca - new size: 408.03MB
+2025-11-11 17:06:25,092 - INFO - [INFO] - Deleted document 690af008d63b0a0ad95e03cb - new size: 407.87MB
+2025-11-11 17:06:26,709 - INFO - [INFO] - Deleted document 690af00fd63b0a0ad95e03cc - new size: 407.72MB
+2025-11-11 17:06:28,079 - INFO - [INFO] - Deleted document 690af119d63b0a0ad95e03cd - new size: 407.59MB
+2025-11-11 17:06:29,441 - INFO - [INFO] - Deleted document 690af11cd63b0a0ad95e03ce - new size: 407.45MB
+2025-11-11 17:06:31,193 - INFO - [INFO] - Deleted document 690af12ad63b0a0ad95e03cf - new size: 407.31MB
+2025-11-11 17:06:33,383 - INFO - [INFO] - Deleted document 690af139d63b0a0ad95e03d0 - new size: 407.17MB
+2025-11-11 17:06:35,052 - INFO - [INFO] - Deleted document 690af140d63b0a0ad95e03d1 - new size: 407.02MB
+2025-11-11 17:06:36,863 - INFO - [INFO] - Deleted document 690af144d63b0a0ad95e03d2 - new size: 406.88MB
+2025-11-11 17:06:38,545 - INFO - [INFO] - Deleted document 690af14ad63b0a0ad95e03d3 - new size: 406.73MB
+2025-11-11 17:06:40,307 - INFO - [INFO] - Deleted document 690af14bd63b0a0ad95e03d4 - new size: 406.60MB
+2025-11-11 17:06:41,882 - INFO - [INFO] - Deleted document 690af261d63b0a0ad95e03d5 - new size: 406.47MB
+2025-11-11 17:06:43,521 - INFO - [INFO] - Deleted document 690af287d63b0a0ad95e03d6 - new size: 406.33MB
+2025-11-11 17:06:45,221 - INFO - [INFO] - Deleted document 690af2b9d63b0a0ad95e03d7 - new size: 406.19MB
+2025-11-11 17:06:47,001 - INFO - [INFO] - Deleted document 690af2c4d63b0a0ad95e03d8 - new size: 406.04MB
+2025-11-11 17:06:48,853 - INFO - [INFO] - Deleted document 690af2c6d63b0a0ad95e03d9 - new size: 405.89MB
+2025-11-11 17:06:50,622 - INFO - [INFO] - Deleted document 690af2ced63b0a0ad95e03da - new size: 405.75MB
+2025-11-11 17:06:52,428 - INFO - [INFO] - Deleted document 690af43cd63b0a0ad95e03db - new size: 405.60MB
+2025-11-11 17:06:54,047 - INFO - [INFO] - Deleted document 690af45ed63b0a0ad95e03dc - new size: 405.47MB
+2025-11-11 17:06:55,662 - INFO - [INFO] - Deleted document 690af469d63b0a0ad95e03dd - new size: 405.33MB
+2025-11-11 17:06:57,293 - INFO - [INFO] - Deleted document 690af46ad63b0a0ad95e03de - new size: 405.18MB
+2025-11-11 17:06:58,927 - INFO - [INFO] - Deleted document 690af46dd63b0a0ad95e03df - new size: 405.01MB
+2025-11-11 17:07:00,293 - INFO - [INFO] - Deleted document 690af470d63b0a0ad95e03e0 - new size: 404.88MB
+2025-11-11 17:07:02,362 - INFO - [INFO] - Deleted document 690af47ad63b0a0ad95e03e1 - new size: 404.72MB
+2025-11-11 17:07:04,204 - INFO - [INFO] - Deleted document 690af47ed63b0a0ad95e03e2 - new size: 404.57MB
+2025-11-11 17:07:05,945 - INFO - [INFO] - Deleted document 690af48bd63b0a0ad95e03e3 - new size: 404.41MB
+2025-11-11 17:07:07,790 - INFO - [INFO] - Deleted document 690af66ad63b0a0ad95e03e4 - new size: 404.27MB
+2025-11-11 17:07:09,193 - INFO - [INFO] - Deleted document 690af688d63b0a0ad95e03e5 - new size: 404.14MB
+2025-11-11 17:07:11,027 - INFO - [INFO] - Deleted document 690af696d63b0a0ad95e03e6 - new size: 404.00MB
+2025-11-11 17:07:12,836 - INFO - [INFO] - Deleted document 690af699d63b0a0ad95e03e7 - new size: 403.85MB
+2025-11-11 17:07:14,548 - INFO - [INFO] - Deleted document 690af6a2d63b0a0ad95e03e8 - new size: 403.71MB
+2025-11-11 17:07:16,251 - INFO - [INFO] - Deleted document 690af6b2d63b0a0ad95e03e9 - new size: 403.55MB
+2025-11-11 17:07:18,132 - INFO - [INFO] - Deleted document 690af6e2d63b0a0ad95e03eb - new size: 403.41MB
+2025-11-11 17:07:19,874 - INFO - [INFO] - Deleted document 690af729d63b0a0ad95e03ec - new size: 403.26MB
+2025-11-11 17:07:21,507 - INFO - [INFO] - Deleted document 690af978d63b0a0ad95e03ed - new size: 403.11MB
+2025-11-11 17:07:22,863 - INFO - [INFO] - Deleted document 690af9cbd63b0a0ad95e03ee - new size: 402.97MB
+2025-11-11 17:07:24,544 - INFO - [INFO] - Deleted document 690af9dbd63b0a0ad95e03ef - new size: 402.80MB
+2025-11-11 17:07:26,323 - INFO - [INFO] - Deleted document 690af9efd63b0a0ad95e03f0 - new size: 402.66MB
+2025-11-11 17:07:28,437 - INFO - [INFO] - Deleted document 690af9fad63b0a0ad95e03f1 - new size: 402.50MB
+2025-11-11 17:07:30,073 - INFO - [INFO] - Deleted document 690afa0ad63b0a0ad95e03f2 - new size: 402.34MB
+2025-11-11 17:07:31,431 - INFO - [INFO] - Deleted document 690afca9d63b0a0ad95e03f3 - new size: 402.20MB
+2025-11-11 17:07:32,785 - INFO - [INFO] - Deleted document 690afccfd63b0a0ad95e03f4 - new size: 402.07MB
+2025-11-11 17:07:34,144 - INFO - [INFO] - Deleted document 690afcd1d63b0a0ad95e03f5 - new size: 401.92MB
+2025-11-11 17:07:35,503 - INFO - [INFO] - Deleted document 690afcd2d63b0a0ad95e03f6 - new size: 401.78MB
+2025-11-11 17:07:36,870 - INFO - [INFO] - Deleted document 690afcd2d63b0a0ad95e03f7 - new size: 401.64MB
+2025-11-11 17:07:39,430 - INFO - [INFO] - Deleted document 690afce3d63b0a0ad95e03f8 - new size: 401.49MB
+2025-11-11 17:07:41,559 - INFO - [INFO] - Deleted document 690afcecd63b0a0ad95e03f9 - new size: 401.34MB
+2025-11-11 17:07:43,444 - INFO - [INFO] - Deleted document 690afcecd63b0a0ad95e03fa - new size: 401.18MB
+2025-11-11 17:07:45,069 - INFO - [INFO] - Deleted document 690afcf7d63b0a0ad95e03fb - new size: 401.05MB
+2025-11-11 17:07:46,973 - INFO - [INFO] - Deleted document 690afd02d63b0a0ad95e03fe - new size: 400.88MB
+2025-11-11 17:07:48,596 - INFO - [INFO] - Deleted document 690afd05d63b0a0ad95e03ff - new size: 400.72MB
+2025-11-11 17:07:50,814 - INFO - [INFO] - Deleted document 690afd07d63b0a0ad95e0400 - new size: 400.59MB
+2025-11-11 17:07:52,808 - INFO - [INFO] - Deleted document 690afe83d63b0a0ad95e0401 - new size: 400.44MB
+2025-11-11 17:07:54,585 - INFO - [INFO] - Deleted document 690afe8ad63b0a0ad95e0402 - new size: 400.29MB
+2025-11-11 17:07:55,954 - INFO - [INFO] - Deleted document 690afec3d63b0a0ad95e0403 - new size: 400.16MB
+2025-11-11 17:07:57,385 - INFO - [INFO] - Deleted document 690afec5d63b0a0ad95e0404 - new size: 400.02MB
+2025-11-11 17:07:59,194 - INFO - [INFO] - Deleted document 690afee5d63b0a0ad95e0406 - new size: 399.87MB
+2025-11-11 17:07:59,194 - INFO - [INFO] - Finished cleanup. Final database size: 399.87MB
+2025-11-11 17:18:34,658 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:18:34,711 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:18:34,712 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:18:34,727 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:18:34,952 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:18:34,952 - INFO - [INFO] - No pending ticker documents - skipping unflag operation
+2025-11-11 17:18:47,600 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 17:18:48,476 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_forex
+2025-11-11 17:18:58,516 - ERROR - [ERR-0102] - [0e4fa1cd] AI response is None | Exception: ValueError: No response received from AI | From: trending.py:get_trending_instruments()
+2025-11-11 17:18:58,956 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 17:18:59,886 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_equity
+2025-11-11 17:20:28,821 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 6 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 17:20:28,931 - INFO - [INFO] - Memory before cleanup: 2614.5 KB
+2025-11-11 17:22:30,850 - INFO - [INFO] - Memory after cleanup: 2982.1 KB (saved -376492.0 bytes)
+2025-11-11 17:22:37,974 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:22:37,975 - INFO - [INFO] - No pending ticker documents - skipping unflag operation
+2025-11-11 17:22:38,078 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:22:39,105 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 2 pipelines. Remaining: 0 tickers, 0 pipelines
+2025-11-11 17:22:39,226 - INFO - [INFO] - Memory before cleanup: 3430.6 KB
+2025-11-11 17:27:40,248 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:27:40,314 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:27:40,367 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:27:40,367 - INFO - [INFO] - No pending ticker documents - skipping unflag operation
+2025-11-11 17:27:40,529 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:27:40,533 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:28:00,437 - ERROR - [ERR-0102] - [3eeef3e5] AI response is None | Exception: ValueError: No response received from AI | From: trending.py:get_trending_instruments()
+2025-11-11 17:28:07,802 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 17:28:08,622 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_equity
+2025-11-11 17:29:09,950 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 6 pipelines. Remaining: 1 tickers, 2 pipelines
+2025-11-11 17:29:10,056 - INFO - [INFO] - Memory before cleanup: 2614.6 KB
+2025-11-11 17:31:19,850 - WARNING - [ERR-0001] - [e2a26553] Attempting to extract JSON from text (length: 36283 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 17:31:19,853 - WARNING - [ERR-0001] - [f52667ad] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 17:31:19,853 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 17:31:53,455 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 17:31:53,459 - INFO - [INFO] - Market state - Net Order: -88, Sentiment: -0.16, Price Change: -44.0011, New Price: 55.9989
+2025-11-11 17:31:55,039 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['LINK-USD']
+2025-11-11 17:32:03,690 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:32:03,691 - INFO - [INFO] - No pending ticker documents - skipping unflag operation
+2025-11-11 17:32:03,985 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:32:05,017 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 2 pipelines. Remaining: 0 tickers, 0 pipelines
+2025-11-11 17:32:05,126 - INFO - [INFO] - Memory before cleanup: 2611.5 KB
+2025-11-11 17:34:44,040 - INFO - [INFO] - Memory after cleanup: 2981.4 KB (saved -378760.0 bytes)
+2025-11-11 17:34:44,042 - INFO - [INFO] - All tickers and pipelines processed successfully!
+2025-11-11 17:34:44,142 - INFO - [INFO] - 
+[Top 10 memory allocations]
+<frozen importlib._bootstrap_external>:514: size=1925 KiB, count=15735, average=125 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/linecache.py:189: size=437 KiB, count=4600, average=97 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:505: size=278 KiB, count=5084, average=56 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:193: size=278 KiB, count=5084, average=56 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:498: size=238 KiB, count=5084, average=48 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:67: size=140 KiB, count=1998, average=72 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:502: size=69.7 KiB, count=2230, average=32 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/enum.py:261: size=63.8 KiB, count=380, average=172 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/enum.py:549: size=51.0 KiB, count=143, average=365 B
+<frozen importlib._bootstrap>:491: size=48.7 KiB, count=529, average=94 B
+2025-11-11 17:34:44,258 - INFO - [INFO] - 
+[Top 10 memory allocations]
+<frozen importlib._bootstrap_external>:514: size=1925 KiB, count=15735, average=125 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/linecache.py:189: size=437 KiB, count=4600, average=97 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:505: size=419 KiB, count=7656, average=56 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:193: size=419 KiB, count=7656, average=56 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:498: size=359 KiB, count=7656, average=48 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:67: size=140 KiB, count=1998, average=72 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:502: size=105 KiB, count=3355, average=32 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/enum.py:261: size=63.8 KiB, count=380, average=172 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:534: size=60.0 KiB, count=6, average=10236 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/enum.py:549: size=51.0 KiB, count=143, average=365 B
+2025-11-11 17:40:08,126 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2025-11-11 17:40:08,128 - INFO - [INFO] - All tickers and pipelines processed successfully!
+2025-11-11 17:40:08,209 - INFO - [INFO] - 
+[Top 10 memory allocations]
+<frozen importlib._bootstrap_external>:514: size=1642 KiB, count=13221, average=127 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/linecache.py:189: size=437 KiB, count=4595, average=97 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/enum.py:261: size=63.8 KiB, count=380, average=172 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/enum.py:549: size=51.0 KiB, count=143, average=365 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/dataclasses.py:506: size=25.1 KiB, count=269, average=96 B
+<frozen importlib._bootstrap_external>:133: size=23.3 KiB, count=145, average=164 B
+<frozen abc>:106: size=19.7 KiB, count=73, average=276 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py:307: size=19.3 KiB, count=52, average=380 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/re/__init__.py:371: size=18.0 KiB, count=1, average=18.0 KiB
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/re/__init__.py:363: size=18.0 KiB, count=1, average=18.0 KiB
+2025-11-11 17:40:08,281 - INFO - [INFO] - 
+[Top 10 memory allocations]
+<frozen importlib._bootstrap_external>:514: size=1642 KiB, count=13221, average=127 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/linecache.py:189: size=437 KiB, count=4595, average=97 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:67: size=140 KiB, count=1998, average=72 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:505: size=114 KiB, count=2091, average=56 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:193: size=114 KiB, count=2091, average=56 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:498: size=98.0 KiB, count=2091, average=48 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/enum.py:261: size=63.8 KiB, count=380, average=172 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/enum.py:549: size=51.0 KiB, count=143, average=365 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/tracemalloc.py:502: size=31.9 KiB, count=1021, average=32 B
+/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/dataclasses.py:506: size=25.1 KiB, count=269, average=96 B
+2025-11-11 17:41:24,649 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:41:25,495 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:41:48,619 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 17:41:49,503 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_equity
+2025-11-11 17:42:56,584 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:43:14,651 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 17:43:15,509 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_crypto
+2025-11-11 17:43:17,165 - INFO - [INFO] - Updated recurrence for ticker USDT-USD
+2025-11-11 17:43:19,394 - INFO - [INFO] - Updated recurrence for ticker USDC-USD
+2025-11-11 17:44:35,089 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-11-11 17:44:35,091 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 17:44:35,918 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-11-11 17:44:36,209 - INFO - [INFO] - Unflagged 3 trending pipeline tasks
+2025-11-11 17:44:37,269 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 6 pipelines. Remaining: 2 tickers, 3 pipelines
+2025-11-11 17:44:37,412 - INFO - [INFO] - Memory before cleanup: 3109.4 KB
+2025-11-11 17:46:39,542 - INFO - [INFO] - Memory after cleanup: 3592.4 KB (saved -494635.0 bytes)
+2025-11-11 17:48:49,334 - WARNING - [ERR-0001] - [9b489c00] Attempting to extract JSON from text (length: 53710 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 17:48:49,338 - WARNING - [ERR-0001] - [2d64986a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 17:48:49,338 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 17:48:49,578 - WARNING - [ERR-0001] - [7f568396] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2025-11-11 17:48:49,580 - ERROR - [ERR-0001] - [9dca30cd] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-11-11 17:48:49,580 - ERROR - [ERR-0404] - [ef59ad87] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2025-11-11 17:49:21,374 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 17:49:21,379 - INFO - [INFO] - Market state - Net Order: 9, Sentiment: 0.0696, Price Change: 4.6149, New Price: 104.6149
+2025-11-11 17:49:23,080 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDC-USD']
+2025-11-11 17:49:24,167 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 17:49:24,168 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 17:49:25,063 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 17:49:25,063 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 17:49:26,008 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 17:49:26,008 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 17:49:27,032 - INFO - [INFO] - Batch cycle completed. Processed: 2 tickers, 3 pipelines. Remaining: 1 tickers, 0 pipelines
+2025-11-11 17:49:27,198 - INFO - [INFO] - Memory before cleanup: 4300.0 KB
+2025-11-11 17:51:29,254 - INFO - [INFO] - Memory after cleanup: 4274.0 KB (saved 26645.0 bytes)
+2025-11-11 17:51:48,239 - ERROR - [ERR-0001] - [e944f2c1] Failed to parse AI response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-11-11 17:53:17,964 - WARNING - [ERR-0001] - [a36f109d] Attempting to extract JSON from text (length: 37637 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 17:53:17,967 - WARNING - [ERR-0001] - [352f5fbd] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 17:53:17,967 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 17:53:43,913 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 17:53:43,916 - INFO - [INFO] - Market state - Net Order: 112, Sentiment: 0.4127, Price Change: 55.9686, New Price: 155.9686
+2025-11-11 17:53:45,779 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDT-USD']
+2025-11-11 17:53:46,845 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2025-11-11 17:53:47,012 - INFO - [INFO] - Memory before cleanup: 4210.8 KB
+2025-11-11 17:59:38,848 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:59:39,462 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 17:59:58,334 - INFO - [INFO] - Updated recurrence for ticker WDC
+2025-11-11 18:01:11,141 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-11-11 18:01:11,143 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:01:11,757 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-11-11 18:01:11,758 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:01:12,339 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-11-11 18:01:12,628 - INFO - [INFO] - Unflagged 0 trending pipeline tasks
+2025-11-11 18:01:13,292 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 2 tickers, 6 pipelines
+2025-11-11 18:04:46,335 - WARNING - [ERR-0001] - [2fce85fd] Attempting to extract JSON from text (length: 54872 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:04:46,337 - WARNING - [ERR-0001] - [c1930706] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 18:04:46,338 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 18:04:54,679 - WARNING - [ERR-0001] - [48cebd2b] Attempting to extract JSON from text (length: 67895 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:04:54,681 - WARNING - [ERR-0001] - [53ed1877] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 18:04:54,682 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 18:05:17,324 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 18:05:17,328 - INFO - [INFO] - Market state - Net Order: 186, Sentiment: 0.7521, Price Change: 92.9143, New Price: 192.9143
+2025-11-11 18:05:19,669 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['WDC']
+2025-11-11 18:05:23,547 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 18:05:23,548 - INFO - [INFO] - Market state - Net Order: 210, Sentiment: 0.5005, Price Change: 105.0595, New Price: 205.0595
+2025-11-11 18:05:25,462 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NRG']
+2025-11-11 18:05:49,469 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 18:05:50,083 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 18:06:17,526 - INFO - [INFO] - Updated recurrence for ticker APLD
+2025-11-11 18:06:18,141 - INFO - [INFO] - Updated recurrence for ticker SMCI
+2025-11-11 18:07:26,310 - INFO - [INFO] - Number of pending ticker to process: 3
+2025-11-11 18:07:26,310 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:07:26,923 - INFO - [INFO] - Number of pending ticker to process: 3
+2025-11-11 18:07:26,923 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:07:27,570 - INFO - [INFO] - Number of pending ticker to process: 3
+2025-11-11 18:07:27,981 - INFO - [INFO] - Unflagged 0 trending pipeline tasks
+2025-11-11 18:07:28,695 - INFO - [INFO] - Batch cycle completed. Processed: 2 tickers, 0 pipelines. Remaining: 3 tickers, 6 pipelines
+2025-11-11 18:07:28,831 - INFO - [INFO] - Memory before cleanup: 3417.5 KB
+2025-11-11 18:09:30,766 - INFO - [INFO] - Memory after cleanup: 3874.2 KB (saved -467723.0 bytes)
+2025-11-11 18:11:34,300 - WARNING - [ERR-0001] - [78551143] Attempting to extract JSON from text (length: 44152 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:11:34,302 - WARNING - [ERR-0001] - [3b4b2b5a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 18:11:34,303 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 18:11:36,885 - WARNING - [ERR-0001] - [45594e2b] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2025-11-11 18:11:36,887 - ERROR - [ERR-0001] - [18cb34be] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-11-11 18:11:36,887 - ERROR - [ERR-0404] - [6d08da93] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2025-11-11 18:12:02,414 - WARNING - [ERR-0001] - [4978022f] Attempting to extract JSON from text (length: 56141 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:12:02,417 - WARNING - [ERR-0001] - [7bb57dd6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 18:12:02,417 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 18:12:02,845 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 18:12:02,845 - INFO - [INFO] - Market state - Net Order: 120, Sentiment: 0.6134, Price Change: 60.133, New Price: 160.133
+2025-11-11 18:12:04,522 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLOB']
+2025-11-11 18:12:39,545 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 18:12:39,546 - INFO - [INFO] - Market state - Net Order: 171, Sentiment: 0.7105, Price Change: 85.4553, New Price: 185.4553
+2025-11-11 18:12:41,302 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['APLD']
+2025-11-11 18:13:18,202 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 18:13:19,124 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 18:13:19,125 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:13:19,739 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 18:13:19,740 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:13:20,295 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 18:13:20,296 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:13:20,867 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 18:13:21,172 - INFO - [INFO] - Unflagged 0 trending pipeline tasks
+2025-11-11 18:13:21,889 - INFO - [INFO] - Batch cycle completed. Processed: 3 tickers, 0 pipelines. Remaining: 1 tickers, 6 pipelines
+2025-11-11 18:13:22,059 - INFO - [INFO] - Memory before cleanup: 4472.3 KB
+2025-11-11 18:15:24,053 - INFO - [INFO] - Memory after cleanup: 4370.6 KB (saved 104064.0 bytes)
+2025-11-11 18:17:43,670 - WARNING - [ERR-0001] - [f21e0a54] Attempting to extract JSON from text (length: 53095 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:17:43,672 - WARNING - [ERR-0001] - [1c1bb8e7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 18:17:43,673 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 18:18:12,519 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 18:18:12,521 - INFO - [INFO] - Market state - Net Order: -96, Sentiment: -0.4375, Price Change: -47.9965, New Price: 52.0035
+2025-11-11 18:18:14,411 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SMCI']
+2025-11-11 18:18:38,208 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 18:18:38,792 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 18:20:19,995 - INFO - [INFO] - Number of pending ticker to process: 3
+2025-11-11 18:20:19,997 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:20:20,548 - INFO - [INFO] - Number of pending ticker to process: 3
+2025-11-11 18:20:20,549 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:20:21,224 - INFO - [INFO] - Number of pending ticker to process: 3
+2025-11-11 18:20:21,633 - INFO - [INFO] - Unflagged 0 trending pipeline tasks
+2025-11-11 18:20:22,350 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 0 pipelines. Remaining: 3 tickers, 6 pipelines
+2025-11-11 18:20:22,514 - INFO - [INFO] - Memory before cleanup: 4260.9 KB
+2025-11-11 18:22:24,457 - INFO - [INFO] - Memory after cleanup: 4259.8 KB (saved 1152.0 bytes)
+2025-11-11 18:22:50,101 - ERROR - [ERR-0001] - [a456d7fa] Error processing ticker GLTO | Exception: TypeError: expected string or bytes-like object, got 'NoneType' | From: batch_run.py:process_ticker()
+2025-11-11 18:22:51,037 - INFO - [INFO] - Updated ticker GLTO fail_count: 0 -> 1
+2025-11-11 18:22:51,037 - INFO - [INFO] - Ticker GLTO recurrence changed to 'failed' at fail_count 1
+2025-11-11 18:24:06,497 - WARNING - [ERR-0001] - [10bc9e25] Attempting to extract JSON from text (length: 33516 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:24:06,499 - WARNING - [ERR-0001] - [5a617103] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 18:24:06,500 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 18:24:12,448 - WARNING - [ERR-0001] - [62cfec3f] Attempting to extract JSON from text (length: 42216 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:24:12,449 - WARNING - [ERR-0001] - [c4100abe] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 18:24:12,450 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 18:24:41,334 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 18:24:41,337 - INFO - [INFO] - Market state - Net Order: 79, Sentiment: 0.2971, Price Change: 39.4123, New Price: 139.4123
+2025-11-11 18:24:45,214 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BNAI']
+2025-11-11 18:24:45,951 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 18:24:45,953 - INFO - [INFO] - Market state - Net Order: -72, Sentiment: -0.3394, Price Change: -36.1049, New Price: 63.8951
+2025-11-11 18:24:46,963 - ERROR - [ERR-0001] - [d72affcf] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('69131cfd87218919c4a84b08'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'recommendations', 'details': [{'operatorName': 'items', 'reason': 'At least one item did not match the sub-schema', 'itemIndex': 0, 'details': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'target_price', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'double'}, 'reason': 'type did not match', 'consideredValue': 0, 'consideredType': 'int'}]}]}]}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-11-11 18:24:46,963 - ERROR - [ERR-0001] - [f4658013] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2025-11-11 18:24:47,877 - INFO - [INFO] - Updated ticker MOVE fail_count: 0 -> 1
+2025-11-11 18:24:47,878 - INFO - [INFO] - Ticker MOVE recurrence changed to 'failed' at fail_count 1
+2025-11-11 18:24:47,879 - ERROR - [ERR-0001] - [c84a7e46] No recommendations found in saved document, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-11-11 18:24:47,880 - WARNING - [ERR-0003] - [ca08daa8] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-11-11 18:25:26,789 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-11-11 18:25:27,679 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-11-11 18:25:27,679 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:25:28,231 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-11-11 18:25:28,232 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:25:28,837 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-11-11 18:25:28,838 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:25:29,395 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-11-11 18:25:29,684 - INFO - [INFO] - Unflagged 0 trending pipeline tasks
+2025-11-11 18:25:30,374 - INFO - [INFO] - Batch cycle completed. Processed: 3 tickers, 0 pipelines. Remaining: 2 tickers, 6 pipelines
+2025-11-11 18:25:30,505 - INFO - [INFO] - Memory before cleanup: 4258.5 KB
+2025-11-11 18:27:32,410 - INFO - [INFO] - Memory after cleanup: 4259.3 KB (saved -764.0 bytes)
+2025-11-11 18:29:51,016 - WARNING - [ERR-0001] - [cf8e9598] Attempting to extract JSON from text (length: 58942 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:29:51,018 - WARNING - [ERR-0001] - [1232d37b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 18:29:51,018 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 18:30:22,686 - ERROR - [ERR-0103] - [3e58b66a] JSON parsing failed (attempt 1/5) | Exception: JSONDecodeError: Expecting property name enclosed in double quotes: line 10 column 5 (char 426) | From: helpers.py:get_factors()
+2025-11-11 18:31:04,752 - WARNING - [ERR-0001] - [c41988d9] Attempting to extract JSON from text (length: 44195 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:31:04,754 - WARNING - [ERR-0001] - [4d42077e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 18:31:04,755 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 18:31:17,731 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 18:31:17,735 - INFO - [INFO] - Market state - Net Order: -143, Sentiment: -0.2978, Price Change: -71.5044, New Price: 28.4956
+2025-11-11 18:31:18,990 - ERROR - [ERR-0001] - [5ab06533] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('69131e8528f91a39d9cc3593'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'recommendations', 'details': [{'operatorName': 'items', 'reason': 'At least one item did not match the sub-schema', 'itemIndex': 0, 'details': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'target_price', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'double'}, 'reason': 'type did not match', 'consideredValue': 0, 'consideredType': 'int'}]}]}]}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2025-11-11 18:31:18,991 - ERROR - [ERR-0001] - [b64c85ec] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2025-11-11 18:31:19,919 - INFO - [INFO] - Updated ticker MOVE fail_count: 1 -> 2
+2025-11-11 18:31:19,920 - ERROR - [ERR-0001] - [4020c19a] No recommendations found in saved document, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-11-11 18:31:19,923 - WARNING - [ERR-0003] - [ac3ae430] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-11-11 18:31:27,718 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 18:31:27,720 - INFO - [INFO] - Market state - Net Order: 160, Sentiment: 0.8678, Price Change: 80.1401, New Price: 180.1401
+2025-11-11 18:31:31,516 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GLTO']
+2025-11-11 18:33:54,285 - WARNING - [ERR-0001] - [f035925f] Attempting to extract JSON from text (length: 46838 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:33:54,287 - WARNING - [ERR-0001] - [19ff1c51] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 18:33:54,287 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 18:34:20,902 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 18:34:20,903 - INFO - [INFO] - Market state - Net Order: 96, Sentiment: 0.45, Price Change: 47.9304, New Price: 147.9304
+2025-11-11 18:34:22,811 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MOVE']
+2025-11-11 18:34:46,272 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 18:34:46,838 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 18:35:01,850 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 18:35:02,871 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_equity
+2025-11-11 18:36:09,534 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 18:36:27,151 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 18:36:27,996 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_crypto
+2025-11-11 18:36:30,131 - INFO - [INFO] - Updated recurrence for ticker USDT-USD
+2025-11-11 18:36:32,471 - INFO - [INFO] - Updated recurrence for ticker USDC-USD
+2025-11-11 18:37:50,843 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-11-11 18:37:50,844 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:37:51,485 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 0 pipelines. Remaining: 2 tickers, 5 pipelines
+2025-11-11 18:37:51,598 - INFO - [INFO] - Memory before cleanup: 3406.3 KB
+2025-11-11 18:39:53,383 - INFO - [INFO] - Memory after cleanup: 3846.3 KB (saved -450540.0 bytes)
+2025-11-11 18:41:42,975 - WARNING - [ERR-0001] - [1a7e6289] Attempting to extract JSON from text (length: 45616 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:41:42,978 - WARNING - [ERR-0001] - [3d2f9a6e] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 9 column 2285 (char 5529) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:41:42,980 - ERROR - [ERR-0404] - [e3b9f3dd] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-11-11 18:42:25,547 - WARNING - [ERR-0001] - [818907a4] Attempting to extract JSON from text (length: 60908 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 18:42:25,550 - WARNING - [ERR-0001] - [0661a4d9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 18:42:25,550 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 18:42:53,415 - INFO - [INFO] - Time step t=1 starting
+2025-11-11 18:42:53,418 - INFO - [INFO] - Market state - Net Order: 266, Sentiment: 0.587, Price Change: 132.9594, New Price: 232.9594
+2025-11-11 18:42:55,217 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDT-USD']
+2025-11-11 18:43:17,364 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 18:43:18,188 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 18:43:18,188 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:43:18,739 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 18:43:18,740 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:43:19,379 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-11-11 18:43:19,380 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-11-11 18:43:20,044 - INFO - [INFO] - Batch cycle completed. Processed: 2 tickers, 0 pipelines. Remaining: 1 tickers, 5 pipelines
+2025-11-11 18:43:20,180 - INFO - [INFO] - Memory before cleanup: 4422.1 KB
+2025-11-11 18:45:22,132 - INFO - [INFO] - Memory after cleanup: 4319.0 KB (saved 105600.0 bytes)
+2025-11-11 19:04:15,889 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:04:16,479 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:04:36,278 - ERROR - [ERR-0102] - [5ee329d2] AI response is None | Exception: ValueError: No response received from AI | From: trending.py:get_trending_instruments()
+2025-11-11 19:04:36,973 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:04:58,582 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 19:04:59,501 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_crypto
+2025-11-11 19:06:45,589 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:07:09,258 - ERROR - [ERR-0102] - [9def127c] AI response is None | Exception: ValueError: No response received from AI | From: trending.py:get_trending_instruments()
+2025-11-11 19:07:09,960 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 4 pipelines
+2025-11-11 19:08:41,300 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:08:41,916 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:08:56,052 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 19:08:56,969 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_equity
+2025-11-11 19:10:32,510 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:10:46,850 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 19:10:47,776 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_forex
+2025-11-11 19:12:23,308 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 3 pipelines
+2025-11-11 19:13:50,451 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:13:51,044 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:14:12,164 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 19:14:13,081 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_forex
+2025-11-11 19:15:45,119 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 3 pipelines
+2025-11-11 19:17:21,839 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:17:22,524 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:17:48,235 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 19:17:49,150 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_forex
+2025-11-11 19:19:21,655 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 3 pipelines
+2025-11-11 19:20:41,613 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:20:42,309 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:21:02,896 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-11-11 19:21:03,894 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_forex
+2025-11-11 19:22:38,553 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:24:02,196 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:24:02,913 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:25:29,544 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:25:30,242 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:27:05,625 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:27:06,289 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:28:51,387 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:28:52,044 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:30:32,325 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:30:33,042 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:31:57,089 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:31:57,831 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:33:33,882 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:33:34,525 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:35:01,922 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:35:02,663 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:36:22,510 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:36:23,383 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:37:46,913 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:37:47,630 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:39:16,439 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:39:17,128 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:40:43,759 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:40:44,476 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:42:07,523 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:42:08,240 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:43:31,492 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:43:32,185 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:44:54,848 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:44:55,562 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:46:34,380 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:46:35,021 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:47:57,837 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:47:58,553 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:49:21,293 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:49:22,010 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:50:56,124 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:50:56,833 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:52:30,156 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:52:30,837 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:53:54,605 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:53:55,424 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:55:24,824 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:55:25,534 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:56:47,868 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:56:48,579 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:58:17,243 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:58:17,881 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 19:59:41,352 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 19:59:42,048 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:01:13,078 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:01:13,719 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:02:41,983 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:02:42,706 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:04:20,780 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:04:21,518 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:05:47,271 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:05:47,946 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:07:22,359 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:07:23,050 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:08:59,457 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:09:00,151 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:10:26,478 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:10:27,189 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:11:59,355 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:11:59,995 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:13:23,221 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:13:23,998 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:14:49,955 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:14:50,671 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:16:14,619 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:16:15,338 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:17:36,354 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:17:37,074 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:19:03,019 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:19:03,665 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:20:25,831 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:20:26,468 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:21:47,956 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:21:48,675 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:23:07,420 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:23:08,138 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:24:29,956 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:24:30,673 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:26:33,759 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:26:34,476 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:28:19,027 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:28:19,745 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:29:48,143 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:29:48,833 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:31:39,017 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:31:39,734 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:33:08,593 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:33:09,335 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:34:40,063 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:34:40,715 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:36:19,187 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:36:19,904 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:37:48,870 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:37:49,608 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:39:25,765 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:39:26,480 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:40:47,584 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:40:48,298 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:42:17,591 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:42:18,284 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:43:45,349 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:43:46,045 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:45:13,313 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:45:14,029 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:46:43,323 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-11-11 20:46:44,040 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2025-11-11 20:48:17,328 - INFO - [INFO] - Number of pending ticker to process: 394
+2025-11-11 20:48:18,351 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 394 tickers, 5 pipelines
+2025-11-11 20:49:38,700 - WARNING - [ERR-0001] - [ae2976d7] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:38,702 - ERROR - [ERR-0001] - [7adc7255] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:38,702 - ERROR - [ERR-0001] - [a884d4f9] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:38,702 - ERROR - [ERR-0103] - [703911b0] Error parsing AI weights response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_ai_weights()
+2025-11-11 20:49:38,702 - WARNING - [WARN-0002] - [39b664f1] Raw weights response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:get_ai_weights()
+2025-11-11 20:49:41,791 - WARNING - [ERR-0001] - [32f6d848] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:41,792 - ERROR - [ERR-0001] - [5bd6b457] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:41,792 - ERROR - [ERR-0001] - [ab6d6a1c] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:41,793 - ERROR - [ERR-0103] - [a0ff31f8] Error parsing AI weights response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_ai_weights()
+2025-11-11 20:49:41,793 - WARNING - [WARN-0002] - [42f04357] Raw weights response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:get_ai_weights()
+2025-11-11 20:49:42,365 - WARNING - [ERR-0001] - [52806a20] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:42,365 - ERROR - [ERR-0001] - [1f9b83dd] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:42,366 - ERROR - [ERR-0001] - [dfad5151] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:42,366 - ERROR - [ERR-0103] - [e4467c01] Error parsing AI weights response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_ai_weights()
+2025-11-11 20:49:42,366 - WARNING - [WARN-0002] - [4b3abcf9] Raw weights response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:get_ai_weights()
+2025-11-11 20:49:42,766 - ERROR - [ERR-0001] - [9adedf85] Failed to parse AI response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-11-11 20:49:46,685 - WARNING - [ERR-0001] - [f7c036b4] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:46,686 - ERROR - [ERR-0001] - [45a1b2dc] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:46,686 - ERROR - [ERR-0001] - [6d47d52f] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:46,687 - ERROR - [ERR-0103] - [7cfe3849] Error parsing AI weights response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_ai_weights()
+2025-11-11 20:49:46,687 - WARNING - [WARN-0002] - [ef6246ce] Raw weights response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:get_ai_weights()
+2025-11-11 20:49:51,846 - WARNING - [ERR-0001] - [70080f0e] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:51,847 - ERROR - [ERR-0001] - [376f42e6] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:51,848 - ERROR - [ERR-0001] - [01b19e3a] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:51,848 - WARNING - [ERR-0001] - [2d32a9db] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:51,848 - ERROR - [ERR-0001] - [b70b1097] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:51,849 - ERROR - [ERR-0001] - [3719d9bd] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:49:51,850 - ERROR - [ERR-0001] - [8a8ff388] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-11-11 20:49:51,850 - WARNING - [WARN-0002] - [dfcf147a] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: holistic.py:run_holistic_market_model()
+2025-11-11 20:49:52,990 - ERROR - [ERR-0001] - [5b864e4d] Failed to parse AI response: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-11-11 20:49:53,062 - ERROR - [ERR-0001] - [134089fc] Error processing ticker VRSN | Exception: TypeError: expected string or bytes-like object, got 'NoneType' | From: batch_run.py:process_ticker()
+2025-11-11 20:49:53,890 - INFO - [INFO] - Updated ticker VRSN fail_count: 0 -> 1
+2025-11-11 20:49:54,068 - ERROR - [ERR-0104] - [896ad6f7] Error getting AI weights | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_ai_weights()
+2025-11-11 20:50:02,268 - ERROR - [ERR-0001] - [d2a5f406] Error processing ticker LRCX | Exception: TypeError: expected string or bytes-like object, got 'NoneType' | From: batch_run.py:process_ticker()
+2025-11-11 20:50:03,101 - INFO - [INFO] - Updated ticker LRCX fail_count: 0 -> 1
+2025-11-11 20:50:08,671 - ERROR - [ERR-0001] - [8fdd6c6e] Error processing ticker GEN | Exception: TypeError: expected string or bytes-like object, got 'NoneType' | From: batch_run.py:process_ticker()
+2025-11-11 20:50:09,608 - INFO - [INFO] - Updated ticker GEN fail_count: 0 -> 1
+2025-11-11 20:50:11,155 - WARNING - [ERR-0001] - [15be2adf] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:11,156 - ERROR - [ERR-0001] - [56431050] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:11,156 - ERROR - [ERR-0001] - [8004ce72] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:11,156 - WARNING - [ERR-0001] - [2858df0d] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:11,157 - ERROR - [ERR-0001] - [5fd95e12] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:11,157 - ERROR - [ERR-0001] - [a58f6d5c] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:11,159 - ERROR - [ERR-0001] - [87256548] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-11-11 20:50:11,159 - WARNING - [WARN-0002] - [3d955de1] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: holistic.py:run_holistic_market_model()
+2025-11-11 20:50:14,449 - ERROR - [ERR-0001] - [4d9ebc75] Error processing ticker EA | Exception: TypeError: expected string or bytes-like object, got 'NoneType' | From: batch_run.py:process_ticker()
+2025-11-11 20:50:15,254 - INFO - [INFO] - Updated ticker EA fail_count: 0 -> 1
+2025-11-11 20:50:25,030 - WARNING - [ERR-0001] - [2163ee08] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:25,031 - ERROR - [ERR-0001] - [7696ae6b] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:25,031 - ERROR - [ERR-0001] - [6bd15114] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:25,031 - WARNING - [ERR-0001] - [3426b76e] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:25,032 - ERROR - [ERR-0001] - [b72d4d80] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:25,032 - ERROR - [ERR-0001] - [abb73a0a] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:25,032 - ERROR - [ERR-0001] - [71518f2d] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-11-11 20:50:25,032 - WARNING - [WARN-0002] - [671a4a3c] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: holistic.py:run_holistic_market_model()
+2025-11-11 20:50:35,898 - WARNING - [ERR-0001] - [c7bf7298] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:35,899 - ERROR - [ERR-0001] - [2850bcc6] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:35,899 - ERROR - [ERR-0001] - [e96da47a] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:35,900 - WARNING - [ERR-0001] - [772b8acb] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:35,900 - ERROR - [ERR-0001] - [d206cf15] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:35,900 - ERROR - [ERR-0001] - [d3a7ab49] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:35,900 - ERROR - [ERR-0001] - [3d055caa] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-11-11 20:50:35,900 - WARNING - [WARN-0002] - [963cfc60] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: holistic.py:run_holistic_market_model()
+2025-11-11 20:50:46,326 - WARNING - [ERR-0001] - [09ffcb37] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:46,329 - ERROR - [ERR-0001] - [50eafdda] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:46,329 - ERROR - [ERR-0001] - [51816491] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:46,329 - WARNING - [ERR-0001] - [a409b216] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:46,330 - ERROR - [ERR-0001] - [1e7a2ead] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:46,330 - ERROR - [ERR-0001] - [8f5cc934] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:50:46,331 - ERROR - [ERR-0001] - [44d30087] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-11-11 20:50:46,331 - WARNING - [WARN-0002] - [4595a9a2] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: holistic.py:run_holistic_market_model()
+2025-11-11 20:51:54,370 - WARNING - [ERR-0001] - [4784548d] Attempting to extract JSON from text (length: 54284 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:51:54,374 - WARNING - [ERR-0001] - [61a87c93] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-11 20:51:54,374 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-11 20:52:24,734 - WARNING - [ERR-0001] - [b11e3be1] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:52:24,736 - ERROR - [ERR-0001] - [80569af9] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:52:24,737 - ERROR - [ERR-0001] - [100259a7] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:52:24,737 - ERROR - [ERR-0103] - [d6c8e5ba] JSON parsing failed (attempt 1/5) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()
+2025-11-11 20:52:56,988 - WARNING - [ERR-0001] - [abd38fb1] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-11 20:52:56,990 - ERROR - [ERR-0001] - [fdb397a8] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-11 20:52:56,990 - ERROR - [ERR-0001] - [9a7681c7] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-11 20:52:56,991 - ERROR - [ERR-0103] - [c5dafe2a] JSON parsing failed (attempt 2/5) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()

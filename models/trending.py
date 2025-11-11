@@ -22,41 +22,7 @@ from crypt import decrypt_string
 # Load environment variables
 load_dotenv()
 
-
 from logging_utils import log_error, log_warning, log_info
-
-
-def unflag_trending_pipeline_task() -> bool:
-    """
-    Unflag the 'Trending' pipeline task_completed check.
-    
-    Returns:
-        bool: True if operation succeeded, False if any error occurred
-    
-    Dependencies:
-        Requires check_pending_ticker_documents() from helpers.py
-        to determine if pending documents exist
-    """
-    try:
-        client = DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
-        collection = db["pipeline"]
-        
-        if not check_pending_ticker_documents():
-            log_info("No pending ticker documents - skipping unflag operation")
-            return True
-            
-        result = collection.update_many(
-            {"model_name": "trending"},
-            {"$set": {"task_completed": False}}
-        )
-        
-        log_info(f"Unflagged {result.modified_count} trending pipeline tasks")
-        return True
-        
-    except Exception as e:
-        log_error("Failed to unflag trending pipeline tasks", "DB_UPDATE", e)
-        return False
 
 
 def update_ticker_recurrence(instruments: list[dict]) -> None:
@@ -83,15 +49,15 @@ def update_ticker_recurrence(instruments: list[dict]) -> None:
         tickers_collection = db['tickers']
         insights_collection = db['insights']
         
-        # Get current datetime in UTC
-        today = datetime.datetime.now(datetime.timezone.utc)
+        # Calculate datetime for last 24 hours in UTC
+        twenty_four_hours_ago = datetime.datetime.utcnow() - datetime.timedelta(hours=24)
         
         for instrument in instruments:
             ticker = instrument['ticker']
             
-            # Check if insight exists for current time or newer with this ticker in recommendations
+            # Check if insight exists within last 24 hours with this ticker in recommendations
             existing_insight = insights_collection.find_one({
-                "timestamp_gmt": {"$gte": today.isoformat() + "Z"},
+                "timestamp_gmt": {"$gte": twenty_four_hours_ago.isoformat() + "Z"},
                 "recommendations.ticker": ticker
             })
             
@@ -142,7 +108,7 @@ def update_pipeline_run_count(model_function):
             existing_doc = pipeline_collection.find_one({"model_function": model_function})
             
             # Calculate new run_count and task_completed
-            new_run_count = existing_doc['run_count'] + 1
+            new_run_count = existing_doc.get('run_count', 0) + 1
             task_completed = new_run_count >= 4
             
             # Update existing document
@@ -373,14 +339,6 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
         if instruments:
             update_ticker_recurrence(instruments)
             update_insights_importance_for_trending(instruments)
-
-
-    # Reset pipeline task flag to enable subsequent runs
-    collection = db["pipeline"]
-    collection.update_one(
-        {"model_function": "unflag_trending_pipeline_task"},
-        {"$set": {"task_completed": False}}
-    )
         
     return instruments
 

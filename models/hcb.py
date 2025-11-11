@@ -108,50 +108,16 @@ def get_high_conviction_buys():
                 }]
             )
     
-    # Uncheck flag for function unflag_hcb_pipeline_task()
-    collection = db["pipeline"]
-    collection.update_one(
-        {"model_function": "unflag_hcb_pipeline_task"},
-        {"$set": {"task_completed": False}}
-    )
+    if not check_pending_ticker_documents():
+        DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        collection = db["pipeline"]
+        collection.update_one(
+            {"model_function": "get_high_conviction_buys"},
+            {"$set": {"task_completed": True}}
+        )
 
     return results
-
-
-def unflag_hcb_pipeline_task() -> None:
-    """
-    Unflag the HCB pipeline task_completed check in MongoDB.
-    
-    This function will:
-    1. Connect to the MongoDB database
-    2. Check if there are pending ticker documents
-    3. If pending documents exist, unflag the pipeline task
-    
-    Raises:
-        pymongo.errors.PyMongoError: For database operation errors (logged but not raised)
-    """
-    try:
-        client = DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
-        pipeline_collection = db["pipeline"]
-        
-        if not check_pending_ticker_documents():
-            return
-            
-        update_result = pipeline_collection.update_one(
-            {"model_function": "get_high_conviction_buys"},
-            {"$set": {"task_completed": False}}
-        )
-        
-        if update_result.matched_count == 0:
-            logging.warning("No pipeline document found to unflag")
-        elif update_result.modified_count == 0:
-            logging.info("Pipeline task was already unflagged")
-            
-    except pymongo.errors.PyMongoError as e:
-        logging.error(f"Database operation failed: {str(e)}")
-    except Exception as e:
-        logging.error(f"Unexpected error in unflag_hcb_pipeline_task: {str(e)}")
 
 
 if __name__ == "__main__":

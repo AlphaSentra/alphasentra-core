@@ -168,21 +168,6 @@ def process_pipeline(doc):
         # Call the function
         func(**kwargs)
 
-        # If successful (no exception), update the document
-        db = client[MONGODB_DATABASE]
-        pipelines_coll = db['pipeline']
-        if pipelines_coll is not None:
-            result = pipelines_coll.update_one(
-                {"_id": doc["_id"]},
-                {"$set": {"task_completed": True}}
-            )
-            if result.modified_count > 0:
-                print(f"Successfully updated task_completed for {model_function}")
-                return True
-            else:
-                log_warning(f"Failed to update document for {model_function}", "DB_UPDATE")
-                return False
-
         return False
     
     except Exception as e:
@@ -193,13 +178,14 @@ def process_pipeline(doc):
 def run_batch_processing(max_workers=BATCH_SIZE):
     """
     Main batch processing function using multi-threading with memory optimizations.
-    Runs continuously for max 4 hours or until all tickers/pipelines are processed.
+    Runs continuously for max X hours or until all tickers/pipelines are processed.
+    Hours are configurable via BATCH_TIMEOUT in _config.py.
     
     Args:
         max_workers (int): Maximum number of threads
     """
     tracemalloc.start()
-    print("Starting continuous batch processing with timeout...")
+    log_info("Starting continuous batch processing...")
     
     client = DatabaseManager().get_client()
     db = client[MONGODB_DATABASE]
@@ -219,7 +205,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
             ]))
             
             if pending_tickers:
-                print(f"Processing {len(pending_tickers)} tickers")
+                log_info(f"Processing {len(pending_tickers)} tickers")
                 with Pool(processes=max_workers) as pool:
                     results = [pool.apply_async(process_ticker, (doc,))
                              for doc in pending_tickers]
@@ -243,18 +229,13 @@ def run_batch_processing(max_workers=BATCH_SIZE):
             pending_pipelines = list(pipelines_coll.find({"task_completed": False}).limit(BATCH_SIZE))
             
             if pending_pipelines:
-                print(f"Processing {len(pending_pipelines)} pipelines")
-                with Pool(processes=max_workers) as pool:
-                    results = [pool.apply_async(process_pipeline, (doc,))
-                             for doc in pending_pipelines]
-                    
-                    for result in results:
-                        try:
-                            if result.get():
-                                pipelines_processed += 1
-                        except Exception as exc:
-                            doc = pending_pipelines[results.index(result)]
-                            log_error(f"Process generated an exception for pipeline {doc.get('model_function')}", "PROCESS_ERROR_PIPELINE", exc)
+                log_info(f"Processing {len(pending_pipelines)} pipelines...")
+                for doc in pending_pipelines:
+                    try:
+                        if process_pipeline(doc):
+                            pipelines_processed += 1
+                    except Exception as exc:
+                        log_error(f"Process generated an exception for pipeline {doc.get('model_function')}", "PROCESS_ERROR_PIPELINE", exc)
                 
                 # Explicit cleanup
                 del pending_pipelines
