@@ -5,28 +5,23 @@ This document provides an overview of the Python modules in the `models` directo
 ## hcb.py - High Conviction Backtest Model
 
 ### Overview
-The `hcb.py` module provides functionality to fetch and analyze high conviction equity insights.
+The `hcb.py` module provides functionality to fetch and analyze high conviction equity insights for backtesting.
 
 ### Key Functions
 
 #### `get_high_conviction_buys()`
 - **Purpose**: Fetches insights from last week with positive sentiment and high conviction
 - **Criteria**:
-  - Created within last 7 days
+  - Created within last 24 hours
   - Positive sentiment score
   - High conviction level (≥0.7)
+  - Positive price momentum (1m, 3m, 6m)
 - **Returns**: List of insight documents sorted by conviction (descending) then sentiment score
 - **Database Operations**:
   - Updates importance level (3) for matching insights
   - Adds ">high conviction buy ↗" tag
-  - Unflags pipeline task for subsequent runs
+  - Unflags pipeline task if no pending tickers exist
 
-#### `unflag_hcb_pipeline_task()`
-- **Purpose**: Unflags the HCB pipeline task_completed check in MongoDB
-- **Behavior**:
-  - Checks for pending ticker documents
-  - Unflags pipeline task if pending documents exist
-- **Error Handling**: Logs database errors but continues execution
 
 ### Configuration Parameters
 ```python
@@ -56,22 +51,28 @@ Identifies trending financial instruments using AI responses across three asset 
     - `model_strategy`: Gemini model strategy (default "Pro")
     - `batch_mode`: Batch processing flag (default True)
   - **Process**:
-    1. Checks pending ticker documents
+    1. Checks for pending ticker documents (exits early if any exist)
     2. Selects AI prompt based on asset class
     3. Gets AI response
     4. Processes JSON response
     5. Updates database with new tickers
     6. Manages pipeline tracking
+  - **Database Operations**:
+    - Creates new ticker documents for unseen instruments
+    - Updates recurrence status for existing instruments
+    - Sets importance=3 and adds ">trending ⇧" tag to insights
+    - Tracks pipeline execution metrics
 
 #### Support Functions
-- `unflag_trending_pipeline_task()`
-  - Resets pipeline task completion flags
+- `update_pipeline_run_count(model_function)`
+  - Tracks pipeline execution metrics and manages task completion flags
 - `update_ticker_recurrence(instruments)`
-  - Updates ticker documents' recurrence status
+  - Updates ticker recurrence status only if no recent insights exist
 - `create_new_ticker_documents()`
-  - Creates ticker docs for new trending instruments
+  - Creates ticker docs with importance=5 and recurrence="once"
+  - Configures asset-class specific prompts and model references
 - `update_insights_importance_for_trending()`
-  - Sets importance=3 and adds ">trending ⇧" tag
+  - Sets importance=3 and appends ">trending ⇧" tag without duplicates
 
 ### Asset Class Handlers
 - `run_trending_analysis_equity()`
@@ -107,7 +108,7 @@ The `analysis.py` module provides comprehensive instrument analysis capabilities
   1. Decrypts and formats AI prompt
   2. Gets AI response with instrument details
   3. Parses JSON response with validation
-  4. Processes equity-specific charts
+  4. Processes equity-specific charts (only for EQ asset class)
   5. Updates database with analysis results
 - **Output**: Returns dictionary with description and sector fields
 - **Database Operations**:
@@ -115,7 +116,8 @@ The `analysis.py` module provides comprehensive instrument analysis capabilities
     - Description and sector
     - Financial health grades (cashflow, profit, etc.)
     - Performance metrics
-    - Interactive charts (growth, financial health, etc.)
+    - Interactive charts (growth, financial health, etc.) for equities
+    - Dividend yield data
 
 #### Support Functions
 - `parse_ai_response(text)`: Extracts JSON from AI response
@@ -151,7 +153,7 @@ Generates FX trading recommendations based on multi-factor analysis including ge
   5. Saves analysis to database
 - **Parameters**:
   - `fx_regions`: List of relevant regions (e.g., ['US', 'Eurozone'])
-  - `decimal_digits`: Precision for price calculations
+  - `decimal_digits`: Precision for price calculations (default: 4)
   - `batch_mode`: Suppresses console output when True
 
 #### Features
@@ -159,6 +161,7 @@ Generates FX trading recommendations based on multi-factor analysis including ge
 - Sentiment score generation
 - Region-specific analysis
 - Simulation data processing
+- Automatic document saving with fallback handling
 
 ### Configuration
 Uses encrypted prompts from `_config.py`:
@@ -188,12 +191,14 @@ Provides comprehensive market analysis across multiple asset classes with integr
   - `region`: Focus region for analysis
   - `asset_class`: Target asset class filter
   - `tag`: Custom classification tag
+  - `decimal_digits`: Precision for price calculations (default: 2)
 
 #### Advanced Features
 - JSON repair capabilities for AI responses
 - Conviction scoring system
 - Multi-factor weighting (geopolitical, macroeconomic, etc.)
 - Batch processing support
+- Automatic document saving with fallback handling
 
 ### Configuration
 Uses encrypted prompts from `_config.py`:
