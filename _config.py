@@ -22,7 +22,7 @@ AI_RESPONSE_MAX_RETRIES = 5
 AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS = 30
 
 # Database size limit in megabytes
-DB_SIZE_LIMIT_MB = 450
+DB_SIZE_LIMIT_MB = 400
 
 # Default factor weights used if AI model is not calculating weights
 # These weights are overridden if AI model successfully returns weights
