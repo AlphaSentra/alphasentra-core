@@ -25,6 +25,40 @@ load_dotenv()
 
 from logging_utils import log_error, log_warning, log_info
 
+
+def unflag_trending_pipeline_task() -> bool:
+    """
+    Unflag the 'Trending' pipeline task_completed check.
+    
+    Returns:
+        bool: True if operation succeeded, False if any error occurred
+    
+    Dependencies:
+        Requires check_pending_ticker_documents() from helpers.py
+        to determine if pending documents exist
+    """
+    try:
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        collection = db["pipeline"]
+        
+        if not check_pending_ticker_documents():
+            log_info("No pending ticker documents - skipping unflag operation")
+            return True
+            
+        result = collection.update_many(
+            {"model_name": "trending"},
+            {"$set": {"task_completed": False}}
+        )
+        
+        log_info(f"Unflagged {result.modified_count} trending pipeline tasks")
+        return True
+        
+    except Exception as e:
+        log_error("Failed to unflag trending pipeline tasks", "DB_UPDATE", e)
+        return False
+
+
 def update_ticker_recurrence(instruments: list[dict]) -> None:
     """Update ticker documents' recurrence status based on existing insights.
     
@@ -83,9 +117,10 @@ def strip_markdown_code_blocks(text):
         return str(text)
     return text.replace('```json', '').replace('```', '').strip()
 
+
 def update_pipeline_run_count(model_function):
     """Update pipeline run count and task completion status"""
-    try:
+    try:        
         client = DatabaseManager().get_client()
         db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
         pipeline_collection = db['pipeline']
@@ -227,23 +262,43 @@ def update_insights_importance_for_trending(instruments):
 
 def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_model=None, model_function=None, batch_mode=True):
     """
-    Get trending instruments using Gemini AI based on asset class.
+    Get trending instruments using Gemini AI based on specified asset class.
+    
+    This function performs several key operations:
+    1. Checks for pending ticker document generation
+    2. Selects appropriate AI prompt based on asset class
+    3. Gets AI response with formatted prompt
+    4. Processes and validates the JSON response
+    5. Updates database with new tickers and trending information
+    6. Manages pipeline task tracking
     
     Parameters:
-    asset_class (str): Type of assets to analyze ("EQ" for equities, "CR" for crypto)
-    model_strategy (str): Gemini model strategy to use (default: "Pro")
-    gemini_model (str): Specific Gemini model name (optional)
-    batch_mode (bool): Whether to run in batch processing mode (default: True)
+        asset_class (str): Type of assets to analyze
+            ("EQ" for equities, "CR" for crypto, "FX" for forex)
+        model_strategy (str): Gemini model strategy to use (default: "Pro")
+        gemini_model (str): Specific Gemini model name (optional)
+        model_function (str): Name of the calling model function for pipeline tracking
+        batch_mode (bool): Whether to run in batch processing mode (default: True)
     
     Returns:
-    list | None: List of instrument dictionaries or None on error
+        list | None: List of instrument dictionaries with structure:
+            [
+                {
+                    "ticker": str,
+                    "ticker_tradingview": str,
+                    "name": str,
+                    "decimal": int
+                },
+                ...
+            ]
+            or None if error occurs
     """
-    # Check if any tickers have pending document generation
+    # Early exit if pending ticker documents exist - prevents duplicate processing
     if check_pending_ticker_documents():
         log_info(f"Skipping trending analysis - insights pending generation")
         return None
 
-    # Select prompt based on asset class
+    # Get asset-class specific prompt from encrypted configuration
     if asset_class.upper() == "EQ":
         prompt = EQ_EQUITY_TRENDING_PROMPT
     elif asset_class.upper() == "CR":
@@ -253,17 +308,17 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
     else:
         raise ValueError(f"Unsupported asset class: {asset_class}")
     
-    # Create current date in the format "November 7, 2025"
+    # Format current date for prompt template
     current_date = datetime.datetime.now().strftime("%B %d, %Y")
 
-    # Decrypt and format the prompt
+    # Decrypt prompt and insert market/date variables
     decrypted_prompt = decrypt_string(prompt)
     formatted_prompt = decrypted_prompt.format(
             market=MARKET,
             current_date=current_date
         )
     
-    # Call AI with empty tickers list since prompt is self-contained
+    # Get AI response - empty tickers list indicates self-contained prompt
     response = get_gen_ai_response(
         tickers=[],
         model_strategy=model_strategy,
@@ -272,14 +327,14 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
         batch_mode=batch_mode
     )
     
-    # Try to parse the result as JSON
+    # Parse and validate AI response with comprehensive error handling
     try:
         if response is None:
             log_error("AI response is None", "AI_RESPONSE", ValueError("No response received from AI"))
             return None
-        # Remove any markdown code block markers if present
+        # Clean response by removing markdown code blocks if present
         result = strip_markdown_code_blocks(response)
-        # Parse JSON
+        # Convert cleaned response to JSON object
         instruments = json.loads(result)
     except json.JSONDecodeError as e:
         log_error("Error parsing AI response as JSON", "AI_PARSING", e)
@@ -287,9 +342,9 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
         return None
 
 
-    # Extract tickers not present in the tickers collection
+    # Database operations for new tickers and trending updates
     if instruments:
-        # Get all tickers from the collection using existing connection
+        # Get existing tickers to identify new instruments
         existing_tickers = set()
         try:
             client = DatabaseManager().get_client()
@@ -303,21 +358,29 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
         # Get trending instrument tickers
         trending_tickers = {instrument['ticker'] for instrument in instruments}
         
-        # Find difference
+        # Identify new tickers that need document creation
         new_tickers = [ticker for ticker in (trending_tickers - existing_tickers) if ticker_exists(ticker)]
         if new_tickers:
-            print(f"Found {len(new_tickers)} new tickers not in collection: {new_tickers}")
+            print(f"Found {len(new_tickers)} new tickers requiring document creation: {new_tickers}")
             create_new_ticker_documents(asset_class, instruments, new_tickers)
         else:
-            log_info("All trending tickers already exist in the collection")
+            log_info("All trending tickers exist - updating pipeline metrics")
             
-            # Update pipeline run count for this model function
+            # Track successful pipeline execution count
             update_pipeline_run_count(model_function)
             
-        # Flag importance (set insights importance to 3 for trending instruments)
+        # Update recurrence and importance for trending instruments
         if instruments:
             update_ticker_recurrence(instruments)
             update_insights_importance_for_trending(instruments)
+
+
+    # Reset pipeline task flag to enable subsequent runs
+    collection = db["pipeline"]
+    collection.update_one(
+        {"model_function": "unflag_trending_pipeline_task"},
+        {"$set": {"task_completed": False}}
+    )
         
     return instruments
 

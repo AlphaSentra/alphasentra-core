@@ -809,6 +809,9 @@ def check_pending_ticker_documents() -> bool:
     Returns:
         bool: True if documents with document_generated ≠ True exist, False otherwise.
               Returns False and logs error if any exception occurs.
+
+              If True it means there are still tickers to process.
+              If False it means all tickers have been processed.
     """
     try:
         client = DatabaseManager().get_client()
