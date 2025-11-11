@@ -13,6 +13,7 @@ import os
 from dotenv import load_dotenv
 from logging_utils import AgLogger
 from helpers import DatabaseManager
+from pymongo import UpdateMany
 
 # Load environment variables
 load_dotenv()
@@ -67,11 +68,17 @@ def reset_pipeline_completed():
         db = client[db_name]
         collection = db['pipeline']
         
-        # Update all documents to set task_completed to False
-        result = collection.update_many(
-            filter={},  # Match all documents
-            update={"$set": {"task_completed": False}}
-        )
+        # Reset document states in a single bulk operation
+        result = collection.bulk_write([
+            UpdateMany(
+                filter={},
+                update={"$set": {"task_completed": False}}
+            ),
+            UpdateMany(
+                filter={"run_count": {"$exists": True}},
+                update={"$unset": {"run_count": ""}}
+            )
+        ])
         
         logger.info(f"Successfully updated {result.modified_count} documents in pipeline collection")
         logger.info("Reset of task_completed field completed")
