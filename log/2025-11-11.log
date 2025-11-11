@@ -1,0 +1,22 @@
+2025-11-11 07:32:07,309 - INFO - [INFO] - Starting comprehensive dataset reset
+2025-11-11 07:32:07,309 - INFO - [INFO] - Starting reset of document_generated field in tickers collection
+2025-11-11 07:32:10,876 - ERROR - [ERR-0001] - [b68a6743] Failed to reset document_generated field | Exception: AttributeError: 'Cursor' object has no attribute 'update_many' | From: reset_dataset.py:reset_all()
+2025-11-11 07:32:10,877 - ERROR - [ERR-0001] - [9580222a] One or more reset operations failed | From: main.py:<module>()
+2025-11-11 07:47:41,859 - INFO - [INFO] - Starting comprehensive dataset reset
+2025-11-11 07:47:41,860 - INFO - [INFO] - Starting reset of document_generated field in tickers collection
+2025-11-11 07:47:45,203 - INFO - [INFO] - Successfully updated 392 documents in tickers collection
+2025-11-11 07:47:45,204 - INFO - [INFO] - Reset of document_generated field completed
+2025-11-11 07:47:45,204 - INFO - [INFO] - Starting reset of task_completed field in pipeline collection
+2025-11-11 07:47:46,450 - INFO - [INFO] - Successfully updated 5 documents in pipeline collection
+2025-11-11 07:47:46,450 - INFO - [INFO] - Reset of task_completed field completed
+2025-11-11 07:47:46,450 - INFO - [INFO] - Starting deletion of tickers with recurrence 'once'
+2025-11-11 07:47:46,726 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from tickers collection
+2025-11-11 07:47:46,726 - INFO - [INFO] - Deletion of once tickers completed
+2025-11-11 07:47:46,726 - INFO - [INFO] - Starting deletion of processed tickers with no insights
+2025-11-11 07:47:47,631 - INFO - [INFO] - No processed tickers without insights found
+2025-11-11 07:47:47,631 - INFO - [INFO] - Starting deletion of pipeline documents with recurrence 'once'
+2025-11-11 07:47:47,907 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from pipeline collection
+2025-11-11 07:47:47,908 - INFO - [INFO] - Deletion of once pipeline documents completed
+2025-11-11 07:47:47,908 - INFO - [INFO] - Starting deletion of all weigh_factors documents
+2025-11-11 07:47:48,190 - INFO - [INFO] - Successfully deleted 18 documents from 'weight_factors'.
+2025-11-11 07:47:48,191 - INFO - [INFO] - All reset operations completed successfully

@@ -35,11 +35,11 @@ def reset_document_generated():
         client = DatabaseManager().get_client()
         db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
         db = client[db_name]
-        collection = db['tickers'].find({"recurrence": {"$ne": "processed"}})
+        collection = db['tickers']
         
         # Update all documents to set document_generated to False except 'processed' tickers
         result = collection.update_many(
-            filter={},  # Match all documents
+            filter={"recurrence": {"$ne": "processed"}},
             update={"$set": {"document_generated": False}}
         )
         
