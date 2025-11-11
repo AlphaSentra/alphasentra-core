@@ -5,7 +5,7 @@ This document provides an overview of the Python modules in the `models` directo
 ## hcb.py - High Conviction Backtest Model
 
 ### Overview
-The `hcb.py` module provides functionality to fetch and analyze high conviction equity insights for backtesting.
+The `hcb.py` module provides functionality to fetch and analyze high conviction equity insights.
 
 ### Key Functions
 
@@ -174,7 +174,7 @@ Uses encrypted prompts from `_config.py`:
 ## holistic.py - Holistic Market Model
 
 ### Overview
-Provides comprehensive market analysis across multiple asset classes with integrated factor weighting and simulation capabilities.
+Provides comprehensive market analysis across multiple asset classes with integrated factor weighting.
 
 ### Key Functions
 
