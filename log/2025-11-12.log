@@ -1,0 +1,37 @@
+2025-11-12 09:17:57,641 - WARNING - [ERR-0001] - [3eee070c] Attempting to extract JSON from text (length: 32595 chars) | From: helpers.py:extract_json_from_text()
+2025-11-12 09:17:57,642 - WARNING - [ERR-0001] - [71a07d68] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-12 09:17:57,642 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-12 09:18:26,950 - INFO - [INFO] - Time step t=1 starting
+2025-11-12 09:18:26,953 - INFO - [INFO] - Market state - Net Order: 82, Sentiment: 0.4779, Price Change: 41.0091, New Price: 141.0091
+2025-11-12 09:18:28,244 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-11-12 09:30:34,873 - WARNING - [ERR-0001] - [e079328b] Attempting to extract JSON from text (length: 36751 chars) | From: helpers.py:extract_json_from_text()
+2025-11-12 09:30:34,874 - WARNING - [ERR-0001] - [f7ef2126] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-12 09:30:34,874 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-12 09:31:06,213 - INFO - [INFO] - Time step t=1 starting
+2025-11-12 09:31:06,217 - INFO - [INFO] - Market state - Net Order: -160, Sentiment: -0.4964, Price Change: -80.1047, New Price: 19.8953
+2025-11-12 09:31:07,878 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['VXX']
+2025-11-12 09:36:06,473 - WARNING - [ERR-0001] - [1231d12f] Attempting to extract JSON from text (length: 50013 chars) | From: helpers.py:extract_json_from_text()
+2025-11-12 09:36:06,476 - WARNING - [ERR-0001] - [c8e71c23] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-12 09:36:06,477 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-12 09:36:36,002 - INFO - [INFO] - Time step t=1 starting
+2025-11-12 09:36:36,007 - INFO - [INFO] - Market state - Net Order: 160, Sentiment: 0.4367, Price Change: 79.8977, New Price: 179.8977
+2025-11-12 09:36:37,712 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-11-12 09:43:22,359 - WARNING - [ERR-0001] - [9225054f] Attempting to extract JSON from text (length: 35482 chars) | From: helpers.py:extract_json_from_text()
+2025-11-12 09:43:22,361 - WARNING - [ERR-0001] - [0108b27f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-12 09:43:22,361 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-12 09:43:51,276 - ERROR - [ERR-0103] - [07c4654d] JSON parsing failed (attempt 1/5) | Exception: JSONDecodeError: Expecting ',' delimiter: line 41 column 141 (char 1895) | From: helpers.py:get_factors()
+2025-11-12 09:44:47,192 - INFO - [INFO] - Time step t=1 starting
+2025-11-12 09:44:47,197 - INFO - [INFO] - Market state - Net Order: 105, Sentiment: 0.7075, Price Change: 52.5344, New Price: 152.5344
+2025-11-12 09:44:48,474 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']
+2025-11-12 09:52:30,056 - WARNING - [ERR-0001] - [30a6f20b] Attempting to extract JSON from text (length: 38243 chars) | From: helpers.py:extract_json_from_text()
+2025-11-12 09:52:30,058 - WARNING - [ERR-0001] - [e370e5a5] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-12 09:52:30,058 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-12 09:52:56,095 - INFO - [INFO] - Time step t=1 starting
+2025-11-12 09:52:56,096 - INFO - [INFO] - Market state - Net Order: -183, Sentiment: -0.5354, Price Change: -91.5841, New Price: 8.4159
+2025-11-12 09:52:57,553 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['VXX']
+2025-11-12 10:05:20,389 - WARNING - [ERR-0001] - [eb3dfa65] Attempting to extract JSON from text (length: 56486 chars) | From: helpers.py:extract_json_from_text()
+2025-11-12 10:05:20,392 - WARNING - [ERR-0001] - [57987d64] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-12 10:05:20,392 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-12 10:05:56,054 - INFO - [INFO] - Time step t=1 starting
+2025-11-12 10:05:56,059 - INFO - [INFO] - Market state - Net Order: 168, Sentiment: 0.4677, Price Change: 83.9527, New Price: 183.9527
+2025-11-12 10:05:57,622 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SPXL']

@@ -3,47 +3,85 @@ import random
 from typing import List, Dict, Any
 from logging_utils import log_error, log_warning, log_info
 
-def apply_stochastic_noise(value: float, scale: float = 0.15) -> float:
+def apply_stochastic_noise(value: float, scale: float) -> float:
+    """Applies Gaussian noise to a value."""
+    return value + np.random.normal(0, scale)
+
+def dynamic_correlation_strength(prices, min_strength=0.3, max_strength=0.8, window=20):
     """
-    Applies Gaussian (Normal) noise to a base value and clamps the result between -1.0 and 1.0.
-    This simulates the random, unpredictable deviations in an individual's assessment.
+    Adjusts correlation_strength based on recent price volatility.
+    
+    prices: list or np.array of recent stock prices
+    min_strength: minimum correlation (diffuse, independent)
+    max_strength: maximum correlation (trend-driven)
+    window: lookback period for volatility calculation
     """
-    noise = np.random.normal(loc=0, scale=scale)
-    return np.clip(value + noise, -1.0, 1.0)
+    prices = np.array(prices)
+    if len(prices) < window:
+        return min_strength  # not enough data, default to independent
+    
+    # Calculate recent returns
+    returns = np.diff(prices[-window:]) / prices[-window:-1]
+    
+    # Measure volatility as std of returns
+    volatility = np.std(returns)
+    
+    # Normalize volatility to 0-1 (can tweak scale_factor)
+    scale_factor = 0.05  # typical daily return std is ~5%
+    normalized_vol = min(volatility / scale_factor, 1.0)
+    
+    # Scale correlation_strength between min_strength and max_strength
+    correlation_strength = min_strength + normalized_vol * (max_strength - min_strength)
+    
+    return correlation_strength
 
 def update_simulation_with_stochastic(
-    simulation_data: List[Dict[str, Any]], 
+    simulation_data: List[Dict[str, Any]],
     num_additional_points: int = 1000,
     base_c_scale: float = 0.12,
     base_s_scale: float = 0.18,
     extrapolate_c_scale: float = 0.25,
-    extrapolate_s_scale: float = 0.3
+    extrapolate_s_scale: float = 0.3,
+    prices: List[float] = None   # Price history for dynamic correlation
 ) -> List[Dict[str, Any]]:
     """
     Processes simulation data and generates additional synthetic points by:
     1. Applying stochastic noise to original conviction/sentiment values
     2. Generating new points by extrapolating from initial profiles
-    3. Enforcing academic constraints and determining positions
+    3. Using a soft correlation model to prevent artificial diagonals
     """
     processed_data = []
 
-    # 1. First process the original data points
+    # Calculate dynamic correlation strength
+    if prices is None:
+        correlation_strength = 0.3  # default to min strength
+    else:
+        correlation_strength = dynamic_correlation_strength(
+            prices,
+            min_strength=0.3,
+            max_strength=0.8,
+            window=20
+        )
+
+    # === 1. Process the original data points ===
     for entry in simulation_data:
-        # Extract base name without any existing numbers
         base_name = entry['profile'].split('#')[0].strip()
-        
-        # Generate random ID between 1 and 1 million
-        random_id = random.randint(1, 1000000)
+        random_id = random.randint(1, 1_000_000)
         unique_profile_name = f"{base_name} #{random_id}"
         
+        # Apply stochastic noise
         stochastic_c = apply_stochastic_noise(entry['conviction'], base_c_scale)
         stochastic_s = apply_stochastic_noise(entry['sentiment'], base_s_scale)
+        
+        # Soft correlation (prevents diagonal X-shape)
+        stochastic_s = (correlation_strength * stochastic_c +
+                        (1 - correlation_strength) * stochastic_s)
+        
+        # Clip to range [-1, 1]
+        stochastic_c = float(np.clip(stochastic_c, -1, 1))
+        stochastic_s = float(np.clip(stochastic_s, -1, 1))
 
-        # Enforce academic constraint
-        if abs(stochastic_s) > abs(stochastic_c):
-            stochastic_s = np.sign(stochastic_s) * abs(stochastic_c)
-
-        # Determine position
+        # Determine market position
         if stochastic_c > 0:
             final_position = "BULLISH"
         elif stochastic_c < 0:
@@ -58,33 +96,33 @@ def update_simulation_with_stochastic(
             "position": final_position
         })
 
-    # 2. Generate additional synthetic points if we have initial data
+    # === 2. Generate additional synthetic points ===
     if simulation_data:
         for _ in range(num_additional_points):
-            # Randomly select a base profile to extrapolate from
             base_profile = simulation_data[np.random.randint(0, len(simulation_data))]
+            base_name = base_profile['profile'].split('#')[0].strip()
+            random_id = random.randint(1, 1_000_000)
+            unique_profile_name = f"{base_name} #{random_id}"
             
-            # Apply more aggressive noise for variation in synthetic points
             new_c = apply_stochastic_noise(base_profile['conviction'], extrapolate_c_scale)
             new_s = apply_stochastic_noise(base_profile['sentiment'], extrapolate_s_scale)
-
-            # Enforce academic constraint
-            if abs(new_s) > abs(new_c):
-                new_s = np.sign(new_s) * abs(new_c)
-
+            
+            # Apply soft correlation
+            new_s = (correlation_strength * new_c +
+                     (1 - correlation_strength) * new_s)
+            
+            # Clip to realistic sentiment/conviction range
+            new_c = float(np.clip(new_c, -1, 1))
+            new_s = float(np.clip(new_s, -1, 1))
+            
             # Determine position
             if new_c > 0:
                 new_position = "BULLISH"
-            elif new_c < -0:
+            elif new_c < 0:
                 new_position = "BEARISH"
             else:
                 new_position = "NEUTRAL"
 
-            # Create unique profile name with random ID
-            base_name = base_profile['profile'].split('#')[0].strip()
-            random_id = random.randint(1, 1000000)
-            unique_profile_name = f"{base_name} #{random_id}"
-            
             processed_data.append({
                 "profile": unique_profile_name,
                 "conviction": round(new_c, 4),
@@ -93,6 +131,7 @@ def update_simulation_with_stochastic(
             })
 
     return processed_data
+
 
 # --- AGENT-BASED MARKET SIMULATION ---
 
@@ -165,6 +204,7 @@ class Agent:
         # Sentiment cannot exceed Conviction (rational constraint)
         return min(new_s, self.conviction)
 
+
     def execute_trade(self):
         """Determines new position based on new conviction threshold."""
         # Use a random threshold to simulate uncertainty in trade execution
@@ -212,6 +252,7 @@ class MarketSimulator:
     def __init__(self, initial_investors: List[Dict[str, Any]], initial_price: float = 100.0):
         self.initial_price = initial_price
         self.price = initial_price
+        self.price_history = [initial_price]  # Track price history for volatility
         self.agents: List[Agent] = [Agent(data, initial_price) for data in initial_investors]
         self.time = 0
 
@@ -241,8 +282,9 @@ class MarketSimulator:
         
         # Price change is driven by the Net Order Imbalance (gamma=0.5) plus noise.
         # This is where the agents' actions affect the market.
-        delta_price = (0.5 * net_order) + price_noise 
+        delta_price = (0.5 * net_order) + price_noise
         self.price += delta_price
+        self.price_history.append(self.price)  # Update price history
         
         log_info(f"Market state - Net Order: {net_order}, Sentiment: {round(agg_sentiment, 4)}, Price Change: {round(delta_price, 4)}, New Price: {round(self.price, 4)}")
 
@@ -264,6 +306,7 @@ class MarketSimulator:
             new_states.append(agent.get_state())
 
         return new_states
+
 
 def process_simulation_data(raw_simulation_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Processes raw simulation data through a two-phase market simulation pipeline.
@@ -322,8 +365,11 @@ def process_simulation_data(raw_simulation_data: List[Dict[str, Any]]) -> List[D
     simulated_states = simulator.run_time_step(public_info, macro_shock)
     
     # 2. Apply stochastic data augmentation
-    final_states = update_simulation_with_stochastic(simulated_states)
+    final_states = update_simulation_with_stochastic(
+        simulated_states,
+        prices=simulator.price_history
+    )
     
-    return final_states[len(simulated_states):]  # Return only new synthetic data
+    return final_states
 
     
