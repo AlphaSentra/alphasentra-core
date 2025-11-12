@@ -266,7 +266,39 @@ class MarketSimulator:
         return new_states
 
 def process_simulation_data(raw_simulation_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Processes simulation data through market simulation and stochastic updates."""
+    """Processes raw simulation data through a two-phase market simulation pipeline.
+    
+    Phase 1: Agent-Based Market Simulation
+    - Initializes investor agents from validated input data
+    - Runs one market time step with example fundamental parameters
+    - Models price discovery through investor interactions
+    
+    Phase 2: Stochastic Data Augmentation
+    - Applies controlled noise to simulation outputs
+    - Generates synthetic data points while preserving academic constraints
+    - Ensures sentiment never exceeds conviction (rational agent principle)
+    
+    Args:
+        raw_simulation_data: List of investor profile dictionaries. Each must contain:
+            - profile: Investor identifier string
+            - conviction: Numeric value between [-1.0, 1.0]
+            - sentiment: Numeric value between [-1.0, 1.0]
+            - position: "BULLISH", "BEARISH", or "NEUTRAL"
+            
+    Returns:
+        List of processed investor states with:
+            - Updated conviction/sentiment from market dynamics
+            - Unique profile identifiers
+            - Enforced academic constraints
+            - Stochastic variations for robustness testing
+            
+    Note:
+        Current implementation uses example parameters for market simulation:
+        - public_info=0.6 (positive market signal)
+        - macro_shock=-0.1 (negative macroeconomic event)
+        These should be parameterized in future versions.
+    """
+    # Validate and transform input data
     processed_simulation_data = [
         {
             "profile": entry["profile"],
@@ -281,7 +313,7 @@ def process_simulation_data(raw_simulation_data: List[Dict[str, Any]]) -> List[D
     if not processed_simulation_data:
         return []
     
-    # 1. First run agent-based market simulation
+    # 1. Run agent-based market simulation
     simulator = MarketSimulator(processed_simulation_data, initial_price=100.0)
     
     # Run one time step with example parameters
@@ -289,9 +321,9 @@ def process_simulation_data(raw_simulation_data: List[Dict[str, Any]]) -> List[D
     macro_shock = -0.1  # Example: slight negative macro event
     simulated_states = simulator.run_time_step(public_info, macro_shock)
     
-    # 2. Then update with stochastic noise
+    # 2. Apply stochastic data augmentation
     final_states = update_simulation_with_stochastic(simulated_states)
     
-    return final_states
+    return final_states[len(simulated_states):]  # Return only new synthetic data
 
     
