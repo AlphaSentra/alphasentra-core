@@ -1,8 +1,9 @@
-name: Scheduled Batch Run
+name: Data Collection and Processing
 
 on:
   schedule:
-    - cron: '30 21,2 * * *'  # 21:30 and 02:30 UTC daily
+    - cron: '0 3 * * *'  # 3am UTC daily
+    - cron: '30 8 * * *'  # 8:30am UTC daily
   workflow_dispatch:
 
 jobs:

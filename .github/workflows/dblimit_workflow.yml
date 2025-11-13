@@ -1,4 +1,4 @@
-name: Daily DB Limit Check
+name: Database Limit Check
 on:
   schedule:
     - cron: '0 15 * * *'  # 3pm UTC every day

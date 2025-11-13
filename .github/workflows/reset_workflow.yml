@@ -1,4 +1,4 @@
-name: Daily Reset Run
+name: Dataset Reset
 
 on:
   schedule:
