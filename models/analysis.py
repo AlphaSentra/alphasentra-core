@@ -35,12 +35,14 @@ def run_analysis(ticker, instrument_name, batch_mode=False):
         instrument_name=instrument_name
     )
     
+    gemini_model = os.getenv("GEMINI_DEFAULT", "gemini-2.5-pro")
+
     # Get AI response
     response_text = get_gen_ai_response(
         tickers=[ticker],
         model_strategy="Analysis",
         prompt=full_prompt,
-        gemini_model="gemini-2.5-flash",
+        gemini_model=gemini_model,
         batch_mode=batch_mode
     )
     

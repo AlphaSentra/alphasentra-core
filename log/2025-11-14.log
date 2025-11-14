@@ -1,0 +1,24 @@
+2025-11-14 19:43:28,014 - INFO - [INFO] - Starting continuous batch processing...
+2025-11-14 19:43:31,808 - INFO - [INFO] - Processing 4 tickers
+2025-11-14 19:43:50,981 - ERROR - [ERR-0001] - [ffbb10a5] Error processing ticker DLR | Exception: TypeError: expected string or bytes-like object, got 'NoneType' | From: batch_run.py:process_ticker()
+2025-11-14 19:43:51,879 - INFO - [INFO] - Updated ticker DLR fail_count: 4 -> 5
+2025-11-14 19:43:51,880 - INFO - [INFO] - Ticker DLR recurrence changed to 'failed' at fail_count 5
+2025-11-14 19:43:55,943 - ERROR - [ERR-0001] - [f08e3178] Error processing ticker NEM | Exception: TypeError: expected string or bytes-like object, got 'NoneType' | From: batch_run.py:process_ticker()
+2025-11-14 19:43:56,796 - INFO - [INFO] - Updated ticker NEM fail_count: 3 -> 4
+2025-11-14 19:44:03,125 - WARNING - [ERR-0001] - [3cb6f9ef] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:03,126 - ERROR - [ERR-0001] - [98c7f274] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:03,126 - ERROR - [ERR-0001] - [cca53cf9] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:03,126 - WARNING - [ERR-0001] - [a2fb26c9] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:03,127 - ERROR - [ERR-0001] - [ef0eefd0] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:03,127 - ERROR - [ERR-0001] - [b841c126] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:03,127 - ERROR - [ERR-0001] - [864f21d1] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-11-14 19:44:03,127 - WARNING - [WARN-0002] - [257b25a0] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: holistic.py:run_holistic_market_model()
+2025-11-14 19:44:06,317 - WARNING - [ERR-0001] - [0fd542ac] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:06,318 - ERROR - [ERR-0001] - [d996b931] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:06,318 - ERROR - [ERR-0001] - [d087183a] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:06,318 - WARNING - [ERR-0001] - [c3a1055f] Attempting to extract JSON from text (length: 155 chars) | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:06,318 - ERROR - [ERR-0001] - [8bd126cb] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:06,318 - ERROR - [ERR-0001] - [56c13a8d] Text preview: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: helpers.py:extract_json_from_text()
+2025-11-14 19:44:06,319 - ERROR - [ERR-0001] - [7dd5ae81] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-11-14 19:44:06,319 - WARNING - [WARN-0002] - [8ae4d9f7] Raw response content: Error generating content: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The model is overloaded. Please try again later.', 'status': 'UNAVAILABLE'}}... | From: holistic.py:run_holistic_market_model()
+2025-11-14 19:44:06,691 - INFO - [INFO] - Processing 4 pipelines...
