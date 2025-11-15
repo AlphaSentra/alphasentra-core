@@ -12,7 +12,7 @@ if parent_dir not in sys.path:
 
 
 from helpers import DatabaseManager, check_pending_ticker_documents
-from _config import EQ_EQUITY_LONG_SHORT_PROMPT, EQ_EQUITY_FACTORS_PROMPT, CR_CRYPTO_LONG_SHORT_PROMPT, CR_CRYPTO_FACTORS_PROMPT, HOLISTIC_MARKET_PROMPT, FX_FACTORS_PROMPT
+from _config import EQ_EQUITY_LONG_SHORT_PROMPT, EQ_EQUITY_FACTORS_PROMPT, CR_CRYPTO_LONG_SHORT_PROMPT, CR_CRYPTO_FACTORS_PROMPT, HOLISTIC_MARKET_PROMPT, FX_FACTORS_PROMPT, FX_LONG_SHORT_PROMPT
 from data.check_ticker import ticker_exists
 from db.create_ticker import create_ticker_document
 from genAI.ai_prompt import get_gen_ai_response
@@ -152,7 +152,7 @@ def create_new_ticker_documents(asset_class, instruments, new_tickers):
         model_function = "run_holistic_market_model"
         model_name = "holistic"
     elif asset_class == "FX":
-        prompt = FX_FOREX_TRENDING_PROMPT
+        prompt = FX_LONG_SHORT_PROMPT
         factors = FX_FACTORS_PROMPT
         model_function = "run_fx_model"
         model_name = "fx_long_short"
