@@ -25,7 +25,7 @@ jobs:
 
     - name: Create .env from secrets
       run: |
-        echo USE_MONGODB_SRV=${{ secrets.USE_MONGODB_SRV }} >> .env
+        echo USE_MONGODB_SRV='${{ secrets.USE_MONGODB_SRV }}' >> .env
         echo MONGODB_SRV='${{ secrets.MONGODB_SRV }}' >> .env
         echo MONGODB_HOST='${{ secrets.MONGODB_HOST }}' >> .env
         echo MONGODB_PORT='${{ secrets.MONGODB_PORT }}' >> .env
