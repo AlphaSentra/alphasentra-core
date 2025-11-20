@@ -55,7 +55,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
             return None
         
     # Get AI-generated weights using helper function
-    ai_weights = get_ai_weights([tickers], FACTOR_WEIGHTS, WEIGHTS_PERCENT, os.getenv("GEMINI_PRO_MODEL"), batch_mode=batch_mode)
+    ai_weights = get_ai_weights([tickers], FACTOR_WEIGHTS, WEIGHTS_PERCENT, os.getenv("GEMINI_FLASH_LITE_MODEL"), batch_mode=batch_mode)
 
     # Use provided prompt or fallback to config prompt
     if prompt is None:
@@ -107,7 +107,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
-        result = get_gen_ai_response([tickers], "holistic market", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"), batch_mode=batch_mode)
+        result = get_gen_ai_response([tickers], "holistic market", formatted_prompt, os.getenv("GEMINI_FLASH_MODEL"), batch_mode=batch_mode)
         
         # Enhanced JSON parsing with repair capabilities
         try:

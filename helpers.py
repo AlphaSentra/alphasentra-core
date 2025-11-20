@@ -1373,7 +1373,7 @@ def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=F
         while retry_count < max_retries and not parse_success:
             try:
                 # Get fresh AI response each retry
-                ai_response = get_gen_ai_response([tickers_str], "factors analysis", formatted_prompt, os.getenv("GEMINI_PRO_MODEL"), batch_mode=batch_mode)
+                ai_response = get_gen_ai_response([tickers_str], "factors analysis", formatted_prompt, os.getenv("GEMINI_FLASH_LITE_MODEL"), batch_mode=batch_mode)
                 
                 # Remove any markdown code block markers if present
                 ai_response = strip_markdown_code_blocks(ai_response)

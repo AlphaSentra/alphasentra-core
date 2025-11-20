@@ -60,6 +60,7 @@ Include your Google Gemini API credentials and encryption secret:
 GEMINI_API_KEY='gemini_api_key_1, gemini_api_key_2'
 GEMINI_DEFAULT=gemini-2.5-pro
 GEMINI_FLASH_MODEL=gemini-2.5-flash
+GEMINI_FLASH_LITE_MODEL=gemini-2.5-flash-lite
 GEMINI_PRO_MODEL=gemini-2.5-pro
 ENCRYPTION_SECRET=encryption-secret
 </pre>
