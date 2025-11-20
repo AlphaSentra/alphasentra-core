@@ -79,7 +79,7 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None,
     """
     # If no model is specified, use the default model from environment variables
     if gemini_model is None:
-        gemini_model = os.getenv("GEMINI_DEFAULT", "gemini-2.5-flash")
+        gemini_model = os.getenv("GEMINI_DEFAULT", "gemini-2.5-flash-lite")
     
     tickers_str = tickers if isinstance(tickers, str) else ', '.join([str(t) for t in tickers])
     print(f"\033[94m\n=== Model: {model_strategy} using {gemini_model} === ticker: {tickers_str} ===\033[0m")
