@@ -1,0 +1,14 @@
+2025-11-25 11:59:06,902 - WARNING - [ERR-0001] - [a740f302] Attempting to extract JSON from text (length: 76368 chars) | From: helpers.py:extract_json_from_text()
+2025-11-25 11:59:06,927 - WARNING - [ERR-0001] - [a0a39938] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-11-25 11:59:06,928 - WARNING - [ERR-0001] - [391dbb52] Attempting to extract JSON from text (length: 388 chars) | From: helpers.py:extract_json_from_text()
+2025-11-25 11:59:06,928 - WARNING - [ERR-0001] - [bfbc3415] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-11-25 11:59:06,928 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-11-25 11:59:13,440 - WARNING - [WARN-0001] - [12fabbdc] {
+      "source_name": "FinanceCharts.com",
+      "source_title": "Apple (AAPL) Stock Price History Charts (NASDAQ - FinanceCharts.com",
+      "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEintUCQVFYJrnIooRlowfjQQLoYwohJfnxwnq1w-Wv7VypzPrsh6qTANQh_59MwaaYN3FmYUNLyn9ZH6UToA1FUIZU0iEkD50blzsCGNwya-ouQmHUKsJtfEjQzaELUdetJJsyJ4t-0fe7292p52N0Z-o="
+    } | From: holistic.py:run_holistic_market_model()
+2025-11-25 11:59:13,440 - WARNING - [ERR-0303] - [58c703bc] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
+2025-11-25 11:59:13,441 - ERROR - [ERR-0303] - [ccd29294] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-11-25 11:59:13,441 - ERROR - [ERR-0001] - [f97e0688] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2025-11-25 11:59:13,441 - WARNING - [ERR-0003] - [484380c9] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
