@@ -1,0 +1,599 @@
+2025-12-12 10:44:27,983 - INFO - [INFO] - Starting comprehensive dataset reset
+2025-12-12 10:44:27,984 - INFO - [INFO] - Starting reset of document_generated field in tickers collection
+2025-12-12 10:44:31,692 - INFO - [INFO] - Successfully updated 191 documents in tickers collection
+2025-12-12 10:44:31,692 - INFO - [INFO] - Reset of document_generated field completed
+2025-12-12 10:44:31,693 - INFO - [INFO] - Starting reset of task_completed field in pipeline collection
+2025-12-12 10:44:31,986 - INFO - [INFO] - Successfully updated 7 documents in pipeline collection
+2025-12-12 10:44:31,987 - INFO - [INFO] - Reset of task_completed field completed
+2025-12-12 10:44:31,987 - INFO - [INFO] - Starting deletion of tickers with recurrence 'once'
+2025-12-12 10:44:32,297 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from tickers collection
+2025-12-12 10:44:32,297 - INFO - [INFO] - Deletion of once tickers completed
+2025-12-12 10:44:32,298 - INFO - [INFO] - Starting deletion of processed tickers with no insights
+2025-12-12 10:44:32,866 - INFO - [INFO] - No processed tickers without insights found
+2025-12-12 10:44:32,867 - INFO - [INFO] - Starting deletion of pipeline documents with recurrence 'once'
+2025-12-12 10:44:33,144 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from pipeline collection
+2025-12-12 10:44:33,145 - INFO - [INFO] - Deletion of once pipeline documents completed
+2025-12-12 10:44:33,145 - INFO - [INFO] - Starting deletion of all weigh_factors documents
+2025-12-12 10:44:33,523 - INFO - [INFO] - Successfully deleted 9 documents from 'weight_factors'.
+2025-12-12 10:44:33,523 - INFO - [INFO] - All reset operations completed successfully
+2025-12-12 10:44:40,118 - INFO - [INFO] - Starting continuous batch processing...
+2025-12-12 10:44:40,397 - INFO - [INFO] - Processing 4 pipelines...
+2025-12-12 10:45:02,148 - INFO - [INFO] - Number of pending ticker to process: 191
+2025-12-12 10:45:02,806 - INFO - [INFO] - Number of pending ticker to process: 191
+2025-12-12 10:45:02,806 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 10:45:03,361 - INFO - [INFO] - Number of pending ticker to process: 191
+2025-12-12 10:45:03,361 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 10:45:03,931 - INFO - [INFO] - Number of pending ticker to process: 191
+2025-12-12 10:45:03,932 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 10:45:04,306 - INFO - [INFO] - Batch cycle completed. Processed: 0 pipelines., 4 pipelines
+2025-12-12 10:46:04,659 - INFO - [INFO] - Processing 4 pipelines...
+2025-12-12 10:51:36,188 - INFO - [INFO] - Starting continuous batch processing...
+2025-12-12 10:51:39,675 - INFO - [INFO] - Processing 4 pipelines...
+2025-12-12 10:51:51,387 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 10:51:52,300 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 10:58:33,976 - INFO - [INFO] - Starting continuous batch processing...
+2025-12-12 10:58:37,954 - INFO - [INFO] - Processing 5 tickers
+2025-12-12 10:58:42,745 - WARNING - [ERR-0001] - [677808cf] Attempting to extract JSON from text (length: 1134 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:42,746 - ERROR - [ERR-0001] - [9c9a3800] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:42,746 - ERROR - [ERR-0001] - [f825cad8] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 17.28... | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:42,747 - ERROR - [ERR-0103] - [8b41c10a] Error parsing AI weights response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_ai_weights()
+2025-12-12 10:58:42,747 - WARNING - [WARN-0002] - [1995ba36] Raw weights response: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, h... | From: helpers.py:get_ai_weights()
+2025-12-12 10:58:43,286 - ERROR - [ERR-0001] - [94b154d3] Failed to parse AI response: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 16.665765755s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '16s'}]}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-12-12 10:58:45,570 - ERROR - [ERR-0001] - [6773997b] Failed to parse AI response: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 14.454521531s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '14s'}]}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-12-12 10:58:45,863 - ERROR - [ERR-0001] - [4c0fb7c8] Failed to parse AI response: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 14.161862952s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.5-flash-lite', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '14s'}]}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-12-12 10:58:46,293 - WARNING - [ERR-0001] - [31194d2b] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:46,294 - WARNING - [ERR-0001] - [c66363ba] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:47,172 - ERROR - [ERR-0001] - [409a9678] Failed to parse AI response: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 12.780577938s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '12s'}]}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-12-12 10:58:49,000 - WARNING - [ERR-0001] - [a39e59ec] Attempting to extract JSON from text (length: 3149 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:49,002 - WARNING - [ERR-0001] - [ac05c2f1] JSON parsing failed for pattern ```json\s*(\{.*\})\s*```...: Extra data: line 10 column 1 (char 185) | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:49,003 - ERROR - [ERR-0104] - [6e070e0c] Error getting AI weights | Exception: TypeError: 'int' object is not callable | From: helpers.py:get_ai_weights()
+2025-12-12 10:58:49,003 - WARNING - [ERR-0001] - [4f216e00] Attempting to extract JSON from text (length: 1124 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:49,004 - ERROR - [ERR-0001] - [2927da94] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:49,004 - ERROR - [ERR-0001] - [be612a0e] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 11.1759357... | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:49,004 - WARNING - [ERR-0001] - [a24096d0] Attempting to extract JSON from text (length: 1124 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:49,004 - ERROR - [ERR-0001] - [27ea9497] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:49,004 - ERROR - [ERR-0001] - [29ab1505] Text preview: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 11.1759357... | From: helpers.py:extract_json_from_text()
+2025-12-12 10:58:49,005 - ERROR - [ERR-0001] - [9e080cd8] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-12-12 10:58:49,005 - WARNING - [WARN-0002] - [e684a0c8] Raw response content: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 11.1759357... | From: holistic.py:run_holistic_market_model()
+2025-12-12 10:58:50,377 - ERROR - [ERR-0001] - [a553bd0e] Failed to parse AI response: Error generating content: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\nPlease retry in 9.57360723s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '9s'}]}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-12-12 11:00:06,617 - INFO - [INFO] - Starting continuous batch processing...
+2025-12-12 11:00:10,152 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:00:10,702 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:01:08,669 - INFO - [INFO] - Starting continuous batch processing...
+2025-12-12 11:01:12,599 - INFO - [INFO] - Processing 4 pipelines...
+2025-12-12 11:01:24,180 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:01:25,171 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:01:29,215 - ERROR - [ERR-0103] - [a9f2894f] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
+2025-12-12 11:01:29,216 - WARNING - [WARN-0002] - [ad62b6e7] Raw response content: I cannot provide a real-time list of the top 10 trending stocks as of December 12, 2025, due to the dynamic nature of the stock market and the limitations of accessing live trading data. Stock trends ... | From: trending.py:get_trending_instruments()
+2025-12-12 11:01:29,815 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:01:53,844 - INFO - [INFO] - Number of pending ticker to process: 7
+2025-12-12 11:01:53,846 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:01:54,492 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 7 tickers, 3 pipelines
+2025-12-12 11:02:55,321 - INFO - [INFO] - Processing 5 tickers
+2025-12-12 11:04:44,199 - WARNING - [ERR-0001] - [777e17f9] Attempting to extract JSON from text (length: 54113 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:04:44,202 - WARNING - [ERR-0001] - [fe90d616] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:04:44,202 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:04:49,886 - WARNING - [ERR-0001] - [db0fffb1] Attempting to extract JSON from text (length: 57241 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:04:49,889 - WARNING - [ERR-0001] - [877ca65f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:04:49,889 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:04:50,519 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:04:50,522 - INFO - [INFO] - Market state - Net Order: -64, Sentiment: -0.3885, Price Change: -31.962, New Price: 68.038
+2025-12-12 11:04:53,409 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['DOT']
+2025-12-12 11:04:55,524 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:04:55,524 - INFO - [INFO] - Market state - Net Order: 90, Sentiment: 0.0812, Price Change: 44.9666, New Price: 144.9666
+2025-12-12 11:04:57,686 - WARNING - [ERR-0001] - [506f1950] Attempting to extract JSON from text (length: 54953 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:04:57,688 - WARNING - [ERR-0001] - [638388ac] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:04:57,688 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:04:57,872 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ADA']
+2025-12-12 11:05:02,990 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:05:02,991 - INFO - [INFO] - Market state - Net Order: 182, Sentiment: 0.734, Price Change: 90.988, New Price: 190.988
+2025-12-12 11:05:05,186 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SOL']
+2025-12-12 11:05:08,751 - WARNING - [ERR-0001] - [df9e2cbb] Attempting to extract JSON from text (length: 59471 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:05:08,752 - WARNING - [ERR-0001] - [820feda8] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 9 column 3553 (char 6884) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:05:08,756 - ERROR - [ERR-0404] - [8e29c9db] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-12-12 11:05:12,677 - WARNING - [ERR-0001] - [227e9dcf] Attempting to extract JSON from text (length: 68847 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:05:12,694 - ERROR - [ERR-0404] - [f411f915] Error in holistic_market_model | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: holistic.py:run_holistic_market_model()
+2025-12-12 11:05:13,060 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:05:14,163 - INFO - [INFO] - Number of pending ticker to process: 4
+2025-12-12 11:05:14,164 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:05:15,737 - INFO - [INFO] - Number of pending ticker to process: 4
+2025-12-12 11:05:15,738 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:05:16,287 - INFO - [INFO] - Number of pending ticker to process: 4
+2025-12-12 11:05:16,288 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:05:16,917 - INFO - [INFO] - Batch cycle completed. Processed: 5 tickers, 0 pipelines. Remaining: 4 tickers, 3 pipelines
+2025-12-12 11:05:17,035 - INFO - [INFO] - Memory before cleanup: 3715.3 KB
+2025-12-12 11:07:18,922 - INFO - [INFO] - Memory after cleanup: 4114.4 KB (saved -408736.0 bytes)
+2025-12-12 11:07:19,890 - INFO - [INFO] - Processing 4 tickers
+2025-12-12 11:08:34,888 - WARNING - [ERR-0001] - [cb380a89] Attempting to extract JSON from text (length: 34456 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:08:34,890 - WARNING - [ERR-0001] - [75a40859] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:08:34,890 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:08:40,337 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:08:40,341 - INFO - [INFO] - Market state - Net Order: 232, Sentiment: 0.6134, Price Change: 115.8987, New Price: 215.8987
+2025-12-12 11:08:42,826 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ETH']
+2025-12-12 11:09:07,441 - WARNING - [ERR-0001] - [9f90db05] Attempting to extract JSON from text (length: 33037 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:09:07,450 - ERROR - [ERR-0404] - [a531eb41] Error in holistic_market_model | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: holistic.py:run_holistic_market_model()
+2025-12-12 11:09:42,811 - WARNING - [ERR-0001] - [ca717f72] Attempting to extract JSON from text (length: 72834 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:09:42,814 - WARNING - [ERR-0001] - [66269bd7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:09:42,814 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:09:52,264 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:09:52,265 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.0438, Price Change: -0.1411, New Price: 99.8589
+2025-12-12 11:09:55,377 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['XRP']
+2025-12-12 11:09:59,991 - WARNING - [ERR-0001] - [edfe6fe2] Attempting to extract JSON from text (length: 47278 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:09:59,993 - WARNING - [ERR-0001] - [6fbd617d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:09:59,993 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:10:08,325 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:10:08,326 - INFO - [INFO] - Market state - Net Order: 47, Sentiment: 0.1676, Price Change: 23.4707, New Price: 123.4707
+2025-12-12 11:10:10,859 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BTC']
+2025-12-12 11:10:11,257 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:10:12,399 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:10:12,399 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:10:13,081 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:10:13,082 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:10:13,662 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:10:13,662 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:10:14,413 - INFO - [INFO] - Batch cycle completed. Processed: 4 tickers, 0 pipelines. Remaining: 1 tickers, 3 pipelines
+2025-12-12 11:10:14,528 - INFO - [INFO] - Memory before cleanup: 4710.3 KB
+2025-12-12 11:12:17,307 - INFO - [INFO] - Memory after cleanup: 4606.5 KB (saved 106263.0 bytes)
+2025-12-12 11:12:17,921 - INFO - [INFO] - Processing 1 tickers
+2025-12-12 11:12:35,856 - ERROR - [ERR-0001] - [a372c26c] Error processing ticker BNB | Exception: TypeError: expected string or bytes-like object, got 'NoneType' | From: batch_run.py:process_ticker()
+2025-12-12 11:12:36,711 - INFO - [INFO] - Updated ticker BNB fail_count: 0 -> 1
+2025-12-12 11:12:36,711 - INFO - [INFO] - Ticker BNB recurrence changed to 'failed' at fail_count 1
+2025-12-12 11:12:37,131 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:12:37,677 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:12:37,678 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:12:38,236 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:12:38,237 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:12:38,784 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:12:38,785 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:12:39,413 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 3 pipelines
+2025-12-12 11:12:39,547 - INFO - [INFO] - Memory before cleanup: 4493.8 KB
+2025-12-12 11:14:41,432 - INFO - [INFO] - Memory after cleanup: 4493.1 KB (saved 768.0 bytes)
+2025-12-12 11:14:42,091 - INFO - [INFO] - Processing 1 tickers
+2025-12-12 11:15:19,116 - INFO - [INFO] - Starting continuous batch processing...
+2025-12-12 11:15:22,496 - INFO - [INFO] - Processing 1 tickers
+2025-12-12 11:16:59,902 - WARNING - [ERR-0001] - [02c6d07f] Attempting to extract JSON from text (length: 53051 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:16:59,905 - WARNING - [ERR-0001] - [333ae991] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:16:59,905 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:17:04,707 - ERROR - [ERR-0001] - [266427e6] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2025-12-12 11:17:04,708 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:17:04,709 - INFO - [INFO] - Market state - Net Order: -72, Sentiment: -0.2704, Price Change: -35.9229, New Price: 64.0771
+2025-12-12 11:17:06,447 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BNB']
+2025-12-12 11:17:06,852 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:17:07,499 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:17:10,429 - ERROR - [ERR-0102] - [15d5baba] AI response is None | Exception: ValueError: No response received from AI | From: trending.py:get_trending_instruments()
+2025-12-12 11:17:10,976 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:18:26,503 - INFO - [INFO] - Number of pending ticker to process: 10
+2025-12-12 11:18:26,510 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:18:27,561 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 0 pipelines. Remaining: 10 tickers, 3 pipelines
+2025-12-12 11:18:27,815 - INFO - [INFO] - Memory before cleanup: 3712.3 KB
+2025-12-12 11:18:58,849 - INFO - [INFO] - Memory after cleanup: 4111.4 KB (saved -408737.0 bytes)
+2025-12-12 11:18:59,690 - INFO - [INFO] - Processing 5 tickers
+2025-12-12 11:20:03,524 - WARNING - [ERR-0001] - [bbb53f9c] Attempting to extract JSON from text (length: 28970 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:20:03,525 - WARNING - [ERR-0001] - [d935f9de] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:20:03,525 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:20:09,983 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:20:09,987 - INFO - [INFO] - Market state - Net Order: 54, Sentiment: 0.0214, Price Change: 26.8965, New Price: 126.8965
+2025-12-12 11:20:11,408 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDT-USD']
+2025-12-12 11:20:23,665 - WARNING - [ERR-0001] - [1759aff4] Attempting to extract JSON from text (length: 39083 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:20:23,667 - WARNING - [ERR-0001] - [3fc6ce35] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:20:23,667 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:20:31,415 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:20:31,416 - INFO - [INFO] - Market state - Net Order: -31, Sentiment: -0.209, Price Change: -15.5181, New Price: 84.4819
+2025-12-12 11:20:32,107 - WARNING - [ERR-0001] - [a7a04c52] Attempting to extract JSON from text (length: 39706 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:20:32,108 - WARNING - [ERR-0001] - [1d893177] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:20:32,108 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:20:33,388 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['DOGE-USD']
+2025-12-12 11:20:38,044 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:20:38,047 - INFO - [INFO] - Market state - Net Order: 68, Sentiment: 0.1749, Price Change: 34.0597, New Price: 134.0597
+2025-12-12 11:20:40,974 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SHIB-USD']
+2025-12-12 11:20:52,428 - WARNING - [ERR-0001] - [6fe71540] Attempting to extract JSON from text (length: 48816 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:20:52,430 - WARNING - [ERR-0001] - [2236219e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:20:52,431 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:21:00,866 - WARNING - [ERR-0001] - [60ea86c7] Attempting to extract JSON from text (length: 2848 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:21:00,871 - ERROR - [ERR-0001] - [8da72ed1] Error getting factors analysis | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: helpers.py:get_factors()
+2025-12-12 11:21:00,873 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:21:00,875 - INFO - [INFO] - Market state - Net Order: -205, Sentiment: -0.6084, Price Change: -102.3499, New Price: -2.3499
+2025-12-12 11:21:04,759 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BNB-USD']
+2025-12-12 11:21:19,238 - WARNING - [ERR-0001] - [8fe67e7e] Attempting to extract JSON from text (length: 60018 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:21:19,240 - WARNING - [ERR-0001] - [b66277e7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:21:19,240 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:21:28,986 - WARNING - [ERR-0001] - [693b8a44] Attempting to extract JSON from text (length: 5432 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:21:28,989 - WARNING - [ERR-0001] - [19185d97] JSON parsing failed for pattern (?:^|\n)[^{}]*(\{.*\})\s*$...: Extra data: line 61 column 1 (char 2706) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:21:28,991 - ERROR - [ERR-0001] - [ba3ae9d1] Error getting factors analysis | Exception: TypeError: 'int' object is not callable | From: helpers.py:get_factors()
+2025-12-12 11:21:28,991 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:21:29,000 - INFO - [INFO] - Market state - Net Order: 49, Sentiment: 0.2048, Price Change: 24.5801, New Price: 124.5801
+2025-12-12 11:21:32,811 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ETH-USD']
+2025-12-12 11:21:33,287 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:21:33,836 - INFO - [INFO] - Number of pending ticker to process: 5
+2025-12-12 11:21:33,836 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:21:34,427 - INFO - [INFO] - Number of pending ticker to process: 5
+2025-12-12 11:21:34,427 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:21:34,986 - INFO - [INFO] - Number of pending ticker to process: 5
+2025-12-12 11:21:34,986 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:21:35,655 - INFO - [INFO] - Batch cycle completed. Processed: 5 tickers, 0 pipelines. Remaining: 5 tickers, 3 pipelines
+2025-12-12 11:21:35,818 - INFO - [INFO] - Memory before cleanup: 4705.6 KB
+2025-12-12 11:22:06,790 - INFO - [INFO] - Memory after cleanup: 4602.5 KB (saved 105600.0 bytes)
+2025-12-12 11:22:08,986 - INFO - [INFO] - Processing 5 tickers
+2025-12-12 11:23:23,053 - WARNING - [ERR-0001] - [79822a4a] Attempting to extract JSON from text (length: 35960 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:23:23,055 - WARNING - [ERR-0001] - [c13c825f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:23:23,055 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:23:28,991 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:23:28,993 - INFO - [INFO] - Market state - Net Order: 166, Sentiment: 0.3924, Price Change: 82.8595, New Price: 182.8595
+2025-12-12 11:23:32,725 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BTC-USD']
+2025-12-12 11:23:50,145 - WARNING - [ERR-0001] - [332535d4] Attempting to extract JSON from text (length: 47072 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:23:50,147 - WARNING - [ERR-0001] - [1694a0ac] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:23:50,147 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:23:55,928 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:23:55,930 - INFO - [INFO] - Market state - Net Order: 160, Sentiment: 0.6429, Price Change: 80.1607, New Price: 180.1607
+2025-12-12 11:23:57,783 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['USDC-USD']
+2025-12-12 11:24:02,409 - WARNING - [ERR-0001] - [ff2ff53c] Attempting to extract JSON from text (length: 46495 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:24:02,410 - WARNING - [ERR-0001] - [5284d1ed] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:24:02,410 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:24:10,295 - WARNING - [ERR-0001] - [120b6c02] Attempting to extract JSON from text (length: 3297 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:24:10,297 - ERROR - [ERR-0001] - [eed7a943] Error getting factors analysis | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: helpers.py:get_factors()
+2025-12-12 11:24:10,298 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:24:10,299 - INFO - [INFO] - Market state - Net Order: 110, Sentiment: 0.3232, Price Change: 55.0508, New Price: 155.0508
+2025-12-12 11:24:13,496 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['XRP-USD']
+2025-12-12 11:24:17,377 - WARNING - [ERR-0001] - [50f737e1] Attempting to extract JSON from text (length: 57945 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:24:17,378 - WARNING - [ERR-0001] - [3294357b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:24:17,379 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:24:26,727 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:24:26,729 - INFO - [INFO] - Market state - Net Order: 9, Sentiment: -0.1128, Price Change: 4.5401, New Price: 104.5401
+2025-12-12 11:24:28,449 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SOL-USD']
+2025-12-12 11:24:50,365 - WARNING - [ERR-0001] - [9b877f63] Attempting to extract JSON from text (length: 50489 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:24:50,366 - WARNING - [ERR-0001] - [bc4c39ed] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:24:50,366 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:24:56,115 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:24:56,116 - INFO - [INFO] - Market state - Net Order: -88, Sentiment: -0.2286, Price Change: -43.8848, New Price: 56.1152
+2025-12-12 11:24:58,955 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ADA-USD']
+2025-12-12 11:24:59,773 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:25:00,324 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:25:03,968 - ERROR - [ERR-0103] - [c3bf7b0c] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
+2025-12-12 11:25:03,970 - WARNING - [WARN-0002] - [f32fb268] Raw response content: Given that the current date is December 12, 2025, and the search results do not provide a definitive list of "top 10 trending stocks" for this exact date, I will provide a list based on stocks that ar... | From: trending.py:get_trending_instruments()
+2025-12-12 11:25:04,521 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:26:30,992 - INFO - [INFO] - Number of pending ticker to process: 2
+2025-12-12 11:26:30,995 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:26:31,654 - INFO - [INFO] - Batch cycle completed. Processed: 5 tickers, 0 pipelines. Remaining: 2 tickers, 3 pipelines
+2025-12-12 11:26:31,793 - INFO - [INFO] - Memory before cleanup: 4490.8 KB
+2025-12-12 11:27:02,579 - INFO - [INFO] - Memory after cleanup: 4490.0 KB (saved 736.0 bytes)
+2025-12-12 11:27:03,125 - INFO - [INFO] - Processing 2 tickers
+2025-12-12 11:29:09,679 - WARNING - [ERR-0001] - [a420ba8e] Attempting to extract JSON from text (length: 62462 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:29:09,682 - WARNING - [ERR-0001] - [182bf673] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:29:09,682 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:29:15,855 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:29:15,858 - INFO - [INFO] - Market state - Net Order: -240, Sentiment: -0.325, Price Change: -120.0472, New Price: -20.0472
+2025-12-12 11:29:17,607 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MATIC-USD']
+2025-12-12 11:29:46,908 - WARNING - [ERR-0001] - [c4a82fe1] Attempting to extract JSON from text (length: 71131 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:29:46,914 - WARNING - [ERR-0001] - [057389b0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:29:46,915 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:29:52,008 - ERROR - [ERR-0001] - [54d2405c] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2025-12-12 11:29:52,010 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:29:52,012 - INFO - [INFO] - Market state - Net Order: -131, Sentiment: -0.2611, Price Change: -65.4246, New Price: 34.5754
+2025-12-12 11:29:53,674 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['LTC-USD']
+2025-12-12 11:29:54,121 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:29:54,672 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:29:57,315 - ERROR - [ERR-0103] - [580c2f8e] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
+2025-12-12 11:29:57,316 - WARNING - [WARN-0002] - [a28304bf] Raw response content: I am sorry, but I cannot provide financial advice or a list of trending stocks. My purpose is to be helpful and harmless, and that includes avoiding the dissemination of potentially misleading or time... | From: trending.py:get_trending_instruments()
+2025-12-12 11:29:57,863 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:30:02,081 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-12-12 11:30:02,956 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_crypto
+2025-12-12 11:31:03,656 - INFO - [INFO] - Number of pending ticker to process: 10
+2025-12-12 11:31:03,658 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:31:04,434 - INFO - [INFO] - Batch cycle completed. Processed: 2 tickers, 0 pipelines. Remaining: 10 tickers, 3 pipelines
+2025-12-12 11:31:04,800 - INFO - [INFO] - Memory before cleanup: 4489.9 KB
+2025-12-12 11:31:35,842 - INFO - [INFO] - Memory after cleanup: 4489.9 KB (saved 32.0 bytes)
+2025-12-12 11:31:36,679 - INFO - [INFO] - Processing 5 tickers
+2025-12-12 11:33:28,921 - WARNING - [ERR-0001] - [ecd4c8c8] Attempting to extract JSON from text (length: 47754 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:33:28,923 - WARNING - [ERR-0001] - [8fa946d8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:33:28,924 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:33:41,470 - WARNING - [ERR-0001] - [0745a9ad] Attempting to extract JSON from text (length: 4866 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:33:41,475 - ERROR - [ERR-0001] - [a0ea917b] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-12-12 11:33:41,475 - ERROR - [ERR-0001] - [c082c386] Text preview: When analyzing Amazon.com, Inc. (AMZN) as of December 12, 2025, several factors indicate a generally positive outlook, though with some areas of caution.
+
+**Company Fundamentals:**
+Amazon's financial health appears robust, with strong revenue growth and improving profitability. In Q3 2025, total revenues reached $180.2 billion, a 13% year-over-year increase, while AWS revenues accelerated to $33 billion, up 20% year-over-year. Operating income stood at $17.4 billion, and the company guided for $... | From: helpers.py:extract_json_from_text()
+2025-12-12 11:33:41,478 - ERROR - [ERR-0103] - [e5ad2155] JSON parsing failed (attempt 1/1) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()
+2025-12-12 11:33:41,479 - ERROR - [ERR-0103] - [94645bf8] Unexpected format in factors response | From: helpers.py:get_factors()
+2025-12-12 11:33:41,480 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:33:41,483 - INFO - [INFO] - Market state - Net Order: 187, Sentiment: 0.4341, Price Change: 93.5098, New Price: 193.5098
+2025-12-12 11:33:41,823 - WARNING - [ERR-0001] - [1cb9748c] Attempting to extract JSON from text (length: 56146 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:33:41,825 - WARNING - [ERR-0001] - [022a36b9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:33:41,825 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:33:43,177 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
+2025-12-12 11:33:47,613 - WARNING - [ERR-0001] - [e5f51900] Attempting to extract JSON from text (length: 486 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:33:47,615 - ERROR - [ERR-0001] - [9192eb8a] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-12-12 11:33:47,615 - ERROR - [ERR-0001] - [fd7466db] Text preview: I am sorry, but I cannot provide an analysis of factors impacting Apple Inc. as of December 12, 2025. My knowledge cutoff is in early 2023, and I do not have access to real-time stock market data or future financial information. Therefore, I cannot provide accurate or up-to-date analysis for that specific date.
+
+If you have questions about Apple's historical performance or general factors that typically influence tech companies, I would be happy to assist you with that information.... | From: helpers.py:extract_json_from_text()
+2025-12-12 11:33:47,615 - ERROR - [ERR-0103] - [fb740ab2] JSON parsing failed (attempt 1/1) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: helpers.py:get_factors()
+2025-12-12 11:33:47,616 - ERROR - [ERR-0103] - [ca802835] Unexpected format in factors response | From: helpers.py:get_factors()
+2025-12-12 11:33:47,616 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:33:47,617 - INFO - [INFO] - Market state - Net Order: 240, Sentiment: 0.7825, Price Change: 120.0889, New Price: 220.0889
+2025-12-12 11:33:49,343 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']
+2025-12-12 11:34:02,853 - WARNING - [ERR-0001] - [7389b7f0] Attempting to extract JSON from text (length: 67409 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:34:02,855 - WARNING - [ERR-0001] - [bad18d2d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:34:02,855 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:34:11,932 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:34:11,934 - INFO - [INFO] - Market state - Net Order: 152, Sentiment: 0.3119, Price Change: 75.8326, New Price: 175.8326
+2025-12-12 11:34:12,536 - WARNING - [ERR-0001] - [52174ca0] Attempting to extract JSON from text (length: 65922 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:34:12,538 - WARNING - [ERR-0001] - [12198cf9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:34:12,539 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:34:13,439 - WARNING - [ERR-0001] - [483cd9ce] Attempting to extract JSON from text (length: 67071 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:34:13,441 - WARNING - [ERR-0001] - [738f2a3c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:34:13,442 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:34:16,139 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMD']
+2025-12-12 11:34:19,033 - ERROR - [ERR-0001] - [db00f298] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2025-12-12 11:34:19,034 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:34:19,035 - INFO - [INFO] - Market state - Net Order: 376, Sentiment: 0.7133, Price Change: 187.8908, New Price: 287.8908
+2025-12-12 11:34:19,144 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:34:19,145 - INFO - [INFO] - Market state - Net Order: 189, Sentiment: 0.5947, Price Change: 94.5179, New Price: 194.5179
+2025-12-12 11:34:20,778 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['HOOD']
+2025-12-12 11:34:21,357 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MU']
+2025-12-12 11:34:21,774 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:34:22,321 - INFO - [INFO] - Number of pending ticker to process: 5
+2025-12-12 11:34:22,321 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:34:22,867 - INFO - [INFO] - Number of pending ticker to process: 5
+2025-12-12 11:34:22,868 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:34:23,419 - INFO - [INFO] - Number of pending ticker to process: 5
+2025-12-12 11:34:23,420 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:34:24,114 - INFO - [INFO] - Batch cycle completed. Processed: 5 tickers, 0 pipelines. Remaining: 5 tickers, 3 pipelines
+2025-12-12 11:34:24,291 - INFO - [INFO] - Memory before cleanup: 4489.8 KB
+2025-12-12 11:34:55,303 - INFO - [INFO] - Memory after cleanup: 4489.8 KB (saved -32.0 bytes)
+2025-12-12 11:34:56,140 - INFO - [INFO] - Processing 5 tickers
+2025-12-12 11:36:30,812 - WARNING - [ERR-0001] - [8c629250] Attempting to extract JSON from text (length: 39696 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:36:30,815 - WARNING - [ERR-0001] - [90856e1a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:36:30,815 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:36:39,233 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:36:39,236 - INFO - [INFO] - Market state - Net Order: 196, Sentiment: 0.4864, Price Change: 98.052, New Price: 198.052
+2025-12-12 11:36:40,772 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOGL']
+2025-12-12 11:36:41,967 - WARNING - [ERR-0001] - [c95df764] Attempting to extract JSON from text (length: 49550 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:36:41,970 - WARNING - [ERR-0001] - [d1abede8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:36:41,970 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:36:47,821 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:36:47,824 - INFO - [INFO] - Market state - Net Order: -100, Sentiment: -0.2292, Price Change: -49.9864, New Price: 50.0136
+2025-12-12 11:36:49,554 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['TSLA']
+2025-12-12 11:36:55,635 - WARNING - [ERR-0001] - [4eed0149] Attempting to extract JSON from text (length: 47036 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:36:55,637 - WARNING - [ERR-0001] - [d991bcb7] JSON parsing failed for end object pattern: Expecting ',' delimiter: line 9 column 2598 (char 5482) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:36:55,640 - ERROR - [ERR-0404] - [7d2ef5d3] Error in holistic_market_model | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2025-12-12 11:37:06,957 - WARNING - [ERR-0001] - [b1c48463] Attempting to extract JSON from text (length: 63359 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:37:06,961 - WARNING - [ERR-0001] - [312ea061] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:37:06,963 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:37:15,389 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:37:15,397 - INFO - [INFO] - Market state - Net Order: 153, Sentiment: 0.4974, Price Change: 76.498, New Price: 176.498
+2025-12-12 11:37:17,128 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PLTR']
+2025-12-12 11:37:21,291 - WARNING - [ERR-0001] - [88454203] Attempting to extract JSON from text (length: 66247 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:37:21,293 - WARNING - [ERR-0001] - [e42ca72a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:37:21,294 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:37:26,099 - ERROR - [ERR-0001] - [a9424be9] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2025-12-12 11:37:26,100 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:37:26,101 - INFO - [INFO] - Market state - Net Order: 23, Sentiment: 0.0752, Price Change: 11.3133, New Price: 111.3133
+2025-12-12 11:37:27,924 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AVGO']
+2025-12-12 11:37:28,457 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:37:29,004 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:37:29,008 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:37:29,558 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:37:29,559 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:37:30,108 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:37:30,109 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:37:30,757 - INFO - [INFO] - Batch cycle completed. Processed: 5 tickers, 0 pipelines. Remaining: 1 tickers, 3 pipelines
+2025-12-12 11:37:30,919 - INFO - [INFO] - Memory before cleanup: 4490.1 KB
+2025-12-12 11:38:01,969 - INFO - [INFO] - Memory after cleanup: 4491.2 KB (saved -1088.0 bytes)
+2025-12-12 11:38:02,514 - INFO - [INFO] - Processing 1 tickers
+2025-12-12 11:39:53,729 - WARNING - [ERR-0001] - [fcf8cbf6] Attempting to extract JSON from text (length: 49603 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:39:53,742 - WARNING - [ERR-0001] - [f3faefb1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:39:53,742 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:39:58,904 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:39:58,907 - INFO - [INFO] - Market state - Net Order: 240, Sentiment: 0.6867, Price Change: 119.9537, New Price: 219.9537
+2025-12-12 11:40:01,185 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['META']
+2025-12-12 11:40:01,644 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:40:02,191 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:40:46,722 - INFO - [INFO] - Number of pending ticker to process: 10
+2025-12-12 11:40:46,724 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:40:47,273 - INFO - [INFO] - Number of pending ticker to process: 10
+2025-12-12 11:40:47,274 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:40:47,974 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 0 pipelines. Remaining: 10 tickers, 3 pipelines
+2025-12-12 11:40:48,160 - INFO - [INFO] - Memory before cleanup: 4490.8 KB
+2025-12-12 11:41:19,075 - INFO - [INFO] - Memory after cleanup: 4490.1 KB (saved 736.0 bytes)
+2025-12-12 11:41:19,896 - INFO - [INFO] - Processing 5 tickers
+2025-12-12 11:43:09,245 - WARNING - [ERR-0001] - [94e00948] Attempting to extract JSON from text (length: 41040 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:09,247 - WARNING - [ERR-0001] - [3d180fa6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:09,247 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:43:15,675 - WARNING - [ERR-0001] - [123c8155] Attempting to extract JSON from text (length: 2288 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:15,679 - ERROR - [ERR-0001] - [7d801237] Error getting factors analysis | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: helpers.py:get_factors()
+2025-12-12 11:43:15,681 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:43:15,684 - INFO - [INFO] - Market state - Net Order: 187, Sentiment: 0.6674, Price Change: 93.4055, New Price: 193.4055
+2025-12-12 11:43:17,140 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['RCL']
+2025-12-12 11:43:22,880 - WARNING - [ERR-0001] - [c58602b2] Attempting to extract JSON from text (length: 52469 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:22,882 - WARNING - [ERR-0001] - [2c47afb9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:22,882 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:43:27,508 - ERROR - [ERR-0001] - [d7047754] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2025-12-12 11:43:27,510 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:43:27,512 - INFO - [INFO] - Market state - Net Order: 58, Sentiment: 0.2323, Price Change: 28.9394, New Price: 128.9394
+2025-12-12 11:43:29,287 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['TPR']
+2025-12-12 11:43:43,530 - WARNING - [ERR-0001] - [f256a0b3] Attempting to extract JSON from text (length: 66615 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:43,653 - WARNING - [ERR-0001] - [02f99231] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:43,654 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:43:43,705 - WARNING - [ERR-0001] - [1337d86d] Attempting to extract JSON from text (length: 61064 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:43,757 - WARNING - [ERR-0001] - [a12545d9] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:43,758 - WARNING - [ERR-0001] - [62ce6219] Attempting to extract JSON from text (length: 35171 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:43,759 - WARNING - [ERR-0001] - [959f0134] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:43,759 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:43:43,973 - WARNING - [ERR-0001] - [28e6d695] Attempting to extract JSON from text (length: 68917 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:43,975 - WARNING - [ERR-0001] - [92d16614] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:43:43,975 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:43:48,097 - ERROR - [ERR-0001] - [f3386860] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2025-12-12 11:43:48,099 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:43:48,100 - INFO - [INFO] - Market state - Net Order: 267, Sentiment: 0.6158, Price Change: 133.5512, New Price: 233.5512
+2025-12-12 11:43:48,189 - ERROR - [ERR-0001] - [3bd7de5a] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2025-12-12 11:43:48,190 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:43:48,190 - INFO - [INFO] - Market state - Net Order: -216, Sentiment: -0.45, Price Change: -108.1013, New Price: -8.1013
+2025-12-12 11:43:50,391 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['VST']
+2025-12-12 11:43:51,956 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:43:51,957 - INFO - [INFO] - Market state - Net Order: -47, Sentiment: -0.1204, Price Change: -23.4645, New Price: 76.5355
+2025-12-12 11:43:51,996 - WARNING - [ERR-0303] - [65f953b7] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis'] | From: helpers.py:validate_recommendations_schema()
+2025-12-12 11:43:51,996 - ERROR - [ERR-0303] - [38858713] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2025-12-12 11:43:51,997 - ERROR - [ERR-0001] - [ef1559ee] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2025-12-12 11:43:52,455 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ORCL']
+2025-12-12 11:43:52,853 - INFO - [INFO] - Updated ticker MOS fail_count: 0 -> 1
+2025-12-12 11:43:52,853 - INFO - [INFO] - Ticker MOS recurrence changed to 'failed' at fail_count 1
+2025-12-12 11:43:52,853 - ERROR - [ERR-0001] - [99a47e87] No recommendations found in saved document, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2025-12-12 11:43:52,855 - WARNING - [ERR-0003] - [f0f18e7f] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2025-12-12 11:43:53,280 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:43:53,828 - INFO - [INFO] - Number of pending ticker to process: 5
+2025-12-12 11:43:53,828 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:43:54,408 - INFO - [INFO] - Number of pending ticker to process: 5
+2025-12-12 11:43:54,409 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:43:54,956 - INFO - [INFO] - Number of pending ticker to process: 5
+2025-12-12 11:43:54,957 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:43:55,606 - INFO - [INFO] - Batch cycle completed. Processed: 5 tickers, 0 pipelines. Remaining: 5 tickers, 3 pipelines
+2025-12-12 11:43:55,751 - INFO - [INFO] - Memory before cleanup: 4490.1 KB
+2025-12-12 11:44:26,614 - INFO - [INFO] - Memory after cleanup: 4489.7 KB (saved 416.0 bytes)
+2025-12-12 11:44:27,475 - INFO - [INFO] - Processing 5 tickers
+2025-12-12 11:45:55,390 - WARNING - [ERR-0001] - [61381f9b] Attempting to extract JSON from text (length: 35482 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:45:55,392 - WARNING - [ERR-0001] - [5520079b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:45:55,392 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:45:59,963 - ERROR - [ERR-0001] - [e1693331] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2025-12-12 11:45:59,964 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:45:59,967 - INFO - [INFO] - Market state - Net Order: -191, Sentiment: -0.4878, Price Change: -95.3895, New Price: 4.6105
+2025-12-12 11:46:01,481 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['V']
+2025-12-12 11:46:40,954 - WARNING - [ERR-0001] - [989c2cc2] Attempting to extract JSON from text (length: 58708 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:46:40,956 - WARNING - [ERR-0001] - [08ad8a8a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:46:40,956 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:46:45,078 - WARNING - [ERR-0001] - [d24eb6ef] Attempting to extract JSON from text (length: 63629 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:46:45,079 - WARNING - [ERR-0001] - [2fc9db4f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:46:45,080 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:46:49,028 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:46:49,033 - INFO - [INFO] - Market state - Net Order: 158, Sentiment: 0.6815, Price Change: 79.1265, New Price: 179.1265
+2025-12-12 11:46:50,837 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NEM']
+2025-12-12 11:46:51,009 - WARNING - [ERR-0001] - [f7b17eac] Attempting to extract JSON from text (length: 60518 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:46:51,012 - WARNING - [ERR-0001] - [08689652] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:46:51,012 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:46:52,601 - WARNING - [ERR-0001] - [4e5f3576] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2025-12-12 11:46:52,603 - ERROR - [ERR-0001] - [2af60bd6] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-12-12 11:46:52,603 - ERROR - [ERR-0404] - [f90d0bed] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2025-12-12 11:46:53,770 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:46:53,771 - INFO - [INFO] - Market state - Net Order: 152, Sentiment: 0.3906, Price Change: 75.9039, New Price: 175.9039
+2025-12-12 11:46:55,448 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NCLH']
+2025-12-12 11:46:58,993 - WARNING - [ERR-0001] - [c0ec6e82] Attempting to extract JSON from text (length: 2894 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:46:58,996 - ERROR - [ERR-0001] - [d4dcfcc9] Error getting factors analysis | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: helpers.py:get_factors()
+2025-12-12 11:46:58,997 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:46:58,998 - INFO - [INFO] - Market state - Net Order: 288, Sentiment: 0.7415, Price Change: 144.0731, New Price: 244.0731
+2025-12-12 11:47:01,578 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['DG']
+2025-12-12 11:47:02,102 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:47:02,648 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:47:02,648 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:47:03,198 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:47:03,198 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:47:03,743 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:47:03,743 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:47:04,389 - INFO - [INFO] - Batch cycle completed. Processed: 5 tickers, 0 pipelines. Remaining: 1 tickers, 3 pipelines
+2025-12-12 11:47:04,544 - INFO - [INFO] - Memory before cleanup: 4489.8 KB
+2025-12-12 11:47:35,492 - INFO - [INFO] - Memory after cleanup: 4489.5 KB (saved 320.0 bytes)
+2025-12-12 11:47:36,036 - INFO - [INFO] - Processing 1 tickers
+2025-12-12 11:50:35,006 - WARNING - [ERR-0001] - [b1478eec] Attempting to extract JSON from text (length: 43460 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:50:35,036 - WARNING - [ERR-0001] - [c9342bb8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:50:35,037 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:50:43,474 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:50:43,477 - INFO - [INFO] - Market state - Net Order: 181, Sentiment: 0.6249, Price Change: 90.4701, New Price: 190.4701
+2025-12-12 11:50:44,995 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CCL']
+2025-12-12 11:50:45,452 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:50:46,000 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:50:49,100 - ERROR - [ERR-0103] - [e982d331] Error parsing AI response as JSON | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: trending.py:get_trending_instruments()
+2025-12-12 11:50:49,101 - WARNING - [WARN-0002] - [c9d50490] Raw response content: I am sorry, but I cannot provide real-time stock market data or specific financial advice. The information available to me is not always up-to-the-minute and can be subject to delays. Additionally, id... | From: trending.py:get_trending_instruments()
+2025-12-12 11:50:49,662 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:50:55,129 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-12-12 11:50:55,955 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_crypto
+2025-12-12 11:51:53,837 - INFO - [INFO] - Number of pending ticker to process: 3
+2025-12-12 11:51:53,839 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:51:54,524 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 0 pipelines. Remaining: 3 tickers, 3 pipelines
+2025-12-12 11:51:54,829 - INFO - [INFO] - Memory before cleanup: 4489.3 KB
+2025-12-12 11:52:25,896 - INFO - [INFO] - Memory after cleanup: 4489.6 KB (saved -352.0 bytes)
+2025-12-12 11:52:26,465 - INFO - [INFO] - Processing 3 tickers
+2025-12-12 11:52:35,816 - ERROR - [ERR-0001] - [9fb2d1c1] Failed to parse AI response: "description": "Johnson & Johnson is a multinational pharmaceutical, biotechnology, and medical technologies corporation headquartered in New Brunswick, New Jersey.", "sector": "Health Care", "cashflow_health": "Very Good", "profit_health": "Very Good", "price_momentum": "Positive", "growth_health": "Positive"
+ | Exception: JSONDecodeError: Extra data: line 1 column 14 (char 13) | From: analysis.py:run_analysis()
+2025-12-12 11:54:16,603 - WARNING - [ERR-0001] - [47446ad7] Attempting to extract JSON from text (length: 42478 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:54:16,606 - WARNING - [ERR-0001] - [86d47732] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:54:16,606 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:54:17,582 - WARNING - [ERR-0001] - [390775c8] Attempting to extract JSON from text (length: 47572 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:54:17,609 - ERROR - [ERR-0404] - [7f5c969a] Error in holistic_market_model | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: holistic.py:run_holistic_market_model()
+2025-12-12 11:54:22,161 - ERROR - [ERR-0001] - [d3ef712b] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2025-12-12 11:54:22,162 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:54:22,164 - INFO - [INFO] - Market state - Net Order: 44, Sentiment: 0.1895, Price Change: 21.9274, New Price: 121.9274
+2025-12-12 11:54:23,903 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2025-12-12 11:54:44,581 - WARNING - [ERR-0001] - [300b9357] Attempting to extract JSON from text (length: 58833 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:54:44,583 - WARNING - [ERR-0001] - [d39b4b08] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:54:44,585 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:54:49,668 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:54:49,669 - INFO - [INFO] - Market state - Net Order: 140, Sentiment: 0.5088, Price Change: 70.129, New Price: 170.129
+2025-12-12 11:54:51,344 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NVDA']
+2025-12-12 11:54:51,782 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:54:52,330 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:54:52,331 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:54:52,879 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:54:52,879 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:54:53,430 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:54:53,430 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:54:54,136 - INFO - [INFO] - Batch cycle completed. Processed: 3 tickers, 0 pipelines. Remaining: 1 tickers, 3 pipelines
+2025-12-12 11:54:54,303 - INFO - [INFO] - Memory before cleanup: 4489.5 KB
+2025-12-12 11:55:25,253 - INFO - [INFO] - Memory after cleanup: 4490.3 KB (saved -764.0 bytes)
+2025-12-12 11:55:25,532 - INFO - [INFO] - Processing 1 tickers
+2025-12-12 11:57:09,172 - WARNING - [ERR-0001] - [9b38ac50] Attempting to extract JSON from text (length: 49064 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:57:09,178 - WARNING - [ERR-0001] - [7e1398d4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 11:57:09,178 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 11:57:16,666 - WARNING - [ERR-0001] - [12f9f4de] Attempting to extract JSON from text (length: 2006 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 11:57:16,668 - ERROR - [ERR-0001] - [e36725e3] Error getting factors analysis | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: helpers.py:get_factors()
+2025-12-12 11:57:16,669 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 11:57:16,671 - INFO - [INFO] - Market state - Net Order: 232, Sentiment: 0.7509, Price Change: 115.9642, New Price: 215.9642
+2025-12-12 11:57:18,138 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['JNJ']
+2025-12-12 11:57:18,633 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 11:57:19,180 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 11:57:22,645 - INFO - [INFO] - All trending tickers exist - updating pipeline metrics
+2025-12-12 11:57:23,469 - INFO - [INFO] - Updated pipeline run count for run_trending_analysis_equity
+2025-12-12 11:58:07,475 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:58:07,477 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:58:08,027 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 11:58:08,027 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 11:58:08,973 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 3 pipelines
+2025-12-12 11:58:09,147 - INFO - [INFO] - Memory before cleanup: 4490.1 KB
+2025-12-12 11:58:39,941 - INFO - [INFO] - Memory after cleanup: 4489.2 KB (saved 956.0 bytes)
+2025-12-12 11:58:40,223 - INFO - [INFO] - Processing 1 tickers
+2025-12-12 12:01:05,787 - WARNING - [ERR-0001] - [72ad6e18] Attempting to extract JSON from text (length: 60261 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 12:01:05,789 - WARNING - [ERR-0001] - [dec359f3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 12:01:05,789 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 12:01:13,420 - WARNING - [ERR-0001] - [63791942] Attempting to extract JSON from text (length: 2016 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 12:01:13,422 - ERROR - [ERR-0001] - [c0b83c76] Error getting factors analysis | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: helpers.py:get_factors()
+2025-12-12 12:01:13,422 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 12:01:13,424 - INFO - [INFO] - Market state - Net Order: -264, Sentiment: -0.5545, Price Change: -132.0271, New Price: -32.0271
+2025-12-12 12:01:15,253 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NFLX']
+2025-12-12 12:01:15,717 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 12:01:16,269 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 12:02:37,564 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 12:02:37,566 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 12:02:38,119 - INFO - [INFO] - Number of pending ticker to process: 1
+2025-12-12 12:02:38,120 - INFO - [INFO] - Skipping trending analysis - insights pending generation
+2025-12-12 12:02:38,779 - INFO - [INFO] - Batch cycle completed. Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 3 pipelines
+2025-12-12 12:02:38,929 - INFO - [INFO] - Memory before cleanup: 4489.5 KB
+2025-12-12 12:03:09,874 - INFO - [INFO] - Memory after cleanup: 4489.4 KB (saved 64.0 bytes)
+2025-12-12 12:03:10,151 - INFO - [INFO] - Processing 1 tickers
+2025-12-12 12:05:20,467 - WARNING - [ERR-0001] - [c7b78fe7] Attempting to extract JSON from text (length: 54256 chars) | From: helpers.py:extract_json_from_text()
+2025-12-12 12:05:20,470 - WARNING - [ERR-0001] - [5cf026a9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-12 12:05:20,470 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-12 12:05:26,203 - INFO - [INFO] - Time step t=1 starting
+2025-12-12 12:05:26,206 - INFO - [INFO] - Market state - Net Order: -80, Sentiment: -0.2585, Price Change: -39.8923, New Price: 60.1077
+2025-12-12 12:05:27,911 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BA']
+2025-12-12 12:05:28,353 - INFO - [INFO] - Processing 3 pipelines...
+2025-12-12 12:05:28,903 - INFO - [INFO] - Number of pending ticker to process: 0
+2025-12-12 12:05:34,372 - ERROR - [ERR-0103] - [2cef692f] Error parsing AI response as JSON | Exception: JSONDecodeError: Extra data: line 64 column 1 (char 1151) | From: trending.py:get_trending_instruments()
+2025-12-12 12:05:34,374 - WARNING - [WARN-0002] - [d2d73052] Raw response content: ```json
+[
+  {
+    "ticker": "RCL",
+    "ticker_tradingview": "RCL",
+    "name": "Royal Caribbean Cruises Ltd.",
+    "decimal": 2
+  },
+  {
+    "ticker": "NCLH",
+    "ticker_tradingview": "NCLH",
+    "n... | From: trending.py:get_trending_instruments()
+2025-12-12 12:05:34,926 - INFO - [INFO] - Number of pending ticker to process: 0

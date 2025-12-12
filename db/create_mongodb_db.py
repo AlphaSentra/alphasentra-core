@@ -371,10 +371,10 @@ def insert_pipeline_data(db):
     
     # Pipeline data to insert
     pipeline_data = [
-        {"model_function": "get_high_conviction_buys", "task_completed": False, "model_name": "hcb", "recurrence": "multi"},
         {"model_function": "run_trending_analysis_equity", "task_completed": False, "model_name": "trending", "recurrence": "multi"},
         {"model_function": "run_trending_analysis_crypto", "task_completed": False, "model_name": "trending", "recurrence": "multi"},
-        {"model_function": "run_trending_analysis_forex", "task_completed": False, "model_name": "trending", "recurrence": "multi"}
+        {"model_function": "run_trending_analysis_forex", "task_completed": False, "model_name": "trending", "recurrence": "multi"},
+        {"model_function": "get_high_conviction_buys", "task_completed": False, "model_name": "hcb", "recurrence": "multi"}
     ]
     
     try:

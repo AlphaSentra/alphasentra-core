@@ -108,14 +108,14 @@ def get_high_conviction_buys():
                 }]
             )
     
-    if not check_pending_ticker_documents():
-        DatabaseManager().get_client()
-        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
-        collection = db["pipeline"]
-        collection.update_one(
-            {"model_function": "get_high_conviction_buys"},
-            {"$set": {"task_completed": True}}
-        )
+    #if not check_pending_ticker_documents():
+    #    DatabaseManager().get_client()
+    #    db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+    #    collection = db["pipeline"]
+    #    collection.update_one(
+    #        {"model_function": "get_high_conviction_buys"},
+    #        {"$set": {"task_completed": True}}
+    #    )
 
     return results
 

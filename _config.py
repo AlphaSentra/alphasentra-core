@@ -13,12 +13,12 @@ MARKET = "US"
 # Batch processing configuration
 # Number of tickers to process in each batch (tested and validated at 5 to avoid rate limits)
 BATCH_SIZE = 5
-BATCH_PAUSE_IN_SECONDS = 120
+BATCH_PAUSE_IN_SECONDS = 30
 # Maximum processing time in seconds (6 hours)
 BATCH_TIMEOUT = 6 * 60 * 60
 
 # AI Response document generation failed retry configuration
-AI_RESPONSE_MAX_RETRIES = 5
+AI_RESPONSE_MAX_RETRIES = 1
 AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS = 30
 
 # Database size limit in megabytes

@@ -109,7 +109,7 @@ def update_pipeline_run_count(model_function):
             
             # Calculate new run_count and task_completed
             new_run_count = existing_doc.get('run_count', 0) + 1
-            task_completed = new_run_count >= 4
+            task_completed = new_run_count >= 1
             
             # Update existing document
             pipeline_collection.update_one(

@@ -196,31 +196,31 @@ def run_batch_processing(max_workers=BATCH_SIZE):
     
     while time.time() - start_time < TIMEOUT:
         # Process tickers
-        #tickers_processed = 0
-        #tickers_coll = db['tickers']
-        #if tickers_coll is not None:
-        #    pending_tickers = list(tickers_coll.aggregate([
-        #        {"$match": {"document_generated": False, "recurrence": {"$ne": "processed"}}},
-        #        {"$sample": {"size": BATCH_SIZE}}
-        #    ]))
-        #    
-        #    if pending_tickers:
-        #        log_info(f"Processing {len(pending_tickers)} tickers")
-        #        with Pool(processes=max_workers) as pool:
-        #            results = [pool.apply_async(process_ticker, (doc,))
-        #                     for doc in pending_tickers]
-        #            
-        #            for result in results:
-        #                try:
-        #                    result.get()
-        #                    tickers_processed += 1
-        #                except Exception as exc:
-        #                    doc = pending_tickers[results.index(result)]
-        #                    log_error(f"Process generated an exception for {doc['ticker']}", "PROCESS_ERROR", exc)
-        #        
-        #        # Explicit cleanup
-        #        del pending_tickers
-        #        gc.collect()
+        tickers_processed = 0
+        tickers_coll = db['tickers']
+        if tickers_coll is not None:
+            pending_tickers = list(tickers_coll.aggregate([
+                {"$match": {"document_generated": False, "recurrence": {"$ne": "processed"}}},
+                {"$sample": {"size": BATCH_SIZE}}
+            ]))
+            
+            if pending_tickers:
+                log_info(f"Processing {len(pending_tickers)} tickers")
+                with Pool(processes=max_workers) as pool:
+                    results = [pool.apply_async(process_ticker, (doc,))
+                             for doc in pending_tickers]
+                    
+                    for result in results:
+                        try:
+                            result.get()
+                            tickers_processed += 1
+                        except Exception as exc:
+                            doc = pending_tickers[results.index(result)]
+                            log_error(f"Process generated an exception for {doc['ticker']}", "PROCESS_ERROR", exc)
+                
+                # Explicit cleanup
+                del pending_tickers
+                gc.collect()
         
         # Process pipelines
         pipelines_processed = 0
@@ -242,15 +242,13 @@ def run_batch_processing(max_workers=BATCH_SIZE):
                 gc.collect()
         
         # Check completion status
-        #remaining_tickers = tickers_coll.count_documents({"document_generated": False}) if tickers_coll is not None else 0
+        remaining_tickers = tickers_coll.count_documents({"document_generated": False}) if tickers_coll is not None else 0
         remaining_pipelines = pipelines_coll.count_documents({"task_completed": False}) if pipelines_coll is not None else 0
         
-        #log_info(f"Batch cycle completed. Processed: {tickers_processed} tickers, {pipelines_processed} pipelines. Remaining: {remaining_tickers} tickers, {remaining_pipelines} pipelines")
-        log_info(f"Batch cycle completed. Processed: {pipelines_processed} pipelines., {remaining_pipelines} pipelines")
+        log_info(f"Batch cycle completed. Processed: {tickers_processed} tickers, {pipelines_processed} pipelines. Remaining: {remaining_tickers} tickers, {remaining_pipelines} pipelines")
         
         # Add pause with progress bar and memory cleanup
-        #if tickers_processed > 0 or pipelines_processed > 0:
-        if pipelines_processed > 0:
+        if tickers_processed > 0 or pipelines_processed > 0:
             # Pre-pause memory report
             snapshot1 = tracemalloc.take_snapshot()
             top_stats1 = snapshot1.statistics('lineno')
@@ -278,22 +276,19 @@ def run_batch_processing(max_workers=BATCH_SIZE):
                 log_info("Batch pause interrupted", "PAUSE_INTERRUPTED")
         
         # Exit if no more work
-        #if remaining_tickers == 0 and remaining_pipelines == 0:
-        if remaining_pipelines == 0:
+        if remaining_tickers == 0 and remaining_pipelines == 0:
             log_info("All tickers and pipelines processed successfully!")
             break
             
         # Sleep before next check if no items were processed
-        #if tickers_processed == 0 and pipelines_processed == 0:
-        if pipelines_processed == 0:
+        if tickers_processed == 0 and pipelines_processed == 0:
             time.sleep(CHECK_INTERVAL)
     
     # Final status report
     if time.time() - start_time >= TIMEOUT:
-        #remaining_tickers = tickers_coll.count_documents({"document_generated": False}) if tickers_coll else 0
+        remaining_tickers = tickers_coll.count_documents({"document_generated": False}) if tickers_coll else 0
         remaining_pipelines = pipelines_coll.count_documents({"task_completed": False}) if pipelines_coll else 0
-        #log_warning(f"Timeout reached after 4 hours. Remaining: {remaining_tickers} tickers, {remaining_pipelines} pipelines", "TIMEOUT")
-        log_warning(f"Timeout reached after 4 hours. Remaining: {remaining_pipelines} pipelines", "TIMEOUT")
+        log_warning(f"Timeout reached after 4 hours. Remaining: {remaining_tickers} tickers, {remaining_pipelines} pipelines", "TIMEOUT")
     
     # Memory analysis
     snapshot = tracemalloc.take_snapshot()
