@@ -109,7 +109,7 @@ def update_pipeline_run_count(model_function):
             
             # Calculate new run_count and task_completed
             new_run_count = existing_doc.get('run_count', 0) + 1
-            task_completed = new_run_count >= 1
+            task_completed = new_run_count >= 2
             
             # Update existing document
             pipeline_collection.update_one(
@@ -174,7 +174,7 @@ def create_new_ticker_documents(asset_class, instruments, new_tickers):
                 factors=factors,
                 model_function=model_function,
                 model_name=model_name,
-                importance=5,
+                importance=3,
                 recurrence="once",
                 decimal=instrument['decimal']
             )
@@ -337,8 +337,8 @@ def get_trending_instruments(asset_class=None, model_strategy="Pro", gemini_mode
         else:
             log_info("All trending tickers exist - updating pipeline metrics")
             
-            # Track successful pipeline execution count
-            update_pipeline_run_count(model_function)
+        # Track successful pipeline execution count
+        update_pipeline_run_count(model_function)
             
         # Update recurrence and importance for trending instruments
         if instruments:
