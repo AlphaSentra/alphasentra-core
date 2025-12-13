@@ -1087,7 +1087,7 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
             
             # Use default model if not provided
             if model_name is None:
-                model_name = os.getenv("GEMINI_PRO_MODEL")
+                model_name = os.getenv("GEMINI_DEFAULT")
             
             # Call get_gen_ai_response with the decrypted FACTOR_WEIGHTS prompt
             ai_weights_response = get_gen_ai_response(tickers, "factor weights", decrypted_factor_weights, model_name, batch_mode=batch_mode)
