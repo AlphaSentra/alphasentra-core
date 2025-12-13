@@ -49,8 +49,13 @@ def run_analysis(ticker, instrument_name, batch_mode=False):
     try:
         # Helper function for JSON parsing
         def parse_ai_response(text):
+            if not text:
+                return {}
             json_match = re.search(r'```json\s*({.*?})\s*```', text, re.DOTALL)
             return json.loads(json_match.group(1) if json_match else text)
+        
+        if not response_text:
+            return {"error": "AI response empty"}
         
         response_data = parse_ai_response(response_text)
         

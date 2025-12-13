@@ -2070,3 +2070,9 @@ generation_config
 2025-12-13 20:46:02,919 - INFO - [INFO] - Time step t=1 starting
 2025-12-13 20:46:02,922 - INFO - [INFO] - Market state - Net Order: 8, Sentiment: 0.405, Price Change: 3.9611, New Price: 103.9611
 2025-12-13 20:46:04,494 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']
+2025-12-13 20:59:20,786 - WARNING - [ERR-0001] - [16cc0896] Attempting to extract JSON from text (length: 15648 chars) | From: helpers.py:extract_json_from_text()
+2025-12-13 20:59:20,788 - WARNING - [ERR-0001] - [22466f56] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-13 20:59:20,788 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-13 20:59:31,188 - INFO - [INFO] - Time step t=1 starting
+2025-12-13 20:59:31,193 - INFO - [INFO] - Market state - Net Order: 13, Sentiment: 0.38, Price Change: 6.4706, New Price: 106.4706
+2025-12-13 20:59:32,731 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
