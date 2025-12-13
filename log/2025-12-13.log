@@ -2015,3 +2015,58 @@ print(google_search.search(queries=["Bank of England monetary policy stance Dece
 2025-12-13 11:41:15,306 - INFO - [INFO] - Memory before cleanup: 3271.8 KB
 2025-12-13 11:41:20,554 - INFO - [INFO] - Memory after cleanup: 3272.9 KB (saved -1152.0 bytes)
 2025-12-13 11:41:21,129 - INFO - [INFO] - Processing 1 tickers
+2025-12-13 19:01:17,567 - WARNING - [ERR-0001] - [85a9cf98] Attempting to extract JSON from text (length: 14442 chars) | From: helpers.py:extract_json_from_text()
+2025-12-13 19:01:17,570 - WARNING - [ERR-0001] - [3ea50f64] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-13 19:01:17,570 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-13 19:01:22,104 - INFO - [INFO] - Time step t=1 starting
+2025-12-13 19:01:22,106 - INFO - [INFO] - Market state - Net Order: 12, Sentiment: 0.355, Price Change: 5.85, New Price: 105.85
+2025-12-13 19:01:24,347 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2025-12-13 20:31:44,180 - ERROR - [ERR-0001] - [5954a5f3] Failed to parse AI response: Error generating content: 1 validation error for GenerateContentConfig
+generation_config
+  Extra inputs are not permitted [type=extra_forbidden, input_value={'max_output_tokens': 10000}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/extra_forbidden | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-12-13 20:31:46,138 - WARNING - [ERR-0001] - [bc5fc75e] Attempting to extract JSON from text (length: 288 chars) | From: helpers.py:extract_json_from_text()
+2025-12-13 20:31:46,139 - ERROR - [ERR-0001] - [f17aac4d] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-12-13 20:31:46,140 - ERROR - [ERR-0001] - [e220522e] Text preview: Error generating content: 1 validation error for GenerateContentConfig
+generation_config
+  Extra inputs are not permitted [type=extra_forbidden, input_value={'max_output_tokens': 10000}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/extra_forbidden... | From: helpers.py:extract_json_from_text()
+2025-12-13 20:31:46,140 - WARNING - [ERR-0001] - [95ce6607] Attempting to extract JSON from text (length: 288 chars) | From: helpers.py:extract_json_from_text()
+2025-12-13 20:31:46,141 - ERROR - [ERR-0001] - [16e4d3b7] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-12-13 20:31:46,141 - ERROR - [ERR-0001] - [8cc0ee94] Text preview: Error generating content: 1 validation error for GenerateContentConfig
+generation_config
+  Extra inputs are not permitted [type=extra_forbidden, input_value={'max_output_tokens': 10000}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/extra_forbidden... | From: helpers.py:extract_json_from_text()
+2025-12-13 20:31:46,141 - ERROR - [ERR-0001] - [242490ca] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-12-13 20:31:46,141 - WARNING - [WARN-0002] - [f3099961] Raw response content: Error generating content: 1 validation error for GenerateContentConfig
+generation_config
+  Extra inputs are not permitted [type=extra_forbidden, input_value={'max_output_tokens': 10000}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/extra_forbidden... | From: holistic.py:run_holistic_market_model()
+2025-12-13 20:36:32,392 - ERROR - [ERR-0001] - [724f90c2] Failed to parse AI response: Error generating content: Models.generate_content() got an unexpected keyword argument 'tools' | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2025-12-13 20:36:34,286 - WARNING - [ERR-0001] - [19ea49d0] Attempting to extract JSON from text (length: 94 chars) | From: helpers.py:extract_json_from_text()
+2025-12-13 20:36:34,288 - ERROR - [ERR-0001] - [80b01d1a] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-12-13 20:36:34,288 - ERROR - [ERR-0001] - [c6fc2e6d] Text preview: Error generating content: Models.generate_content() got an unexpected keyword argument 'tools'... | From: helpers.py:extract_json_from_text()
+2025-12-13 20:36:34,289 - WARNING - [ERR-0001] - [e5882e22] Attempting to extract JSON from text (length: 94 chars) | From: helpers.py:extract_json_from_text()
+2025-12-13 20:36:34,289 - ERROR - [ERR-0001] - [72c38f64] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2025-12-13 20:36:34,290 - ERROR - [ERR-0001] - [65b57199] Text preview: Error generating content: Models.generate_content() got an unexpected keyword argument 'tools'... | From: helpers.py:extract_json_from_text()
+2025-12-13 20:36:34,290 - ERROR - [ERR-0001] - [ee512d8e] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2025-12-13 20:36:34,290 - WARNING - [WARN-0002] - [e04c4ef5] Raw response content: Error generating content: Models.generate_content() got an unexpected keyword argument 'tools'... | From: holistic.py:run_holistic_market_model()
+2025-12-13 20:39:03,272 - WARNING - [ERR-0001] - [9bcb5bb0] Attempting to extract JSON from text (length: 10333 chars) | From: helpers.py:extract_json_from_text()
+2025-12-13 20:39:03,274 - WARNING - [ERR-0001] - [e6aa2b64] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-13 20:39:03,275 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-13 20:39:09,097 - INFO - [INFO] - Time step t=1 starting
+2025-12-13 20:39:09,100 - INFO - [INFO] - Market state - Net Order: 18, Sentiment: 0.395, Price Change: 9.1849, New Price: 109.1849
+2025-12-13 20:39:10,694 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']
+2025-12-13 20:44:49,295 - WARNING - [ERR-0001] - [7461d34c] Attempting to extract JSON from text (length: 2785 chars) | From: helpers.py:extract_json_from_text()
+2025-12-13 20:44:49,296 - WARNING - [ERR-0001] - [d68ec72f] JSON parsing failed for pattern ```json\s*(\{.*\})\s*```...: Extra data: line 10 column 1 (char 184) | From: helpers.py:extract_json_from_text()
+2025-12-13 20:44:49,297 - ERROR - [ERR-0104] - [c935e3a4] Error getting AI weights | Exception: TypeError: 'int' object is not callable | From: helpers.py:get_ai_weights()
+2025-12-13 20:45:27,162 - WARNING - [ERR-0001] - [3f1b5582] Attempting to extract JSON from text (length: 167 chars) | From: helpers.py:extract_json_from_text()
+2025-12-13 20:45:27,163 - WARNING - [ERR-0001] - [e5f11012] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-13 20:45:52,746 - WARNING - [ERR-0001] - [7c946fa0] Attempting to extract JSON from text (length: 9073 chars) | From: helpers.py:extract_json_from_text()
+2025-12-13 20:45:52,749 - WARNING - [ERR-0001] - [14a6c81b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2025-12-13 20:45:52,749 - INFO - [INFO] - Successfully parsed AI response as JSON
+2025-12-13 20:46:02,913 - WARNING - [ERR-0001] - [c1028aa2] Attempting to extract JSON from text (length: 6090 chars) | From: helpers.py:extract_json_from_text()
+2025-12-13 20:46:02,919 - ERROR - [ERR-0001] - [3aca5dc4] Error getting factors analysis | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: helpers.py:get_factors()
+2025-12-13 20:46:02,919 - INFO - [INFO] - Time step t=1 starting
+2025-12-13 20:46:02,922 - INFO - [INFO] - Market state - Net Order: 8, Sentiment: 0.405, Price Change: 3.9611, New Price: 103.9611
+2025-12-13 20:46:04,494 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']

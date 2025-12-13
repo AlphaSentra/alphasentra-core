@@ -102,7 +102,10 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None,
         response = client.models.generate_content(
             model=gemini_model,
             contents=prompt,
-            config={"tools": [{"google_search": {}}]},
+            config={
+                    "tools": [{"google_search": {}}],
+                    "max_output_tokens": 15000
+            },
         )
         
         # Stop the progress indicator
