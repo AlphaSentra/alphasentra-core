@@ -105,7 +105,7 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
-        result = get_gen_ai_response([tickers], "fx long/short", formatted_prompt, os.getenv("GEMINI_FLASH_MODEL"), batch_mode=batch_mode)
+        result = get_gen_ai_response([tickers], "fx long/short", formatted_prompt, batch_mode=batch_mode)
         
         # Try to parse the result as JSON
         try:

@@ -107,7 +107,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
     
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
-        result = get_gen_ai_response([tickers], "holistic market", formatted_prompt, os.getenv("GEMINI_FLASH_MODEL"), batch_mode=batch_mode)
+        result = get_gen_ai_response([tickers], "holistic market", formatted_prompt, batch_mode=batch_mode)
         
         # Enhanced JSON parsing with repair capabilities
         try:
