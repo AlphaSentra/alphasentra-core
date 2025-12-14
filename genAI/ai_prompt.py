@@ -104,7 +104,7 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None,
             contents=prompt,
             config={
                     "tools": [{"google_search": {}}],
-                    "max_output_tokens": 15000
+                    "max_output_tokens": 5000
             },
         )
         
