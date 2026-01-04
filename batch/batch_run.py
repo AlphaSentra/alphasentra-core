@@ -281,9 +281,9 @@ def run_batch_processing(max_workers=BATCH_SIZE):
                 log_info("Batch pause interrupted", "PAUSE_INTERRUPTED")
         
         # Exit if no more work
-        if remaining_tickers == 0 and remaining_pipelines == 0:
-            log_info("All tickers and pipelines processed successfully!")
-            break
+        #if remaining_tickers == 0 and remaining_pipelines == 0:
+        #    log_info("All tickers and pipelines processed successfully!")
+        #    break
             
         # Sleep before next check if no items were processed
         if tickers_processed == 0 and pipelines_processed == 0:
