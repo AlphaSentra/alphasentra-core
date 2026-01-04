@@ -151,8 +151,13 @@ def process_pipeline(doc):
             module = importlib.import_module(f"models.{module_name}")
             func = getattr(module, func_name)
         except (ImportError, AttributeError) as e:
-            log_warning(f"Failed to import {module_name}.{func_name}: {e}", "IMPORT_ERROR")
-            return False
+            log_info(f"Load module {module_name}.{func_name}: {e}, and locating function", "IMPORT_MODULE")
+            try:
+                module = importlib.import_module(f"models.default")
+                func = getattr(module, func_name)
+            except (ImportError, AttributeError) as e_default:
+                log_warning(f"Failed to import from default script {func_name}: {e_default}", "IMPORT_ERROR")
+                return False
         
         # Prepare parameters for pipeline functions
         decimal = 2  # Default for ETFs/indices
