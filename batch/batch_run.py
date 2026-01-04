@@ -196,7 +196,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
     db = client[MONGODB_DATABASE]
     
     TIMEOUT = BATCH_TIMEOUT
-    CHECK_INTERVAL = 60  # Check for new items every 60 seconds
+    CHECK_INTERVAL = 1 # seconds between checks when no items to process
     start_time = time.time()
     
     while time.time() - start_time < TIMEOUT:
@@ -250,7 +250,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
         remaining_tickers = tickers_coll.count_documents({"document_generated": False}) if tickers_coll is not None else 0
         remaining_pipelines = pipelines_coll.count_documents({"task_completed": False}) if pipelines_coll is not None else 0
         
-        log_info(f"Batch cycle completed. Processed: {tickers_processed} tickers, {pipelines_processed} pipelines. Remaining: {remaining_tickers} tickers, {remaining_pipelines} pipelines")
+        log_info(f"Batch cycle completed — Awaiting request(s). Processed: {tickers_processed} tickers, {pipelines_processed} pipelines. Remaining: {remaining_tickers} tickers, {remaining_pipelines} pipelines")
         
         # Add pause with progress bar and memory cleanup
         if tickers_processed > 0 or pipelines_processed > 0:
