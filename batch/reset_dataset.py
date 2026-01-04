@@ -23,7 +23,7 @@ logger = AgLogger('reset_dataset')
 
 def reset_document_generated():
     """
-    Reset the document_generated field to False for all documents in the tickers collection
+    Reset the document_generated field to True for all documents in the tickers collection
     except those where recurrence is 'processed'.
     
     Returns:
@@ -38,10 +38,10 @@ def reset_document_generated():
         db = client[db_name]
         collection = db['tickers']
         
-        # Update all documents to set document_generated to False except 'processed' tickers
+        # Update all documents to set document_generated to True except 'processed' tickers
         result = collection.update_many(
             filter={"recurrence": {"$ne": "processed"}},
-            update={"$set": {"document_generated": False}}
+            update={"$set": {"document_generated": True}}
         )
         
         logger.info(f"Successfully updated {result.modified_count} documents in tickers collection")

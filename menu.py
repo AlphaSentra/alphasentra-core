@@ -3,6 +3,7 @@ Description:
 Define menu items and their corresponding actions for the main menu.
 """
 
+import os
 import models.fx_long_short as fx_long_short
 import models.holistic as holistic
 import db.create_mongodb_db as create_mongodb_db
@@ -214,6 +215,16 @@ def run_reset_dataset_with_confirmation():
         reset_dataset.reset_all()
     else:
         print("Dataset reset cancelled.")
+
+def run_db_quota_cleanup_with_confirmation():
+    """
+    Run database quota check and cleanup with user confirmation.
+    """
+    confirm = input("Press y to run database quota and cleanup or n to cancel: ").strip().lower()
+    if confirm == 'y':
+        os.system("python main.py -dblimit")
+    else:
+        print("Database quota cleanup cancelled.")
 # Define menu items as tuples: (description, function)
 # Use None as function for separator items
 MENU_ITEMS = [
@@ -278,5 +289,8 @@ MENU_ITEMS = [
 
     ("Reset dataset",
      run_reset_dataset_with_confirmation),
+     
+    ("Database Quota and Cleanup",
+     run_db_quota_cleanup_with_confirmation),
 
 ]

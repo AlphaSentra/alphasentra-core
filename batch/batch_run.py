@@ -145,13 +145,13 @@ def process_pipeline(doc):
             return False
         
         module_name, func_name = module_info
-        
+
         # Dynamically import the module and function
         try:
             module = importlib.import_module(f"models.{module_name}")
             func = getattr(module, func_name)
         except (ImportError, AttributeError) as e:
-            log_info(f"Load module {module_name}.{func_name}: {e}, and locating function", "IMPORT_MODULE")
+            log_info(f"Running: collecting: ticker: {module_name} | {func_name}: default module")
             try:
                 module = importlib.import_module(f"models.default")
                 func = getattr(module, func_name)

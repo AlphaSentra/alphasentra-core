@@ -20,7 +20,7 @@
 2025-11-11 07:47:47,908 - INFO - [INFO] - Starting deletion of all weigh_factors documents
 2025-11-11 07:47:48,190 - INFO - [INFO] - Successfully deleted 18 documents from 'weight_factors'.
 2025-11-11 07:47:48,191 - INFO - [INFO] - All reset operations completed successfully
-2025-11-11 16:46:41,083 - WARNING - [ERR-0003] - [c5812536] Database size 509.70MB exceeds 400MB limit | From: db_quota.py:enforce_db_size_limit()
+2025-11-11 16:46:41,083 - WARNING - [ERR-0003] - [c5812536] Database size 509.70MB exceeds 400MB limit | From: db_quota.py:purge_insights_collection()
 2025-11-11 16:46:43,277 - INFO - [INFO] - Deleted document 69082c527517c299a68df5a3 - new size: 509.57MB
 2025-11-11 16:46:45,017 - INFO - [INFO] - Deleted document 69082c5c7517c299a68df5a4 - new size: 509.42MB
 2025-11-11 16:46:46,553 - INFO - [INFO] - Deleted document 69082c937517c299a68df5a5 - new size: 509.27MB

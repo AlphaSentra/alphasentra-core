@@ -15,7 +15,7 @@ from menu import MENU_ITEMS
 from _config import LANGUAGE
 from batch.batch_run import run_batch_processing
 from batch.reset_dataset import reset_all
-from batch.db_quota import enforce_db_size_limit
+from batch.db_quota import purge_insights_collection
 
 
 def print_menu():
@@ -80,6 +80,6 @@ if __name__ == "__main__":
     elif args.reset:
         reset_all()
     elif args.dblimit:
-        enforce_db_size_limit()
+        purge_insights_collection()
     else:
         main()

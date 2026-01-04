@@ -33,7 +33,7 @@ python main.py -dblimit [MB]
 
 The `-batch` flag executes `run_batch_processing()` without showing the menu interface.
 The `-reset` flag executes `reset_all()` to reset document statuses and clean up one-time records.
-The `-dblimit` flag executes `enforce_db_size_limit()` to manage database storage quotas.
+The `-dblimit` flag executes `purge_insights_collection()` to delete all documents in the insights collection.
 
 ## Environment Variables
 Create a `.env` file in the root of the project. This file should include sensitive configuration such as database connections, API keys, and the encryption secret.

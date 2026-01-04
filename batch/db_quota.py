@@ -13,55 +13,24 @@ from _config import DB_SIZE_LIMIT_MB
 from helpers import DatabaseManager
 import os
 
-def enforce_db_size_limit(max_size_mb: int = DB_SIZE_LIMIT_MB) -> None:
+def purge_insights_collection() -> None:
     """
-    Remove oldest documents from 'insights' collection until database size is under limit.
-    Deletes documents one at a time to be conservative.
-    
-    Args:
-        max_size_mb: Maximum allowed database size in megabytes
+    Delete all documents in the 'insights' collection.
     """
     
     client = DatabaseManager().get_client()
     db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
     insights = db.insights
-    max_size_bytes = max_size_mb * 1024 * 1024
     
     try:
-        current_stats = db.command("dbstats")
-        current_size = current_stats["dataSize"]
+        result = insights.delete_many({})
+        deleted_count = result.deleted_count
         
-        if current_size <= max_size_bytes:
-            log_info(f"Database size {current_size/1024/1024:.2f}MB is under threshold of {max_size_mb}MB")
-            return
+        if deleted_count > 0:
+            log_info(f"Deleted {deleted_count} documents from insights collection")
+        else:
+            log_info("No documents found in insights collection")
             
-        log_warning(f"Database size {current_size/1024/1024:.2f}MB exceeds {max_size_mb}MB limit", "DATABASE")
-        
-        # Safety limit to prevent infinite loops
-        max_deletions = 1000  
-        deleted_count = 0
-        
-        while current_size > max_size_bytes and deleted_count < max_deletions:
-            # Find and remove oldest document by _id (which contains timestamp)
-            oldest_doc = insights.find_one(sort=[("_id", pymongo.ASCENDING)])
-            if not oldest_doc:
-                log_warning("No documents remaining in insights collection")
-                break
-                
-            insights.delete_one({"_id": oldest_doc["_id"]})
-            deleted_count += 1
-            
-            # Refresh stats after deletion
-            current_stats = db.command("dbstats")
-            current_size = current_stats["dataSize"]
-            
-            log_info(f"Deleted document {oldest_doc['_id']} - new size: {current_size/1024/1024:.2f}MB")
-            
-        if deleted_count >= max_deletions:
-            log_error("Reached maximum deletion limit without reaching size target", "DATABASE")
-            
-        log_info(f"Finished cleanup. Final database size: {current_size/1024/1024:.2f}MB")
-        
     except pymongo.errors.PyMongoError as e:
-        log_error(f"Error enforcing database size limit: {str(e)}", "DATABASE", e)
+        log_error(f"Error purging insights collection: {str(e)}", "DATABASE", e)
         raise
