@@ -2,7 +2,7 @@ name: Data Collection and Processing
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Runs every 6 hours at minute 0 past the hour
+    - cron: '0 */6 * * *'  # Runs every 5 hours (ping)
   workflow_dispatch:
 
 jobs:

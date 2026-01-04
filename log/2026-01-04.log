@@ -1,0 +1,9 @@
+2026-01-04 20:07:42,453 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-04 20:07:48,595 - INFO - [INFO] - Processing 2 pipelines...
+2026-01-04 20:07:49,007 - ERROR - [ERR-0001] - [ac647a22] Error processing pipeline get_insights | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: batch_run.py:process_pipeline()
+2026-01-04 20:07:49,008 - ERROR - [ERR-0001] - [af8603a8] Error processing pipeline get_insights | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: batch_run.py:process_pipeline()
+2026-01-04 20:07:49,697 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
+2026-01-04 20:08:50,345 - INFO - [INFO] - Processing 2 pipelines...
+2026-01-04 20:08:50,352 - ERROR - [ERR-0001] - [7dc19161] Error processing pipeline get_insights | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: batch_run.py:process_pipeline()
+2026-01-04 20:08:50,353 - ERROR - [ERR-0001] - [2a1afc66] Error processing pipeline get_insights | Exception: TypeError: log_info() takes 1 positional argument but 2 were given | From: batch_run.py:process_pipeline()
+2026-01-04 20:08:51,112 - INFO - [INFO] - Batch cycle completed. Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 2 pipelines
