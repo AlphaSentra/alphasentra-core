@@ -104,7 +104,10 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None,
             contents=prompt,
             config={
                     "tools": [{"google_search": {}}],
-                    "max_output_tokens": 5000
+                    "temperature"=0.1,
+                    "top_p"=0.95,
+                    "max_output_tokens": 5000,
+                    "response_mime_type"="application/json"
             },
         )
         
