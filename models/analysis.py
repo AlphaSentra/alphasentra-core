@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 import re
 import json
@@ -29,9 +30,13 @@ def run_analysis(ticker, instrument_name, batch_mode=False):
             "sector": ""
         }
     
+    # Create current date in the format "September 6, 2025"
+    current_date = datetime.datetime.now().strftime("%B %d, %Y")
+
     # Format prompt with instrument details
     full_prompt = decrypted_prompt.format(
         tickers_str=ticker,
+        current_date=current_date,
         instrument_name=instrument_name
     )
     
