@@ -12,3 +12,492 @@
 2026-01-07 15:33:44,961 - INFO - [INFO] - Time step t=1 starting
 2026-01-07 15:33:44,963 - INFO - [INFO] - Market state - Net Order: 4, Sentiment: 0.175, Price Change: 2.0804, New Price: 102.0804
 2026-01-07 15:33:46,547 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-07 15:49:34,941 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-07 15:49:39,017 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:49:41,240 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:49:43,349 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:49:45,442 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:49:47,547 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:49:49,097 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-07 15:49:49,099 - INFO - [INFO] - Running: collecting: ticker: JPM | get_insights: default module
+2026-01-07 15:49:50,762 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-07 15:49:52,322 - INFO - [INFO] - Processing 1 tickers
+2026-01-07 15:50:16,754 - WARNING - [ERR-0001] - [8efa4282] Attempting to extract JSON from text (length: 11138 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 15:50:16,756 - WARNING - [ERR-0001] - [efd4477d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 15:50:16,756 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-07 15:50:21,237 - ERROR - [ERR-0001] - [cc965035] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-07 15:50:21,237 - INFO - [INFO] - Time step t=1 starting
+2026-01-07 15:50:21,241 - INFO - [INFO] - Market state - Net Order: 18, Sentiment: 0.305, Price Change: 9.0382, New Price: 109.0382
+2026-01-07 15:50:22,877 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['JPM']
+2026-01-07 15:50:23,810 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:23,910 - INFO - [INFO] - Memory before cleanup: 2636.0 KB
+2026-01-07 15:50:25,141 - INFO - [INFO] - Memory after cleanup: 3007.2 KB (saved -380064.0 bytes)
+2026-01-07 15:50:26,238 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:28,548 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:30,800 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:33,019 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:35,338 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:37,527 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:39,619 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:41,760 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:43,946 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:46,263 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:48,415 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:50,598 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:52,714 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:50:54,864 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:58:04,013 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-07 15:58:09,040 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:58:11,291 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:58:13,411 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:58:15,565 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:58:17,701 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 15:58:19,262 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-07 15:58:19,269 - INFO - [INFO] - Running: collecting: ticker: BABA | get_insights: default module
+2026-01-07 15:58:20,803 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-07 15:58:22,364 - INFO - [INFO] - Processing 1 tickers
+2026-01-07 15:59:12,536 - WARNING - [ERR-0001] - [e9518f62] Attempting to extract JSON from text (length: 23824 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 15:59:12,544 - WARNING - [ERR-0001] - [b2dc2b76] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 15:59:12,544 - WARNING - [ERR-0001] - [76da59cc] Attempting to extract JSON from text (length: 331 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 15:59:12,544 - WARNING - [ERR-0001] - [3338277b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 15:59:12,544 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-07 15:59:17,441 - WARNING - [ERR-0303] - [24f526c5] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
+2026-01-07 15:59:17,441 - ERROR - [ERR-0303] - [8d6bf543] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2026-01-07 15:59:17,441 - ERROR - [ERR-0001] - [df88dfe9] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2026-01-07 15:59:17,443 - WARNING - [ERR-0003] - [53363af1] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2026-01-07 15:59:18,446 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-07 15:59:18,560 - INFO - [INFO] - Memory before cleanup: 2636.1 KB
+2026-01-07 15:59:19,793 - INFO - [INFO] - Memory after cleanup: 3007.0 KB (saved -379776.0 bytes)
+2026-01-07 15:59:20,348 - INFO - [INFO] - Processing 1 tickers
+2026-01-07 16:00:13,943 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-07 16:00:17,245 - INFO - [INFO] - Processing 1 tickers
+2026-01-07 16:00:49,967 - WARNING - [ERR-0001] - [14b2a362] Attempting to extract JSON from text (length: 11766 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 16:00:49,969 - WARNING - [ERR-0001] - [2212cabc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 16:00:49,969 - WARNING - [ERR-0001] - [6e810aa0] Attempting to extract JSON from text (length: 11766 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 16:00:49,970 - WARNING - [ERR-0001] - [0749828b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 16:00:49,970 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-07 16:00:58,197 - INFO - [INFO] - Time step t=1 starting
+2026-01-07 16:00:58,200 - INFO - [INFO] - Market state - Net Order: 4, Sentiment: 0.18, Price Change: 1.8523, New Price: 101.8523
+2026-01-07 16:00:59,745 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BABA']
+2026-01-07 16:01:00,696 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:00,793 - INFO - [INFO] - Memory before cleanup: 2633.4 KB
+2026-01-07 16:01:02,024 - INFO - [INFO] - Memory after cleanup: 3004.8 KB (saved -380352.0 bytes)
+2026-01-07 16:01:03,192 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:05,445 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:07,541 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:09,746 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:11,965 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:14,076 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:16,171 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:18,274 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:20,387 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:22,578 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:24,729 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:26,983 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:29,099 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:31,284 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:33,503 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:35,791 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:38,042 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:40,295 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:01:42,430 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2026-01-07 16:01:44,086 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-07 16:01:44,090 - INFO - [INFO] - Running: collecting: ticker: GOOG | get_insights: default module
+2026-01-07 16:01:45,721 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-07 16:01:47,360 - INFO - [INFO] - Processing 1 tickers
+2026-01-07 16:02:18,677 - WARNING - [ERR-0001] - [c4dd1bf8] Attempting to extract JSON from text (length: 11225 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 16:02:18,680 - WARNING - [ERR-0001] - [a14fcda0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 16:02:18,680 - WARNING - [ERR-0001] - [81860c4a] Attempting to extract JSON from text (length: 11225 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 16:02:18,680 - WARNING - [ERR-0001] - [35c9d4bc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 16:02:18,680 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-07 16:02:27,428 - INFO - [INFO] - Time step t=1 starting
+2026-01-07 16:02:27,429 - INFO - [INFO] - Market state - Net Order: 11, Sentiment: 0.31, Price Change: 5.4148, New Price: 105.4148
+2026-01-07 16:02:28,936 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
+2026-01-07 16:02:29,960 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:30,072 - INFO - [INFO] - Memory before cleanup: 3453.9 KB
+2026-01-07 16:02:31,303 - INFO - [INFO] - Memory after cleanup: 3349.4 KB (saved 107040.0 bytes)
+2026-01-07 16:02:32,519 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:34,705 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:36,822 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:38,923 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:41,024 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:43,130 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:45,227 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:47,346 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:49,479 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:51,674 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:53,922 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:56,174 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:02:58,427 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:03:00,628 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 16:03:02,726 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:40:26,964 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-07 17:40:30,905 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:40:33,006 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:40:35,103 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:40:37,198 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:40:39,301 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:40:41,418 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:40:42,971 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-07 17:40:42,972 - INFO - [INFO] - Running: collecting: ticker: PLTR | get_insights: default module
+2026-01-07 17:40:44,730 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-07 17:40:46,370 - INFO - [INFO] - Processing 1 tickers
+2026-01-07 17:41:19,364 - WARNING - [ERR-0001] - [5279e740] Attempting to extract JSON from text (length: 13847 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 17:41:19,366 - WARNING - [ERR-0001] - [e1be9ab6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 17:41:19,366 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-07 17:41:27,953 - INFO - [INFO] - Time step t=1 starting
+2026-01-07 17:41:27,956 - INFO - [INFO] - Market state - Net Order: 15, Sentiment: 0.455, Price Change: 7.4226, New Price: 107.4226
+2026-01-07 17:41:29,479 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PLTR']
+2026-01-07 17:41:30,422 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:30,496 - INFO - [INFO] - Memory before cleanup: 2636.0 KB
+2026-01-07 17:41:31,725 - INFO - [INFO] - Memory after cleanup: 3006.9 KB (saved -379712.0 bytes)
+2026-01-07 17:41:32,926 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:35,111 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:37,224 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:39,412 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:41,512 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:43,614 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:45,751 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:48,014 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:50,233 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:52,418 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:54,670 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:56,820 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:41:59,075 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:01,226 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:03,475 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:05,729 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:07,983 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:10,083 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:12,387 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:14,639 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:16,825 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:19,146 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:21,364 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:23,548 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:25,765 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:28,053 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:30,207 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:32,313 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:34,473 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:36,999 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:39,115 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:41,213 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:43,822 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:45,923 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:48,022 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:50,122 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:52,218 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:54,312 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:56,429 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:42:58,638 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:43:00,926 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:43:03,176 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:43:05,429 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:43:07,580 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:43:09,733 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:43:11,854 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2026-01-07 17:43:13,520 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-07 17:43:13,524 - INFO - [INFO] - Running: collecting: ticker: HPQ | get_insights: default module
+2026-01-07 17:43:15,157 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-07 17:43:16,762 - INFO - [INFO] - Processing 1 tickers
+2026-01-07 17:43:39,236 - WARNING - [ERR-0001] - [2488b6a6] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-07 17:43:39,237 - ERROR - [ERR-0001] - [5f2c5ca4] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-07 17:43:39,237 - ERROR - [ERR-0404] - [29d67ecb] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-07 17:43:40,177 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-07 17:43:40,286 - INFO - [INFO] - Memory before cleanup: 3454.9 KB
+2026-01-07 17:43:41,532 - INFO - [INFO] - Memory after cleanup: 3351.1 KB (saved 106272.0 bytes)
+2026-01-07 17:43:42,076 - INFO - [INFO] - Processing 1 tickers
+2026-01-07 17:44:13,540 - WARNING - [ERR-0001] - [a5260182] Attempting to extract JSON from text (length: 11072 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 17:44:13,543 - WARNING - [ERR-0001] - [299123ec] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 17:44:13,543 - WARNING - [ERR-0001] - [14f0d451] Attempting to extract JSON from text (length: 11072 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 17:44:13,543 - WARNING - [ERR-0001] - [d02bde96] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 17:44:13,543 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-07 17:44:18,875 - ERROR - [ERR-0001] - [7e13c3cf] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-07 17:44:18,875 - INFO - [INFO] - Time step t=1 starting
+2026-01-07 17:44:18,875 - INFO - [INFO] - Market state - Net Order: -3, Sentiment: -0.12, Price Change: -1.4351, New Price: 98.5649
+2026-01-07 17:44:19,756 - ERROR - [ERR-0001] - [db8b6529] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('695e3902e14c74a3c35e017c'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'sources', 'details': [{'operatorName': 'items', 'reason': 'At least one item did not match the sub-schema', 'itemIndex': 5, 'details': [{'operatorName': 'required', 'specifiedAs': {'required': ['source_name', 'source_title']}, 'missingProperties': ['source_title']}]}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2026-01-07 17:44:19,757 - ERROR - [ERR-0001] - [2e067819] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2026-01-07 17:44:20,577 - INFO - [INFO] - Updated ticker HPQ fail_count: 0 -> 1
+2026-01-07 17:44:20,578 - INFO - [INFO] - Ticker HPQ recurrence changed to 'failed' at fail_count 1
+2026-01-07 17:44:20,578 - ERROR - [ERR-0001] - [8b5d7ab7] No recommendations found in saved document, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2026-01-07 17:44:20,583 - WARNING - [ERR-0003] - [464e5886] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2026-01-07 17:44:21,535 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:44:21,648 - INFO - [INFO] - Memory before cleanup: 3238.3 KB
+2026-01-07 17:44:22,883 - INFO - [INFO] - Memory after cleanup: 3237.3 KB (saved 1088.0 bytes)
+2026-01-07 17:44:23,974 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:44:26,192 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:44:28,308 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:44:30,408 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:44:32,512 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:44:34,620 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:44:36,724 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:44:38,854 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:44:40,561 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-07 17:44:40,563 - INFO - [INFO] - Running: collecting: ticker: ZM | get_insights: default module
+2026-01-07 17:44:42,098 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-07 17:44:43,737 - INFO - [INFO] - Processing 1 tickers
+2026-01-07 17:45:47,278 - WARNING - [ERR-0001] - [0c253aad] Attempting to extract JSON from text (length: 12955 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 17:45:47,280 - WARNING - [ERR-0001] - [7aa552c5] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 17:45:47,280 - WARNING - [ERR-0001] - [89cb69df] Attempting to extract JSON from text (length: 12954 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 17:45:47,280 - WARNING - [ERR-0001] - [b768ea56] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 17:45:47,280 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-07 17:45:56,728 - INFO - [INFO] - Time step t=1 starting
+2026-01-07 17:45:56,729 - INFO - [INFO] - Market state - Net Order: 11, Sentiment: 0.275, Price Change: 5.4693, New Price: 105.4693
+2026-01-07 17:45:58,283 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ZM']
+2026-01-07 17:45:59,254 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:45:59,362 - INFO - [INFO] - Memory before cleanup: 3236.3 KB
+2026-01-07 17:46:00,591 - INFO - [INFO] - Memory after cleanup: 3238.5 KB (saved -2176.0 bytes)
+2026-01-07 17:46:01,800 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:03,954 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:06,169 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:08,354 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:10,573 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:12,676 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:14,975 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:17,076 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:19,274 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:21,460 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:23,646 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:25,829 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:28,087 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:30,336 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:32,588 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:34,842 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:36,947 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:39,041 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:41,137 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:43,340 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:45,593 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:47,697 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:49,894 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:52,080 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:54,402 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:56,585 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:46:58,770 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:47:00,865 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:47:02,967 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:47:21,204 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-07 17:47:25,167 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:47:27,240 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:47:29,482 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:47:31,554 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:47:33,095 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-07 17:47:33,097 - INFO - [INFO] - Running: collecting: ticker: LMT | get_insights: default module
+2026-01-07 17:47:34,671 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-07 17:47:36,239 - INFO - [INFO] - Processing 1 tickers
+2026-01-07 17:48:32,126 - WARNING - [ERR-0001] - [a9a6d3d2] Attempting to extract JSON from text (length: 27958 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 17:48:32,133 - WARNING - [ERR-0001] - [459ceebf] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 17:48:32,133 - WARNING - [ERR-0001] - [e2d90161] Attempting to extract JSON from text (length: 346 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 17:48:32,134 - WARNING - [ERR-0001] - [85d24da7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 17:48:32,134 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-07 17:48:39,677 - WARNING - [ERR-0303] - [3c8b347d] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
+2026-01-07 17:48:39,677 - ERROR - [ERR-0303] - [b7d4b2d8] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2026-01-07 17:48:39,678 - ERROR - [ERR-0001] - [285e0342] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2026-01-07 17:48:39,679 - WARNING - [ERR-0003] - [e0a9091e] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2026-01-07 17:48:40,620 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-07 17:48:40,719 - INFO - [INFO] - Memory before cleanup: 2636.2 KB
+2026-01-07 17:48:41,960 - INFO - [INFO] - Memory after cleanup: 3007.0 KB (saved -379761.0 bytes)
+2026-01-07 17:48:42,639 - INFO - [INFO] - Processing 1 tickers
+2026-01-07 17:49:54,169 - WARNING - [ERR-0001] - [c856d3d6] Attempting to extract JSON from text (length: 22830 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 17:49:54,170 - WARNING - [ERR-0001] - [0684ac18] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 17:49:54,170 - WARNING - [ERR-0001] - [9f2d25a0] Attempting to extract JSON from text (length: 22830 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 17:49:54,171 - WARNING - [ERR-0001] - [3e9394b6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 17:49:54,171 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-07 17:50:02,442 - INFO - [INFO] - Time step t=1 starting
+2026-01-07 17:50:02,444 - INFO - [INFO] - Market state - Net Order: 20, Sentiment: 0.5, Price Change: 10.1008, New Price: 110.1008
+2026-01-07 17:50:03,985 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['LMT']
+2026-01-07 17:50:04,893 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:05,005 - INFO - [INFO] - Memory before cleanup: 3453.8 KB
+2026-01-07 17:50:06,235 - INFO - [INFO] - Memory after cleanup: 3349.4 KB (saved 106912.0 bytes)
+2026-01-07 17:50:07,490 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:09,578 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:11,830 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:14,043 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:16,296 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:18,368 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:20,440 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:22,686 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:24,939 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:27,191 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:29,404 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:31,594 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:33,725 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:35,997 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:38,255 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:40,504 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:42,576 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:44,804 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:46,945 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:49,131 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:51,210 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:53,375 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:55,537 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:57,626 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:50:59,701 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:01,783 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:03,854 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:06,064 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:08,254 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:10,327 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:12,514 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:14,582 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:16,671 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:18,751 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:20,931 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:23,002 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:25,111 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:27,281 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:29,410 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:31,624 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:33,778 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:35,851 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:37,927 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:40,082 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:42,231 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:44,302 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:46,552 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:48,765 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:51,058 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:53,152 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:55,358 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:57,492 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:51:59,660 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:01,912 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:04,125 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:06,418 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:08,570 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:10,822 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:13,033 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:15,225 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:17,375 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:19,587 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:21,882 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:24,030 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:26,103 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:28,191 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:30,379 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:32,449 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:34,525 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:36,603 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:38,678 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:40,749 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:42,825 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:44,898 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:46,990 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:49,065 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:51,139 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:53,317 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:55,392 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:57,468 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:52:59,666 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:01,920 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:04,171 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:06,426 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:08,576 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:10,830 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:13,042 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:15,195 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:17,485 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:19,738 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:21,990 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:24,242 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:26,394 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:28,606 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:30,797 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:32,945 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:35,024 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:37,101 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:39,359 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:41,552 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:43,699 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:45,952 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:48,105 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:50,179 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:52,248 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:54,336 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:56,479 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:53:58,647 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:00,800 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:02,875 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:04,946 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:07,015 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:09,092 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:11,247 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:13,315 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:15,391 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:17,459 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:19,640 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:21,816 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:23,890 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:25,963 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:28,244 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:30,375 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:32,647 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:34,900 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:37,153 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:39,406 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:41,659 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:43,796 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:45,864 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:47,944 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:50,019 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:52,193 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:54,357 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:56,494 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:54:58,749 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:00,829 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:03,022 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:05,288 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:07,492 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:09,574 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:11,826 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:13,901 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:16,069 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:18,146 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:20,216 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:22,441 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:24,669 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:26,747 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:29,931 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:32,006 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:34,099 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:36,342 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:38,494 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:40,643 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:42,815 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:44,930 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:47,298 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:49,555 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:51,701 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:53,833 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:55,907 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:55:57,981 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:00,059 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:02,135 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:04,210 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:06,347 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:08,415 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:10,489 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:12,376 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:14,455 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:16,609 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:18,839 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:21,050 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:23,239 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:25,392 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:27,566 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:29,653 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:31,760 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:33,838 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:36,040 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:38,292 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:40,504 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:42,574 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:44,742 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:46,893 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:49,145 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:51,402 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:53,549 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:55,803 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-07 17:56:57,955 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
