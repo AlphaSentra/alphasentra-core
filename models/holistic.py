@@ -119,6 +119,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
             
             if json_content:
                 # Parse the extracted JSON
+                print(json_content)
                 recommendations = json.loads(json_content)
                 log_info("Successfully parsed AI response as JSON")
             else:
