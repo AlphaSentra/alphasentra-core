@@ -1,0 +1,8 @@
+2026-01-07 15:00:42,236 - WARNING - [ERR-0001] - [223f2c97] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 15:00:42,237 - WARNING - [ERR-0001] - [9d8ad272] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 15:01:02,217 - WARNING - [ERR-0001] - [281ef15b] Attempting to extract JSON from text (length: 7449 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 15:01:02,218 - WARNING - [ERR-0001] - [9c518df3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 15:01:02,219 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-07 15:01:10,021 - INFO - [INFO] - Time step t=1 starting
+2026-01-07 15:01:10,025 - INFO - [INFO] - Market state - Net Order: 10, Sentiment: 0.25, Price Change: 5.0083, New Price: 105.0083
+2026-01-07 15:01:11,594 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']

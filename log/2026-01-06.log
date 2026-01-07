@@ -1,0 +1,34 @@
+2026-01-06 13:22:41,034 - ERROR - [ERR-0001] - [a08b1a2d] Failed to parse AI response: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': "Tool use with a response mime type: 'application/json' is unsupported", 'status': 'INVALID_ARGUMENT'}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-01-06 13:22:43,596 - WARNING - [ERR-0001] - [d98fb7e9] Attempting to extract JSON from text (length: 186 chars) | From: helpers.py:extract_json_from_text()
+2026-01-06 13:22:43,599 - ERROR - [ERR-0001] - [d05b459d] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-06 13:22:43,599 - ERROR - [ERR-0001] - [a9d36caf] Text preview: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': "Tool use with a response mime type: 'application/json' is unsupported", 'status': 'INVALID_ARGUMENT'}}... | From: helpers.py:extract_json_from_text()
+2026-01-06 13:22:43,601 - WARNING - [ERR-0001] - [0db4e9d0] Attempting to extract JSON from text (length: 186 chars) | From: helpers.py:extract_json_from_text()
+2026-01-06 13:22:43,601 - ERROR - [ERR-0001] - [dd4f7468] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-06 13:22:43,602 - ERROR - [ERR-0001] - [828e7a85] Text preview: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': "Tool use with a response mime type: 'application/json' is unsupported", 'status': 'INVALID_ARGUMENT'}}... | From: helpers.py:extract_json_from_text()
+2026-01-06 13:22:43,602 - ERROR - [ERR-0001] - [a9d3017e] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-06 13:22:43,602 - WARNING - [WARN-0002] - [d2ee5024] Raw response content: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': "Tool use with a response mime type: 'application/json' is unsupported", 'status': 'INVALID_ARGUMENT'}}... | From: holistic.py:run_holistic_market_model()
+2026-01-06 13:25:30,348 - WARNING - [ERR-0001] - [8a6a005e] Attempting to extract JSON from text (length: 15885 chars) | From: helpers.py:extract_json_from_text()
+2026-01-06 13:25:30,350 - WARNING - [ERR-0001] - [d4649c47] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-06 13:25:30,350 - WARNING - [ERR-0001] - [dbc6f9aa] Attempting to extract JSON from text (length: 15885 chars) | From: helpers.py:extract_json_from_text()
+2026-01-06 13:25:30,350 - WARNING - [ERR-0001] - [5c56e94c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-06 13:25:30,350 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-06 13:25:39,283 - INFO - [INFO] - Time step t=1 starting
+2026-01-06 13:25:39,286 - INFO - [INFO] - Market state - Net Order: 18, Sentiment: 0.27, Price Change: 9.085, New Price: 109.085
+2026-01-06 13:25:40,946 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']
+2026-01-06 13:28:30,021 - WARNING - [ERR-0001] - [0e4b9bcd] Attempting to extract JSON from text (length: 22856 chars) | From: helpers.py:extract_json_from_text()
+2026-01-06 13:28:30,028 - WARNING - [ERR-0001] - [ce762b73] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2026-01-06 13:28:30,028 - WARNING - [ERR-0001] - [fddf65fd] Attempting to extract JSON from text (length: 375 chars) | From: helpers.py:extract_json_from_text()
+2026-01-06 13:28:30,028 - WARNING - [ERR-0001] - [5661776c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-06 13:28:30,028 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-06 13:28:34,099 - ERROR - [ERR-0001] - [87d009fc] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-06 13:28:34,100 - WARNING - [WARN-0001] - [1b8029cc] {"source_name": "Value Sense", "source_title": "Microsoft Corporation (MSFT) Return on Invested Capital (ROIC) annual & quarterly (2006–2025) - Value Sense", "source_url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHsOUmeRTelB9KBYrS8CsE2FiRpqiDFmvPjMLpTGXpJW--R63A4h2Huyy3bMgPbQKsjeVgZf24HIYhMnfIPqye4ThRl9wcsME1GmSSwxgF10ApmZgY4Sl9y27DM5zTKvuss="} | From: holistic.py:run_holistic_market_model()
+2026-01-06 13:28:34,101 - WARNING - [ERR-0303] - [b1daad87] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
+2026-01-06 13:28:34,102 - ERROR - [ERR-0303] - [bcb68269] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2026-01-06 13:28:34,102 - ERROR - [ERR-0001] - [ac0f92bf] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2026-01-06 13:28:34,103 - WARNING - [ERR-0003] - [4097808c] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2026-01-06 13:29:26,605 - WARNING - [ERR-0001] - [65df63f1] Attempting to extract JSON from text (length: 8855 chars) | From: helpers.py:extract_json_from_text()
+2026-01-06 13:29:26,615 - WARNING - [ERR-0001] - [652ab5a8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-06 13:29:26,615 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-06 13:29:36,023 - INFO - [INFO] - Time step t=1 starting
+2026-01-06 13:29:36,026 - INFO - [INFO] - Market state - Net Order: 6, Sentiment: 0.31, Price Change: 3.0904, New Price: 103.0904
+2026-01-06 13:29:37,663 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
