@@ -375,7 +375,7 @@ def extract_json_from_text(text):
                 # Validate JSON structure before parsing
                 if validate_json_structure(json_content):
                     parsed_json = json.loads(json_content)
-                    log_info(f"Successfully extracted JSON using pattern: {pattern[:50]}...", "JSON_EXTRACTION_SUCCESS")
+                    log_warning(f"Successfully extracted JSON using pattern: {pattern[:50]}...", "JSON_EXTRACTION_SUCCESS")
                     return json_content
             except (json.JSONDecodeError, ValueError) as e:
                 # Try to repair malformed JSON before giving up

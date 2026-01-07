@@ -108,7 +108,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
     try:
         # Get AI recommendations with None as prompt since it's pre-formatted
         result = get_gen_ai_response([tickers], "holistic market", formatted_prompt, batch_mode=batch_mode)
-        
+        print(result)
         # Enhanced JSON parsing with repair capabilities
         try:
             # Remove any markdown code block markers if present
