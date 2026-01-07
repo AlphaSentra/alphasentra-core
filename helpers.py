@@ -245,6 +245,19 @@ def add_entry_price_to_recommendations(recommendations, gemini_model=None, decim
         return recommendations
     
 
+def fix_internal_quotes(json_str):
+    """
+    Escapes double quotes that appear inside JSON string values.
+    Example: "description": "He said "Hello" to me" -> "description": "He said \"Hello\" to me"
+    """
+    # This pattern identifies quotes that are likely "inner" quotes:
+    # It finds a quote that is NOT preceded by {: , [} and NOT followed by {}: , ]}
+    # Using a negative lookbehind and negative lookahead
+    pattern = r'(?<![:\[\{\,])"(?![:\]\}\,])'
+    
+    # We escape them by replacing " with \"
+    return re.sub(pattern, r'\"', json_str)
+
 def strip_markdown_code_blocks(text):
     """
     Remove markdown code block markers from text and extract JSON content.
@@ -277,6 +290,11 @@ def strip_markdown_code_blocks(text):
     # Remove ending ``` with optional whitespace
     text = re.sub(r'\n?```\s*$', '', text)
     text = re.sub(r'\s*```\s*$', '', text)
+
+    #Fix unescaped quotes within the JSON values
+    # This regex finds quotes that are NOT part of the JSON structure
+    # It looks for quotes that aren't next to : { } [ ] , or whitespace
+    text = fix_internal_quotes(text)
     
     return text.strip()
 
