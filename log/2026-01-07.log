@@ -6,3 +6,9 @@
 2026-01-07 15:01:10,021 - INFO - [INFO] - Time step t=1 starting
 2026-01-07 15:01:10,025 - INFO - [INFO] - Market state - Net Order: 10, Sentiment: 0.25, Price Change: 5.0083, New Price: 105.0083
 2026-01-07 15:01:11,594 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']
+2026-01-07 15:33:40,380 - WARNING - [ERR-0001] - [a6fc4a63] Attempting to extract JSON from text (length: 7546 chars) | From: helpers.py:extract_json_from_text()
+2026-01-07 15:33:40,381 - WARNING - [ERR-0001] - [d331e6e4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-07 15:33:40,381 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-07 15:33:44,961 - INFO - [INFO] - Time step t=1 starting
+2026-01-07 15:33:44,963 - INFO - [INFO] - Market state - Net Order: 4, Sentiment: 0.175, Price Change: 2.0804, New Price: 102.0804
+2026-01-07 15:33:46,547 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
