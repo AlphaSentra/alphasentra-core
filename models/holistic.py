@@ -111,6 +111,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
         
         # Enhanced JSON parsing with repair capabilities
         try:
+            print(result)
             # Remove any markdown code block markers if present
             result = strip_markdown_code_blocks(result)
             
