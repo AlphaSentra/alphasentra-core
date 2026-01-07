@@ -31,7 +31,7 @@ def run_analysis(ticker, instrument_name, batch_mode=False):
         }
     
     # Create current date in the format "September 6, 2025"
-    current_date = datetime.datetime.now().strftime("%B %d, %Y")
+    current_date = datetime.now().strftime("%B %d, %Y")
 
     # Format prompt with instrument details
     full_prompt = decrypted_prompt.format(
