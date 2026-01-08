@@ -8,6 +8,7 @@ from data.price import calculate_trade_levels, calculate_entry_price, get_curren
 import os
 from dotenv import load_dotenv
 import sys
+import re
 
 # MongoDB imports - handle optional dependency
 try:

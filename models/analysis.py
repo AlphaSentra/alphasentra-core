@@ -51,6 +51,9 @@ def run_analysis(ticker, instrument_name, batch_mode=False):
         batch_mode=batch_mode
     )
     
+    # XXXX
+    print(f"(0) AI Response Text: {response_text}")
+
     try:
         # Helper function for JSON parsing
         def parse_ai_response(text):
