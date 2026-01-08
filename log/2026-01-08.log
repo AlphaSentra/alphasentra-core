@@ -142,3 +142,142 @@ print(google_search.search(queries=["Microsoft Corporation (MSFT) Q1 FY2026 earn
 2026-01-08 12:26:22,773 - INFO - [INFO] - Time step t=1 starting
 2026-01-08 12:26:22,777 - INFO - [INFO] - Market state - Net Order: -1, Sentiment: -0.09, Price Change: -0.4938, New Price: 99.5062
 2026-01-08 12:26:23,919 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SBUX']
+2026-01-08 14:49:56,025 - WARNING - [ERR-0001] - [d20b486c] Attempting to extract JSON from text (length: 6159 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 14:49:56,027 - WARNING - [ERR-0001] - [4effdecc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 14:50:06,934 - WARNING - [ERR-0001] - [5b79af64] Attempting to extract JSON from text (length: 2690 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 14:50:06,937 - WARNING - [ERR-0001] - [543ecd57] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-08 14:50:06,938 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 14:50:06,940 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.11, Price Change: -0.0497, New Price: 99.9503
+2026-01-08 14:50:08,788 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURUSD=X']
+2026-01-08 15:14:09,037 - WARNING - [ERR-0001] - [26bfb468] Attempting to extract JSON from text (length: 6851 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:14:09,038 - WARNING - [ERR-0001] - [1cb8fe4f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:14:09,038 - WARNING - [ERR-0001] - [e07c61f1] Attempting to extract JSON from text (length: 6851 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:14:09,038 - WARNING - [ERR-0001] - [ee55ce43] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:14:09,038 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 15:14:16,753 - ERROR - [ERR-0001] - [042894a8] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-08 15:14:16,754 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 15:14:16,757 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.4, Price Change: -0.0358, New Price: 99.9642
+2026-01-08 15:14:20,368 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2026-01-08 15:20:30,250 - WARNING - [ERR-0001] - [b3d04f9f] Attempting to extract JSON from text (length: 5317 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:20:30,253 - WARNING - [ERR-0001] - [503d3261] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:20:30,253 - WARNING - [ERR-0001] - [f8d2883a] Attempting to extract JSON from text (length: 5317 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:20:30,253 - WARNING - [ERR-0001] - [87d797ff] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:20:30,254 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 15:20:49,076 - WARNING - [ERR-0001] - [a9f0b6fb] Attempting to extract JSON from text (length: 6928 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:20:49,078 - WARNING - [ERR-0001] - [0e91c1f5] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2026-01-08 15:20:49,078 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 15:20:49,080 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.17, Price Change: 0.0166, New Price: 100.0166
+2026-01-08 15:20:51,315 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2026-01-08 15:26:33,312 - WARNING - [ERR-0001] - [c80de1a9] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-08 15:26:33,313 - ERROR - [ERR-0001] - [36e79731] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-08 15:26:33,313 - ERROR - [ERR-0404] - [eb68e69f] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-08 15:27:18,741 - WARNING - [ERR-0001] - [8a2d05bf] Attempting to extract JSON from text (length: 5332 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:27:18,743 - WARNING - [ERR-0001] - [3db1f7a2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:27:18,744 - WARNING - [ERR-0001] - [655d4fe6] Attempting to extract JSON from text (length: 5332 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:27:18,745 - WARNING - [ERR-0001] - [4236e0fe] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:27:18,745 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 15:27:25,617 - ERROR - [ERR-0001] - [d1540f0c] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-08 15:27:25,618 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 15:27:25,620 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.38, Price Change: -0.0353, New Price: 99.9647
+2026-01-08 15:27:27,443 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2026-01-08 15:29:00,339 - WARNING - [ERR-0001] - [f4f53d46] Attempting to extract JSON from text (length: 5816 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:29:00,340 - WARNING - [ERR-0001] - [2e96f0fb] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:29:00,340 - WARNING - [ERR-0001] - [1e7dada6] Attempting to extract JSON from text (length: 5816 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:29:00,341 - WARNING - [ERR-0001] - [1184eaec] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:29:00,342 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 15:29:08,451 - WARNING - [ERR-0001] - [494d0850] Attempting to extract JSON from text (length: 1682 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:29:08,454 - WARNING - [ERR-0001] - [747eac6c] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-08 15:29:08,454 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 15:29:08,455 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.13, Price Change: -0.1074, New Price: 99.8926
+2026-01-08 15:29:11,481 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2026-01-08 15:35:43,047 - WARNING - [ERR-0001] - [1d563ebe] Attempting to extract JSON from text (length: 5796 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:35:43,048 - WARNING - [ERR-0001] - [7ef5f5b3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:35:43,048 - WARNING - [ERR-0001] - [9b3d828b] Attempting to extract JSON from text (length: 5796 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:35:43,049 - WARNING - [ERR-0001] - [c9f7e1ad] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:35:43,049 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 15:35:47,515 - ERROR - [ERR-0001] - [8eca3b53] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-08 15:35:47,515 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 15:35:47,518 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.33, Price Change: 0.1236, New Price: 100.1236
+2026-01-08 15:35:49,197 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2026-01-08 15:37:40,432 - WARNING - [ERR-0001] - [f25b869c] Attempting to extract JSON from text (length: 6137 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:37:40,435 - WARNING - [ERR-0001] - [0f779d8c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:37:40,436 - WARNING - [ERR-0001] - [99da2d86] Attempting to extract JSON from text (length: 6137 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:37:40,437 - WARNING - [ERR-0001] - [946296b2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:37:40,438 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 15:37:46,685 - ERROR - [ERR-0001] - [45ecf018] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-08 15:37:46,685 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 15:37:46,686 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.11, Price Change: -0.1253, New Price: 99.8747
+2026-01-08 15:37:48,245 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2026-01-08 15:42:10,173 - WARNING - [ERR-0001] - [daf637dd] Attempting to extract JSON from text (length: 5959 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:42:10,174 - WARNING - [ERR-0001] - [4af9887f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:42:10,174 - WARNING - [ERR-0001] - [3174192e] Attempting to extract JSON from text (length: 5959 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:42:10,175 - WARNING - [ERR-0001] - [84a9ee52] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:42:10,175 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 15:42:21,682 - WARNING - [ERR-0001] - [536cc633] Attempting to extract JSON from text (length: 1995 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:42:21,685 - WARNING - [ERR-0001] - [c5a9d034] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:42:21,685 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 15:42:21,687 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.285, Price Change: 0.0275, New Price: 100.0275
+2026-01-08 15:42:23,533 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2026-01-08 15:43:41,319 - WARNING - [ERR-0001] - [a13ae1d3] Attempting to extract JSON from text (length: 5337 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:43:41,320 - WARNING - [ERR-0001] - [d8da4eb4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:43:41,321 - WARNING - [ERR-0001] - [1c102614] Attempting to extract JSON from text (length: 5337 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:43:41,322 - WARNING - [ERR-0001] - [6909bb99] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:43:41,323 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 15:44:16,373 - WARNING - [ERR-0001] - [1328946e] Attempting to extract JSON from text (length: 36834 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:44:16,391 - WARNING - [ERR-0001] - [cd05c152] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:44:16,392 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 15:44:16,392 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.2, Price Change: 0.0961, New Price: 100.0961
+2026-01-08 15:44:20,033 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BZ=F']
+2026-01-08 15:47:56,608 - WARNING - [ERR-0001] - [3c2849d6] Attempting to extract JSON from text (length: 6089 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:47:56,610 - WARNING - [ERR-0001] - [461e41f5] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:47:56,610 - WARNING - [ERR-0001] - [2fe23ec5] Attempting to extract JSON from text (length: 6089 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:47:56,610 - WARNING - [ERR-0001] - [bb7a5fec] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:47:56,610 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 15:48:05,391 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 15:48:05,394 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.16, Price Change: 0.1528, New Price: 100.1528
+2026-01-08 15:48:05,443 - WARNING - [ERR-0303] - [8ef73aa6] CL=F: Invalid score (-5), setting to 5 | From: holistic.py:run_holistic_market_model()
+2026-01-08 15:48:06,445 - ERROR - [ERR-0001] - [876b27cd] MongoDB operation failed | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('695f6f4570747d6249b9d024'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'recommendations', 'details': [{'operatorName': 'items', 'reason': 'At least one item did not match the sub-schema', 'itemIndex': 0, 'details': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'bull_bear_score', 'details': [{'operatorName': 'minimum', 'specifiedAs': {'minimum': 1}, 'reason': 'comparison failed', 'consideredValue': -5}]}]}]}]}]}]}}} | From: helpers.py:save_to_db_with_retry()
+2026-01-08 15:48:06,446 - ERROR - [ERR-0001] - [59d78d99] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2026-01-08 15:48:07,184 - INFO - [INFO] - Updated ticker CL=F fail_count: 0 -> 1
+2026-01-08 15:48:07,185 - INFO - [INFO] - Ticker CL=F recurrence changed to 'failed' at fail_count 1
+2026-01-08 15:48:07,188 - ERROR - [ERR-0001] - [ac837fa1] No recommendations found in saved document, skipping flag update | From: helpers.py:save_to_db_with_fallback()
+2026-01-08 15:48:07,189 - WARNING - [ERR-0003] - [101e0300] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2026-01-08 15:56:00,107 - WARNING - [ERR-0001] - [e46d0ab8] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-08 15:56:00,108 - ERROR - [ERR-0001] - [c220058a] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-08 15:56:00,108 - ERROR - [ERR-0404] - [5a296873] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-08 15:56:51,651 - WARNING - [ERR-0001] - [0f125f40] Attempting to extract JSON from text (length: 5717 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:56:51,653 - WARNING - [ERR-0001] - [fe3630a1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:56:51,653 - WARNING - [ERR-0001] - [76fe9586] Attempting to extract JSON from text (length: 5717 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:56:51,653 - WARNING - [ERR-0001] - [b4f651cb] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:56:51,653 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 15:56:59,533 - ERROR - [ERR-0001] - [0d67616c] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-08 15:56:59,534 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 15:56:59,536 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.12, Price Change: -0.0235, New Price: 99.9765
+2026-01-08 15:57:01,449 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2026-01-08 15:58:17,861 - WARNING - [ERR-0001] - [28c3842e] Attempting to extract JSON from text (length: 5999 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:58:17,863 - WARNING - [ERR-0001] - [e17de8a9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:58:17,863 - WARNING - [ERR-0001] - [88a64ea0] Attempting to extract JSON from text (length: 5999 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 15:58:17,863 - WARNING - [ERR-0001] - [606f7a9a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 15:58:17,864 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 15:58:27,959 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 15:58:27,960 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.32, Price Change: 0.1358, New Price: 100.1358
+2026-01-08 15:58:29,613 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2026-01-08 16:03:24,904 - WARNING - [ERR-0001] - [9d932ae7] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-08 16:03:24,904 - ERROR - [ERR-0001] - [21ad0d90] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-08 16:03:24,904 - ERROR - [ERR-0404] - [557f6c85] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-08 16:05:11,341 - WARNING - [ERR-0001] - [e4d20518] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-08 16:05:11,342 - ERROR - [ERR-0001] - [447e0cba] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-08 16:05:11,342 - ERROR - [ERR-0404] - [db58e0a7] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-08 16:06:01,705 - WARNING - [ERR-0001] - [82df24ec] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-08 16:06:01,706 - ERROR - [ERR-0001] - [5347fa1f] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-08 16:06:01,707 - ERROR - [ERR-0404] - [e164c995] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-08 16:07:24,716 - WARNING - [ERR-0001] - [f628ee3d] Attempting to extract JSON from text (length: 6011 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 16:07:24,717 - WARNING - [ERR-0001] - [e09f9704] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 16:07:24,717 - WARNING - [ERR-0001] - [d8f751d6] Attempting to extract JSON from text (length: 6011 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 16:07:24,718 - WARNING - [ERR-0001] - [3cec761f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 16:07:24,718 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 16:07:36,907 - WARNING - [ERR-0001] - [ae530ddb] Attempting to extract JSON from text (length: 1960 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 16:07:36,910 - WARNING - [ERR-0001] - [a6aa9b4d] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-08 16:07:36,910 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 16:07:36,912 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.15, Price Change: 0.0029, New Price: 100.0029
+2026-01-08 16:07:40,455 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']

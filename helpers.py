@@ -1471,6 +1471,9 @@ def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=F
         return []
     except Exception as e:
         log_error("Error getting factors analysis", "FACTORS_ANALYSIS", e)
+
+        # XXXX
+        print(ai_response)
         return []
 
 def get_ticker_performance(ticker, period=None):
