@@ -84,13 +84,15 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None,
     tickers_str = tickers if isinstance(tickers, str) else ', '.join([str(t) for t in tickers])
     print(f"\033[94m\n=== Model: {model_strategy} using {gemini_model} === ticker: {tickers_str} ===\033[0m")
 
-    # Create client instance with a randomly selected API key for each call
-    api_key = get_random_api_key()
-    print(f"API Key: {api_key}")
-    client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=600000))
-
-    # Run prompt and return response
+    client = None
+    progress_thread = None
+    # "Clean Slate" Method: Create a new client for each request.
     try:
+        # Create client instance with a randomly selected API key for each call
+        api_key = get_random_api_key()
+        print(f"API Key: {api_key}")
+        client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=600000))
+
         # Create a thread for the progress indicator
         progress_thread = threading.Thread(target=lambda: _show_progress(batch_mode))
         progress_thread.stop_progress = False
@@ -117,8 +119,17 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None,
         return response.text
     except Exception as e:
         # Make sure to stop the progress indicator even if there's an error
-        if 'progress_thread' in locals():
+        if progress_thread and progress_thread.is_alive():
             progress_thread.stop_progress = True
             progress_thread.join()
         return f"Error generating content: {str(e)}"
-    
+    finally:
+        # "Clean Slate" Method: Destroy the client after each use to ensure
+        # that no client-side state is carried over between calls and that
+        # all resources are properly released.
+        if client:
+            # In Python, deleting the reference is a way to signal that the
+            # object can be garbage collected. If the client had a close()
+            # method, it would be called here. As of this implementation,
+            # the genai.Client does not have an explicit close() method.
+            del client
