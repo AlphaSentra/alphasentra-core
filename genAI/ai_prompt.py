@@ -9,6 +9,7 @@ import threading
 import time
 import random
 import ast
+import gc
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
@@ -133,3 +134,5 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None,
             # method, it would be called here. As of this implementation,
             # the genai.Client does not have an explicit close() method.
             del client
+        # Force garbage collection to release memory immediately.
+        gc.collect()
