@@ -8,6 +8,7 @@ from data.price import calculate_trade_levels, calculate_entry_price, get_curren
 import os
 from dotenv import load_dotenv
 import sys
+import re
 
 # MongoDB imports - handle optional dependency
 try:
@@ -245,6 +246,19 @@ def add_entry_price_to_recommendations(recommendations, gemini_model=None, decim
         return recommendations
     
 
+def fix_internal_quotes(json_str):
+    """
+    Escapes double quotes that appear inside JSON string values.
+    Example: "description": "He said "Hello" to me" -> "description": "He said \"Hello\" to me"
+    """
+    # This pattern identifies quotes that are likely "inner" quotes:
+    # It finds a quote that is NOT preceded by {: , [} and NOT followed by {}: , ]}
+    # Using a negative lookbehind and negative lookahead
+    pattern = r'(?<![:\[\{\,])"(?![:\]\}\,])'
+    
+    # We escape them by replacing " with \"
+    return re.sub(pattern, r'\"', json_str)
+
 def strip_markdown_code_blocks(text):
     """
     Remove markdown code block markers from text and extract JSON content.
@@ -277,6 +291,11 @@ def strip_markdown_code_blocks(text):
     # Remove ending ``` with optional whitespace
     text = re.sub(r'\n?```\s*$', '', text)
     text = re.sub(r'\s*```\s*$', '', text)
+
+    #Fix unescaped quotes within the JSON values
+    # This regex finds quotes that are NOT part of the JSON structure
+    # It looks for quotes that aren't next to : { } [ ] , or whitespace
+    text = fix_internal_quotes(text)
     
     return text.strip()
 
@@ -357,7 +376,7 @@ def extract_json_from_text(text):
                 # Validate JSON structure before parsing
                 if validate_json_structure(json_content):
                     parsed_json = json.loads(json_content)
-                    log_info(f"Successfully extracted JSON using pattern: {pattern[:50]}...", "JSON_EXTRACTION_SUCCESS")
+                    log_warning(f"Successfully extracted JSON using pattern: {pattern[:50]}...", "JSON_EXTRACTION_SUCCESS")
                     return json_content
             except (json.JSONDecodeError, ValueError) as e:
                 # Try to repair malformed JSON before giving up
@@ -1452,6 +1471,9 @@ def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=F
         return []
     except Exception as e:
         log_error("Error getting factors analysis", "FACTORS_ANALYSIS", e)
+
+        # XXXX
+        print(ai_response)
         return []
 
 def get_ticker_performance(ticker, period=None):
