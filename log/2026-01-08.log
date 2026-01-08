@@ -387,3 +387,4 @@ print(google_search.search(queries=["Microsoft Corporation (MSFT) Q1 FY2026 earn
 2026-01-08 21:56:18,867 - INFO - [INFO] - Time step t=1 starting
 2026-01-08 21:56:18,867 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.14, Price Change: -0.0069, New Price: 99.9931
 2026-01-08 21:56:20,363 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NG=F']
+2026-01-08 22:03:34,860 - INFO - [INFO] - MongoDB connection closed

@@ -351,54 +351,6 @@ def create_tickers_collection(db):
     return success
 
 
-def insert_pipeline_data(db):
-    """
-    Inserts initial pipeline data into the 'pipeline' collection.
-    
-    Args:
-        db: MongoDB database object
-        
-    Returns:
-        bool: True if insertion was successful, False on error
-    """
-    collection_name = 'pipeline'
-    
-    print()
-    print("=" * 100)
-    print(f"Inserting pipeline data into '{collection_name}' collection...")
-    print("=" * 100)
-    print()
-    
-    # Pipeline data to insert
-    pipeline_data = [
-        {"model_function": "run_trending_analysis_equity", "task_completed": False, "model_name": "trending", "recurrence": "multi"},
-        {"model_function": "run_trending_analysis_crypto", "task_completed": False, "model_name": "trending", "recurrence": "multi"},
-        {"model_function": "run_trending_analysis_forex", "task_completed": False, "model_name": "trending", "recurrence": "multi"},
-        {"model_function": "get_high_conviction_buys", "task_completed": False, "model_name": "hcb", "recurrence": "multi"}
-    ]
-    
-    try:
-        collection = db[collection_name]
-        
-        # Check if any pipeline data already exists to avoid duplicates
-        existing_count = collection.count_documents({"model_function": {"$in": [item["model_function"] for item in pipeline_data]}})
-        if existing_count > 0:
-            print(f"Found {existing_count} existing pipeline entries. Skipping insertion to avoid duplicates.")
-            return True
-        
-        # Insert all pipeline data
-        result = collection.insert_many(pipeline_data)
-        print(f"Successfully inserted {len(result.inserted_ids)} pipeline entries into '{collection_name}' collection")
-        return True
-        
-    except pymongo.errors.OperationFailure as e:
-        log_error("MongoDB operation failed for inserting pipeline data", "MONGODB_OPERATION", e)
-        return False
-    except Exception as e:
-        log_error("Unexpected error inserting pipeline data", "DATA_INSERTION", e)
-        return False
-
-
 def insert_asset_classes_data(db):
     """
     Inserts initial asset classes data into the 'asset_classes' collection.
@@ -668,7 +620,6 @@ def create_alphagora_database():
             insert_agriculture_commodities,
             insert_crypto_assets,
             insert_equities,
-            insert_pipeline_data,
             create_weight_factors_collection
         ]
         
