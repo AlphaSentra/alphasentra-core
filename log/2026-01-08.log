@@ -281,3 +281,17 @@ print(google_search.search(queries=["Microsoft Corporation (MSFT) Q1 FY2026 earn
 2026-01-08 16:07:36,910 - INFO - [INFO] - Time step t=1 starting
 2026-01-08 16:07:36,912 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.15, Price Change: 0.0029, New Price: 100.0029
 2026-01-08 16:07:40,455 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2026-01-08 21:17:46,098 - WARNING - [ERR-0001] - [01caf751] Attempting to extract JSON from text (length: 169 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 21:17:46,100 - WARNING - [ERR-0001] - [5ce44b79] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 21:17:59,773 - WARNING - [ERR-0001] - [b2bb5793] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-08 21:17:59,774 - ERROR - [ERR-0001] - [a086dab4] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-08 21:17:59,774 - ERROR - [ERR-0404] - [9c191fdd] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-08 21:19:00,946 - WARNING - [ERR-0001] - [da391713] Attempting to extract JSON from text (length: 6032 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 21:19:00,948 - WARNING - [ERR-0001] - [559aaca4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 21:19:00,948 - WARNING - [ERR-0001] - [248f5dc8] Attempting to extract JSON from text (length: 6032 chars) | From: helpers.py:extract_json_from_text()
+2026-01-08 21:19:00,949 - WARNING - [ERR-0001] - [fd5e2a44] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-08 21:19:00,951 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-08 21:19:06,692 - ERROR - [ERR-0001] - [405d9e9b] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-08 21:19:06,692 - INFO - [INFO] - Time step t=1 starting
+2026-01-08 21:19:06,696 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.2, Price Change: -0.0055, New Price: 99.9945
+2026-01-08 21:19:10,634 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ZW=F']
