@@ -109,7 +109,7 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None,
                     "tools": [{"google_search": {}}],
                     "temperature": 0.1,
                     "thinking_config": {
-                                "thinking_budget": 100    #0 is disabled, -1 is default, Range from 1 to 24576  
+                                "thinking_budget": 0    #0 is disabled, -1 is default, Range from 1 to 24576  
                     },
                     "safety_settings": [
                         {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},

@@ -1092,3 +1092,130 @@ Kinross Gold is experiencing robust growth, primarily driven by the surge in gol
 2026-01-09 15:28:02,120 - INFO - [INFO] - Time step t=1 starting
 2026-01-09 15:28:02,122 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.35, Price Change: -0.0163, New Price: 99.9837
 2026-01-09 15:28:04,537 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['TGT']
+2026-01-09 15:39:58,672 - ERROR - [ERR-0001] - [24ee75d0] Failed to parse AI response: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'The thinking budget 100 is invalid. Please choose a value between 512 and 24576.', 'status': 'INVALID_ARGUMENT'}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-01-09 15:40:01,102 - WARNING - [ERR-0001] - [7dbb6dde] Attempting to extract JSON from text (length: 197 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:40:01,103 - ERROR - [ERR-0001] - [4ed9a466] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 15:40:01,103 - ERROR - [ERR-0001] - [a7ff0636] Text preview: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'The thinking budget 100 is invalid. Please choose a value between 512 and 24576.', 'status': 'INVALID_ARGUMENT'}}... | From: helpers.py:extract_json_from_text()
+2026-01-09 15:40:01,103 - WARNING - [ERR-0001] - [df9c2a1b] Attempting to extract JSON from text (length: 197 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:40:01,103 - ERROR - [ERR-0001] - [9e8bd826] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 15:40:01,104 - ERROR - [ERR-0001] - [6c71278f] Text preview: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'The thinking budget 100 is invalid. Please choose a value between 512 and 24576.', 'status': 'INVALID_ARGUMENT'}}... | From: helpers.py:extract_json_from_text()
+2026-01-09 15:40:01,104 - ERROR - [ERR-0001] - [f029cf08] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 15:40:01,104 - WARNING - [WARN-0002] - [b384acf3] Raw response content: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'The thinking budget 100 is invalid. Please choose a value between 512 and 24576.', 'status': 'INVALID_ARGUMENT'}}... | From: holistic.py:run_holistic_market_model()
+2026-01-09 15:42:12,295 - WARNING - [ERR-0001] - [620c0670] Attempting to extract JSON from text (length: 6423 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:42:12,297 - WARNING - [ERR-0001] - [1dce013a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:42:12,297 - WARNING - [ERR-0001] - [8e5d5c58] Attempting to extract JSON from text (length: 6423 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:42:12,297 - WARNING - [ERR-0001] - [847cee77] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:42:12,297 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 15:42:26,818 - WARNING - [ERR-0001] - [356d2a0b] Attempting to extract JSON from text (length: 3874 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:42:26,819 - WARNING - [ERR-0001] - [a0e2b97e] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 15:42:26,819 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 15:42:26,821 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.12, Price Change: -0.1912, New Price: 99.8088
+2026-01-09 15:42:28,927 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['SBUX']
+2026-01-09 15:49:55,962 - ERROR - [ERR-0001] - [6b42d0bb] Failed to parse AI response: CVS Health Corporation is an American multinational healthcare company that operates a retail pharmacy chain (CVS Pharmacy), a pharmacy benefits manager (CVS Caremark), and a health insurance provider (Aetna), among other brands. The company's primary business operations include health care benefits, health services, and pharmacy and consumer wellness segments.
+
+sector: Health Care
+
+cashflow_health: C
+CVS Health's free cash flow for the 2025 fiscal year decreased by $4.07 billion, and operating cash flow was $796 million. Net cash from operating activities declined steadily to $9.107 billion by 2024, signaling decreasing cash generation capacity from core operations. However, the company generated year-to-date cash flow from operations of $7.2 billion as of Q3 2025 and updated its full-year 2025 cash flow from operations guidance to a range of $7.5 billion to $8.0 billion.
+
+profit_health: C
+CVS Health reported $4.6 billion in profits for 2024, including $1.6 billion in the fourth quarter. This represents a 21% decline in profit year-over-year in Q4 2024, driven by increased pressures at Aetna. Net income for 2024 was $4.6 billion, down from $8.3 billion in 2023. The company's annual gross profit for 2024 was $166.522 billion, an 18.37% increase from 2023, and for the twelve months ending September 30, 2025, it was $176.709 billion, a 10.12% increase year-over-year.
+
+price_momentum: B
+CVS Health's stock price was $80.13 as of January 2, 2026, and it was above its 10-day, 50-day, 100-day, and 200-day simple moving averages. The stock surged 58% in 2025, marking its best annual gain since 1982. As of January 9, 2026, CVS Health shares traded at US$80.60, with a 3.5% 90-day share price return and an 82.7% 1-year total shareholder return, suggesting momentum has been building.
+
+growth_health: B
+CVS Health's total revenues increased 4.2% to $372.8 billion in 2024 compared to 2023. For the twelve months ending September 30, 2025, revenue was $394.084 billion, a 6.82% increase year-over-year. The company's revenue growth forecast is 7.9%, and it is expected to average 4.7% over the next five fiscal years. CVS Health aims for mid-teens adjusted earnings CAGR through 2028. | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-01-09 15:50:11,368 - WARNING - [ERR-0001] - [15d78e93] Attempting to extract JSON from text (length: 6835 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:50:11,369 - WARNING - [ERR-0001] - [49c7f391] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:50:11,369 - WARNING - [ERR-0001] - [e7e8df05] Attempting to extract JSON from text (length: 6835 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:50:11,370 - WARNING - [ERR-0001] - [731f7168] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:50:11,370 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 15:50:22,670 - WARNING - [ERR-0001] - [26e176d0] Attempting to extract JSON from text (length: 2767 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:50:22,671 - WARNING - [ERR-0001] - [6b727d80] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 15:50:22,671 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 15:50:22,673 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.79, Price Change: -0.0048, New Price: 99.9952
+2026-01-09 15:50:28,257 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CVS']
+2026-01-09 15:56:43,548 - WARNING - [ERR-0001] - [4cbf281c] Attempting to extract JSON from text (length: 7752 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:56:43,549 - WARNING - [ERR-0001] - [17b1888d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:56:43,549 - WARNING - [ERR-0001] - [e4afa6ca] Attempting to extract JSON from text (length: 7752 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:56:43,550 - WARNING - [ERR-0001] - [68abadf8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:56:43,550 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 15:56:53,822 - WARNING - [ERR-0001] - [5f4060bc] Attempting to extract JSON from text (length: 2168 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:56:53,823 - WARNING - [ERR-0001] - [4ce83ef6] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 15:56:53,823 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 15:56:53,825 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.79, Price Change: 0.0141, New Price: 100.0141
+2026-01-09 15:56:57,034 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CVS']
+2026-01-09 15:58:07,961 - ERROR - [ERR-0001] - [766d6ce6] Failed to parse AI response: Broadcom Inc. (AVGO) is a global technology company that designs, develops, and supplies a broad range of semiconductor and infrastructure software solutions. Its revenue is primarily driven by its Semiconductor Solutions and Infrastructure Software segments, with a significant and growing contribution from its AI business, particularly custom AI accelerators.
+
+sector: Information Technology
+
+cashflow_health: A
+Broadcom is a cash-generating machine, with strong and growing free cash flow. In Q3 2025, cash from operations was $7.166 billion, and free cash flow hit a record $7.024 billion, up 47% year-over-year. For the full fiscal year 2025, annual free cash flow was $26.914 billion, a 38.63% increase from 2024. The company also maintains a substantial cash balance of over $10.7 billion as of Q3 2025. Broadcom's debt is well covered by operating cash flow (42.3%).
+
+profit_health: A
+Broadcom demonstrates strong profitability, with Q3 2025 non-GAAP net income at a robust $8.40 billion. For fiscal year 2025, the company's GAAP profit almost quadrupled to $23.1 billion. The annual net income as of FY2025 was $23.13 billion, with an annual growth of 292.30%. The company also maintains impressive gross profit margins of 76.26% as of Q2 2025.
+
+price_momentum: C
+Broadcom's stock gained almost 50% in 2025, significantly outperforming the S&P 500 Index. However, the stock has experienced a recent pullback, falling sharply from highs above $400 to around $339.81 as of mid-December 2025. As of January 8, 2026, the stock price experienced a decline of -3.24%, dropping to $332.39. While the long-term trend remains constructive, short-term momentum has weakened, and the stock has broken below its 50-day moving average.
+
+growth_health: A
+Broadcom is on track for strong growth, with fiscal year 2025 revenue projected to hit around $63.36 billion, representing a solid 22.9% growth over fiscal year 2024. This growth is significantly driven by its AI business and the VMware acquisition. AI revenue surged 65% to $20 billion in 2025, fueling record semiconductor revenue. For fiscal year 2026, analysts' consensus estimates predict revenue growth of 50% to $96 billion, and another 36% in fiscal year 2027, with $130 billion in revenue. The company expects AI semiconductor revenue to grow approximately 100% in Q1 fiscal year 2026. | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-01-09 15:58:23,246 - WARNING - [ERR-0001] - [09edfc06] Attempting to extract JSON from text (length: 6769 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:58:23,247 - WARNING - [ERR-0001] - [6157153b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:58:23,247 - WARNING - [ERR-0001] - [17e7a089] Attempting to extract JSON from text (length: 6769 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:58:23,248 - WARNING - [ERR-0001] - [6bb13618] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:58:23,248 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 15:58:33,148 - WARNING - [ERR-0001] - [d3fc7b2e] Attempting to extract JSON from text (length: 2317 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:58:33,149 - WARNING - [ERR-0001] - [d7e53960] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 15:58:33,149 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 15:58:33,149 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.26, Price Change: 0.0548, New Price: 100.0548
+2026-01-09 15:58:36,121 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AVGO']
+2026-01-09 16:02:05,371 - WARNING - [ERR-0001] - [4b488c71] Attempting to extract JSON from text (length: 6556 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:02:05,374 - WARNING - [ERR-0001] - [779eed8f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 16:02:05,374 - WARNING - [ERR-0001] - [0b39439a] Attempting to extract JSON from text (length: 6556 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:02:05,374 - WARNING - [ERR-0001] - [6e824fb2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 16:02:05,375 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 16:02:14,400 - WARNING - [ERR-0001] - [04ff63ea] Attempting to extract JSON from text (length: 1884 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:02:14,400 - WARNING - [ERR-0001] - [aa713961] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 16:02:14,401 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 16:02:14,403 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.28, Price Change: -0.0797, New Price: 99.9203
+2026-01-09 16:02:16,375 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AVGO']
+2026-01-09 16:03:50,917 - WARNING - [ERR-0001] - [da863d42] Attempting to extract JSON from text (length: 6204 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:03:50,919 - WARNING - [ERR-0001] - [a272b474] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 16:03:50,919 - WARNING - [ERR-0001] - [25603dfe] Attempting to extract JSON from text (length: 6204 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:03:50,919 - WARNING - [ERR-0001] - [1ceb621e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 16:03:50,919 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 16:04:02,296 - WARNING - [ERR-0001] - [b180f6d9] Attempting to extract JSON from text (length: 3005 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:04:02,298 - WARNING - [ERR-0001] - [10c797c5] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 16:04:02,298 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 16:04:02,299 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.5, Price Change: 0.1104, New Price: 100.1104
+2026-01-09 16:04:04,022 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NTES']
+2026-01-09 16:06:40,257 - WARNING - [ERR-0001] - [fcc95693] Attempting to extract JSON from text (length: 6708 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:06:40,259 - WARNING - [ERR-0001] - [8c6b70ed] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 16:06:40,259 - WARNING - [ERR-0001] - [0e5cc693] Attempting to extract JSON from text (length: 6708 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:06:40,259 - WARNING - [ERR-0001] - [17991f51] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 16:06:40,259 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 16:06:51,855 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 16:06:51,857 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.49, Price Change: -0.0377, New Price: 99.9623
+2026-01-09 16:06:54,139 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ADBE']
+2026-01-09 16:12:04,186 - WARNING - [ERR-0001] - [635634a4] Attempting to extract JSON from text (length: 6378 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:12:04,188 - WARNING - [ERR-0001] - [47ba76b0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 16:12:04,188 - WARNING - [ERR-0001] - [09ca1daa] Attempting to extract JSON from text (length: 6378 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:12:04,188 - WARNING - [ERR-0001] - [4271b08f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 16:12:04,188 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 16:12:18,835 - WARNING - [ERR-0001] - [b7996b11] Attempting to extract JSON from text (length: 3123 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:12:18,836 - WARNING - [ERR-0001] - [99953fec] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 16:12:18,836 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 16:12:18,838 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.62, Price Change: 0.1676, New Price: 100.1676
+2026-01-09 16:12:21,927 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BAC']
+2026-01-09 16:25:55,265 - WARNING - [ERR-0001] - [a8196a32] Attempting to extract JSON from text (length: 7352 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:25:55,266 - WARNING - [ERR-0001] - [68ef2a00] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 16:25:55,266 - WARNING - [ERR-0001] - [1eea7cdc] Attempting to extract JSON from text (length: 7352 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:25:55,266 - WARNING - [ERR-0001] - [fa11bb28] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 16:25:55,266 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 16:26:09,203 - WARNING - [ERR-0001] - [697e27c2] Attempting to extract JSON from text (length: 2745 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 16:26:09,204 - WARNING - [ERR-0001] - [339f43c9] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 16:26:09,205 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 16:26:09,206 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.06, Price Change: -0.1145, New Price: 99.8855
+2026-01-09 16:26:12,204 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PFE']
