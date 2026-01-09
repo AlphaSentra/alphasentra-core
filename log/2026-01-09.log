@@ -1,0 +1,1034 @@
+2026-01-09 10:34:04,155 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 10:34:07,302 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 10:34:22,591 - WARNING - [ERR-0001] - [2ce83a4e] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 10:34:22,593 - ERROR - [ERR-0001] - [6ad19da2] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:34:22,593 - ERROR - [ERR-0404] - [e443db6b] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:34:23,593 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 10:34:23,694 - INFO - [INFO] - Memory before cleanup: 2635.0 KB
+2026-01-09 10:34:24,932 - INFO - [INFO] - Memory after cleanup: 3006.0 KB (saved -379857.0 bytes)
+2026-01-09 10:34:25,334 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 10:34:40,221 - WARNING - [ERR-0001] - [347b7f2b] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 10:34:40,222 - ERROR - [ERR-0001] - [04213976] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:34:40,222 - ERROR - [ERR-0404] - [924d523c] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:34:41,149 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 10:34:41,262 - INFO - [INFO] - Memory before cleanup: 3452.4 KB
+2026-01-09 10:34:42,501 - INFO - [INFO] - Memory after cleanup: 3347.9 KB (saved 106912.0 bytes)
+2026-01-09 10:34:42,782 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 10:36:33,201 - WARNING - [ERR-0001] - [c15f7182] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 10:36:33,202 - ERROR - [ERR-0001] - [80a89e1f] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:36:33,202 - ERROR - [ERR-0404] - [d2c69b52] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:37:37,397 - WARNING - [ERR-0001] - [4fb7b1e0] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 10:37:37,398 - ERROR - [ERR-0001] - [4320a40c] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:37:37,398 - ERROR - [ERR-0404] - [453aa95d] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:38:35,645 - WARNING - [ERR-0001] - [00a686b2] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 10:38:35,645 - ERROR - [ERR-0001] - [5fa95a97] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:38:35,645 - ERROR - [ERR-0404] - [bfebf2a0] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:43:53,622 - WARNING - [ERR-0001] - [1359c4e1] Attempting to extract JSON from text (length: 323604 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 10:43:53,662 - WARNING - [ERR-0001] - [878c237b] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 10:43:53,662 - WARNING - [ERR-0001] - [337b69bc] Attempting to extract JSON from text (length: 254 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 10:43:53,662 - WARNING - [ERR-0001] - [fd381543] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 10:43:53,663 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 10:43:58,273 - ERROR - [ERR-0001] - [2a08321e] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-09 10:43:58,273 - WARNING - [WARN-0001] - [78476fc2] {"profile": "Productivity and Business Solutions Leader for Global Business Scalability, Success, Innovation, Advancement, Competitive Advantage, and Transformation in Global Enterprise Scenarios", "conviction": 0.6, "sentiment": 0.5, "position": "Long"} | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:43:58,273 - WARNING - [ERR-0303] - [dc4fc114] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
+2026-01-09 10:43:58,273 - ERROR - [ERR-0303] - [6a245ffc] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2026-01-09 10:43:58,273 - ERROR - [ERR-0001] - [99528062] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2026-01-09 10:43:58,273 - WARNING - [ERR-0003] - [844845ab] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:47:20,687 - ERROR - [ERR-0001] - [ddaeefda] Failed to parse AI response: Microsoft Corporation is a technology company primarily engaged in the development, licensing, and support of software, services, devices, and solutions. It falls under the GICS classification of Information Technology.
+
+{
+"description": "Microsoft Corporation is a technology company primarily engaged in the development, licensing, and support of software, services, devices, and solutions.",
+"sector": "Information Technology",
+"cashflow_health": "A",
+"profit_health": "A",
+"price_momentum": "B",
+"growth_health": "A"
+}
+ | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-01-09 10:47:24,490 - WARNING - [ERR-0001] - [4daf36d4] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 10:47:24,490 - ERROR - [ERR-0001] - [ddb091a3] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:47:24,490 - ERROR - [ERR-0404] - [9e3434d0] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:48:56,912 - WARNING - [ERR-0001] - [c3ff0f4e] Attempting to extract JSON from text (length: 6124 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 10:48:56,913 - WARNING - [ERR-0001] - [6a42926b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 10:48:56,914 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 10:49:16,722 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 10:49:16,724 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.38, Price Change: -0.2295, New Price: 99.7705
+2026-01-09 10:49:18,480 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-09 10:50:50,974 - WARNING - [ERR-0001] - [63aa3246] Attempting to extract JSON from text (length: 7777 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 10:50:50,975 - WARNING - [ERR-0001] - [b9c8558f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 10:50:50,975 - WARNING - [ERR-0001] - [96bb3d7c] Attempting to extract JSON from text (length: 7777 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 10:50:50,976 - WARNING - [ERR-0001] - [ffaff3a9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 10:50:50,976 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 10:50:52,575 - ERROR - [ERR-0203] - [5a570c93] Invalid decryption: ENCRYPTION_SECRET is incorrect or the encrypted text is corrupted | Exception: InvalidToken:  | From: crypt.py:decrypt_string()
+2026-01-09 10:50:52,575 - ERROR - [ERR-0001] - [0052e570] Error getting factors analysis | Exception: AttributeError: 'NoneType' object has no attribute 'format' | From: helpers.py:get_factors()
+2026-01-09 10:50:52,575 - ERROR - [ERR-0404] - [642d8b91] Error in holistic_market_model | Exception: UnboundLocalError: cannot access local variable 'ai_response' where it is not associated with a value | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:52:01,434 - ERROR - [ERR-0203] - [9c4926b2] Invalid decryption: ENCRYPTION_SECRET is incorrect or the encrypted text is corrupted | Exception: InvalidToken:  | From: crypt.py:decrypt_string()
+2026-01-09 10:54:19,298 - WARNING - [ERR-0001] - [4634f82d] Attempting to extract JSON from text (length: 8705 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 10:54:19,300 - WARNING - [ERR-0001] - [fae8e9b1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 10:54:19,300 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 10:54:45,008 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 10:54:45,011 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.3, Price Change: 0.1469, New Price: 100.1469
+2026-01-09 10:54:46,385 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BTC-USD']
+2026-01-09 10:58:23,996 - WARNING - [ERR-0001] - [8ea1360d] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 10:58:23,997 - ERROR - [ERR-0001] - [76138b5b] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 10:58:23,997 - ERROR - [ERR-0404] - [2a1b1103] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:00:28,159 - WARNING - [ERR-0001] - [53f97000] Attempting to extract JSON from text (length: 6347 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:00:28,161 - WARNING - [ERR-0001] - [e5675bb3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:00:28,161 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:00:43,650 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:00:43,652 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.04, Price Change: -0.0149, New Price: 99.9851
+2026-01-09 11:00:45,430 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']
+2026-01-09 11:02:11,074 - WARNING - [ERR-0001] - [35628328] Attempting to extract JSON from text (length: 6957 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:02:11,075 - WARNING - [ERR-0001] - [9287e80c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:02:11,075 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:02:23,564 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:02:23,565 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.682, Price Change: -0.0486, New Price: 99.9514
+2026-01-09 11:02:25,055 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
+2026-01-09 11:03:14,733 - WARNING - [ERR-0001] - [32540766] Attempting to extract JSON from text (length: 6464 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:03:14,733 - WARNING - [ERR-0001] - [d20ce3ff] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:03:14,733 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:03:19,609 - ERROR - [ERR-0001] - [cf70da18] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-09 11:03:19,609 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:03:19,609 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.585, Price Change: -0.0924, New Price: 99.9076
+2026-01-09 11:03:21,132 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
+2026-01-09 11:03:31,111 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 11:03:32,202 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:03:34,303 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:03:36,410 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:03:38,508 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:03:40,616 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2026-01-09 11:03:42,186 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 11:03:42,188 - INFO - [INFO] - Running: collecting: ticker: RCL | get_insights: default module
+2026-01-09 11:03:43,860 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:03:45,142 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:04:05,796 - WARNING - [ERR-0001] - [dca3eefa] Attempting to extract JSON from text (length: 5341 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:04:05,797 - WARNING - [ERR-0001] - [2d29af77] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:04:05,797 - WARNING - [ERR-0001] - [4b091837] Attempting to extract JSON from text (length: 5341 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:04:05,797 - WARNING - [ERR-0001] - [6f781c36] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:04:05,798 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:04:10,663 - ERROR - [ERR-0001] - [cab1bda4] Error getting factors analysis | Exception: TypeError: the JSON object must be str, bytes or bytearray, not NoneType | From: helpers.py:get_factors()
+2026-01-09 11:04:10,663 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:04:10,664 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.56, Price Change: 0.0731, New Price: 100.0731
+2026-01-09 11:04:12,084 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['RCL']
+2026-01-09 11:04:13,046 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:13,095 - INFO - [INFO] - Memory before cleanup: 346.7 KB
+2026-01-09 11:04:14,276 - INFO - [INFO] - Memory after cleanup: 449.9 KB (saved -105745.0 bytes)
+2026-01-09 11:04:15,429 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:17,582 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:19,729 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:21,824 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:23,964 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:26,064 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:28,300 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:30,551 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:32,804 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:35,057 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:37,154 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:39,253 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:41,439 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:43,588 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:45,690 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:47,790 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:49,885 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:04:52,056 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2026-01-09 11:04:53,609 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 11:04:53,610 - INFO - [INFO] - Running: collecting: ticker: DAL | get_insights: default module
+2026-01-09 11:04:55,229 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:04:56,560 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:05:13,783 - WARNING - [ERR-0001] - [c3a51e76] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 11:05:13,785 - ERROR - [ERR-0001] - [4fd23cf3] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:05:13,785 - ERROR - [ERR-0404] - [7b07aa1d] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:05:14,788 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:05:14,837 - INFO - [INFO] - Memory before cleanup: 554.2 KB
+2026-01-09 11:05:16,017 - INFO - [INFO] - Memory after cleanup: 525.1 KB (saved 29800.0 bytes)
+2026-01-09 11:05:16,325 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:05:32,366 - WARNING - [ERR-0001] - [2a74ce1a] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 11:05:32,368 - ERROR - [ERR-0001] - [af82e518] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:05:32,368 - ERROR - [ERR-0404] - [acb52e0c] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:05:33,286 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:05:33,335 - INFO - [INFO] - Memory before cleanup: 496.2 KB
+2026-01-09 11:05:34,506 - INFO - [INFO] - Memory after cleanup: 495.0 KB (saved 1216.0 bytes)
+2026-01-09 11:05:35,335 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:05:50,762 - WARNING - [ERR-0001] - [eeb632e8] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 11:05:50,763 - ERROR - [ERR-0001] - [c42c5228] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:05:50,763 - ERROR - [ERR-0404] - [017b878c] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:05:51,755 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:05:51,803 - INFO - [INFO] - Memory before cleanup: 496.2 KB
+2026-01-09 11:05:52,978 - INFO - [INFO] - Memory after cleanup: 496.0 KB (saved 208.0 bytes)
+2026-01-09 11:05:53,293 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:06:09,631 - WARNING - [ERR-0001] - [9a271bee] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 11:06:09,632 - ERROR - [ERR-0001] - [e1e0227c] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:06:09,632 - ERROR - [ERR-0404] - [ae5d2d26] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:06:11,121 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:06:11,164 - INFO - [INFO] - Memory before cleanup: 497.9 KB
+2026-01-09 11:06:12,344 - INFO - [INFO] - Memory after cleanup: 497.7 KB (saved 188.0 bytes)
+2026-01-09 11:06:54,828 - WARNING - [ERR-0001] - [94566d4a] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 11:06:54,829 - ERROR - [ERR-0001] - [62560e17] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:06:54,829 - ERROR - [ERR-0404] - [5633abdc] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:13:05,708 - WARNING - [ERR-0001] - [6e03a530] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-09 11:13:05,709 - ERROR - [ERR-0001] - [1a9e5404] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:13:05,709 - ERROR - [ERR-0404] - [f230c8ad] Error in holistic_market_model | Exception: TypeError: 'NoneType' object is not subscriptable | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:24:24,747 - WARNING - [ERR-0001] - [688c27b6] Attempting to extract JSON from text (length: 7092 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:24:24,748 - WARNING - [ERR-0001] - [e956e7da] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:24:24,748 - WARNING - [ERR-0001] - [faaf8c8f] Attempting to extract JSON from text (length: 7092 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:24:24,748 - WARNING - [ERR-0001] - [1aacb263] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:24:24,748 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:24:35,718 - WARNING - [ERR-0001] - [ffeb95fb] Attempting to extract JSON from text (length: 3893 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:24:35,720 - WARNING - [ERR-0001] - [8314e08d] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 11:24:35,720 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:24:35,722 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.19, Price Change: -0.016, New Price: 99.984
+2026-01-09 11:24:37,175 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PYPL']
+2026-01-09 11:32:59,236 - WARNING - [ERR-0001] - [bf51c4a9] Attempting to extract JSON from text (length: 7859 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:32:59,239 - WARNING - [ERR-0001] - [43d24fbf] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:32:59,239 - WARNING - [ERR-0001] - [7e7fe5a0] Attempting to extract JSON from text (length: 7859 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:32:59,239 - WARNING - [ERR-0001] - [6a76c28b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:32:59,240 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:33:08,201 - WARNING - [ERR-0001] - [85ce77ad] Attempting to extract JSON from text (length: 2570 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:33:08,202 - WARNING - [ERR-0001] - [9cbd856d] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 11:33:08,202 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:33:08,205 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.35, Price Change: -0.0323, New Price: 99.9677
+2026-01-09 11:33:09,554 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ETH-USD']
+2026-01-09 11:33:44,737 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 11:33:45,003 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:34:11,494 - WARNING - [ERR-0001] - [660e5e35] Attempting to extract JSON from text (length: 6786 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:34:11,495 - WARNING - [ERR-0001] - [9d91b663] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:34:11,495 - WARNING - [ERR-0001] - [5ef60e57] Attempting to extract JSON from text (length: 6786 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:34:11,495 - WARNING - [ERR-0001] - [7b2265df] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:34:11,496 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:34:23,551 - WARNING - [ERR-0001] - [ff38ee34] Attempting to extract JSON from text (length: 3745 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:34:23,552 - WARNING - [ERR-0001] - [43b34e81] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 11:34:23,552 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:34:23,552 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.62, Price Change: 0.0977, New Price: 100.0977
+2026-01-09 11:34:24,893 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['DAL']
+2026-01-09 11:34:25,827 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:34:25,870 - INFO - [INFO] - Memory before cleanup: 336.9 KB
+2026-01-09 11:34:27,045 - INFO - [INFO] - Memory after cleanup: 438.8 KB (saved -104331.0 bytes)
+2026-01-09 11:34:28,112 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:34:30,173 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:34:32,240 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:34:34,321 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:34:36,391 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:34:38,461 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:34:40,531 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:34:42,593 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:34:46,118 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2026-01-09 11:34:47,670 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 11:34:47,674 - INFO - [INFO] - Running: collecting: ticker: MU | get_insights: default module
+2026-01-09 11:34:49,860 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:34:51,239 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:35:18,688 - WARNING - [ERR-0001] - [5b8f0156] Attempting to extract JSON from text (length: 7201 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:35:18,691 - WARNING - [ERR-0001] - [6a3e2e54] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:35:18,691 - WARNING - [ERR-0001] - [05147dcd] Attempting to extract JSON from text (length: 7201 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:35:18,691 - WARNING - [ERR-0001] - [6a10fe4a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:35:18,692 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:35:29,777 - WARNING - [ERR-0001] - [d2c20b45] Attempting to extract JSON from text (length: 2149 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:35:29,778 - WARNING - [ERR-0001] - [bf574d89] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 11:35:29,778 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:35:29,779 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.778, Price Change: -0.1256, New Price: 99.8744
+2026-01-09 11:35:31,166 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MU']
+2026-01-09 11:35:32,085 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:32,133 - INFO - [INFO] - Memory before cleanup: 540.4 KB
+2026-01-09 11:35:33,317 - INFO - [INFO] - Memory after cleanup: 515.2 KB (saved 25856.0 bytes)
+2026-01-09 11:35:34,375 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:36,428 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:38,525 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:40,637 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:43,694 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:45,761 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:48,509 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:50,685 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:52,754 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:55,329 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:57,386 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:35:59,445 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:01,585 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:04,394 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:07,208 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:09,266 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:11,428 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:13,507 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:15,673 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:17,908 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:20,030 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:22,267 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:24,329 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:26,385 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:29,072 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:31,223 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:33,284 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:35,886 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:37,949 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:40,015 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:42,079 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:44,188 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:46,334 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:48,426 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:50,490 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:52,625 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:54,688 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:36:56,219 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 11:36:56,222 - INFO - [INFO] - Running: collecting: ticker: MULN | get_insights: default module
+2026-01-09 11:36:57,847 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:36:59,179 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:37:11,351 - ERROR - [ERR-0001] - [628680e0] Error processing ticker MULN | Exception: AttributeError: 'NoneType' object has no attribute 'get' | From: batch_run.py:process_ticker()
+2026-01-09 11:37:11,978 - INFO - [INFO] - Updated ticker MULN fail_count: 0 -> 1
+2026-01-09 11:37:11,979 - INFO - [INFO] - Ticker MULN recurrence changed to 'failed' at fail_count 1
+2026-01-09 11:37:13,001 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:13,052 - INFO - [INFO] - Memory before cleanup: 487.7 KB
+2026-01-09 11:37:14,230 - INFO - [INFO] - Memory after cleanup: 487.2 KB (saved 528.0 bytes)
+2026-01-09 11:37:15,377 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:17,462 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:19,526 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:21,579 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:24,184 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:26,292 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:28,347 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:30,408 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:32,468 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:34,527 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:36,585 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:38,637 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:40,688 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:42,753 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:44,920 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:37:46,996 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:39:13,692 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 11:39:17,129 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 11:39:17,131 - INFO - [INFO] - Running: collecting: ticker: KGC | get_insights: default module
+2026-01-09 11:39:18,581 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:39:19,851 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:39:31,698 - ERROR - [ERR-0001] - [6f3c4efd] Failed to parse AI response: Kinross Gold Corporation (KGC) is a Canadian-based senior gold mining company involved in the acquisition, exploration, development, and operation of gold properties, with silver as a byproduct. The company operates mines and projects across the United States, Brazil, Mauritania, Chile, and Canada, including notable sites like Fort Knox, Round Mountain, Bald Mountain, Paracatu, La Coipa, Tasiast, and the Great Bear project.
+
+sector: Materials
+
+cashflow_health: A
+Kinross Gold has demonstrated strong cash flow generation. The company reported record attributable free cash flow of $686.7 million in Q3 2025, a 66% increase from Q3 2024. For the full fiscal year 2025, analysts project free cash flow near $1.980 billion. In Q2 2025, the company achieved a record free cash flow of $647 million, and its operating cash flow increased to $992.4 million. Kinross also moved into a net cash position of $485 million as of September 30, 2025, and its debt is well covered by operating cash flow (270.7%).
+
+profit_health: A
+Kinross Gold's profitability margins in 2025 are strong and outpacing the industry average, driven by a surge in gold prices. The gross profit margin in Q3 2025 was 66.76%, with an operating profit margin of 44.05% in Q2 2025, and a net profit margin of 32.46% in Q3 2025. The company's margin per gold equivalent ounce sold increased by 54% to $2,310 in Q3 2025 compared to Q3 2024. Reported net earnings for Q3 2025 increased by 65% to $584.9 million.
+
+price_momentum: A
+Kinross Gold's stock has shown significant positive price momentum. As of January 5, 2026, the stock reached a 52-week high of $29.9 USD, gaining 191.59% over the past year and 78.96% in the last six months. On January 8, 2026, the stock price was $30.91, having gained for 5 consecutive days and rising 4.96% over the past two weeks. The stock is trading above its 10-day, 50-day, and 200-day simple moving averages.
+
+growth_health: A
+Kinross Gold is experiencing robust growth, primarily driven by the surge in gold prices. The company's trailing twelve-month (TTM) revenue as of September 30, 2025, was approximately $6.444 billion, a year-over-year growth rate of 32.9%. Analysts project full fiscal year 2025 revenue to hit around $6.88 billion, with a Zacks Consensus Estimate for 2025 EPS at $1.63, suggesting a year-over-year growth of nearly 140%. The company's strategic focus on developing projects with low all-in sustaining costs and expanding operations contributes to its positive growth outlook. | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-01-09 11:39:47,769 - WARNING - [ERR-0001] - [57e4971b] Attempting to extract JSON from text (length: 7224 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:39:47,771 - WARNING - [ERR-0001] - [d640fba9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:39:47,771 - WARNING - [ERR-0001] - [f2dcd5cf] Attempting to extract JSON from text (length: 7224 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:39:47,771 - WARNING - [ERR-0001] - [a6a6c716] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:39:47,771 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:39:56,575 - WARNING - [ERR-0001] - [b86ca29e] Attempting to extract JSON from text (length: 2094 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:39:56,576 - WARNING - [ERR-0001] - [b079172d] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 11:39:56,576 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:39:56,578 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.72, Price Change: -0.038, New Price: 99.962
+2026-01-09 11:39:58,000 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['KGC']
+2026-01-09 11:39:58,952 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:39:59,047 - INFO - [INFO] - Memory before cleanup: 2637.6 KB
+2026-01-09 11:40:00,282 - INFO - [INFO] - Memory after cleanup: 3009.2 KB (saved -380448.0 bytes)
+2026-01-09 11:40:01,373 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:03,568 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:05,740 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:07,898 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:09,990 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:12,128 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:14,282 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:16,428 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:18,514 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:20,664 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:22,885 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:24,977 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:27,084 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:29,174 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:31,346 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:33,436 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:35,715 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:38,006 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:40,259 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:42,512 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:44,636 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:46,761 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:49,045 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:51,215 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:53,473 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:55,669 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:57,840 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:40:59,986 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:02,190 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:04,345 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:06,522 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:08,658 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:10,881 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:13,289 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:15,695 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:18,314 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:21,730 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:24,120 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:26,749 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:29,310 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:31,855 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:41:33,711 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 11:41:33,715 - INFO - [INFO] - Running: collecting: ticker: BZ=F | get_insights: default module
+2026-01-09 11:41:35,668 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:41:37,091 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:42:07,070 - WARNING - [ERR-0001] - [63cde823] Attempting to extract JSON from text (length: 8287 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:42:07,072 - WARNING - [ERR-0001] - [b0c44818] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:42:07,072 - WARNING - [ERR-0001] - [9c40d1e5] Attempting to extract JSON from text (length: 8287 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:42:07,072 - WARNING - [ERR-0001] - [a118272b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:42:07,073 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:42:16,494 - WARNING - [ERR-0001] - [61cce740] Attempting to extract JSON from text (length: 2350 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:42:16,496 - WARNING - [ERR-0001] - [2f9e64f1] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 11:42:16,496 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:42:16,496 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.28, Price Change: 0.1918, New Price: 100.1918
+2026-01-09 11:42:17,947 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BZ=F']
+2026-01-09 11:42:18,903 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:19,007 - INFO - [INFO] - Memory before cleanup: 3456.4 KB
+2026-01-09 11:42:20,208 - INFO - [INFO] - Memory after cleanup: 3351.9 KB (saved 107040.0 bytes)
+2026-01-09 11:42:21,293 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:23,383 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:25,471 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:27,576 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:29,669 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:31,761 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:33,852 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:35,972 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:38,067 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:40,302 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:42,394 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:45,023 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:47,239 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:49,385 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:51,582 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:53,746 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:55,938 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:42:58,153 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:00,254 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:02,345 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:04,537 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:06,721 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:08,909 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:11,196 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:13,411 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:15,502 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:17,678 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:19,773 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:22,664 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:24,813 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:26,965 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:29,121 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:31,368 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:33,459 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:35,548 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:37,636 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:39,733 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:43:41,908 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:49:28,904 - ERROR - [ERR-0001] - [98957a74] Failed to parse AI response: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': "Tool use with a response mime type: 'application/json' is unsupported", 'status': 'INVALID_ARGUMENT'}} | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-01-09 11:49:31,187 - WARNING - [ERR-0001] - [54357928] Attempting to extract JSON from text (length: 186 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:49:31,187 - ERROR - [ERR-0001] - [e9089945] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 11:49:31,187 - ERROR - [ERR-0001] - [3cddb7f5] Text preview: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': "Tool use with a response mime type: 'application/json' is unsupported", 'status': 'INVALID_ARGUMENT'}}... | From: helpers.py:extract_json_from_text()
+2026-01-09 11:49:31,187 - WARNING - [ERR-0001] - [660d3bfc] Attempting to extract JSON from text (length: 187 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:49:31,188 - ERROR - [ERR-0001] - [247d78cb] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 11:49:31,188 - ERROR - [ERR-0001] - [4c34a1c0] Text preview: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported", 'status': 'INVALID_ARGUMENT'}}... | From: helpers.py:extract_json_from_text()
+2026-01-09 11:49:31,188 - ERROR - [ERR-0001] - [70f71d49] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:49:31,188 - WARNING - [WARN-0002] - [c9de844a] Raw response content: Error generating content: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported", 'status': 'INVALID_ARGUMENT'}}... | From: holistic.py:run_holistic_market_model()
+2026-01-09 11:50:51,493 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 11:50:55,526 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:50:57,626 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:50:59,737 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:51:01,828 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:51:03,999 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:51:06,148 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2026-01-09 11:51:07,759 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 11:51:07,761 - INFO - [INFO] - Running: collecting: ticker: MS | get_insights: default module
+2026-01-09 11:51:09,359 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:51:10,636 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:52:01,997 - WARNING - [ERR-0001] - [c24b2afc] Attempting to extract JSON from text (length: 7992 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:52:01,998 - WARNING - [ERR-0001] - [f569f97d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:52:01,999 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:52:16,619 - WARNING - [ERR-0001] - [2444bd88] Attempting to extract JSON from text (length: 1372 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:52:16,620 - WARNING - [ERR-0001] - [f0485d1a] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 11:52:16,620 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:52:16,622 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.365, Price Change: 0.0188, New Price: 100.0188
+2026-01-09 11:52:18,037 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MS']
+2026-01-09 11:52:18,967 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:52:19,037 - INFO - [INFO] - Memory before cleanup: 2637.7 KB
+2026-01-09 11:52:20,270 - INFO - [INFO] - Memory after cleanup: 3008.9 KB (saved -380164.0 bytes)
+2026-01-09 11:52:21,352 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:52:23,441 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:52:25,614 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:52:27,698 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:52:29,844 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:54:53,571 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 11:54:57,711 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:54:59,772 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:01,832 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:04,001 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:06,150 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:08,259 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:10,319 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:12,468 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:14,532 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:16,593 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:19,168 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:21,238 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:23,310 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:25,370 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:27,446 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:29,515 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:31,647 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:33,782 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:36,035 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:38,141 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:40,310 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:42,367 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:44,505 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:46,684 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:48,747 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:50,850 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:52,915 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:54,975 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:55:57,041 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2026-01-09 11:55:58,595 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 11:55:58,599 - INFO - [INFO] - Running: collecting: ticker: MS | get_insights: default module
+2026-01-09 11:56:00,066 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 11:56:01,332 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 11:57:00,701 - WARNING - [ERR-0001] - [8914f962] Attempting to extract JSON from text (length: 7894 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:57:00,702 - WARNING - [ERR-0001] - [5209155a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 11:57:00,703 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 11:57:23,211 - WARNING - [ERR-0001] - [c1d3a304] Attempting to extract JSON from text (length: 2016 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 11:57:23,212 - WARNING - [ERR-0001] - [dafea4e6] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 11:57:23,212 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 11:57:23,214 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.315, Price Change: 0.1928, New Price: 100.1928
+2026-01-09 11:57:24,681 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MS']
+2026-01-09 11:57:26,213 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:57:26,298 - INFO - [INFO] - Memory before cleanup: 2637.7 KB
+2026-01-09 11:57:27,554 - INFO - [INFO] - Memory after cleanup: 3010.2 KB (saved -381408.0 bytes)
+2026-01-09 11:57:28,776 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:57:30,983 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 11:57:33,045 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:26:44,768 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 12:26:51,036 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:26:53,697 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:26:55,246 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 12:26:55,248 - INFO - [INFO] - Running: collecting: ticker: HD | get_insights: default module
+2026-01-09 12:26:57,279 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:26:58,648 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:27:49,086 - WARNING - [ERR-0001] - [afe0218f] Attempting to extract JSON from text (length: 1358 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:27:49,088 - ERROR - [ERR-0001] - [ee19afb5] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:27:49,088 - ERROR - [ERR-0001] - [3d7f367d] Text preview: ```json
+{
+  "title": "Home Depot Navigates Housing Headwinds with Pro Focus and Strategic Acquisitions",
+  "market_outlook_narrative": [
+    "The Home Depot, Inc. (HD) has experienced a recent uptick, with shares rising 3% on January 8, 2026, driven by broader market strength and positive sentiment regarding a cooling vendor issue. However, this short-term gain follows a period of softening momentum, evidenced by a 1.5% decline over the past 30 days and a 9% decline over 90 days as of January 7,... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:27:49,088 - WARNING - [ERR-0001] - [ff596ba9] Attempting to extract JSON from text (length: 1358 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:27:49,089 - ERROR - [ERR-0001] - [e0929078] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:27:49,090 - ERROR - [ERR-0001] - [8ff7caa7] Text preview: {
+  \"title": \"Home Depot Navigates Housing Headwinds with Pro Focus and Strategic Acquisitions",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. (HD) has experienced a recent uptick, with shares rising 3% on January 8, 2026, driven by broader market strength and positive sentiment regarding a cooling vendor issue. However, this short-term gain follows a period of softening momentum, evidenced by a 1.5% decline over the past 30 days and a 9% decline over 90 days as of January 7, 202... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:27:49,091 - ERROR - [ERR-0001] - [5b6ee71b] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:27:49,091 - WARNING - [WARN-0002] - [80a0fc4e] Raw response content: {
+  \"title": \"Home Depot Navigates Housing Headwinds with Pro Focus and Strategic Acquisitions",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. (HD) has experienced a recent uptick, with shares rising 3% on January 8, 2026, driven by broader market strength and positive sentiment regarding a cooling vendor issue. However, this short-term gain follows a period of softening momentum, evidenced by a 1.5% decline over the past 30 days and a 9% decline over 90 days as of January 7, 202... | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:27:50,055 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:27:50,148 - INFO - [INFO] - Memory before cleanup: 2637.5 KB
+2026-01-09 12:27:51,386 - INFO - [INFO] - Memory after cleanup: 3009.1 KB (saved -380480.0 bytes)
+2026-01-09 12:27:51,657 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:28:52,378 - WARNING - [ERR-0001] - [63fc3b45] Attempting to extract JSON from text (length: 3055 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:28:52,380 - ERROR - [ERR-0001] - [758d6e69] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:28:52,380 - ERROR - [ERR-0001] - [2ee7144d] Text preview: ```json
+{
+  "title": "Home Depot Navigates Housing Headwinds, Analysts Maintain Moderate Buy Rating",
+  "market_outlook_narrative": [
+    "The Home Depot, Inc. (HD) recently provided a strategic update and preliminary outlook for fiscal year 2026, signaling a cautious approach amidst a slow housing market that has dampened demand for large renovation projects. This outlook, delivered at its Investor and Analyst Conference on December 9, 2025, reaffirmed the company's fiscal 2025 guidance. Despit... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:28:52,380 - WARNING - [ERR-0001] - [d072745a] Attempting to extract JSON from text (length: 3058 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:28:52,381 - ERROR - [ERR-0001] - [c1b65e0d] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:28:52,381 - ERROR - [ERR-0001] - [2856caac] Text preview: {
+  \"title": \"Home Depot Navigates Housing Headwinds, Analysts Maintain Moderate Buy Rating",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. (HD) recently provided a strategic update and preliminary outlook for fiscal year 2026, signaling a cautious approach amidst a slow housing market that has dampened demand for large renovation projects. This outlook, delivered at its Investor and Analyst Conference on December 9, 2025, reaffirmed the company's fiscal 2025 guidance. Despite th... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:28:52,382 - ERROR - [ERR-0001] - [0699ec31] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:28:52,382 - WARNING - [WARN-0002] - [e2d254a3] Raw response content: {
+  \"title": \"Home Depot Navigates Housing Headwinds, Analysts Maintain Moderate Buy Rating",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. (HD) recently provided a strategic update and preliminary outlook for fiscal year 2026, signaling a cautious approach amidst a slow housing market that has dampened demand for large renovation projects. This outlook, delivered at its Investor and Analyst Conference on December 9, 2025, reaffirmed the company's fiscal 2025 guidance. Despite th... | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:28:53,303 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:28:53,418 - INFO - [INFO] - Memory before cleanup: 3457.6 KB
+2026-01-09 12:28:54,659 - INFO - [INFO] - Memory after cleanup: 3354.3 KB (saved 105760.0 bytes)
+2026-01-09 12:28:54,936 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:29:55,010 - WARNING - [ERR-0001] - [c2fb075b] Attempting to extract JSON from text (length: 15971 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:29:55,014 - WARNING - [ERR-0001] - [e99f5755] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 12:29:55,015 - WARNING - [ERR-0001] - [3ccf04c4] Attempting to extract JSON from text (length: 104 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:29:55,015 - WARNING - [ERR-0001] - [c248dd9d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 12:29:55,015 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 12:30:11,855 - WARNING - [ERR-0001] - [c4579556] Attempting to extract JSON from text (length: 2087 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:30:11,857 - ERROR - [ERR-0001] - [c7bac80f] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:30:11,857 - ERROR - [ERR-0001] - [9514e7a9] Text preview: {
+  'factors': [
+    {
+      'name': 'company_fundamentals',
+      'value': {
+        'description': 'Home Depot reported Q3 Fiscal 2025 adjusted diluted EPS of $3.74, missing analyst expectations, with sales of $41.4 billion representing a 2.8% increase, and updated fiscal 2025 guidance projects a 5% decline in adjusted diluted EPS, while fiscal 2026 outlook anticipates flat to 4% EPS growth.',
+        'bull_bear_score': 5
+      }
+    },
+    {
+      'name': 'company_news_events',
+      'value':... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:30:11,857 - ERROR - [ERR-0103] - [22d79f77] JSON parsing failed (attempt 1/1) | Exception: JSONDecodeError: Expecting property name enclosed in double quotes: line 2 column 3 (char 4) | From: helpers.py:get_factors()
+2026-01-09 12:30:11,857 - ERROR - [ERR-0103] - [62c56291] Unexpected format in factors response | From: helpers.py:get_factors()
+2026-01-09 12:30:11,857 - WARNING - [ERR-0303] - [6bb37a6c] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
+2026-01-09 12:30:11,857 - ERROR - [ERR-0303] - [d3641a76] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2026-01-09 12:30:11,857 - ERROR - [ERR-0001] - [1908482b] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2026-01-09 12:30:11,859 - WARNING - [ERR-0003] - [5701eabe] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:30:12,797 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:30:12,908 - INFO - [INFO] - Memory before cleanup: 3242.2 KB
+2026-01-09 12:30:14,149 - INFO - [INFO] - Memory after cleanup: 3240.6 KB (saved 1568.0 bytes)
+2026-01-09 12:30:14,443 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:31:08,742 - WARNING - [ERR-0001] - [9b8ab725] Attempting to extract JSON from text (length: 6134 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:31:08,744 - ERROR - [ERR-0001] - [0e8bab37] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:31:08,744 - ERROR - [ERR-0001] - [92416c02] Text preview: ```json
+{
+  "title": "Home Depot Navigates Housing Headwinds, Strategic Pro Focus Amidst Cautious Outlook",
+  "market_outlook_narrative": [
+    "The Home Depot, Inc. (HD) faces a challenging near-term environment, as evidenced by its cautious preliminary fiscal year 2026 outlook released in December 2025. The company projected comparable sales growth of flat to 2% and adjusted diluted earnings per share (EPS) growth of flat to 4%, figures that largely fell below analyst consensus expectations, r... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:31:08,745 - WARNING - [ERR-0001] - [31fecb3b] Attempting to extract JSON from text (length: 6139 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:31:08,746 - ERROR - [ERR-0001] - [fad33570] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:31:08,746 - ERROR - [ERR-0001] - [a1fc1dd2] Text preview: {
+  \"title": \"Home Depot Navigates Housing Headwinds, Strategic Pro Focus Amidst Cautious Outlook",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. (HD) faces a challenging near-term environment, as evidenced by its cautious preliminary fiscal year 2026 outlook released in December 2025. The company projected comparable sales growth of flat to 2% and adjusted diluted earnings per share (EPS) growth of flat to 4%, figures that largely fell below analyst consensus expectations, refle... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:31:08,747 - ERROR - [ERR-0001] - [f7630fa9] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:31:08,747 - WARNING - [WARN-0002] - [0b94bbc6] Raw response content: {
+  \"title": \"Home Depot Navigates Housing Headwinds, Strategic Pro Focus Amidst Cautious Outlook",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. (HD) faces a challenging near-term environment, as evidenced by its cautious preliminary fiscal year 2026 outlook released in December 2025. The company projected comparable sales growth of flat to 2% and adjusted diluted earnings per share (EPS) growth of flat to 4%, figures that largely fell below analyst consensus expectations, refle... | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:31:09,731 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:31:09,823 - INFO - [INFO] - Memory before cleanup: 3239.4 KB
+2026-01-09 12:31:11,064 - INFO - [INFO] - Memory after cleanup: 3239.5 KB (saved -96.0 bytes)
+2026-01-09 12:31:11,335 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:31:35,467 - ERROR - [ERR-0001] - [564ce18b] Failed to parse AI response: {
+  'description': 'The Home Depot, Inc. is the world\'s largest home improvement retailer, offering tools, construction products, appliances, and services to both DIY customers and professional contractors.',
+  'sector': 'Consumer Discretionary',
+  'cashflow_health': 'B',
+  'profit_health': 'C',
+  'price_momentum': 'D',
+  'growth_health': 'C'
+} | Exception: JSONDecodeError: Expecting property name enclosed in double quotes: line 2 column 3 (char 4) | From: analysis.py:run_analysis()
+2026-01-09 12:32:05,017 - WARNING - [ERR-0001] - [75bc89d9] Attempting to extract JSON from text (length: 5706 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:32:05,019 - ERROR - [ERR-0001] - [6114dcd4] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:32:05,019 - ERROR - [ERR-0001] - [e0732cea] Text preview: ```json
+{
+  "title": "Home Depot Navigates Housing Headwinds with Pro Focus; Cautious 2026 Outlook Weighs",
+  "market_outlook_narrative": [
+    "The Home Depot, Inc. (HD) enters 2026 facing a cautious market, as evidenced by its preliminary fiscal 2026 outlook released in December 2025, projecting modest comparable sales growth between flat and 2% and diluted earnings per share growth of up to 4%. This subdued forecast reflects ongoing pressures from a slow housing market and consumer uncertaint... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:32:05,019 - WARNING - [ERR-0001] - [2535d774] Attempting to extract JSON from text (length: 5711 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:32:05,020 - ERROR - [ERR-0001] - [82d23450] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:32:05,021 - ERROR - [ERR-0001] - [16513bd5] Text preview: {
+  \"title": \"Home Depot Navigates Housing Headwinds with Pro Focus; Cautious 2026 Outlook Weighs",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. (HD) enters 2026 facing a cautious market, as evidenced by its preliminary fiscal 2026 outlook released in December 2025, projecting modest comparable sales growth between flat and 2% and diluted earnings per share growth of up to 4%. This subdued forecast reflects ongoing pressures from a slow housing market and consumer uncertainty, w... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:32:05,021 - ERROR - [ERR-0001] - [aa462ede] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:32:05,021 - WARNING - [WARN-0002] - [f8a6eef3] Raw response content: {
+  \"title": \"Home Depot Navigates Housing Headwinds with Pro Focus; Cautious 2026 Outlook Weighs",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. (HD) enters 2026 facing a cautious market, as evidenced by its preliminary fiscal 2026 outlook released in December 2025, projecting modest comparable sales growth between flat and 2% and diluted earnings per share growth of up to 4%. This subdued forecast reflects ongoing pressures from a slow housing market and consumer uncertainty, w... | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:32:05,949 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:32:06,061 - INFO - [INFO] - Memory before cleanup: 3238.7 KB
+2026-01-09 12:32:07,301 - INFO - [INFO] - Memory after cleanup: 3238.0 KB (saved 768.0 bytes)
+2026-01-09 12:32:07,690 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:33:01,029 - WARNING - [ERR-0001] - [4eb51af6] Attempting to extract JSON from text (length: 2792 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:01,032 - ERROR - [ERR-0001] - [7b2ba9ae] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:01,033 - ERROR - [ERR-0001] - [4e8fdd86] Text preview: ```json
+{
+  "title": "Home Depot Navigates Housing Headwinds, Pro Strategy Fuels Long-Term Optimism",
+  "market_outlook_narrative": [
+    "The Home Depot, Inc. reported mixed third-quarter fiscal 2025 results on November 18, 2025, with revenue surpassing expectations at $41.4 billion, partly bolstered by the GMS Inc. acquisition. However, adjusted diluted earnings per share of $3.74 fell short of forecasts, marking the third consecutive quarterly EPS miss. This performance was largely attributed... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:01,033 - WARNING - [ERR-0001] - [956ce093] Attempting to extract JSON from text (length: 2793 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:01,034 - ERROR - [ERR-0001] - [6cb905f3] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:01,034 - ERROR - [ERR-0001] - [1821425f] Text preview: {
+  \"title": \"Home Depot Navigates Housing Headwinds, Pro Strategy Fuels Long-Term Optimism",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. reported mixed third-quarter fiscal 2025 results on November 18, 2025, with revenue surpassing expectations at $41.4 billion, partly bolstered by the GMS Inc. acquisition. However, adjusted diluted earnings per share of $3.74 fell short of forecasts, marking the third consecutive quarterly EPS miss. This performance was largely attributed to ... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:01,034 - ERROR - [ERR-0001] - [7b680872] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:33:01,034 - WARNING - [WARN-0002] - [333e5aea] Raw response content: {
+  \"title": \"Home Depot Navigates Housing Headwinds, Pro Strategy Fuels Long-Term Optimism",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. reported mixed third-quarter fiscal 2025 results on November 18, 2025, with revenue surpassing expectations at $41.4 billion, partly bolstered by the GMS Inc. acquisition. However, adjusted diluted earnings per share of $3.74 fell short of forecasts, marking the third consecutive quarterly EPS miss. This performance was largely attributed to ... | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:33:01,958 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:33:02,069 - INFO - [INFO] - Memory before cleanup: 3238.0 KB
+2026-01-09 12:33:03,313 - INFO - [INFO] - Memory after cleanup: 3239.2 KB (saved -1280.0 bytes)
+2026-01-09 12:33:03,605 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:33:25,286 - ERROR - [ERR-0001] - [7d0f0952] Failed to parse AI response: {
+  'description': 'The Home Depot, Inc. is the largest American multinational home improvement retail corporation, offering tools, construction products, appliances, and services to both DIY homeowners and professional contractors.',
+  'sector': 'Consumer Discretionary',
+  'cashflow_health': 'B',
+  'profit_health': 'A',
+  'price_momentum': 'D',
+  'growth_health': 'C'
+} | Exception: JSONDecodeError: Expecting property name enclosed in double quotes: line 2 column 3 (char 4) | From: analysis.py:run_analysis()
+2026-01-09 12:33:55,136 - WARNING - [ERR-0001] - [b7aae649] Attempting to extract JSON from text (length: 4792 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:55,138 - ERROR - [ERR-0001] - [496e7ba7] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:55,138 - ERROR - [ERR-0001] - [fef89508] Text preview: ```json
+{
+  "title": "Home Depot Navigates Housing Headwinds, Pro Strategy Offers Long-Term Resilience",
+  "market_outlook_narrative": [
+    "The Home Depot, Inc. (HD) faces a cautious near-term outlook, with preliminary fiscal 2026 guidance, issued in December 2025, projecting comparable sales growth between flat and 2% and diluted earnings per share (EPS) increasing approximately flat to 4%. This conservative stance is largely attributed to a subdued housing market, which has dampened demand f... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:55,139 - WARNING - [ERR-0001] - [5cfba4cd] Attempting to extract JSON from text (length: 4794 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:55,140 - ERROR - [ERR-0001] - [59b1f10d] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:55,140 - ERROR - [ERR-0001] - [abe70b3f] Text preview: {
+  \"title": \"Home Depot Navigates Housing Headwinds, Pro Strategy Offers Long-Term Resilience",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. (HD) faces a cautious near-term outlook, with preliminary fiscal 2026 guidance, issued in December 2025, projecting comparable sales growth between flat and 2% and diluted earnings per share (EPS) increasing approximately flat to 4%. This conservative stance is largely attributed to a subdued housing market, which has dampened demand for s... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:33:55,140 - ERROR - [ERR-0001] - [422c799e] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:33:55,140 - WARNING - [WARN-0002] - [fe1c1f39] Raw response content: {
+  \"title": \"Home Depot Navigates Housing Headwinds, Pro Strategy Offers Long-Term Resilience",
+  \"market_outlook_narrative": [
+    \"The Home Depot, Inc. (HD) faces a cautious near-term outlook, with preliminary fiscal 2026 guidance, issued in December 2025, projecting comparable sales growth between flat and 2% and diluted earnings per share (EPS) increasing approximately flat to 4%. This conservative stance is largely attributed to a subdued housing market, which has dampened demand for s... | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:33:56,134 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:33:56,245 - INFO - [INFO] - Memory before cleanup: 3240.8 KB
+2026-01-09 12:33:57,489 - INFO - [INFO] - Memory after cleanup: 3240.2 KB (saved 608.0 bytes)
+2026-01-09 12:33:57,767 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:35:44,946 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 12:35:48,895 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:35:51,146 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:35:53,274 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:35:55,512 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:35:57,605 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:35:59,705 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:01,898 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:04,012 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:06,301 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:08,451 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:10,606 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:12,750 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:14,903 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:17,024 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:19,206 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:21,302 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:23,542 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:25,691 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:27,807 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:30,430 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:32,589 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:34,685 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:36,783 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:38,930 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:41,120 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:43,208 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:45,418 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:47,672 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:49,767 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:51,871 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:53,961 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:56,060 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:36:58,287 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:37:00,398 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:37:02,496 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:37:04,706 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:37:06,820 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:37:09,072 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:37:10,617 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 12:37:10,620 - INFO - [INFO] - Running: collecting: ticker: WYNN | get_insights: default module
+2026-01-09 12:37:12,143 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:37:13,420 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:38:10,172 - WARNING - [ERR-0001] - [a45ac207] Attempting to extract JSON from text (length: 4349 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:38:10,175 - ERROR - [ERR-0001] - [30211404] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:38:10,175 - ERROR - [ERR-0001] - [fb64756c] Text preview: ```json
+{
+  "title": "Wynn Resorts Poised for Growth Amid Macau Rebound and UAE Expansion, Rated Buy",
+  "market_outlook_narrative": [
+    "Wynn Resorts, Limited (WYNN) enters 2026 with a strong 'Buy' consensus from analysts, notably initiated by Texas Capital Securities with a $155 price target, driven by its robust appeal to high-end consumers and expanding market share in both Las Vegas and Macau. The company's Macau operations are experiencing positive momentum in gross gaming revenue, while... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:38:10,176 - WARNING - [ERR-0001] - [a20ddd63] Attempting to extract JSON from text (length: 4351 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:38:10,177 - ERROR - [ERR-0001] - [90f3db64] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:38:10,177 - ERROR - [ERR-0001] - [81d95495] Text preview: {
+  \"title": \"Wynn Resorts Poised for Growth Amid Macau Rebound and UAE Expansion, Rated Buy",
+  \"market_outlook_narrative": [
+    \"Wynn Resorts, Limited (WYNN) enters 2026 with a strong 'Buy' consensus from analysts, notably initiated by Texas Capital Securities with a $155 price target, driven by its robust appeal to high-end consumers and expanding market share in both Las Vegas and Macau. The company's Macau operations are experiencing positive momentum in gross gaming revenue, while Las... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:38:10,178 - ERROR - [ERR-0001] - [a0918ef4] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:38:10,178 - WARNING - [WARN-0002] - [6e2a38d8] Raw response content: {
+  \"title": \"Wynn Resorts Poised for Growth Amid Macau Rebound and UAE Expansion, Rated Buy",
+  \"market_outlook_narrative": [
+    \"Wynn Resorts, Limited (WYNN) enters 2026 with a strong 'Buy' consensus from analysts, notably initiated by Texas Capital Securities with a $155 price target, driven by its robust appeal to high-end consumers and expanding market share in both Las Vegas and Macau. The company's Macau operations are experiencing positive momentum in gross gaming revenue, while Las... | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:38:11,103 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:38:11,201 - INFO - [INFO] - Memory before cleanup: 2637.7 KB
+2026-01-09 12:38:12,427 - INFO - [INFO] - Memory after cleanup: 3009.2 KB (saved -380448.0 bytes)
+2026-01-09 12:38:12,766 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:39:08,645 - WARNING - [ERR-0001] - [daaec323] Attempting to extract JSON from text (length: 2475 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:39:08,647 - ERROR - [ERR-0001] - [d039c29e] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:39:08,647 - ERROR - [ERR-0001] - [f37bfd72] Text preview: ```json
+{
+  "title": "Wynn Resorts Poised for Growth Amid Macau Rebound and UAE Expansion Buy Rating Affirmed",
+  "market_outlook_narrative": [
+    "Wynn Resorts, Limited (WYNN) enters January 2026 with a generally positive outlook, underscored by a recent 'Buy' initiation from Texas Capital, which set a $155 price target. This optimism is largely driven by the company's robust positioning within the high-end consumer segment, leading to sustained market share gains in both Las Vegas and Macau. ... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:39:08,647 - WARNING - [ERR-0001] - [39d07cf6] Attempting to extract JSON from text (length: 2476 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:39:08,648 - ERROR - [ERR-0001] - [1536c054] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:39:08,648 - ERROR - [ERR-0001] - [5d2b45b3] Text preview: {
+  \"title": \"Wynn Resorts Poised for Growth Amid Macau Rebound and UAE Expansion Buy Rating Affirmed",
+  \"market_outlook_narrative": [
+    \"Wynn Resorts, Limited (WYNN) enters January 2026 with a generally positive outlook, underscored by a recent 'Buy' initiation from Texas Capital, which set a $155 price target. This optimism is largely driven by the company's robust positioning within the high-end consumer segment, leading to sustained market share gains in both Las Vegas and Macau. The ... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:39:08,649 - ERROR - [ERR-0001] - [9623cfbf] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:39:08,649 - WARNING - [WARN-0002] - [c66952cc] Raw response content: {
+  \"title": \"Wynn Resorts Poised for Growth Amid Macau Rebound and UAE Expansion Buy Rating Affirmed",
+  \"market_outlook_narrative": [
+    \"Wynn Resorts, Limited (WYNN) enters January 2026 with a generally positive outlook, underscored by a recent 'Buy' initiation from Texas Capital, which set a $155 price target. This optimism is largely driven by the company's robust positioning within the high-end consumer segment, leading to sustained market share gains in both Las Vegas and Macau. The ... | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:39:09,569 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:39:09,683 - INFO - [INFO] - Memory before cleanup: 3457.9 KB
+2026-01-09 12:39:10,947 - INFO - [INFO] - Memory after cleanup: 3353.6 KB (saved 106848.0 bytes)
+2026-01-09 12:39:11,220 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:40:11,891 - WARNING - [ERR-0001] - [af2286d1] Attempting to extract JSON from text (length: 2643 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:40:11,893 - ERROR - [ERR-0001] - [ea9760f5] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:40:11,893 - ERROR - [ERR-0001] - [001ad309] Text preview: {
+  "title": "Wynn Resorts: Macau Rebound, UAE Expansion Drive Bullish Outlook",
+  "market_outlook_narrative": [
+    "Wynn Resorts, Limited (WYNN) enters 2026 with a notably positive market sentiment, underscored by Texas Capital Securities initiating coverage with a 'Buy' rating and a $155 price target on January 8, 2026. This optimism is largely fueled by the company's strong positioning with high-end consumers and consistent market share gains across its key Las Vegas and Macau operations.",
+... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:40:11,893 - WARNING - [ERR-0001] - [f95b8051] Attempting to extract JSON from text (length: 2654 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:40:11,894 - ERROR - [ERR-0001] - [6a623292] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-09 12:40:11,894 - ERROR - [ERR-0001] - [8c65260c] Text preview: {
+  \"title": \"Wynn Resorts: Macau Rebound, UAE Expansion Drive Bullish Outlook",
+  \"market_outlook_narrative": [
+    \"Wynn Resorts, Limited (WYNN) enters 2026 with a notably positive market sentiment, underscored by Texas Capital Securities initiating coverage with a 'Buy' rating and a $155 price target on January 8, 2026. This optimism is largely fueled by the company's strong positioning with high-end consumers and consistent market share gains across its key Las Vegas and Macau operations... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:40:11,894 - ERROR - [ERR-0001] - [817db03b] Failed to extract valid JSON from AI response | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:40:11,894 - WARNING - [WARN-0002] - [33777826] Raw response content: {
+  \"title": \"Wynn Resorts: Macau Rebound, UAE Expansion Drive Bullish Outlook",
+  \"market_outlook_narrative": [
+    \"Wynn Resorts, Limited (WYNN) enters 2026 with a notably positive market sentiment, underscored by Texas Capital Securities initiating coverage with a 'Buy' rating and a $155 price target on January 8, 2026. This optimism is largely fueled by the company's strong positioning with high-end consumers and consistent market share gains across its key Las Vegas and Macau operations... | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:40:12,880 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:40:12,969 - INFO - [INFO] - Memory before cleanup: 3240.5 KB
+2026-01-09 12:40:14,230 - INFO - [INFO] - Memory after cleanup: 3239.6 KB (saved 928.0 bytes)
+2026-01-09 12:40:14,519 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:40:22,418 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 12:40:25,579 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:41:20,894 - WARNING - [ERR-0001] - [80b21e2c] Attempting to extract JSON from text (length: 13352 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:41:20,902 - WARNING - [ERR-0001] - [aaad06e7] Successfully extracted JSON using fallback pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 12:41:20,903 - WARNING - [ERR-0001] - [77fd43de] Attempting to extract JSON from text (length: 125 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:41:20,903 - WARNING - [ERR-0001] - [99c22663] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 12:41:20,903 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 12:42:11,598 - WARNING - [ERR-0001] - [ed6d025d] Attempting to extract JSON from text (length: 2586 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:42:11,600 - WARNING - [ERR-0001] - [aac60e3d] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:42:11,600 - WARNING - [ERR-0303] - [042c2f3d] Missing required fields: ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations'] | From: helpers.py:validate_recommendations_schema()
+2026-01-09 12:42:11,600 - ERROR - [ERR-0303] - [3a3c9461] Invalid recommendations schema, skipping save | From: helpers.py:save_to_db_robust()
+2026-01-09 12:42:11,600 - ERROR - [ERR-0001] - [f130b583] Database save failed, updating fail_count | From: helpers.py:save_to_db_with_fallback()
+2026-01-09 12:42:11,600 - WARNING - [ERR-0003] - [bd9f3ab4] Failed to save recommendations to database | From: holistic.py:run_holistic_market_model()
+2026-01-09 12:42:12,585 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 12:42:12,682 - INFO - [INFO] - Memory before cleanup: 2635.0 KB
+2026-01-09 12:42:13,958 - INFO - [INFO] - Memory after cleanup: 3006.5 KB (saved -380384.0 bytes)
+2026-01-09 12:42:14,232 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:52:57,031 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 12:53:00,123 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 12:54:06,463 - WARNING - [ERR-0001] - [b9b747b1] Attempting to extract JSON from text (length: 8279 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:54:06,464 - WARNING - [ERR-0001] - [9816c558] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 12:54:06,464 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 12:54:31,459 - WARNING - [ERR-0001] - [25f9a399] Attempting to extract JSON from text (length: 2220 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 12:54:31,460 - WARNING - [ERR-0001] - [52dd70ee] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 12:54:31,460 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 12:54:31,462 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.2, Price Change: 0.0105, New Price: 100.0105
+2026-01-09 12:54:32,936 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['WYNN']
+2026-01-09 12:54:33,856 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 12:54:33,954 - INFO - [INFO] - Memory before cleanup: 2635.1 KB
+2026-01-09 12:54:35,199 - INFO - [INFO] - Memory after cleanup: 3006.4 KB (saved -380147.0 bytes)
+2026-01-09 12:54:36,281 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:04:41,577 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 13:04:45,499 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:04:47,577 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:04:50,156 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:04:52,319 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:04:54,512 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:04:56,759 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:04:58,854 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:05:01,057 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:05:03,746 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2026-01-09 13:05:05,287 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 13:05:05,294 - INFO - [INFO] - Running: collecting: ticker: TLRY | get_insights: default module
+2026-01-09 13:05:06,851 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 13:05:08,125 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 13:06:07,902 - WARNING - [ERR-0001] - [ee64bafb] Attempting to extract JSON from text (length: 8750 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 13:06:07,905 - WARNING - [ERR-0001] - [c31a39ce] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 13:06:07,906 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 13:06:34,830 - WARNING - [ERR-0001] - [43cf5d3c] Attempting to extract JSON from text (length: 2433 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 13:06:34,831 - WARNING - [ERR-0001] - [3c830ced] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 13:06:34,831 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 13:06:34,833 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.32, Price Change: -0.073, New Price: 99.927
+2026-01-09 13:06:36,261 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['TLRY']
+2026-01-09 13:06:37,197 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:06:37,288 - INFO - [INFO] - Memory before cleanup: 2637.7 KB
+2026-01-09 13:06:38,493 - INFO - [INFO] - Memory after cleanup: 3008.7 KB (saved -379923.0 bytes)
+2026-01-09 13:06:39,668 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:13:22,834 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 13:13:27,007 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:13:29,166 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:13:31,229 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:13:33,325 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:13:34,906 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 13:13:34,908 - INFO - [INFO] - Running: collecting: ticker: MCD | get_insights: default module
+2026-01-09 13:13:36,369 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 13:13:37,646 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 13:14:38,524 - WARNING - [ERR-0001] - [269eb832] Attempting to extract JSON from text (length: 8637 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 13:14:38,526 - WARNING - [ERR-0001] - [f4a92955] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 13:14:38,526 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 13:15:00,882 - WARNING - [ERR-0001] - [bc3ac3e6] Attempting to extract JSON from text (length: 2189 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 13:15:00,883 - WARNING - [ERR-0001] - [39837064] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 13:15:00,883 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 13:15:00,886 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.08, Price Change: 0.1597, New Price: 100.1597
+2026-01-09 13:15:02,422 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MCD']
+2026-01-09 13:15:03,353 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:03,451 - INFO - [INFO] - Memory before cleanup: 2637.8 KB
+2026-01-09 13:15:04,686 - INFO - [INFO] - Memory after cleanup: 3008.7 KB (saved -379808.0 bytes)
+2026-01-09 13:15:05,869 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:08,041 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:10,760 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:12,999 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:15,129 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:17,194 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:19,350 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:21,498 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:23,649 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:25,904 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:28,055 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:30,776 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:32,848 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:34,986 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:37,049 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:39,115 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:41,691 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:43,754 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:45,828 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:47,888 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:49,987 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:52,218 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:54,433 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:57,193 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:15:59,388 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:01,642 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:03,765 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:06,045 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:08,149 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:10,317 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:13,107 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:15,363 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:17,421 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:19,485 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:21,555 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:23,624 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:25,685 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:27,748 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:29,814 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:31,879 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:33,951 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:36,046 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:38,109 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:40,177 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:42,353 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:44,421 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:46,695 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:16:48,820 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:37:14,505 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 13:37:18,670 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:37:20,801 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:37:22,950 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:37:25,094 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:37:27,221 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:37:29,484 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:37:31,620 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:37:33,761 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:37:35,336 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 13:37:35,343 - INFO - [INFO] - Running: collecting: ticker: NOC | get_insights: default module
+2026-01-09 13:37:37,412 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 13:37:38,701 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 13:38:02,553 - ERROR - [ERR-0001] - [27c325df] Failed to parse AI response: Northrop Grumman Corporation (NOC) is a global aerospace and defense technology company that designs, develops, manufactures, integrates, and sustains advanced systems, products, and solutions in aeronautics, defense, missions, and space for government and commercial customers worldwide.
+
+**Sector:** Industrials
+
+**Evaluation:**
+
+*   **cashflow_health:** C
+    Northrop Grumman reported strong operating cash flow of $4.4 billion and free cash flow of $2.6 billion for the full year 2024, representing increases of 13.24% and 25% respectively from 2023. However, year-to-date free cash flow saw a significant decline to $(1,184) million in Q2 2025, primarily due to increased cash taxes and rising working capital demands. Free cash flow for Q3 2025 was $637 million, a 42% decline year-over-year, underperforming market expectations. Despite these quarterly declines, the company reaffirmed its full-year 2025 free cash flow outlook of $3.05 billion to $3.35 billion, with expectations of double-digit growth for the year. The mixed performance, with strong annual figures but recent quarterly declines, warrants a 'C' grade.
+
+*   **profit_health:** B
+    The company demonstrated strong profit health in 2024, with net earnings doubling to $4.2 billion and diluted EPS reaching $28.34, a 103.02% increase from 2023. Operating income also grew significantly by 72% to $4.4 billion in 2024, with an operating margin rate of 10.6%. For Q3 2025, net earnings totaled $1.1 billion, or $7.67 per diluted share, an increase of 10% compared to Q3 2024. The company raised its 2025 MTM-adjusted EPS guidance range to $25.65-$26.05. While Q1 2025 saw weak results with sales lower than expected and profits falling short due to a $477 million loss provision on the B-21 program, the subsequent quarters and raised full-year guidance indicate a recovery and solid overall profitability.
+
+*   **price_momentum:** A
+    Northrop Grumman's stock has shown strong positive momentum. As of January 8, 2026, the stock was up 10.98% month-to-date and year-to-date. It was up 36.91% from 52 weeks ago (January 8, 2025). The stock's all-time closing high was $637.95 on October 8, 2025, and it was trading close to this high as of January 8, 2026. Analysts predict the share price to increase by 17.94% in the coming year, reaching $672.00.
+
+*   **growth_health:** B
+    Northrop Grumman reported annual sales of $41.0 billion in 2024, a 4% increase from $39.3 billion in 2023. Q3 2025 sales increased 4% to $10.4 billion, with organic sales growing by 5%. The company ended 2024 with a record backlog of $91.5 billion, which remained strong at $91.4 billion in Q3 2025. International sales demonstrated robust growth, increasing 32% year-over-year in Q3 2025 and contributing to a 20% year-to-date rise. The company's 2025 guidance projects continued organic sales growth of 3% to 4%. Despite a 0.14% decline in trailing twelve months (TTM) revenue ending September 30, 2025, and a 7% sales drop in Q1 2025 due to program wind-downs, the overall trend of increasing sales, strong backlog, and positive guidance supports a 'B' grade for growth. | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-01-09 13:38:31,903 - WARNING - [ERR-0001] - [89d15986] Attempting to extract JSON from text (length: 8476 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 13:38:31,904 - WARNING - [ERR-0001] - [fe5bb318] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 13:38:31,904 - WARNING - [ERR-0001] - [61757a8a] Attempting to extract JSON from text (length: 8476 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 13:38:31,905 - WARNING - [ERR-0001] - [3909cedb] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 13:38:31,905 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 13:39:18,104 - WARNING - [ERR-0001] - [d3dc2147] Attempting to extract JSON from text (length: 2689 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 13:39:18,105 - WARNING - [ERR-0001] - [9e3afb15] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 13:39:18,105 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 13:39:18,107 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.54, Price Change: -0.1643, New Price: 99.8357
+2026-01-09 13:39:19,574 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NOC']
+2026-01-09 13:39:20,547 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:39:20,644 - INFO - [INFO] - Memory before cleanup: 2637.6 KB
+2026-01-09 13:39:21,893 - INFO - [INFO] - Memory after cleanup: 3009.9 KB (saved -381248.0 bytes)
+2026-01-09 13:39:23,025 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:39:25,162 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:39:27,313 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:39:29,536 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:39:32,269 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:39:34,952 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:39:37,096 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:46:17,391 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 13:46:21,437 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:46:23,535 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:46:25,630 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:46:27,737 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:47:21,656 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 13:47:25,419 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:47:27,526 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:47:29,601 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:47:31,672 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:47:33,743 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:47:35,813 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:47:37,354 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 13:47:37,356 - INFO - [INFO] - Running: collecting: ticker: MGM | get_insights: default module
+2026-01-09 13:47:38,827 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 13:47:40,141 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 13:48:38,052 - WARNING - [ERR-0001] - [75d16f2a] Attempting to extract JSON from text (length: 8312 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 13:48:38,054 - WARNING - [ERR-0001] - [1ac44693] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 13:48:38,056 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 13:49:01,937 - WARNING - [ERR-0001] - [af095d4d] Attempting to extract JSON from text (length: 2355 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 13:49:01,938 - WARNING - [ERR-0001] - [71dca446] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 13:49:01,938 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 13:49:01,940 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.09, Price Change: -0.0561, New Price: 99.9439
+2026-01-09 13:49:03,670 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MGM']
+2026-01-09 13:49:04,604 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:04,700 - INFO - [INFO] - Memory before cleanup: 2637.6 KB
+2026-01-09 13:49:05,927 - INFO - [INFO] - Memory after cleanup: 3009.0 KB (saved -380288.0 bytes)
+2026-01-09 13:49:06,992 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:09,057 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:11,175 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:13,246 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:15,369 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:17,439 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:19,515 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:21,594 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:23,658 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:26,208 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:28,742 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:31,408 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:33,568 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:35,746 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:37,958 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:40,069 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:42,138 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:44,453 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:46,703 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:48,876 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:51,106 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:53,183 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:55,304 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:57,426 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:49:59,496 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:50:01,757 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:50:03,907 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:50:06,672 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:50:08,928 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:50:11,177 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:50:13,247 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 13:50:15,375 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines

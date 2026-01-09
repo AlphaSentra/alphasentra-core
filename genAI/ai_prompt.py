@@ -107,9 +107,18 @@ def get_gen_ai_response(tickers, model_strategy, prompt=None, gemini_model=None,
             contents=prompt,
             config={
                     "tools": [{"google_search": {}}],
-                    "temperature": 0,
-                    "top_p": 0.95,
-                    "max_output_tokens": 10000
+                    "temperature": 0.1,
+                    #"max_output_tokens": 5000,
+                    "thinking_config": {
+                                "thinking_budget": 2500    #0 is disabled, -1 is default, Range from 1 to 24576  
+                    },
+                    "safety_settings": [
+                        {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
+                        {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
+                        {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
+                        {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"},
+                        {"category": "HARM_CATEGORY_CIVIC_INTEGRITY", "threshold": "BLOCK_NONE"}
+                    ]                    
             },
         )
         

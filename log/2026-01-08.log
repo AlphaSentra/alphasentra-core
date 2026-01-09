@@ -388,3 +388,21 @@ print(google_search.search(queries=["Microsoft Corporation (MSFT) Q1 FY2026 earn
 2026-01-08 21:56:18,867 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.14, Price Change: -0.0069, New Price: 99.9931
 2026-01-08 21:56:20,363 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NG=F']
 2026-01-08 22:03:34,860 - INFO - [INFO] - MongoDB connection closed
+2026-01-08 22:06:01,159 - INFO - [INFO] - Starting comprehensive dataset reset
+2026-01-08 22:06:01,160 - INFO - [INFO] - Starting reset of document_generated field in tickers collection
+2026-01-08 22:06:04,667 - INFO - [INFO] - Successfully updated 184 documents in tickers collection
+2026-01-08 22:06:04,667 - INFO - [INFO] - Reset of document_generated field completed
+2026-01-08 22:06:04,668 - INFO - [INFO] - Starting reset of task_completed field in pipeline collection
+2026-01-08 22:06:04,978 - INFO - [INFO] - Successfully updated 0 documents in pipeline collection
+2026-01-08 22:06:04,979 - INFO - [INFO] - Reset of task_completed field completed
+2026-01-08 22:06:04,979 - INFO - [INFO] - Starting deletion of tickers with recurrence 'once'
+2026-01-08 22:06:05,265 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from tickers collection
+2026-01-08 22:06:05,266 - INFO - [INFO] - Deletion of once tickers completed
+2026-01-08 22:06:05,266 - INFO - [INFO] - Starting deletion of processed tickers with no insights
+2026-01-08 22:06:05,558 - INFO - [INFO] - No processed tickers without insights found
+2026-01-08 22:06:05,559 - INFO - [INFO] - Starting deletion of pipeline documents with recurrence 'once'
+2026-01-08 22:06:05,853 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from pipeline collection
+2026-01-08 22:06:05,853 - INFO - [INFO] - Deletion of once pipeline documents completed
+2026-01-08 22:06:05,854 - INFO - [INFO] - Starting deletion of all weigh_factors documents
+2026-01-08 22:06:06,152 - INFO - [INFO] - Successfully deleted 1 documents from 'weight_factors'.
+2026-01-08 22:06:06,152 - INFO - [INFO] - All reset operations completed successfully
