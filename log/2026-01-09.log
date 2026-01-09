@@ -1032,3 +1032,63 @@ Kinross Gold is experiencing robust growth, primarily driven by the surge in gol
 2026-01-09 13:50:11,177 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
 2026-01-09 13:50:13,247 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
 2026-01-09 13:50:15,375 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 15:14:53,289 - WARNING - [ERR-0001] - [3b321e57] Attempting to extract JSON from text (length: 7576 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:14:53,290 - WARNING - [ERR-0001] - [880f42ad] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:14:53,291 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 15:15:40,001 - WARNING - [ERR-0001] - [044667d4] Attempting to extract JSON from text (length: 2577 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:15:40,002 - WARNING - [ERR-0001] - [f72354c1] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 15:15:40,002 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 15:15:40,004 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.63, Price Change: 0.0035, New Price: 100.0035
+2026-01-09 15:15:41,797 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-09 15:17:53,708 - WARNING - [ERR-0001] - [47b8dd3f] Attempting to extract JSON from text (length: 6416 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:17:53,710 - WARNING - [ERR-0001] - [9e64599b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:17:53,710 - WARNING - [ERR-0001] - [6d79d9e0] Attempting to extract JSON from text (length: 6416 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:17:53,710 - WARNING - [ERR-0001] - [12c9dfa4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:17:53,711 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 15:18:07,315 - WARNING - [ERR-0001] - [fd19cfd9] Attempting to extract JSON from text (length: 2561 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:18:07,316 - WARNING - [ERR-0001] - [9384f51e] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 15:18:07,316 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 15:18:07,318 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.3, Price Change: -0.1379, New Price: 99.8621
+2026-01-09 15:18:09,443 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']
+2026-01-09 15:18:28,484 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-09 15:18:33,908 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 15:18:36,182 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 15:18:38,436 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 15:18:40,701 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 15:18:43,074 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 15:18:44,867 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-09 15:18:44,871 - INFO - [INFO] - Running: collecting: ticker: WBD | get_insights: default module
+2026-01-09 15:18:47,012 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-09 15:18:48,346 - INFO - [INFO] - Processing 1 tickers
+2026-01-09 15:19:20,424 - WARNING - [ERR-0001] - [c5642b1a] Attempting to extract JSON from text (length: 6838 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:19:20,425 - WARNING - [ERR-0001] - [c7e5db5b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:19:20,425 - WARNING - [ERR-0001] - [7812e930] Attempting to extract JSON from text (length: 6838 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:19:20,426 - WARNING - [ERR-0001] - [a033218a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:19:20,426 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 15:19:30,601 - WARNING - [ERR-0001] - [f4dcf25a] Attempting to extract JSON from text (length: 3359 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:19:30,602 - WARNING - [ERR-0001] - [df3dd665] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 15:19:30,602 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 15:19:30,603 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.35, Price Change: 0.1461, New Price: 100.1461
+2026-01-09 15:19:32,346 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['WBD']
+2026-01-09 15:19:33,501 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 15:19:33,600 - INFO - [INFO] - Memory before cleanup: 2637.7 KB
+2026-01-09 15:19:34,832 - INFO - [INFO] - Memory after cleanup: 3008.6 KB (saved -379782.0 bytes)
+2026-01-09 15:19:36,576 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-09 15:20:55,693 - WARNING - [ERR-0001] - [cf3d0bfd] Attempting to extract JSON from text (length: 7534 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:20:55,694 - WARNING - [ERR-0001] - [dea10a37] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:20:55,694 - WARNING - [ERR-0001] - [dd718039] Attempting to extract JSON from text (length: 7534 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:20:55,695 - WARNING - [ERR-0001] - [68f75e25] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:20:55,695 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 15:21:07,458 - WARNING - [ERR-0001] - [1c7e015d] Attempting to extract JSON from text (length: 2755 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:21:07,460 - WARNING - [ERR-0001] - [f04183e4] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 15:21:07,460 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 15:21:07,462 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.16, Price Change: -0.0354, New Price: 99.9646
+2026-01-09 15:21:09,250 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['HOOD']
+2026-01-09 15:27:47,806 - WARNING - [ERR-0001] - [f2339eb5] Attempting to extract JSON from text (length: 8176 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:27:47,809 - WARNING - [ERR-0001] - [1446bcaf] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-09 15:27:47,809 - INFO - [INFO] - Successfully parsed AI response as JSON
+2026-01-09 15:28:02,119 - WARNING - [ERR-0001] - [c1ca459e] Attempting to extract JSON from text (length: 3376 chars) | From: helpers.py:extract_json_from_text()
+2026-01-09 15:28:02,120 - WARNING - [ERR-0001] - [30e0b003] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-09 15:28:02,120 - INFO - [INFO] - Time step t=1 starting
+2026-01-09 15:28:02,122 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.35, Price Change: -0.0163, New Price: 99.9837
+2026-01-09 15:28:04,537 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['TGT']
