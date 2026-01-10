@@ -1470,6 +1470,10 @@ def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=F
                         
                         factors_array.append(factor)
                 
+                # Check if we have at least 3 factors
+                if len(factors_array) < 3:
+                    raise ValueError(f"AI response contained only {len(factors_array)} factors - need at least 3")
+
                 # Only mark success after complete processing
                 parse_success = True
                 log_info("Factors analysis AI response retrieval completed successfully")
