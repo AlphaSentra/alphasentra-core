@@ -9,6 +9,7 @@ import os
 from dotenv import load_dotenv
 import sys
 import re
+import time
 
 # MongoDB imports - handle optional dependency
 try:
@@ -1108,47 +1109,59 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
             if model_name is None:
                 model_name = os.getenv("GEMINI_DEFAULT")
             
-            # Call get_gen_ai_response with the decrypted FACTOR_WEIGHTS prompt
-            ai_weights_response = get_gen_ai_response(tickers, "factor weights", decrypted_factor_weights, model_name, batch_mode=batch_mode)
+            # Retry logic for AI weights response
+            ai_weights = None
+            max_retries = AI_RESPONSE_MAX_RETRIES
+            retry_count = 0
+            parse_success = False
+
+            log_info("Starting AI economic, business, and geopolitical factors — weights retrieval")
             
-            # Try to parse the response as JSON
-            try:
-                # Remove any markdown code block markers if present and extract JSON
-                ai_weights_response = strip_markdown_code_blocks(ai_weights_response)
-                
-                # Parse JSON to get the weights
-                ai_weights_raw = json.loads(ai_weights_response)
-                print("AI-generated weights:", ai_weights_raw)
-                
-                # Map AI response keys to the keys used in the main prompt
-                ai_weights = {
-                    'Geopolitical': ai_weights_raw.get('Geopolitical', weights_percent['Geopolitical']),
-                    'Macroeconomics': ai_weights_raw.get('Macroeconomics', weights_percent['Macroeconomics']),
-                    'Technical_Sentiment': ai_weights_raw.get('Technical/Sentiment', weights_percent['Technical_Sentiment']),
-                    'Liquidity': ai_weights_raw.get('Liquidity', weights_percent['Liquidity']),
-                    'Earnings': ai_weights_raw.get('Earnings', weights_percent['Earnings']),
-                    'Business_Cycle': ai_weights_raw.get('Business Cycle', weights_percent['Business_Cycle']),
-                    'Sentiment_Surveys': ai_weights_raw.get('Sentiment Surveys', weights_percent['Sentiment_Surveys'])
-                }
-                
-                # Store the new weights in MongoDB for future use
+            while retry_count < max_retries and not parse_success:
                 try:
-                    if PYMONGO_AVAILABLE:
-                        collection.insert_one({
-                            "date": date.today().isoformat(),
-                            "timestamp": datetime.now().isoformat(),
-                            "weights": ai_weights
-                        })
-                        print("Saved new weights to database for caching")
-                    else:
-                        log_warning("pymongo not available - skipping weight caching", "MONGODB_DEPENDENCY")
-                except Exception as e:
-                    log_error("Error saving weights to MongoDB", "MONGODB_SAVE", e)
-                
-            except json.JSONDecodeError as e:
-                log_error("Error parsing AI weights response as JSON", "AI_PARSING", e)
-                log_warning(f"Raw weights response: {ai_weights_response[:200]}...", "DATA_MISSING")
-                ai_weights = None
+                    # Get fresh AI response each retry
+                    ai_weights_response = get_gen_ai_response(tickers, "factor weights", decrypted_factor_weights, model_name, batch_mode=batch_mode)
+                    
+                    # Remove any markdown code block markers if present
+                    ai_weights_response = strip_markdown_code_blocks(ai_weights_response)
+                    
+                    # Parse JSON to get the weights
+                    ai_weights_raw = json.loads(ai_weights_response)
+                    
+                    # Map AI response keys to the keys used in the main prompt
+                    ai_weights = {
+                        'Geopolitical': ai_weights_raw.get('Geopolitical', weights_percent['Geopolitical']),
+                        'Macroeconomics': ai_weights_raw.get('Macroeconomics', weights_percent['Macroeconomics']),
+                        'Technical_Sentiment': ai_weights_raw.get('Technical/Sentiment', weights_percent['Technical_Sentiment']),
+                        'Liquidity': ai_weights_raw.get('Liquidity', weights_percent['Liquidity']),
+                        'Earnings': ai_weights_raw.get('Earnings', weights_percent['Earnings']),
+                        'Business_Cycle': ai_weights_raw.get('Business Cycle', weights_percent['Business_Cycle']),
+                        'Sentiment_Surveys': ai_weights_raw.get('Sentiment Surveys', weights_percent['Sentiment_Surveys'])
+                    }
+                    
+                    # Store the new weights in MongoDB for future use
+                    try:
+                        if PYMONGO_AVAILABLE:
+                            collection.insert_one({
+                                "date": date.today().isoformat(),
+                                "timestamp": datetime.now().isoformat(),
+                                "weights": ai_weights
+                            })
+                            log_info("Saved new weights to database for caching")
+                        else:
+                            log_warning("pymongo not available - skipping weight caching", "MONGODB_DEPENDENCY")
+                    except Exception as e:
+                        log_error("Error saving weights to MongoDB", "MONGODB_SAVE", e)
+                    
+                    parse_success = True
+                    log_info("Successfully retrieved and parsed AI economic, business, and geopolitical factors — weights")
+                    
+                except (json.JSONDecodeError, Exception) as e:
+                    retry_count += 1
+                    print(ai_weights_response)
+                    log_error(f"Error parsing AI weights response (attempt {retry_count}/{max_retries})", "AI_PARSING", e)
+                    if retry_count < max_retries:
+                        time.sleep(AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS)
         except Exception as e:
             log_error("Error getting AI weights", "AI_WEIGHTS", e)
             ai_weights = None
@@ -1389,6 +1402,8 @@ def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=F
         parse_success = False
         import time
 
+        log_info("Starting factors analysis AI response retrieval")
+
         while retry_count < max_retries and not parse_success:
             try:
                 # Get fresh AI response each retry
@@ -1453,8 +1468,10 @@ def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=F
                         
                         factors_array.append(factor)
                 parse_success = True
+                log_info("Factors analysis AI response retrieval completed successfully")
             except json.JSONDecodeError as e:
                 retry_count += 1
+                print(ai_response)
                 log_error(f"JSON parsing failed (attempt {retry_count}/{max_retries})", "AI_PARSING", e)
                 if retry_count < max_retries:
                     time.sleep(AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS)

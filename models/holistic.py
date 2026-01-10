@@ -7,6 +7,7 @@ import sys
 import os
 import json
 import datetime
+import time
 from dotenv import load_dotenv
 from crypt import decrypt_string
 
@@ -110,7 +111,8 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
         max_retries = AI_RESPONSE_MAX_RETRIES
         retry_count = 0
         parse_success = False
-        import time
+
+        log_info("Starting holistic_market_model AI response retrieval")
 
         while retry_count < max_retries and not parse_success:
             try:

@@ -7,7 +7,7 @@ import time
 from genAI.ai_prompt import get_gen_ai_response
 from _config import INSTRUMENT_DESCRIPTION_PROMPT, AI_RESPONSE_MAX_RETRIES, AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS
 from crypt import decrypt_string
-from logging_utils import log_error
+from logging_utils import log_error, log_info
 from helpers import DatabaseManager, get_asset_classes, strip_markdown_code_blocks
 from data.price import (
     calculate_performance_metrics,
@@ -49,6 +49,8 @@ def run_analysis(ticker, instrument_name, batch_mode=False):
     parse_success = False
     response_data = None
 
+    log_info("Starting analysis AI response retrieval")
+
     while retry_count < max_retries and not parse_success:
         try:
             # Get AI response
@@ -59,9 +61,6 @@ def run_analysis(ticker, instrument_name, batch_mode=False):
                 gemini_model=gemini_model,
                 batch_mode=batch_mode
             )
-
-            # XXXX
-            print(f"({retry_count}) AI Response Text: {response_text}")
 
             if not response_text:
                 retry_count += 1
@@ -75,7 +74,7 @@ def run_analysis(ticker, instrument_name, batch_mode=False):
             
             # Parse JSON to get the data
             response_data = json.loads(cleaned_response)
-            
+            log_info(f"get analysis AI response parsed successfully")
             parse_success = True
 
         except json.JSONDecodeError as e:
@@ -85,6 +84,7 @@ def run_analysis(ticker, instrument_name, batch_mode=False):
                 time.sleep(AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS)
 
     if not parse_success or not response_data:
+        print(response_text)
         log_error(f"Failed to parse AI response after {max_retries} attempts.", "JSON_PARSE")
         return {"error": "Invalid response format"}
 

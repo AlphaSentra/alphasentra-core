@@ -7,6 +7,7 @@ import sys
 import os
 import json
 import datetime
+import time
 from dotenv import load_dotenv
 from crypt import decrypt_string
 
@@ -108,8 +109,9 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
         max_retries = AI_RESPONSE_MAX_RETRIES
         retry_count = 0
         parse_success = False
-        import time
 
+        log_info("Starting fx_long_short AI response retrieval")
+        
         while retry_count < max_retries and not parse_success:
             try:
                 # Get fresh AI response each retry

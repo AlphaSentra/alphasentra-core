@@ -1,0 +1,99 @@
+2026-01-10 10:01:11,230 - INFO - [INFO] - Starting continuous batch processing...
+2026-01-10 10:01:17,056 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:20,532 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:23,526 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:26,248 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:28,889 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:31,539 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:34,222 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:36,927 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:39,597 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:42,334 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:44,998 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:47,755 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:50,304 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:53,064 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:55,731 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:01:58,544 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:02:01,167 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:02:03,965 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:02:06,686 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:02:09,486 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:02:12,238 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:02:15,693 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:02:18,322 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 1 pipelines
+2026-01-10 10:02:20,151 - INFO - [INFO] - Processing 1 pipelines...
+2026-01-10 10:02:20,155 - INFO - [INFO] - Running: collecting: ticker: TSLA | get_insights: default module
+2026-01-10 10:02:22,313 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 1 tickers, 0 pipelines
+2026-01-10 10:02:23,750 - INFO - [INFO] - Processing 1 tickers
+2026-01-10 10:02:40,356 - WARNING - [ERR-0001] - [8ca2a03e] Attempting to extract JSON from text (length: 5936 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:02:40,358 - WARNING - [ERR-0001] - [c03e84a4] Successfully extracted JSON using pattern: ```json\s*(\{.*\})\s*```... | From: helpers.py:extract_json_from_text()
+2026-01-10 10:03:03,587 - WARNING - [ERR-0001] - [d9c53311] Attempting to extract JSON from text (length: 7026 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:03:03,588 - WARNING - [ERR-0001] - [1bfb78b7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-10 10:03:03,588 - WARNING - [ERR-0001] - [f92bb9f5] Attempting to extract JSON from text (length: 7026 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:03:03,589 - WARNING - [ERR-0001] - [4e55f4f2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-10 10:03:03,589 - INFO - [INFO] - Holistic Model JSON parsed successfully
+2026-01-10 10:03:13,341 - WARNING - [ERR-0001] - [ef9e1bf5] Attempting to extract JSON from text (length: 2415 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:03:13,342 - WARNING - [ERR-0001] - [0ef11265] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-10 10:03:13,342 - INFO - [INFO] - Time step t=1 starting
+2026-01-10 10:03:13,344 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.06, Price Change: -0.0903, New Price: 99.9097
+2026-01-10 10:03:14,982 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['TSLA']
+2026-01-10 10:03:16,108 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 1 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:16,207 - INFO - [INFO] - Memory before cleanup: 2635.2 KB
+2026-01-10 10:03:17,443 - INFO - [INFO] - Memory after cleanup: 3005.8 KB (saved -379456.0 bytes)
+2026-01-10 10:03:18,834 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:21,379 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:23,788 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:25,928 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:28,398 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:30,854 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:33,105 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:35,360 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:37,543 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:39,669 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:41,811 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:43,963 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:46,111 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:48,466 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:50,909 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:53,509 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:03:55,931 - INFO - [INFO] - Batch cycle completed — Awaiting request(s). Processed: 0 tickers, 0 pipelines. Remaining: 0 tickers, 0 pipelines
+2026-01-10 10:18:34,192 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-10 10:18:37,695 - WARNING - [ERR-0001] - [5f443ac3] Attempting to extract JSON from text (length: 320 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:18:37,696 - WARNING - [ERR-0001] - [1577241e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-10 10:18:37,696 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-10 10:18:43,269 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-10 10:18:55,474 - WARNING - [ERR-0001] - [cf99b2bd] Attempting to extract JSON from text (length: 6356 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:18:55,475 - WARNING - [ERR-0001] - [e193c679] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-10 10:18:55,475 - WARNING - [ERR-0001] - [d14baddc] Attempting to extract JSON from text (length: 6356 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:18:55,475 - WARNING - [ERR-0001] - [f74fa705] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-10 10:18:55,476 - INFO - [INFO] - Holistic Model JSON parsed successfully
+2026-01-10 10:18:57,207 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-10 10:19:06,643 - WARNING - [ERR-0001] - [8a774820] Attempting to extract JSON from text (length: 4338 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:19:06,644 - WARNING - [ERR-0001] - [9f704203] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-10 10:19:06,644 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-10 10:19:06,644 - INFO - [INFO] - Time step t=1 starting
+2026-01-10 10:19:06,646 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.54, Price Change: 0.1607, New Price: 100.1607
+2026-01-10 10:19:08,008 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']
+2026-01-10 10:21:26,890 - INFO - [INFO] - Starting AI economic, business, and geopolitical factors — weights retrieval
+2026-01-10 10:21:30,590 - WARNING - [ERR-0001] - [6e8354bb] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:21:30,590 - WARNING - [ERR-0001] - [6cd4f056] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-10 10:21:30,903 - INFO - [INFO] - Saved new weights to database for caching
+2026-01-10 10:21:30,904 - INFO - [INFO] - Successfully retrieved and parsed AI economic, business, and geopolitical factors — weights
+2026-01-10 10:21:31,316 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-10 10:21:34,623 - WARNING - [ERR-0001] - [50405d17] Attempting to extract JSON from text (length: 428 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:21:34,624 - WARNING - [ERR-0001] - [74a82ae9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-10 10:21:34,624 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-10 10:21:40,267 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-10 10:21:51,381 - WARNING - [ERR-0001] - [139c4ed5] Attempting to extract JSON from text (length: 6916 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:21:51,382 - WARNING - [ERR-0001] - [40e46e1f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-10 10:21:51,382 - WARNING - [ERR-0001] - [e26debcb] Attempting to extract JSON from text (length: 6916 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:21:51,382 - WARNING - [ERR-0001] - [bc95d2c0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-10 10:21:51,382 - INFO - [INFO] - Holistic Model JSON parsed successfully
+2026-01-10 10:21:53,025 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-10 10:22:00,453 - WARNING - [ERR-0001] - [fd1a6ea4] Attempting to extract JSON from text (length: 2112 chars) | From: helpers.py:extract_json_from_text()
+2026-01-10 10:22:00,454 - WARNING - [ERR-0001] - [d820f5b4] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-10 10:22:00,454 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-10 10:22:00,454 - INFO - [INFO] - Time step t=1 starting
+2026-01-10 10:22:00,454 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.63, Price Change: 0.0904, New Price: 100.0904
+2026-01-10 10:22:01,515 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
