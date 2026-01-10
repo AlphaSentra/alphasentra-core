@@ -1153,15 +1153,17 @@ def get_ai_weights(tickers, factor_weights_prompt, weights_percent, model_name=N
                     except Exception as e:
                         log_error("Error saving weights to MongoDB", "MONGODB_SAVE", e)
                     
+                    # Only mark success after complete processing
                     parse_success = True
                     log_info("Successfully retrieved and parsed AI economic, business, and geopolitical factors — weights")
                     
-                except (json.JSONDecodeError, Exception) as e:
+                except Exception as e:  # Catch all exceptions
                     retry_count += 1
-                    print(ai_weights_response)
-                    log_error(f"Error parsing AI weights response (attempt {retry_count}/{max_retries})", "AI_PARSING", e)
+                    log_error(f"Error processing AI weights (attempt {retry_count}/{max_retries})", "AI_WEIGHTS_PROCESSING", e)
                     if retry_count < max_retries:
                         time.sleep(AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS)
+                    else:
+                        log_error("Max retries reached for AI weights processing", "AI_WEIGHTS_FAILURE")
         except Exception as e:
             log_error("Error getting AI weights", "AI_WEIGHTS", e)
             ai_weights = None
@@ -1467,9 +1469,11 @@ def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=F
                             continue
                         
                         factors_array.append(factor)
+                
+                # Only mark success after complete processing
                 parse_success = True
                 log_info("Factors analysis AI response retrieval completed successfully")
-            except json.JSONDecodeError as e:
+            except (json.JSONDecodeError, Exception) as e:
                 retry_count += 1
                 print(ai_response)
                 log_error(f"JSON parsing failed (attempt {retry_count}/{max_retries})", "AI_PARSING", e)
@@ -1488,8 +1492,6 @@ def get_factors(tickers, name=None, current_date=None, prompt=None, batch_mode=F
         return []
     except Exception as e:
         log_error("Error getting factors analysis", "FACTORS_ANALYSIS", e)
-
-        # XXXX
         print(ai_response)
         return []
 

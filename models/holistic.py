@@ -129,18 +129,21 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
                     # Parse the extracted JSON
                     recommendations = json.loads(json_content)
                     log_info("Holistic Model JSON parsed successfully")
-                    parse_success = True
+                    parse_success = True  # Success only after full processing
                 else:
-                    log_error(f"JSON extraction failed (attempt {retry_count+1}/{max_retries})", "AI_PARSING")
                     retry_count += 1
+                    log_error(f"JSON extraction failed (attempt {retry_count}/{max_retries})", "AI_PARSING")
                     if retry_count < max_retries:
                         time.sleep(AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS)
-            except (json.JSONDecodeError, Exception) as e:
-                print(result)
+                    else:
+                        log_error("Max retries reached for JSON extraction", "HOLISTIC_ANALYSIS_FAILURE")
+            except Exception as e:  # Catch all exceptions
                 retry_count += 1
-                log_error(f"JSON parsing failed (attempt {retry_count}/{max_retries})", "AI_PARSING", e)
+                log_error(f"Error processing AI response (attempt {retry_count}/{max_retries})", "AI_PROCESSING", e)
                 if retry_count < max_retries:
                     time.sleep(AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS)
+                else:
+                    log_error("Max retries reached for holistic analysis", "HOLISTIC_ANALYSIS_FAILURE")
 
 
         # --------------------- Add additional data to JSON Model ---------------------

@@ -75,11 +75,13 @@ def run_analysis(ticker, instrument_name, batch_mode=False):
             # Parse JSON to get the data
             response_data = json.loads(cleaned_response)
             log_info(f"get analysis AI response parsed successfully")
+            
+            # Only mark success after complete processing
             parse_success = True
 
-        except json.JSONDecodeError as e:
+        except Exception as e:  # Catch all exceptions
             retry_count += 1
-            log_error(f"JSON parsing failed (attempt {retry_count}/{max_retries})", "JSON_PARSE", e)
+            log_error(f"Error processing AI response (attempt {retry_count}/{max_retries})", "AI_PROCESSING", e)
             if retry_count < max_retries:
                 time.sleep(AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS)
 
