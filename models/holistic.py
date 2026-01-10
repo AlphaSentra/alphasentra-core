@@ -19,9 +19,9 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE
+from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE, AI_RESPONSE_MAX_RETRIES, AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS
 from genAI.ai_prompt import get_gen_ai_response
-from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, get_current_gmt_timestamp, save_to_db, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text, get_ticker_name, get_ticker_performance, calculate_average_sentiment, calculate_average_conviction
+from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, get_current_gmt_timestamp, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text, get_ticker_name, get_ticker_performance, calculate_average_sentiment, calculate_average_conviction
 from logging_utils import log_error, log_warning, log_info
 from models.analysis import run_analysis
 from models.simulation import process_simulation_data
@@ -106,37 +106,39 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
                 )
     
     try:
-        # Get AI recommendations with None as prompt since it's pre-formatted
-        result = get_gen_ai_response([tickers], "holistic market", formatted_prompt, batch_mode=batch_mode)
-        
-        # XXXX
-        print(result)
+        recommendations = None
+        max_retries = AI_RESPONSE_MAX_RETRIES
+        retry_count = 0
+        parse_success = False
+        import time
 
-        # Enhanced JSON parsing with repair capabilities
-        try:
-            # Remove any markdown code block markers if present
-            result = strip_markdown_code_blocks(result)
-            
-            # Use the enhanced JSON extraction with repair capabilities
-            json_content = extract_json_from_text(result)
-            
-            if json_content:
+        while retry_count < max_retries and not parse_success:
+            try:
+                # Get fresh AI response each retry
+                result = get_gen_ai_response([tickers], "holistic market", formatted_prompt, batch_mode=batch_mode)
                 
-                # XXXX
-                print(json_content)
-
-                # Parse the extracted JSON
-                recommendations = json.loads(json_content)
-                log_info("Successfully parsed AI response as JSON")
-            else:
-                log_error("Failed to extract valid JSON from AI response", "AI_PARSING_FAILED")
-                log_warning(f"Raw response content: {result[:500]}...", "DATA_MISSING")
-                recommendations = None
+                # Remove any markdown code block markers if present
+                result = strip_markdown_code_blocks(result)
                 
-        except json.JSONDecodeError as e:
-            log_error("Error parsing AI response as JSON after extraction", "AI_PARSING", e)
-            log_warning(f"Raw response content: {result[:500]}...", "DATA_MISSING")
-            recommendations = None
+                # Use the enhanced JSON extraction with repair capabilities
+                json_content = extract_json_from_text(result)
+                
+                if json_content:
+                    # Parse the extracted JSON
+                    recommendations = json.loads(json_content)
+                    log_info("Holistic Model JSON parsed successfully")
+                    parse_success = True
+                else:
+                    log_error(f"JSON extraction failed (attempt {retry_count+1}/{max_retries})", "AI_PARSING")
+                    retry_count += 1
+                    if retry_count < max_retries:
+                        time.sleep(AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS)
+            except (json.JSONDecodeError, Exception) as e:
+                print(result)
+                retry_count += 1
+                log_error(f"JSON parsing failed (attempt {retry_count}/{max_retries})", "AI_PARSING", e)
+                if retry_count < max_retries:
+                    time.sleep(AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS)
 
 
         # --------------------- Add additional data to JSON Model ---------------------
