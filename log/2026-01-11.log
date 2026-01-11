@@ -14409,3 +14409,221 @@
 2026-01-11 18:04:30,842 - INFO - [INFO] - Updated ticker NOC fail_count: 0 -> 1
 2026-01-11 18:04:30,976 - INFO - [INFO] - Status: Pipelines 0 | Tickers 0
 2026-01-11 18:05:25,269 - INFO - [INFO] - Shutdown requested.
+2026-01-11 18:06:21,303 - INFO - [INFO] - Starting continuous batch processing with WriteConcern and race protection...
+2026-01-11 18:06:42,973 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:06:55,107 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:06:58,594 - WARNING - [ERR-0001] - [1c4b2ce2] Attempting to extract JSON from text (length: 303 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:06:58,595 - WARNING - [ERR-0001] - [6115ad3b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:06:58,595 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:07:03,632 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:07:15,424 - WARNING - [ERR-0001] - [5a7b8e01] Attempting to extract JSON from text (length: 6601 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:07:15,424 - WARNING - [ERR-0001] - [7246a3bb] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:07:15,424 - WARNING - [ERR-0001] - [557b08f4] Attempting to extract JSON from text (length: 6601 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:07:15,425 - WARNING - [ERR-0001] - [366d901d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:07:15,425 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:07:16,999 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:07:25,521 - WARNING - [ERR-0001] - [bb79e345] Attempting to extract JSON from text (length: 2269 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:07:25,522 - WARNING - [ERR-0001] - [0e1f1f73] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:07:25,522 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:07:25,522 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:07:25,524 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.663, Price Change: -0.1041, New Price: 99.8959
+2026-01-11 18:07:27,035 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AMZN']
+2026-01-11 18:07:27,484 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:08:02,289 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:08:14,547 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:08:14,564 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:08:17,990 - WARNING - [ERR-0001] - [5634d83f] Attempting to extract JSON from text (length: 367 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:17,991 - WARNING - [ERR-0001] - [c96f4c4e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:17,991 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:08:18,406 - WARNING - [ERR-0001] - [0e0022ec] Attempting to extract JSON from text (length: 387 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:18,406 - WARNING - [ERR-0001] - [84d2ec93] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:18,406 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:08:23,260 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:08:23,950 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:08:34,044 - WARNING - [ERR-0001] - [0e1533e3] Attempting to extract JSON from text (length: 5791 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:34,045 - WARNING - [ERR-0001] - [df1b85af] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:34,045 - WARNING - [ERR-0001] - [4f297da5] Attempting to extract JSON from text (length: 5791 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:34,045 - WARNING - [ERR-0001] - [7c390c69] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:34,045 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:08:35,655 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:08:35,660 - WARNING - [ERR-0001] - [2af01039] Attempting to extract JSON from text (length: 6522 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:35,661 - WARNING - [ERR-0001] - [a3a11d4b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:35,661 - WARNING - [ERR-0001] - [b0ecd3ae] Attempting to extract JSON from text (length: 6522 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:35,662 - WARNING - [ERR-0001] - [7dc85611] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:35,662 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:08:37,400 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:08:44,776 - WARNING - [ERR-0001] - [9eb62c5e] Attempting to extract JSON from text (length: 2027 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:44,777 - WARNING - [ERR-0001] - [58700e19] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:44,777 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:08:44,778 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:08:44,779 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.775, Price Change: 0.0882, New Price: 100.0882
+2026-01-11 18:08:47,384 - WARNING - [ERR-0001] - [0bebc77f] Attempting to extract JSON from text (length: 4354 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:47,385 - WARNING - [ERR-0001] - [a8d8aab7] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:08:47,385 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:08:47,385 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:08:47,385 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.695, Price Change: 0.1714, New Price: 100.1714
+2026-01-11 18:08:47,823 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CCL']
+2026-01-11 18:08:48,860 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AVGO']
+2026-01-11 18:08:49,291 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:08:50,905 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:08:58,456 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:09:01,504 - WARNING - [ERR-0001] - [69ed9a7d] Attempting to extract JSON from text (length: 466 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:09:01,505 - WARNING - [ERR-0001] - [9b2e0742] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:09:01,505 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:09:06,472 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:09:19,685 - WARNING - [ERR-0001] - [997c0f1d] Attempting to extract JSON from text (length: 7774 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:09:19,687 - WARNING - [ERR-0001] - [22b97ade] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:09:19,687 - WARNING - [ERR-0001] - [7af12bd8] Attempting to extract JSON from text (length: 7774 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:09:19,687 - WARNING - [ERR-0001] - [341abf77] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:09:19,688 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:09:21,595 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:09:29,064 - WARNING - [ERR-0001] - [73ec2a52] Attempting to extract JSON from text (length: 2497 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:09:29,065 - WARNING - [ERR-0001] - [1ff98c93] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:09:29,065 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:09:29,065 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:09:29,065 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.425, Price Change: 0.0061, New Price: 100.0061
+2026-01-11 18:09:30,537 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['NOW']
+2026-01-11 18:09:30,969 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:09:38,611 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:09:49,390 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:09:52,913 - WARNING - [ERR-0001] - [4c75d128] Attempting to extract JSON from text (length: 376 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:09:52,913 - WARNING - [ERR-0001] - [29110d31] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:09:52,913 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:09:58,390 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:10:11,129 - WARNING - [ERR-0001] - [98022c73] Attempting to extract JSON from text (length: 7068 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:11,130 - WARNING - [ERR-0001] - [a8d2f47a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:11,130 - WARNING - [ERR-0001] - [f7d83aa9] Attempting to extract JSON from text (length: 7068 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:11,131 - WARNING - [ERR-0001] - [ff4ec9d7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:11,131 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:10:12,673 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:10:19,189 - WARNING - [ERR-0001] - [8be5f94b] Attempting to extract JSON from text (length: 2274 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:19,190 - WARNING - [ERR-0001] - [428f2624] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:19,190 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:10:19,190 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:10:19,190 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.52, Price Change: -0.1834, New Price: 99.8166
+2026-01-11 18:10:20,693 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GOOG']
+2026-01-11 18:10:21,168 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:10:22,729 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:10:23,128 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:10:33,861 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:10:34,261 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:10:37,282 - WARNING - [ERR-0001] - [1e676873] Attempting to extract JSON from text (length: 356 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:37,282 - WARNING - [ERR-0001] - [2c925656] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:37,283 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:10:37,693 - WARNING - [ERR-0001] - [1701d8cf] Attempting to extract JSON from text (length: 386 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:37,693 - WARNING - [ERR-0001] - [742ee2af] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:37,693 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:10:43,161 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:10:43,385 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:10:54,826 - WARNING - [ERR-0001] - [1ebc99fe] Attempting to extract JSON from text (length: 6462 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:54,827 - WARNING - [ERR-0001] - [14c6ea96] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:54,827 - WARNING - [ERR-0001] - [2e364c8e] Attempting to extract JSON from text (length: 6462 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:54,828 - WARNING - [ERR-0001] - [26131d3f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:54,828 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:10:56,051 - WARNING - [ERR-0001] - [5efa588a] Attempting to extract JSON from text (length: 7039 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:56,051 - WARNING - [ERR-0001] - [e1a034c9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:56,051 - WARNING - [ERR-0001] - [7260ef79] Attempting to extract JSON from text (length: 7039 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:56,052 - WARNING - [ERR-0001] - [9529823e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:10:56,052 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:10:56,542 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:10:57,727 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:11:04,393 - WARNING - [ERR-0001] - [534bf519] Attempting to extract JSON from text (length: 2219 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:11:04,394 - WARNING - [ERR-0001] - [c8efe58c] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:11:04,394 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:11:04,395 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:11:04,395 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.42, Price Change: -0.1349, New Price: 99.8651
+2026-01-11 18:11:04,789 - WARNING - [ERR-0001] - [b4040df7] Attempting to extract JSON from text (length: 3547 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:11:04,790 - WARNING - [ERR-0001] - [83c4d71f] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:11:04,791 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:11:04,791 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:11:04,791 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.435, Price Change: 0.1209, New Price: 100.1209
+2026-01-11 18:11:05,849 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['FCX']
+2026-01-11 18:11:06,205 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['HD']
+2026-01-11 18:11:06,725 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:12:00,406 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:12:11,261 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:12:14,609 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:12:21,137 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:12:32,292 - WARNING - [ERR-0001] - [0632c2b6] Attempting to extract JSON from text (length: 6337 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:12:32,293 - WARNING - [ERR-0001] - [cf7c89cf] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:12:32,293 - WARNING - [ERR-0001] - [f2f0eff4] Attempting to extract JSON from text (length: 6337 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:12:32,293 - WARNING - [ERR-0001] - [af60d6e1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:12:32,293 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:12:34,165 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:12:41,723 - WARNING - [ERR-0001] - [230a03a3] Attempting to extract JSON from text (length: 2319 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:12:41,724 - WARNING - [ERR-0001] - [530ea73a] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:12:41,724 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:12:41,725 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:12:41,726 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.43, Price Change: -0.0677, New Price: 99.9323
+2026-01-11 18:12:43,102 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['LLY']
+2026-01-11 18:12:43,507 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:12:44,992 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:12:45,408 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:12:55,852 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:12:55,999 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:12:56,000 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:12:59,233 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:12:59,561 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:12:59,636 - WARNING - [ERR-0001] - [6edc3fda] Attempting to extract JSON from text (length: 360 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:12:59,637 - WARNING - [ERR-0001] - [00ed1ec7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:12:59,637 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:13:04,048 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:13:04,520 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:13:04,858 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:13:15,815 - WARNING - [ERR-0001] - [1b9512e4] Attempting to extract JSON from text (length: 5943 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:15,816 - WARNING - [ERR-0001] - [b020795a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:15,816 - WARNING - [ERR-0001] - [ef5a05dd] Attempting to extract JSON from text (length: 5943 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:15,817 - WARNING - [ERR-0001] - [d04a23d6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:15,817 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:13:16,023 - WARNING - [ERR-0001] - [1f2c0c7e] Attempting to extract JSON from text (length: 6543 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:16,024 - WARNING - [ERR-0001] - [e92738e2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:16,024 - WARNING - [ERR-0001] - [e9d568a0] Attempting to extract JSON from text (length: 6543 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:16,025 - WARNING - [ERR-0001] - [c7c7119e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:16,025 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:13:16,214 - WARNING - [ERR-0001] - [b69b43d5] Attempting to extract JSON from text (length: 6893 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:16,215 - WARNING - [ERR-0001] - [34f1737e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:16,215 - WARNING - [ERR-0001] - [abb224d0] Attempting to extract JSON from text (length: 6893 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:16,216 - WARNING - [ERR-0001] - [78cc8462] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:16,216 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:13:17,412 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:13:17,501 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:13:17,640 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:13:24,326 - WARNING - [ERR-0001] - [0bd7f7e9] Attempting to extract JSON from text (length: 2125 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:24,328 - WARNING - [ERR-0001] - [bb189bac] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:24,328 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:13:24,328 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:13:24,328 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.41, Price Change: -0.0911, New Price: 99.9089
+2026-01-11 18:13:24,415 - WARNING - [ERR-0001] - [3f245522] Attempting to extract JSON from text (length: 1957 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:24,417 - WARNING - [ERR-0001] - [163a36fd] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:24,418 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:13:24,418 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:13:24,418 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.725, Price Change: -0.1652, New Price: 99.8348
+2026-01-11 18:13:25,745 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['PLUG']
+2026-01-11 18:13:25,909 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CSCO']
+2026-01-11 18:13:27,240 - WARNING - [ERR-0001] - [24a7fa68] Attempting to extract JSON from text (length: 2102 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:27,241 - WARNING - [ERR-0001] - [7884487a] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:27,241 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:13:27,241 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:13:27,242 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.29, Price Change: 0.1036, New Price: 100.1036
+2026-01-11 18:13:28,754 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['TLRY']
+2026-01-11 18:13:29,177 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:13:30,949 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:13:43,143 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-11 18:13:46,677 - WARNING - [ERR-0001] - [b9087472] Attempting to extract JSON from text (length: 481 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:46,677 - WARNING - [ERR-0001] - [9c74bed4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:13:46,677 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-11 18:13:51,941 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-11 18:14:03,801 - WARNING - [ERR-0001] - [b526faee] Attempting to extract JSON from text (length: 6208 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:14:03,803 - WARNING - [ERR-0001] - [bb4a8805] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:14:03,803 - WARNING - [ERR-0001] - [fe551c7c] Attempting to extract JSON from text (length: 6208 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:14:03,803 - WARNING - [ERR-0001] - [e14259de] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-11 18:14:03,803 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-11 18:14:05,453 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-11 18:14:11,871 - WARNING - [ERR-0001] - [e0dee54e] Attempting to extract JSON from text (length: 2287 chars) | From: helpers.py:extract_json_from_text()
+2026-01-11 18:14:11,872 - WARNING - [ERR-0001] - [c8be44fd] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-11 18:14:11,872 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-11 18:14:11,872 - INFO - [INFO] - Time step t=1 starting
+2026-01-11 18:14:11,873 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.62, Price Change: 0.1091, New Price: 100.1091
+2026-01-11 18:14:13,334 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BNS']
+2026-01-11 18:14:13,752 - INFO - [INFO] - Cycle Done | Pipelines: 0 | Tickers: 0
+2026-01-11 18:17:00,786 - INFO - [INFO] - Process interrupted by user.

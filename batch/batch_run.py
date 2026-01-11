@@ -19,15 +19,17 @@ from logging_utils import log_error, log_warning, log_info
 from _config import BATCH_SIZE, BATCH_TIMEOUT, BATCH_PAUSE_IN_SECONDS
 from helpers import DatabaseManager, update_ticker_fail_status
 
+# Load environment variables
 load_dotenv()
 MONGODB_DATABASE = os.getenv("MONGODB_DATABASE", "alphasentra-core")
 
 try:
     from _config import CHECK_INTERVAL
 except ImportError:
-    CHECK_INTERVAL = 5
+    CHECK_INTERVAL = BATCH_PAUSE_IN_SECONDS
 
 def derive_module_and_func(model_function, model_name=None):
+    """Derive module and function names from DB strings."""
     func_name = model_function
     if model_name:
         module = model_name.replace('.py', '')
@@ -37,25 +39,22 @@ def derive_module_and_func(model_function, model_name=None):
     return module, func_name
 
 def process_ticker(doc):
-    """Process a single ticker with an atomic pre-check to prevent double-processing."""
+    """Process a single ticker with atomic checks and correct WriteConcern application."""
     try:
         client = DatabaseManager().get_client()
         db = client[MONGODB_DATABASE]
         tickers_coll = db.get_collection('tickers')
 
-        # --- ATOMIC PRE-CHECK ---
-        # Check if another thread already finished this while it was sitting in the queue
+        # 1. ATOMIC PRE-CHECK: Skip if already done
         current_doc = tickers_coll.find_one({"_id": doc["_id"], "document_generated": False})
         if not current_doc:
             return False 
 
         model_function = doc.get("model_function")
-        if not model_function:
-            return False
+        if not model_function: return False
         
         module_info = derive_module_and_func(model_function, doc.get("model_name"))
-        if not module_info:
-            return False
+        if not module_info: return False
         
         module_name, func_name = module_info
         
@@ -70,21 +69,20 @@ def process_ticker(doc):
         sig = inspect.signature(func)
         kwargs = {'tickers': tickers_list, 'decimal_digits': doc.get("decimal", 2)}
         
-        if 'prompt' in sig.parameters:
-            kwargs['prompt'] = doc.get("prompt")
-        if 'factors' in sig.parameters:
-            kwargs['factors'] = doc.get("factors")
-        if 'batch_mode' in sig.parameters:
-            kwargs['batch_mode'] = True
+        if 'prompt' in sig.parameters: kwargs['prompt'] = doc.get("prompt")
+        if 'factors' in sig.parameters: kwargs['factors'] = doc.get("factors")
+        if 'batch_mode' in sig.parameters: kwargs['batch_mode'] = True
         
-        # Execute Model
+        # Call the actual model function
         func(**kwargs)
         
-        # --- FINAL ATOMIC UPDATE ---
-        update_result = tickers_coll.update_one(
+        # 2. CORRECTED WRITE CONCERN UPDATE
+        # Create a collection instance with the write concern applied
+        wc_tickers = tickers_coll.with_options(write_concern=WriteConcern(w="majority", j=True))
+        
+        update_result = wc_tickers.update_one(
             {"_id": doc["_id"], "document_generated": False},
-            {"$set": {"document_generated": True, "last_processed": datetime.now()}},
-            write_concern=WriteConcern(w="majority", j=True)
+            {"$set": {"document_generated": True, "last_processed": datetime.now()}}
         )
         return update_result.modified_count > 0
         
@@ -94,13 +92,13 @@ def process_ticker(doc):
         return False
 
 def process_pipeline(doc):
-    """Process a pipeline document with atomic pre-check."""
+    """Process a pipeline document with fixed WriteConcern syntax."""
     try:
         client = DatabaseManager().get_client()
         db = client[MONGODB_DATABASE]
         pipelines_coll = db.get_collection('pipeline')
 
-        # ATOMIC PRE-CHECK
+        # 1. ATOMIC PRE-CHECK
         current_doc = pipelines_coll.find_one({"_id": doc["_id"], "task_completed": False})
         if not current_doc:
             return False
@@ -114,7 +112,7 @@ def process_pipeline(doc):
         try:
             module = importlib.import_module(f"models.{module_name}")
             func = getattr(module, func_name)
-        except (ImportError, AttributeError):
+        except:
             try:
                 module = importlib.import_module("models.default")
                 func = getattr(module, func_name)
@@ -127,10 +125,12 @@ def process_pipeline(doc):
         
         func(**kwargs)
         
-        update_result = pipelines_coll.update_one(
+        # 2. CORRECTED WRITE CONCERN UPDATE
+        wc_pipelines = pipelines_coll.with_options(write_concern=WriteConcern(w="majority", j=True))
+        
+        update_result = wc_pipelines.update_one(
             {"_id": doc["_id"], "task_completed": False},
-            {"$set": {"task_completed": True}},
-            write_concern=WriteConcern(w="majority", j=True)
+            {"$set": {"task_completed": True}}
         )
         return update_result.modified_count > 0
     except Exception as e:
@@ -139,7 +139,7 @@ def process_pipeline(doc):
 
 def run_batch_processing(max_workers=BATCH_SIZE):
     tracemalloc.start()
-    log_info("Starting batch processing with race-condition protection...")
+    log_info("Starting continuous batch processing with WriteConcern and race protection...")
     
     client = DatabaseManager().get_client()
     db = client[MONGODB_DATABASE]
@@ -148,13 +148,15 @@ def run_batch_processing(max_workers=BATCH_SIZE):
     work_queue = Queue()
     stop_event = threading.Event()
     
-    # Track IDs currently in queue to prevent duplicate polling
+    # Local de-duplication tracking
     queued_ids = set()
     ids_lock = threading.Lock()
 
     def poll_new_items():
+        """Background thread that avoids adding duplicates to the queue."""
         while not stop_event.is_set():
             try:
+                # Use majority read concern for polling to ensure we see committed data
                 pipelines_coll = db.get_collection('pipeline', read_concern=ReadConcern("majority"))
                 tickers_coll = db.get_collection('tickers', read_concern=ReadConcern("majority"))
 
@@ -162,11 +164,11 @@ def run_batch_processing(max_workers=BATCH_SIZE):
                 new_p = list(pipelines_coll.find({"task_completed": False}).limit(BATCH_SIZE))
                 with ids_lock:
                     valid_p = [p for p in new_p if p['_id'] not in queued_ids]
-                    if valid_p:
-                        for p in valid_p: queued_ids.add(p['_id'])
-                        work_queue.put(('pipeline', valid_p))
+                    for p in valid_p:
+                        queued_ids.add(p['_id'])
+                        work_queue.put(('pipeline', [p])) # Put individually or as batch
 
-                # Poll Tickers
+                # Poll Tickers (Filter already queued and processed items)
                 new_t = list(tickers_coll.find({
                     "document_generated": False,
                     "recurrence": {"$ne": "processed"},
@@ -184,8 +186,9 @@ def run_batch_processing(max_workers=BATCH_SIZE):
 
                 time.sleep(CHECK_INTERVAL)
             except Exception as e:
-                log_error("Polling error", "POLLING_ERROR", e)
+                log_error("Background polling error", "POLLING_ERROR", e)
 
+    # Start poller
     poller_thread = threading.Thread(target=poll_new_items, daemon=True)
     poller_thread.start()
 
@@ -195,7 +198,7 @@ def run_batch_processing(max_workers=BATCH_SIZE):
     try:
         while time.time() - start_time < BATCH_TIMEOUT and not stop_event.is_set():
             if work_queue.empty():
-                time.sleep(2)
+                time.sleep(1)
                 continue
 
             work_type, items = work_queue.get()
@@ -207,22 +210,25 @@ def run_batch_processing(max_workers=BATCH_SIZE):
                             pipelines_processed += 1
                         with ids_lock: queued_ids.discard(doc['_id'])
                 else:
+                    # Multi-threaded execution for tickers
                     results = [pool.apply_async(process_ticker, (doc,)) for doc in items]
                     for idx, r in enumerate(results):
                         if r.get():
                             tickers_processed += 1
-                        with ids_lock: queued_ids.discard(items[idx]['_id'])
+                        with ids_lock:
+                            # Remove from tracking set once finished
+                            queued_ids.discard(items[idx]['_id'])
 
             work_queue.task_done()
-            gc.collect()
-            
-            log_info(f"Status: Pipelines {pipelines_processed} | Tickers {tickers_processed}")
+            gc.collect() # Regular cleanup
+            log_info(f"Cycle Done | Pipelines: {pipelines_processed} | Tickers: {tickers_processed}")
 
     except KeyboardInterrupt:
-        log_info("Shutdown requested.")
+        log_info("Process interrupted by user.")
     finally:
         stop_event.set()
         poller_thread.join(timeout=5)
+        log_info("Batch processing stopped.")
 
 if __name__ == "__main__":
     run_batch_processing()
