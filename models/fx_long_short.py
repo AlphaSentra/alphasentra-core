@@ -124,10 +124,21 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
                 json_content = extract_json_from_text(result)
                 
                 if json_content:
-                    # Parse the extracted JSON
-                    recommendations = json.loads(json_content)
-                    log_info("fx_long_short Model JSON parsed successfully")
-                    parse_success = True  # Success only after full processing
+                    try:
+                        # Parse the extracted JSON
+                        recommendations = json.loads(json_content)
+                        
+                        # Validate required keys
+                        required_keys = ['title', 'market_outlook_narrative', 'rationale', 'analysis', 'recommendations']
+                        missing_keys = [key for key in required_keys if key not in recommendations]
+                        if missing_keys:
+                            raise ValueError(f"Missing required keys: {', '.join(missing_keys)}")
+                        
+                        log_info("FX Long/Short Model JSON parsed and validated successfully")
+                        parse_success = True  # Success only after full processing
+                    except ValueError as e:
+                        log_error(f"JSON validation error: {str(e)}", "JSON_VALIDATION")
+                        raise  # This will be caught by the outer except block and trigger retry
                 else:
                     retry_count += 1
                     log_error(f"JSON extraction failed (attempt {retry_count}/{max_retries})", "AI_PARSING")
