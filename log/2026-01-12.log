@@ -1,0 +1,4 @@
+2026-01-12 10:43:46,584 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-12 10:43:50,507 - WARNING - [ERR-0001] - [ea904d4e] Attempting to extract JSON from text (length: 437 chars) | From: helpers.py:extract_json_from_text()
+2026-01-12 10:43:50,507 - WARNING - [ERR-0001] - [a8c103ef] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-12 10:43:50,507 - INFO - [INFO] - get analysis AI response parsed successfully
