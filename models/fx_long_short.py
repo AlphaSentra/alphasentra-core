@@ -20,14 +20,13 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, FX_FACTORS_PROMPT, AI_RESPONSE_MAX_RETRIES, AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS
+from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, FX_FACTORS_PROMPT, AI_RESPONSE_MAX_RETRIES, AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS, MONTE_CARLO_MODEL_TIME_HORIZON
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, get_current_gmt_timestamp, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, get_ticker_name, get_ticker_performance, calculate_average_sentiment, extract_json_from_text
 from logging_utils import log_error, log_warning, log_info
 from models.analysis import run_analysis
 from models.simulation import process_simulation_data
-
-
+from data.price_action import calculate_volatility, calculate_drift
 
 def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digits=4, flag_document_generated: bool = True, batch_mode: bool = False):
     """
@@ -178,6 +177,10 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
             recommendations['factors'] = get_factors(tickers,current_date,prompt=FX_FACTORS_PROMPT, batch_mode=batch_mode)
             # Get simulation data
             recommendations['simulation'] = process_simulation_data(recommendations.get('simulation', []))
+            # Monte Carlo Model — Input: Volatility (sigma)
+            recommendations['volatility'] = calculate_volatility(tickers)
+            # Monte Carlo Model — Input: Drift (mu)
+            recommendations['drift'] = calculate_drift(tickers)
         # -----------------------------------------------------------------------------------
             
             if not batch_mode:

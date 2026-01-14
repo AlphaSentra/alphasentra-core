@@ -20,13 +20,13 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE, AI_RESPONSE_MAX_RETRIES, AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS
+from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE, AI_RESPONSE_MAX_RETRIES, AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS, MONTE_CARLO_MODEL_TIME_HORIZON
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, get_current_gmt_timestamp, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text, get_ticker_name, get_ticker_performance, calculate_average_sentiment, calculate_average_conviction
 from logging_utils import log_error, log_warning, log_info
 from models.analysis import run_analysis
 from models.simulation import process_simulation_data
-
+from data.price_action import calculate_volatility, calculate_drift
 
 def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, region=None, asset_class=None, importance=None, tag=None, decimal_digits=2, flag_document_generated: bool = True, batch_mode: bool = False):
     """
@@ -183,6 +183,10 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
             recommendations['simulation'] = process_simulation_data(recommendations.get('simulation', []))
             # Add tag
             if tag is not None: recommendations['tag'] = tag
+            # Monte Carlo Model — Input: Volatility (sigma)
+            recommendations['volatility'] = calculate_volatility(tickers)
+            # Monte Carlo Model — Input: Drift (mu)
+            recommendations['drift'] = calculate_drift(tickers)
         # -----------------------------------------------------------------------------------
 
             if not batch_mode:
