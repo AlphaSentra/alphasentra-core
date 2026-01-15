@@ -15,7 +15,7 @@ MARKET = "US"
 BATCH_SIZE = 10
 BATCH_PAUSE_IN_SECONDS = 1
 # Maximum processing time in seconds (5 hours)
-BATCH_TIMEOUT = 5 * 60 * 60
+BATCH_TIMEOUT = (5 * 60 + 50) * 60
 
 # AI Response document generation failed retry configuration
 AI_RESPONSE_MAX_RETRIES = 5
