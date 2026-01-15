@@ -20,13 +20,14 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE, AI_RESPONSE_MAX_RETRIES, AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS, MONTE_CARLO_MODEL_TIME_HORIZON
+from _config import WEIGHTS_PERCENT, HOLISTIC_MARKET_PROMPT, FACTOR_WEIGHTS, LANGUAGE, AI_RESPONSE_MAX_RETRIES, AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS, MONTE_CARLO_MODEL_TIME_HORIZON, MONTE_CARLO_MODEL_NUM_SIMULATIONS
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, get_current_gmt_timestamp, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, extract_json_from_text, get_ticker_name, get_ticker_performance, calculate_average_sentiment, calculate_average_conviction
 from logging_utils import log_error, log_warning, log_info
 from models.analysis import run_analysis
 from models.simulation import process_simulation_data
 from data.price_action import calculate_volatility, calculate_drift
+from models.montecarlo import run_monte_carlo_simulation
 
 def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, region=None, asset_class=None, importance=None, tag=None, decimal_digits=2, flag_document_generated: bool = True, batch_mode: bool = False):
     """
@@ -294,7 +295,35 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
     # Save recommendations to database with robust error handling
     if recommendations:
         success = save_to_db_with_fallback(recommendations, flag_document_generated=flag_document_generated)
-        if not success:
+        if success:
+            log_info("Successfully saved recommendations to database. Running Monte Carlo simulation.")
+            # Run Monte Carlo simulation
+            try:
+                # Safely get the initial price
+                initial_price_str = recommendations.get('recommendations', [{}])[0].get('entry_price')
+                
+                # Ensure the price is valid before converting to float
+                if initial_price_str and initial_price_str not in ['N/A', 'UNKNOWN']:
+                    initial_price = float(initial_price_str)
+                    
+                    # Run the simulation
+                    run_monte_carlo_simulation(
+                        sessionID="default",
+                        tickers=tickers,
+                        initial_price=initial_price,
+                        drift=recommendations.get('drift'),
+                        volatility=recommendations.get('volatility'),
+                        time_horizon=MONTE_CARLO_MODEL_TIME_HORIZON,
+                        num_simulations=MONTE_CARLO_MODEL_NUM_SIMULATIONS
+                    )
+                else:
+                    log_warning("Could not run Monte Carlo simulation because entry price is not available.", "MONTE_CARLO_SIMULATION")
+
+            except (ValueError, TypeError) as e:
+                log_error(f"Could not convert entry price to float: {initial_price_str}", "MONTE_CARLO_SIMULATION", e)
+            except Exception as e:
+                log_error("Error running Monte Carlo simulation", "MONTE_CARLO_SIMULATION", e)
+        else:
             log_warning("Failed to save recommendations to database", "DATABASE")
         
     return recommendations
