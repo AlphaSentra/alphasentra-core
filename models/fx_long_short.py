@@ -303,7 +303,7 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
                     # Run the simulation
                     run_monte_carlo_simulation(
                         sessionID="default",
-                        tickers=tickers,
+                        ticker=tickers,
                         initial_price=initial_price,
                         drift=recommendations.get('drift'),
                         volatility=recommendations.get('volatility'),

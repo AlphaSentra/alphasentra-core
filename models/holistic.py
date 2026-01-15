@@ -309,7 +309,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
                     # Run the simulation
                     run_monte_carlo_simulation(
                         sessionID="default",
-                        tickers=tickers,
+                        ticker=tickers,
                         initial_price=initial_price,
                         drift=recommendations.get('drift'),
                         volatility=recommendations.get('volatility'),
