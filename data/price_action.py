@@ -36,7 +36,7 @@ def calculate_volatility(ticker, days=MONTE_CARLO_MODEL_TIME_HORIZON):
       days: The number of days of historical data to retrieve.
 
     Returns:
-      The annualized volatility as a 2-decimal percentage, or None if an error occurs.
+      The annualized volatility as a 2-decimal double, or None if an error occurs.
     """
     try:
         log_info(f"Calculating volatility for {ticker}...")
@@ -56,8 +56,8 @@ def calculate_volatility(ticker, days=MONTE_CARLO_MODEL_TIME_HORIZON):
         annualized_volatility = daily_volatility * np.sqrt(252)
 
         # 4. Format as percentage for display
-        result = round(annualized_volatility * 100, 2)
-        log_info(f"Calculated volatility for {ticker}: {result}%")
+        result = annualized_volatility
+        log_info(f"Calculated volatility for {ticker}: {result}")
         return result
         
     except Exception as e:
@@ -66,42 +66,37 @@ def calculate_volatility(ticker, days=MONTE_CARLO_MODEL_TIME_HORIZON):
 
 def calculate_drift(ticker, days=MONTE_CARLO_MODEL_TIME_HORIZON):
     """
-    Calculates the annualized drift (mu) of an asset using the Ito Calculus 
-    adjustment (volatility drag) for Monte Carlo simulations.
-    
+    Calculates the annualized drift (mu) from log returns for use in a
+    Geometric Brownian Motion Monte Carlo simulation.
+
     Args:
-      ticker: The asset ticker symbol (AAPL, EURUSD=X, BTC-USD).
-      days: Number of days (recommend 252 for stability).
+      ticker: The asset ticker symbol.
+      days: Number of days of historical data (typically 252 or more).
 
     Returns:
-      The annualized drift as a decimal (e.g., 0.12 for 12%).
+      The annualized drift as a decimal (e.g., 0.12 for 12%), or None on error.
     """
     try:
         log_info(f"Calculating drift for {ticker}...")
         close_prices = get_close_prices(ticker, days)
-        
+
         if close_prices is None or len(close_prices) < 2:
             log_error(f"Insufficient data for {ticker}", "DATA_ISSUE")
             return None
 
-        # 1. Calculate Daily Log Returns
+        # 1. Daily log returns
         log_returns = np.log(close_prices / close_prices.shift(1)).dropna()
 
-        # 2. Daily Components
-        u = log_returns.mean()
-        var = log_returns.var()
-        
-        # 3. Apply Drift Adjustment (mu = mean - 0.5 * variance)
-        daily_drift = u - (0.5 * var)
+        # 2. Estimate daily drift from log returns
+        daily_drift = log_returns.mean()
 
-        # 4. Annualize
+        # 3. Annualize
         annualized_drift = daily_drift * 252
-        
-        # 5. Sanity Check / Log Result
-        display_result = round(annualized_drift * 100, 2)
-        log_info(f"Calculated drift for {ticker}: {display_result}%")
-        
-        # Return as decimal for the simulation engine
+
+        log_info(
+            f"Calculated drift for {ticker}: {round(annualized_drift, 4)}"
+        )
+
         return annualized_drift
 
     except Exception as e:
