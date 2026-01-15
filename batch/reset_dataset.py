@@ -177,7 +177,6 @@ def delete_once_pipeline():
         logger.error("Failed to delete once pipeline documents", "DATABASE_OPERATION", e)
         return False
     
-
 def remove_all_weight_factors():
     """
     Remove all documents from the 'weight_factors' collection.
@@ -207,6 +206,35 @@ def remove_all_weight_factors():
         logger.error("Failed to delete weight_factors documents", "DATABASE_OPERATION", e)
         return False
 
+def delete_trades():
+    """
+    Remove all documents from the 'trades' collection.
+    
+    Returns:
+        bool: True if successful, False otherwise
+    """
+    try:
+        logger.info("Starting deletion of all trades documents")
+        
+        # Get MongoDB client using DatabaseManager
+        client = DatabaseManager().get_client()
+        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
+        db = client[db_name]
+        collection = db['trades']
+
+        result = collection.delete_many({})
+        deleted_count = result.deleted_count
+        if deleted_count > 0:
+            logger.info(f"Successfully deleted {deleted_count} documents from 'trades'.")
+        else:
+            logger.info("No documents found in 'trades'.")
+
+        return True
+
+    except Exception as e:
+        logger.error("Failed to delete trades documents", "DATABASE_OPERATION", e)
+        return False
+
 def reset_all():
     """
     Call all reset and delete functions in sequence.
@@ -223,7 +251,8 @@ def reset_all():
             reset_pipeline_completed() and
             delete_tickers() and
             delete_once_pipeline() and
-            remove_all_weight_factors()
+            remove_all_weight_factors() and
+            delete_trades()
         )
         
         if success:
