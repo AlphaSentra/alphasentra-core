@@ -36,15 +36,15 @@ def calculate_volatility(ticker, days=MONTE_CARLO_MODEL_TIME_HORIZON):
       days: The number of days of historical data to retrieve.
 
     Returns:
-      The annualized volatility as a 2-decimal double, or None if an error occurs.
+      The annualized volatility as a 2-decimal double. Defaults to 0.3 if an error occurs.
     """
     try:
         log_info(f"Calculating volatility for {ticker}...")
         close_prices = get_close_prices(ticker, days)
         
         if close_prices is None or len(close_prices) < 2:
-            log_error(f"Insufficient data for {ticker}", "DATA_ISSUE")
-            return None
+            log_error(f"Insufficient data for {ticker}, defaulting volatility to 0.3", "DATA_ISSUE")
+            return 0.3
 
         # 1. Calculate Daily Log Returns and drop NaN
         log_returns = np.log(close_prices / close_prices.shift(1)).dropna()
@@ -61,8 +61,8 @@ def calculate_volatility(ticker, days=MONTE_CARLO_MODEL_TIME_HORIZON):
         return result
         
     except Exception as e:
-        log_error(f"Error calculating volatility for {ticker}", "CALCULATION", e)
-        return None
+        log_error(f"Error calculating volatility for {ticker}, defaulting to 0.3", "CALCULATION", e)
+        return 0.3
 
 def calculate_drift(ticker, days=MONTE_CARLO_MODEL_TIME_HORIZON):
     """
@@ -74,15 +74,15 @@ def calculate_drift(ticker, days=MONTE_CARLO_MODEL_TIME_HORIZON):
       days: Number of days of historical data (typically 252 or more).
 
     Returns:
-      The annualized drift as a decimal (e.g., 0.12 for 12%), or None on error.
+      The annualized drift as a decimal (e.g., 0.12 for 12%). Defaults to 0.0 on error.
     """
     try:
         log_info(f"Calculating drift for {ticker}...")
         close_prices = get_close_prices(ticker, days)
 
         if close_prices is None or len(close_prices) < 2:
-            log_error(f"Insufficient data for {ticker}", "DATA_ISSUE")
-            return None
+            log_error(f"Insufficient data for {ticker}, defaulting drift to 0.0", "DATA_ISSUE")
+            return 0.0
 
         # 1. Daily log returns
         log_returns = np.log(close_prices / close_prices.shift(1)).dropna()
@@ -100,5 +100,5 @@ def calculate_drift(ticker, days=MONTE_CARLO_MODEL_TIME_HORIZON):
         return annualized_drift
 
     except Exception as e:
-        log_error(f"Error calculating drift for {ticker}", "CALCULATION", e)
-        return None
+        log_error(f"Error calculating drift for {ticker}, defaulting to 0.0", "CALCULATION", e)
+        return 0.0

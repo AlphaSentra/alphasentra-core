@@ -57,23 +57,23 @@ def run_monte_carlo_simulation(
             price_path.append(price)
 
             if strategy == 'long':
-                if price >= target_price:
+                if target_price is not None and price >= target_price:
                     wins += 1
                     days_to_target.append(day)
                     outcomes.append(target_price - initial_price)
                     break
-                elif price <= stop_loss:
+                elif stop_loss is not None and price <= stop_loss:
                     losses += 1
                     outcomes.append(stop_loss - initial_price)
                     break
             
             elif strategy == 'short':
-                if price <= target_price:
+                if target_price is not None and price <= target_price:
                     wins += 1
                     days_to_target.append(day)
                     outcomes.append(initial_price - target_price)
                     break
-                elif price >= stop_loss:
+                elif stop_loss is not None and price >= stop_loss:
                     losses += 1
                     outcomes.append(initial_price - stop_loss)
                     break
@@ -99,17 +99,17 @@ def run_monte_carlo_simulation(
         max_drawdowns.append(sim_max_dd)
 
     # Calculate results
-    win_probability = wins / num_simulations
-    risk_of_ruin = losses / num_simulations
-    expired_probability = expired_trades / num_simulations
+    win_probability = wins / num_simulations if num_simulations > 0 else 0.0
+    risk_of_ruin = losses / num_simulations if num_simulations > 0 else 0.0
+    expired_probability = expired_trades / num_simulations if num_simulations > 0 else 0.0
     
     if len(days_to_target) > 0:
-        average_days_to_target = np.mean(days_to_target)
+        average_days_to_target = float(np.mean(days_to_target))
     else:
-        average_days_to_target = 0
+        average_days_to_target = 0.0
         
-    maximum_drawdown = np.max(max_drawdowns) if max_drawdowns else 0
-    expected_value = np.mean(outcomes)
+    maximum_drawdown = float(np.max(max_drawdowns)) if max_drawdowns else 0.0
+    expected_value = float(np.mean(outcomes)) if outcomes else 0.0
     
     # Prepare chart data
     time_index = list(range(time_horizon + 1))
@@ -120,26 +120,29 @@ def run_monte_carlo_simulation(
         padded_path = path + [path[-1]] * (time_horizon + 1 - len(path))
         padded_paths.append(padded_path)
 
-    p5 = np.percentile(padded_paths, 5, axis=0).tolist()
-    p50 = np.percentile(padded_paths, 50, axis=0).tolist()
-    p95 = np.percentile(padded_paths, 95, axis=0).tolist()
-    
+    if padded_paths:
+        p5 = np.percentile(padded_paths, 5, axis=0).tolist()
+        p50 = np.percentile(padded_paths, 50, axis=0).tolist()
+        p95 = np.percentile(padded_paths, 95, axis=0).tolist()
+    else:
+        p5, p50, p95 = [], [], []
+
     num_samples = min(100, num_simulations)
-    sample_paths = random.sample(all_paths, num_samples)
+    sample_paths = random.sample(all_paths, num_samples) if num_simulations > 0 else []
 
     # Prepare data for database insertion
     trade_data = {
         "inputs": {
             "sessionID": sessionID,
             "ticker": ticker,
-            "strategy": strategy,
+            "strategy": str(strategy) if strategy is not None else "",
             "inputs": {
-                "entry_price": initial_price,
-                "target_price": target_price,
-                "stop_loss": stop_loss,
-                "drift": drift,
-                "volatility": volatility,
-                "num_simulations": num_simulations,
+                "entry_price": float(initial_price),
+                "target_price": float(target_price) if target_price is not None else 0.0,
+                "stop_loss": float(stop_loss) if stop_loss is not None else 0.0,
+                "drift": float(drift),
+                "volatility": float(volatility),
+                "num_simulations": int(num_simulations),
             },
         },
         "results": {
