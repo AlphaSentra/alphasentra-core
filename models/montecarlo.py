@@ -32,6 +32,9 @@ def run_monte_carlo_simulation(
         time_horizon (int): The number of trading days for the simulation.
         num_simulations (int): The number of simulations to run.
     """
+    strategy = strategy.lower()
+    if strategy not in {"long", "short"}:
+        raise ValueError(f"Invalid strategy: {strategy}")
     # Daily drift and volatility
     daily_drift = drift / 252
     daily_volatility = volatility / np.sqrt(252)
