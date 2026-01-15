@@ -305,7 +305,7 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
                         sessionID="default",
                         ticker=tickers,
                         initial_price=initial_price,
-                        strategy=recommendations.get('trade_direction')
+                        strategy=recommendations.get('trade_direction'),
                         target_price=recommendations.get('target_price'),
                         stop_loss=recommendations.get('stop_loss'),
                         volatility=recommendations.get('volatility'),
