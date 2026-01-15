@@ -351,6 +351,118 @@ def create_tickers_collection(db):
     return success
 
 
+def create_trades_collection(db):
+    """
+    Creates the 'trades' collection with schema validation and indexes.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if collection was created or already exists, False on error
+    """
+    collection_name = 'trades'
+    
+    print()
+    print("=" * 100)
+    print(f"Creating '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+
+    # Create collection with schema validation
+    validator = {
+        '$jsonSchema': {
+            'bsonType': 'object',
+            'required': ['inputs', 'results', 'chart_data'],
+            'properties': {
+                'inputs': {
+                    'bsonType': 'object',
+                    'required': ['sessionID', 'ticker', 'strategy', 'inputs'],
+                    'properties': {
+                        'sessionID': {'bsonType': 'string'},
+                        'ticker': {'bsonType': 'string'},
+                        'strategy': {'bsonType': 'string'},
+                        'inputs': {
+                            'bsonType': 'object',
+                            'required': ['entry_price', 'target_price', 'stop_loss', 'drift', 'volatility', 'num_simulations'],
+                            'properties': {
+                                'entry_price': {'bsonType': 'double'},
+                                'target_price': {'bsonType': 'double'},
+                                'stop_loss': {'bsonType': 'double'},
+                                'drift': {'bsonType': 'double'},
+                                'volatility': {'bsonType': 'double'},
+                                'num_simulations': {'bsonType': 'int'}
+                            }
+                        }
+                    }
+                },
+                'results': {
+                    'bsonType': 'object',
+                    'required': ['win_probability', 'risk_of_ruin', 'avg_days_to_target', 'expired_probability', 'maximum_drawdown', 'expected_value'],
+                    'properties': {
+                        'win_probability': {'bsonType': 'double'},
+                        'risk_of_ruin': {'bsonType': 'double'},
+                        'avg_days_to_target': {'bsonType': 'double'},
+                        'expired_probability': {'bsonType': 'double'},
+                        'maximum_drawdown': {'bsonType': 'double'},
+                        'expected_value': {'bsonType': 'double'}
+                    }
+                },
+                'chart_data': {
+                    'bsonType': 'object',
+                    'required': ['time_index', 'percentiles', 'sample_paths'],
+                    'properties': {
+                        'time_index': {
+                            'bsonType': 'array',
+                            'items': {'bsonType': 'int'}
+                        },
+                        'percentiles': {
+                            'bsonType': 'object',
+                            'required': ['p5', 'p50', 'p95'],
+                            'properties': {
+                                'p5': {
+                                    'bsonType': 'array',
+                                    'items': {'bsonType': 'double'}
+                                },
+                                'p50': {
+                                    'bsonType': 'array',
+                                    'items': {'bsonType': 'double'}
+                                },
+                                'p95': {
+                                    'bsonType': 'array',
+                                    'items': {'bsonType': 'double'}
+                                }
+                            }
+                        },
+                        'sample_paths': {
+                            'bsonType': 'array',
+                            'items': {
+                                'bsonType': 'array',
+                                'items': {'bsonType': 'double'}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    # Define indexes for better query performance
+    indexes = [
+        [("inputs.sessionID", pymongo.ASCENDING)],
+        [("inputs.ticker", pymongo.ASCENDING)]
+    ]
+    
+    # Use the generic function to create the collection
+    success = create_collection_with_schema(db, collection_name, validator, indexes)
+    
+    if success:
+        print(f"Successfully created collection '{collection_name}'")
+        print("Collection schema validation rules applied.")
+    
+    return success
+
+
 def insert_asset_classes_data(db):
     """
     Inserts initial asset classes data into the 'asset_classes' collection.
@@ -610,6 +722,7 @@ def create_alphagora_database():
         operations = [
             create_insights_collection,
             create_tickers_collection,
+            create_trades_collection,
             create_pipeline_collection,
             create_asset_classes_collection,
             insert_asset_classes_data,
