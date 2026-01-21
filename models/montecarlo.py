@@ -132,7 +132,8 @@ def optimize_and_run_monte_carlo(
     volatility: float,
     drift: float,
     num_simulations: int,
-    min_rrr: float = 2.0
+    min_rrr: float = 2.0,
+    strategy: str = "long" # Added strategy parameter with default value
 ):
     """
     Automates the discovery of optimal trading parameters with a fallback mechanism.
