@@ -27,7 +27,7 @@ from logging_utils import log_error, log_warning, log_info
 from models.analysis import run_analysis
 from models.simulation import process_simulation_data
 from data.price_action import calculate_volatility, calculate_drift
-from models.montecarlo import run_monte_carlo_simulation
+from models.montecarlo import optimize_and_run_monte_carlo
 
 def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digits=4, flag_document_generated: bool = True, batch_mode: bool = False):
     """
