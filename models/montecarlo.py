@@ -1,10 +1,3 @@
-# INSTRUCTIONS:
-#
-# To automatically find the optimal target price and stop loss, use the `optimize_and_run_monte_carlo` function.
-# This function will find the best parameters for you and then run the simulation.
-#
-# If you want to specify your own target price and stop loss, use the `run_monte_carlo_simulation` function.
-
 import numpy as np
 import os
 import random
@@ -14,7 +7,7 @@ from logging_utils import log_error, log_info, log_warning
 
 def _run_simulation_for_optimization(
     initial_price: float,
-    strategy: str,
+    strategy_direction: str, # Renamed from strategy to strategy_direction
     target_price: float,
     stop_loss: float,
     volatility: float,
@@ -29,9 +22,9 @@ def _run_simulation_for_optimization(
     It is stripped of detailed analytics to allow for quick, iterative testing of numerous
     target and stop-loss combinations in the `optimize_and_run_monte_carlo` function.
     """
-    strategy = strategy.lower()
-    if strategy not in {"long", "short"}:
-        raise ValueError(f"Invalid strategy: {strategy}")
+    strategy_direction = strategy_direction.lower()
+    if strategy_direction not in {"long", "short"}:
+        raise ValueError(f"Invalid strategy direction: {strategy_direction}")
 
     # Daily drift and volatility
     daily_drift = drift / 252
@@ -47,7 +40,7 @@ def _run_simulation_for_optimization(
     price_paths = initial_price * daily_returns.cumprod(axis=1)
 
     # Determine hits for target and stop-loss across all paths
-    if strategy == 'long':
+    if strategy_direction == 'long':
         target_hits = price_paths >= target_price
         stop_hits = price_paths <= stop_loss
     else:  # short
@@ -72,7 +65,7 @@ def _run_simulation_for_optimization(
     final_prices_expired = price_paths[is_expired, -1]
 
     # Calculate the outcome (profit/loss) for each simulation path
-    if strategy == 'long':
+    if strategy_direction == 'long':
         outcomes[is_win] = target_price - initial_price
         outcomes[is_loss] = stop_loss - initial_price
         outcomes[is_expired] = final_prices_expired - initial_price
@@ -88,7 +81,7 @@ def _run_simulation_for_optimization(
     return expected_value, win_probability
 
 
-def _update_insight_with_optimal_levels(sessionID: str, ticker: str, target_price: float, stop_loss: float, simulation_results: dict):
+def _update_insight_with_optimal_levels(sessionID: str, ticker: str, target_price: float, stop_loss: float, trade_direction: str, simulation_results: dict):
     """
     Updates the latest insight document in the 'insights' collection, but only if the sessionID is 'default'.
     """
@@ -107,6 +100,7 @@ def _update_insight_with_optimal_levels(sessionID: str, ticker: str, target_pric
         update_payload = {
             "recommendations.0.target_price": target_price,
             "recommendations.0.stop_loss": stop_loss,
+            "recommendations.0.trade_direction": trade_direction, # Added trade_direction
             "win_probability": simulation_results.get("win_probability"),
             "risk_of_ruin": simulation_results.get("risk_of_ruin"),
             "avg_days_to_target": simulation_results.get("avg_days_to_target"),
@@ -135,7 +129,6 @@ def optimize_and_run_monte_carlo(
     sessionID: str,
     ticker: str,
     initial_price: float,
-    strategy: str,
     volatility: float,
     drift: float,
     num_simulations: int,
@@ -150,21 +143,6 @@ def optimize_and_run_monte_carlo(
     If no such strategy is found, it falls back to recommending the strategy with the 
     highest EV overall, regardless of its win probability.
     """
-    # Ensure strategy is lowercase for consistent comparisons
-    strategy = strategy.lower()
-    if strategy not in {"long", "short"}:
-        raise ValueError(f"Invalid strategy: {strategy}")
-
-    # Track two sets of parameters: one for the ideal case (win rate >= 50%) and one for the best overall EV.
-    best_params_over_50 = {
-        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
-        'win_probability': 0, 'rrr': 0
-    }
-    best_params_overall = {
-        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
-        'win_probability': 0, 'rrr': 0
-    }
-
     # Define search spaces
     vol_multiplier_range = np.arange(1.0, 5.1, 0.5)
     rrr_range = np.arange(min_rrr, 3.1, 0.5) # Cap RRR at 3:1
@@ -176,61 +154,99 @@ def optimize_and_run_monte_carlo(
     time_horizon = np.clip(calculated_horizon, 21, 252).item()
     log_info(f"Using dynamically calculated time horizon: {time_horizon} days for {ticker}")
 
-    total_iterations = len(vol_multiplier_range) * len(rrr_range)
+    total_iterations = len(vol_multiplier_range) * len(rrr_range) * 2 # Multiply by 2 for long/short
     current_iteration = 0
 
     print("\nStarting optimization for max Expected Value...")
     print(f"Total iterations to perform: {total_iterations}")
 
+    # Track best parameters for long and short strategies
+    best_params_long_over_50 = {
+        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
+        'win_probability': 0, 'rrr': 0, 'strategy_direction': 'long'
+    }
+    best_params_long_overall = {
+        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
+        'win_probability': 0, 'rrr': 0, 'strategy_direction': 'long'
+    }
+    best_params_short_over_50 = {
+        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
+        'win_probability': 0, 'rrr': 0, 'strategy_direction': 'short'
+    }
+    best_params_short_overall = {
+        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
+        'win_probability': 0, 'rrr': 0, 'strategy_direction': 'short'
+    }
+
     # Dynamic search space for stop-loss based on volatility
     daily_volatility = volatility / np.sqrt(252)
     
-    for vol_multiplier in vol_multiplier_range:
-        stop_loss_distance = initial_price * daily_volatility * vol_multiplier
-        
-        if strategy == 'long':
-            stop_loss_price = initial_price - stop_loss_distance
-        else: # short
-            stop_loss_price = initial_price + stop_loss_distance
-
-        for rrr in rrr_range:
-            current_iteration += 1
-            print(f"  > Optimizing... {current_iteration}/{total_iterations} ({((current_iteration/total_iterations)*100):.1f}%)  ", end='\r')
-
-            potential_risk = abs(initial_price - stop_loss_price)
-            potential_reward = potential_risk * rrr
-
-            if strategy == 'long':
-                target_price = initial_price + potential_reward
+    for strategy_direction in ["long", "short"]:
+        for vol_multiplier in vol_multiplier_range:
+            stop_loss_distance = initial_price * daily_volatility * vol_multiplier
+            
+            if strategy_direction == 'long':
+                stop_loss_price = initial_price - stop_loss_distance
             else: # short
-                target_price = initial_price - potential_reward
+                stop_loss_price = initial_price + stop_loss_distance
 
-            expected_value, win_probability = _run_simulation_for_optimization(
-                initial_price=initial_price, strategy=strategy, target_price=target_price,
-                stop_loss=stop_loss_price, volatility=volatility, drift=drift,
-                time_horizon=time_horizon, num_simulations=num_simulations
-            )
+            for rrr in rrr_range:
+                current_iteration += 1
+                print(f"  > Optimizing ({strategy_direction})... {current_iteration}/{total_iterations} ({((current_iteration/total_iterations)*100):.1f}%)  ", end='\r')
 
-            # Always track the best overall EV
-            if expected_value > best_params_overall['expected_value']:
-                best_params_overall = {'expected_value': expected_value, 'win_probability': win_probability, 
-                                     'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr}
+                potential_risk = abs(initial_price - stop_loss_price)
+                potential_reward = potential_risk * rrr
 
-            # Separately, track the best EV that meets the win rate condition
-            if win_probability >= 0.5 and expected_value > best_params_over_50['expected_value']:
-                best_params_over_50 = {'expected_value': expected_value, 'win_probability': win_probability, 
-                                     'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr}
+                if strategy_direction == 'long':
+                    target_price = initial_price + potential_reward
+                else: # short
+                    target_price = initial_price - potential_reward
+
+                expected_value, win_probability = _run_simulation_for_optimization(
+                    initial_price=initial_price, strategy_direction=strategy_direction, target_price=target_price,
+                    stop_loss=stop_loss_price, volatility=volatility, drift=drift,
+                    time_horizon=time_horizon, num_simulations=num_simulations
+                )
+
+                if strategy_direction == 'long':
+                    # Always track the best overall EV for long
+                    if expected_value > best_params_long_overall['expected_value']:
+                        best_params_long_overall = {'expected_value': expected_value, 'win_probability': win_probability, 
+                                                 'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr, 'strategy_direction': 'long'}
+
+                    # Separately, track the best EV for long that meets the win rate condition
+                    if win_probability >= 0.5 and expected_value > best_params_long_over_50['expected_value']:
+                        best_params_long_over_50 = {'expected_value': expected_value, 'win_probability': win_probability, 
+                                                 'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr, 'strategy_direction': 'long'}
+                else: # short
+                    # Always track the best overall EV for short
+                    if expected_value > best_params_short_overall['expected_value']:
+                        best_params_short_overall = {'expected_value': expected_value, 'win_probability': win_probability, 
+                                                 'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr, 'strategy_direction': 'short'}
+
+                    # Separately, track the best EV for short that meets the win rate condition
+                    if win_probability >= 0.5 and expected_value > best_params_short_over_50['expected_value']:
+                        best_params_short_over_50 = {'expected_value': expected_value, 'win_probability': win_probability, 
+                                                 'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr, 'strategy_direction': 'short'}
     
     print("\n\nOptimization finished.                                ")
 
-    # Decide which parameter set to use
-    if best_params_over_50['target_price'] is not None:
-        final_best_params = best_params_over_50
-        print("\nFound optimal strategy with >= 50% win probability.")
+    # Compare long and short strategies
+    candidates = []
+    if best_params_long_over_50['target_price'] is not None:
+        candidates.append(best_params_long_over_50)
+    if best_params_short_over_50['target_price'] is not None:
+        candidates.append(best_params_short_over_50)
+
+    if candidates:
+        final_best_params = max(candidates, key=lambda x: x['expected_value'])
+        print(f"\nFound optimal strategy ({final_best_params['strategy_direction']}) with >= 50% win probability.")
     else:
-        final_best_params = best_params_overall
-        log_warning(f"Could not find a strategy with >= 50% win rate for {ticker}. Falling back to highest EV strategy.", "OPTIMIZATION_FALLBACK")
-        print("\nWarning: Could not find a strategy with >= 50% win rate. Falling back to the highest EV strategy found.")
+        # Fallback to the best overall EV if no strategy meets win rate condition
+        all_overall_bests = [best_params_long_overall, best_params_short_overall]
+        final_best_params = max(all_overall_bests, key=lambda x: x['expected_value'])
+        log_warning(f"Could not find any strategy with >= 50% win rate for {ticker}. Falling back to highest EV strategy.", "OPTIMIZATION_FALLBACK")
+        print(f"\nWarning: Could not find any strategy with >= 50% win rate. Falling back to the highest EV ({final_best_params['strategy_direction']}) strategy found.")
 
     if final_best_params['target_price'] is None:
         log_error(f"Could not find any optimal parameters for {ticker}.", "OPTIMIZATION_FAILURE")
@@ -238,6 +254,7 @@ def optimize_and_run_monte_carlo(
         return
 
     print(f"\nBest parameters found for {ticker}:")
+    print(f"  - Strategy: {final_best_params['strategy_direction'].capitalize()}")
     print(f"  - Target Price: {final_best_params['target_price']:.4f}")
     print(f"  - Stop Loss: {final_best_params['stop_loss']:.4f}")
     print(f"  - Expected Value: ${final_best_params['expected_value']:.4f}")
@@ -247,7 +264,7 @@ def optimize_and_run_monte_carlo(
     print("Running final simulation with optimal parameters...")
     
     simulation_results = run_monte_carlo_simulation(
-        sessionID=sessionID, ticker=ticker, initial_price=initial_price, strategy=strategy,
+        sessionID=sessionID, ticker=ticker, initial_price=initial_price, strategy=final_best_params['strategy_direction'],
         target_price=final_best_params['target_price'],
         stop_loss=final_best_params['stop_loss'],
         volatility=volatility, drift=drift, time_horizon=time_horizon, num_simulations=num_simulations
@@ -258,6 +275,7 @@ def optimize_and_run_monte_carlo(
         ticker=ticker,
         target_price=final_best_params['target_price'],
         stop_loss=final_best_params['stop_loss'],
+        trade_direction=final_best_params['strategy_direction'],
         simulation_results=simulation_results
     )
 
