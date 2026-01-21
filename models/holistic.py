@@ -300,7 +300,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
             # Run Monte Carlo simulation
             try:
                 # Safely get the initial price
-                initial_price_str = recommendations.get('recommendations', [{}])[0].get('entry_price')
+                initial_price_str = recommendations.get('recommendations', [{}])[0].get('price')
                 
                 # Ensure the price is valid before converting to float
                 if initial_price_str and initial_price_str not in ['N/A', 'UNKNOWN']:

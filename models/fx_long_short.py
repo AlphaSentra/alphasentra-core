@@ -294,7 +294,7 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
             # Run Monte Carlo simulation
             try:
                 # Safely get the initial price
-                initial_price_str = recommendations.get('recommendations', [{}])[0].get('entry_price')
+                initial_price_str = recommendations.get('recommendations', [{}])[0].get('price')
                 
                 # Ensure the price is valid before converting to float
                 if initial_price_str and initial_price_str not in ['N/A', 'UNKNOWN']:
