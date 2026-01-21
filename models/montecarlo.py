@@ -140,10 +140,13 @@ def optimize_and_run_monte_carlo(
             )
 
             if win_probability > best_params['win_probability']:
-                best_params['win_probability'] = win_probability
-                best_params['target_price'] = target_price
-                best_params['stop_loss'] = stop_loss_price
-                best_params['rrr'] = rrr
+                # Ensure the target is profitable for the given strategy
+                if (strategy == 'long' and target_price > initial_price) or \
+                   (strategy == 'short' and target_price < initial_price):
+                    best_params['win_probability'] = win_probability
+                    best_params['target_price'] = target_price
+                    best_params['stop_loss'] = stop_loss_price
+                    best_params['rrr'] = rrr
     
     # Print a newline to move on from the progress line
     print("\n\nOptimization finished.                                ")
