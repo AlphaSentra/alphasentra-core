@@ -25,8 +25,8 @@ def _run_simulation_for_optimization(
     """
     A lightweight and performance-optimized version of the Monte Carlo simulation, designed specifically for the optimization process.
 
-    This function rapidly calculates the win probability for a given set of trading parameters. 
-    It is stripped of detailed analytics to allow for quick, iterative testing of numerous 
+    This function rapidly calculates the Expected Value (EV) for a given set of trading parameters.
+    It is stripped of detailed analytics to allow for quick, iterative testing of numerous
     target and stop-loss combinations in the `optimize_and_run_monte_carlo` function.
     """
     strategy = strategy.lower()
@@ -62,13 +62,28 @@ def _run_simulation_for_optimization(
     valid_target_hit = np.any(target_hits, axis=1)
     valid_stop_hit = np.any(stop_hits, axis=1)
 
-    # A win occurs if a target is hit, AND either no stop is hit or the target is hit first
-    wins = np.sum(
-        valid_target_hit &
-        (~valid_stop_hit | (target_hit_days <= stop_hit_days))
-    )
+    # Create masks for each outcome type
+    is_win = valid_target_hit & (~valid_stop_hit | (target_hit_days <= stop_hit_days))
+    is_loss = valid_stop_hit & (~valid_target_hit | (stop_hit_days < target_hit_days))
+    is_expired = ~(is_win | is_loss)
 
-    return wins / num_simulations if num_simulations > 0 else 0.0
+    # Initialize outcomes array
+    outcomes = np.zeros(num_simulations)
+    final_prices_expired = price_paths[is_expired, -1]
+
+    # Calculate the outcome (profit/loss) for each simulation path
+    if strategy == 'long':
+        outcomes[is_win] = target_price - initial_price
+        outcomes[is_loss] = stop_loss - initial_price
+        outcomes[is_expired] = final_prices_expired - initial_price
+    else:  # short
+        outcomes[is_win] = initial_price - target_price
+        outcomes[is_loss] = initial_price - stop_loss
+        outcomes[is_expired] = initial_price - final_prices_expired
+
+    # The expected value is the mean of all outcomes
+    return np.mean(outcomes)
+
 
 def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_loss: float):
     """
@@ -113,13 +128,13 @@ def optimize_and_run_monte_carlo(
     min_rrr: float = 2.0
 ):
     """
-    Automates the discovery of optimal trading parameters and executes a comprehensive Monte Carlo analysis.
+    Automates the discovery of optimal trading parameters by optimizing for the highest Expected Value (EV).
 
     This function systematically searches for the best `target_price` and `stop_loss` combination by:
     1.  Calculating a dynamic `time_horizon` based on volatility and risk-reward ratio.
     2.  Defining a dynamic search space for the stop-loss based on the instrument's daily volatility.
     3.  Testing various risk-reward ratios (starting from `min_rrr`) for each stop-loss level.
-    4.  Utilizing a lightweight simulation (`_run_simulation_for_optimization`) to quickly evaluate the win probability of each parameter set.
+    4.  Utilizing a lightweight simulation (`_run_simulation_for_optimization`) to quickly evaluate the EV of each parameter set.
 
     Once the optimal parameters are found, it calls `run_monte_carlo_simulation` to perform a detailed analysis,
     saves the results to the `trades` collection, and updates the corresponding `insights` document.
@@ -132,7 +147,7 @@ def optimize_and_run_monte_carlo(
     best_params = {
         'target_price': None,
         'stop_loss': None,
-        'win_probability': -1.0,
+        'expected_value': -np.inf,  # Optimize for the highest Expected Value
         'rrr': 0
     }
 
@@ -153,7 +168,7 @@ def optimize_and_run_monte_carlo(
     total_iterations = len(vol_multiplier_range) * len(rrr_range)
     current_iteration = 0
 
-    print("\nStarting optimization with dynamic stop-loss...")
+    print("\nStarting optimization for max Expected Value...")
     print(f"Total iterations to perform: {total_iterations}")
 
     # Dynamic search space for stop-loss based on volatility
@@ -179,7 +194,7 @@ def optimize_and_run_monte_carlo(
             else: # short
                 target_price = initial_price - potential_reward
 
-            win_probability = _run_simulation_for_optimization(
+            expected_value = _run_simulation_for_optimization(
                 initial_price=initial_price,
                 strategy=strategy,
                 target_price=target_price,
@@ -190,10 +205,10 @@ def optimize_and_run_monte_carlo(
                 num_simulations=num_simulations
             )
 
-            if win_probability > best_params['win_probability']:
+            if expected_value > best_params['expected_value']:
                 if (strategy == 'long' and target_price > initial_price) or \
                    (strategy == 'short' and target_price < initial_price):
-                    best_params['win_probability'] = win_probability
+                    best_params['expected_value'] = expected_value
                     best_params['target_price'] = target_price
                     best_params['stop_loss'] = stop_loss_price
                     best_params['rrr'] = rrr
@@ -208,7 +223,7 @@ def optimize_and_run_monte_carlo(
     print(f"\nBest parameters found for {ticker}:")
     print(f"  - Target Price: {best_params['target_price']:.4f}")
     print(f"  - Stop Loss: {best_params['stop_loss']:.4f}")
-    print(f"  - Win Probability: {best_params['win_probability']:.2%}")
+    print(f"  - Expected Value: ${best_params['expected_value']:.4f}")
     print(f"  - Risk-Reward Ratio: {best_params['rrr']:.1f}\n")
 
     print("Running final simulation with optimal parameters...")
