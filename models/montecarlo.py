@@ -82,13 +82,12 @@ def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_l
 
         # Find the most recent insight for the ticker and update it atomically.
         # This assumes the 'recommendations' field is an array with one trade object.
-        # The prices are formatted as strings to match the existing schema.
         result = insights_collection.find_one_and_update(
             {"recommendations.0.ticker": ticker},
             {
                 "$set": {
-                    "recommendations.0.target_price": f"{target_price:.4f}",
-                    "recommendations.0.stop_loss": f"{stop_loss:.4f}"
+                    "recommendations.0.target_price": target_price,
+                    "recommendations.0.stop_loss": stop_loss
                 }
             },
             sort=[("timestamp_gmt", pymongo.DESCENDING)]
