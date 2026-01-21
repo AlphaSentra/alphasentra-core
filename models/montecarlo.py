@@ -323,7 +323,7 @@ def run_monte_carlo_simulation(
     sample_paths = random.sample(all_paths, num_samples) if num_simulations > 0 else []
 
     # Prepare data for database insertion
-    trade_.data = {
+    trade_data = {
         "inputs": {
             "sessionID": sessionID,
             "ticker": ticker,
