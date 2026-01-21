@@ -84,10 +84,9 @@ def _run_simulation_for_optimization(
     # The expected value is the mean of all outcomes
     return np.mean(outcomes)
 
-
 def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_loss: float, simulation_results: dict):
     """
-    Updates the latest insight document in the 'insights' collection with optimized price levels and specific root-level simulation metrics.
+    Updates the latest insight document in the 'insights' collection with optimized price levels and specific, consistent root-level simulation metrics.
     """
     try:
         client = DatabaseManager().get_client()
@@ -101,7 +100,7 @@ def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_l
             "recommendations.0.stop_loss": stop_loss,
             "win_probability": simulation_results.get("win_probability"),
             "risk_of_ruin": simulation_results.get("risk_of_ruin"),
-            "average_days_to_target": simulation_results.get("average_days_to_target"),
+            "avg_days_to_target": simulation_results.get("avg_days_to_target"),
             "expired_probability": simulation_results.get("expired_probability"),
             "maximum_drawdown": simulation_results.get("maximum_drawdown"),
             "expected_value": simulation_results.get("expected_value")
@@ -344,7 +343,7 @@ def run_monte_carlo_simulation(
     risk_of_ruin = losses / num_simulations if num_simulations > 0 else 0.0
     expired_probability = expired_trades / num_simulations if num_simulations > 0 else 0.0
     
-    average_days_to_target = float(np.mean(days_to_target)) if days_to_target else 0.0
+    avg_days_to_target = float(np.mean(days_to_target)) if days_to_target else 0.0
     maximum_drawdown = float(np.max(max_drawdowns)) if max_drawdowns else 0.0
     expected_value = float(np.mean(outcomes)) if outcomes else 0.0
     
@@ -382,7 +381,7 @@ def run_monte_carlo_simulation(
         "results": {
             "win_probability": win_probability,
             "risk_of_ruin": risk_of_ruin,
-            "average_days_to_target": average_days_to_target, # Corrected key name
+            "avg_days_to_target": avg_days_to_target,
             "expired_probability": expired_probability,
             "maximum_drawdown": maximum_drawdown,
             "expected_value": expected_value,
