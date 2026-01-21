@@ -92,6 +92,11 @@ def optimize_and_run_monte_carlo(
 
     Once the optimal parameters are found, it calls the `run_monte_carlo_simulation` function to perform a detailed analysis and store the results in the database.
     """
+    # Ensure strategy is lowercase for consistent comparisons
+    strategy = strategy.lower()
+    if strategy not in {"long", "short"}:
+        raise ValueError(f"Invalid strategy: {strategy}")
+
     best_params = {
         'target_price': None,
         'stop_loss': None,
