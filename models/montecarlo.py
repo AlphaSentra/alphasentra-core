@@ -138,31 +138,27 @@ def optimize_and_run_monte_carlo(
     min_rrr: float = 2.0
 ):
     """
-    Automates the discovery of optimal trading parameters by optimizing for the highest Expected Value (EV) 
-    while ensuring a minimum win probability of 50%.
+    Automates the discovery of optimal trading parameters with a fallback mechanism.
 
-    This function systematically searches for the best `target_price` and `stop_loss` combination by:
-    1.  Calculating a dynamic `time_horizon` based on volatility and risk-reward ratio.
-    2.  Defining a dynamic search space for the stop-loss based on the instrument's daily volatility.
-    3.  Testing various risk-reward ratios (from `min_rrr` up to 3:1) for each stop-loss level.
-    4.  Utilizing a lightweight simulation (`_run_simulation_for_optimization`) to quickly evaluate the EV and win rate.
-    5.  Filtering for parameter sets with a win probability >= 50%.
-    6.  Selecting the parameter set with the highest EV from the filtered group.
+    This function first attempts to find the strategy with the highest Expected Value (EV) 
+    that also has a win probability of at least 50%. 
 
-    Once the optimal parameters are found, it calls `run_monte_carlo_simulation` to perform a detailed analysis,
-    saves the results to the `trades` collection, and updates the corresponding `insights` document.
+    If no such strategy is found, it falls back to recommending the strategy with the 
+    highest EV overall, regardless of its win probability.
     """
     # Ensure strategy is lowercase for consistent comparisons
     strategy = strategy.lower()
     if strategy not in {"long", "short"}:
         raise ValueError(f"Invalid strategy: {strategy}")
 
-    best_params = {
-        'target_price': None,
-        'stop_loss': None,
-        'expected_value': -np.inf,  # Optimize for the highest Expected Value
-        'win_probability': 0,
-        'rrr': 0
+    # Track two sets of parameters: one for the ideal case (win rate >= 50%) and one for the best overall EV.
+    best_params_over_50 = {
+        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
+        'win_probability': 0, 'rrr': 0
+    }
+    best_params_overall = {
+        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
+        'win_probability': 0, 'rrr': 0
     }
 
     # Define search spaces
@@ -172,17 +168,14 @@ def optimize_and_run_monte_carlo(
     # Dynamically calculate time horizon
     median_vol_multiplier = np.median(vol_multiplier_range)
     median_rrr = np.median(rrr_range)
-    # Heuristic: The time to reach a target is related to the square of the distance.
-    # We use the median RRR and volatility multiplier to estimate a 'typical' trade's distance.
     calculated_horizon = int((median_rrr * median_vol_multiplier) ** 2)
-    # Clamp the horizon to a practical range (e.g., 1 month to 1 year)
     time_horizon = np.clip(calculated_horizon, 21, 252).item()
     log_info(f"Using dynamically calculated time horizon: {time_horizon} days for {ticker}")
 
     total_iterations = len(vol_multiplier_range) * len(rrr_range)
     current_iteration = 0
 
-    print("\nStarting optimization for max Expected Value (Win Probability >= 50%)...")
+    print("\nStarting optimization for max Expected Value...")
     print(f"Total iterations to perform: {total_iterations}")
 
     # Dynamic search space for stop-loss based on volatility
@@ -209,59 +202,57 @@ def optimize_and_run_monte_carlo(
                 target_price = initial_price - potential_reward
 
             expected_value, win_probability = _run_simulation_for_optimization(
-                initial_price=initial_price,
-                strategy=strategy,
-                target_price=target_price,
-                stop_loss=stop_loss_price,
-                volatility=volatility,
-                drift=drift,
-                time_horizon=time_horizon,
-                num_simulations=num_simulations
+                initial_price=initial_price, strategy=strategy, target_price=target_price,
+                stop_loss=stop_loss_price, volatility=volatility, drift=drift,
+                time_horizon=time_horizon, num_simulations=num_simulations
             )
 
-            # New condition: Win probability must be at least 50%
-            if win_probability >= 0.5 and expected_value > best_params['expected_value']:
-                if (strategy == 'long' and target_price > initial_price) or \
-                   (strategy == 'short' and target_price < initial_price):
-                    best_params['expected_value'] = expected_value
-                    best_params['win_probability'] = win_probability
-                    best_params['target_price'] = target_price
-                    best_params['stop_loss'] = stop_loss_price
-                    best_params['rrr'] = rrr
+            # Always track the best overall EV
+            if expected_value > best_params_overall['expected_value']:
+                best_params_overall = {'expected_value': expected_value, 'win_probability': win_probability, 
+                                     'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr}
+
+            # Separately, track the best EV that meets the win rate condition
+            if win_probability >= 0.5 and expected_value > best_params_over_50['expected_value']:
+                best_params_over_50 = {'expected_value': expected_value, 'win_probability': win_probability, 
+                                     'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr}
     
     print("\n\nOptimization finished.                                ")
 
-    if best_params['target_price'] is None:
-        log_error(f"Could not find optimal parameters for {ticker} with win rate >= 50%.", "OPTIMIZATION_FAILURE")
-        print(f"Could not find optimal parameters for {ticker} with a win rate of at least 50%.")
+    # Decide which parameter set to use
+    if best_params_over_50['target_price'] is not None:
+        final_best_params = best_params_over_50
+        print("\nFound optimal strategy with >= 50% win probability.")
+    else:
+        final_best_params = best_params_overall
+        log_warning(f"Could not find a strategy with >= 50% win rate for {ticker}. Falling back to highest EV strategy.", "OPTIMIZATION_FALLBACK")
+        print("\nWarning: Could not find a strategy with >= 50% win rate. Falling back to the highest EV strategy found.")
+
+    if final_best_params['target_price'] is None:
+        log_error(f"Could not find any optimal parameters for {ticker}.", "OPTIMIZATION_FAILURE")
+        print(f"Could not find any optimal parameters for {ticker}.")
         return
 
     print(f"\nBest parameters found for {ticker}:")
-    print(f"  - Target Price: {best_params['target_price']:.4f}")
-    print(f"  - Stop Loss: {best_params['stop_loss']:.4f}")
-    print(f"  - Expected Value: ${best_params['expected_value']:.4f}")
-    print(f"  - Win Probability: {best_params.get('win_probability', 0):.2%}")
-    print(f"  - Risk-Reward Ratio: {best_params['rrr']:.1f}\n")
+    print(f"  - Target Price: {final_best_params['target_price']:.4f}")
+    print(f"  - Stop Loss: {final_best_params['stop_loss']:.4f}")
+    print(f"  - Expected Value: ${final_best_params['expected_value']:.4f}")
+    print(f"  - Win Probability: {final_best_params.get('win_probability', 0):.2%}")
+    print(f"  - Risk-Reward Ratio: {final_best_params['rrr']:.1f}\n")
 
     print("Running final simulation with optimal parameters...")
     
     simulation_results = run_monte_carlo_simulation(
-        sessionID=sessionID,
-        ticker=ticker,
-        initial_price=initial_price,
-        strategy=strategy,
-        target_price=best_params['target_price'],
-        stop_loss=best_params['stop_loss'],
-        volatility=volatility,
-        drift=drift,
-        time_horizon=time_horizon,
-        num_simulations=num_simulations
+        sessionID=sessionID, ticker=ticker, initial_price=initial_price, strategy=strategy,
+        target_price=final_best_params['target_price'],
+        stop_loss=final_best_params['stop_loss'],
+        volatility=volatility, drift=drift, time_horizon=time_horizon, num_simulations=num_simulations
     )
 
     _update_insight_with_optimal_levels(
         ticker=ticker,
-        target_price=best_params['target_price'],
-        stop_loss=best_params['stop_loss'],
+        target_price=final_best_params['target_price'],
+        stop_loss=final_best_params['stop_loss'],
         simulation_results=simulation_results
     )
 
