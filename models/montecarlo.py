@@ -80,10 +80,10 @@ def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_l
         db = client[db_name]
         insights_collection = db["insights"]
 
-        # Find the most recent insight for the ticker and update it.
+        # Find the most recent insight for the ticker and update it atomically.
         # This assumes the 'recommendations' field is an array with one trade object.
         # The prices are formatted as strings to match the existing schema.
-        result = insights_collection.update_one(
+        result = insights_collection.find_one_and_update(
             {"recommendations.0.ticker": ticker},
             {
                 "$set": {
@@ -94,7 +94,7 @@ def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_l
             sort=[("timestamp_gmt", pymongo.DESCENDING)]
         )
 
-        if result.matched_count > 0:
+        if result is not None:
             log_info(f"Successfully updated insight for {ticker} with optimal price levels.")
         else:
             # This is a warning, not an error, as some models might run stand-alone without a preceding insight.
