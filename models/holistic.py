@@ -307,7 +307,7 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
                     initial_price = float(initial_price_str)
                     
                     # Run the simulation
-                    run_monte_carlo_simulation(
+                    optimize_and_run_monte_carlo(
                         sessionID="default",
                         ticker=tickers,
                         initial_price=initial_price,

@@ -301,7 +301,7 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
                     initial_price = float(initial_price_str)
                     
                     # Run the simulation
-                    run_monte_carlo_simulation(
+                    optimize_and_run_monte_carlo(
                         sessionID="default",
                         ticker=tickers,
                         initial_price=initial_price,

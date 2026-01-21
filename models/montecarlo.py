@@ -1,9 +1,148 @@
+# INSTRUCTIONS:
+#
+# To automatically find the optimal target price and stop loss, use the `optimize_and_run_monte_carlo` function.
+# This function will find the best parameters and then run the simulation.
+#
+# To use specific target price and stop loss, use the `run_monte_carlo_simulation` function.
 
 import numpy as np
 import os
 import random
 from helpers import DatabaseManager
 from logging_utils import log_error, log_info
+
+def _run_simulation_for_optimization(
+    initial_price: float,
+    strategy: str,
+    target_price: float,
+    stop_loss: float,
+    volatility: float,
+    drift: float,
+    time_horizon: int,
+    num_simulations: int
+):
+    '''
+    A lightweight and performance-optimized version of the Monte Carlo simulation, designed specifically for the optimization process.
+
+    This function rapidly calculates the win probability for a given set of trading parameters. 
+    It is stripped of detailed analytics to allow for quick, iterative testing of numerous 
+    target and stop-loss combinations in the `optimize_and_run_monte_carlo` function.
+    '''
+    strategy = strategy.lower()
+    if strategy not in {"long", "short"}:
+        raise ValueError(f"Invalid strategy: {strategy}")
+
+    daily_drift = drift / 252
+    daily_volatility = volatility / np.sqrt(252)
+    wins = 0
+
+    for _ in range(num_simulations):
+        price = initial_price
+        for day in range(1, time_horizon + 1):
+            daily_return = np.exp(
+                (daily_drift - 0.5 * daily_volatility**2) +
+                daily_volatility * np.random.normal(0, 1)
+            )
+            price *= daily_return
+
+            if strategy == 'long':
+                if target_price is not None and price >= target_price:
+                    wins += 1
+                    break
+                elif stop_loss is not None and price <= stop_loss:
+                    break
+            elif strategy == 'short':
+                if target_price is not None and price <= target_price:
+                    wins += 1
+                    break
+                elif stop_loss is not None and price >= stop_loss:
+                    break
+    
+    return wins / num_simulations if num_simulations > 0 else 0.0
+
+def optimize_and_run_monte_carlo(
+    sessionID: str,
+    ticker: str,
+    initial_price: float,
+    strategy: str,
+    target_price: float,
+    stop_loss: float,
+    volatility: float,
+    drift: float,
+    time_horizon: int,
+    num_simulations: int,
+    min_rrr: float = 2.0
+):
+    '''
+    Automates the discovery of optimal trading parameters and executes a comprehensive Monte Carlo analysis.
+
+    This function systematically searches for the best `target_price` and `stop_loss` combination by:
+    1.  Iterating through a predefined search space for stop-loss levels (1% to 20% of the initial price).
+    2.  Testing various risk-reward ratios (starting from `min_rrr`) for each stop-loss level.
+    3.  Utilizing a lightweight simulation (`_run_simulation_for_optimization`) to quickly evaluate the win probability of each parameter set.
+
+    The goal is to identify the combination that maximizes the probability of reaching the target price while respecting the minimum risk-reward ratio.
+
+    Once the optimal parameters are found, it calls the `run_monte_carlo_simulation` function to perform a detailed analysis and store the results in the database.
+    '''
+    best_params = {
+        'target_price': None,
+        'stop_loss': None,
+        'win_probability': -1.0,
+        'rrr': 0
+    }
+
+    # Search space for stop_loss as a percentage of initial_price
+    for stop_loss_pct in np.arange(0.01, 0.21, 0.01):
+        if strategy == 'long':
+            stop_loss_price = initial_price * (1 - stop_loss_pct)
+        else: # short
+            stop_loss_price = initial_price * (1 + stop_loss_pct)
+
+        # Search space for RRR from min_rrr up to 5.0
+        for rrr in np.arange(min_rrr, 5.1, 0.5):
+            potential_risk = abs(initial_price - stop_loss_price)
+            potential_reward = potential_risk * rrr
+
+            if strategy == 'long':
+                target_price = initial_price + potential_reward
+            else: # short
+                target_price = initial_price - potential_reward
+
+            win_probability = _run_simulation_for_optimization(
+                initial_price=initial_price,
+                strategy=strategy,
+                target_price=target_price,
+                stop_loss=stop_loss_price,
+                volatility=volatility,
+                drift=drift,
+                time_horizon=time_horizon,
+                num_simulations=num_simulations
+            )
+
+            if win_probability > best_params['win_probability']:
+                best_params['win_probability'] = win_probability
+                best_params['target_price'] = target_price
+                best_params['stop_loss'] = stop_loss_price
+                best_params['rrr'] = rrr
+    
+    if best_params['target_price'] is None:
+        log_error("Could not find optimal parameters.", "OPTIMIZATION_FAILURE")
+        return
+
+    # Run the full simulation with the best found parameters
+    run_monte_carlo_simulation(
+        sessionID=sessionID,
+        ticker=ticker,
+        initial_price=initial_price,
+        strategy=strategy,
+        target_price=best_params['target_price'],
+        stop_loss=best_params['stop_loss'],
+        volatility=volatility,
+        drift=drift,
+        time_horizon=time_horizon,
+        num_simulations=num_simulations
+    )
 
 def run_monte_carlo_simulation(
     sessionID: str,
@@ -17,7 +156,7 @@ def run_monte_carlo_simulation(
     time_horizon: int,
     num_simulations: int
 ):
-    """
+    '''
     Runs a Monte Carlo simulation for a trading strategy and stores the results in the database.
 
     Args:
@@ -31,7 +170,7 @@ def run_monte_carlo_simulation(
         drift (float): The drift (annualized).
         time_horizon (int): The number of trading days for the simulation.
         num_simulations (int): The number of simulations to run.
-    """
+    '''
     strategy = strategy.lower()
     if strategy not in {"long", "short"}:
         raise ValueError(f"Invalid strategy: {strategy}")
