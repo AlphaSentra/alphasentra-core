@@ -25,7 +25,7 @@ def _run_simulation_for_optimization(
     """
     A lightweight and performance-optimized version of the Monte Carlo simulation, designed specifically for the optimization process.
 
-    This function rapidly calculates the Expected Value (EV) for a given set of trading parameters.
+    This function rapidly calculates the Expected Value (EV) and Win Probability for a given set of trading parameters.
     It is stripped of detailed analytics to allow for quick, iterative testing of numerous
     target and stop-loss combinations in the `optimize_and_run_monte_carlo` function.
     """
@@ -81,8 +81,12 @@ def _run_simulation_for_optimization(
         outcomes[is_loss] = initial_price - stop_loss
         outcomes[is_expired] = initial_price - final_prices_expired
 
-    # The expected value is the mean of all outcomes
-    return np.mean(outcomes)
+    # Calculate the summary metrics
+    expected_value = np.mean(outcomes)
+    win_probability = np.sum(is_win) / num_simulations
+
+    return expected_value, win_probability
+
 
 def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_loss: float, simulation_results: dict):
     """
@@ -122,6 +126,7 @@ def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_l
     except Exception as e:
         log_error(f"Error updating insight for {ticker}: {e}", "DATABASE_UPDATE", e)
 
+
 def optimize_and_run_monte_carlo(
     sessionID: str,
     ticker: str,
@@ -133,16 +138,19 @@ def optimize_and_run_monte_carlo(
     min_rrr: float = 2.0
 ):
     """
-    Automates the discovery of optimal trading parameters by optimizing for the highest Expected Value (EV).
+    Automates the discovery of optimal trading parameters by optimizing for the highest Expected Value (EV) 
+    while ensuring a minimum win probability of 50%.
 
     This function systematically searches for the best `target_price` and `stop_loss` combination by:
     1.  Calculating a dynamic `time_horizon` based on volatility and risk-reward ratio.
     2.  Defining a dynamic search space for the stop-loss based on the instrument's daily volatility.
     3.  Testing various risk-reward ratios (from `min_rrr` up to 3:1) for each stop-loss level.
-    4.  Utilizing a lightweight simulation (`_run_simulation_for_optimization`) to quickly evaluate the EV of each parameter set.
+    4.  Utilizing a lightweight simulation (`_run_simulation_for_optimization`) to quickly evaluate the EV and win rate.
+    5.  Filtering for parameter sets with a win probability >= 50%.
+    6.  Selecting the parameter set with the highest EV from the filtered group.
 
     Once the optimal parameters are found, it calls `run_monte_carlo_simulation` to perform a detailed analysis,
-    saves the results to the `trades` collection, and updates the corresponding `insights` document with a full simulation summary.
+    saves the results to the `trades` collection, and updates the corresponding `insights` document.
     """
     # Ensure strategy is lowercase for consistent comparisons
     strategy = strategy.lower()
@@ -153,6 +161,7 @@ def optimize_and_run_monte_carlo(
         'target_price': None,
         'stop_loss': None,
         'expected_value': -np.inf,  # Optimize for the highest Expected Value
+        'win_probability': 0,
         'rrr': 0
     }
 
@@ -173,7 +182,7 @@ def optimize_and_run_monte_carlo(
     total_iterations = len(vol_multiplier_range) * len(rrr_range)
     current_iteration = 0
 
-    print("\nStarting optimization for max Expected Value (Max RRR: 3:1)...")
+    print("\nStarting optimization for max Expected Value (Win Probability >= 50%)...")
     print(f"Total iterations to perform: {total_iterations}")
 
     # Dynamic search space for stop-loss based on volatility
@@ -199,7 +208,7 @@ def optimize_and_run_monte_carlo(
             else: # short
                 target_price = initial_price - potential_reward
 
-            expected_value = _run_simulation_for_optimization(
+            expected_value, win_probability = _run_simulation_for_optimization(
                 initial_price=initial_price,
                 strategy=strategy,
                 target_price=target_price,
@@ -210,10 +219,12 @@ def optimize_and_run_monte_carlo(
                 num_simulations=num_simulations
             )
 
-            if expected_value > best_params['expected_value']:
+            # New condition: Win probability must be at least 50%
+            if win_probability >= 0.5 and expected_value > best_params['expected_value']:
                 if (strategy == 'long' and target_price > initial_price) or \
                    (strategy == 'short' and target_price < initial_price):
                     best_params['expected_value'] = expected_value
+                    best_params['win_probability'] = win_probability
                     best_params['target_price'] = target_price
                     best_params['stop_loss'] = stop_loss_price
                     best_params['rrr'] = rrr
@@ -221,14 +232,15 @@ def optimize_and_run_monte_carlo(
     print("\n\nOptimization finished.                                ")
 
     if best_params['target_price'] is None:
-        log_error(f"Could not find optimal parameters for {ticker}.", "OPTIMIZATION_FAILURE")
-        print(f"Could not find optimal parameters for {ticker}.")
+        log_error(f"Could not find optimal parameters for {ticker} with win rate >= 50%.", "OPTIMIZATION_FAILURE")
+        print(f"Could not find optimal parameters for {ticker} with a win rate of at least 50%.")
         return
 
     print(f"\nBest parameters found for {ticker}:")
     print(f"  - Target Price: {best_params['target_price']:.4f}")
     print(f"  - Stop Loss: {best_params['stop_loss']:.4f}")
     print(f"  - Expected Value: ${best_params['expected_value']:.4f}")
+    print(f"  - Win Probability: {best_params.get('win_probability', 0):.2%}")
     print(f"  - Risk-Reward Ratio: {best_params['rrr']:.1f}\n")
 
     print("Running final simulation with optimal parameters...")
@@ -254,6 +266,7 @@ def optimize_and_run_monte_carlo(
     )
 
     print("Final simulation complete. Results saved to database and insight updated.")
+
 
 def run_monte_carlo_simulation(
     sessionID: str,
