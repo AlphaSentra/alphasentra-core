@@ -20,7 +20,7 @@ if parent_dir not in sys.path:
 # Load environment variables
 load_dotenv()
 
-from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, FX_FACTORS_PROMPT, AI_RESPONSE_MAX_RETRIES, AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS, MONTE_CARLO_MODEL_TIME_HORIZON, MONTE_CARLO_MODEL_NUM_SIMULATIONS
+from _config import WEIGHTS_PERCENT, FX_LONG_SHORT_PROMPT, FACTOR_WEIGHTS, LANGUAGE, FX_FACTORS_PROMPT, AI_RESPONSE_MAX_RETRIES, AI_PAUSE_BETWEEN_RETRIES_IN_SECONDS, MONTE_CARLO_MODEL_NUM_SIMULATIONS
 from genAI.ai_prompt import get_gen_ai_response
 from helpers import add_trade_levels_to_recommendations, add_entry_price_to_recommendations, strip_markdown_code_blocks, get_current_gmt_timestamp, get_ai_weights, save_to_db_with_fallback, get_regions, get_asset_classes, get_importance, get_factors, get_ticker_name, get_ticker_performance, calculate_average_sentiment, extract_json_from_text
 from logging_utils import log_error, log_warning, log_info
@@ -308,7 +308,6 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
                         strategy=recommendations.get('recommendations', [{}])[0].get('trade_direction'),
                         volatility=recommendations.get('volatility'),
                         drift=recommendations.get('drift'),
-                        time_horizon=MONTE_CARLO_MODEL_TIME_HORIZON,
                         num_simulations=MONTE_CARLO_MODEL_NUM_SIMULATIONS
                     )
                 else:

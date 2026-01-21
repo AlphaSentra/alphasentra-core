@@ -8,8 +8,9 @@
 import numpy as np
 import os
 import random
+import pymongo
 from helpers import DatabaseManager
-from logging_utils import log_error, log_info
+from logging_utils import log_error, log_info, log_warning
 
 def _run_simulation_for_optimization(
     initial_price: float,
@@ -69,6 +70,39 @@ def _run_simulation_for_optimization(
 
     return wins / num_simulations if num_simulations > 0 else 0.0
 
+def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_loss: float):
+    """
+    Updates the latest insight document in the 'insights' collection with the optimized target price and stop loss.
+    """
+    try:
+        client = DatabaseManager().get_client()
+        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
+        db = client[db_name]
+        insights_collection = db["insights"]
+
+        # Find the most recent insight for the ticker and update it.
+        # This assumes the 'recommendations' field is an array with one trade object.
+        # The prices are formatted as strings to match the existing schema.
+        result = insights_collection.update_one(
+            {"recommendations.0.ticker": ticker},
+            {
+                "$set": {
+                    "recommendations.0.target_price": f"{target_price:.4f}",
+                    "recommendations.0.stop_loss": f"{stop_loss:.4f}"
+                }
+            },
+            sort=[("timestamp_gmt", pymongo.DESCENDING)]
+        )
+
+        if result.matched_count > 0:
+            log_info(f"Successfully updated insight for {ticker} with optimal price levels.")
+        else:
+            # This is a warning, not an error, as some models might run stand-alone without a preceding insight.
+            log_warning(f"Could not find an insight document to update for ticker {ticker}.", "DATABASE_UPDATE")
+
+    except Exception as e:
+        log_error(f"Error updating insight for {ticker}: {e}", "DATABASE_UPDATE", e)
+
 def optimize_and_run_monte_carlo(
     sessionID: str,
     ticker: str,
@@ -76,7 +110,6 @@ def optimize_and_run_monte_carlo(
     strategy: str,
     volatility: float,
     drift: float,
-    time_horizon: int,
     num_simulations: int,
     min_rrr: float = 2.0
 ):
@@ -84,14 +117,13 @@ def optimize_and_run_monte_carlo(
     Automates the discovery of optimal trading parameters and executes a comprehensive Monte Carlo analysis.
 
     This function systematically searches for the best `target_price` and `stop_loss` combination by:
-    1.  Defining a dynamic search space for the stop-loss based on the instrument's daily volatility.
-        It iterates through different volatility multipliers to find an appropriate stop-loss distance.
-    2.  Testing various risk-reward ratios (starting from `min_rrr`) for each stop-loss level.
-    3.  Utilizing a lightweight simulation (`_run_simulation_for_optimization`) to quickly evaluate the win probability of each parameter set.
+    1.  Calculating a dynamic `time_horizon` based on volatility and risk-reward ratio.
+    2.  Defining a dynamic search space for the stop-loss based on the instrument's daily volatility.
+    3.  Testing various risk-reward ratios (starting from `min_rrr`) for each stop-loss level.
+    4.  Utilizing a lightweight simulation (`_run_simulation_for_optimization`) to quickly evaluate the win probability of each parameter set.
 
-    The goal is to identify the combination that maximizes the probability of reaching the target price while respecting the minimum risk-reward ratio.
-
-    Once the optimal parameters are found, it calls the `run_monte_carlo_simulation` function to perform a detailed analysis and store the results in the database.
+    Once the optimal parameters are found, it calls `run_monte_carlo_simulation` to perform a detailed analysis,
+    saves the results to the `trades` collection, and updates the corresponding `insights` document.
     """
     # Ensure strategy is lowercase for consistent comparisons
     strategy = strategy.lower()
@@ -105,13 +137,19 @@ def optimize_and_run_monte_carlo(
         'rrr': 0
     }
 
-    # Dynamic search space for stop-loss based on volatility
-    daily_volatility = volatility / np.sqrt(252)
-    # The multipliers test stop-losses at different multiples of daily volatility, analogous to an ATR multiplier
+    # Define search spaces
     vol_multiplier_range = np.arange(1.0, 5.1, 0.5)
-    
-    # Search space for Risk-Reward Ratio
     rrr_range = np.arange(min_rrr, 5.1, 0.5)
+
+    # Dynamically calculate time horizon
+    median_vol_multiplier = np.median(vol_multiplier_range)
+    median_rrr = np.median(rrr_range)
+    # Heuristic: The time to reach a target is related to the square of the distance.
+    # We use the median RRR and volatility multiplier to estimate a 'typical' trade's distance.
+    calculated_horizon = int((median_rrr * median_vol_multiplier) ** 2)
+    # Clamp the horizon to a practical range (e.g., 1 month to 1 year)
+    time_horizon = np.clip(calculated_horizon, 21, 252).item()
+    log_info(f"Using dynamically calculated time horizon: {time_horizon} days for {ticker}")
 
     total_iterations = len(vol_multiplier_range) * len(rrr_range)
     current_iteration = 0
@@ -119,9 +157,10 @@ def optimize_and_run_monte_carlo(
     print("\nStarting optimization with dynamic stop-loss...")
     print(f"Total iterations to perform: {total_iterations}")
 
-    # Search space for stop_loss as a multiple of daily volatility
+    # Dynamic search space for stop-loss based on volatility
+    daily_volatility = volatility / np.sqrt(252)
+    
     for vol_multiplier in vol_multiplier_range:
-        
         stop_loss_distance = initial_price * daily_volatility * vol_multiplier
         
         if strategy == 'long':
@@ -129,10 +168,8 @@ def optimize_and_run_monte_carlo(
         else: # short
             stop_loss_price = initial_price + stop_loss_distance
 
-        # Search space for RRR from min_rrr up to 5.0
         for rrr in rrr_range:
             current_iteration += 1
-            # Use carriage return to show progress on a single line
             print(f"  > Optimizing... {current_iteration}/{total_iterations} ({((current_iteration/total_iterations)*100):.1f}%)  ", end='\r')
 
             potential_risk = abs(initial_price - stop_loss_price)
@@ -155,7 +192,6 @@ def optimize_and_run_monte_carlo(
             )
 
             if win_probability > best_params['win_probability']:
-                # Ensure the target is profitable for the given strategy
                 if (strategy == 'long' and target_price > initial_price) or \
                    (strategy == 'short' and target_price < initial_price):
                     best_params['win_probability'] = win_probability
@@ -163,23 +199,21 @@ def optimize_and_run_monte_carlo(
                     best_params['stop_loss'] = stop_loss_price
                     best_params['rrr'] = rrr
     
-    # Print a newline to move on from the progress line
     print("\n\nOptimization finished.                                ")
 
     if best_params['target_price'] is None:
-        log_error("Could not find optimal parameters.", "OPTIMIZATION_FAILURE")
-        print("Could not find optimal parameters.")
+        log_error(f"Could not find optimal parameters for {ticker}.", "OPTIMIZATION_FAILURE")
+        print(f"Could not find optimal parameters for {ticker}.")
         return
 
-    print(f"\nBest parameters found:")
-    print(f"  - Target Price: {best_params['target_price']:.2f}")
-    print(f"  - Stop Loss: {best_params['stop_loss']:.2f}")
+    print(f"\nBest parameters found for {ticker}:")
+    print(f"  - Target Price: {best_params['target_price']:.4f}")
+    print(f"  - Stop Loss: {best_params['stop_loss']:.4f}")
     print(f"  - Win Probability: {best_params['win_probability']:.2%}")
     print(f"  - Risk-Reward Ratio: {best_params['rrr']:.1f}\n")
 
     print("Running final simulation with optimal parameters...")
     
-    # Run the full simulation with the best found parameters
     run_monte_carlo_simulation(
         sessionID=sessionID,
         ticker=ticker,
@@ -192,7 +226,14 @@ def optimize_and_run_monte_carlo(
         time_horizon=time_horizon,
         num_simulations=num_simulations
     )
-    print("Final simulation complete. Results saved to database.")
+
+    _update_insight_with_optimal_levels(
+        ticker=ticker,
+        target_price=best_params['target_price'],
+        stop_loss=best_params['stop_loss']
+    )
+
+    print("Final simulation complete. Results saved to database and insight updated.")
 
 def run_monte_carlo_simulation(
     sessionID: str,
@@ -208,23 +249,11 @@ def run_monte_carlo_simulation(
 ):
     """
     Runs a Monte Carlo simulation for a trading strategy and stores the results in the database.
-
-    Args:
-        sessionID (str): The session ID for the trade.
-        ticker (str): The ticker.
-        initial_price (float): The current price of the instrument.
-        strategy (str): The trading strategy, either 'long' or 'short'.
-        target_price (float): The target price to sell at for a profit.
-        stop_loss (float): The price at which to sell to limit losses.
-        volatility (float): The volatility (annualized).
-        drift (float): The drift (annualized).
-        time_horizon (int): The number of trading days for the simulation.
-        num_simulations (int): The number of simulations to run.
     """
     strategy = strategy.lower()
     if strategy not in {"long", "short"}:
         raise ValueError(f"Invalid strategy: {strategy}")
-    # Daily drift and volatility
+        
     daily_drift = drift / 252
     daily_volatility = volatility / np.sqrt(252)
 
@@ -279,7 +308,6 @@ def run_monte_carlo_simulation(
         
         all_paths.append(price_path)
         
-        # Calculate maximum drawdown for the simulation
         sim_max_dd = 0
         peak = price_path[0]
         for p in price_path:
@@ -290,23 +318,16 @@ def run_monte_carlo_simulation(
                 sim_max_dd = drawdown
         max_drawdowns.append(sim_max_dd)
 
-    # Calculate results
     win_probability = wins / num_simulations if num_simulations > 0 else 0.0
     risk_of_ruin = losses / num_simulations if num_simulations > 0 else 0.0
     expired_probability = expired_trades / num_simulations if num_simulations > 0 else 0.0
     
-    if len(days_to_target) > 0:
-        average_days_to_target = float(np.mean(days_to_target))
-    else:
-        average_days_to_target = 0.0
-        
+    average_days_to_target = float(np.mean(days_to_target)) if days_to_target else 0.0
     maximum_drawdown = float(np.max(max_drawdowns)) if max_drawdowns else 0.0
     expected_value = float(np.mean(outcomes)) if outcomes else 0.0
     
-    # Prepare chart data
     time_index = list(range(time_horizon + 1))
     
-    # Ensure all paths have the same length for percentile calculation
     padded_paths = []
     for path in all_paths:
         padded_path = path + [path[-1]] * (time_horizon + 1 - len(path))
@@ -322,7 +343,6 @@ def run_monte_carlo_simulation(
     num_samples = min(100, num_simulations)
     sample_paths = random.sample(all_paths, num_samples) if num_simulations > 0 else []
 
-    # Prepare data for database insertion
     trade_data = {
         "inputs": {
             "sessionID": sessionID,
@@ -356,7 +376,6 @@ def run_monte_carlo_simulation(
         },
     }
 
-    # Insert into database
     try:
         client = DatabaseManager().get_client()
         db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
