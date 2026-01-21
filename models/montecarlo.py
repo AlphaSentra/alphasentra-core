@@ -84,7 +84,8 @@ def optimize_and_run_monte_carlo(
     Automates the discovery of optimal trading parameters and executes a comprehensive Monte Carlo analysis.
 
     This function systematically searches for the best `target_price` and `stop_loss` combination by:
-    1.  Iterating through a predefined search space for stop-loss levels (1% to 20% of the initial price).
+    1.  Defining a dynamic search space for the stop-loss based on the instrument's daily volatility.
+        It iterates through different volatility multipliers to find an appropriate stop-loss distance.
     2.  Testing various risk-reward ratios (starting from `min_rrr`) for each stop-loss level.
     3.  Utilizing a lightweight simulation (`_run_simulation_for_optimization`) to quickly evaluate the win probability of each parameter set.
 
@@ -104,20 +105,29 @@ def optimize_and_run_monte_carlo(
         'rrr': 0
     }
 
-    stop_loss_range = np.arange(0.01, 0.21, 0.01)
+    # Dynamic search space for stop-loss based on volatility
+    daily_volatility = volatility / np.sqrt(252)
+    # The multipliers test stop-losses at different multiples of daily volatility, analogous to an ATR multiplier
+    vol_multiplier_range = np.arange(1.0, 5.1, 0.5)
+    
+    # Search space for Risk-Reward Ratio
     rrr_range = np.arange(min_rrr, 5.1, 0.5)
-    total_iterations = len(stop_loss_range) * len(rrr_range)
+
+    total_iterations = len(vol_multiplier_range) * len(rrr_range)
     current_iteration = 0
 
-    print("\nStarting optimization...")
+    print("\nStarting optimization with dynamic stop-loss...")
     print(f"Total iterations to perform: {total_iterations}")
 
-    # Search space for stop_loss as a percentage of initial_price
-    for stop_loss_pct in stop_loss_range:
+    # Search space for stop_loss as a multiple of daily volatility
+    for vol_multiplier in vol_multiplier_range:
+        
+        stop_loss_distance = initial_price * daily_volatility * vol_multiplier
+        
         if strategy == 'long':
-            stop_loss_price = initial_price * (1 - stop_loss_pct)
+            stop_loss_price = initial_price - stop_loss_distance
         else: # short
-            stop_loss_price = initial_price * (1 + stop_loss_pct)
+            stop_loss_price = initial_price + stop_loss_distance
 
         # Search space for RRR from min_rrr up to 5.0
         for rrr in rrr_range:
@@ -313,7 +323,7 @@ def run_monte_carlo_simulation(
     sample_paths = random.sample(all_paths, num_samples) if num_simulations > 0 else []
 
     # Prepare data for database insertion
-    trade_data = {
+    trade_.data = {
         "inputs": {
             "sessionID": sessionID,
             "ticker": ticker,
