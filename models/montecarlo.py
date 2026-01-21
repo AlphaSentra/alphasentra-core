@@ -88,10 +88,15 @@ def _run_simulation_for_optimization(
     return expected_value, win_probability
 
 
-def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_loss: float, simulation_results: dict):
+def _update_insight_with_optimal_levels(sessionID: str, ticker: str, target_price: float, stop_loss: float, simulation_results: dict):
     """
-    Updates the latest insight document in the 'insights' collection with optimized price levels and specific, consistent root-level simulation metrics.
+    Updates the latest insight document in the 'insights' collection, but only if the sessionID is 'default'.
     """
+    if sessionID != "default":
+        log_info(f"Insight update for ticker {ticker} skipped: sessionID is not 'default'.")
+        print("\nInsight update skipped: sessionID is not 'default'.")
+        return
+        
     try:
         client = DatabaseManager().get_client()
         db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
@@ -125,7 +130,6 @@ def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_l
 
     except Exception as e:
         log_error(f"Error updating insight for {ticker}: {e}", "DATABASE_UPDATE", e)
-
 
 def optimize_and_run_monte_carlo(
     sessionID: str,
@@ -250,6 +254,7 @@ def optimize_and_run_monte_carlo(
     )
 
     _update_insight_with_optimal_levels(
+        sessionID=sessionID,
         ticker=ticker,
         target_price=final_best_params['target_price'],
         stop_loss=final_best_params['stop_loss'],
