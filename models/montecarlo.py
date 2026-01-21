@@ -39,6 +39,7 @@ def _run_simulation_for_optimization(
     for _ in range(num_simulations):
         price = initial_price
         for day in range(1, time_horizon + 1):
+            print(f"Monte Carlo: _run_simulation_for_optimization(): Testing parameters: day={day}, price={price}, numberofsimulations={num_simulations}")
             daily_return = np.exp(
                 (daily_drift - 0.5 * daily_volatility**2) +
                 daily_volatility * np.random.normal(0, 1)
@@ -109,6 +110,7 @@ def optimize_and_run_monte_carlo(
             else: # short
                 target_price = initial_price - potential_reward
 
+            print(f"Monte Carlo: optimize_and_run_monte_carlo(): Testing parameters: target_price={target_price}, stop_loss={stop_loss_price}, rrr={rrr}")
             win_probability = _run_simulation_for_optimization(
                 initial_price=initial_price,
                 strategy=strategy,
