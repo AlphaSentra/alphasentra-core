@@ -85,9 +85,9 @@ def _run_simulation_for_optimization(
     return np.mean(outcomes)
 
 
-def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_loss: float):
+def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_loss: float, simulation_results: dict):
     """
-    Updates the latest insight document in the 'insights' collection with the optimized target price and stop loss.
+    Updates the latest insight document in the 'insights' collection with optimized price levels and specific root-level simulation metrics.
     """
     try:
         client = DatabaseManager().get_client()
@@ -95,21 +95,27 @@ def _update_insight_with_optimal_levels(ticker: str, target_price: float, stop_l
         db = client[db_name]
         insights_collection = db["insights"]
 
+        # Prepare the update payload with only the specified fields at the root level.
+        update_payload = {
+            "recommendations.0.target_price": target_price,
+            "recommendations.0.stop_loss": stop_loss,
+            "win_probability": simulation_results.get("win_probability"),
+            "risk_of_ruin": simulation_results.get("risk_of_ruin"),
+            "average_days_to_target": simulation_results.get("average_days_to_target"),
+            "expired_probability": simulation_results.get("expired_probability"),
+            "maximum_drawdown": simulation_results.get("maximum_drawdown"),
+            "expected_value": simulation_results.get("expected_value")
+        }
+
         # Find the most recent insight for the ticker and update it atomically.
-        # This assumes the 'recommendations' field is an array with one trade object.
         result = insights_collection.find_one_and_update(
             {"recommendations.0.ticker": ticker},
-            {
-                "$set": {
-                    "recommendations.0.target_price": target_price,
-                    "recommendations.0.stop_loss": stop_loss
-                }
-            },
+            {"$set": update_payload},
             sort=[("timestamp_gmt", pymongo.DESCENDING)]
         )
 
         if result is not None:
-            log_info(f"Successfully updated insight for {ticker} with optimal price levels.")
+            log_info(f"Successfully updated insight for {ticker} with optimal price levels and root-level simulation summary.")
         else:
             # This is a warning, not an error, as some models might run stand-alone without a preceding insight.
             log_warning(f"Could not find an insight document to update for ticker {ticker}.", "DATABASE_UPDATE")
@@ -137,7 +143,7 @@ def optimize_and_run_monte_carlo(
     4.  Utilizing a lightweight simulation (`_run_simulation_for_optimization`) to quickly evaluate the EV of each parameter set.
 
     Once the optimal parameters are found, it calls `run_monte_carlo_simulation` to perform a detailed analysis,
-    saves the results to the `trades` collection, and updates the corresponding `insights` document.
+    saves the results to the `trades` collection, and updates the corresponding `insights` document with a full simulation summary.
     """
     # Ensure strategy is lowercase for consistent comparisons
     strategy = strategy.lower()
@@ -228,7 +234,7 @@ def optimize_and_run_monte_carlo(
 
     print("Running final simulation with optimal parameters...")
     
-    run_monte_carlo_simulation(
+    simulation_results = run_monte_carlo_simulation(
         sessionID=sessionID,
         ticker=ticker,
         initial_price=initial_price,
@@ -244,7 +250,8 @@ def optimize_and_run_monte_carlo(
     _update_insight_with_optimal_levels(
         ticker=ticker,
         target_price=best_params['target_price'],
-        stop_loss=best_params['stop_loss']
+        stop_loss=best_params['stop_loss'],
+        simulation_results=simulation_results
     )
 
     print("Final simulation complete. Results saved to database and insight updated.")
@@ -262,7 +269,8 @@ def run_monte_carlo_simulation(
     num_simulations: int
 ):
     """
-    Runs a Monte Carlo simulation for a trading strategy and stores the results in the database.
+    Runs a Monte Carlo simulation for a trading strategy, stores the results in the database,
+    and returns a summary of the simulation's performance metrics.
     """
     strategy = strategy.lower()
     if strategy not in {"long", "short"}:
@@ -374,7 +382,7 @@ def run_monte_carlo_simulation(
         "results": {
             "win_probability": win_probability,
             "risk_of_ruin": risk_of_ruin,
-            "avg_days_to_target": average_days_to_target,
+            "average_days_to_target": average_days_to_target, # Corrected key name
             "expired_probability": expired_probability,
             "maximum_drawdown": maximum_drawdown,
             "expected_value": expected_value,
@@ -399,3 +407,5 @@ def run_monte_carlo_simulation(
         log_info("Successfully inserted trade simulation into the database.")
     except Exception as e:
         log_error(f"Error inserting trade simulation into the database: {e}", "DATABASE_INSERTION", e)
+        
+    return trade_data["results"]
