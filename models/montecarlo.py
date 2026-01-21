@@ -133,7 +133,7 @@ def optimize_and_run_monte_carlo(
     This function systematically searches for the best `target_price` and `stop_loss` combination by:
     1.  Calculating a dynamic `time_horizon` based on volatility and risk-reward ratio.
     2.  Defining a dynamic search space for the stop-loss based on the instrument's daily volatility.
-    3.  Testing various risk-reward ratios (starting from `min_rrr`) for each stop-loss level.
+    3.  Testing various risk-reward ratios (from `min_rrr` up to 3:1) for each stop-loss level.
     4.  Utilizing a lightweight simulation (`_run_simulation_for_optimization`) to quickly evaluate the EV of each parameter set.
 
     Once the optimal parameters are found, it calls `run_monte_carlo_simulation` to perform a detailed analysis,
@@ -153,7 +153,7 @@ def optimize_and_run_monte_carlo(
 
     # Define search spaces
     vol_multiplier_range = np.arange(1.0, 5.1, 0.5)
-    rrr_range = np.arange(min_rrr, 5.1, 0.5)
+    rrr_range = np.arange(min_rrr, 3.1, 0.5) # Cap RRR at 3:1
 
     # Dynamically calculate time horizon
     median_vol_multiplier = np.median(vol_multiplier_range)
@@ -168,7 +168,7 @@ def optimize_and_run_monte_carlo(
     total_iterations = len(vol_multiplier_range) * len(rrr_range)
     current_iteration = 0
 
-    print("\nStarting optimization for max Expected Value...")
+    print("\nStarting optimization for max Expected Value (Max RRR: 3:1)...")
     print(f"Total iterations to perform: {total_iterations}")
 
     # Dynamic search space for stop-loss based on volatility
