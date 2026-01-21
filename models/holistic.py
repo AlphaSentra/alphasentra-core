@@ -312,8 +312,6 @@ def run_holistic_market_model(tickers, name=None, prompt=None, factors=None, reg
                         ticker=tickers,
                         initial_price=initial_price,
                         strategy=recommendations.get('recommendations', [{}])[0].get('trade_direction'),
-                        target_price=recommendations.get('recommendations', [{}])[0].get('target_price'),
-                        stop_loss=recommendations.get('recommendations', [{}])[0].get('stop_loss'),
                         volatility=recommendations.get('volatility'),
                         drift=recommendations.get('drift'),
                         time_horizon=MONTE_CARLO_MODEL_TIME_HORIZON,

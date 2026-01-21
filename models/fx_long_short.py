@@ -306,8 +306,6 @@ def run_fx_model(tickers, name=None, fx_regions=None, prompt=None, decimal_digit
                         ticker=tickers,
                         initial_price=initial_price,
                         strategy=recommendations.get('recommendations', [{}])[0].get('trade_direction'),
-                        target_price=recommendations.get('recommendations', [{}])[0].get('target_price'),
-                        stop_loss=recommendations.get('recommendations', [{}])[0].get('stop_loss'),
                         volatility=recommendations.get('volatility'),
                         drift=recommendations.get('drift'),
                         time_horizon=MONTE_CARLO_MODEL_TIME_HORIZON,
