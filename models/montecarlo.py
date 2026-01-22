@@ -89,18 +89,46 @@ def _update_insight_with_optimal_levels(sessionID: str, ticker: str, target_pric
         log_info(f"Insight update for ticker {ticker} skipped: sessionID is not 'default'.")
         print("\nInsight update skipped: sessionID is not 'default'.")
         return
-        
+         
     try:
         client = DatabaseManager().get_client()
         db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
         db = client[db_name]
         insights_collection = db["insights"]
 
+        # Find the most recent insight for the ticker to check if strategy direction has changed
+        existing_insight = insights_collection.find_one(
+            {"recommendations.0.ticker": ticker},
+            sort=[("timestamp_gmt", pymongo.DESCENDING)]
+        )
+
         # Prepare the update payload with only the specified fields at the root level.
+        # Preserve original decimal precision for target_price and stop_loss
+        
+        # If we have an existing insight, preserve the decimal precision from the original values
+        if existing_insight and "recommendations" in existing_insight and len(existing_insight["recommendations"]) > 0:
+            existing_rec = existing_insight["recommendations"][0]
+            # Preserve decimal precision by using the same number of decimal places as the original
+            if "target_price" in existing_rec and existing_rec["target_price"] is not None:
+                original_target_decimals = len(str(existing_rec["target_price"]).split('.')[1]) if '.' in str(existing_rec["target_price"]) else 0
+                target_price_preserved = round(target_price, original_target_decimals)
+            else:
+                target_price_preserved = float(target_price)
+                
+            if "stop_loss" in existing_rec and existing_rec["stop_loss"] is not None:
+                original_stop_decimals = len(str(existing_rec["stop_loss"]).split('.')[1]) if '.' in str(existing_rec["stop_loss"]) else 0
+                stop_loss_preserved = round(stop_loss, original_stop_decimals)
+            else:
+                stop_loss_preserved = float(stop_loss)
+        else:
+            # No existing insight, use the values as-is
+            target_price_preserved = float(target_price)
+            stop_loss_preserved = float(stop_loss)
+
         update_payload = {
-            "recommendations.0.target_price": target_price,
-            "recommendations.0.stop_loss": stop_loss,
-            "recommendations.0.trade_direction": trade_direction, # Added trade_direction
+            "recommendations.0.target_price": target_price_preserved,
+            "recommendations.0.stop_loss": stop_loss_preserved,
+            "recommendations.0.trade_direction": trade_direction.upper(), # Added trade_direction in uppercase
             "win_probability": simulation_results.get("win_probability"),
             "risk_of_ruin": simulation_results.get("risk_of_ruin"),
             "avg_days_to_target": simulation_results.get("avg_days_to_target"),
@@ -108,6 +136,17 @@ def _update_insight_with_optimal_levels(sessionID: str, ticker: str, target_pric
             "maximum_drawdown": simulation_results.get("maximum_drawdown"),
             "expected_value": simulation_results.get("expected_value")
         }
+
+        # Check if strategy direction has changed and update entry_price to match the "price" field
+        if existing_insight and "recommendations" in existing_insight and len(existing_insight["recommendations"]) > 0:
+            existing_direction = existing_insight["recommendations"][0].get("trade_direction", "")
+            if existing_direction and existing_direction.lower() != trade_direction.lower():
+                # Get the price from the existing insight and use it as entry_price
+                if "price" in existing_insight:
+                    update_payload["recommendations.0.entry_price"] = existing_insight["price"]
+                    log_info(f"Strategy direction changed from {existing_direction} to {trade_direction.upper()} for {ticker}. Setting entry_price to price value: {existing_insight['price']}.")
+                else:
+                    log_warning(f"Strategy direction changed from {existing_direction} to {trade_direction.upper()} for {ticker}, but no 'price' field found in existing insight.")
 
         # Find the most recent insight for the ticker and update it atomically.
         result = insights_collection.find_one_and_update(
@@ -138,10 +177,10 @@ def optimize_and_run_monte_carlo(
     """
     Automates the discovery of optimal trading parameters with a fallback mechanism.
 
-    This function first attempts to find the strategy with the highest Expected Value (EV) 
-    that also has a win probability of at least 50%. 
+    This function first attempts to find the strategy with the highest win probability
+    that also has a positive Expected Value (EV).
 
-    If no such strategy is found, it falls back to recommending the strategy with the 
+    If no such strategy is found, it falls back to recommending the strategy with the
     highest EV overall, regardless of its win probability.
     """
     # Define search spaces
@@ -162,20 +201,20 @@ def optimize_and_run_monte_carlo(
     print(f"Total iterations to perform: {total_iterations}")
 
     # Track best parameters for long and short strategies
-    best_params_long_over_50 = {
-        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
+    best_params_long_positive_ev = {
+        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf,
         'win_probability': 0, 'rrr': 0, 'strategy_direction': 'long'
     }
     best_params_long_overall = {
-        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
+        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf,
         'win_probability': 0, 'rrr': 0, 'strategy_direction': 'long'
     }
-    best_params_short_over_50 = {
-        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
+    best_params_short_positive_ev = {
+        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf,
         'win_probability': 0, 'rrr': 0, 'strategy_direction': 'short'
     }
     best_params_short_overall = {
-        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf, 
+        'target_price': None, 'stop_loss': None, 'expected_value': -np.inf,
         'win_probability': 0, 'rrr': 0, 'strategy_direction': 'short'
     }
 
@@ -195,6 +234,14 @@ def optimize_and_run_monte_carlo(
                 current_iteration += 1
                 print(f"  > Optimizing ({strategy_direction})... {current_iteration}/{total_iterations} ({((current_iteration/total_iterations)*100):.1f}%)  ", end='\r')
 
+                # Double the distance parameters before calculating target and stop prices
+                stop_loss_distance = stop_loss_distance * 2
+                
+                if strategy_direction == 'long':
+                    stop_loss_price = initial_price - stop_loss_distance
+                else: # short
+                    stop_loss_price = initial_price + stop_loss_distance
+
                 potential_risk = abs(initial_price - stop_loss_price)
                 potential_reward = potential_risk * rrr
 
@@ -212,42 +259,42 @@ def optimize_and_run_monte_carlo(
                 if strategy_direction == 'long':
                     # Always track the best overall EV for long
                     if expected_value > best_params_long_overall['expected_value']:
-                        best_params_long_overall = {'expected_value': expected_value, 'win_probability': win_probability, 
+                        best_params_long_overall = {'expected_value': expected_value, 'win_probability': win_probability,
                                                  'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr, 'strategy_direction': 'long'}
 
-                    # Separately, track the best EV for long that meets the win rate condition
-                    if win_probability >= 0.5 and expected_value > best_params_long_over_50['expected_value']:
-                        best_params_long_over_50 = {'expected_value': expected_value, 'win_probability': win_probability, 
-                                                 'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr, 'strategy_direction': 'long'}
+                    # Track the best win probability for long that has positive expected value
+                    if expected_value > 0 and win_probability > best_params_long_positive_ev['win_probability']:
+                        best_params_long_positive_ev = {'expected_value': expected_value, 'win_probability': win_probability,
+                                                     'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr, 'strategy_direction': 'long'}
                 else: # short
                     # Always track the best overall EV for short
                     if expected_value > best_params_short_overall['expected_value']:
-                        best_params_short_overall = {'expected_value': expected_value, 'win_probability': win_probability, 
+                        best_params_short_overall = {'expected_value': expected_value, 'win_probability': win_probability,
                                                  'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr, 'strategy_direction': 'short'}
 
-                    # Separately, track the best EV for short that meets the win rate condition
-                    if win_probability >= 0.5 and expected_value > best_params_short_over_50['expected_value']:
-                        best_params_short_over_50 = {'expected_value': expected_value, 'win_probability': win_probability, 
-                                                 'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr, 'strategy_direction': 'short'}
+                    # Track the best win probability for short that has positive expected value
+                    if expected_value > 0 and win_probability > best_params_short_positive_ev['win_probability']:
+                        best_params_short_positive_ev = {'expected_value': expected_value, 'win_probability': win_probability,
+                                                     'target_price': target_price, 'stop_loss': stop_loss_price, 'rrr': rrr, 'strategy_direction': 'short'}
     
     print("\n\nOptimization finished.                                ")
 
     # Compare long and short strategies
     candidates = []
-    if best_params_long_over_50['target_price'] is not None:
-        candidates.append(best_params_long_over_50)
-    if best_params_short_over_50['target_price'] is not None:
-        candidates.append(best_params_short_over_50)
+    if best_params_long_positive_ev['target_price'] is not None:
+        candidates.append(best_params_long_positive_ev)
+    if best_params_short_positive_ev['target_price'] is not None:
+        candidates.append(best_params_short_positive_ev)
 
     if candidates:
-        final_best_params = max(candidates, key=lambda x: x['expected_value'])
-        print(f"\nFound optimal strategy ({final_best_params['strategy_direction']}) with >= 50% win probability.")
+        final_best_params = max(candidates, key=lambda x: x['win_probability'])
+        print(f"\nFound optimal strategy ({final_best_params['strategy_direction']}) with best win probability and positive expected value.")
     else:
-        # Fallback to the best overall EV if no strategy meets win rate condition
+        # Fallback to the best overall EV if no strategy has positive expected value
         all_overall_bests = [best_params_long_overall, best_params_short_overall]
         final_best_params = max(all_overall_bests, key=lambda x: x['expected_value'])
-        log_warning(f"Could not find any strategy with >= 50% win rate for {ticker}. Falling back to highest EV strategy.", "OPTIMIZATION_FALLBACK")
-        print(f"\nWarning: Could not find any strategy with >= 50% win rate. Falling back to the highest EV ({final_best_params['strategy_direction']}) strategy found.")
+        log_warning(f"Could not find any strategy with positive expected value for {ticker}. Falling back to highest EV strategy.", "OPTIMIZATION_FALLBACK")
+        print(f"\nWarning: Could not find any strategy with positive expected value. Falling back to the highest EV ({final_best_params['strategy_direction']}) strategy found.")
 
     if final_best_params['target_price'] is None:
         log_error(f"Could not find any optimal parameters for {ticker}.", "OPTIMIZATION_FAILURE")

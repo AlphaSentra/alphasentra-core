@@ -1,0 +1,727 @@
+2026-01-21 15:43:28,003 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 15:43:31,923 - WARNING - [ERR-0001] - [ca2611e7] Attempting to extract JSON from text (length: 451 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:43:31,924 - WARNING - [ERR-0001] - [7e23bca3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 15:43:31,924 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 15:43:39,011 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 15:43:53,143 - WARNING - [ERR-0001] - [e0cee2ec] Attempting to extract JSON from text (length: 6691 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:43:53,144 - WARNING - [ERR-0001] - [457f8fe7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 15:43:53,145 - WARNING - [ERR-0001] - [0ecb19bb] Attempting to extract JSON from text (length: 6691 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:43:53,145 - WARNING - [ERR-0001] - [999532d7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 15:43:53,145 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 15:43:55,668 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 15:44:04,602 - WARNING - [ERR-0001] - [5f00da56] Attempting to extract JSON from text (length: 2403 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:44:04,604 - WARNING - [ERR-0001] - [ed23ccb5] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 15:44:04,604 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 15:44:04,604 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 15:44:04,605 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.685, Price Change: -0.1135, New Price: 99.8865
+2026-01-21 15:44:04,619 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 15:44:04,619 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 15:44:04,998 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 15:44:04,999 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092637639656952
+2026-01-21 15:44:04,999 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 15:44:05,000 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 15:44:05,093 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 15:44:05,094 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 15:44:07,041 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 15:44:07,041 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 15:44:07,043 - ERROR - [ERR-0001] - [9684175c] Error running Monte Carlo simulation | Exception: NameError: name 'optimize_and_run_monte_carlo' is not defined | From: holistic.py:run_holistic_market_model()
+2026-01-21 15:46:38,517 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 15:46:42,231 - WARNING - [ERR-0001] - [2481cc77] Attempting to extract JSON from text (length: 386 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:46:42,232 - WARNING - [ERR-0001] - [c86d30b1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 15:46:42,232 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 15:46:49,949 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 15:47:04,625 - WARNING - [ERR-0001] - [954304ad] Attempting to extract JSON from text (length: 6291 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:47:04,626 - WARNING - [ERR-0001] - [b11eeff3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 15:47:04,626 - WARNING - [ERR-0001] - [5637cc13] Attempting to extract JSON from text (length: 6291 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:47:04,627 - WARNING - [ERR-0001] - [0940eb9e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 15:47:04,627 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 15:47:09,093 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 15:47:18,500 - WARNING - [ERR-0001] - [f0364fa4] Attempting to extract JSON from text (length: 2296 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:47:18,502 - WARNING - [ERR-0001] - [1a389986] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 15:47:18,502 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 15:47:18,502 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 15:47:18,504 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.688, Price Change: 0.0535, New Price: 100.0535
+2026-01-21 15:47:18,518 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 15:47:18,518 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 15:47:18,847 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 15:47:18,849 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092645244776786
+2026-01-21 15:47:18,849 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 15:47:18,849 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 15:47:18,951 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 15:47:18,951 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 15:47:20,753 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 15:47:20,754 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 15:55:38,633 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 15:55:42,337 - WARNING - [ERR-0001] - [1b141ecc] Attempting to extract JSON from text (length: 391 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:55:42,338 - WARNING - [ERR-0001] - [60b378da] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 15:55:42,338 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 15:55:50,023 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 15:56:01,893 - WARNING - [ERR-0001] - [a7995501] Attempting to extract JSON from text (length: 6557 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:56:01,894 - WARNING - [ERR-0001] - [a1dfb115] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 15:56:01,894 - WARNING - [ERR-0001] - [a4bdb85d] Attempting to extract JSON from text (length: 6557 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:56:01,894 - WARNING - [ERR-0001] - [25262cdc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 15:56:01,894 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 15:56:04,535 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 15:56:16,315 - WARNING - [ERR-0001] - [3659292d] Attempting to extract JSON from text (length: 5302 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 15:56:16,317 - WARNING - [ERR-0001] - [f531f0be] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 15:56:16,317 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 15:56:16,317 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 15:56:16,318 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.455, Price Change: -0.0877, New Price: 99.9123
+2026-01-21 15:56:16,333 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 15:56:16,333 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 15:56:16,763 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 15:56:16,765 - INFO - [INFO] - Calculated volatility for MSFT: 0.2409263220968125
+2026-01-21 15:56:16,765 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 15:56:16,765 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 15:56:16,991 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 15:56:16,993 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 15:56:19,290 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 15:56:19,292 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 16:05:58,580 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 16:06:02,238 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 16:06:12,251 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 16:06:23,747 - WARNING - [ERR-0001] - [824a0679] Attempting to extract JSON from text (length: 6680 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 16:06:23,749 - WARNING - [ERR-0001] - [a392d878] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 16:06:23,749 - WARNING - [ERR-0001] - [bf9b8ce9] Attempting to extract JSON from text (length: 6680 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 16:06:23,749 - WARNING - [ERR-0001] - [6ede48a3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 16:06:23,750 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 16:06:27,043 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 16:06:35,251 - WARNING - [ERR-0001] - [38f888c1] Attempting to extract JSON from text (length: 1989 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 16:06:35,252 - WARNING - [ERR-0001] - [6e171b16] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 16:06:35,252 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 16:06:35,252 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 16:06:35,254 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.285, Price Change: -0.0294, New Price: 99.9706
+2026-01-21 16:06:35,268 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 16:06:35,268 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 16:06:35,695 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 16:06:35,696 - INFO - [INFO] - Calculated volatility for MSFT: 0.240926384330242
+2026-01-21 16:06:35,696 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 16:06:35,696 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 16:06:35,838 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 16:06:35,839 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 16:06:40,047 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 16:06:40,047 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 16:06:40,049 - ERROR - [ERR-0001] - [bf502b08] Could not convert entry price to float: 475.78 | Exception: TypeError: optimize_and_run_monte_carlo() got an unexpected keyword argument 'target_price' | From: holistic.py:run_holistic_market_model()
+2026-01-21 16:15:17,193 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 16:15:21,948 - WARNING - [ERR-0001] - [67abae55] Attempting to extract JSON from text (length: 368 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 16:15:21,949 - WARNING - [ERR-0001] - [1a38a57a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 16:15:21,949 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 16:15:30,644 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 16:15:44,241 - WARNING - [ERR-0001] - [71e26011] Attempting to extract JSON from text (length: 6604 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 16:15:44,242 - WARNING - [ERR-0001] - [fdd04e7b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 16:15:44,242 - WARNING - [ERR-0001] - [a80700b4] Attempting to extract JSON from text (length: 6604 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 16:15:44,242 - WARNING - [ERR-0001] - [0bbf3e61] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 16:15:44,242 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 16:15:47,154 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 16:15:55,760 - WARNING - [ERR-0001] - [22a80188] Attempting to extract JSON from text (length: 2285 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 16:15:55,762 - WARNING - [ERR-0001] - [62792340] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 16:15:55,762 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 16:15:55,762 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 16:15:55,763 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.765, Price Change: 0.0415, New Price: 100.0415
+2026-01-21 16:15:55,777 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 16:15:55,777 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 16:15:56,299 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 16:15:56,300 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092643406022937
+2026-01-21 16:15:56,300 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 16:15:56,300 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 16:15:56,403 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 16:15:56,404 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 16:15:58,475 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 16:15:58,475 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 17:26:25,519 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 17:26:29,073 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 17:26:34,440 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 17:26:46,227 - WARNING - [ERR-0001] - [cc10434d] Attempting to extract JSON from text (length: 6162 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:26:46,228 - WARNING - [ERR-0001] - [ba629c49] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:26:46,228 - WARNING - [ERR-0001] - [8754b018] Attempting to extract JSON from text (length: 6162 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:26:46,228 - WARNING - [ERR-0001] - [999c4ad6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:26:46,228 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 17:26:47,899 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 17:26:55,795 - WARNING - [ERR-0001] - [dbd3a6a6] Attempting to extract JSON from text (length: 3706 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:26:55,797 - WARNING - [ERR-0001] - [a0fc47c5] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 17:26:55,797 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 17:26:55,797 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 17:26:55,798 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.31, Price Change: -0.0223, New Price: 99.9777
+2026-01-21 17:26:55,807 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 17:26:55,808 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 17:26:55,982 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 17:26:55,982 - INFO - [INFO] - Calculated volatility for MSFT: 0.2409263732541186
+2026-01-21 17:26:55,983 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 17:26:55,983 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 17:26:56,039 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 17:26:56,039 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 17:26:57,560 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 17:26:57,561 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 17:27:07,846 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 17:36:17,641 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 17:36:22,158 - WARNING - [ERR-0001] - [650d5a6a] Attempting to extract JSON from text (length: 601 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:36:22,159 - WARNING - [ERR-0001] - [f9d05b70] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:36:22,159 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 17:36:28,231 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 17:36:43,615 - WARNING - [ERR-0001] - [06cdff3a] Attempting to extract JSON from text (length: 7269 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:36:43,615 - WARNING - [ERR-0001] - [1900efe0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:36:43,615 - WARNING - [ERR-0001] - [4ed902fc] Attempting to extract JSON from text (length: 7269 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:36:43,616 - WARNING - [ERR-0001] - [e066394d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:36:43,616 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 17:36:45,591 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 17:36:56,218 - WARNING - [ERR-0001] - [ec503cea] Attempting to extract JSON from text (length: 3885 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:36:56,220 - ERROR - [ERR-0001] - [ab583132] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-21 17:36:56,220 - ERROR - [ERR-0001] - [739f4b4e] Text preview: {
+  'factors': [
+    {
+      'name': 'company_fundamentals',
+      'value': {
+        'description': 'For fiscal year 2025, Microsoft reported $281.7 billion in revenue and over $101 billion in net income, with Q1 FY2026 revenue reaching $77.7 billion, an 18% year-over-year increase, and EPS of $4.13 beating analyst estimates. The company maintains strong profitability with a gross margin near 69% and a net margin around 36%, and a low interest expense of 0.85% of revenue. Microsoft\'s estimated... | From: helpers.py:extract_json_from_text()
+2026-01-21 17:36:56,220 - ERROR - [ERR-0103] - [0c92ed12] JSON parsing failed (attempt 1/10) | Exception: JSONDecodeError: Expecting property name enclosed in double quotes: line 2 column 3 (char 4) | From: helpers.py:get_factors()
+2026-01-21 17:37:09,597 - WARNING - [ERR-0001] - [039a9e96] Attempting to extract JSON from text (length: 2232 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:37:09,599 - WARNING - [ERR-0001] - [2b2a4678] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 17:37:09,599 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 17:37:09,599 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 17:37:09,600 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.685, Price Change: 0.087, New Price: 100.087
+2026-01-21 17:37:09,609 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 17:37:09,609 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 17:37:09,801 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 17:37:09,801 - INFO - [INFO] - Calculated volatility for MSFT: 0.2409263474179516
+2026-01-21 17:37:09,801 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 17:37:09,802 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 17:37:09,855 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 17:37:09,855 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 17:37:11,322 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 17:37:11,322 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 17:37:22,037 - ERROR - [ERR-0001] - [edd0038e] Could not find optimal parameters. | From: montecarlo.py:optimize_and_run_monte_carlo()
+2026-01-21 17:39:45,975 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 17:39:49,648 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 17:39:55,498 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 17:40:09,764 - WARNING - [ERR-0001] - [ca3fe40c] Attempting to extract JSON from text (length: 6878 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:40:09,766 - WARNING - [ERR-0001] - [655b7ab2] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:40:09,766 - WARNING - [ERR-0001] - [52bfbc2f] Attempting to extract JSON from text (length: 6878 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:40:09,766 - WARNING - [ERR-0001] - [bed61bee] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:40:09,766 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 17:40:11,418 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 17:40:19,190 - WARNING - [ERR-0001] - [83490058] Attempting to extract JSON from text (length: 2369 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:40:19,191 - WARNING - [ERR-0001] - [02a73706] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 17:40:19,191 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 17:40:19,191 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 17:40:19,193 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.632, Price Change: 0.0497, New Price: 100.0497
+2026-01-21 17:40:19,202 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 17:40:19,202 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 17:40:19,410 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 17:40:19,411 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092638872618782
+2026-01-21 17:40:19,411 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 17:40:19,411 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 17:40:19,459 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 17:40:19,460 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 17:40:21,139 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 17:40:21,139 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 17:40:31,683 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 17:50:15,945 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 17:50:20,553 - WARNING - [ERR-0001] - [6374bd23] Attempting to extract JSON from text (length: 441 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:50:20,554 - WARNING - [ERR-0001] - [b17352fe] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:50:20,554 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 17:50:27,149 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 17:50:41,421 - WARNING - [ERR-0001] - [34c0d46f] Attempting to extract JSON from text (length: 6281 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:50:41,422 - WARNING - [ERR-0001] - [08385030] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:50:41,422 - WARNING - [ERR-0001] - [f30d808c] Attempting to extract JSON from text (length: 6281 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:50:41,422 - WARNING - [ERR-0001] - [9545d289] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:50:41,422 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 17:50:43,039 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 17:50:52,558 - WARNING - [ERR-0001] - [41b60bf1] Attempting to extract JSON from text (length: 2244 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:50:52,559 - WARNING - [ERR-0001] - [579c9e89] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 17:50:52,559 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 17:50:52,559 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 17:50:52,562 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.505, Price Change: -0.0555, New Price: 99.9445
+2026-01-21 17:50:52,572 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 17:50:52,572 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 17:50:52,732 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 17:50:52,732 - INFO - [INFO] - Calculated volatility for MSFT: 0.240926384330242
+2026-01-21 17:50:52,732 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 17:50:52,733 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 17:50:52,784 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 17:50:52,785 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 17:50:54,181 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 17:50:54,181 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 17:51:04,803 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 17:57:14,048 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 17:57:18,376 - WARNING - [ERR-0001] - [c3f22227] Attempting to extract JSON from text (length: 370 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:57:18,376 - WARNING - [ERR-0001] - [3bcff563] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:57:18,376 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 17:57:24,000 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 17:57:37,538 - WARNING - [ERR-0001] - [7fae8217] Attempting to extract JSON from text (length: 6450 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:57:37,541 - WARNING - [ERR-0001] - [920f2b9e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:57:37,541 - WARNING - [ERR-0001] - [73a18cc3] Attempting to extract JSON from text (length: 6450 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:57:37,541 - WARNING - [ERR-0001] - [99d2d8e5] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 17:57:37,541 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 17:57:39,217 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 17:57:48,510 - WARNING - [ERR-0001] - [2f79df59] Attempting to extract JSON from text (length: 2318 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 17:57:48,511 - WARNING - [ERR-0001] - [cc70d7b4] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 17:57:48,511 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 17:57:48,511 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 17:57:48,512 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.673, Price Change: 0.0042, New Price: 100.0042
+2026-01-21 17:57:48,523 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 17:57:48,523 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 17:57:48,677 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 17:57:48,678 - INFO - [INFO] - Calculated volatility for MSFT: 0.2409263474179516
+2026-01-21 17:57:48,678 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 17:57:48,678 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 17:57:48,741 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 17:57:48,742 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 17:57:50,333 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 17:57:50,334 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 17:57:56,005 - ERROR - [ERR-0001] - [928e9069] Error running Monte Carlo simulation | Exception: NameError: name 'trade_' is not defined | From: holistic.py:run_holistic_market_model()
+2026-01-21 18:00:21,299 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 18:00:24,895 - WARNING - [ERR-0001] - [87385043] Attempting to extract JSON from text (length: 419 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:00:24,895 - WARNING - [ERR-0001] - [69af8970] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:00:24,895 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 18:00:30,491 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 18:00:44,184 - WARNING - [ERR-0001] - [b04c530c] Attempting to extract JSON from text (length: 6662 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:00:44,184 - WARNING - [ERR-0001] - [e006de5f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:00:44,184 - WARNING - [ERR-0001] - [75ac2656] Attempting to extract JSON from text (length: 6662 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:00:44,185 - WARNING - [ERR-0001] - [c7bcbc3f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:00:44,185 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 18:00:45,874 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 18:00:54,889 - WARNING - [ERR-0001] - [8784ee60] Attempting to extract JSON from text (length: 2102 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:00:54,889 - WARNING - [ERR-0001] - [a94ed92a] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 18:00:54,889 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 18:00:54,889 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 18:00:54,891 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.145, Price Change: 0.0428, New Price: 100.0428
+2026-01-21 18:00:54,900 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 18:00:54,900 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:00:55,069 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:00:55,069 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092637639656952
+2026-01-21 18:00:55,069 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 18:00:55,069 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:00:55,122 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:00:55,122 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 18:00:56,698 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 18:00:56,699 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 18:01:02,803 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 18:16:26,921 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 18:16:30,921 - WARNING - [ERR-0001] - [ea4c6517] Attempting to extract JSON from text (length: 429 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:16:30,922 - WARNING - [ERR-0001] - [9d88109d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:16:30,922 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 18:16:36,369 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 18:16:48,833 - WARNING - [ERR-0001] - [612c96b9] Attempting to extract JSON from text (length: 5877 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:16:48,834 - WARNING - [ERR-0001] - [d3d03e79] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:16:48,834 - WARNING - [ERR-0001] - [df187ad3] Attempting to extract JSON from text (length: 5877 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:16:48,834 - WARNING - [ERR-0001] - [9d2a2c8a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:16:48,834 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 18:16:50,409 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 18:16:58,508 - WARNING - [ERR-0001] - [c1d8eb75] Attempting to extract JSON from text (length: 2353 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:16:58,509 - WARNING - [ERR-0001] - [e7383b6b] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 18:16:58,509 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 18:16:58,509 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 18:16:58,510 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.63, Price Change: -0.1028, New Price: 99.8972
+2026-01-21 18:16:58,519 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 18:16:58,519 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:16:58,709 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:16:58,710 - INFO - [INFO] - Calculated volatility for MSFT: 0.240926384330242
+2026-01-21 18:16:58,710 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 18:16:58,710 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:16:58,761 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:16:58,762 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 18:17:00,489 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 18:17:00,490 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 18:17:00,491 - INFO - [INFO] - Using dynamically calculated time horizon: 110 days for MSFT
+2026-01-21 18:17:03,156 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 18:17:03,169 - ERROR - [ERR-0001] - [28939712] Error updating insight for MSFT: sort must be an instance of dict, bson.son.SON, or any other type that inherits from collections.Mapping | Exception: TypeError: sort must be an instance of dict, bson.son.SON, or any other type that inherits from collections.Mapping | From: montecarlo.py:_update_insight_with_optimal_levels()
+2026-01-21 18:19:53,969 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 18:19:57,654 - WARNING - [ERR-0001] - [682c7dd8] Attempting to extract JSON from text (length: 424 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:19:57,654 - WARNING - [ERR-0001] - [eb1861d1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:19:57,654 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 18:20:03,207 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 18:20:16,493 - WARNING - [ERR-0001] - [6c474ed5] Attempting to extract JSON from text (length: 6786 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:20:16,494 - WARNING - [ERR-0001] - [0ac80e71] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:20:16,494 - WARNING - [ERR-0001] - [fb2e95a6] Attempting to extract JSON from text (length: 6786 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:20:16,494 - WARNING - [ERR-0001] - [c0be4b25] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:20:16,494 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 18:20:18,124 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 18:20:27,819 - WARNING - [ERR-0001] - [42ab4287] Attempting to extract JSON from text (length: 2288 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:20:27,819 - WARNING - [ERR-0001] - [dbf73305] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 18:20:27,819 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 18:20:27,819 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 18:20:27,820 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.585, Price Change: -0.0241, New Price: 99.9759
+2026-01-21 18:20:27,829 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 18:20:27,829 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:20:28,133 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:20:28,134 - INFO - [INFO] - Calculated volatility for MSFT: 0.240926384330242
+2026-01-21 18:20:28,135 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 18:20:28,135 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:20:28,184 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:20:28,185 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 18:20:30,034 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 18:20:30,034 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 18:20:30,035 - INFO - [INFO] - Using dynamically calculated time horizon: 110 days for MSFT
+2026-01-21 18:20:32,609 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 18:20:32,888 - ERROR - [ERR-0001] - [4a29188f] Error updating insight for MSFT: Plan executor error during findAndModify :: caused by :: Document failed validation, full error: {'ok': 0.0, 'errmsg': 'Plan executor error during findAndModify :: caused by :: Document failed validation', 'code': 121, 'codeName': 'DocumentValidationFailure', 'errInfo': {'failingDocumentId': ObjectId('6970b67c5742f7a63984e2f8'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'recommendations', 'details': [{'operatorName': 'items', 'reason': 'At least one item did not match the sub-schema', 'itemIndex': 0, 'details': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'stop_loss', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'double'}, 'reason': 'type did not match', 'consideredValue': '447.6218', 'consideredType': 'string'}]}, {'propertyName': 'target_price', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'double'}, 'reason': 'type did not match', 'consideredValue': '468.3164', 'consideredType': 'string'}]}]}]}]}]}]}}, '$clusterTime': {'clusterTime': Timestamp(1768994432, 13), 'signature': {'hash': b'\xb4yT\xaf\xc8\x1a\xeem\x0b\xa75&#b\xcb\xa7z\xfd\xed\x96', 'keyId': 7539236465838915590}}, 'operationTime': Timestamp(1768994432, 13)} | Exception: OperationFailure: Plan executor error during findAndModify :: caused by :: Document failed validation, full error: {'ok': 0.0, 'errmsg': 'Plan executor error during findAndModify :: caused by :: Document failed validation', 'code': 121, 'codeName': 'DocumentValidationFailure', 'errInfo': {'failingDocumentId': ObjectId('6970b67c5742f7a63984e2f8'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'recommendations', 'details': [{'operatorName': 'items', 'reason': 'At least one item did not match the sub-schema', 'itemIndex': 0, 'details': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'stop_loss', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'double'}, 'reason': 'type did not match', 'consideredValue': '447.6218', 'consideredType': 'string'}]}, {'propertyName': 'target_price', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'double'}, 'reason': 'type did not match', 'consideredValue': '468.3164', 'consideredType': 'string'}]}]}]}]}]}]}}, '$clusterTime': {'clusterTime': Timestamp(1768994432, 13), 'signature': {'hash': b'\xb4yT\xaf\xc8\x1a\xeem\x0b\xa75&#b\xcb\xa7z\xfd\xed\x96', 'keyId': 7539236465838915590}}, 'operationTime': Timestamp(1768994432, 13)} | From: montecarlo.py:_update_insight_with_optimal_levels()
+2026-01-21 18:22:33,300 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 18:22:37,512 - WARNING - [ERR-0001] - [f8f50716] Attempting to extract JSON from text (length: 403 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:22:37,513 - WARNING - [ERR-0001] - [62cc6ac3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:22:37,513 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 18:22:43,001 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 18:22:58,856 - WARNING - [ERR-0001] - [6ed03f7a] Attempting to extract JSON from text (length: 6371 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:22:58,857 - WARNING - [ERR-0001] - [d34eea8c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:22:58,858 - WARNING - [ERR-0001] - [c2e0e9f1] Attempting to extract JSON from text (length: 6371 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:22:58,858 - WARNING - [ERR-0001] - [82e52812] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:22:58,858 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 18:23:00,642 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 18:23:10,033 - WARNING - [ERR-0001] - [f1fa4077] Attempting to extract JSON from text (length: 3068 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:23:10,034 - WARNING - [ERR-0001] - [c96e0b6a] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 18:23:10,034 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 18:23:10,034 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 18:23:10,035 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.741, Price Change: -0.0333, New Price: 99.9667
+2026-01-21 18:23:10,043 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 18:23:10,043 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:23:10,605 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:23:10,605 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092637111692494
+2026-01-21 18:23:10,605 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 18:23:10,606 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:23:10,658 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:23:10,659 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 18:23:12,400 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 18:23:12,400 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 18:23:12,401 - INFO - [INFO] - Using dynamically calculated time horizon: 110 days for MSFT
+2026-01-21 18:23:15,565 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 18:23:16,803 - INFO - [INFO] - Successfully updated insight for MSFT with optimal price levels.
+2026-01-21 18:29:24,091 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 18:29:29,277 - WARNING - [ERR-0001] - [acb10d16] Attempting to extract JSON from text (length: 397 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:29:29,278 - WARNING - [ERR-0001] - [c5308b93] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:29:29,278 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 18:29:35,530 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 18:29:48,276 - WARNING - [ERR-0001] - [68b8cbdd] Attempting to extract JSON from text (length: 6628 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:29:48,277 - WARNING - [ERR-0001] - [78c7d86e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:29:48,277 - WARNING - [ERR-0001] - [a60a8f56] Attempting to extract JSON from text (length: 6628 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:29:48,278 - WARNING - [ERR-0001] - [8b93ce79] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:29:48,278 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 18:29:50,358 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 18:30:00,189 - WARNING - [ERR-0001] - [7e7c79bc] Attempting to extract JSON from text (length: 4068 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:30:00,191 - WARNING - [ERR-0001] - [eadb6fe6] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 18:30:00,191 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 18:30:00,191 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 18:30:00,193 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.753, Price Change: -0.111, New Price: 99.889
+2026-01-21 18:30:00,202 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 18:30:00,202 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:30:00,391 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:30:00,392 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092635559514214
+2026-01-21 18:30:00,392 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 18:30:00,392 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:30:00,445 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:30:00,446 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 18:30:01,987 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 18:30:01,988 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 18:30:01,990 - INFO - [INFO] - Using dynamically calculated time horizon: 110 days for MSFT
+2026-01-21 18:30:05,520 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 18:30:06,686 - INFO - [INFO] - Successfully updated insight for MSFT with optimal price levels.
+2026-01-21 18:33:14,885 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 18:33:18,500 - WARNING - [ERR-0001] - [d0767b85] Attempting to extract JSON from text (length: 410 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:33:18,501 - WARNING - [ERR-0001] - [f58c05b7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:33:18,501 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 18:33:23,994 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 18:33:37,149 - WARNING - [ERR-0001] - [6545e41c] Attempting to extract JSON from text (length: 6425 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:33:37,150 - WARNING - [ERR-0001] - [55515e27] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:33:37,150 - WARNING - [ERR-0001] - [689febc9] Attempting to extract JSON from text (length: 6425 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:33:37,150 - WARNING - [ERR-0001] - [6e8e2c3f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:33:37,150 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 18:33:38,918 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 18:33:51,596 - WARNING - [ERR-0001] - [70cb41b5] Attempting to extract JSON from text (length: 3188 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:33:51,597 - WARNING - [ERR-0001] - [c71e39d9] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 18:33:51,597 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 18:33:51,597 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 18:33:51,597 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.385, Price Change: 0.0047, New Price: 100.0047
+2026-01-21 18:33:51,606 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 18:33:51,607 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:33:51,793 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:33:51,793 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092635926220884
+2026-01-21 18:33:51,793 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 18:33:51,793 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:33:51,844 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:33:51,845 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 18:33:53,312 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 18:33:53,313 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 18:33:53,313 - INFO - [INFO] - Using dynamically calculated time horizon: 110 days for MSFT
+2026-01-21 18:33:56,730 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 18:33:57,894 - INFO - [INFO] - Successfully updated insight for MSFT with optimal price levels.
+2026-01-21 18:34:18,946 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 18:34:22,313 - WARNING - [ERR-0001] - [725aeddf] Attempting to extract JSON from text (length: 449 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:34:22,314 - WARNING - [ERR-0001] - [e5b2d9e5] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:34:22,314 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 18:34:28,008 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 18:34:43,143 - WARNING - [ERR-0001] - [81f1055e] Attempting to extract JSON from text (length: 6711 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:34:43,143 - WARNING - [ERR-0001] - [d23315ad] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:34:43,144 - WARNING - [ERR-0001] - [2f26b756] Attempting to extract JSON from text (length: 6711 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:34:43,144 - WARNING - [ERR-0001] - [d4284448] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:34:43,144 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 18:34:44,795 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 18:34:52,962 - WARNING - [ERR-0001] - [183f0601] Attempting to extract JSON from text (length: 1980 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:34:52,962 - WARNING - [ERR-0001] - [60343301] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 18:34:52,962 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 18:34:52,962 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 18:34:52,962 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.573, Price Change: 0.2431, New Price: 100.2431
+2026-01-21 18:34:52,972 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 18:34:52,972 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:34:53,143 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:34:53,143 - INFO - [INFO] - Calculated volatility for MSFT: 0.2409263220968125
+2026-01-21 18:34:53,143 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 18:34:53,143 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:34:53,192 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:34:53,193 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 18:34:54,658 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 18:34:54,660 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 18:34:54,660 - INFO - [INFO] - Using dynamically calculated time horizon: 56 days for MSFT
+2026-01-21 18:34:56,107 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 18:34:57,263 - INFO - [INFO] - Successfully updated insight for MSFT with optimal price levels.
+2026-01-21 18:47:03,544 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 18:47:07,665 - WARNING - [ERR-0001] - [a63cee24] Attempting to extract JSON from text (length: 422 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:47:07,666 - WARNING - [ERR-0001] - [4b4a4e37] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:47:07,666 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 18:47:13,217 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 18:47:26,112 - WARNING - [ERR-0001] - [8163db39] Attempting to extract JSON from text (length: 6565 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:47:26,113 - WARNING - [ERR-0001] - [50cc521f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:47:26,113 - WARNING - [ERR-0001] - [0646f8fd] Attempting to extract JSON from text (length: 6565 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:47:26,113 - WARNING - [ERR-0001] - [e6a57dd1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:47:26,113 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 18:47:27,732 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 18:47:37,668 - WARNING - [ERR-0001] - [d8befb57] Attempting to extract JSON from text (length: 2388 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:47:37,669 - WARNING - [ERR-0001] - [07daed10] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 18:47:37,669 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 18:47:37,669 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 18:47:37,671 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.235, Price Change: -0.0467, New Price: 99.9533
+2026-01-21 18:47:37,680 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 18:47:37,680 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:47:37,873 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:47:37,873 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092636055572905
+2026-01-21 18:47:37,874 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 18:47:37,874 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:47:37,925 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:47:37,926 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 18:47:39,432 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 18:47:39,433 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 18:47:39,435 - INFO - [INFO] - Using dynamically calculated time horizon: 56 days for MSFT
+2026-01-21 18:47:40,853 - ERROR - [ERR-0001] - [a4217e6c] Error inserting trade simulation into the database: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('6970bcdcf7523347c3d8814f'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'results', 'details': [{'operatorName': 'required', 'specifiedAs': {'required': ['win_probability', 'risk_of_ruin', 'avg_days_to_target', 'expired_probability', 'maximum_drawdown', 'expected_value']}, 'missingProperties': ['avg_days_to_target']}]}]}]}}} | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('6970bcdcf7523347c3d8814f'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'results', 'details': [{'operatorName': 'required', 'specifiedAs': {'required': ['win_probability', 'risk_of_ruin', 'avg_days_to_target', 'expired_probability', 'maximum_drawdown', 'expected_value']}, 'missingProperties': ['avg_days_to_target']}]}]}]}}} | From: montecarlo.py:run_monte_carlo_simulation()
+2026-01-21 18:47:41,951 - INFO - [INFO] - Successfully updated insight for MSFT with optimal price levels and root-level simulation summary.
+2026-01-21 18:54:19,000 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 18:54:22,613 - WARNING - [ERR-0001] - [379e4455] Attempting to extract JSON from text (length: 388 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:54:22,613 - WARNING - [ERR-0001] - [afa9ca1d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:54:22,613 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 18:54:28,436 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 18:54:42,144 - WARNING - [ERR-0001] - [1cd9afe8] Attempting to extract JSON from text (length: 6499 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:54:42,145 - WARNING - [ERR-0001] - [1555b1c6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:54:42,145 - WARNING - [ERR-0001] - [ef5ccb76] Attempting to extract JSON from text (length: 6499 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:54:42,145 - WARNING - [ERR-0001] - [28540690] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:54:42,145 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 18:54:43,953 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 18:54:55,481 - WARNING - [ERR-0001] - [9644b55b] Attempting to extract JSON from text (length: 3331 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:54:55,483 - WARNING - [ERR-0001] - [a1539137] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 18:54:55,483 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 18:54:55,483 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 18:54:55,484 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.375, Price Change: -0.1334, New Price: 99.8666
+2026-01-21 18:54:55,493 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 18:54:55,493 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:54:55,668 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:54:55,669 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092636269425202
+2026-01-21 18:54:55,669 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 18:54:55,669 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:54:55,720 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:54:55,721 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 18:54:57,200 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 18:54:57,201 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 18:54:57,203 - INFO - [INFO] - Using dynamically calculated time horizon: 56 days for MSFT
+2026-01-21 18:54:58,616 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 18:54:59,747 - INFO - [INFO] - Successfully updated insight for MSFT with optimal price levels and root-level simulation summary.
+2026-01-21 18:58:45,493 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 18:58:48,821 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 18:58:54,258 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 18:59:06,624 - WARNING - [ERR-0001] - [dd5ad31e] Attempting to extract JSON from text (length: 6151 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:59:06,625 - WARNING - [ERR-0001] - [7e2d9a81] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:59:06,625 - WARNING - [ERR-0001] - [058f156c] Attempting to extract JSON from text (length: 6151 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:59:06,626 - WARNING - [ERR-0001] - [6c4d78a7] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 18:59:06,626 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 18:59:08,375 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 18:59:18,303 - WARNING - [ERR-0001] - [1af0a550] Attempting to extract JSON from text (length: 4354 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 18:59:18,304 - WARNING - [ERR-0001] - [53c5dcc5] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 18:59:18,304 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 18:59:18,304 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 18:59:18,305 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.37, Price Change: -0.156, New Price: 99.844
+2026-01-21 18:59:18,315 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 18:59:18,315 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:59:18,573 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:59:18,574 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092637639656952
+2026-01-21 18:59:18,574 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 18:59:18,574 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 18:59:18,678 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 18:59:18,679 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 18:59:20,135 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 18:59:20,135 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 18:59:20,138 - INFO - [INFO] - Using dynamically calculated time horizon: 56 days for MSFT
+2026-01-21 18:59:20,643 - ERROR - [ERR-0001] - [ac718d8d] Could not find optimal parameters for MSFT with win rate >= 50%. | From: montecarlo.py:optimize_and_run_monte_carlo()
+2026-01-21 19:02:01,901 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 19:02:05,893 - WARNING - [ERR-0001] - [5b418498] Attempting to extract JSON from text (length: 424 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 19:02:05,894 - WARNING - [ERR-0001] - [0bf46042] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 19:02:05,894 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 19:02:11,488 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 19:02:25,427 - WARNING - [ERR-0001] - [12e6a2b5] Attempting to extract JSON from text (length: 6250 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 19:02:25,428 - WARNING - [ERR-0001] - [cae35ce0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 19:02:25,428 - WARNING - [ERR-0001] - [f034a66b] Attempting to extract JSON from text (length: 6250 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 19:02:25,428 - WARNING - [ERR-0001] - [997a5942] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 19:02:25,428 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 19:02:27,040 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 19:02:36,147 - WARNING - [ERR-0001] - [34d52e1f] Attempting to extract JSON from text (length: 3411 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 19:02:36,148 - WARNING - [ERR-0001] - [82f19177] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 19:02:36,148 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 19:02:36,149 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 19:02:36,150 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.425, Price Change: -0.1055, New Price: 99.8945
+2026-01-21 19:02:36,160 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 19:02:36,160 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 19:02:36,344 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 19:02:36,345 - INFO - [INFO] - Calculated volatility for MSFT: 0.24092638872618782
+2026-01-21 19:02:36,345 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 19:02:36,345 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 19:02:36,400 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 19:02:36,400 - INFO - [INFO] - Calculated drift for MSFT: 0.0653
+2026-01-21 19:02:37,815 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 19:02:37,815 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 19:02:37,817 - INFO - [INFO] - Using dynamically calculated time horizon: 56 days for MSFT
+2026-01-21 19:02:38,323 - WARNING - [ERR-0001] - [c35ee0fc] Could not find a strategy with >= 50% win rate for MSFT. Falling back to highest EV strategy. | From: montecarlo.py:optimize_and_run_monte_carlo()
+2026-01-21 19:02:39,276 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 19:02:40,402 - INFO - [INFO] - Successfully updated insight for MSFT with optimal price levels and root-level simulation summary.
+2026-01-21 21:30:28,984 - INFO - [INFO] - Starting AI economic, business, and geopolitical factors — weights retrieval
+2026-01-21 21:30:33,508 - WARNING - [ERR-0001] - [55129317] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:30:33,509 - WARNING - [ERR-0001] - [c6c610d1] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:30:33,799 - INFO - [INFO] - Saved new weights to database for caching
+2026-01-21 21:30:33,799 - INFO - [INFO] - Successfully retrieved and parsed AI economic, business, and geopolitical factors — weights
+2026-01-21 21:30:34,194 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 21:30:37,919 - WARNING - [ERR-0001] - [b4d7c54e] Attempting to extract JSON from text (length: 486 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:30:37,920 - WARNING - [ERR-0001] - [3370c251] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:30:37,920 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 21:31:18,536 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 21:31:28,655 - WARNING - [ERR-0001] - [ce88142d] Attempting to extract JSON from text (length: 527 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:31:28,655 - WARNING - [ERR-0001] - [3a07cdc9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:31:28,655 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 21:32:21,552 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 21:32:28,375 - WARNING - [ERR-0001] - [311a9ab6] Attempting to extract JSON from text (length: 326 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:32:28,376 - WARNING - [ERR-0001] - [3b4ad973] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:32:28,376 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 21:34:22,249 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 21:34:26,313 - WARNING - [ERR-0001] - [262cf9ba] Attempting to extract JSON from text (length: 390 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:34:26,313 - WARNING - [ERR-0001] - [e498ee5e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:34:26,313 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 21:34:32,048 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 21:34:45,629 - WARNING - [ERR-0001] - [5cdc754a] Attempting to extract JSON from text (length: 6554 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:34:45,630 - WARNING - [ERR-0001] - [62f0a42c] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:34:45,630 - WARNING - [ERR-0001] - [e6bfb65c] Attempting to extract JSON from text (length: 6554 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:34:45,630 - WARNING - [ERR-0001] - [4dbb45b8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:34:45,630 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 21:34:47,394 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 21:34:55,503 - WARNING - [ERR-0001] - [051512b4] Attempting to extract JSON from text (length: 2196 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:34:55,504 - WARNING - [ERR-0001] - [c08f07ae] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 21:34:55,504 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 21:34:55,504 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 21:34:55,506 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.778, Price Change: 0.1127, New Price: 100.1127
+2026-01-21 21:34:55,516 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 21:34:55,516 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 21:34:55,761 - ERROR - [ERR-0001] - [95a1b423] Error fetching data for MSFT | Exception: YFRateLimitError: Too Many Requests. Rate limited. Try after a while. | From: price_action.py:get_close_prices()
+2026-01-21 21:34:55,761 - ERROR - [ERR-0001] - [4b1555d9] Insufficient data for MSFT, defaulting volatility to 0.3 | From: price_action.py:calculate_volatility()
+2026-01-21 21:34:55,761 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 21:34:55,761 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 21:34:55,842 - ERROR - [ERR-0001] - [f079e932] Error fetching data for MSFT | Exception: YFRateLimitError: Too Many Requests. Rate limited. Try after a while. | From: price_action.py:get_close_prices()
+2026-01-21 21:34:55,842 - ERROR - [ERR-0001] - [6f1a9851] Insufficient data for MSFT, defaulting drift to 0.0 | From: price_action.py:calculate_drift()
+2026-01-21 21:34:58,718 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 21:34:58,719 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 21:34:58,721 - ERROR - [ERR-0001] - [47db999b] Could not convert entry price to float: 454.52 | Exception: TypeError: optimize_and_run_monte_carlo() got an unexpected keyword argument 'strategy' | From: holistic.py:run_holistic_market_model()
+2026-01-21 21:43:05,029 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 21:43:08,739 - WARNING - [ERR-0001] - [fb684400] Attempting to extract JSON from text (length: 419 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:43:08,740 - WARNING - [ERR-0001] - [0a69ee51] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:43:08,741 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 21:43:52,886 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 21:43:57,374 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 21:46:05,532 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 21:46:09,420 - WARNING - [ERR-0001] - [b6933725] Attempting to extract JSON from text (length: 486 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:46:09,421 - WARNING - [ERR-0001] - [148dcac4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:46:09,421 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 21:46:56,956 - ERROR - [ERR-0001] - [da48665b] Failed to create MongoDB client | Exception: ServerSelectionTimeoutError: No replica set members found yet, Timeout: 5.0s, Topology Description: <TopologyDescription id: 6970e6db2f3d103b00bf342b, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-lzdwgut-shard-00-00.9x59erc.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('ac-lzdwgut-shard-00-01.9x59erc.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('ac-lzdwgut-shard-00-02.9x59erc.mongodb.net', 27017) server_type: Unknown, rtt: None>]> | From: helpers.py:get_client()
+2026-01-21 21:46:56,958 - ERROR - [ERR-0001] - [9864a6fa] Error checking cached weights in MongoDB | Exception: ServerSelectionTimeoutError: No replica set members found yet, Timeout: 5.0s, Topology Description: <TopologyDescription id: 6970e6db2f3d103b00bf342b, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-lzdwgut-shard-00-00.9x59erc.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('ac-lzdwgut-shard-00-01.9x59erc.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('ac-lzdwgut-shard-00-02.9x59erc.mongodb.net', 27017) server_type: Unknown, rtt: None>]> | From: helpers.py:get_ai_weights()
+2026-01-21 21:46:56,997 - INFO - [INFO] - Starting AI economic, business, and geopolitical factors — weights retrieval
+2026-01-21 21:47:02,768 - WARNING - [ERR-0001] - [830be36a] Attempting to extract JSON from text (length: 168 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:47:02,769 - WARNING - [ERR-0001] - [420b8062] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:47:02,769 - ERROR - [ERR-0001] - [c6c189ff] Error saving weights to MongoDB | Exception: UnboundLocalError: cannot access local variable 'collection' where it is not associated with a value | From: helpers.py:get_ai_weights()
+2026-01-21 21:47:02,769 - INFO - [INFO] - Successfully retrieved and parsed AI economic, business, and geopolitical factors — weights
+2026-01-21 21:47:07,931 - ERROR - [ERR-0001] - [709c66c1] Failed to create MongoDB client | Exception: ServerSelectionTimeoutError: No replica set members match selector "Primary()", Timeout: 5.0s, Topology Description: <TopologyDescription id: 6970e6e62f3d103b00bf342c, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-lzdwgut-shard-00-00.9x59erc.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-lzdwgut-shard-00-00.9x59erc.mongodb.net:27017: timed out (configured timeouts: socketTimeoutMS: 5000.0ms, connectTimeoutMS: 5000.0ms)')>, <ServerDescription ('ac-lzdwgut-shard-00-01.9x59erc.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('ac-lzdwgut-shard-00-02.9x59erc.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.6879756250418723>]> | From: helpers.py:get_client()
+2026-01-21 21:47:07,932 - ERROR - [ERR-0001] - [708aa2cf] Error getting ticker names from database | Exception: ServerSelectionTimeoutError: No replica set members match selector "Primary()", Timeout: 5.0s, Topology Description: <TopologyDescription id: 6970e6e62f3d103b00bf342c, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-lzdwgut-shard-00-00.9x59erc.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('ac-lzdwgut-shard-00-00.9x59erc.mongodb.net:27017: timed out (configured timeouts: socketTimeoutMS: 5000.0ms, connectTimeoutMS: 5000.0ms)')>, <ServerDescription ('ac-lzdwgut-shard-00-01.9x59erc.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('ac-lzdwgut-shard-00-02.9x59erc.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.6879756250418723>]> | From: helpers.py:get_ticker_name()
+2026-01-21 21:47:07,995 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 21:47:11,429 - WARNING - [ERR-0001] - [1a8cf5b0] Attempting to extract JSON from text (length: 379 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:47:11,429 - WARNING - [ERR-0001] - [3a1c3ded] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:47:11,429 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 21:54:22,374 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 21:54:28,976 - WARNING - [ERR-0001] - [7ef6c3cd] Attempting to extract JSON from text (length: 404 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 21:54:28,976 - WARNING - [ERR-0001] - [813543fc] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 21:54:28,977 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 22:05:22,593 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 22:05:28,146 - WARNING - [ERR-0001] - [b960b612] Attempting to extract JSON from text (length: 432 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:05:28,146 - WARNING - [ERR-0001] - [0e184e51] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 22:05:28,146 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 22:06:01,157 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 22:06:06,206 - WARNING - [ERR-0001] - [e33dce13] Attempting to extract JSON from text (length: 372 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:06:06,206 - WARNING - [ERR-0001] - [740fcbad] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 22:06:06,206 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 22:29:17,069 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 22:29:20,660 - WARNING - [ERR-0001] - [cd9f9244] Attempting to extract JSON from text (length: 389 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:29:20,660 - WARNING - [ERR-0001] - [45e4e414] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 22:29:20,660 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 22:29:26,187 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 22:29:38,286 - WARNING - [ERR-0001] - [399a8fdc] Attempting to extract JSON from text (length: 6943 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:29:38,287 - WARNING - [ERR-0001] - [fe81a725] JSON parsing failed for end object pattern: Illegal trailing comma before end of array: line 6 column 472 (char 1589) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:29:38,288 - ERROR - [ERR-0001] - [9051faf7] Error processing AI response (attempt 1/10) | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2026-01-21 22:29:54,707 - WARNING - [ERR-0001] - [787ba30b] Attempting to extract JSON from text (length: 7090 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:29:54,709 - WARNING - [ERR-0001] - [7f08889f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 22:29:54,709 - WARNING - [ERR-0001] - [e367fef7] Attempting to extract JSON from text (length: 7090 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:29:54,709 - WARNING - [ERR-0001] - [eaa50933] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 22:29:54,709 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 22:29:56,351 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 22:30:06,530 - WARNING - [ERR-0001] - [f26a60d3] Attempting to extract JSON from text (length: 3710 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:30:06,531 - WARNING - [ERR-0001] - [8d73d1ad] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 22:30:06,532 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 22:30:06,532 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 22:30:06,533 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.375, Price Change: 0.0973, New Price: 100.0973
+2026-01-21 22:30:06,546 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-01-21 22:30:06,546 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 22:30:06,733 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 22:30:06,733 - INFO - [INFO] - Calculated volatility for MSFT: 0.24111753693470814
+2026-01-21 22:30:06,733 - INFO - [INFO] - Calculating drift for MSFT...
+2026-01-21 22:30:06,733 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-01-21 22:30:06,780 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-01-21 22:30:06,781 - INFO - [INFO] - Calculated drift for MSFT: 0.0571
+2026-01-21 22:30:08,371 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-01-21 22:30:08,371 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 22:30:08,373 - INFO - [INFO] - Using dynamically calculated time horizon: 56 days for MSFT
+2026-01-21 22:30:09,329 - WARNING - [ERR-0001] - [1a56b332] Could not find any strategy with >= 50% win rate for MSFT. Falling back to highest EV strategy. | From: montecarlo.py:optimize_and_run_monte_carlo()
+2026-01-21 22:30:10,257 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 22:30:11,855 - INFO - [INFO] - Successfully updated insight for MSFT with optimal price levels and root-level simulation summary.
+2026-01-21 22:31:27,007 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-21 22:31:30,562 - WARNING - [ERR-0001] - [bf38ef97] Attempting to extract JSON from text (length: 313 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:31:30,563 - WARNING - [ERR-0001] - [98bcf332] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 22:31:30,563 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-21 22:31:36,435 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-21 22:31:50,526 - WARNING - [ERR-0001] - [fd378231] Attempting to extract JSON from text (length: 6511 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:31:50,527 - WARNING - [ERR-0001] - [ef319f6a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 22:31:50,527 - WARNING - [ERR-0001] - [c13862e4] Attempting to extract JSON from text (length: 6511 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:31:50,527 - WARNING - [ERR-0001] - [685b93c6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-21 22:31:50,527 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-21 22:31:52,281 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-21 22:32:00,081 - WARNING - [ERR-0001] - [efd383be] Attempting to extract JSON from text (length: 2046 chars) | From: helpers.py:extract_json_from_text()
+2026-01-21 22:32:00,082 - WARNING - [ERR-0001] - [7897f283] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-21 22:32:00,082 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-21 22:32:00,082 - INFO - [INFO] - Time step t=1 starting
+2026-01-21 22:32:00,082 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.21, Price Change: -0.006, New Price: 99.994
+2026-01-21 22:32:00,091 - INFO - [INFO] - Calculating volatility for AAPL...
+2026-01-21 22:32:00,091 - INFO - [INFO] - Fetching 252 days of close prices for AAPL...
+2026-01-21 22:32:00,279 - INFO - [INFO] - Successfully fetched data for AAPL.
+2026-01-21 22:32:00,280 - INFO - [INFO] - Calculated volatility for AAPL: 0.31714975789567573
+2026-01-21 22:32:00,280 - INFO - [INFO] - Calculating drift for AAPL...
+2026-01-21 22:32:00,280 - INFO - [INFO] - Fetching 252 days of close prices for AAPL...
+2026-01-21 22:32:00,333 - INFO - [INFO] - Successfully fetched data for AAPL.
+2026-01-21 22:32:00,334 - INFO - [INFO] - Calculated drift for AAPL: 0.1113
+2026-01-21 22:32:01,493 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']
+2026-01-21 22:32:01,494 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-21 22:32:01,495 - INFO - [INFO] - Using dynamically calculated time horizon: 56 days for AAPL
+2026-01-21 22:32:02,463 - WARNING - [ERR-0001] - [d1a984d5] Could not find any strategy with >= 50% win rate for AAPL. Falling back to highest EV strategy. | From: montecarlo.py:optimize_and_run_monte_carlo()
+2026-01-21 22:32:03,326 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-21 22:32:04,467 - INFO - [INFO] - Successfully updated insight for AAPL with optimal price levels and root-level simulation summary.
