@@ -78,7 +78,13 @@ def _run_simulation_for_optimization(
     expected_value = np.mean(outcomes)
     win_probability = np.sum(is_win) / num_simulations
 
-    return expected_value, win_probability
+    # Scale expected_value by the initial bet size from config
+    # The bet size represents a dollar amount, so we need to calculate how many shares it can buy
+    from _config import MONTE_CARLO_MODEL_INITIAL_BET_SIZE
+    shares_from_bet_size = MONTE_CARLO_MODEL_INITIAL_BET_SIZE / initial_price
+    scaled_expected_value = expected_value * shares_from_bet_size
+
+    return scaled_expected_value, win_probability
 
 
 def _update_insight_with_optimal_levels(sessionID: str, ticker: str, target_price: float, stop_loss: float, trade_direction: str, simulation_results: dict):
@@ -187,12 +193,10 @@ def optimize_and_run_monte_carlo(
     vol_multiplier_range = np.arange(1.0, 5.1, 0.5)
     rrr_range = np.arange(min_rrr, 3.1, 0.5) # Cap RRR at 3:1
 
-    # Dynamically calculate time horizon
-    median_vol_multiplier = np.median(vol_multiplier_range)
-    median_rrr = np.median(rrr_range)
-    calculated_horizon = int((median_rrr * median_vol_multiplier) ** 2)
-    time_horizon = np.clip(calculated_horizon, 21, 252).item()
-    log_info(f"Using dynamically calculated time horizon: {time_horizon} days for {ticker}")
+    # Use the configured time horizon from _config.py
+    from _config import MONTE_CARLO_MODEL_TIME_HORIZON
+    time_horizon = MONTE_CARLO_MODEL_TIME_HORIZON
+    log_info(f"Using configured time horizon: {time_horizon} days for {ticker}")
 
     total_iterations = len(vol_multiplier_range) * len(rrr_range) * 2 # Multiply by 2 for long/short
     current_iteration = 0
@@ -234,8 +238,8 @@ def optimize_and_run_monte_carlo(
                 current_iteration += 1
                 print(f"  > Optimizing ({strategy_direction})... {current_iteration}/{total_iterations} ({((current_iteration/total_iterations)*100):.1f}%)  ", end='\r')
 
-                # Double the distance parameters before calculating target and stop prices
-                stop_loss_distance = stop_loss_distance * 2
+                # Triple the distance parameters before calculating target and stop prices
+                stop_loss_distance = stop_loss_distance * 3
                 
                 if strategy_direction == 'long':
                     stop_loss_price = initial_price - stop_loss_distance
@@ -330,6 +334,71 @@ def optimize_and_run_monte_carlo(
     print("Final simulation complete. Results saved to database and insight updated.")
 
 
+def _generate_simulation_commentary(results: dict, num_simulations: int, strategy: str, ticker: str, sessionID: str = "default") -> str:
+    """
+    Generates a professional single-paragraph commentary based on the Monte Carlo simulation results,
+    providing trading advice with a focus on risk management.
+    """
+    win_prob = results.get("win_probability", 0) * 100
+    risk_of_ruin = results.get("risk_of_ruin", 0) * 100
+    avg_days = results.get("avg_days_to_target", 0)
+    expired_prob = results.get("expired_probability", 0) * 100
+    max_dd = results.get("maximum_drawdown", 0) * 100
+    ev = results.get("expected_value", 0)
+    
+    # Get the bet size from configuration
+    from _config import MONTE_CARLO_MODEL_INITIAL_BET_SIZE
+    bet_size = MONTE_CARLO_MODEL_INITIAL_BET_SIZE
+    
+    # Calculate profitability score (0-100)
+    profitability_score = 0
+    if ev > 0:
+        profitability_score += 50  # Base score for positive EV
+        if win_prob > 60:
+            profitability_score += 30
+        elif win_prob > 50:
+            profitability_score += 20
+        elif win_prob > 40:
+            profitability_score += 10
+            
+        if risk_of_ruin < 30:
+            profitability_score += 15
+        elif risk_of_ruin < 40:
+            profitability_score += 5
+            
+        if max_dd < 20:
+            profitability_score += 5
+    
+    # Generate single paragraph commentary
+    commentary = f"Based on {num_simulations:,} simulated trades for {ticker} using a {strategy} strategy with a ${bet_size:,} bet size, this analysis reveals the following: the strategy demonstrates a {win_prob:.1f}% win probability with an expected value of ${ev:.2f} per trade (based on the ${bet_size:,} bet amount), a {risk_of_ruin:.1f}% stop level, and a maximum drawdown of {max_dd:.1f}%. Approximately {expired_prob:.1f}% of trades are projected to expire without hitting targets, and winning trades typically reach their objectives in around {avg_days:.1f} days when successful. "
+    
+    # Add strategy selection rationale (only for default session)
+    if win_prob < 50 and sessionID == "default":
+        commentary += f"Although this strategy has a lower {win_prob:.1f}% win probability, it was selected because "
+        if ev > 0:
+            commentary += f"it maintains a positive expected value of ${ev:.2f}, indicating that the winning trades are sufficiently larger than losing trades to justify the approach. "
+        else:
+            commentary += f"it represents the best available option among the tested strategies, though both win probability and expected value suggest caution is warranted. "
+        commentary += f"The {strategy} position was chosen based on the optimization algorithm's assessment that it provides the most favorable risk-reward profile given current market conditions and the {ticker} asset's historical behavior. "
+    
+    if ev > 0 and win_prob > 60:
+        commentary += f"This represents a highly promising strategy with strong statistical advantages, as evidenced by the favorable combination of high win probability and positive expected value, resulting in a profitability score of {profitability_score}/100. The relatively low stop level suggests good risk-reward characteristics, making this a strategy worthy of serious consideration for traders seeking consistent profitability. However, prudent risk management remains essential, with position sizing to withstand the {max_dd:.1f}% maximum drawdown scenarios that may occur during normal market fluctuations."
+    
+    elif ev > 0 and win_prob > 50:
+        commentary += f"This strategy shows solid potential with a profitability score of {profitability_score}/100, indicating statistical profitability over the long term, though the {risk_of_ruin:.1f}% stop level suggests disciplined execution is required. It is advised to approach this strategy with conservative position sizing be prepared for the {max_dd:.1f}% drawdowns that represent the worst-case scenarios. The positive expected value of ${ev:.2f} suggests this could be a viable strategy, but it requires consistent application and proper risk management to realize its potential over a large sample of trades."
+    
+    elif ev > 0 and win_prob <= 50:
+        commentary += f"This strategy falls into the high-risk category with a profitability score of {profitability_score}/100, characterized by a positive expected value of ${ev:.2f} but a lower {win_prob:.1f}% win rate, meaning more losing trades than winners are expected. The {risk_of_ruin:.1f}% stop level is concerning and demands extremely cautious approach. This is a speculative trade and should be part of a diversified strategy portfolio, considering the risk of a {max_dd:.1f}% drawdowns."
+    
+    elif ev <= 0 and win_prob > 50:
+        commentary += f"This strategy presents a dangerous combination with a profitability score of {profitability_score}/100, where a {win_prob:.1f}% win rate is offset by a negative expected value of ${ev:.2f}, indicating that losses are likely larger than wins. The {risk_of_ruin:.1f}% stop level confirms this is a risky proposition that will likely erode trading capital over time. Strong recommendation against trading this strategy in its current form; focus instead on developing strategies with both positive expected value and reasonable win rates. Consider adjusting risk-reward ratios, refining entry/exit criteria, or exploring alternative timeframes to improve the statistical profile."
+    
+    else: # ev <= 0 and win_prob <= 50
+        commentary += f"Based on these results with a profitability score of {profitability_score}/100, this does not appear to be a viable trading strategy, as both the {win_prob:.1f}% win rate and negative expected value of ${ev:.2f} suggest the odds are stacked against success. The {risk_of_ruin:.1f}% stop level and {max_dd:.1f}% maximum drawdown confirm this strategy is likely to lose money over time. The current configuration shows no statistical edge and requires significant improvement."
+    
+    return commentary
+
+
 def run_monte_carlo_simulation(
     sessionID: str,
     ticker: str,
@@ -349,6 +418,7 @@ def run_monte_carlo_simulation(
     strategy = strategy.lower()
     if strategy not in {"long", "short"}:
         raise ValueError(f"Invalid strategy: {strategy}")
+        
         
     daily_drift = drift / 252
     daily_volatility = volatility / np.sqrt(252)
@@ -439,6 +509,22 @@ def run_monte_carlo_simulation(
     num_samples = min(100, num_simulations)
     sample_paths = random.sample(all_paths, num_samples) if num_simulations > 0 else []
 
+    # Generate simulation commentary
+    simulation_commentary = _generate_simulation_commentary(
+        results={
+            "win_probability": win_probability,
+            "risk_of_ruin": risk_of_ruin,
+            "avg_days_to_target": avg_days_to_target,
+            "expired_probability": expired_probability,
+            "maximum_drawdown": maximum_drawdown,
+            "expected_value": expected_value,
+        },
+        num_simulations=num_simulations,
+        strategy=strategy,
+        ticker=ticker,
+        sessionID=sessionID
+    )
+
     trade_data = {
         "inputs": {
             "sessionID": sessionID,
@@ -461,6 +547,7 @@ def run_monte_carlo_simulation(
             "maximum_drawdown": maximum_drawdown,
             "expected_value": expected_value,
         },
+        "simulation_results": simulation_commentary,
         "chart_data": {
             "time_index": time_index,
             "percentiles": {
@@ -479,6 +566,21 @@ def run_monte_carlo_simulation(
         trades_collection = db["trades"]
         trades_collection.insert_one(trade_data)
         log_info("Successfully inserted trade simulation into the database.")
+        
+        # Also update insights collection with simulation_summary if sessionID is "default"
+        if sessionID == "default":
+            insights_collection = db["insights"]
+            # Find the most recent insight for this ticker and update it
+            result = insights_collection.find_one_and_update(
+                {"recommendations.0.ticker": ticker},
+                {"$set": {"simulation_results": simulation_commentary}},
+                sort=[("timestamp_gmt", pymongo.DESCENDING)]
+            )
+            if result is not None:
+                log_info(f"Successfully updated insight for {ticker} with simulation summary.")
+            else:
+                log_warning(f"Could not find an insight document to update for ticker {ticker}.", "DATABASE_UPDATE")
+                
     except Exception as e:
         log_error(f"Error inserting trade simulation into the database: {e}", "DATABASE_INSERTION", e)
         
