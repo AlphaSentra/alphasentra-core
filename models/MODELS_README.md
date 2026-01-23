@@ -2,97 +2,6 @@
 
 This document provides an overview of the Python modules in the `models` directory.
 
-## hcb.py - High Conviction Backtest Model
-
-### Overview
-The `hcb.py` module provides functionality to fetch and analyze high conviction equity insights.
-
-### Key Functions
-
-#### `get_high_conviction_buys()`
-- **Purpose**: Fetches insights from last week with positive sentiment and high conviction
-- **Criteria**:
-  - Created within last 24 hours
-  - Positive sentiment score
-  - High conviction level (≥0.7)
-  - Positive price momentum (1m, 3m, 6m)
-- **Returns**: List of insight documents sorted by conviction (descending) then sentiment score
-- **Database Operations**:
-  - Updates importance level (3) for matching insights
-  - Adds ">high conviction buy ↗" tag
-  - Unflags pipeline task if no pending tickers exist
-
-
-### Configuration Parameters
-```python
-tag_string = ">high conviction buy ↗"
-min_sentiment_score = 0
-conviction_threshold = 0.7
-importance_level = 3
-```
-
----
-
-## trending.py - Trending Instruments Analysis
-
-### Overview
-Identifies trending financial instruments using AI responses across three asset classes:
-- EQ (Equities)
-- CR (Cryptocurrencies)
-- FX (Forex)
-
-### Key Functions
-
-#### Core Functions
-- `get_trending_instruments(asset_class, ...)`
-  - **Main entry point** for trending analysis
-  - **Parameters**:
-    - `asset_class`: "EQ", "CR", or "FX"
-    - `model_strategy`: Gemini model strategy (default "Pro")
-    - `batch_mode`: Batch processing flag (default True)
-  - **Process**:
-    1. Checks for pending ticker documents (exits early if any exist)
-    2. Selects AI prompt based on asset class
-    3. Gets AI response
-    4. Processes JSON response
-    5. Updates database with new tickers
-    6. Manages pipeline tracking
-  - **Database Operations**:
-    - Creates new ticker documents for unseen instruments
-    - Updates recurrence status for existing instruments
-    - Sets importance=3 and adds ">trending ⇧" tag to insights
-    - Tracks pipeline execution metrics
-
-#### Support Functions
-- `update_pipeline_run_count(model_function)`
-  - Tracks pipeline execution metrics and manages task completion flags
-- `update_ticker_recurrence(instruments)`
-  - Updates ticker recurrence status only if no recent insights exist
-- `create_new_ticker_documents()`
-  - Creates ticker docs with importance=5 and recurrence="once"
-  - Configures asset-class specific prompts and model references
-- `update_insights_importance_for_trending()`
-  - Sets importance=3 and appends ">trending ⇧" tag without duplicates
-
-### Asset Class Handlers
-- `run_trending_analysis_equity()`
-- `run_trending_analysis_crypto()`
-- `run_trending_analysis_forex()`
-
-### Configuration
-Uses encrypted prompts from `_config.py`:
-- `EQ_EQUITY_TRENDING_PROMPT`
-- `CR_CRYPTO_TRENDING_PROMPT`
-- `FX_FOREX_TRENDING_PROMPT`
-
----
-
-## Dependencies
-- MongoDB database connection via `DatabaseManager`
-- Environment variables for configuration
-- Helper functions from `helpers.py`
-- AI integration through `genAI.ai_prompt`
-
 ---
 
 ## analysis.py - Instrument Analysis Module
@@ -207,6 +116,56 @@ Uses encrypted prompts from `_config.py`:
 
 ---
 
+## montecarlo.py - Monte Carlo Simulation Module
+
+### Overview
+Provides Monte Carlo simulation capabilities for trading strategy analysis, offering both automated parameter optimization and custom parameter testing.
+
+### Key Functions
+
+#### `_run_simulation_for_optimization()`
+- **Purpose**: Lightweight, performance-optimized simulation for parameter optimization
+- **Use Case**: Used internally by `optimize_and_run_monte_carlo()` for rapid testing
+- **Features**:
+  - Tests numerous parameter combinations quickly
+  - Returns only Expected Value (EV) and Win Probability
+  - Ideal for finding statistically optimal trading parameters
+- **When to Use**: For the default session_id as the optimized model
+
+#### `run_monte_carlo_simulation()`
+- **Purpose**: Full, comprehensive simulation with detailed analytics
+- **Use Case**: Custom parameter analysis and strategy testing
+- **Features**:
+  - Executes complete simulation with user-specified parameters
+  - Stores full results in database including price paths and percentiles
+  - Generates professional commentary and trading advice
+  - Returns comprehensive metrics (risk of ruin, maximum drawdown, etc.)
+- **When to Use**: When providing custom take-profit (TP), stop-loss (SL), or personalized metrics
+
+#### `optimize_and_run_monte_carlo()`
+- **Purpose**: Combines optimization and full simulation
+- **Process**:
+  1. Uses `_run_simulation_for_optimization()` to find optimal parameters
+  2. Executes `run_monte_carlo_simulation()` with optimal parameters
+  3. Updates insights with optimal price levels
+- **Parameters**:
+  - `sessionID`, `ticker`, `initial_price`, `volatility`, `drift`
+  - `num_simulations`, `min_rrr` (minimum risk-reward ratio)
+  - `strategy` (long/short)
+
+### Usage Guidelines
+
+1. **For Automated Parameter Optimization**: Use `optimize_and_run_monte_carlo()` for default session_id to automatically find optimal trading parameters.
+
+2. **For Custom Parameter Analysis**: Use `run_monte_carlo_simulation()` when you have specific take-profit, stop-loss, or other custom metrics to test.
+
+### Database Output
+- Stores simulation results in `trades` collection
+- Updates `insights` collection with optimal price levels and simulation summary
+- Includes comprehensive metrics, price paths, percentiles, and professional commentary
+
+---
+
 ## Dependencies
 - MongoDB database connection via `DatabaseManager`
 - Environment variables for configuration
@@ -214,3 +173,4 @@ Uses encrypted prompts from `_config.py`:
 - AI integration through `genAI.ai_prompt`
 - Data processing from `data.price`
 - Simulation handling from `models.simulation`
+- Configuration from `_config.py` (MONTE_CARLO_MODEL_* parameters)
