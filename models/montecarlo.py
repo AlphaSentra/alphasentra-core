@@ -1,3 +1,28 @@
+"""
+Monte Carlo Simulation Module
+
+This module provides two main functions for Monte Carlo simulation of trading strategies:
+
+1. _run_simulation_for_optimization() - A lightweight, performance-optimized version
+   - Use this function for the default session_id as the optimized model
+   - Designed specifically for automated parameter optimization
+   - Rapidly tests numerous target price and stop-loss combinations
+   - Returns only Expected Value (EV) and Win Probability for quick evaluation
+   - Ideal for finding statistically optimal trading parameters
+
+2. run_monte_carlo_simulation() - The full, comprehensive simulation
+   - Use this function when providing custom take-profit (TP), stop-loss (SL), or personalized metrics
+   - Executes complete simulation with user-specified parameters
+   - Stores full results in the database including all price paths and percentiles
+   - Generates professional commentary and trading advice
+   - Returns comprehensive metrics including risk of ruin, maximum drawdown, etc.
+   - Ideal for custom strategy analysis and decision-making
+
+The optimize_and_run_monte_carlo() function combines both approaches:
+- First uses _run_simulation_for_optimization() to find optimal parameters
+- Then uses run_monte_carlo_simulation() with those parameters for final analysis
+"""
+
 import numpy as np
 import os
 import random

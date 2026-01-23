@@ -8,12 +8,17 @@ This module offers two primary functions for running simulations:
 
 1.  **For Automated Parameter Optimization**:
     -   Call `optimize_and_run_monte_carlo()`.
-    -   This is the recommended function for most use cases.
-    -   It automatically finds the best `target_price` and `stop_loss` that maximize the win probability while enforcing a minimum risk-reward ratio (default is 2:1).
+    -   This is the recommended function for the default session_id as the optimized model.
+    -   It uses `_run_simulation_for_optimization()` internally to rapidly test numerous parameter combinations.
+    -   Automatically finds the best `target_price` and `stop_loss` that maximize win probability while enforcing a minimum risk-reward ratio (default is 2:1).
+    -   Ideal for finding statistically optimal trading parameters.
 
-2.  **For Manual Parameter Control**:
+2.  **For Custom Parameter Analysis**:
     -   Call `run_monte_carlo_simulation()`.
-    -   Use this function to test a specific `target_price` and `stop_loss`.
+    -   Use this function when providing custom take-profit (TP), stop-loss (SL), or personalized metrics.
+    -   Executes complete simulation with user-specified parameters.
+    -   Provides comprehensive analysis including risk metrics and professional commentary.
+    -   Ideal for testing specific trading strategies with predefined parameters.
 
 ---
 
