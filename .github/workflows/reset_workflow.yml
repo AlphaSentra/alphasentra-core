@@ -2,7 +2,7 @@ name: Dataset Reset
 
 on:
   schedule:
-    - cron: '30 13 * * *'  # 13:30 UTC daily (1:30 PM)
+    - cron: '30 21 * * *'  # 21:30 UTC daily (9:30 PM)
   workflow_dispatch:    
 
 jobs:

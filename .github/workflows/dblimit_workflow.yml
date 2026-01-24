@@ -1,7 +1,7 @@
 name: Database Limit Check
 on:
   schedule:
-    - cron: '0 15 * * *'  # 3pm UTC every day
+    - cron: '0 22 * * *'  # 3pm UTC every day
   workflow_dispatch:
 
 jobs:
