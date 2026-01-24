@@ -1,0 +1,272 @@
+2026-01-24 10:03:13,189 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-24 10:03:17,004 - WARNING - [ERR-0001] - [858d5583] Attempting to extract JSON from text (length: 322 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 10:03:17,004 - WARNING - [ERR-0001] - [52b2aed0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 10:03:17,004 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-24 10:03:23,168 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-24 10:03:40,054 - WARNING - [ERR-0001] - [ba43a021] Attempting to extract JSON from text (length: 6417 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 10:03:40,055 - WARNING - [ERR-0001] - [fb6712b0] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 10:03:40,055 - WARNING - [ERR-0001] - [babeba2e] Attempting to extract JSON from text (length: 6417 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 10:03:40,056 - WARNING - [ERR-0001] - [73da870d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 10:03:40,056 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-24 10:03:41,967 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-24 10:03:50,438 - WARNING - [ERR-0001] - [b63399bb] Attempting to extract JSON from text (length: 2089 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 10:03:50,439 - WARNING - [ERR-0001] - [b1eee164] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-24 10:03:50,439 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-24 10:03:50,439 - INFO - [INFO] - Time step t=1 starting
+2026-01-24 10:03:50,439 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.7, Price Change: -0.0113, New Price: 99.9887
+2026-01-24 10:03:50,449 - INFO - [INFO] - Calculating volatility for JNJ...
+2026-01-24 10:03:50,449 - INFO - [INFO] - Fetching 252 days of close prices for JNJ...
+2026-01-24 10:03:50,672 - INFO - [INFO] - Successfully fetched data for JNJ.
+2026-01-24 10:03:50,673 - INFO - [INFO] - Calculated volatility for JNJ: 0.19488419204167878
+2026-01-24 10:03:50,673 - INFO - [INFO] - Calculating drift for JNJ...
+2026-01-24 10:03:50,673 - INFO - [INFO] - Fetching 252 days of close prices for JNJ...
+2026-01-24 10:03:50,722 - INFO - [INFO] - Successfully fetched data for JNJ.
+2026-01-24 10:03:50,722 - INFO - [INFO] - Calculated drift for JNJ: 0.4382
+2026-01-24 10:03:52,144 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['JNJ']
+2026-01-24 10:03:52,144 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-24 10:03:52,144 - INFO - [INFO] - Using configured time horizon: 240 days for JNJ
+2026-01-24 10:03:59,066 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-24 10:04:00,650 - INFO - [INFO] - Successfully updated insight for JNJ with simulation summary.
+2026-01-24 10:04:02,556 - INFO - [INFO] - Successfully updated insight for JNJ with optimal price levels and root-level simulation summary.
+2026-01-24 10:08:19,091 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-24 10:08:23,049 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-24 10:08:28,832 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-24 10:08:39,772 - WARNING - [ERR-0001] - [b07ca465] Attempting to extract JSON from text (length: 6320 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 10:08:39,773 - WARNING - [ERR-0001] - [d8645e83] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 10:08:39,773 - WARNING - [ERR-0001] - [2986a5f7] Attempting to extract JSON from text (length: 6320 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 10:08:39,773 - WARNING - [ERR-0001] - [7cd3c731] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 10:08:39,773 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-24 10:08:41,688 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-24 10:08:53,227 - WARNING - [ERR-0001] - [1085be9b] Attempting to extract JSON from text (length: 2817 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 10:08:53,228 - WARNING - [ERR-0001] - [32c9b1a0] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-24 10:08:53,228 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-24 10:08:53,229 - INFO - [INFO] - Time step t=1 starting
+2026-01-24 10:08:53,231 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.59, Price Change: 0.003, New Price: 100.003
+2026-01-24 10:08:53,240 - INFO - [INFO] - Calculating volatility for JNJ...
+2026-01-24 10:08:53,240 - INFO - [INFO] - Fetching 252 days of close prices for JNJ...
+2026-01-24 10:08:53,458 - INFO - [INFO] - Successfully fetched data for JNJ.
+2026-01-24 10:08:53,459 - INFO - [INFO] - Calculated volatility for JNJ: 0.19488416367493638
+2026-01-24 10:08:53,459 - INFO - [INFO] - Calculating drift for JNJ...
+2026-01-24 10:08:53,459 - INFO - [INFO] - Fetching 252 days of close prices for JNJ...
+2026-01-24 10:08:53,511 - INFO - [INFO] - Successfully fetched data for JNJ.
+2026-01-24 10:08:53,511 - INFO - [INFO] - Calculated drift for JNJ: 0.4382
+2026-01-24 10:08:54,870 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['JNJ']
+2026-01-24 10:08:54,871 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-24 10:08:54,871 - INFO - [INFO] - Using configured time horizon: 240 days for JNJ
+2026-01-24 10:09:01,137 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-24 10:09:02,222 - INFO - [INFO] - Successfully updated insight for JNJ with simulation summary.
+2026-01-24 10:09:02,830 - INFO - [INFO] - Successfully updated insight for JNJ with optimal price levels and root-level simulation summary.
+2026-01-24 12:14:57,379 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-24 12:15:02,533 - WARNING - [ERR-0001] - [08b708a2] Attempting to extract JSON from text (length: 369 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:15:02,533 - WARNING - [ERR-0001] - [672270c4] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:15:02,533 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-24 12:15:06,393 - INFO - [INFO] - Starting fx_long_short AI response retrieval
+2026-01-24 12:15:16,903 - WARNING - [ERR-0001] - [3bfc40db] Attempting to extract JSON from text (length: 5648 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:15:16,904 - WARNING - [ERR-0001] - [08f23f4d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:15:16,904 - WARNING - [ERR-0001] - [cf37e7cd] Attempting to extract JSON from text (length: 5648 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:15:16,904 - WARNING - [ERR-0001] - [a3c94b6f] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:15:16,904 - INFO - [INFO] - FX Long/Short Model JSON parsed and validated successfully
+2026-01-24 12:15:18,496 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-24 12:15:25,836 - WARNING - [ERR-0001] - [fea235bf] Attempting to extract JSON from text (length: 2514 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:15:25,836 - WARNING - [ERR-0001] - [97e762d7] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-24 12:15:25,836 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-24 12:15:25,836 - INFO - [INFO] - Time step t=1 starting
+2026-01-24 12:15:25,839 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.02, Price Change: -0.0021, New Price: 99.9979
+2026-01-24 12:15:25,849 - INFO - [INFO] - Calculating volatility for GBPUSD=X...
+2026-01-24 12:15:25,849 - INFO - [INFO] - Fetching 252 days of close prices for GBPUSD=X...
+2026-01-24 12:15:27,118 - INFO - [INFO] - Successfully fetched data for GBPUSD=X.
+2026-01-24 12:15:27,119 - INFO - [INFO] - Calculated volatility for GBPUSD=X: 0.06975630471495703
+2026-01-24 12:15:27,120 - INFO - [INFO] - Calculating drift for GBPUSD=X...
+2026-01-24 12:15:27,120 - INFO - [INFO] - Fetching 252 days of close prices for GBPUSD=X...
+2026-01-24 12:15:27,173 - INFO - [INFO] - Successfully fetched data for GBPUSD=X.
+2026-01-24 12:15:27,173 - INFO - [INFO] - Calculated drift for GBPUSD=X: 0.0783
+2026-01-24 12:15:28,664 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GBPUSD=X']
+2026-01-24 12:15:28,665 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-24 12:15:28,665 - INFO - [INFO] - Using configured time horizon: 240 days for GBPUSD=X
+2026-01-24 12:15:34,325 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-24 12:15:37,281 - INFO - [INFO] - Successfully updated insight for GBPUSD=X with simulation summary.
+2026-01-24 12:15:38,591 - INFO - [INFO] - Successfully updated insight for GBPUSD=X with optimal price levels and root-level simulation summary.
+2026-01-24 12:19:29,971 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-24 12:19:34,271 - WARNING - [ERR-0001] - [635a9a82] Attempting to extract JSON from text (length: 442 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:19:34,271 - WARNING - [ERR-0001] - [7dd0b616] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:19:34,271 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-24 12:19:39,367 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-24 12:19:52,081 - WARNING - [ERR-0001] - [10f30d7b] Attempting to extract JSON from text (length: 6924 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:19:52,081 - WARNING - [ERR-0001] - [df65226e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:19:52,081 - WARNING - [ERR-0001] - [0e47af6f] Attempting to extract JSON from text (length: 6924 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:19:52,082 - WARNING - [ERR-0001] - [b5d45a94] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:19:52,082 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-24 12:19:53,736 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-24 12:20:03,530 - WARNING - [ERR-0001] - [a29ffa9f] Attempting to extract JSON from text (length: 2088 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:20:03,531 - WARNING - [ERR-0001] - [30717338] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-24 12:20:03,531 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-24 12:20:03,531 - INFO - [INFO] - Time step t=1 starting
+2026-01-24 12:20:03,533 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.47, Price Change: -0.0352, New Price: 99.9648
+2026-01-24 12:20:03,542 - INFO - [INFO] - Calculating volatility for CL=F...
+2026-01-24 12:20:03,542 - INFO - [INFO] - Fetching 252 days of close prices for CL=F...
+2026-01-24 12:20:03,694 - INFO - [INFO] - Successfully fetched data for CL=F.
+2026-01-24 12:20:03,696 - INFO - [INFO] - Calculated volatility for CL=F: 0.33531518734923627
+2026-01-24 12:20:03,696 - INFO - [INFO] - Calculating drift for CL=F...
+2026-01-24 12:20:03,696 - INFO - [INFO] - Fetching 252 days of close prices for CL=F...
+2026-01-24 12:20:03,741 - INFO - [INFO] - Successfully fetched data for CL=F.
+2026-01-24 12:20:03,742 - INFO - [INFO] - Calculated drift for CL=F: -0.1925
+2026-01-24 12:20:04,594 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['CL=F']
+2026-01-24 12:20:04,594 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-24 12:20:04,594 - INFO - [INFO] - Using configured time horizon: 240 days for CL=F
+2026-01-24 12:20:10,267 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-24 12:20:12,827 - INFO - [INFO] - Successfully updated insight for CL=F with simulation summary.
+2026-01-24 12:20:16,817 - INFO - [INFO] - Successfully updated insight for CL=F with optimal price levels and root-level simulation summary.
+2026-01-24 12:28:46,161 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-24 12:28:49,663 - WARNING - [ERR-0001] - [8c1c9c44] Attempting to extract JSON from text (length: 315 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:28:49,663 - WARNING - [ERR-0001] - [0e1fc683] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:28:49,664 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-24 12:28:53,732 - INFO - [INFO] - Starting fx_long_short AI response retrieval
+2026-01-24 12:29:11,457 - WARNING - [ERR-0001] - [776df752] Attempting to extract JSON from text (length: 6105 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:29:11,458 - WARNING - [ERR-0001] - [6c3c5681] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:29:11,458 - WARNING - [ERR-0001] - [0fd98bda] Attempting to extract JSON from text (length: 6105 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:29:11,458 - WARNING - [ERR-0001] - [b640f92a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:29:11,458 - INFO - [INFO] - FX Long/Short Model JSON parsed and validated successfully
+2026-01-24 12:29:13,151 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-24 12:29:24,738 - WARNING - [ERR-0001] - [3714818f] Attempting to extract JSON from text (length: 3018 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:29:24,740 - WARNING - [ERR-0001] - [7f4f850a] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-24 12:29:24,740 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-24 12:29:24,740 - INFO - [INFO] - Time step t=1 starting
+2026-01-24 12:29:24,742 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.26, Price Change: 0.0185, New Price: 100.0185
+2026-01-24 12:29:24,752 - INFO - [INFO] - Calculating volatility for EURUSD=X...
+2026-01-24 12:29:24,752 - INFO - [INFO] - Fetching 252 days of close prices for EURUSD=X...
+2026-01-24 12:29:25,105 - INFO - [INFO] - Successfully fetched data for EURUSD=X.
+2026-01-24 12:29:25,106 - INFO - [INFO] - Calculated volatility for EURUSD=X: 0.0774601123916252
+2026-01-24 12:29:25,106 - INFO - [INFO] - Calculating drift for EURUSD=X...
+2026-01-24 12:29:25,106 - INFO - [INFO] - Fetching 252 days of close prices for EURUSD=X...
+2026-01-24 12:29:25,158 - INFO - [INFO] - Successfully fetched data for EURUSD=X.
+2026-01-24 12:29:25,159 - INFO - [INFO] - Calculated drift for EURUSD=X: 0.1248
+2026-01-24 12:29:27,275 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['EURUSD=X']
+2026-01-24 12:29:27,276 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-24 12:29:27,276 - INFO - [INFO] - Using configured time horizon: 240 days for EURUSD=X
+2026-01-24 12:29:34,071 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-24 12:29:35,341 - INFO - [INFO] - Successfully updated insight for EURUSD=X with simulation summary.
+2026-01-24 12:29:40,696 - INFO - [INFO] - Successfully updated insight for EURUSD=X with optimal price levels and root-level simulation summary.
+2026-01-24 12:39:16,544 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-24 12:39:21,587 - WARNING - [ERR-0001] - [6d71f61c] Attempting to extract JSON from text (length: 312 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:39:21,587 - WARNING - [ERR-0001] - [7ddcca69] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:39:21,587 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-24 12:39:25,607 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-24 12:39:36,809 - WARNING - [ERR-0001] - [7f0e728b] Attempting to extract JSON from text (length: 6383 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:39:36,811 - WARNING - [ERR-0001] - [6c95e4b5] JSON parsing failed for end object pattern: Illegal trailing comma before end of array: line 6 column 405 (char 1295) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:39:36,812 - ERROR - [ERR-0001] - [f45492e4] Error processing AI response (attempt 1/10) | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2026-01-24 12:39:52,525 - WARNING - [ERR-0001] - [0f2247ff] Attempting to extract JSON from text (length: 7129 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:39:52,526 - WARNING - [ERR-0001] - [92bab494] JSON parsing failed for end object pattern: Illegal trailing comma before end of array: line 6 column 466 (char 1473) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:39:52,526 - ERROR - [ERR-0001] - [aab0c454] Error processing AI response (attempt 2/10) | Exception: TypeError: 'int' object is not callable | From: holistic.py:run_holistic_market_model()
+2026-01-24 12:40:05,512 - WARNING - [ERR-0001] - [94e8ecb1] Attempting to extract JSON from text (length: 5109 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:40:05,513 - WARNING - [ERR-0001] - [09f00c0e] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:40:05,513 - WARNING - [ERR-0001] - [ffd48fce] Attempting to extract JSON from text (length: 5109 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:40:05,513 - WARNING - [ERR-0001] - [40e6c8f6] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:40:05,513 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-24 12:40:07,053 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-24 12:40:18,938 - WARNING - [ERR-0001] - [383fc13d] Attempting to extract JSON from text (length: 3231 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:40:18,939 - WARNING - [ERR-0001] - [f9b76bcf] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-24 12:40:18,939 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-24 12:40:18,939 - INFO - [INFO] - Time step t=1 starting
+2026-01-24 12:40:18,941 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.67, Price Change: -0.2131, New Price: 99.7869
+2026-01-24 12:40:18,952 - INFO - [INFO] - Calculating volatility for GC=F...
+2026-01-24 12:40:18,952 - INFO - [INFO] - Fetching 252 days of close prices for GC=F...
+2026-01-24 12:40:19,240 - INFO - [INFO] - Successfully fetched data for GC=F.
+2026-01-24 12:40:19,242 - INFO - [INFO] - Calculated volatility for GC=F: 0.22430666740555447
+2026-01-24 12:40:19,242 - INFO - [INFO] - Calculating drift for GC=F...
+2026-01-24 12:40:19,243 - INFO - [INFO] - Fetching 252 days of close prices for GC=F...
+2026-01-24 12:40:19,319 - INFO - [INFO] - Successfully fetched data for GC=F.
+2026-01-24 12:40:19,320 - INFO - [INFO] - Calculated drift for GC=F: 0.57
+2026-01-24 12:40:21,374 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GC=F']
+2026-01-24 12:40:21,375 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-24 12:40:21,375 - INFO - [INFO] - Using configured time horizon: 240 days for GC=F
+2026-01-24 12:40:27,595 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-24 12:40:29,196 - INFO - [INFO] - Successfully updated insight for GC=F with simulation summary.
+2026-01-24 12:40:31,410 - INFO - [INFO] - Successfully updated insight for GC=F with optimal price levels and root-level simulation summary.
+2026-01-24 12:49:42,031 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-24 12:49:45,294 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-24 12:49:49,447 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-24 12:50:06,636 - WARNING - [ERR-0001] - [af82c0f8] Attempting to extract JSON from text (length: 6595 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:50:06,637 - WARNING - [ERR-0001] - [dc8c0724] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:50:06,637 - WARNING - [ERR-0001] - [17234da4] Attempting to extract JSON from text (length: 6595 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:50:06,637 - WARNING - [ERR-0001] - [03b5acff] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:50:06,637 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-24 12:50:08,218 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-24 12:50:20,680 - WARNING - [ERR-0001] - [0a734294] Attempting to extract JSON from text (length: 3280 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:50:20,681 - WARNING - [ERR-0001] - [5cb8829e] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-24 12:50:20,681 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-24 12:50:20,681 - INFO - [INFO] - Time step t=1 starting
+2026-01-24 12:50:20,682 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.11, Price Change: 0.0664, New Price: 100.0664
+2026-01-24 12:50:20,691 - INFO - [INFO] - Calculating volatility for ZC=F...
+2026-01-24 12:50:20,691 - INFO - [INFO] - Fetching 252 days of close prices for ZC=F...
+2026-01-24 12:50:20,845 - INFO - [INFO] - Successfully fetched data for ZC=F.
+2026-01-24 12:50:20,847 - INFO - [INFO] - Calculated volatility for ZC=F: 0.20050504150945073
+2026-01-24 12:50:20,847 - INFO - [INFO] - Calculating drift for ZC=F...
+2026-01-24 12:50:20,847 - INFO - [INFO] - Fetching 252 days of close prices for ZC=F...
+2026-01-24 12:50:20,892 - INFO - [INFO] - Successfully fetched data for ZC=F.
+2026-01-24 12:50:20,893 - INFO - [INFO] - Calculated drift for ZC=F: -0.0741
+2026-01-24 12:50:21,990 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ZC=F']
+2026-01-24 12:50:21,991 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-24 12:50:21,991 - INFO - [INFO] - Using configured time horizon: 240 days for ZC=F
+2026-01-24 12:50:27,069 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-24 12:50:28,234 - INFO - [INFO] - Successfully updated insight for ZC=F with simulation summary.
+2026-01-24 12:50:29,524 - WARNING - [WARN-0001] - [10bbaa52] Strategy direction changed from LONG to SHORT for ZC=F, but no 'price' field found in existing insight. | From: montecarlo.py:_update_insight_with_optimal_levels()
+2026-01-24 12:50:30,359 - INFO - [INFO] - Successfully updated insight for ZC=F with optimal price levels and root-level simulation summary.
+2026-01-24 12:58:28,215 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-24 12:58:32,692 - WARNING - [ERR-0001] - [b539cd88] Attempting to extract JSON from text (length: 459 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:58:32,693 - WARNING - [ERR-0001] - [28b1aa33] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:58:32,693 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-24 12:58:36,597 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-24 12:58:47,596 - WARNING - [ERR-0001] - [7694b864] Attempting to extract JSON from text (length: 6035 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:58:47,596 - WARNING - [ERR-0001] - [fc3f24da] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:58:47,596 - WARNING - [ERR-0001] - [d94af1f7] Attempting to extract JSON from text (length: 6035 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:58:47,596 - WARNING - [ERR-0001] - [fb000e56] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 12:58:47,596 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-24 12:58:49,103 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-24 12:58:59,529 - WARNING - [ERR-0001] - [d9f7d76b] Attempting to extract JSON from text (length: 3218 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 12:58:59,530 - WARNING - [ERR-0001] - [16f15964] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-24 12:58:59,530 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-24 12:58:59,530 - INFO - [INFO] - Time step t=1 starting
+2026-01-24 12:58:59,532 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.05, Price Change: 0.053, New Price: 100.053
+2026-01-24 12:58:59,541 - INFO - [INFO] - Calculating volatility for BTC-USD...
+2026-01-24 12:58:59,541 - INFO - [INFO] - Fetching 252 days of close prices for BTC-USD...
+2026-01-24 12:58:59,675 - INFO - [INFO] - Successfully fetched data for BTC-USD.
+2026-01-24 12:58:59,677 - INFO - [INFO] - Calculated volatility for BTC-USD: 0.2929811698268807
+2026-01-24 12:58:59,677 - INFO - [INFO] - Calculating drift for BTC-USD...
+2026-01-24 12:58:59,677 - INFO - [INFO] - Fetching 252 days of close prices for BTC-USD...
+2026-01-24 12:58:59,722 - INFO - [INFO] - Successfully fetched data for BTC-USD.
+2026-01-24 12:58:59,723 - INFO - [INFO] - Calculated drift for BTC-USD: -0.173
+2026-01-24 12:59:00,870 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['BTC-USD']
+2026-01-24 12:59:00,870 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-24 12:59:00,870 - INFO - [INFO] - Using configured time horizon: 240 days for BTC-USD
+2026-01-24 12:59:05,992 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-24 12:59:07,100 - INFO - [INFO] - Successfully updated insight for BTC-USD with simulation summary.
+2026-01-24 12:59:08,007 - WARNING - [WARN-0001] - [13d2b03f] Strategy direction changed from LONG to SHORT for BTC-USD, but no 'price' field found in existing insight. | From: montecarlo.py:_update_insight_with_optimal_levels()
+2026-01-24 12:59:08,564 - INFO - [INFO] - Successfully updated insight for BTC-USD with optimal price levels and root-level simulation summary.
+2026-01-24 13:05:59,587 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-24 13:06:02,540 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-24 13:06:06,610 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-24 13:06:19,552 - WARNING - [ERR-0001] - [620ec8dd] Attempting to extract JSON from text (length: 6402 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 13:06:19,553 - WARNING - [ERR-0001] - [2de9f774] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 13:06:19,553 - WARNING - [ERR-0001] - [f6adc65c] Attempting to extract JSON from text (length: 6402 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 13:06:19,553 - WARNING - [ERR-0001] - [66e1b141] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-24 13:06:19,553 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-24 13:06:21,120 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-24 13:06:32,724 - WARNING - [ERR-0001] - [3951558a] Attempting to extract JSON from text (length: 4124 chars) | From: helpers.py:extract_json_from_text()
+2026-01-24 13:06:32,725 - WARNING - [ERR-0001] - [f0b039db] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-24 13:06:32,725 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-24 13:06:32,725 - INFO - [INFO] - Time step t=1 starting
+2026-01-24 13:06:32,726 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.13, Price Change: 0.0262, New Price: 100.0262
+2026-01-24 13:06:32,736 - INFO - [INFO] - Calculating volatility for ETH-USD...
+2026-01-24 13:06:32,736 - INFO - [INFO] - Fetching 252 days of close prices for ETH-USD...
+2026-01-24 13:06:32,917 - INFO - [INFO] - Successfully fetched data for ETH-USD.
+2026-01-24 13:06:32,918 - INFO - [INFO] - Calculated volatility for ETH-USD: 0.5448599643221425
+2026-01-24 13:06:32,918 - INFO - [INFO] - Calculating drift for ETH-USD...
+2026-01-24 13:06:32,918 - INFO - [INFO] - Fetching 252 days of close prices for ETH-USD...
+2026-01-24 13:06:32,982 - INFO - [INFO] - Successfully fetched data for ETH-USD.
+2026-01-24 13:06:32,982 - INFO - [INFO] - Calculated drift for ETH-USD: 0.1695
+2026-01-24 13:06:34,466 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['ETH-USD']
+2026-01-24 13:06:34,467 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-24 13:06:34,467 - INFO - [INFO] - Using configured time horizon: 240 days for ETH-USD
+2026-01-24 13:06:40,249 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-24 13:06:41,795 - INFO - [INFO] - Successfully updated insight for ETH-USD with simulation summary.
+2026-01-24 13:06:43,759 - INFO - [INFO] - Successfully updated insight for ETH-USD with optimal price levels and root-level simulation summary.
