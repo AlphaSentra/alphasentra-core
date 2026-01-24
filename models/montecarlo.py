@@ -395,31 +395,31 @@ def _generate_simulation_commentary(results: dict, num_simulations: int, strateg
             profitability_score += 5
     
     # Generate single paragraph commentary
-    commentary = f"Based on {num_simulations:,} simulated trades for {ticker} using a {strategy} strategy with a ${bet_size:,} bet size, this analysis reveals the following: the strategy demonstrates a {win_prob:.1f}% win probability with an expected value of ${ev:.2f} per trade (based on the ${bet_size:,} bet amount), a {risk_of_ruin:.1f}% stop level, and a maximum drawdown of {max_dd:.1f}%. Approximately {expired_prob:.1f}% of trades are projected to expire without hitting targets, and winning trades typically reach their objectives in around {avg_days:.1f} days when successful. "
+    commentary = f"Based on {num_simulations:,} simulated trades for {ticker}, the system has determined that the most appropriate approach is to go {strategy} with {ticker}. Thus, the strategy demonstrates a {win_prob:.1f}% win probability with an expected value of ${ev:.2f} per trade (based on a ${bet_size:,} bet amount), a {risk_of_ruin:.1f}% probability to hit stop level, and a maximum drawdown of {max_dd:.1f}%. About {expired_prob:.1f}% of trades are expected to go sideways, and winning trades reach their objectives in around {avg_days:.1f} days. "
     
     # Add strategy selection rationale (only for default session)
     if win_prob < 50 and sessionID == "default":
-        commentary += f"Although this strategy has a lower {win_prob:.1f}% win probability, it was selected because "
+        commentary += f"Although going {strategy} has a lower {win_prob:.1f}% win probability, it was selected because "
         if ev > 0:
-            commentary += f"it maintains a positive expected value of ${ev:.2f}, indicating that the winning trades are sufficiently larger than losing trades to justify the approach. "
+            commentary += f"it maintains a positive expected value of ${ev:.2f}, indicating that the winning trades are sufficiently larger than losing trades to justify this approach. "
         else:
             commentary += f"it represents the best available option among the tested strategies, though both win probability and expected value suggest caution is warranted. "
-        commentary += f"The {strategy} position was chosen based on the optimization algorithm's assessment that it provides the most favorable risk-reward profile given current market conditions and the {ticker} asset's historical behavior. "
+        commentary += f"The {strategy} position was chosen as it provides the most favourable risk-reward profile given {ticker} price action's pattern. "
     
     if ev > 0 and win_prob > 60:
-        commentary += f"This represents a highly promising strategy with strong statistical advantages, as evidenced by the favorable combination of high win probability and positive expected value, resulting in a profitability score of {profitability_score}/100. The relatively low stop level suggests good risk-reward characteristics, making this a strategy worthy of serious consideration for traders seeking consistent profitability. However, prudent risk management remains essential, with position sizing to withstand the {max_dd:.1f}% maximum drawdown scenarios that may occur during normal market fluctuations."
+        commentary += f"This strategy represents a strong statistical advantages, as evidenced by the favourable combination of high win probability and positive expected value, resulting in a profitability score of {profitability_score}/100. The low stop level suggests good risk-reward characteristics."
     
     elif ev > 0 and win_prob > 50:
-        commentary += f"This strategy shows solid potential with a profitability score of {profitability_score}/100, indicating statistical profitability over the long term, though the {risk_of_ruin:.1f}% stop level suggests disciplined execution is required. It is advised to approach this strategy with conservative position sizing be prepared for the {max_dd:.1f}% drawdowns that represent the worst-case scenarios. The positive expected value of ${ev:.2f} suggests this could be a viable strategy, but it requires consistent application and proper risk management to realize its potential over a large sample of trades."
+        commentary += f"This strategy shows solid potential with a profitability score of {profitability_score}/100, indicating statistical profitability over the long term, though the {risk_of_ruin:.1f}% probability to hit stop level suggests disciplined execution is required."
     
     elif ev > 0 and win_prob <= 50:
-        commentary += f"This strategy falls into the high-risk category with a profitability score of {profitability_score}/100, characterized by a positive expected value of ${ev:.2f} but a lower {win_prob:.1f}% win rate, meaning more losing trades than winners are expected. The {risk_of_ruin:.1f}% stop level is concerning and demands extremely cautious approach. This is a speculative trade and should be part of a diversified strategy portfolio, considering the risk of a {max_dd:.1f}% drawdowns."
+        commentary += f"This strategy falls into the high-risk category with a profitability score of {profitability_score}/100, characterized by a positive expected value of ${ev:.2f} but a lower {win_prob:.1f}% win rate, meaning more losing trades than winners are expected."
     
     elif ev <= 0 and win_prob > 50:
-        commentary += f"This strategy presents a dangerous combination with a profitability score of {profitability_score}/100, where a {win_prob:.1f}% win rate is offset by a negative expected value of ${ev:.2f}, indicating that losses are likely larger than wins. The {risk_of_ruin:.1f}% stop level confirms this is a risky proposition that will likely erode trading capital over time. Strong recommendation against trading this strategy in its current form; focus instead on developing strategies with both positive expected value and reasonable win rates. Consider adjusting risk-reward ratios, refining entry/exit criteria, or exploring alternative timeframes to improve the statistical profile."
+        commentary += f"This strategy presents a dangerous combination with a profitability score of {profitability_score}/100, where a {win_prob:.1f}% win rate is offset by a negative expected value of ${ev:.2f}, indicating that losses are likely larger than wins."
     
     else: # ev <= 0 and win_prob <= 50
-        commentary += f"Based on these results with a profitability score of {profitability_score}/100, this does not appear to be a viable trading strategy, as both the {win_prob:.1f}% win rate and negative expected value of ${ev:.2f} suggest the odds are stacked against success. The {risk_of_ruin:.1f}% stop level and {max_dd:.1f}% maximum drawdown confirm this strategy is likely to lose money over time. The current configuration shows no statistical edge and requires significant improvement."
+        commentary += f"Based on these results with a profitability score of {profitability_score}/100, this does not appear to be a viable trading strategy, as both the {win_prob:.1f}% win rate and negative expected value of ${ev:.2f} suggest the odds are stacked against success."
     
     return commentary
 
