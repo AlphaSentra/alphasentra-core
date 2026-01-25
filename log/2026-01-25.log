@@ -1,0 +1,69 @@
+2026-01-25 09:01:42,777 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-25 09:01:48,062 - WARNING - [ERR-0001] - [3ad0a88f] Attempting to extract JSON from text (length: 399 chars) | From: helpers.py:extract_json_from_text()
+2026-01-25 09:01:48,062 - WARNING - [ERR-0001] - [ec8ec39b] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-25 09:01:48,063 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-25 09:05:10,011 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-25 09:05:14,869 - WARNING - [ERR-0001] - [39bf7a89] Attempting to extract JSON from text (length: 366 chars) | From: helpers.py:extract_json_from_text()
+2026-01-25 09:05:14,869 - ERROR - [ERR-0001] - [57c2c44a] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-01-25 09:05:14,869 - ERROR - [ERR-0001] - [1bf9cbaf] Text preview: Invesco QQQ Trust, Series 1 (QQQ) is an exchange-traded fund (ETF) that aims to replicate the price and yield performance of the Nasdaq-100 Index, which includes 100 of the largest non-financial companies listed on the Nasdaq Stock Market.
+
+'sector': 'Information Technology',
+'cashflow_health': '—',
+'profit_health': '—',
+'price_momentum': 'A',
+'growth_health': 'A'... | From: helpers.py:extract_json_from_text()
+2026-01-25 09:05:14,870 - ERROR - [ERR-0001] - [46fcf829] Error processing AI response (attempt 1/10) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-01-25 09:05:21,731 - WARNING - [ERR-0001] - [c18cd6f8] Attempting to extract JSON from text (length: 407 chars) | From: helpers.py:extract_json_from_text()
+2026-01-25 09:05:21,731 - WARNING - [ERR-0001] - [62653cac] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-25 09:05:21,731 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-25 09:05:27,358 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-25 09:05:43,409 - WARNING - [ERR-0001] - [ffe3dbab] Attempting to extract JSON from text (length: 5541 chars) | From: helpers.py:extract_json_from_text()
+2026-01-25 09:05:43,409 - WARNING - [ERR-0001] - [c6664c7d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-25 09:05:43,409 - WARNING - [ERR-0001] - [0234445b] Attempting to extract JSON from text (length: 5541 chars) | From: helpers.py:extract_json_from_text()
+2026-01-25 09:05:43,410 - WARNING - [ERR-0001] - [e851adef] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-25 09:05:43,410 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-25 09:05:46,152 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-25 09:05:54,652 - WARNING - [ERR-0001] - [cade7030] Attempting to extract JSON from text (length: 2988 chars) | From: helpers.py:extract_json_from_text()
+2026-01-25 09:05:54,653 - WARNING - [ERR-0001] - [1481e0f8] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-25 09:05:54,653 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-25 09:05:54,653 - INFO - [INFO] - Time step t=1 starting
+2026-01-25 09:05:54,655 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.16, Price Change: -0.1173, New Price: 99.8827
+2026-01-25 09:05:54,666 - INFO - [INFO] - Calculating volatility for QQQ...
+2026-01-25 09:05:54,666 - INFO - [INFO] - Fetching 252 days of close prices for QQQ...
+2026-01-25 09:05:54,856 - INFO - [INFO] - Successfully fetched data for QQQ.
+2026-01-25 09:05:54,857 - INFO - [INFO] - Calculated volatility for QQQ: 0.23155058930440736
+2026-01-25 09:05:54,857 - INFO - [INFO] - Calculating drift for QQQ...
+2026-01-25 09:05:54,857 - INFO - [INFO] - Fetching 252 days of close prices for QQQ...
+2026-01-25 09:05:54,912 - INFO - [INFO] - Successfully fetched data for QQQ.
+2026-01-25 09:05:54,912 - INFO - [INFO] - Calculated drift for QQQ: 0.162
+2026-01-25 09:05:56,373 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['QQQ']
+2026-01-25 09:05:56,373 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-25 09:05:56,373 - INFO - [INFO] - Using configured time horizon: 240 days for QQQ
+2026-01-25 09:06:02,158 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-25 09:06:03,674 - INFO - [INFO] - Successfully updated insight for QQQ with simulation summary.
+2026-01-25 09:06:06,818 - INFO - [INFO] - Successfully updated insight for QQQ with optimal price levels and root-level simulation summary.
+2026-01-25 09:12:28,541 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-25 09:12:32,749 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-25 09:12:38,350 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-25 09:12:57,327 - WARNING - [ERR-0001] - [24233332] Attempting to extract JSON from text (length: 7028 chars) | From: helpers.py:extract_json_from_text()
+2026-01-25 09:12:57,328 - WARNING - [ERR-0001] - [a619ea15] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-25 09:12:57,328 - WARNING - [ERR-0001] - [b543579d] Attempting to extract JSON from text (length: 7028 chars) | From: helpers.py:extract_json_from_text()
+2026-01-25 09:12:57,328 - WARNING - [ERR-0001] - [abb532b8] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-25 09:12:57,328 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-25 09:13:00,769 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-25 09:13:08,854 - WARNING - [ERR-0001] - [a812c1ec] Attempting to extract JSON from text (length: 2310 chars) | From: helpers.py:extract_json_from_text()
+2026-01-25 09:13:08,854 - WARNING - [ERR-0001] - [091c9b44] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-01-25 09:13:08,854 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-25 09:13:08,854 - INFO - [INFO] - Time step t=1 starting
+2026-01-25 09:13:08,856 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: -0.66, Price Change: 0.0474, New Price: 100.0474
+2026-01-25 09:13:08,866 - INFO - [INFO] - Calculating volatility for WBA...
+2026-01-25 09:13:08,866 - INFO - [INFO] - Fetching 252 days of close prices for WBA...
+2026-01-25 09:13:09,283 - INFO - [INFO] - Successfully fetched data for WBA.
+2026-01-25 09:13:09,285 - ERROR - [ERR-0001] - [6e284dcd] Insufficient data for WBA, defaulting volatility to 0.3 | From: price_action.py:calculate_volatility()
+2026-01-25 09:13:09,285 - INFO - [INFO] - Calculating drift for WBA...
+2026-01-25 09:13:09,285 - INFO - [INFO] - Fetching 252 days of close prices for WBA...
+2026-01-25 09:13:09,699 - INFO - [INFO] - Successfully fetched data for WBA.
+2026-01-25 09:13:09,700 - ERROR - [ERR-0001] - [e1b64cb9] Insufficient data for WBA, defaulting drift to 0.0 | From: price_action.py:calculate_drift()
+2026-01-25 09:13:10,570 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['WBA']
+2026-01-25 09:13:10,570 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-25 09:13:10,571 - WARNING - [ERR-0001] - [06417bfe] Could not run Monte Carlo simulation because entry price is not available. | From: holistic.py:run_holistic_market_model()

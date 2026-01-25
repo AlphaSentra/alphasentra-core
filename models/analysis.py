@@ -144,7 +144,7 @@ def run_analysis(ticker, instrument_name, batch_mode=False):
                 }
             
             chart_data = chart_functions[chart_key](ticker_to_check)
-            return chart_data.get(chart_key, {})
+            return chart_data.get(chart_key, {}) if chart_data is not None else {}
         
         return {
             "growth_profitability": extract_chart("growth_profitability_chart"),
