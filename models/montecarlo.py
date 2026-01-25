@@ -407,16 +407,16 @@ def _generate_simulation_commentary(results: dict, num_simulations: int, strateg
         commentary += f"The {strategy} position was chosen as it provides the most favourable risk-reward profile given {ticker} price action's pattern. "
     
     if ev > 0 and win_prob > 60:
-        commentary += f"This strategy represents a strong statistical advantages, as evidenced by the favourable combination of high win probability and positive expected value, resulting in a profitability score of {profitability_score}/100. The low stop level suggests good risk-reward characteristics."
+        commentary += f"This strategy represents a strong statistical advantages, as evidenced by the favourable combination of high win probability and positive expected value, resulting in a profitability score of {profitability_score}/100."
     
     elif ev > 0 and win_prob > 50:
-        commentary += f"This strategy shows solid potential with a profitability score of {profitability_score}/100, indicating statistical profitability over the long term, though the {risk_of_ruin:.1f}% probability to hit stop level suggests disciplined execution is required."
+        commentary += f"This strategy shows solid potential with a profitability score of {profitability_score}/100."
     
     elif ev > 0 and win_prob <= 50:
-        commentary += f"This strategy falls into the high-risk category with a profitability score of {profitability_score}/100, characterized by a positive expected value of ${ev:.2f} but a lower {win_prob:.1f}% win rate, meaning more losing trades than winners are expected."
+        commentary += f"This strategy falls into the elevated risk category with a profitability score of {profitability_score}/100."
     
     elif ev <= 0 and win_prob > 50:
-        commentary += f"This strategy presents a dangerous combination with a profitability score of {profitability_score}/100, where a {win_prob:.1f}% win rate is offset by a negative expected value of ${ev:.2f}, indicating that losses are likely larger than wins."
+        commentary += f"This strategy presents a dangerous combination with a profitability score of {profitability_score}/100, where a {win_prob:.1f}% win rate is offset by a negative expected value of ${ev:.2f}."
     
     else: # ev <= 0 and win_prob <= 50
         commentary += f"Based on these results with a profitability score of {profitability_score}/100, this does not appear to be a viable trading strategy, as both the {win_prob:.1f}% win rate and negative expected value of ${ev:.2f} suggest the odds are stacked against success."
