@@ -1,0 +1,45 @@
+2026-01-27 07:53:23,464 - INFO - [INFO] - Starting AI economic, business, and geopolitical factors — weights retrieval
+2026-01-27 07:53:28,465 - WARNING - [ERR-0001] - [4baf0548] Attempting to extract JSON from text (length: 169 chars) | From: helpers.py:extract_json_from_text()
+2026-01-27 07:53:28,466 - WARNING - [ERR-0001] - [775b63a3] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-27 07:53:28,757 - INFO - [INFO] - Saved new weights to database for caching
+2026-01-27 07:53:28,757 - INFO - [INFO] - Successfully retrieved and parsed AI economic, business, and geopolitical factors — weights
+2026-01-27 07:53:29,163 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-01-27 07:53:32,382 - WARNING - [ERR-0001] - [dcc1e72c] Attempting to extract JSON from text (length: 329 chars) | From: helpers.py:extract_json_from_text()
+2026-01-27 07:53:32,382 - WARNING - [ERR-0001] - [5f1bad54] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-27 07:53:32,382 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-01-27 07:53:38,234 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-01-27 07:53:40,760 - WARNING - [ERR-0001] - [89ecf4c9] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-27 07:53:40,760 - ERROR - [ERR-0103] - [d50d97be] JSON extraction failed (attempt 1/10) | From: holistic.py:run_holistic_market_model()
+2026-01-27 07:53:46,570 - WARNING - [ERR-0001] - [70893e07] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-27 07:53:46,570 - ERROR - [ERR-0103] - [a1ba0bd5] JSON extraction failed (attempt 2/10) | From: holistic.py:run_holistic_market_model()
+2026-01-27 07:53:52,619 - WARNING - [ERR-0001] - [5dbfc735] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-27 07:53:52,620 - ERROR - [ERR-0103] - [e88769ae] JSON extraction failed (attempt 3/10) | From: holistic.py:run_holistic_market_model()
+2026-01-27 07:53:58,356 - WARNING - [ERR-0001] - [ce2753fb] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-27 07:53:58,356 - ERROR - [ERR-0103] - [b82e48ba] JSON extraction failed (attempt 4/10) | From: holistic.py:run_holistic_market_model()
+2026-01-27 07:54:03,668 - WARNING - [ERR-0001] - [8ea4f018] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-27 07:54:03,669 - ERROR - [ERR-0103] - [50a665e5] JSON extraction failed (attempt 5/10) | From: holistic.py:run_holistic_market_model()
+2026-01-27 07:54:09,297 - WARNING - [ERR-0001] - [14f3e190] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-27 07:54:09,297 - ERROR - [ERR-0103] - [7b7cfbb3] JSON extraction failed (attempt 6/10) | From: holistic.py:run_holistic_market_model()
+2026-01-27 07:54:15,548 - WARNING - [ERR-0001] - [a935b32d] Empty or non-string text provided to extract_json_from_text | From: helpers.py:extract_json_from_text()
+2026-01-27 07:54:15,548 - ERROR - [ERR-0103] - [27321cb5] JSON extraction failed (attempt 7/10) | From: holistic.py:run_holistic_market_model()
+2026-01-27 07:54:26,296 - WARNING - [ERR-0001] - [3b5e3b2a] Attempting to extract JSON from text (length: 5287 chars) | From: helpers.py:extract_json_from_text()
+2026-01-27 07:54:26,297 - WARNING - [ERR-0001] - [17202a27] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-01-27 07:54:26,297 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-01-27 07:54:28,717 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-01-27 07:54:34,538 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-01-27 07:54:34,538 - INFO - [INFO] - Time step t=1 starting
+2026-01-27 07:54:34,540 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.21, Price Change: 0.0473, New Price: 100.0473
+2026-01-27 07:54:34,553 - INFO - [INFO] - Calculating volatility for AAPL...
+2026-01-27 07:54:34,554 - INFO - [INFO] - Fetching 252 days of close prices for AAPL...
+2026-01-27 07:54:34,726 - INFO - [INFO] - Successfully fetched data for AAPL.
+2026-01-27 07:54:34,727 - INFO - [INFO] - Calculated volatility for AAPL: 0.31840694252124735
+2026-01-27 07:54:34,727 - INFO - [INFO] - Calculating drift for AAPL...
+2026-01-27 07:54:34,727 - INFO - [INFO] - Fetching 252 days of close prices for AAPL...
+2026-01-27 07:54:34,777 - INFO - [INFO] - Successfully fetched data for AAPL.
+2026-01-27 07:54:34,777 - INFO - [INFO] - Calculated drift for AAPL: 0.1418
+2026-01-27 07:54:39,603 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['AAPL']
+2026-01-27 07:54:39,603 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-01-27 07:54:39,603 - INFO - [INFO] - Using configured time horizon: 240 days for AAPL
+2026-01-27 07:54:52,947 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-01-27 07:54:55,224 - INFO - [INFO] - Successfully updated insight for AAPL with simulation summary.
+2026-01-27 07:54:57,679 - INFO - [INFO] - Successfully updated insight for AAPL with optimal price levels and root-level simulation summary.
