@@ -1,0 +1,129 @@
+2026-02-03 12:28:25,910 - INFO - [INFO] - MongoDB connection closed
+2026-02-03 12:45:58,771 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-02-03 12:45:59,188 - WARNING - [ERR-0001] - [b9a38f00] Attempting to extract JSON from text (length: 279 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:45:59,189 - ERROR - [ERR-0001] - [33e88b70] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-02-03 12:45:59,189 - ERROR - [ERR-0001] - [82c69980] Text preview: Error generating content: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.5 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:45:59,190 - ERROR - [ERR-0001] - [f0b2e950] Error processing AI response (attempt 1/10) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-02-03 12:46:02,519 - WARNING - [ERR-0001] - [69506ab1] Attempting to extract JSON from text (length: 279 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:02,519 - ERROR - [ERR-0001] - [315b1ff4] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:02,519 - ERROR - [ERR-0001] - [5cf3e535] Text preview: Error generating content: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.5 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:02,520 - ERROR - [ERR-0001] - [38716c2d] Error processing AI response (attempt 2/10) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-02-03 12:46:05,852 - WARNING - [ERR-0001] - [f235aad5] Attempting to extract JSON from text (length: 279 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:05,852 - ERROR - [ERR-0001] - [774214d1] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:05,852 - ERROR - [ERR-0001] - [a796194f] Text preview: Error generating content: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.5 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:05,853 - ERROR - [ERR-0001] - [8249c3e5] Error processing AI response (attempt 3/10) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-02-03 12:46:09,157 - WARNING - [ERR-0001] - [a37cb715] Attempting to extract JSON from text (length: 279 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:09,157 - ERROR - [ERR-0001] - [dd749c35] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:09,157 - ERROR - [ERR-0001] - [1fa9773c] Text preview: Error generating content: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.5 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:09,157 - ERROR - [ERR-0001] - [84203686] Error processing AI response (attempt 4/10) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-02-03 12:46:12,487 - WARNING - [ERR-0001] - [3f361a9e] Attempting to extract JSON from text (length: 279 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:12,487 - ERROR - [ERR-0001] - [7a578bcf] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:12,487 - ERROR - [ERR-0001] - [06b0e4b0] Text preview: Error generating content: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.5 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:12,488 - ERROR - [ERR-0001] - [174c1cc3] Error processing AI response (attempt 5/10) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-02-03 12:46:15,822 - WARNING - [ERR-0001] - [6f64dfbd] Attempting to extract JSON from text (length: 279 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:15,822 - ERROR - [ERR-0001] - [faa5a638] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:15,823 - ERROR - [ERR-0001] - [96f94917] Text preview: Error generating content: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.5 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:15,823 - ERROR - [ERR-0001] - [4e5c5bc9] Error processing AI response (attempt 6/10) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-02-03 12:46:19,153 - WARNING - [ERR-0001] - [9311b294] Attempting to extract JSON from text (length: 279 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:19,153 - ERROR - [ERR-0001] - [f69554cc] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:19,154 - ERROR - [ERR-0001] - [0aa67eda] Text preview: Error generating content: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.5 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:19,154 - ERROR - [ERR-0001] - [e528ffeb] Error processing AI response (attempt 7/10) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-02-03 12:46:22,467 - WARNING - [ERR-0001] - [5368d5c2] Attempting to extract JSON from text (length: 279 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:22,468 - ERROR - [ERR-0001] - [c9e15c09] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:22,468 - ERROR - [ERR-0001] - [fdcccfe7] Text preview: Error generating content: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.5 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:22,468 - ERROR - [ERR-0001] - [ea9bfe4f] Error processing AI response (attempt 8/10) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-02-03 12:46:25,796 - WARNING - [ERR-0001] - [2bc26e24] Attempting to extract JSON from text (length: 279 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:25,797 - ERROR - [ERR-0001] - [a54814a6] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:25,797 - ERROR - [ERR-0001] - [beadac4c] Text preview: Error generating content: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.5 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:25,797 - ERROR - [ERR-0001] - [3e247217] Error processing AI response (attempt 9/10) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-02-03 12:46:29,123 - WARNING - [ERR-0001] - [89a09d00] Attempting to extract JSON from text (length: 279 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:29,124 - ERROR - [ERR-0001] - [96da1f5d] Failed to extract any valid JSON from text | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:29,125 - ERROR - [ERR-0001] - [12b798af] Text preview: Error generating content: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.5 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:29,125 - ERROR - [ERR-0001] - [02b7c7be] Error processing AI response (attempt 10/10) | Exception: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | From: analysis.py:run_analysis()
+2026-02-03 12:46:29,125 - ERROR - [ERR-0001] - [740d0a5c] Failed to parse AI response after 10 attempts. | From: analysis.py:run_analysis()
+2026-02-03 12:46:30,565 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-02-03 12:46:48,923 - WARNING - [ERR-0001] - [4e9a65d8] Attempting to extract JSON from text (length: 6243 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:48,924 - WARNING - [ERR-0001] - [fb805f2a] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:48,924 - WARNING - [ERR-0001] - [f52a4a4a] Attempting to extract JSON from text (length: 6243 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:48,925 - WARNING - [ERR-0001] - [58c84dfe] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:48,925 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-02-03 12:46:50,968 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-02-03 12:46:59,719 - WARNING - [ERR-0001] - [136c04b1] Attempting to extract JSON from text (length: 1927 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:59,719 - WARNING - [ERR-0001] - [51c06e15] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:46:59,719 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-02-03 12:46:59,719 - INFO - [INFO] - Time step t=1 starting
+2026-02-03 12:46:59,721 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.175, Price Change: 0.0176, New Price: 100.0176
+2026-02-03 12:46:59,730 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-02-03 12:46:59,730 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-02-03 12:46:59,902 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-02-03 12:46:59,904 - INFO - [INFO] - Calculated volatility for MSFT: 0.2544506761318258
+2026-02-03 12:46:59,904 - INFO - [INFO] - Calculating drift for MSFT...
+2026-02-03 12:46:59,904 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-02-03 12:46:59,963 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-02-03 12:46:59,964 - INFO - [INFO] - Calculated drift for MSFT: 0.0273
+2026-02-03 12:47:01,308 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-02-03 12:47:01,309 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-02-03 12:47:01,309 - INFO - [INFO] - Using configured time horizon: 240 days for MSFT
+2026-02-03 12:47:06,374 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-02-03 12:47:07,421 - INFO - [INFO] - Successfully updated insight for MSFT with simulation summary.
+2026-02-03 12:47:11,184 - INFO - [INFO] - Successfully updated insight for MSFT with optimal price levels and root-level simulation summary.
+2026-02-03 12:47:48,744 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-02-03 12:47:53,011 - WARNING - [ERR-0001] - [73689589] Attempting to extract JSON from text (length: 459 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:47:53,012 - WARNING - [ERR-0001] - [7fec6084] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-02-03 12:47:53,012 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-02-03 12:47:58,723 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-02-03 12:48:10,173 - WARNING - [ERR-0001] - [51cbe480] Attempting to extract JSON from text (length: 6357 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:48:10,173 - WARNING - [ERR-0001] - [4d757342] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-02-03 12:48:10,173 - WARNING - [ERR-0001] - [5515e85e] Attempting to extract JSON from text (length: 6357 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:48:10,174 - WARNING - [ERR-0001] - [72729946] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-02-03 12:48:10,174 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-02-03 12:48:11,734 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-02-03 12:48:22,226 - WARNING - [ERR-0001] - [edc14a13] Attempting to extract JSON from text (length: 2087 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:48:22,227 - WARNING - [ERR-0001] - [0eaccf0b] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:48:22,228 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-02-03 12:48:22,228 - INFO - [INFO] - Time step t=1 starting
+2026-02-03 12:48:22,230 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.385, Price Change: -0.1003, New Price: 99.8997
+2026-02-03 12:48:22,239 - INFO - [INFO] - Calculating volatility for MSFT...
+2026-02-03 12:48:22,239 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-02-03 12:48:22,401 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-02-03 12:48:22,402 - INFO - [INFO] - Calculated volatility for MSFT: 0.2544506229656966
+2026-02-03 12:48:22,402 - INFO - [INFO] - Calculating drift for MSFT...
+2026-02-03 12:48:22,402 - INFO - [INFO] - Fetching 252 days of close prices for MSFT...
+2026-02-03 12:48:22,447 - INFO - [INFO] - Successfully fetched data for MSFT.
+2026-02-03 12:48:22,448 - INFO - [INFO] - Calculated drift for MSFT: 0.0273
+2026-02-03 12:48:23,806 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['MSFT']
+2026-02-03 12:48:23,806 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-02-03 12:48:23,807 - INFO - [INFO] - Using configured time horizon: 240 days for MSFT
+2026-02-03 12:48:28,493 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-02-03 12:48:29,855 - INFO - [INFO] - Successfully updated insight for MSFT with simulation summary.
+2026-02-03 12:48:31,364 - INFO - [INFO] - Successfully updated insight for MSFT with optimal price levels and root-level simulation summary.
+2026-02-03 12:54:35,459 - INFO - [INFO] - Starting analysis AI response retrieval
+2026-02-03 12:54:38,812 - WARNING - [ERR-0001] - [73159ff9] Attempting to extract JSON from text (length: 456 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:54:38,812 - WARNING - [ERR-0001] - [4d724db9] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-02-03 12:54:38,812 - INFO - [INFO] - get analysis AI response parsed successfully
+2026-02-03 12:54:43,653 - INFO - [INFO] - Starting holistic_market_model AI response retrieval
+2026-02-03 12:54:54,837 - WARNING - [ERR-0001] - [d836eb62] Attempting to extract JSON from text (length: 6114 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:54:54,838 - WARNING - [ERR-0001] - [cbd82638] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-02-03 12:54:54,838 - WARNING - [ERR-0001] - [e1fccfb0] Attempting to extract JSON from text (length: 6114 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:54:54,839 - WARNING - [ERR-0001] - [f7f5d18d] Successfully extracted JSON using end object pattern | From: helpers.py:extract_json_from_text()
+2026-02-03 12:54:54,839 - INFO - [INFO] - Holistic Model JSON parsed and validated successfully
+2026-02-03 12:54:56,349 - INFO - [INFO] - Starting factors analysis AI response retrieval
+2026-02-03 12:55:06,148 - WARNING - [ERR-0001] - [9814924e] Attempting to extract JSON from text (length: 3003 chars) | From: helpers.py:extract_json_from_text()
+2026-02-03 12:55:06,148 - WARNING - [ERR-0001] - [9a34700f] Successfully extracted JSON using pattern: (?:^|\n)[^{}]*(\{.*\})\s*$... | From: helpers.py:extract_json_from_text()
+2026-02-03 12:55:06,148 - INFO - [INFO] - Factors analysis AI response retrieval completed successfully
+2026-02-03 12:55:06,148 - INFO - [INFO] - Time step t=1 starting
+2026-02-03 12:55:06,150 - INFO - [INFO] - Market state - Net Order: 0, Sentiment: 0.74, Price Change: -0.1095, New Price: 99.8905
+2026-02-03 12:55:06,159 - INFO - [INFO] - Calculating volatility for GNP.AX...
+2026-02-03 12:55:06,159 - INFO - [INFO] - Fetching 252 days of close prices for GNP.AX...
+2026-02-03 12:55:06,335 - INFO - [INFO] - Successfully fetched data for GNP.AX.
+2026-02-03 12:55:06,337 - INFO - [INFO] - Calculated volatility for GNP.AX: 0.40341539894889417
+2026-02-03 12:55:06,337 - INFO - [INFO] - Calculating drift for GNP.AX...
+2026-02-03 12:55:06,337 - INFO - [INFO] - Fetching 252 days of close prices for GNP.AX...
+2026-02-03 12:55:06,382 - INFO - [INFO] - Successfully fetched data for GNP.AX.
+2026-02-03 12:55:06,383 - INFO - [INFO] - Calculated drift for GNP.AX: 1.0536
+2026-02-03 12:55:07,267 - INFO - [INFO] - Updated document_generated flag to True for tickers: ['GNP.AX']
+2026-02-03 12:55:07,267 - INFO - [INFO] - Successfully saved recommendations to database. Running Monte Carlo simulation.
+2026-02-03 12:55:07,267 - INFO - [INFO] - Using configured time horizon: 240 days for GNP.AX
+2026-02-03 12:55:12,969 - INFO - [INFO] - Successfully inserted trade simulation into the database.
+2026-02-03 12:55:14,048 - INFO - [INFO] - Successfully updated insight for GNP.AX with simulation summary.
+2026-02-03 12:55:15,159 - INFO - [INFO] - Successfully updated insight for GNP.AX with optimal price levels and root-level simulation summary.
