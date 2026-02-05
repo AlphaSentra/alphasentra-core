@@ -361,8 +361,9 @@ def optimize_and_run_monte_carlo(
 
 def _generate_simulation_commentary(results: dict, num_simulations: int, strategy: str, ticker: str, sessionID: str = "default") -> str:
     """
-    Generates a professional single-paragraph commentary based on the Monte Carlo simulation results,
-    providing trading advice with a focus on risk management.
+    Generates professional commentary based on the Monte Carlo simulation results.
+    Default session: Narrative, strategy-focused advice.
+    Custom sessions: Data-centric, technical summary.
     """
     win_prob = results.get("win_probability", 0) * 100
     risk_of_ruin = results.get("risk_of_ruin", 0) * 100
@@ -371,55 +372,65 @@ def _generate_simulation_commentary(results: dict, num_simulations: int, strateg
     max_dd = results.get("maximum_drawdown", 0) * 100
     ev = results.get("expected_value", 0)
     
-    # Get the bet size from configuration
     from _config import MONTE_CARLO_MODEL_INITIAL_BET_SIZE
     bet_size = MONTE_CARLO_MODEL_INITIAL_BET_SIZE
     
     # Calculate profitability score (0-100)
     profitability_score = 0
     if ev > 0:
-        profitability_score += 50  # Base score for positive EV
-        if win_prob > 60:
-            profitability_score += 30
-        elif win_prob > 50:
-            profitability_score += 20
-        elif win_prob > 40:
-            profitability_score += 10
-            
-        if risk_of_ruin < 30:
-            profitability_score += 15
-        elif risk_of_ruin < 40:
-            profitability_score += 5
-            
-        if max_dd < 20:
-            profitability_score += 5
+        profitability_score += 50
+        profitability_score += 30 if win_prob > 60 else (20 if win_prob > 50 else 10 if win_prob > 40 else 0)
+        profitability_score += 15 if risk_of_ruin < 30 else (5 if risk_of_ruin < 40 else 0)
+        profitability_score += 5 if max_dd < 20 else 0
+
+    # 1. Logic for CUSTOM SessionIDs (Data-Centric)
+    if sessionID != "default":
+
+        commentary = (
+            f"Based on {num_simulations:,} simulated trades for {ticker}, your strategy demonstrates a {win_prob:.1f}% win probability with an expected value "
+            f"of ${ev:.2f} per trade (based on a ${bet_size:,} bet amount), a {risk_of_ruin:.1f}% probability to hit stop level, and a "
+            f"maximum drawdown of {max_dd:.1f}%. About {expired_prob:.1f}% of trades are expected to go sideways, and winning trades "
+            f"reach their objectives in around {avg_days:.1f} days. "
+        )
+        
+        # Strength grading
+        if ev > 0 and win_prob > 60:
+            commentary += f"Your setup represents a strong statistical advantage (Score: {profitability_score}/100)."
+        elif ev > 0 and win_prob > 50:
+            commentary += f"Your setup shows solid potential (Score: {profitability_score}/100)."
+        elif ev > 0:
+            commentary += f"Your setup falls into the elevated risk category (Score: {profitability_score}/100)."
+        else:
+            commentary += f"Your setup does not appear to be a viable long-term strategy (Score: {profitability_score}/100)."
+
+        return commentary
+
+    # 2. Logic for DEFAULT SessionID (Original Narrative Style)    
+    commentary = (
+        f"Based on {num_simulations:,} simulated trades for {ticker}, the system has determined that the most appropriate approach "
+        f"is to go {strategy} with {ticker}. Thus, the strategy demonstrates a {win_prob:.1f}% win probability with an expected value "
+        f"of ${ev:.2f} per trade (based on a ${bet_size:,} bet amount), a {risk_of_ruin:.1f}% probability to hit stop level, and a "
+        f"maximum drawdown of {max_dd:.1f}%. About {expired_prob:.1f}% of trades are expected to go sideways, and winning trades "
+        f"reach their objectives in around {avg_days:.1f} days. "
+    )
     
-    # Generate single paragraph commentary
-    commentary = f"Based on {num_simulations:,} simulated trades for {ticker}, the system has determined that the most appropriate approach is to go {strategy} with {ticker}. Thus, the strategy demonstrates a {win_prob:.1f}% win probability with an expected value of ${ev:.2f} per trade (based on a ${bet_size:,} bet amount), a {risk_of_ruin:.1f}% probability to hit stop level, and a maximum drawdown of {max_dd:.1f}%. About {expired_prob:.1f}% of trades are expected to go sideways, and winning trades reach their objectives in around {avg_days:.1f} days. "
-    
-    # Add strategy selection rationale (only for default session)
-    if win_prob < 50 and sessionID == "default":
+    # Rationale for strategy selection
+    if win_prob < 50:
         commentary += f"Although going {strategy} has a lower {win_prob:.1f}% win probability, it was selected because "
         if ev > 0:
-            commentary += f"it maintains a positive expected value of ${ev:.2f}, indicating that the winning trades are sufficiently larger than losing trades to justify this approach. "
+            commentary += f"it maintains a positive expected value of ${ev:.2f}, indicating that the winning trades are sufficiently larger than losing trades. "
         else:
-            commentary += f"it represents the best available option among the tested strategies, though both win probability and expected value suggest caution is warranted. "
-        commentary += f"The {strategy} position was chosen as it provides the most favourable risk-reward profile given {ticker} price action's pattern. "
-    
+            commentary += f"it represents the best available option among tested parameters despite the statistical headwinds. "
+
+    # Strength grading
     if ev > 0 and win_prob > 60:
-        commentary += f"This strategy represents a strong statistical advantages, as evidenced by the favourable combination of high win probability and positive expected value, resulting in a profitability score of {profitability_score}/100."
-    
+        commentary += f"This strategy represents a strong statistical advantage (Score: {profitability_score}/100)."
     elif ev > 0 and win_prob > 50:
-        commentary += f"This strategy shows solid potential with a profitability score of {profitability_score}/100."
-    
-    elif ev > 0 and win_prob <= 50:
-        commentary += f"This strategy falls into the elevated risk category with a profitability score of {profitability_score}/100."
-    
-    elif ev <= 0 and win_prob > 50:
-        commentary += f"This strategy presents a dangerous combination with a profitability score of {profitability_score}/100, where a {win_prob:.1f}% win rate is offset by a negative expected value of ${ev:.2f}."
-    
-    else: # ev <= 0 and win_prob <= 50
-        commentary += f"Based on these results with a profitability score of {profitability_score}/100, this does not appear to be a viable trading strategy, as both the {win_prob:.1f}% win rate and negative expected value of ${ev:.2f} suggest the odds are stacked against success."
+        commentary += f"This strategy shows solid potential (Score: {profitability_score}/100)."
+    elif ev > 0:
+        commentary += f"This strategy falls into the elevated risk category (Score: {profitability_score}/100)."
+    else:
+        commentary += f"This does not appear to be a viable long-term strategy (Score: {profitability_score}/100)."
     
     return commentary
 
