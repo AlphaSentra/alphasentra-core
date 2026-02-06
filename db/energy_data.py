@@ -22,9 +22,9 @@ def insert_energy_commodities(db):
     
     # Energy commodities data to insert with prompt and model_function fields
     energy_commodities = [
-        {"ticker": "CL=F", "ticker_tradingview": "TVC:USOIL", "name": "Crude Oil WTI", "region": ["US", "Global"], "prompt": EN_ENERGY_LONG_SHORT_PROMPT, "factors": EN_ENERGY_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "EN", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": True},
-        {"ticker": "BZ=F", "ticker_tradingview": "TVC:UKOIL", "name": "Crude Oil Brent", "region": ["UK", "Global"], "prompt": EN_ENERGY_LONG_SHORT_PROMPT, "factors": EN_ENERGY_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "EN", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": True},
-        {"ticker": "NG=F", "ticker_tradingview": "NATGAS", "name": "Natural Gas", "region": ["US", "Global"], "prompt": EN_ENERGY_LONG_SHORT_PROMPT, "factors": EN_ENERGY_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "EN", "importance": 4, "recurrence": "multi", "decimal":2, "document_generated": True}
+        {"ticker": "CL=F", "ticker_tradingview": "TVC:USOIL", "name": "Crude Oil WTI", "region": ["US", "Global"], "prompt": EN_ENERGY_LONG_SHORT_PROMPT, "factors": EN_ENERGY_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "EN", "importance": 1, "recurrence": "multi", "decimal":2, "document_generated": True},
+        {"ticker": "BZ=F", "ticker_tradingview": "TVC:UKOIL", "name": "Crude Oil Brent", "region": ["UK", "Global"], "prompt": EN_ENERGY_LONG_SHORT_PROMPT, "factors": EN_ENERGY_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "EN", "importance": 1, "recurrence": "multi", "decimal":2, "document_generated": True},
+        {"ticker": "NG=F", "ticker_tradingview": "NATGAS", "name": "Natural Gas", "region": ["US", "Global"], "prompt": EN_ENERGY_LONG_SHORT_PROMPT, "factors": EN_ENERGY_FACTORS_PROMPT, "model_function": "run_holistic_market_model", "model_name":"holistic", "asset_class": "EN", "importance": 1, "recurrence": "multi", "decimal":2, "document_generated": True}
     ]
     
     try:
