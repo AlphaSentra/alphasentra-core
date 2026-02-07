@@ -430,18 +430,24 @@ def get_growth_profitability_chart(ticker):
 
         if not is_annual:
             # Resample to Semi-Annual (2 quarters)
-            # '2QE' or '2Q' depending on pandas version; 2QE is the modern standard
-            processed_data = financials.resample('2QE').sum().sort_index(ascending=True).tail(10)
+            # Filter out zero/NaN revenue periods BEFORE taking the tail to ensure the x-axis is clean
+            processed_data = financials.resample('2QE').sum().sort_index(ascending=True)
+            processed_data = processed_data.loc[processed_data[revenue_col] > 0].tail(10)
             
             # If resampling failed to produce data points, fallback to annual
-            if processed_data.empty or len(processed_data) < 1:
+            if processed_data.empty:
                 financials = stock.financials.T
                 is_annual = True
                 financials.index = pd.to_datetime(financials.index)
 
         if is_annual:
-            # Use 5 years of annual data
-            processed_data = financials.sort_index(ascending=True).tail(5)
+            # Use 5 years of annual data, filtering out empty periods
+            processed_data = financials.sort_index(ascending=True)
+            processed_data = processed_data.loc[processed_data[revenue_col] > 0].tail(5)
+
+        # Final check if we have data after filtering
+        if processed_data.empty:
+            return {}
 
         # --- PHASE 3: CALCULATE METRICS AND LABELS ---
         revenue = [x / 1e6 for x in processed_data[revenue_col].tolist()]
@@ -569,17 +575,26 @@ def financial_health_chart(ticker):
         # --- 2. Frequency Logic ---
         if not is_annual:
             # Resample to semi-annual (2 Quarters)
-            financial_data = financial_data.resample('2QE').sum().sort_index(ascending=True).tail(10)
+            financial_data = financial_data.resample('2QE').sum().sort_index(ascending=True)
+            
+            # --- FILTER: Remove empty periods (where all columns are 0 or NaN) ---
+            financial_data = financial_data.loc[(financial_data != 0).any(axis=1)].tail(10)
             
             # If resampling didn't yield results, force annual fallback
-            if financial_data.empty or (financial_data == 0).all().all():
+            if financial_data.empty:
                 balance_sheet = stock.balance_sheet.T
                 cash_flow = stock.cashflow.T
                 financial_data = get_financial_df(balance_sheet, cash_flow)
                 is_annual = True
 
         if is_annual:
-            financial_data = financial_data.sort_index(ascending=True).tail(5)
+            financial_data = financial_data.sort_index(ascending=True)
+            # --- FILTER: Remove empty periods (where all columns are 0 or NaN) ---
+            financial_data = financial_data.loc[(financial_data != 0).any(axis=1)].tail(5)
+
+        # Ensure we still have data after filtering
+        if financial_data.empty:
+            return {}
 
         # --- 3. Formatting and Labeling ---
         def format_value(value):
