@@ -377,57 +377,92 @@ def get_dividend_yield(ticker):
 
 def get_growth_profitability_chart(ticker):
     """
-    Get growth and profitability chart data with semi-annual frequency from Yahoo Finance.
+    Fetches and formats financial data for revenue, net income, and margins.
     
-    Parameters:
-    ticker (str): Ticker symbol
+    Data Priority:
+    1. Semi-Annual: Aggregates quarterly data into 6-month blocks (H1/H2).
+    2. Annual Fallback: If quarterly data is missing or empty, retrieves the 
+       last 5 years of annual fiscal data.
     
+    Metrics:
+    - Revenue & Net Income: Converted to millions (x / 1,000,000).
+    - Net Margin: Calculated as (Net Income / Revenue) * 100, rounded to 2 decimals.
+
+    Args:
+        ticker (str): The stock ticker symbol (e.g., 'AAPL').
+
     Returns:
-    dict: Formatted chart data with revenue, net income, and net margin in specified format
+        dict: Highcharts/ECharts compatible dictionary or {} if data is unavailable.
     """
     try:
         stock = yf.Ticker(ticker)
+        is_annual = False
         
-        # Get quarterly financial statements and transpose
+        # --- PHASE 1: ATTEMPT QUARTERLY (SEMI-ANNUAL) DATA ---
         financials = stock.quarterly_financials.T
+        
         if financials.empty:
-            logger.error(f"No financial data available for {ticker}")
-            return {}
+            logger.info(f"No quarterly data for {ticker}, switching to annual.")
+            financials = stock.financials.T
+            is_annual = True
 
-        # Check for required columns with alternative names
-        revenue_col = next((col for col in ['Total Revenue', 'Revenue'] if col in financials.columns), None)
-        net_income_col = next((col for col in ['Net Income', 'Net Income Common Stockholders'] if col in financials.columns), None)
-        
+        # Identify columns dynamically (Yahoo Finance labels can vary)
+        def get_cols(df):
+            rev = next((c for c in ['Total Revenue', 'Revenue'] if c in df.columns), None)
+            inc = next((c for c in ['Net Income', 'Net Income Common Stockholders'] if c in df.columns), None)
+            return rev, inc
+
+        revenue_col, net_income_col = get_cols(financials)
+
+        # --- PHASE 2: VALIDATE AND RESAMPLE ---
         if not revenue_col or not net_income_col:
-            missing = []
-            if not revenue_col: missing.append('revenue')
-            if not net_income_col: missing.append('net income')
-            logger.error(f"Missing required financial metrics ({', '.join(missing)}) for {ticker}")
-            return {}
+            # Final attempt to check annual if quarterly was missing columns
+            if not is_annual:
+                financials = stock.financials.T
+                is_annual = True
+                revenue_col, net_income_col = get_cols(financials)
+            
+            if not revenue_col or not net_income_col:
+                logger.error(f"Missing required metrics for {ticker}")
+                return {}
 
-        # Convert index to datetime and resample to semi-annual periods
         financials.index = pd.to_datetime(financials.index)
-        semi_annual = financials.resample('2QE').sum().sort_index(ascending=True).tail(10)
+
+        if not is_annual:
+            # Resample to Semi-Annual (2 quarters)
+            # '2QE' or '2Q' depending on pandas version; 2QE is the modern standard
+            processed_data = financials.resample('2QE').sum().sort_index(ascending=True).tail(10)
+            
+            # If resampling failed to produce data points, fallback to annual
+            if processed_data.empty or len(processed_data) < 1:
+                financials = stock.financials.T
+                is_annual = True
+                financials.index = pd.to_datetime(financials.index)
+
+        if is_annual:
+            # Use 5 years of annual data
+            processed_data = financials.sort_index(ascending=True).tail(5)
+
+        # --- PHASE 3: CALCULATE METRICS AND LABELS ---
+        revenue = [x / 1e6 for x in processed_data[revenue_col].tolist()]
+        net_income = [x / 1e6 for x in processed_data[net_income_col].tolist()]
         
-        # Extract revenue and net income
-        try:
-            revenue = [x / 1e6 for x in semi_annual[revenue_col].tolist()]
-            net_income = [x / 1e6 for x in semi_annual[net_income_col].tolist()]
-        except KeyError as e:
-            logger.error(f"Missing required financial metric: {e}")
-            return {}
+        # Net Margin calculation
+        net_margin = [
+            round((ni / rev * 100), 2) if rev and rev != 0 else 0.0 
+            for ni, rev in zip(net_income, revenue)
+        ]
         
-        # Calculate net margin percentages as 2-digit floats
-        net_margin = [round((ni / rev * 100), 2) if rev != 0 else 0.0 for ni, rev in zip(net_income, revenue)]
-        
-        # Generate period labels (H1/H2 format)
+        # Dynamic Period Labeling
         periods = []
-        for date in semi_annual.index:
-            year = date.year
-            half = 'H1' if date.month <= 6 else 'H2'
-            periods.append(f"{year}-{half}")
-        
-        # Create the chart data structure
+        for date in processed_data.index:
+            if is_annual:
+                periods.append(f"FY{date.year}")
+            else:
+                half = 'H1' if date.month <= 6 else 'H2'
+                periods.append(f"{date.year}-{half}")
+
+        # --- PHASE 4: CONSTRUCT FINAL DICTIONARY ---
         chart_data = {
             "growth_profitability_chart": {
                 "title": f"Company Performance ({periods[0]}–{periods[-1]})",
@@ -477,49 +512,101 @@ def get_growth_profitability_chart(ticker):
         logger.exception("Traceback for growth/profitability chart error")
         return {}
 
+In programming, the "comment box" at the top of a function is known as a docstring. Since this specific function now handles complex "if-then" logic for data sourcing, an expanded docstring is essential for anyone else reading your code to understand why the chart looks different for different stocks.
+
+Here is the expanded docstring (comment box) for the financial_health_chart function, followed by the updated code.
+
+The Professional Docstring Standard
+A well-documented financial function should explain:
+
+The Priority Order: Which data is tried first.
+
+The Resampling Logic: How 3-month data becomes 6-month data.
+
+The Fallback Trigger: Exactly what conditions cause the switch to annual data.
+
+Unit Conversions: Clarifying that the output is in Millions.
+
+Full Code with Expanded Comment Box
+Python
+import pandas as pd
+import yfinance as yf
+import logging
+
+logger = logging.getLogger(__name__)
+
 def financial_health_chart(ticker):
     """
-    Get financial health chart data for the last five years from Yahoo Finance.
+    Retrieves and formats Debt, Free Cash Flow, and Cash position data.
     
-    Parameters:
-    ticker (str): Ticker symbol
-    
+    Processing Logic:
+    1. Primary Source: Attempts to fetch 'quarterly' data and resamples it into 
+       Semi-Annual (H1/H2) blocks to provide higher granularity.
+    2. Fallback Source: If quarterly data is unavailable, empty, or fails to 
+       resample, it automatically switches to 'annual' fiscal year data.
+    3. Lookback: Returns up to 10 periods for semi-annual (5 years) or 
+       5 periods for annual (5 years).
+    4. Data Cleanup: Handles missing fields by injecting 0.0 to ensure 
+       chart continuity and converts all raw values to Millions.
+
+    Args:
+        ticker (str): The stock symbol (e.g., 'MSFT').
+
     Returns:
-    dict: Formatted chart data with debt, free cash flow, and cash & equivalents in specified format
+        dict: Structured dictionary containing 'xAxis' (labels) and 'series' 
+              (numeric data) for the chart. Returns {} on total failure.
     """
     try:
         stock = yf.Ticker(ticker)
+        is_annual = False
 
-        # --- Extract Data from Financial Statements ---
-        # Get and transpose quarterly statements to have dates as index
+        # --- 1. Data Extraction with Fallback Logic ---
         balance_sheet = stock.quarterly_balance_sheet.T
         cash_flow = stock.quarterly_cashflow.T
         
+        # Trigger annual fallback if quarterly is empty
+        if balance_sheet.empty or cash_flow.empty:
+            logger.info(f"Quarterly data missing for {ticker}, attempting annual fallback.")
+            balance_sheet = stock.balance_sheet.T
+            cash_flow = stock.cashflow.T
+            is_annual = True
+
         if balance_sheet.empty or cash_flow.empty:
             logger.error(f"No financial data available for {ticker}")
             return {}
 
-        # --- Consolidate Data ---
-        # Define the data points we need with fallbacks for varying field names
-        data_points = {
-            "Total Debt": balance_sheet.get('Total Debt', pd.Series()),
-            "Cash and Equivalents": balance_sheet.get('Cash And Cash Equivalents', pd.Series()),
-            "Free Cash Flow": cash_flow.get('Free Cash Flow', pd.Series())
-        }
+        # Internal helper to standardize data frames
+        def get_financial_df(bs, cf):
+            data_points = {
+                "Total Debt": bs.get('Total Debt', pd.Series(0, index=bs.index)),
+                "Cash and Equivalents": bs.get('Cash And Cash Equivalents', pd.Series(0, index=bs.index)),
+                "Free Cash Flow": cf.get('Free Cash Flow', pd.Series(0, index=cf.index))
+            }
+            df = pd.DataFrame(data_points)
+            df.index = pd.to_datetime(df.index)
+            return df
 
-        # Create DataFrame and process semi-annual data
-        financial_data = pd.DataFrame(data_points)
-        if not financial_data.empty:
-            # Convert index to datetime and resample to semi-annual periods
-            financial_data.index = pd.to_datetime(financial_data.index)
-            financial_data = financial_data.resample('2QE').sum().sort_index(ascending=True).tail(6)
-        
-        # --- Prepare Chart Data ---
-        # Format values in millions for display
+        financial_data = get_financial_df(balance_sheet, cash_flow)
+
+        # --- 2. Frequency Logic ---
+        if not is_annual:
+            # Resample to semi-annual (2 Quarters)
+            financial_data = financial_data.resample('2QE').sum().sort_index(ascending=True).tail(10)
+            
+            # If resampling didn't yield results, force annual fallback
+            if financial_data.empty or (financial_data == 0).all().all():
+                balance_sheet = stock.balance_sheet.T
+                cash_flow = stock.cashflow.T
+                financial_data = get_financial_df(balance_sheet, cash_flow)
+                is_annual = True
+
+        if is_annual:
+            financial_data = financial_data.sort_index(ascending=True).tail(5)
+
+        # --- 3. Formatting and Labeling ---
         def format_value(value):
-            if pd.isna(value):
-                return 0.0  # Return 0 instead of "N/A" for chart compatibility
-            return round(value / 1e6, 1)  # Convert to millions with 1 decimal place
+            if pd.isna(value): return 0.0
+            return round(value / 1e6, 1)
 
         periods = []
         formatted_data = {
@@ -528,20 +615,19 @@ def financial_health_chart(ticker):
             "Cash and Equivalents": []
         }
         
-        if not financial_data.empty:
-            for idx, row in financial_data.iterrows():
-                year = idx.year
+        for idx, row in financial_data.iterrows():
+            if is_annual:
+                period_label = f"FY{idx.year}"
+            else:
                 half = 'H1' if idx.month <= 6 else 'H2'
-                period_label = f"{year}-{half}"
-                
-                # Only include period if any value is non-zero
-                if any(row > 0):
-                    periods.append(period_label)
-                    formatted_data["Total Debt"].append(format_value(row['Total Debt']))
-                    formatted_data["Free Cash Flow"].append(format_value(row['Free Cash Flow']))
-                    formatted_data["Cash and Equivalents"].append(format_value(row['Cash and Equivalents']))
+                period_label = f"{idx.year}-{half}"
+            
+            periods.append(period_label)
+            formatted_data["Total Debt"].append(format_value(row['Total Debt']))
+            formatted_data["Free Cash Flow"].append(format_value(row['Free Cash Flow']))
+            formatted_data["Cash and Equivalents"].append(format_value(row['Cash and Equivalents']))
 
-        # --- Create Chart Structure ---
+        # --- 4. Final Data Structure ---
         chart_data = {
             "financial_health_chart": {
                 "title": f"Financial Health ({periods[0]}–{periods[-1]})" if periods else "Financial Health",
