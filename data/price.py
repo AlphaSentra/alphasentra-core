@@ -512,28 +512,6 @@ def get_growth_profitability_chart(ticker):
         logger.exception("Traceback for growth/profitability chart error")
         return {}
 
-In programming, the "comment box" at the top of a function is known as a docstring. Since this specific function now handles complex "if-then" logic for data sourcing, an expanded docstring is essential for anyone else reading your code to understand why the chart looks different for different stocks.
-
-Here is the expanded docstring (comment box) for the financial_health_chart function, followed by the updated code.
-
-The Professional Docstring Standard
-A well-documented financial function should explain:
-
-The Priority Order: Which data is tried first.
-
-The Resampling Logic: How 3-month data becomes 6-month data.
-
-The Fallback Trigger: Exactly what conditions cause the switch to annual data.
-
-Unit Conversions: Clarifying that the output is in Millions.
-
-Full Code with Expanded Comment Box
-Python
-import pandas as pd
-import yfinance as yf
-import logging
-
-logger = logging.getLogger(__name__)
 
 def financial_health_chart(ticker):
     """
