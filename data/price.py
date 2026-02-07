@@ -432,7 +432,7 @@ def get_growth_profitability_chart(ticker):
             # Resample to Semi-Annual (2 quarters)
             # Filter out zero/NaN revenue periods BEFORE taking the tail to ensure the x-axis is clean
             processed_data = financials.resample('2QE').sum().sort_index(ascending=True)
-            processed_data = processed_data.loc[processed_data[revenue_col] > 0].tail(10)
+            processed_data = processed_data.loc[(processed_data[revenue_col] > 0) & (processed_data[net_income_col] > 0)].tail(10)
             
             # If resampling failed to produce data points, fallback to annual
             if processed_data.empty:
@@ -443,7 +443,7 @@ def get_growth_profitability_chart(ticker):
         if is_annual:
             # Use 5 years of annual data, filtering out empty periods
             processed_data = financials.sort_index(ascending=True)
-            processed_data = processed_data.loc[processed_data[revenue_col] > 0].tail(5)
+            processed_data = processed_data.loc[(processed_data[revenue_col] > 0) & (processed_data[net_income_col] > 0)].tail(5)
 
         # Final check if we have data after filtering
         if processed_data.empty:
@@ -578,7 +578,7 @@ def financial_health_chart(ticker):
             financial_data = financial_data.resample('2QE').sum().sort_index(ascending=True)
             
             # --- FILTER: Remove empty periods (where all columns are 0 or NaN) ---
-            financial_data = financial_data.loc[(financial_data != 0).any(axis=1)].tail(10)
+            financial_data = financial_data.loc[(financial_data != 0).all(axis=1)].tail(10)
             
             # If resampling didn't yield results, force annual fallback
             if financial_data.empty:
@@ -590,7 +590,7 @@ def financial_health_chart(ticker):
         if is_annual:
             financial_data = financial_data.sort_index(ascending=True)
             # --- FILTER: Remove empty periods (where all columns are 0 or NaN) ---
-            financial_data = financial_data.loc[(financial_data != 0).any(axis=1)].tail(5)
+            financial_data = financial_data.loc[(financial_data != 0).all(axis=1)].tail(5)
 
         # Ensure we still have data after filtering
         if financial_data.empty:
