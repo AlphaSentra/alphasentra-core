@@ -1,0 +1,22 @@
+{
+  "name": "keep-alive-render",
+  "version": "1.0.0",
+  "description": "Simple script to keep your free Render service alive",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "ping": "node -e \"require('./index').getHealth(process.env.URLS.split(',')[0]).then(console.log).catch(console.error)\""
+  },
+  "keywords": [],
+  "author": "tobisupreme (Oluwatobi Balogun)",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "node-cron": "^3.0.2"
+  }
+}
