@@ -28,7 +28,10 @@ jobs:
       run: cd healthcheck && npm ci
 
     - name: Create .env from secrets
-      run: cd healthcheck && echo "URLS=${{ secrets.URLS }}" > .env
+      run: |
+        cd healthcheck
+        echo "URLS=${{ secrets.URLS }}" > .env
+        echo "URLS=${{ secrets.URLS }}" >> $GITHUB_ENV
       
     - name: Ping URLs
       run: cd healthcheck && npm run ping
