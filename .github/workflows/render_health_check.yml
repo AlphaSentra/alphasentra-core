@@ -30,11 +30,13 @@ jobs:
     - name: Create .env from secrets
       run: |
         cd healthcheck
-        echo "BACKEND_URLS=${{ secrets.URLS }}" > .env
+        echo "BACKEND_URLS=${{ secrets.BACKEND_URLS }}" > .env
+        echo "BACKEND_URLS=${{ secrets.BACKEND_URLS }}" >> $GITHUB_ENV
+      
     - name: Ping URLs
       run: |
         cd healthcheck
-        BACKEND_URLS=${{ secrets.URLS }} npm run ping
+        BACKEND_URLS=${{ secrets.BACKEND_URLS }} npm run ping
       
   cleanup:
     runs-on: ubuntu-latest
