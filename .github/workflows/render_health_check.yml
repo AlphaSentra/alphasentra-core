@@ -34,7 +34,9 @@ jobs:
         echo "URLS=${{ secrets.URLS }}" >> $GITHUB_ENV
       
     - name: Ping URLs
-      run: cd healthcheck && npm run ping
+      run: |
+        cd healthcheck
+        URLS=${{ secrets.URLS }} npm run ping
       
   cleanup:
     runs-on: ubuntu-latest
