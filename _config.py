@@ -4,7 +4,7 @@ Store all the variables for configuration for all the models and systems.
 Tickers must be in Yahoo Finance format. (in the future, we can add other sources/formats)
 """
 # DEPLOYMENT ID
-DEPLOYMENT_ID = "ago-20260208-1457"
+DEPLOYMENT_ID = "ago-20260208-1459"
 
 # Default language for the system
 LANGUAGE='en'
