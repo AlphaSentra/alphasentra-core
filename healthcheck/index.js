@@ -2,7 +2,7 @@ require('dotenv').config();
 const axios = require('axios');
 const cron = require('node-cron');
 
-const URLs = process.env.URLS.split(',');
+const URLs = process.env.BACKEND_URLS.split(',');
 
 // Schedule health checks every 14 minutes (max 25 executions)
 let executionCount = 0;
