@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "jest",
-    "ping": "node -e \"require('./index').getHealth(process.env.URLS.split(',')[0]).then(console.log).catch(console.error)\""
+    "ping": "node -e \"require('./index').getHealth(process.env.BACKEND_URLS.split(',')[0]).then(console.log).catch(console.error)\""
   },
   "keywords": [],
   "author": "tobisupreme (Oluwatobi Balogun)",

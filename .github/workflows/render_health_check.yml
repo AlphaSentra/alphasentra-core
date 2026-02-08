@@ -31,7 +31,6 @@ jobs:
       run: |
         cd healthcheck
         echo "BACKEND_URLS=${{ secrets.BACKEND_URLS }}" > .env
-        echo "BACKEND_URLS=${{ secrets.BACKEND_URLS }}" >> $GITHUB_ENV
       
     - name: Ping URLs
       run: |
