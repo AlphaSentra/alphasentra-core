@@ -1,4 +1,3 @@
-
 from helpers import DatabaseManager
 import os
 from models.montecarlo import run_monte_carlo_simulation
@@ -22,7 +21,7 @@ def get_insights():
     for doc in pipeline_collection.find({"task_completed": False}):
         if "model_name" in doc:
             model_names.append(doc["model_name"])
-
+    
     # If there are any model names, update the corresponding tickers
     if model_names:
         tickers_collection.update_many(
@@ -53,7 +52,7 @@ def test_trade():
     ticker = ""
     sessionID = ""
     initial_price = 0.0
-    strategy = "l"
+    strategy = ""
     target_price = 0.0
     stop_loss = 0.0
     volatility = 0.0
@@ -66,7 +65,7 @@ def test_trade():
         ticker = document.get("model_name", "")
         sessionID = document.get("sessionID", "")
         initial_price = document.get("initial_price", 0.0)
-        strategy_short = document.get("strategy", "l") # Use temporary name for 'l'/'s'
+        strategy = document.get("strategy", "long").lower()
         target_price = document.get("target_price", 0.0)
         stop_loss = document.get("stop_loss", 0.0)
         volatility = document.get("volatility", 0.0)
@@ -74,10 +73,7 @@ def test_trade():
         time_horizon = document.get("time_horizon", 0.0)
         num_simulations = document.get("num_simulations", 0)
         
-        # Map strategy 'l' to 'long' as required by run_monte_carlo_simulation
-        strategy_full = "long" if strategy_short.lower() == "l" else "short"
-        
-        log_info(f"Successfully gathered data for model: {ticker} (Session: {sessionID}, Strategy: {strategy_full})")
+        log_info(f"Successfully gathered data for model: {ticker} (Session: {sessionID}, Strategy: {strategy})")
 
         try:
             # 1. Run Monte Carlo Simulation
@@ -85,7 +81,7 @@ def test_trade():
                 sessionID=sessionID, 
                 ticker=ticker, 
                 initial_price=initial_price, 
-                strategy=strategy_full, 
+                strategy=strategy, 
                 target_price=target_price, 
                 stop_loss=stop_loss, 
                 volatility=volatility, 
