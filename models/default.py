@@ -37,31 +37,22 @@ def get_insights():
 
 def test_trade():
     """
-    A placeholder function for testing trade functionality.
-    Currently, it does not perform any operations.
+    Tests trade functionality by retrieving a pending task from the pipeline collection,
+    deleting existing trade data, running a Monte Carlo simulation, and updating the task status.
     """
     db_manager = DatabaseManager()
     client = db_manager.get_client()
     db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
     pipeline_collection = db["pipeline"]
+    trades_collection = db["trades"]
+
+    update_result = None # Initialize update_result to None
 
     # Find the first document where task_completed is False
     document = pipeline_collection.find_one({"task_completed": False})
 
-    # Variables to store retrieved data, matching requested keys structure
-    ticker = ""
-    sessionID = ""
-    initial_price = 0.0
-    strategy = ""
-    target_price = 0.0
-    stop_loss = 0.0
-    volatility = 0.0
-    drift = 0.0
-    time_horizon = 0.0
-    num_simulations = 0
-
     if document:
-        # Retrieve and assign values to variables (Model name is used as ticker for update)
+        # Variables to store retrieved data, matching requested keys structure
         ticker = document.get("model_name", "")
         sessionID = document.get("sessionID", "")
         initial_price = document.get("initial_price", 0.0)
@@ -75,20 +66,27 @@ def test_trade():
         
         log_info(f"Successfully gathered data for model: {ticker} (Session: {sessionID}, Strategy: {strategy})")
 
-
         # Update pipeline collection status
         update_result = pipeline_collection.update_one(
             {"model_name": ticker}, # Assuming model_name is unique identifier for the pending task
             {"$set": {"task_completed": True}}
         )
 
+        log_context = f"ticker: {ticker}, sessionID: {sessionID}"
 
-        # Delete all existing pipeline documents matching this ticker and session ID before simulation
-        delete_result = pipeline_collection.delete_many({"model_name": ticker, "sessionID": sessionID})
-        log_info(f"Deleted {delete_result.deleted_count} documents matching model={ticker} and sessionID={sessionID} before simulation.")
-
+        # --- Trade Deletion Logic ---
         try:
-            # Run Monte Carlo Simulation
+            query = {"inputs.sessionID": sessionID, "inputs.ticker": ticker}
+            delete_result = trades_collection.delete_many(query)
+            if delete_result.deleted_count > 0:
+                log_info(f"Successfully deleted {delete_result.deleted_count} documents from 'trades' collection for {log_context}.")
+            else:
+                log_warning(f"No documents found to delete in 'trades' collection for {log_context}.")
+        except Exception as e:
+            log_error(f"Error deleting documents from 'trades' collection for {log_context}: {e}", "DELETE_TRADE_DOCUMENTS")
+
+        # --- Monte Carlo Simulation Logic ---
+        try:
             simulation_metrics = run_monte_carlo_simulation(
                 sessionID=sessionID, 
                 ticker=ticker, 
@@ -101,12 +99,12 @@ def test_trade():
                 time_horizon=time_horizon, 
                 num_simulations=num_simulations
             )
-            log_info(f"Simulation for {ticker} completed. EV: ${simulation_metrics.get('expected_value'):.4f}")
+            log_info(f"Simulation for {ticker} completed. EV: ${simulation_metrics.get('expected_value'):.4f}") 
                         
-            if update_result.modified_count > 0:
+            if update_result and update_result.modified_count > 0:
                 log_info(f"Successfully marked task for Monte Carlo simulation model: {ticker} as completed.")
             else:
-                log_warning(f"Could not find or update task for model {ticker} to completed=True. It might have already been processed.")
+                log_warning(f"Could not find or update task for model {ticker} to completed=True. It might have already been processed or update_result was not set.")
 
         except Exception as e:
             log_error(f"Error during Monte Carlo simulation or status update for {ticker}: {e}", "DEFAULT_TEST_TRADE")
