@@ -576,6 +576,54 @@ def create_settings_collection(db):
     
     return success
 
+
+def insert_user_data(db):
+    """
+    Inserts initial user data into the 'users' collection.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if insertion was successful, False on error
+    """
+    collection_name = 'users'
+    
+    print()
+    print("=" * 100)
+    print(f"Inserting user data into '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+    
+    # User data to insert
+    user_data = {
+        "email": "admin@alphasentra.com",
+        "passcode": 123456,
+        "first_name": "Admin",
+        "number_of_analysis": 0
+    }
+    
+    try:
+        collection = db[collection_name]
+        
+        # Check if the user already exists to avoid duplicates
+        existing_user = collection.find_one({"email": user_data["email"]})
+        if existing_user:
+            print(f"User with email '{user_data['email']}' already exists. Skipping insertion to avoid duplicates.")
+            return True
+        
+        # Insert the user data
+        result = collection.insert_one(user_data)
+        print(f"Successfully inserted user data with id {result.inserted_id} into '{collection_name}' collection")
+        return True
+        
+    except pymongo.errors.OperationFailure as e:
+        log_error("MongoDB operation failed for inserting user data", "MONGODB_OPERATION", e)
+        return False
+    except Exception as e:
+        log_error("Unexpected error inserting user data", "DATA_INSERTION", e)
+        return False
+
 def insert_settings_data(db):
     """
     Inserts initial settings data into the 'settings' collection.
@@ -596,6 +644,8 @@ def insert_settings_data(db):
     
     # Settings data to insert
     settings_data = {
+        "key": "batch_settings",
+        "value": "default",
         "batch_id": 0,
         "batch_count": 0,
         "max_daily_batch_count": 3000
@@ -887,6 +937,7 @@ def create_alphagora_database():
             create_settings_collection,
             create_users_collection,
             insert_settings_data,
+            insert_user_data,
             insert_asset_classes_data,
             insert_fx_pairs,
             #insert_indices,
