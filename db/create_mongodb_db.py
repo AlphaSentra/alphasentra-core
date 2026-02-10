@@ -462,6 +462,118 @@ def create_trades_collection(db):
     
     return success
 
+def create_users_collection(db):
+    """
+    Creates the 'users' collection with schema validation and indexes.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if collection was created or already exists, False on error
+    """
+    collection_name = 'users'
+    
+    print()
+    print("=" * 100)
+    print(f"Creating '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+
+    # Create collection with schema validation
+    validator = {
+        '$jsonSchema': {
+            'bsonType': 'object',
+            'required': ['email', 'passcode', 'first_name'],
+            'properties': {
+                'email': {
+                    'bsonType': 'string'
+                },
+                'passcode': {
+                    'bsonType': 'int'
+                },
+                'first_name': {
+                    'bsonType': 'string'
+                },
+                'created_at': {
+                    'bsonType': 'date'
+                }
+            }
+        }
+    }
+    
+    # Define indexes for better query performance
+    indexes = [
+        [('email', pymongo.ASCENDING)]
+    ]
+    
+    # Use the generic function to create the collection
+    success = create_collection_with_schema(db, collection_name, validator, indexes)
+    
+    if success:
+        print(f"Successfully created collection '{collection_name}'")
+        print("Collection schema validation rules applied:")
+        print("   - Required fields: email, passcode, first_name")
+        print("   - Indexes created: email")
+    
+    return success
+
+
+def create_settings_collection(db):
+    """
+    Creates the 'settings' collection with schema validation.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if collection was created or already exists, False on error
+    """
+    collection_name = 'settings'
+    
+    print()
+    print("=" * 100)
+    print(f"Creating '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+
+    # Create collection with schema validation
+    validator = {
+        '$jsonSchema': {
+            'bsonType': 'object',
+            'required': ['key', 'value', 'batch_id', 'batch_count', 'max_daily_batch_count'],
+            'properties': {
+                'key': {
+                    'bsonType': 'string'
+                },
+                'value': {},
+                'batch_id': {
+                    'bsonType': 'int',
+                    'default': 1
+                },
+                'batch_count': {
+                    'bsonType': 'int'
+                },
+                'max_daily_batch_count': {
+                    'bsonType': 'int'
+                }
+            }
+        }
+    }
+    
+    # No indexes specified
+    indexes = None
+    
+    # Use the generic function to create the collection
+    success = create_collection_with_schema(db, collection_name, validator, indexes)
+    
+    if success:
+        print(f"Successfully created collection '{collection_name}'")
+        print("Collection schema validation rules applied:")
+        print("   - Required fields: key, value, batch_id, batch_count, max_daily_batch_count")
+    
+    return success
+
 
 def insert_asset_classes_data(db):
     """
@@ -725,6 +837,8 @@ def create_alphagora_database():
             create_trades_collection,
             create_pipeline_collection,
             create_asset_classes_collection,
+            create_settings_collection,
+            create_users_collection,
             insert_asset_classes_data,
             insert_fx_pairs,
             #insert_indices,
