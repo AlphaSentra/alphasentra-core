@@ -484,7 +484,7 @@ def create_users_collection(db):
     validator = {
         '$jsonSchema': {
             'bsonType': 'object',
-            'required': ['email', 'passcode', 'first_name'],
+            'required': ['email', 'passcode', 'first_name','number_of_analysis'],
             'properties': {
                 'email': {
                     'bsonType': 'string'
@@ -494,6 +494,9 @@ def create_users_collection(db):
                 },
                 'first_name': {
                     'bsonType': 'string'
+                },
+                'number_of_analysis': {
+                    'bsonType': 'int'
                 },
                 'created_at': {
                     'bsonType': 'date'
@@ -548,8 +551,7 @@ def create_settings_collection(db):
                 },
                 'value': {},
                 'batch_id': {
-                    'bsonType': 'int',
-                    'default': 1
+                    'bsonType': 'int'
                 },
                 'batch_count': {
                     'bsonType': 'int'
@@ -574,6 +576,51 @@ def create_settings_collection(db):
     
     return success
 
+def insert_settings_data(db):
+    """
+    Inserts initial settings data into the 'settings' collection.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if insertion was successful, False on error
+    """
+    collection_name = 'settings'
+    
+    print()
+    print("=" * 100)
+    print(f"Inserting settings data into '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+    
+    # Settings data to insert
+    settings_data = {
+        "batch_id": 0,
+        "batch_count": 0,
+        "max_daily_batch_count": 3000
+    }
+    
+    try:
+        collection = db[collection_name]
+        
+        # Check if the setting already exists to avoid duplicates
+        existing_setting = collection.find_one({"key": settings_data["key"]})
+        if existing_setting:
+            print(f"Setting with key '{settings_data['key']}' already exists. Skipping insertion to avoid duplicates.")
+            return True
+        
+        # Insert the settings data
+        result = collection.insert_one(settings_data)
+        print(f"Successfully inserted settings data with id {result.inserted_id} into '{collection_name}' collection")
+        return True
+        
+    except pymongo.errors.OperationFailure as e:
+        log_error("MongoDB operation failed for inserting settings data", "MONGODB_OPERATION", e)
+        return False
+    except Exception as e:
+        log_error("Unexpected error inserting settings data", "DATA_INSERTION", e)
+        return False
 
 def insert_asset_classes_data(db):
     """
@@ -839,6 +886,7 @@ def create_alphagora_database():
             create_asset_classes_collection,
             create_settings_collection,
             create_users_collection,
+            insert_settings_data,
             insert_asset_classes_data,
             insert_fx_pairs,
             #insert_indices,
