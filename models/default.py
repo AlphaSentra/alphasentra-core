@@ -74,6 +74,10 @@ def test_trade():
         num_simulations = document.get("num_simulations", 0)
         
         log_info(f"Successfully gathered data for model: {ticker} (Session: {sessionID}, Strategy: {strategy})")
+        
+        # Delete all existing pipeline documents matching this ticker and session ID before simulation
+        delete_result = pipeline_collection.delete_many({"model_name": ticker, "sessionID": sessionID})
+        log_info(f"Deleted {delete_result.deleted_count} documents matching model={ticker} and sessionID={sessionID} before simulation.")
 
         try:
             # 1. Run Monte Carlo Simulation
@@ -98,7 +102,7 @@ def test_trade():
             )
             
             if update_result.modified_count > 0:
-                log_info(f"Successfully marked task for model {ticker} as completed.")
+                log_info(f"Successfully marked task for Monte Carlo simulation model: {ticker} as completed.")
             else:
                 log_warning(f"Could not find or update task for model {ticker} to completed=True. It might have already been processed.")
 
