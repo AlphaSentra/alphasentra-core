@@ -74,13 +74,21 @@ def test_trade():
         num_simulations = document.get("num_simulations", 0)
         
         log_info(f"Successfully gathered data for model: {ticker} (Session: {sessionID}, Strategy: {strategy})")
-        
+
+
+        # Update pipeline collection status
+        update_result = pipeline_collection.update_one(
+            {"model_name": ticker}, # Assuming model_name is unique identifier for the pending task
+            {"$set": {"task_completed": True}}
+        )
+
+
         # Delete all existing pipeline documents matching this ticker and session ID before simulation
         delete_result = pipeline_collection.delete_many({"model_name": ticker, "sessionID": sessionID})
         log_info(f"Deleted {delete_result.deleted_count} documents matching model={ticker} and sessionID={sessionID} before simulation.")
 
         try:
-            # 1. Run Monte Carlo Simulation
+            # Run Monte Carlo Simulation
             simulation_metrics = run_monte_carlo_simulation(
                 sessionID=sessionID, 
                 ticker=ticker, 
@@ -94,13 +102,7 @@ def test_trade():
                 num_simulations=num_simulations
             )
             log_info(f"Simulation for {ticker} completed. EV: ${simulation_metrics.get('expected_value'):.4f}")
-            
-            # 2. Update pipeline collection status
-            update_result = pipeline_collection.update_one(
-                {"model_name": ticker}, # Assuming model_name is unique identifier for the pending task
-                {"$set": {"task_completed": True}}
-            )
-            
+                        
             if update_result.modified_count > 0:
                 log_info(f"Successfully marked task for Monte Carlo simulation model: {ticker} as completed.")
             else:
