@@ -553,10 +553,10 @@ def create_settings_collection(db):
                 'batch_id': {
                     'bsonType': 'int'
                 },
-                'batch_count': {
+                'ai_prompt_count': {
                     'bsonType': 'int'
                 },
-                'max_daily_batch_count': {
+                'max_daily_ai_prompt_count': {
                     'bsonType': 'int'
                 }
             }
@@ -647,8 +647,8 @@ def insert_settings_data(db):
         "key": "batch_settings",
         "value": "default",
         "batch_id": 0,
-        "batch_count": 0,
-        "max_daily_batch_count": 3000
+        "ai_prompt_count": 0,
+        "max_daily_ai_prompt_count": 3000
     }
     
     try:
