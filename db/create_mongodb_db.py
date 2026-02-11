@@ -4,6 +4,7 @@ Script to create MongoDB database 'alphasentra-core'.
 """
 
 import pymongo
+import datetime
 from db.fx_data import insert_fx_pairs
 from db.equities_data import insert_equities
 from db.indices_data import insert_indices
@@ -484,7 +485,7 @@ def create_users_collection(db):
     validator = {
         '$jsonSchema': {
             'bsonType': 'object',
-            'required': ['email', 'passcode', 'first_name','number_of_analysis'],
+            'required': ['email', 'passcode', 'first_name','number_of_analysis', 'country', 'stocks', 'forex', 'crypto', 'commodities', 'last_login'],
             'properties': {
                 'email': {
                     'bsonType': 'string'
@@ -495,11 +496,29 @@ def create_users_collection(db):
                 'first_name': {
                     'bsonType': 'string'
                 },
+                'country': {
+                    'bsonType': 'string'
+                },
+                'stocks': {
+                    'bsonType': 'bool'
+                },
+                'forex': {
+                    'bsonType': 'bool'
+                },
+                'crypto': {
+                    'bsonType': 'bool'
+                },
+                'commodities': {
+                    'bsonType': 'bool'
+                },
                 'number_of_analysis': {
                     'bsonType': 'int'
                 },
                 'created_at': {
                     'bsonType': 'date'
+                },
+                'last_login': {
+                    'bsonType': ['date', 'null']
                 }
             }
         }
@@ -600,7 +619,14 @@ def insert_user_data(db):
         "email": "admin@alphasentra.com",
         "passcode": 123456,
         "first_name": "Admin",
-        "number_of_analysis": 0
+        "country": "United Kingdom",
+        "stocks": True,
+        "forex": True,
+        "crypto": True,
+        "commodities": True,
+        "number_of_analysis": 0,
+        "created_at": datetime.datetime.utcnow(),
+        "last_login": None
     }
     
     try:
