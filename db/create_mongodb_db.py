@@ -485,7 +485,7 @@ def create_users_collection(db):
     validator = {
         '$jsonSchema': {
             'bsonType': 'object',
-            'required': ['email', 'passcode', 'first_name','number_of_analysis', 'country', 'stocks', 'forex', 'crypto', 'commodities', 'last_login'],
+            'required': ['email', 'passcode', 'first_name','number_of_analysis', 'country', 'stocks', 'forex', 'crypto', 'commodities', 'last_login', 'created_at', 'expiry_subscription'],
             'properties': {
                 'email': {
                     'bsonType': 'string'
@@ -518,6 +518,9 @@ def create_users_collection(db):
                     'bsonType': 'date'
                 },
                 'last_login': {
+                    'bsonType': ['date', 'null']
+                },
+                'expiry_subscription': {
                     'bsonType': ['date', 'null']
                 }
             }
@@ -625,8 +628,9 @@ def insert_user_data(db):
         "crypto": True,
         "commodities": True,
         "number_of_analysis": 0,
-        "created_at": datetime.datetime.utcnow(),
-        "last_login": None
+        "created_at": datetime.datetime.now(datetime.timezone.utc),
+        "last_login": None,
+        "expiry_subscription": datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=365 * 100)
     }
     
     try:

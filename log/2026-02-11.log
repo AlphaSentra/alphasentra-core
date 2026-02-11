@@ -5,3 +5,4 @@
 2026-02-11 16:06:49,813 - ERROR - [ERR-0001] - [966db446] MongoDB operation failed for inserting user data | Exception: WriteError: Document failed validation, full error: {'index': 0, 'code': 121, 'errmsg': 'Document failed validation', 'errInfo': {'failingDocumentId': ObjectId('698c46a90802fc37887b3fa9'), 'details': {'operatorName': '$jsonSchema', 'schemaRulesNotSatisfied': [{'operatorName': 'properties', 'propertiesNotSatisfied': [{'propertyName': 'last_login', 'details': [{'operatorName': 'bsonType', 'specifiedAs': {'bsonType': 'date'}, 'reason': 'type did not match', 'consideredValue': None, 'consideredType': 'null'}]}]}]}}} | From: create_mongodb_db.py:insert_user_data()
 2026-02-11 16:06:49,814 - ERROR - [ERR-0001] - [9c88abf1] Failed during sequential operation | From: create_mongodb_db.py:create_alphagora_database()
 2026-02-11 16:08:05,725 - INFO - [INFO] - MongoDB connection closed
+2026-02-11 16:40:24,937 - INFO - [INFO] - MongoDB connection closed
