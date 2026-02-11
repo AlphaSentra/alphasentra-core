@@ -544,7 +544,7 @@ def create_settings_collection(db):
     validator = {
         '$jsonSchema': {
             'bsonType': 'object',
-            'required': ['key', 'value', 'batch_id', 'batch_count', 'max_daily_batch_count'],
+            'required': ['key', 'value', 'batch_id', 'ai_prompt_count', 'max_daily_ai_prompt_count'],
             'properties': {
                 'key': {
                     'bsonType': 'string'
