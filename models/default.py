@@ -103,8 +103,6 @@ def test_trade():
                         
             if update_result and update_result.modified_count > 0:
                 log_info(f"Successfully marked task for Monte Carlo simulation model: {ticker} as completed.")
-            else:
-                log_warning(f"Could not find or update task for model {ticker} to completed=True. It might have already been processed or update_result was not set.")
 
         except Exception as e:
             log_error(f"Error during Monte Carlo simulation or status update for {ticker}: {e}", "DEFAULT_TEST_TRADE")
