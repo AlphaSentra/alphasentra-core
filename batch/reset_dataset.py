@@ -205,6 +205,43 @@ def remove_all_weight_factors():
     except Exception as e:
         logger.error("Failed to delete weight_factors documents", "DATABASE_OPERATION", e)
         return False
+    
+def reset_ai_prompt_count():
+    """
+    Reset the ai_prompt_count field to 0 in the settings collection.
+    
+    Returns:
+        bool: True if successful, False otherwise
+    """
+    try:
+        logger.info("Starting reset of ai_prompt_count in settings collection")
+        
+        # Get MongoDB client using DatabaseManager
+        client = DatabaseManager().get_client()
+        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
+        db = client[db_name]
+        settings_collection = db['settings']
+        
+        # Reset ai_prompt_count to 0
+        result = settings_collection.update_one(
+            {
+                "key": "batch_settings",
+                "value": "default"
+            },
+            {
+                "$set": {
+                    "ai_prompt_count": 0
+                }
+            }
+        )
+        
+        logger.info("Successfully reset ai_prompt_count to 0")
+        return True
+        
+    except Exception as e:
+        logger.error("Failed to reset ai_prompt_count", "DATABASE_OPERATION", e)
+        return False
+    
 
 def delete_trades():
     """
