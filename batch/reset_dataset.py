@@ -289,7 +289,8 @@ def reset_all():
             delete_tickers() and
             delete_once_pipeline() and
             remove_all_weight_factors() and
-            delete_trades()
+            delete_trades() and
+            reset_ai_prompt_count()
         )
         
         if success:

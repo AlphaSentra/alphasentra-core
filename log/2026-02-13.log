@@ -1,0 +1,22 @@
+2026-02-13 08:09:46,102 - INFO - [INFO] - Starting comprehensive dataset reset
+2026-02-13 08:09:46,102 - INFO - [INFO] - Starting reset of document_generated field in tickers collection
+2026-02-13 08:09:49,400 - INFO - [INFO] - Successfully updated 0 documents in tickers collection
+2026-02-13 08:09:49,401 - INFO - [INFO] - Reset of document_generated field completed
+2026-02-13 08:09:49,402 - INFO - [INFO] - Starting reset of task_completed field in pipeline collection
+2026-02-13 08:09:49,695 - INFO - [INFO] - Successfully updated 0 documents in pipeline collection
+2026-02-13 08:09:49,696 - INFO - [INFO] - Reset of task_completed field completed
+2026-02-13 08:09:49,696 - INFO - [INFO] - Starting deletion of tickers with recurrence 'once'
+2026-02-13 08:09:49,983 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from tickers collection
+2026-02-13 08:09:49,983 - INFO - [INFO] - Deletion of once tickers completed
+2026-02-13 08:09:49,983 - INFO - [INFO] - Starting deletion of processed tickers with no insights
+2026-02-13 08:09:50,270 - INFO - [INFO] - No processed tickers without insights found
+2026-02-13 08:09:50,271 - INFO - [INFO] - Starting deletion of pipeline documents with recurrence 'once'
+2026-02-13 08:09:50,622 - INFO - [INFO] - Successfully deleted 0 documents with recurrence 'once' from pipeline collection
+2026-02-13 08:09:50,622 - INFO - [INFO] - Deletion of once pipeline documents completed
+2026-02-13 08:09:50,623 - INFO - [INFO] - Starting deletion of all weigh_factors documents
+2026-02-13 08:09:50,911 - INFO - [INFO] - No documents found in 'weight_factors'.
+2026-02-13 08:09:50,912 - INFO - [INFO] - Starting deletion of all trades documents
+2026-02-13 08:09:51,197 - INFO - [INFO] - No documents found in 'trades'.
+2026-02-13 08:09:51,198 - INFO - [INFO] - Starting reset of ai_prompt_count in settings collection
+2026-02-13 08:09:51,485 - INFO - [INFO] - Successfully reset ai_prompt_count to 0
+2026-02-13 08:09:51,485 - INFO - [INFO] - All reset operations completed successfully
