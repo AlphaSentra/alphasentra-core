@@ -41,5 +41,18 @@ jobs:
         echo GEMINI_PRO_MODEL='${{ secrets.GEMINI_PRO_MODEL }}' >> .env
         echo ENCRYPTION_SECRET='${{ secrets.ENCRYPTION_SECRET }}' >> .env
         
-    - name: Run batch process
-      run: python main.py -batch
+    - name: Run batch process with retries
+      run: |
+        MAX_RETRIES=3
+        RETRY_DELAY=10
+        for i in $(seq 1 $MAX_RETRIES); do
+          echo "Attempt $i of $MAX_RETRIES..."
+          python main.py -batch && break
+          if [ $i -lt $MAX_RETRIES ]; then
+            echo "Command failed, retrying in $RETRY_DELAY seconds..."
+            sleep $RETRY_DELAY
+          else
+            echo "Command failed after $MAX_RETRIES attempts."
+            exit 1
+          fi
+        done
