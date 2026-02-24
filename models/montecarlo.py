@@ -543,7 +543,11 @@ def run_monte_carlo_simulation(
         p5, p50, p95 = [], [], []
 
     num_samples = min(100, num_simulations)
-    sample_paths = random.sample(all_paths, num_samples) if num_simulations > 0 else []
+    raw_sample_paths = random.sample(all_paths, num_samples) if num_simulations > 0 else []
+
+    # Ensure all numbers in sample_paths are floats for consistent numerical operations.
+    # This handles cases where 'all_paths' might contain integers or other numeric types.
+    sample_paths = [[float(val) for val in path] for path in raw_sample_paths]
 
     # Generate simulation commentary
     simulation_commentary = _generate_simulation_commentary(
