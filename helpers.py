@@ -713,8 +713,8 @@ class DatabaseManager:
                     mongodb_uri,
                     maxPoolSize=10,
                     minPoolSize=2,
-                    connectTimeoutMS=5000,
-                    serverSelectionTimeoutMS=5000
+                    connectTimeoutMS=30000,
+                    serverSelectionTimeoutMS=30000
                 )
                 
                 # Test connection (silent - no logging)

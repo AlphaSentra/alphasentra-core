@@ -6,6 +6,11 @@ and persists the updated information into the database.
 """
 
 import os
+import sys
+
+# Add the project root to the Python path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from dotenv import load_dotenv
 import pymongo
 from yahooquery import Ticker
@@ -82,6 +87,7 @@ def collect_ticker_data(tickers: list) -> dict:
         data = yq_tickers.all_modules
 
         for ticker_symbol in tickers:
+            log_info(f"Collecting data for ticker: {ticker_symbol}")
             market_cap = None
             forward_pe = None
             eps_growth = None
@@ -93,11 +99,17 @@ def collect_ticker_data(tickers: list) -> dict:
             one_week_performance = None # Initialize 1-week percentage performance
             one_month_performance = None # Initialize 1-month percentage performance
             three_month_performance = None # Initialize 3-month percentage performance
+            dividend_yield = None # Initialize dividend_yield
             
             if ticker_symbol in data and 'summaryDetail' in data[ticker_symbol]:
                 summary_detail = data[ticker_symbol]['summaryDetail']
                 market_cap = summary_detail.get('marketCap')
                 forward_pe = summary_detail.get('forwardPE')
+                dividend_yield = summary_detail.get('dividendYield')
+                if dividend_yield is not None:
+                    log_info(f"Collected dividend yield for {ticker_symbol}: {dividend_yield:.4f}")
+                else:
+                    log_warning(f"Dividend yield not found for {ticker_symbol}.", "DATA_MISSING")
                 
                 # Collect circulatingSupply and maxSupply for dilution_proxy calculation
                 circulating_supply = summary_detail.get('circulatingSupply')
@@ -107,17 +119,17 @@ def collect_ticker_data(tickers: list) -> dict:
                     dilution_proxy = circulating_supply / max_supply
                     log_info(f"Collected dilution proxy for {ticker_symbol}: {dilution_proxy}")
                 else:
-                    log_warning(f"Circulating supply or max supply not found or max supply is zero for {ticker_symbol}. Cannot calculate dilution proxy.")
+                    log_warning(f"Circulating supply or max supply not found or max supply is zero for {ticker_symbol}. Cannot calculate dilution proxy.", "DATA_PROCESSING")
 
                 if market_cap is not None:
                     log_info(f"Collected market cap for {ticker_symbol}: {market_cap}")
                 else:
-                    log_warning(f"Market cap not found for {ticker_symbol}.")
+                    log_warning(f"Market cap not found for {ticker_symbol}.", "DATA_MISSING")
                 
                 if forward_pe is not None:
                     log_info(f"Collected forward P/E for {ticker_symbol}: {forward_pe}")
                 else:
-                    log_warning(f"Forward P/E not found for {ticker_symbol}.")
+                    log_warning(f"Forward P/E not found for {ticker_symbol}.", "DATA_MISSING")
             else:
                 log_warning(f"No data or 'summaryDetail' found for {ticker_symbol}.")
             
@@ -127,49 +139,49 @@ def collect_ticker_data(tickers: list) -> dict:
                 if average_daily_range_pips is not None:
                     log_info(f"Collected 30-day average daily range for {ticker_symbol}: {average_daily_range_pips} pips.")
                 else:
-                    log_warning(f"Could not collect 30-day average daily range for FX pair {ticker_symbol}.")
+                    log_warning(f"Could not collect 30-day average daily range for FX pair {ticker_symbol}.", "DATA_MISSING")
 
             # Collect momentum spread
             momentum_spread = _calculate_momentum_spread(ticker_symbol)
             if momentum_spread is not None:
                 log_info(f"Collected momentum spread for {ticker_symbol}: {momentum_spread:.2f}.")
             else:
-                log_warning(f"Could not collect momentum spread for {ticker_symbol}.")
+                log_warning(f"Could not collect momentum spread for {ticker_symbol}.", "DATA_MISSING")
 
             # Collect average daily volume
             average_daily_volume = _calculate_average_daily_volume(ticker_symbol)
             if average_daily_volume is not None:
                 log_info(f"Collected average daily volume for {ticker_symbol}: {average_daily_volume:.2f}.")
             else:
-                log_warning(f"Could not collect average daily volume for {ticker_symbol}.")
+                log_warning(f"Could not collect average daily volume for {ticker_symbol}.", "DATA_MISSING")
 
             # Collect 30-day volume change
             thirty_day_volume_change = _calculate_30d_volume_change(ticker_symbol)
             if thirty_day_volume_change is not None:
                 log_info(f"Collected 30-day volume change for {ticker_symbol}: {thirty_day_volume_change:.2f}%")
             else:
-                log_warning(f"Could not collect 30-day volume change for {ticker_symbol}.")
+                log_warning(f"Could not collect 30-day volume change for {ticker_symbol}.", "DATA_MISSING")
 
             # Collect 1-week percentage performance
             one_week_performance = _calculate_percentage_performance(ticker_symbol, 7)
             if one_week_performance is not None:
                 log_info(f"Collected 1-week performance for {ticker_symbol}: {one_week_performance:.2f}%")
             else:
-                log_warning(f"Could not collect 1-week performance for {ticker_symbol}.")
+                log_warning(f"Could not collect 1-week performance for {ticker_symbol}.", "DATA_MISSING")
             
             # Collect 1-month percentage performance
             one_month_performance = _calculate_percentage_performance(ticker_symbol, 30)
             if one_month_performance is not None:
                 log_info(f"Collected 1-month performance for {ticker_symbol}: {one_month_performance:.2f}%")
             else:
-                log_warning(f"Could not collect 1-month performance for {ticker_symbol}.")
+                log_warning(f"Could not collect 1-month performance for {ticker_symbol}.", "DATA_MISSING")
 
             # Collect 3-month percentage performance
             three_month_performance = _calculate_percentage_performance(ticker_symbol, 90)
             if three_month_performance is not None:
                 log_info(f"Collected 3-month performance for {ticker_symbol}: {three_month_performance:.2f}%")
             else:
-                log_warning(f"Could not collect 3-month performance for {ticker_symbol}.")
+                log_warning(f"Could not collect 3-month performance for {ticker_symbol}.", "DATA_MISSING")
 
             # Attempt to get EPS growth from 'financialData' or 'earningsTrend'
             if ticker_symbol in data and 'financialData' in data[ticker_symbol]:
@@ -178,7 +190,7 @@ def collect_ticker_data(tickers: list) -> dict:
                 if eps_growth is not None:
                     log_info(f"Collected EPS growth for {ticker_symbol}: {eps_growth}")
                 else:
-                    log_warning(f"EPS growth not found in financialData for {ticker_symbol}.")
+                    log_warning(f"EPS growth not found in financialData for {ticker_symbol}.", "DATA_MISSING")
             elif ticker_symbol in data and 'earningsTrend' in data[ticker_symbol]:
                 # Earnings trend might have a list of trends, we might need to pick the latest or average
                 earnings_trend_list = data[ticker_symbol]['earningsTrend'].get('trend', [])
@@ -191,9 +203,9 @@ def collect_ticker_data(tickers: list) -> dict:
                     if eps_growth is not None:
                         log_info(f"Collected EPS growth from earningsTrend for {ticker_symbol}: {eps_growth}")
                     else:
-                        log_warning(f"EPS growth not found in earningsTrend for {ticker_symbol}.")
+                        log_warning(f"EPS growth not found in earningsTrend for {ticker_symbol}.", "DATA_MISSING")
             else:
-                log_warning(f"No financialData or earningsTrend found for {ticker_symbol} to get EPS growth.")
+                log_warning(f"No financialData or earningsTrend found for {ticker_symbol} to get EPS growth.", "DATA_MISSING")
 
             ticker_data[ticker_symbol] = {
                 'market_cap': market_cap,
@@ -206,7 +218,8 @@ def collect_ticker_data(tickers: list) -> dict:
                 '30d_volume_change': thirty_day_volume_change, # Add 30-day volume change
                 '1w': one_week_performance,
                 '1m': one_month_performance,
-                '3m': three_month_performance
+                '3m': three_month_performance,
+                'dividend_yield': dividend_yield
             }
 
     except Exception as e:
@@ -233,12 +246,12 @@ def _calculate_30d_average_daily_range_in_pips(ticker_symbol: str) -> Optional[f
         end_date = datetime.now()
         start_date = end_date - timedelta(days=45)
         
-        # Using yahooquery to get historical data
+        # Get historical data
         yq_ticker = Ticker(ticker_symbol)
         data = yq_ticker.history(start=start_date.strftime('%Y-%m-%d'), end=end_date.strftime('%Y-%m-%d'))
         
         if data.empty or ticker_symbol not in data.index.get_level_values('symbol'):
-            log_warning(f"No historical data available for {ticker_symbol} to calculate 30-day average daily range using yahooquery.", "AVG_DAILY_RANGE_CALCULATION")
+            log_warning(f"No historical data available for {ticker_symbol} to calculate 30-day average daily range", "AVG_DAILY_RANGE_CALCULATION")
             return None
 
         # Extract data for the specific ticker
@@ -274,11 +287,11 @@ def _calculate_30d_average_daily_range_in_pips(ticker_symbol: str) -> Optional[f
             return None
 
         average_daily_range_pips = sum(daily_ranges_in_pips) / len(daily_ranges_in_pips)
-        log_info(f"Calculated 30-day average daily range for {ticker_symbol}: {average_daily_range_pips:.2f} pips using yahooquery.", "AVG_DAILY_RANGE_CALCULATION")
+        log_info(f"Calculated 30-day average daily range for {ticker_symbol}: {average_daily_range_pips:.2f} pips.")
         return round(average_daily_range_pips, 2)
 
     except Exception as e:
-        log_error(f"Error calculating 30-day average daily range for {ticker_symbol} using yahooquery: {e}", "AVG_DAILY_RANGE_CALCULATION", e)
+        log_error(f"Error calculating 30-day average daily range for {ticker_symbol}: {e}", "AVG_DAILY_RANGE_CALCULATION", e)
         return None
 
 
@@ -333,7 +346,7 @@ def _calculate_momentum_spread(ticker_symbol: str) -> Optional[float]:
         else:
             momentum_spread = momentum / range_pct
 
-        log_info(f"Calculated momentum spread for {ticker_symbol}: {momentum_spread:.2f}", "MOMENTUM_SPREAD_CALCULATION")
+        log_info(f"Calculated momentum spread for {ticker_symbol}: {momentum_spread:.2f}")
         return momentum_spread
 
     except Exception as e:
@@ -374,7 +387,7 @@ def _calculate_average_daily_volume(ticker_symbol: str, lookback_days: int = 30)
 
         average_volume = recent_volume.mean()
 
-        log_info(f"Calculated {lookback_days}-day average daily volume for {ticker_symbol}: {average_volume:.2f}", "AVG_DAILY_VOLUME_CALCULATION")
+        log_info(f"Calculated {lookback_days}-day average daily volume for {ticker_symbol}: {average_volume:.2f}")
         return round(average_volume, 2)
 
     except Exception as e:
@@ -425,7 +438,7 @@ def _calculate_30d_volume_change(ticker_symbol: str) -> Optional[float]:
         
         thirty_day_volume_change = ((current_30d_avg_volume - previous_30d_avg_volume) / previous_30d_avg_volume) * 100
 
-        log_info(f"Calculated 30-day volume change for {ticker_symbol}: {thirty_day_volume_change:.2f}%", "30D_VOLUME_CHANGE_CALCULATION")
+        log_info(f"Calculated 30-day volume change for {ticker_symbol}: {thirty_day_volume_change:.2f}%")
         return round(thirty_day_volume_change, 2)
 
     except Exception as e:
@@ -479,8 +492,8 @@ def _calculate_percentage_performance(ticker_symbol: str, lookback_days: int) ->
 
         percentage_performance = ((final_price - initial_price) / initial_price) * 100
 
-        log_info(f"Calculated {lookback_days}-day percentage performance for {ticker_symbol}: {percentage_performance:.2f}%", "PERFORMANCE_CALCULATION")
-        return round(percentage_performance, 2)
+        log_info(f"Calculated {lookback_days}-day percentage performance for {ticker_symbol}: {percentage_performance:.2f}%")
+        return round(percentage_performance / 100, 4)
 
     except Exception as e:
         log_error(f"Error calculating {lookback_days}-day percentage performance for {ticker_symbol}: {e}", "PERFORMANCE_CALCULATION", e)
@@ -520,73 +533,75 @@ def update_ticker_data_in_db():
 
     log_info(f"Total {len(tickers_from_db)} tickers to process in batches.")
     
-    batch_size = 100
-    all_ticker_data = {}
-
-    for i in range(0, len(tickers_from_db), batch_size):
-        ticker_batch = tickers_from_db[i:i + batch_size]
-        log_info(f"Processing batch {int(i/batch_size) + 1}/{(len(tickers_from_db) + batch_size - 1) // batch_size} with {len(ticker_batch)} tickers.")
-        
-        batch_data = collect_ticker_data(ticker_batch)
-        all_ticker_data.update(batch_data)
-        
-        if (i + batch_size) < len(tickers_from_db):
-            log_info("Pausing for 60 seconds before next batch...")
-            time.sleep(60) # Pause for 60 seconds between batches
-
-    if not all_ticker_data:
-        log_warning("No ticker data collected for any tickers.")
-        return
-
+    batch_size = 50
+    total_updated_count = 0
     client = None
     try:
         client = DatabaseManager().get_client()
         db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
         collection = db["tickers"]
-        
-        updated_count = 0
-        for ticker_symbol, data in all_ticker_data.items():
-            update_fields = {}
-            if data["market_cap"] is not None:
-                update_fields["market_cap"] = data["market_cap"]
-            if data["forward_pe"] is not None:
-                update_fields["forward_pe"] = data["forward_pe"]
-            if data["eps_growth"] is not None:
-                update_fields["eps_growth"] = data["eps_growth"]
-            if data["dilution_proxy"] is not None:
-                update_fields["dilution_proxy"] = data["dilution_proxy"]
-            if data["30d_average_daily_range_pips"] is not None: # Add 30-day average daily range in pips to update fields
-                update_fields["30d_average_daily_range_pips"] = data["30d_average_daily_range_pips"]
-            if data["momentum_spread"] is not None:
-                update_fields["momentum_spread"] = data["momentum_spread"]
-            if data["average_daily_volume"] is not None:
-                update_fields["average_daily_volume"] = data["average_daily_volume"]
-            if data["30d_volume_change"] is not None:
-                update_fields["30d_volume_change"] = data["30d_volume_change"]
-            if data["1w_performance"] is not None:
-                update_fields["1w"] = data["1w_performance"]
-            if data["1m_performance"] is not None:
-                update_fields["1m"] = data["1m_performance"]
-            if data["3m_performance"] is not None:
-                update_fields["3m"] = data["3m_performance"]
 
-            if update_fields:
-                result = collection.update_one(
-                    {"ticker": ticker_symbol},
-                    {"$set": update_fields}
-                )
-                if result.modified_count > 0:
-                    log_info(f"Updated data for {ticker_symbol}: {update_fields}.")
-                    updated_count += 1
-                elif result.upserted_id is not None:
-                    log_warning(f"Inserted data for new ticker {ticker_symbol}: {update_fields}.")
-                    updated_count += 1
-                else:
-                    log_info(f"Data for {ticker_symbol} already up-to-date or no change.")
+        for i in range(0, len(tickers_from_db), batch_size):
+            ticker_batch = tickers_from_db[i:i + batch_size]
+            log_info(f"Processing batch {int(i/batch_size) + 1}/{(len(tickers_from_db) + batch_size - 1) // batch_size} with {len(ticker_batch)} tickers.")
+            
+            batch_data = collect_ticker_data(ticker_batch)
+            
+            if not batch_data:
+                log_warning(f"No ticker data collected for batch starting with {ticker_batch[0] if ticker_batch else 'N/A'}. Skipping update for this batch.")
             else:
-                log_warning(f"No valid data to update for {ticker_symbol}. Skipping.")
+                batch_updated_count = 0
+                for ticker_symbol, data in batch_data.items():
+                    update_fields = {}
+                    if data["market_cap"] is not None:
+                        update_fields["market_cap"] = data["market_cap"]
+                    if data["forward_pe"] is not None:
+                        update_fields["forward_pe"] = data["forward_pe"]
+                    if data["eps_growth"] is not None:
+                        update_fields["eps_growth"] = data["eps_growth"]
+                    if data["dilution_proxy"] is not None:
+                        update_fields["dilution_proxy"] = data["dilution_proxy"]
+                    if data["30d_average_daily_range_pips"] is not None:
+                        update_fields["30d_average_daily_range_pips"] = data["30d_average_daily_range_pips"]
+                    if data["momentum_spread"] is not None:
+                        update_fields["momentum_spread"] = data["momentum_spread"]
+                    if data["average_daily_volume"] is not None:
+                        update_fields["average_daily_volume"] = data["average_daily_volume"]
+                    if data["30d_volume_change"] is not None:
+                        update_fields["30d_volume_change"] = data["30d_volume_change"]
+                    if "1w" in data and data["1w"] is not None:
+                        update_fields["1w"] = data["1w"]
+                    if "1m" in data and data["1m"] is not None:
+                        update_fields["1m"] = data["1m"]
+                    if "3m" in data and data["3m"] is not None:
+                        update_fields["3m"] = data["3m"]
+                    if "dividend_yield" in data and data["dividend_yield"] is not None:
+                        update_fields["dividend_yield"] = data["dividend_yield"]
 
-        log_info(f"Finished updating ticker data. Total {updated_count} tickers updated/inserted.")
+                    if update_fields:
+                        result = collection.update_one(
+                            {"ticker": ticker_symbol},
+                            {"$set": update_fields}
+                        )
+                        if result.modified_count > 0:
+                            log_info(f"Updated data for {ticker_symbol} in current batch: {update_fields}.")
+                            batch_updated_count += 1
+                        elif result.upserted_id is not None:
+                            log_warning(f"Inserted data for new ticker {ticker_symbol} in current batch: {update_fields}.")
+                            batch_updated_count += 1
+                        else:
+                            log_info(f"Data for {ticker_symbol} already up-to-date or no change in current batch.")
+                    else:
+                        log_warning(f"No valid data to update for {ticker_symbol} in current batch. Skipping.")
+                
+                total_updated_count += batch_updated_count
+                log_info(f"Finished updating data for batch. {batch_updated_count} tickers updated/inserted in this batch.")
+
+            if (i + batch_size) < len(tickers_from_db):
+                log_info("Pausing for 60 seconds before next batch...")
+                time.sleep(60) # Pause for 60 seconds between batches
+        
+        log_info(f"Finished updating all ticker data. Total {total_updated_count} tickers updated/inserted across all batches.")
 
     except pymongo.errors.ServerSelectionTimeoutError as e:
         log_error("MongoDB server not found. Ensure MongoDB is running on the specified host/port.", "MONGODB_CONNECTION", e)
