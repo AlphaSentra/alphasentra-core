@@ -23,7 +23,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+LIABILITY, WHETHER IN AN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
@@ -47,9 +47,8 @@ import backtrader as bt
 from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
 import pandas as pd
-import logging
-
-logger = logging.getLogger(__name__)
+from logging_utils import log_error, log_warning, log_info
+from typing import Optional
 
 def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2):
     """
@@ -73,7 +72,7 @@ def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2
         # Dictionary to store stop loss prices
         stop_loss_prices = {}
 
-        logger.info("Calculating stop loss prices...")
+        log_info("Calculating stop loss prices...")
 
         # Fetch data for all tickers
         for ticker in tickers:
@@ -84,7 +83,7 @@ def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2
                 data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False, auto_adjust=False)
                 
                 if data.empty:
-                    logger.error(f"No data available for {ticker}")
+                    log_error(f"No data available for {ticker}")
                     continue
                 
                 # Prepare data for backtrader
@@ -161,14 +160,12 @@ def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2
                 
                 
             except Exception as e:
-                logger.error(f"Error calculating stop loss for {ticker}: {e}")
-                logger.exception("Traceback for stop loss calculation error")
+                log_error(f"Error calculating stop loss for {ticker}: {e}", "STOP_LOSS_CALCULATION", e)
                 continue
         
         return stop_loss_prices
     except Exception as e:
-        logger.error(f"ERROR in calculate_trade_levels: {e}")
-        logger.exception("Traceback for calculate_trade_levels error")
+        log_error(f"ERROR in calculate_trade_levels: {e}", "TRADE_LEVELS_CALCULATION", e)
         return {}
 
 
@@ -196,7 +193,7 @@ def calculate_entry_price(tickers, trade_direction, period=5):
         # Dictionary to store entry prices
         entry_prices = {}
 
-        logger.info("Calculating entry prices...")
+        log_info("Calculating entry prices...")
 
         # Fetch data for all tickers
         for ticker in tickers:
@@ -207,14 +204,14 @@ def calculate_entry_price(tickers, trade_direction, period=5):
                 data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False, auto_adjust=False)
                 
                 if data.empty:
-                    logger.error(f"No data available for {ticker}")
+                    log_error(f"No data available for {ticker}", "ENTRY_PRICE_CALCULATION")
                     continue
                 
                 # Get data for the past week only (last 5 trading days)
                 week_data = data.tail(period)
                 
                 if len(week_data) < period:
-                    logger.warning(f"Not enough data for {ticker} to calculate weekly high/low")
+                    log_warning(f"Not enough data for {ticker} to calculate weekly high/low", "ENTRY_PRICE_CALCULATION")
                     continue
                 
                 # Calculate weekly high and low
@@ -236,14 +233,12 @@ def calculate_entry_price(tickers, trade_direction, period=5):
                 
                 
             except Exception as e:
-                logger.error(f"Error calculating entry price for {ticker}: {e}")
-                logger.exception("Traceback for entry price calculation error")
+                log_error(f"Error calculating entry price for {ticker}: {e}", "ENTRY_PRICE_CALCULATION", e)
                 continue
         
         return entry_prices
     except Exception as e:
-        logger.error(f"ERROR in calculate_entry_price: {e}")
-        logger.exception("Traceback for calculate_entry_price error")
+        log_error(f"ERROR in calculate_entry_price: {e}", "ENTRY_PRICE_CALCULATION", e)
         return {}
 
 
@@ -271,11 +266,11 @@ def get_current_price(ticker):
                 latest_price = data['Close'].iloc[-1]
                 return float(latest_price)
         
-        logger.error(f"No data available for {ticker} with any period")
+        log_error(f"No data available for {ticker} with any period", "CURRENT_PRICE_FETCH")
         return None
         
     except Exception as e:
-        logger.error(f"Error getting price data for {ticker}: {e}")
+        log_error(f"Error getting price data for {ticker}: {e}", "CURRENT_PRICE_FETCH", e)
         return None
     
 
@@ -298,9 +293,9 @@ def calculate_performance_metrics(ticker):
     if isinstance(ticker, list):
         if ticker:
             ticker = ticker[0]
-            logger.warning(f"calculate_performance_metrics received a list, using first element: {ticker}")
+            log_warning(f"calculate_performance_metrics received a list, using first element: {ticker}", "PERFORMANCE_METRICS_CALCULATION")
         else:
-            logger.error("calculate_performance_metrics received an empty list")
+            log_error("calculate_performance_metrics received an empty list", "PERFORMANCE_METRICS_CALCULATION")
             return {}
     try:
         stock = yf.Ticker(ticker)
@@ -346,7 +341,7 @@ def calculate_performance_metrics(ticker):
         return performance
         
     except Exception as e:
-        print(f"Error calculating performance for {ticker}: {str(e)}")
+        log_error(f"Error calculating performance for {ticker}: {str(e)}", "PERFORMANCE_METRICS_CALCULATION", e)
         return {}
 
 def get_dividend_yield(ticker):
@@ -367,11 +362,11 @@ def get_dividend_yield(ticker):
         if dividend_yield is not None:
             return float(dividend_yield) / 100  # Convert percentage to decimal
         
-        logger.warning(f"No dividend yield data available for {ticker}")
+        log_warning(f"No dividend yield data available for {ticker}", "DIVIDEND_YIELD_FETCH")
         return None
         
     except Exception as e:
-        logger.error(f"Error getting dividend yield for {ticker}: {e}")
+        log_error(f"Error getting dividend yield for {ticker}: {e}", "DIVIDEND_YIELD_FETCH", e)
         return None
 
 
@@ -402,7 +397,7 @@ def get_growth_profitability_chart(ticker):
         financials = stock.quarterly_financials.T
         
         if financials.empty:
-            logger.info(f"No quarterly data for {ticker}, switching to annual.")
+            log_info(f"No quarterly data for {ticker}, switching to annual.", "GROWTH_PROFITABILITY_CHART")
             financials = stock.financials.T
             is_annual = True
 
@@ -423,7 +418,7 @@ def get_growth_profitability_chart(ticker):
                 revenue_col, net_income_col = get_cols(financials)
             
             if not revenue_col or not net_income_col:
-                logger.error(f"Missing required metrics for {ticker}")
+                log_error(f"Missing required metrics for {ticker}", "GROWTH_PROFITABILITY_CHART")
                 return {}
 
         financials.index = pd.to_datetime(financials.index)
@@ -514,8 +509,7 @@ def get_growth_profitability_chart(ticker):
         return chart_data
         
     except Exception as e:
-        logger.error(f"Error generating growth/profitability chart for {ticker}: {e}")
-        logger.exception("Traceback for growth/profitability chart error")
+        log_error(f"Error generating growth/profitability chart for {ticker}: {e}", "GROWTH_PROFITABILITY_CHART", e)
         return {}
 
 
@@ -550,13 +544,13 @@ def financial_health_chart(ticker):
         
         # Trigger annual fallback if quarterly is empty
         if balance_sheet.empty or cash_flow.empty:
-            logger.info(f"Quarterly data missing for {ticker}, attempting annual fallback.")
+            log_info(f"Quarterly data missing for {ticker}, attempting annual fallback.", "FINANCIAL_HEALTH_CHART")
             balance_sheet = stock.balance_sheet.T
             cash_flow = stock.cashflow.T
             is_annual = True
 
         if balance_sheet.empty or cash_flow.empty:
-            logger.error(f"No financial data available for {ticker}")
+            log_error(f"No financial data available for {ticker}", "FINANCIAL_HEALTH_CHART")
             return {}
 
         # Internal helper to standardize data frames
@@ -655,8 +649,7 @@ def financial_health_chart(ticker):
         return chart_data
         
     except Exception as e:
-        logger.error(f"Error generating financial health chart for {ticker}: {e}")
-        logger.exception("Traceback for financial health chart error")
+        log_error(f"Error generating financial health chart for {ticker}: {e}", "FINANCIAL_HEALTH_CHART", e)
         return {}
     
 def get_capital_structure_chart(ticker):
@@ -685,7 +678,7 @@ def get_capital_structure_chart(ticker):
             }
         }
     except Exception as e:
-        print(f"Error fetching capital structure: {e}")
+        log_error(f"Error fetching capital structure: {e}", "CAPITAL_STRUCTURE_FETCH", e)
         return None
     
 
@@ -705,7 +698,7 @@ def get_dividend_history_chart(ticker):
         # Get dividend history for last 5 years
         dividends = stock.dividends
         if dividends.empty:
-            logger.error(f"No dividend data available for {ticker}")
+            log_error(f"No dividend data available for {ticker}", "DIVIDEND_HISTORY_CHART")
             return {}
         
         # Resample to annual dividends using new frequency convention
@@ -714,7 +707,7 @@ def get_dividend_history_chart(ticker):
         # Get historical prices for yield calculation
         history = stock.history(period="5y")
         if history.empty:
-            logger.error(f"No price history available for {ticker}")
+            log_error(f"No price history available for {ticker}", "DIVIDEND_HISTORY_CHART")
             return {}
         
         # Resample to annual closing prices using new frequency convention
@@ -773,6 +766,6 @@ def get_dividend_history_chart(ticker):
         return chart_data
         
     except Exception as e:
-        logger.error(f"Error generating dividend history chart for {ticker}: {e}")
-        logger.exception("Traceback for dividend history chart error")
+        log_error(f"Error generating dividend history chart for {ticker}: {e}", "DIVIDEND_HISTORY_CHART", e)
         return {}
+

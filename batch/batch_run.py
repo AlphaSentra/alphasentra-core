@@ -1,3 +1,52 @@
+"""
+batch/batch_run.py
+
+This module implements an asynchronous and parallel batch processing system designed to
+efficiently process tasks related to financial tickers and data pipelines. It leverages
+multiprocessing for CPU-bound tasks and threading for concurrent I/O operations (database polling).
+
+Key Features:
+- Asynchronous Task Polling: A background thread continuously polls a MongoDB database
+  for new 'pipeline' and 'ticker' tasks that require processing.
+- Parallel Execution: Utilizes a `ProcessPoolExecutor` to distribute and execute
+  CPU-bound tasks (model functions) across multiple processes, maximizing CPU utilization.
+- Atomic Task Processing: Ensures that each task (ticker or pipeline) is processed
+  only once by atomically checking and updating its status in the database.
+- Dynamic Model Loading: Dynamically imports and executes model functions based on
+  configurations stored in the database, allowing for flexible and extensible processing.
+- Concurrency Control: Employs a `BoundedSemaphore` to limit the number of concurrently
+  executing tasks, preventing resource exhaustion.
+- Robust Error Handling: Includes comprehensive logging for errors encountered during
+  polling, task processing, and the main loop.
+- Timeout Mechanism: The batch run can be configured with a timeout to prevent indefinite execution.
+- Database-driven Control: Monitors a 'batch_id' in the database to allow for external
+  termination or coordination of batch runs.
+
+Main Components:
+- `derive_module_and_func(model_function, model_name=None)`: Helper to determine the
+  module and function name from model configuration.
+- `process_ticker(doc)`: Worker function to process individual ticker documents. It
+  dynamically loads and runs the specified model function for a given ticker.
+- `process_pipeline(doc)`: Worker function to process pipeline documents, similarly
+  loading and executing model functions for pipeline tasks.
+- `run_batch_processing(max_workers=BATCH_SIZE)`: The main entry point for the batch
+  runner. It orchestrates the polling thread, the process pool, and the task queue.
+
+Usage:
+This module is typically run as a standalone script:
+`python batch/batch_run.py`
+
+Configuration for `BATCH_SIZE`, `BATCH_TIMEOUT`, and `BATCH_PAUSE_IN_SECONDS`
+can be found in `_config.py`. Database connection details are loaded from environment
+variables (e.g., `.env` file).
+
+Dependencies:
+- `pymongo`: For MongoDB interactions.
+- `tqdm`: For progress bar (if used in future enhancements or for visual feedback).
+- `dotenv`: For loading environment variables.
+- Internal modules: `logging_utils`, `_config`, `helpers`.
+"""
+
 import sys
 import os
 import importlib
