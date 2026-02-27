@@ -90,6 +90,9 @@ def collect_ticker_data(tickers: list) -> dict:
             momentum_spread = None # Initialize momentum_spread
             average_daily_volume = None # Initialize average_daily_volume
             thirty_day_volume_change = None # Initialize 30-day volume change
+            one_week_performance = None # Initialize 1-week percentage performance
+            one_month_performance = None # Initialize 1-month percentage performance
+            three_month_performance = None # Initialize 3-month percentage performance
             
             if ticker_symbol in data and 'summaryDetail' in data[ticker_symbol]:
                 summary_detail = data[ticker_symbol]['summaryDetail']
@@ -147,6 +150,27 @@ def collect_ticker_data(tickers: list) -> dict:
             else:
                 log_warning(f"Could not collect 30-day volume change for {ticker_symbol}.")
 
+            # Collect 1-week percentage performance
+            one_week_performance = _calculate_percentage_performance(ticker_symbol, 7)
+            if one_week_performance is not None:
+                log_info(f"Collected 1-week performance for {ticker_symbol}: {one_week_performance:.2f}%")
+            else:
+                log_warning(f"Could not collect 1-week performance for {ticker_symbol}.")
+            
+            # Collect 1-month percentage performance
+            one_month_performance = _calculate_percentage_performance(ticker_symbol, 30)
+            if one_month_performance is not None:
+                log_info(f"Collected 1-month performance for {ticker_symbol}: {one_month_performance:.2f}%")
+            else:
+                log_warning(f"Could not collect 1-month performance for {ticker_symbol}.")
+
+            # Collect 3-month percentage performance
+            three_month_performance = _calculate_percentage_performance(ticker_symbol, 90)
+            if three_month_performance is not None:
+                log_info(f"Collected 3-month performance for {ticker_symbol}: {three_month_performance:.2f}%")
+            else:
+                log_warning(f"Could not collect 3-month performance for {ticker_symbol}.")
+
             # Attempt to get EPS growth from 'financialData' or 'earningsTrend'
             if ticker_symbol in data and 'financialData' in data[ticker_symbol]:
                 financial_data = data[ticker_symbol]['financialData']
@@ -179,7 +203,10 @@ def collect_ticker_data(tickers: list) -> dict:
                 '30d_average_daily_range_pips': average_daily_range_pips, # Add 30-day average daily range in pips
                 'momentum_spread': momentum_spread, # Add momentum_spread
                 'average_daily_volume': average_daily_volume, # Add average_daily_volume
-                '30d_volume_change': thirty_day_volume_change # Add 30-day volume change
+                '30d_volume_change': thirty_day_volume_change, # Add 30-day volume change
+                '1w': one_week_performance,
+                '1m': one_month_performance,
+                '3m': three_month_performance
             }
 
     except Exception as e:
@@ -406,6 +433,60 @@ def _calculate_30d_volume_change(ticker_symbol: str) -> Optional[float]:
         return None
 
 
+def _calculate_percentage_performance(ticker_symbol: str, lookback_days: int) -> Optional[float]:
+    """
+    Calculates the percentage performance of a ticker over a specified number of lookback days.
+
+    Args:
+        ticker_symbol (str): The ticker symbol (e.g., 'AAPL').
+        lookback_days (int): The number of days to look back for calculating the percentage change.
+
+    Returns:
+        float: The percentage performance, or None if data is unavailable or an error occurs.
+    """
+    try:
+        end_date = datetime.now()
+        # Fetch enough data to cover the lookback period, adding a buffer for non-trading days.
+        start_date = end_date - timedelta(days=lookback_days * 2) # Get more days to be safe
+        
+        yq_ticker = Ticker(ticker_symbol)
+        data = yq_ticker.history(start=start_date.strftime("%Y-%m-%d"), end=end_date.strftime("%Y-%m-%d"))
+
+        if data.empty or ticker_symbol not in data.index.get_level_values("symbol"):
+            log_warning(f"No historical data available for {ticker_symbol} to calculate {lookback_days}-day percentage performance.", "PERFORMANCE_CALCULATION")
+            return None
+
+        ticker_data = data.loc[ticker_symbol]
+
+        # Ensure we have enough data points for the lookback period
+        if len(ticker_data) < lookback_days:
+            log_warning(f"Less than {lookback_days} days of historical data for {ticker_symbol}. Cannot accurately calculate {lookback_days}-day performance.", "PERFORMANCE_CALCULATION")
+            return None
+
+        # Get the closing prices for the relevant period
+        close_prices = ticker_data["close"].tail(lookback_days + 1) # Need current day and 'lookback_days' previous days
+
+        if len(close_prices) < lookback_days + 1:
+            log_warning(f"Not enough closing prices for {ticker_symbol} to calculate {lookback_days}-day performance.", "PERFORMANCE_CALCULATION")
+            return None
+
+        initial_price = close_prices.iloc[0]
+        final_price = close_prices.iloc[-1]
+
+        if initial_price == 0:
+            log_warning(f"Initial price is zero for {ticker_symbol}. Cannot calculate {lookback_days}-day percentage performance.", "PERFORMANCE_CALCULATION")
+            return None
+
+        percentage_performance = ((final_price - initial_price) / initial_price) * 100
+
+        log_info(f"Calculated {lookback_days}-day percentage performance for {ticker_symbol}: {percentage_performance:.2f}%", "PERFORMANCE_CALCULATION")
+        return round(percentage_performance, 2)
+
+    except Exception as e:
+        log_error(f"Error calculating {lookback_days}-day percentage performance for {ticker_symbol}: {e}", "PERFORMANCE_CALCULATION", e)
+        return None
+
+
 def update_ticker_data_in_db():
     """
     Orchestrates the complete process of fetching all active ticker symbols from the MongoDB database,
@@ -421,6 +502,9 @@ def update_ticker_data_in_db():
     - Momentum spread (`momentum_spread`), indicating momentum per unit of price friction.
     - Average daily volume (`average_daily_volume`)
     - 30-day volume change (`30d_volume_change`), reflecting recent volume trends.
+    - 1-week percentage performance (`1w`).
+    - 1-month percentage performance (`1m`).
+    - 3-month percentage performance (`3m`).
 
     This function ensures that the ticker data in the database is current and comprehensive,
     handling potential errors during data collection and database operations with robust logging.
@@ -479,6 +563,12 @@ def update_ticker_data_in_db():
                 update_fields["average_daily_volume"] = data["average_daily_volume"]
             if data["30d_volume_change"] is not None:
                 update_fields["30d_volume_change"] = data["30d_volume_change"]
+            if data["1w_performance"] is not None:
+                update_fields["1w"] = data["1w_performance"]
+            if data["1m_performance"] is not None:
+                update_fields["1m"] = data["1m_performance"]
+            if data["3m_performance"] is not None:
+                update_fields["3m"] = data["3m_performance"]
 
             if update_fields:
                 result = collection.update_one(
