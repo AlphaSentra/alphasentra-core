@@ -23,9 +23,9 @@ import time
 from helpers import DatabaseManager
 from logging_utils import log_error, log_warning, log_info
 
-def get_tickers_from_db() -> list:
+def get_equity_tickers_from_db(region: Optional[list] = None, category: Optional[list] = None) -> list:
     """
-    Retrieves a list of ticker symbols from the 'tickers' collection in the MongoDB database.
+    Retrieves a list of equity ticker symbols from the 'tickers' collection in the MongoDB database.
 
     Returns:
         list: A list of ticker symbols (strings). Returns an empty list if no tickers
@@ -42,7 +42,12 @@ def get_tickers_from_db() -> list:
 
         # Query to get all documents and extract the 'ticker' field
         # We use a projection to only retrieve the 'ticker' field and exclude '_id'
-        cursor = collection.find({}, {"ticker": 1, "_id": 0})
+        query = {"asset_class": "EQ"}
+        if region:
+            query["region"] = {"$in": region}
+        if category:
+            query["category"] = {"$in": category}
+        cursor = collection.find(query, {"ticker": 1, "_id": 0})
 
         for doc in cursor:
             if 'ticker' in doc:
@@ -56,6 +61,82 @@ def get_tickers_from_db() -> list:
         log_error(f"MongoDB operation failed: {e}", "MONGODB_OPERATION", e)
     except Exception as e:
         log_error(f"An unexpected error occurred while fetching tickers from DB: {e}", "DATA_FETCHING", e)
+    finally:
+        if client:
+            DatabaseManager().close_connection() # Using the singleton instance to close connection
+    return tickers_list
+
+def get_crypto_tickers_from_db() -> list:
+    """
+    Retrieves a list of crypto ticker symbols from the 'tickers' collection in the MongoDB database.
+    Filters for tickers where 'asset_class' is 'CR'.
+
+    Returns:
+        list: A list of crypto ticker symbols (strings). Returns an empty list if no tickers
+              are found or an error occurs.
+    """
+    load_dotenv()
+    tickers_list = []
+    client = None
+    try:
+        # Get MongoDB connection
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        collection = db["tickers"]
+
+        # Query to get all documents and extract the 'ticker' field, filtering for asset_class = CR
+        cursor = collection.find({"asset_class": "CR"}, {"ticker": 1, "_id": 0})
+
+        for doc in cursor:
+            if 'ticker' in doc:
+                tickers_list.append(doc['ticker'])
+        
+        log_info(f"Successfully retrieved {len(tickers_list)} crypto tickers from the database.")
+
+    except pymongo.errors.ServerSelectionTimeoutError as e:
+        log_error("MongoDB server not found. Ensure MongoDB is running on the specified host/port.", "MONGODB_CONNECTION", e)
+    except pymongo.errors.OperationFailure as e:
+        log_error(f"MongoDB operation failed: {e}", "MONGODB_OPERATION", e)
+    except Exception as e:
+        log_error(f"An unexpected error occurred while fetching crypto tickers from DB: {e}", "DATA_FETCHING", e)
+    finally:
+        if client:
+            DatabaseManager().close_connection() # Using the singleton instance to close connection
+    return tickers_list
+
+def get_fx_tickers_from_db() -> list:
+    """
+    Retrieves a list of FX ticker symbols from the 'tickers' collection in the MongoDB database.
+    Filters for tickers where 'asset_class' is 'FX'.
+
+    Returns:
+        list: A list of FX ticker symbols (strings). Returns an empty list if no tickers
+              are found or an error occurs.
+    """
+    load_dotenv()
+    tickers_list = []
+    client = None
+    try:
+        # Get MongoDB connection
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        collection = db["tickers"]
+
+        # Query to get all documents and extract the 'ticker' field, filtering for asset_class = FX
+        cursor = collection.find({"asset_class": "FX"}, {"ticker": 1, "_id": 0})
+
+        for doc in cursor:
+            if 'ticker' in doc:
+                tickers_list.append(doc["ticker"])
+        
+        log_info(f"Successfully retrieved {len(tickers_list)} FX tickers from the database.")
+
+    except pymongo.errors.ServerSelectionTimeoutError as e:
+        log_error("MongoDB server not found. Ensure MongoDB is running on the specified host/port.", "MONGODB_CONNECTION", e)
+    except pymongo.errors.OperationFailure as e:
+        log_error(f"MongoDB operation failed: {e}", "MONGODB_OPERATION", e)
+    except Exception as e:
+        log_error(f"An unexpected error occurred while fetching FX tickers from DB: {e}", "DATA_FETCHING", e)
     finally:
         if client:
             DatabaseManager().close_connection() # Using the singleton instance to close connection
@@ -432,7 +513,7 @@ def _calculate_30d_volume_change(ticker_symbol: str) -> Optional[float]:
 
 
 
-def update_ticker_data_in_db():
+def update_ticker_data_in_db(ticker_source_function, region: Optional[list] = None, category: Optional[list] = None):
     """
     Orchestrates the complete process of fetching all active ticker symbols from the MongoDB database,
     collecting a comprehensive suite of financial and market data points for each ticker,
@@ -458,7 +539,7 @@ def update_ticker_data_in_db():
     load_dotenv()
     log_info("Starting ticker data update process...")
 
-    tickers_from_db = get_tickers_from_db()
+    tickers_from_db = ticker_source_function(region=region, category=category)
 
     if not tickers_from_db:
         log_warning("No tickers found in the database to update data.")
@@ -544,4 +625,9 @@ def update_ticker_data_in_db():
 
 
 if __name__ == '__main__':
-    update_ticker_data_in_db()
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["US"], category=["growth"])
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["AU"], category=["growth"])
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["US"], category=["income"])
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["AU"], category=["income"])
+    update_ticker_data_in_db(get_crypto_tickers_from_db, region=None, category=["crypto"])
+    update_ticker_data_in_db(get_fx_tickers_from_db, region=None, category=["fx"])
