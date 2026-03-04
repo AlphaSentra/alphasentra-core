@@ -397,7 +397,7 @@ def get_growth_profitability_chart(ticker):
         financials = stock.quarterly_financials.T
         
         if financials.empty:
-            log_info(f"No quarterly data for {ticker}, switching to annual.", "GROWTH_PROFITABILITY_CHART")
+            log_info(f"No quarterly data for {ticker}, switching to annual. Context: GROWTH_PROFITABILITY_CHART")
             financials = stock.financials.T
             is_annual = True
 
@@ -544,7 +544,7 @@ def financial_health_chart(ticker):
         
         # Trigger annual fallback if quarterly is empty
         if balance_sheet.empty or cash_flow.empty:
-            log_info(f"Quarterly data missing for {ticker}, attempting annual fallback.", "FINANCIAL_HEALTH_CHART")
+            log_info(f"Quarterly data missing for {ticker}, attempting annual fallback. Context: FINANCIAL_HEALTH_CHART")
             balance_sheet = stock.balance_sheet.T
             cash_flow = stock.cashflow.T
             is_annual = True
