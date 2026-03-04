@@ -47,7 +47,19 @@ def get_equity_tickers_from_db(region: Optional[list] = None, category: Optional
             query["region"] = {"$in": region}
         if category:
             query["category"] = {"$in": category}
-        cursor = collection.find(query, {"ticker": 1, "_id": 0})
+        
+        sort_fields = {}
+        if category and "growth" in category:
+            query["eps_growth"] = {"$gt": 0}
+            sort_fields = {"m3": pymongo.DESCENDING, "m1": pymongo.DESCENDING, "w1": pymongo.DESCENDING, "eps_growth": pymongo.DESCENDING}
+        elif category and "income" in category:
+            query["payout_ratio"] = {"$lt": 1}
+            sort_fields = {"m3": pymongo.DESCENDING, "m1": pymongo.DESCENDING, "w1": pymongo.DESCENDING, "dividend_yield": pymongo.DESCENDING}
+
+        if sort_fields:
+            cursor = collection.find(query, {"ticker": 1, "_id": 0}).sort(list(sort_fields.items())).limit(50)
+        else:
+            cursor = collection.find(query, {"ticker": 1, "_id": 0}).limit(50)
 
         for doc in cursor:
             if 'ticker' in doc:
@@ -171,24 +183,16 @@ def collect_ticker_data(tickers: list) -> dict:
             log_info(f"Collecting data for ticker: {ticker_symbol}")
             market_cap = None
             forward_pe = None
-            eps_growth = None
             dilution_proxy = None # Initialize dilution_proxy
             average_daily_range_pips = None # Initialize average_daily_range_pips
             momentum_spread = None # Initialize momentum_spread
             average_daily_volume = None # Initialize average_daily_volume
             thirty_day_volume_change = None # Initialize 30-day volume change
-            dividend_yield = None # Initialize dividend_yield
-            sector = None # Initialize sector
             
             if ticker_symbol in data and 'summaryDetail' in data[ticker_symbol]:
                 summary_detail = data[ticker_symbol]['summaryDetail']
                 market_cap = summary_detail.get('marketCap')
                 forward_pe = summary_detail.get('forwardPE')
-                dividend_yield = summary_detail.get('dividendYield')
-                if dividend_yield is not None:
-                    log_info(f"Collected dividend yield for {ticker_symbol}: {dividend_yield:.4f}")
-                else:
-                    log_warning(f"Dividend yield not found for {ticker_symbol}.", "DATA_MISSING")
 
                 if ticker_symbol in data and 'summaryProfile' in data[ticker_symbol]:
                     summary_profile = data[ticker_symbol]['summaryProfile']
@@ -250,40 +254,15 @@ def collect_ticker_data(tickers: list) -> dict:
                 log_warning(f"Could not collect 30-day volume change for {ticker_symbol}.", "DATA_MISSING")
 
 
-            # Attempt to get EPS growth from 'financialData' or 'earningsTrend'
-            if ticker_symbol in data and 'financialData' in data[ticker_symbol]:
-                financial_data = data[ticker_symbol]['financialData']
-                eps_growth = financial_data.get('earningsGrowth') # Example key
-                if eps_growth is not None:
-                    log_info(f"Collected EPS growth for {ticker_symbol}: {eps_growth}")
-                else:
-                    log_warning(f"EPS growth not found in financialData for {ticker_symbol}.", "DATA_MISSING")
-            elif ticker_symbol in data and 'earningsTrend' in data[ticker_symbol]:
-                # Earnings trend might have a list of trends, we might need to pick the latest or average
-                earnings_trend_list = data[ticker_symbol]['earningsTrend'].get('trend', [])
-                if earnings_trend_list:
-                    # Assuming we want the latest annual EPS growth
-                    for trend_item in earnings_trend_list:
-                        if trend_item.get('period') == '+1y': # Next year's estimate
-                            eps_growth = trend_item.get('earningsEstimate', {}).get('growth')
-                            break
-                    if eps_growth is not None:
-                        log_info(f"Collected EPS growth from earningsTrend for {ticker_symbol}: {eps_growth}")
-                    else:
-                        log_warning(f"EPS growth not found in earningsTrend for {ticker_symbol}.", "DATA_MISSING")
-            else:
-                log_warning(f"No financialData or earningsTrend found for {ticker_symbol} to get EPS growth.", "DATA_MISSING")
 
             ticker_data[ticker_symbol] = {
                 'market_cap': market_cap,
                 'forward_pe': forward_pe,
-                'eps_growth': eps_growth,
                 'dilution_proxy': dilution_proxy, # Add dilution_proxy
                 '30d_average_daily_range_pips': average_daily_range_pips, # Add 30-day average daily range in pips
                 'momentum_spread': momentum_spread, # Add momentum_spread
                 'average_daily_volume': average_daily_volume, # Add average_daily_volume
                 '30d_volume_change': thirty_day_volume_change, # Add 30-day volume change
-                'dividend_yield': dividend_yield,
                 'sector': sector
             }
 
@@ -291,7 +270,7 @@ def collect_ticker_data(tickers: list) -> dict:
         log_error(f"An error occurred while fetching ticker data: {e}", "YAHOOQUERY_ERROR", e)
         for ticker_symbol in tickers:
             if ticker_symbol not in ticker_data:
-                ticker_data[ticker_symbol] = {'market_cap': None, 'forward_pe': None, 'eps_growth': None, 'dilution_proxy': None, '30d_average_daily_range_pips': None, 'momentum_spread': None, 'average_daily_volume': None, '30d_volume_change': None}
+                ticker_data[ticker_symbol] = {'market_cap': None, 'forward_pe': None, 'dilution_proxy': None, '30d_average_daily_range_pips': None, 'momentum_spread': None, 'average_daily_volume': None, '30d_volume_change': None}
 
     return ticker_data
 
@@ -571,8 +550,6 @@ def update_ticker_data_in_db(ticker_source_function, region: Optional[list] = No
                         update_fields["market_cap"] = data["market_cap"]
                     if data["forward_pe"] is not None:
                         update_fields["forward_pe"] = data["forward_pe"]
-                    if data["eps_growth"] is not None:
-                        update_fields["eps_growth"] = data["eps_growth"]
                     if data["dilution_proxy"] is not None:
                         update_fields["dilution_proxy"] = data["dilution_proxy"]
                     if data["30d_average_daily_range_pips"] is not None:
@@ -583,8 +560,6 @@ def update_ticker_data_in_db(ticker_source_function, region: Optional[list] = No
                         update_fields["average_daily_volume"] = data["average_daily_volume"]
                     if data["30d_volume_change"] is not None:
                         update_fields["30d_volume_change"] = data["30d_volume_change"]
-                    if "dividend_yield" in data and data["dividend_yield"] is not None:
-                        update_fields["dividend_yield"] = data["dividend_yield"]
                     if "sector" in data and data["sector"] is not None:
                         update_fields["sector"] = data["sector"]
 
