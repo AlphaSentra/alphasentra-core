@@ -13,7 +13,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from dotenv import load_dotenv
 import pymongo
-from yahooquery import Ticker
+import yfinance as yf
 from datetime import datetime, timedelta
 import pandas as pd
 from typing import Optional
@@ -45,8 +45,7 @@ def get_equity_tickers_from_db(region: Optional[list] = None, category: Optional
         query = {"asset_class": "EQ"}
         if region:
             query["region"] = {"$in": region}
-        if category:
-            query["category"] = {"$in": category}
+        log_info(f"Querying for equity tickers with conditions: {query}")
         
         sort_fields = {}
         if category and "growth" in category:
@@ -78,7 +77,7 @@ def get_equity_tickers_from_db(region: Optional[list] = None, category: Optional
             DatabaseManager().close_connection() # Using the singleton instance to close connection
     return tickers_list
 
-def get_crypto_tickers_from_db() -> list:
+def get_crypto_tickers_from_db(region: Optional[list] = None, category: Optional[list] = None) -> list:
     """
     Retrieves a list of crypto ticker symbols from the 'tickers' collection in the MongoDB database.
     Filters for tickers where 'asset_class' is 'CR'.
@@ -90,6 +89,9 @@ def get_crypto_tickers_from_db() -> list:
     load_dotenv()
     tickers_list = []
     client = None
+    category = category or []
+    region = region or []
+        
     try:
         # Get MongoDB connection
         client = DatabaseManager().get_client()
@@ -97,7 +99,7 @@ def get_crypto_tickers_from_db() -> list:
         collection = db["tickers"]
 
         # Query to get all documents and extract the 'ticker' field, filtering for asset_class = CR
-        cursor = collection.find({"asset_class": "CR"}, {"ticker": 1, "_id": 0})
+        cursor = collection.find({"asset_class": "CR"}, {"ticker": 1, "_id": 0}).sort([("m3", pymongo.DESCENDING), ("m1", pymongo.DESCENDING), ("w1", pymongo.DESCENDING), ("market_cap", pymongo.DESCENDING)]).limit(50)
 
         for doc in cursor:
             if 'ticker' in doc:
@@ -116,7 +118,7 @@ def get_crypto_tickers_from_db() -> list:
             DatabaseManager().close_connection() # Using the singleton instance to close connection
     return tickers_list
 
-def get_fx_tickers_from_db() -> list:
+def get_fx_tickers_from_db(region: Optional[list] = None, category: Optional[list] = None) -> list:
     """
     Retrieves a list of FX ticker symbols from the 'tickers' collection in the MongoDB database.
     Filters for tickers where 'asset_class' is 'FX'.
@@ -128,6 +130,9 @@ def get_fx_tickers_from_db() -> list:
     load_dotenv()
     tickers_list = []
     client = None
+    region = region or []
+    category = category or []
+    
     try:
         # Get MongoDB connection
         client = DatabaseManager().get_client()
@@ -174,37 +179,40 @@ def collect_ticker_data(tickers: list) -> dict:
         return {}
 
     ticker_data = {}
-    yq_tickers = Ticker(tickers)
+    ticker_info = {} # Dictionary to hold yfinance Ticker objects
+
+    for ticker_symbol in tickers:
+        try:
+            ticker_info[ticker_symbol] = yf.Ticker(ticker_symbol)
+        except Exception as e:
+            log_warning(f"Could not initialize yfinance Ticker for {ticker_symbol}: {e}", "YFINANCE_INITIALIZATION")
+            ticker_info[ticker_symbol] = None
 
     try:
-        data = yq_tickers.all_modules
-
         for ticker_symbol in tickers:
             log_info(f"Collecting data for ticker: {ticker_symbol}")
-            market_cap = None
             forward_pe = None
             dilution_proxy = None # Initialize dilution_proxy
             average_daily_range_pips = None # Initialize average_daily_range_pips
             momentum_spread = None # Initialize momentum_spread
+            absolute_momentum_spread = None # Initialize absolute_momentum_spread
             average_daily_volume = None # Initialize average_daily_volume
             thirty_day_volume_change = None # Initialize 30-day volume change
+            sector = None # Initialize sector
             
-            if ticker_symbol in data and 'summaryDetail' in data[ticker_symbol]:
-                summary_detail = data[ticker_symbol]['summaryDetail']
-                market_cap = summary_detail.get('marketCap')
-                forward_pe = summary_detail.get('forwardPE')
-
-                if ticker_symbol in data and 'summaryProfile' in data[ticker_symbol]:
-                    summary_profile = data[ticker_symbol]['summaryProfile']
-                    sector = summary_profile.get('sector')
-                    if sector is not None:
-                        log_info(f"Collected sector for {ticker_symbol}: {sector}")
-                    else:
-                        log_warning(f"Sector not found for {ticker_symbol}.", "DATA_MISSING")
+            if ticker_info.get(ticker_symbol) and ticker_info[ticker_symbol].info:
+                info = ticker_info[ticker_symbol].info
+                forward_pe = info.get('forwardPE')
+                sector = info.get('sector')
+                
+                if sector is not None:
+                    log_info(f"Collected sector for {ticker_symbol}: {sector}")
+                else:
+                    log_warning(f"Sector not found for {ticker_symbol}.", "DATA_MISSING")
                 
                 # Collect circulatingSupply and maxSupply for dilution_proxy calculation
-                circulating_supply = summary_detail.get('circulatingSupply')
-                max_supply = summary_detail.get('maxSupply')
+                circulating_supply = info.get('circulatingSupply')
+                max_supply = info.get('maxSupply')
 
                 if circulating_supply is not None and max_supply is not None and max_supply > 0:
                     dilution_proxy = circulating_supply / max_supply
@@ -212,11 +220,6 @@ def collect_ticker_data(tickers: list) -> dict:
                 else:
                     log_warning(f"Circulating supply or max supply not found or max supply is zero for {ticker_symbol}. Cannot calculate dilution proxy.", "DATA_PROCESSING")
 
-                if market_cap is not None:
-                    log_info(f"Collected market cap for {ticker_symbol}: {market_cap}")
-                else:
-                    log_warning(f"Market cap not found for {ticker_symbol}.", "DATA_MISSING")
-                
                 if forward_pe is not None:
                     log_info(f"Collected forward P/E for {ticker_symbol}: {forward_pe}")
                 else:
@@ -236,6 +239,8 @@ def collect_ticker_data(tickers: list) -> dict:
             momentum_spread = _calculate_momentum_spread(ticker_symbol)
             if momentum_spread is not None:
                 log_info(f"Collected momentum spread for {ticker_symbol}: {momentum_spread:.2f}.")
+                absolute_momentum_spread = abs(momentum_spread) # Calculate absolute momentum spread
+                log_info(f"Calculated absolute momentum spread for {ticker_symbol}: {absolute_momentum_spread:.2f}.")
             else:
                 log_warning(f"Could not collect momentum spread for {ticker_symbol}.", "DATA_MISSING")
 
@@ -256,13 +261,13 @@ def collect_ticker_data(tickers: list) -> dict:
 
 
             ticker_data[ticker_symbol] = {
-                'market_cap': market_cap,
                 'forward_pe': forward_pe,
-                'dilution_proxy': dilution_proxy, # Add dilution_proxy
-                '30d_average_daily_range_pips': average_daily_range_pips, # Add 30-day average daily range in pips
-                'momentum_spread': momentum_spread, # Add momentum_spread
-                'average_daily_volume': average_daily_volume, # Add average_daily_volume
-                '30d_volume_change': thirty_day_volume_change, # Add 30-day volume change
+                'dilution_proxy': dilution_proxy,
+                '30d_average_daily_range_pips': average_daily_range_pips,
+                'momentum_spread': momentum_spread,
+                'absolute_momentum_spread': absolute_momentum_spread,
+                'average_daily_volume': average_daily_volume,
+                '30d_volume_change': thirty_day_volume_change,
                 'sector': sector
             }
 
@@ -270,7 +275,7 @@ def collect_ticker_data(tickers: list) -> dict:
         log_error(f"An error occurred while fetching ticker data: {e}", "YAHOOQUERY_ERROR", e)
         for ticker_symbol in tickers:
             if ticker_symbol not in ticker_data:
-                ticker_data[ticker_symbol] = {'market_cap': None, 'forward_pe': None, 'dilution_proxy': None, '30d_average_daily_range_pips': None, 'momentum_spread': None, 'average_daily_volume': None, '30d_volume_change': None}
+                ticker_data[ticker_symbol] = {'forward_pe': None, 'dilution_proxy': None, '30d_average_daily_range_pips': None, 'momentum_spread': None, 'average_daily_volume': None, '30d_volume_change': None}
 
     return ticker_data
 
@@ -291,15 +296,12 @@ def _calculate_30d_average_daily_range_in_pips(ticker_symbol: str) -> Optional[f
         start_date = end_date - timedelta(days=45)
         
         # Get historical data
-        yq_ticker = Ticker(ticker_symbol)
-        data = yq_ticker.history(start=start_date.strftime('%Y-%m-%d'), end=end_date.strftime('%Y-%m-%d'))
+        yf_ticker = yf.Ticker(ticker_symbol)
+        ticker_data = yf_ticker.history(start=start_date.strftime('%Y-%m-%d'), end=end_date.strftime('%Y-%m-%d'))
         
-        if data.empty or ticker_symbol not in data.index.get_level_values('symbol'):
+        if ticker_data.empty:
             log_warning(f"No historical data available for {ticker_symbol} to calculate 30-day average daily range", "AVG_DAILY_RANGE_CALCULATION")
             return None
-
-        # Extract data for the specific ticker
-        ticker_data = data.loc[ticker_symbol]
 
         # Ensure we have at least 30 days of data
         if len(ticker_data) < 30:
@@ -313,8 +315,8 @@ def _calculate_30d_average_daily_range_in_pips(ticker_symbol: str) -> Optional[f
         is_jpy_pair = "JPY" in ticker_symbol.upper()
 
         for index, row in ticker_data.iterrows():
-            high = row["high"]
-            low = row["low"]
+            high = row["High"]
+            low = row["Low"]
             daily_range = high - low
 
             # Convert to pips
@@ -357,22 +359,20 @@ def _calculate_momentum_spread(ticker_symbol: str) -> Optional[float]:
         # Fetch enough data for both lookback periods
         start_date = end_date - timedelta(days=max(lookback_momentum, lookback_range) * 2) # Get more days to be safe
         
-        yq_ticker = Ticker(ticker_symbol)
-        data = yq_ticker.history(start=start_date.strftime("%Y-%m-%d"), end=end_date.strftime("%Y-%m-%d"))
+        yf_ticker = yf.Ticker(ticker_symbol)
+        ticker_data = yf_ticker.history(start=start_date.strftime("%Y-%m-%d"), end=end_date.strftime("%Y-%m-%d"))
 
-        if data.empty or ticker_symbol not in data.index.get_level_values("symbol"):
+        if ticker_data.empty:
             log_warning(f"No historical data available for {ticker_symbol} to calculate momentum spread.", "MOMENTUM_SPREAD_CALCULATION")
             return None
-
-        ticker_data = data.loc[ticker_symbol]
 
         if len(ticker_data) < max(lookback_momentum, lookback_range):
             log_warning(f"Not enough historical data for {ticker_symbol} to calculate momentum spread.", "MOMENTUM_SPREAD_CALCULATION")
             return None
 
-        close = ticker_data["close"]
-        high = ticker_data["high"]
-        low = ticker_data["low"]
+        close = ticker_data["Close"]
+        high = ticker_data["High"]
+        low = ticker_data["Low"]
 
         # 1M Momentum (%)
         momentum = close.pct_change(lookback_momentum).iloc[-1] * 100
@@ -413,21 +413,19 @@ def _calculate_average_daily_volume(ticker_symbol: str, lookback_days: int = 30)
         end_date = datetime.now()
         start_date = end_date - timedelta(days=lookback_days * 2) # Fetch more data to ensure enough trading days
         
-        yq_ticker = Ticker(ticker_symbol)
-        data = yq_ticker.history(start=start_date.strftime('%Y-%m-%d'), end=end_date.strftime('%Y-%m-%d'))
+        yf_ticker = yf.Ticker(ticker_symbol)
+        ticker_data = yf_ticker.history(start=start_date.strftime('%Y-%m-%d'), end=end_date.strftime('%Y-%m-%d'))
 
-        if data.empty or ticker_symbol not in data.index.get_level_values('symbol'):
+        if ticker_data.empty:
             log_warning(f"No historical data available for {ticker_symbol} to calculate average daily volume.", "AVG_DAILY_VOLUME_CALCULATION")
             return None
-
-        ticker_data = data.loc[ticker_symbol]
 
         if len(ticker_data) < lookback_days:
             log_warning(f"Less than {lookback_days} days of historical data for {ticker_symbol}. Cannot accurately calculate average daily volume.", "AVG_DAILY_VOLUME_CALCULATION")
             return None
 
         # Get the volume for the specified lookback days
-        recent_volume = ticker_data['volume'].tail(lookback_days)
+        recent_volume = ticker_data['Volume'].tail(lookback_days)
 
         average_volume = recent_volume.mean()
 
@@ -457,21 +455,19 @@ def _calculate_30d_volume_change(ticker_symbol: str) -> Optional[float]:
         end_date = datetime.now()
         start_date = end_date - timedelta(days=total_days_needed)
         
-        yq_ticker = Ticker(ticker_symbol)
-        data = yq_ticker.history(start=start_date.strftime('%Y-%m-%d'), end=end_date.strftime('%Y-%m-%d'))
+        yf_ticker = yf.Ticker(ticker_symbol)
+        ticker_data = yf_ticker.history(start=start_date.strftime('%Y-%m-%d'), end=end_date.strftime('%Y-%m-%d'))
 
-        if data.empty or ticker_symbol not in data.index.get_level_values('symbol'):
+        if ticker_data.empty:
             log_warning(f"No historical data available for {ticker_symbol} to calculate 30-day volume change.", "30D_VOLUME_CHANGE_CALCULATION")
             return None
-
-        ticker_data = data.loc[ticker_symbol]
 
         if len(ticker_data) < lookback_days * 2:
             log_warning(f"Less than {lookback_days * 2} days of historical data for {ticker_symbol}. Cannot accurately calculate 30-day volume change.", "30D_VOLUME_CHANGE_CALCULATION")
             return None
 
         # Get the volume for the last two 30-day periods
-        recent_60_days_volume = ticker_data['volume'].tail(lookback_days * 2)
+        recent_60_days_volume = ticker_data['Volume'].tail(lookback_days * 2)
 
         current_30d_avg_volume = recent_60_days_volume.iloc[-lookback_days:].mean()
         previous_30d_avg_volume = recent_60_days_volume.iloc[:-lookback_days].mean()
@@ -499,7 +495,6 @@ def update_ticker_data_in_db(ticker_source_function, region: Optional[list] = No
     and subsequently updating these data points in the database.
 
     The collected data includes:
-    - Market capitalization (`market_cap`)
     - Forward Price-to-Earnings ratio (`forward_pe`)
     - Earnings Per Share growth (`eps_growth`)
     - Dilution proxy (`dilution_proxy`), calculated from circulating and max supply for cryptocurrencies.
@@ -546,8 +541,6 @@ def update_ticker_data_in_db(ticker_source_function, region: Optional[list] = No
                 batch_updated_count = 0
                 for ticker_symbol, data in batch_data.items():
                     update_fields = {}
-                    if data["market_cap"] is not None:
-                        update_fields["market_cap"] = data["market_cap"]
                     if data["forward_pe"] is not None:
                         update_fields["forward_pe"] = data["forward_pe"]
                     if data["dilution_proxy"] is not None:
@@ -556,6 +549,8 @@ def update_ticker_data_in_db(ticker_source_function, region: Optional[list] = No
                         update_fields["30d_average_daily_range_pips"] = data["30d_average_daily_range_pips"]
                     if data["momentum_spread"] is not None:
                         update_fields["momentum_spread"] = data["momentum_spread"]
+                    if data["absolute_momentum_spread"] is not None:
+                        update_fields["absolute_momentum_spread"] = data["absolute_momentum_spread"]
                     if data["average_daily_volume"] is not None:
                         update_fields["average_daily_volume"] = data["average_daily_volume"]
                     if data["30d_volume_change"] is not None:
@@ -605,4 +600,4 @@ if __name__ == '__main__':
     update_ticker_data_in_db(get_equity_tickers_from_db, region=["US"], category=["income"])
     update_ticker_data_in_db(get_equity_tickers_from_db, region=["AU"], category=["income"])
     update_ticker_data_in_db(get_crypto_tickers_from_db, region=None, category=["crypto"])
-    update_ticker_data_in_db(get_fx_tickers_from_db, region=None, category=["fx"])
+    update_ticker_data_in_db(get_fx_tickers_from_db, region=None, category=["forex"])

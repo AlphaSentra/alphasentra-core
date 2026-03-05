@@ -75,12 +75,19 @@ def _get_performance_metrics(ticker_symbol: str) -> Optional[dict]:
     dividend_yield = None
     payout_ratio = None
     eps_growth = None # New variable for EPS growth
+    market_cap = None # New variable for market cap
 
     try:
         yf_ticker = yf.Ticker(ticker_symbol)
         summary_details = yf_ticker.info
         
         quote_type = summary_details.get("quoteType")
+
+        market_cap = _safe_float(summary_details.get("marketCap"))
+        if market_cap is not None:
+            log_info(f"{ticker_symbol} market cap: {market_cap:,.2f}")
+        else:
+            log_warning(f"{ticker_symbol} market cap missing", "DATA_MISSING")
 
         # Only equities logically support payout ratios and EPS growth
         if quote_type == "EQUITY":
@@ -113,7 +120,6 @@ def _get_performance_metrics(ticker_symbol: str) -> Optional[dict]:
                     log_info(f"{ticker_symbol} EPS growth: {eps_growth:.4f}")
                 else:
                     log_warning(f"{ticker_symbol} EPS growth missing", "DATA_MISSING")
-
 
             else:
                 log_warning(
@@ -157,6 +163,7 @@ def _get_performance_metrics(ticker_symbol: str) -> Optional[dict]:
         "dividend_yield": dividend_yield,
         "payout_ratio": payout_ratio,
         "eps_growth": eps_growth,
+        "market_cap": market_cap,
     }
 
 
