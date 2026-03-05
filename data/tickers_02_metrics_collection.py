@@ -254,7 +254,7 @@ def collect_ticker_data(tickers: list) -> dict:
             # Collect 30-day volume change
             thirty_day_volume_change = _calculate_30d_volume_change(ticker_symbol)
             if thirty_day_volume_change is not None:
-                log_info(f"Collected 30-day volume change for {ticker_symbol}: {thirty_day_volume_change:.2f}%")
+                log_info(f"Collected 30-day volume change for {ticker_symbol}: {thirty_day_volume_change:.4f}")
             else:
                 log_warning(f"Could not collect 30-day volume change for {ticker_symbol}.", "DATA_MISSING")
 
@@ -476,10 +476,10 @@ def _calculate_30d_volume_change(ticker_symbol: str) -> Optional[float]:
             log_warning(f"Previous 30-day average volume is zero for {ticker_symbol}. Cannot calculate 30-day volume change.", "30D_VOLUME_CHANGE_CALCULATION")
             return None
         
-        thirty_day_volume_change = ((current_30d_avg_volume - previous_30d_avg_volume) / previous_30d_avg_volume) * 100
+        thirty_day_volume_change = (current_30d_avg_volume - previous_30d_avg_volume) / previous_30d_avg_volume
 
-        log_info(f"Calculated 30-day volume change for {ticker_symbol}: {thirty_day_volume_change:.2f}%")
-        return round(thirty_day_volume_change, 2)
+        log_info(f"Calculated 30-day volume change for {ticker_symbol}: {thirty_day_volume_change:.4f}")
+        return round(thirty_day_volume_change, 4)
 
     except Exception as e:
         log_error(f"Error calculating 30-day volume change for {ticker_symbol}: {e}", "30D_VOLUME_CHANGE_CALCULATION", e)
