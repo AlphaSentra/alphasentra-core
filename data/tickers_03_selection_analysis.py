@@ -171,9 +171,75 @@ def get_top_cryptos_for_selection_analysis(region: Optional[List[str]] = None, c
     return selected_cryptos
 
 
+def get_top_forex_for_selection_analysis(region: Optional[List[str]] = None, category: Optional[List[str]] = None) -> List[Dict[str, Any]]:
+    """
+    Retrieves the top 10 forex tickers based on specific selection criteria for analysis.
+    The criteria include:
+    - asset_class: "FX"
+    - Sorted by: 3m (desc), 1m (desc), 1w (desc), 30d_volume_change (desc).
+
+    Returns:
+        List[Dict[str, Any]]: A list of dictionaries, where each dictionary represents
+                              a ticker document from the database.
+                              Returns an empty list if no tickers are found or an error occurs.
+    """
+    load_dotenv()
+    selected_forex = []
+    client = None
+    region = region or []  # Ignored for forex as per current requirements
+    category = category or []  # Ignored for forex as per current requirements
+    try:
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        tickers_collection = db["tickers"]
+        pipeline_collection = db[os.getenv("MONGODB_TASK_COLLECTION", "pipeline")]
+
+        query = {"asset_class": "FX"}  # Changed to "FX"
+        log_info(f"Querying for forex tickers with conditions: {query}")
+
+        # Fixed sorting as per user's request (assuming 30d_volume_change is relevant for FX)
+        sort_fields = [("absolute_momentum_spread", pymongo.DESCENDING)]
+
+        log_info(f"Final query for top forex with conditions: {query} and sorting by: {sort_fields}")
+
+        cursor = tickers_collection.find(query).sort(sort_fields).limit(10)
+
+        for doc in cursor:
+            selected_forex.append(doc)
+
+            new_doc = {
+                "_id": ObjectId(),
+                "task_id": str(uuid.uuid4()),
+                "model_function": "get_insights",
+                "model_name": doc.get("ticker", "N/A"),
+                "recurrence": "once",
+                "task_completed": False,
+                "createdAt": datetime.now(UTC),
+                "updatedAt": datetime.now(UTC),
+                "__v": 0
+            }
+
+            pipeline_collection.insert_one(new_doc)
+            log_info(f"Inserted task for forex ticker {doc.get("ticker", "N/A")} into the {pipeline_collection.name} collection.")
+
+        log_info(f"Successfully retrieved {len(selected_forex)} top forex and inserted corresponding tasks for selection analysis.")
+
+    except pymongo.errors.ServerSelectionTimeoutError as e:
+        log_error("MongoDB server not found. Ensure MongoDB is running on the specified host/port.", "MONGODB_CONNECTION", e)
+    except pymongo.errors.OperationFailure as e:
+        log_error(f"MongoDB operation failed: {e}", "MONGODB_OPERATION", e)
+    except Exception as e:
+        log_error(f"An unexpected error occurred while fetching top forex from DB: {e}", "DATA_FETCHING", e)
+    finally:
+        if client:
+            DatabaseManager().close_connection()
+    return selected_forex
+
+
 if __name__ == '__main__':
-    #get_top_equities_for_selection_analysis(region=["US"], category=["growth"])
-    #get_top_equities_for_selection_analysis(region=["US"], category=["income"])
-    #get_top_equities_for_selection_analysis(region=["AU"], category=["growth"])
-    #get_top_equities_for_selection_analysis(region=["AU"], category=["income"])
-    get_top_cryptos_for_selection_analysis(region=None, category=None)  
+    get_top_equities_for_selection_analysis(region=["US"], category=["growth"])
+    get_top_equities_for_selection_analysis(region=["US"], category=["income"])
+    get_top_equities_for_selection_analysis(region=["AU"], category=["growth"])
+    get_top_equities_for_selection_analysis(region=["AU"], category=["income"])
+    get_top_cryptos_for_selection_analysis(region=None, category=None)
+    get_top_forex_for_selection_analysis(region=None, category=None)
