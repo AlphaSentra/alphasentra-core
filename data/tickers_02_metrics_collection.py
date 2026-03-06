@@ -22,6 +22,7 @@ import time
 
 from helpers import DatabaseManager
 from logging_utils import log_error, log_warning, log_info
+from data.treasury_yield_utils import get_tlt_dividend_yield
 
 def get_equity_tickers_from_db(region: Optional[list] = None, category: Optional[list] = None) -> list:
     """
@@ -50,10 +51,15 @@ def get_equity_tickers_from_db(region: Optional[list] = None, category: Optional
         sort_fields = {}
         if category and "growth" in category:
             query["eps_growth"] = {"$gt": 0}
-            sort_fields = {"m3": pymongo.DESCENDING, "m1": pymongo.DESCENDING, "w1": pymongo.DESCENDING, "eps_growth": pymongo.DESCENDING}
+            sort_fields = {"3m": pymongo.DESCENDING, "1m": pymongo.DESCENDING, "1w": pymongo.DESCENDING, "eps_growth": pymongo.DESCENDING}
         elif category and "income" in category:
             query["payout_ratio"] = {"$lt": 1}
-            sort_fields = {"m3": pymongo.DESCENDING, "m1": pymongo.DESCENDING, "w1": pymongo.DESCENDING, "dividend_yield": pymongo.DESCENDING}
+            tlt_yield = get_tlt_dividend_yield() # yfinance returns dividend yield as a decimal (e.g., 0.04 for 4%)
+            if tlt_yield > 0:
+                query["dividend_yield"] = {"$gt": tlt_yield}
+            else:
+                log_warning("TLT dividend yield could not be fetched or was 0. Skipping dividend yield filter.")
+            sort_fields = {"3m": pymongo.DESCENDING, "1m": pymongo.DESCENDING, "1w": pymongo.DESCENDING, "dividend_yield": pymongo.DESCENDING}
 
         if sort_fields:
             cursor = collection.find(query, {"ticker": 1, "_id": 0}).sort(list(sort_fields.items())).limit(50)
@@ -99,7 +105,7 @@ def get_crypto_tickers_from_db(region: Optional[list] = None, category: Optional
         collection = db["tickers"]
 
         # Query to get all documents and extract the 'ticker' field, filtering for asset_class = CR
-        cursor = collection.find({"asset_class": "CR"}, {"ticker": 1, "_id": 0}).sort([("m3", pymongo.DESCENDING), ("m1", pymongo.DESCENDING), ("w1", pymongo.DESCENDING), ("market_cap", pymongo.DESCENDING)]).limit(50)
+        cursor = collection.find({"asset_class": "CR"}, {"ticker": 1, "_id": 0}).sort([("3m", pymongo.DESCENDING), ("1m", pymongo.DESCENDING), ("1w", pymongo.DESCENDING), ("market_cap", pymongo.DESCENDING)]).limit(50)
 
         for doc in cursor:
             if 'ticker' in doc:
@@ -476,7 +482,7 @@ def _calculate_30d_volume_change(ticker_symbol: str) -> Optional[float]:
             log_warning(f"Previous 30-day average volume is zero for {ticker_symbol}. Cannot calculate 30-day volume change.", "30D_VOLUME_CHANGE_CALCULATION")
             return None
         
-        thirty_day_volume_change = (current_30d_avg_volume - previous_30d_avg_volume) / previous_30d_avg_volume
+        thirty_day_volume_change = ((current_30d_avg_volume - previous_30d_avg_volume) / previous_30d_avg_volume) / 100.0
 
         log_info(f"Calculated 30-day volume change for {ticker_symbol}: {thirty_day_volume_change:.4f}")
         return round(thirty_day_volume_change, 4)

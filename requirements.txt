@@ -11,7 +11,6 @@ yfinance
 backtrader
 exchange_calendars
 pandas_market_calendars
-yahooquery
 
 # Machine learning and statistics
 scikit-learn
