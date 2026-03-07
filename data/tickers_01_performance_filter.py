@@ -84,7 +84,7 @@ def _get_performance_metrics(ticker_symbol: str) -> Optional[dict]:
     Extracts performance and (if applicable) dividend metrics
     using a single yf.Ticker instance and single history call.
     """
-    time.sleep(0.5)
+    time.sleep(1)
     
     def _safe_float(value):
         try:
