@@ -220,7 +220,7 @@ def get_top_forex_for_selection_analysis(region: Optional[List[str]] = None, cat
             }
 
             pipeline_collection.insert_one(new_doc)
-            log_info(f"Inserted task for forex ticker {doc.get("ticker", "N/A")} into the {pipeline_collection.name} collection.")
+            log_info(f"Inserted task for forex ticker {doc.get('ticker', 'N/A')} into the {pipeline_collection.name} collection.")
 
         log_info(f"Successfully retrieved {len(selected_forex)} top forex and inserted corresponding tasks for selection analysis.")
 
