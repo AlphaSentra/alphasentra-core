@@ -90,7 +90,7 @@ def get_top_equities_for_selection_analysis(region: Optional[List[str]] = None, 
             
             # Insert the new document into the tasks collection
             pipeline_collection.insert_one(new_doc)
-            log_info(f"Inserted task for ticker {doc.get("ticker", "N/A")} into the {pipeline_collection.name} collection.")
+            log_info(f"Inserted task for ticker {doc.get('ticker', 'N/A')} into the {pipeline_collection.name} collection.")
 
         log_info(f"Successfully retrieved {len(selected_equities)} top equities and inserted corresponding tasks for selection analysis.")
 
