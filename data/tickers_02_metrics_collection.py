@@ -167,7 +167,7 @@ def get_fx_tickers_from_db(region: Optional[list] = None, category: Optional[lis
 
 def collect_ticker_data(tickers: list) -> dict:
     """
-    Collects various data points for a list of tickers using YahooQuery,
+    Collects various data points for a list of tickers using yfinance,
     including market capitalization, forward P/E ratio, and EPS growth.
 
     Args:
@@ -185,29 +185,27 @@ def collect_ticker_data(tickers: list) -> dict:
         return {}
 
     ticker_data = {}
-    ticker_info = {} # Dictionary to hold yfinance Ticker objects
 
     for ticker_symbol in tickers:
         try:
-            ticker_info[ticker_symbol] = yf.Ticker(ticker_symbol)
-        except Exception as e:
-            log_warning(f"Could not initialize yfinance Ticker for {ticker_symbol}: {e}", "YFINANCE_INITIALIZATION")
-            ticker_info[ticker_symbol] = None
-
-    try:
-        for ticker_symbol in tickers:
             log_info(f"Collecting data for ticker: {ticker_symbol}")
-            forward_pe = None
-            dilution_proxy = None # Initialize dilution_proxy
-            average_daily_range_pips = None # Initialize average_daily_range_pips
-            momentum_spread = None # Initialize momentum_spread
-            absolute_momentum_spread = None # Initialize absolute_momentum_spread
-            average_daily_volume = None # Initialize average_daily_volume
-            thirty_day_volume_change = None # Initialize 30-day volume change
-            sector = None # Initialize sector
+            time.sleep(0.5)
+            ticker_obj = yf.Ticker(ticker_symbol)
             
-            if ticker_info.get(ticker_symbol) and ticker_info[ticker_symbol].info:
-                info = ticker_info[ticker_symbol].info
+            # Fetch history and info once
+            history_df = ticker_obj.history(period="3mo")
+            info = ticker_obj.info
+
+            forward_pe = None
+            dilution_proxy = None
+            average_daily_range_pips = None
+            momentum_spread = None
+            absolute_momentum_spread = None
+            average_daily_volume = None
+            thirty_day_volume_change = None
+            sector = None
+
+            if info:
                 forward_pe = info.get('forwardPE')
                 sector = info.get('sector')
                 
@@ -231,18 +229,18 @@ def collect_ticker_data(tickers: list) -> dict:
                 else:
                     log_warning(f"Forward P/E not found for {ticker_symbol}.", "DATA_MISSING")
             else:
-                log_warning(f"No data or 'summaryDetail' found for {ticker_symbol}.")
+                log_warning(f"No info data found for {ticker_symbol}.")
             
             # Collect 30-day average daily range in pips for FX pairs
             if ticker_symbol.endswith('=X'): # Assuming FX pairs end with '=X'
-                average_daily_range_pips = _calculate_30d_average_daily_range_in_pips(ticker_symbol)
+                average_daily_range_pips = _calculate_30d_average_daily_range_in_pips(ticker_symbol, history_df)
                 if average_daily_range_pips is not None:
                     log_info(f"Collected 30-day average daily range for {ticker_symbol}: {average_daily_range_pips} pips.")
                 else:
                     log_warning(f"Could not collect 30-day average daily range for FX pair {ticker_symbol}.", "DATA_MISSING")
 
             # Collect momentum spread
-            momentum_spread = _calculate_momentum_spread(ticker_symbol)
+            momentum_spread = _calculate_momentum_spread(ticker_symbol, history_df)
             if momentum_spread is not None:
                 log_info(f"Collected momentum spread for {ticker_symbol}: {momentum_spread:.2f}.")
                 absolute_momentum_spread = abs(momentum_spread) # Calculate absolute momentum spread
@@ -251,20 +249,18 @@ def collect_ticker_data(tickers: list) -> dict:
                 log_warning(f"Could not collect momentum spread for {ticker_symbol}.", "DATA_MISSING")
 
             # Collect average daily volume
-            average_daily_volume = _calculate_average_daily_volume(ticker_symbol)
+            average_daily_volume = _calculate_average_daily_volume(ticker_symbol, history_df)
             if average_daily_volume is not None:
                 log_info(f"Collected average daily volume for {ticker_symbol}: {average_daily_volume:.2f}.")
             else:
                 log_warning(f"Could not collect average daily volume for {ticker_symbol}.", "DATA_MISSING")
 
             # Collect 30-day volume change
-            thirty_day_volume_change = _calculate_30d_volume_change(ticker_symbol)
+            thirty_day_volume_change = _calculate_30d_volume_change(ticker_symbol, history_df)
             if thirty_day_volume_change is not None:
                 log_info(f"Collected 30-day volume change for {ticker_symbol}: {thirty_day_volume_change:.4f}")
             else:
                 log_warning(f"Could not collect 30-day volume change for {ticker_symbol}.", "DATA_MISSING")
-
-
 
             ticker_data[ticker_symbol] = {
                 'forward_pe': forward_pe,
@@ -277,45 +273,45 @@ def collect_ticker_data(tickers: list) -> dict:
                 'sector': sector
             }
 
-    except Exception as e:
-        log_error(f"An error occurred while fetching ticker data: {e}", "YAHOOQUERY_ERROR", e)
-        for ticker_symbol in tickers:
-            if ticker_symbol not in ticker_data:
-                ticker_data[ticker_symbol] = {'forward_pe': None, 'dilution_proxy': None, '30d_average_daily_range_pips': None, 'momentum_spread': None, 'average_daily_volume': None, '30d_volume_change': None}
+        except Exception as e:
+            log_error(f"An error occurred while fetching data for ticker {ticker_symbol}: {e}", "DATA_COLLECTION_ERROR", e)
+            ticker_data[ticker_symbol] = {
+                'forward_pe': None, 
+                'dilution_proxy': None, 
+                '30d_average_daily_range_pips': None, 
+                'momentum_spread': None, 
+                'absolute_momentum_spread': None,
+                'average_daily_volume': None, 
+                '30d_volume_change': None,
+                'sector': None
+            }
 
     return ticker_data
 
-def _calculate_30d_average_daily_range_in_pips(ticker_symbol: str) -> Optional[float]:
+def _calculate_30d_average_daily_range_in_pips(ticker_symbol: str, history_df: pd.DataFrame) -> Optional[float]:
     """
-    Calculates the 30-day average daily range in pips for a given FX ticker using yahooquery.
+    Calculates the 30-day average daily range in pips for a given FX ticker using pre-fetched historical data.
     Handles JPY pairs differently for pip calculation.
 
     Args:
         ticker_symbol (str): The FX ticker symbol (e.g., 'EURUSD=X', 'USDJPY=X').
+        history_df (pd.DataFrame): Pre-fetched historical data.
 
     Returns:
         float: The 30-day average daily range in pips, or None if data is unavailable or an error occurs.
     """
     try:
-        # Fetch historical data for the last 45 days to ensure 30 trading days
-        end_date = datetime.now()
-        start_date = end_date - timedelta(days=45)
-        
-        # Get historical data
-        yf_ticker = yf.Ticker(ticker_symbol)
-        ticker_data = yf_ticker.history(start=start_date.strftime('%Y-%m-%d'), end=end_date.strftime('%Y-%m-%d'))
-        
-        if ticker_data.empty:
+        if history_df.empty:
             log_warning(f"No historical data available for {ticker_symbol} to calculate 30-day average daily range", "AVG_DAILY_RANGE_CALCULATION")
             return None
 
         # Ensure we have at least 30 days of data
-        if len(ticker_data) < 30:
+        if len(history_df) < 30:
             log_warning(f"Less than 30 days of historical data for {ticker_symbol}. Cannot accurately calculate 30-day average daily range.", "AVG_DAILY_RANGE_CALCULATION")
             return None
 
         # Get the last 30 trading days
-        ticker_data = ticker_data.tail(30)
+        ticker_data = history_df.tail(30)
 
         daily_ranges_in_pips = []
         is_jpy_pair = "JPY" in ticker_symbol.upper()
@@ -347,12 +343,13 @@ def _calculate_30d_average_daily_range_in_pips(ticker_symbol: str) -> Optional[f
         return None
 
 
-def _calculate_momentum_spread(ticker_symbol: str) -> Optional[float]:
+def _calculate_momentum_spread(ticker_symbol: str, history_df: pd.DataFrame) -> Optional[float]:
     """
-    Calculates the momentum spread for a given ticker using yahooquery data.
+    Calculates the momentum spread for a given ticker using pre-fetched historical data.
 
     Args:
         ticker_symbol (str): The ticker symbol (e.g., 'AAPL').
+        history_df (pd.DataFrame): Pre-fetched historical data.
 
     Returns:
         float: The momentum spread, or None if data is unavailable or an error occurs.
@@ -361,20 +358,15 @@ def _calculate_momentum_spread(ticker_symbol: str) -> Optional[float]:
         lookback_momentum = 20  # Approximately 1 month of trading days
         lookback_range = 20     # For average daily range calculation
 
-        end_date = datetime.now()
-        # Fetch enough data for both lookback periods
-        start_date = end_date - timedelta(days=max(lookback_momentum, lookback_range) * 2) # Get more days to be safe
-        
-        yf_ticker = yf.Ticker(ticker_symbol)
-        ticker_data = yf_ticker.history(start=start_date.strftime("%Y-%m-%d"), end=end_date.strftime("%Y-%m-%d"))
-
-        if ticker_data.empty:
+        if history_df.empty:
             log_warning(f"No historical data available for {ticker_symbol} to calculate momentum spread.", "MOMENTUM_SPREAD_CALCULATION")
             return None
 
-        if len(ticker_data) < max(lookback_momentum, lookback_range):
+        if len(history_df) < max(lookback_momentum, lookback_range):
             log_warning(f"Not enough historical data for {ticker_symbol} to calculate momentum spread.", "MOMENTUM_SPREAD_CALCULATION")
             return None
+
+        ticker_data = history_df
 
         close = ticker_data["Close"]
         high = ticker_data["High"]
@@ -404,31 +396,28 @@ def _calculate_momentum_spread(ticker_symbol: str) -> Optional[float]:
         return None
 
 
-def _calculate_average_daily_volume(ticker_symbol: str, lookback_days: int = 30) -> Optional[float]:
+def _calculate_average_daily_volume(ticker_symbol: str, history_df: pd.DataFrame, lookback_days: int = 30) -> Optional[float]:
     """
-    Calculates the average daily volume for a given ticker over a specified lookback period using yahooquery.
+    Calculates the average daily volume for a given ticker over a specified lookback period using pre-fetched historical data.
 
     Args:
         ticker_symbol (str): The ticker symbol (e.g., 'AAPL').
+        history_df (pd.DataFrame): Pre-fetched historical data.
         lookback_days (int): The number of days to look back for calculating the average volume.
 
     Returns:
         float: The average daily volume, or None if data is unavailable or an error occurs.
     """
     try:
-        end_date = datetime.now()
-        start_date = end_date - timedelta(days=lookback_days * 2) # Fetch more data to ensure enough trading days
-        
-        yf_ticker = yf.Ticker(ticker_symbol)
-        ticker_data = yf_ticker.history(start=start_date.strftime('%Y-%m-%d'), end=end_date.strftime('%Y-%m-%d'))
-
-        if ticker_data.empty:
+        if history_df.empty:
             log_warning(f"No historical data available for {ticker_symbol} to calculate average daily volume.", "AVG_DAILY_VOLUME_CALCULATION")
             return None
 
-        if len(ticker_data) < lookback_days:
+        if len(history_df) < lookback_days:
             log_warning(f"Less than {lookback_days} days of historical data for {ticker_symbol}. Cannot accurately calculate average daily volume.", "AVG_DAILY_VOLUME_CALCULATION")
             return None
+
+        ticker_data = history_df
 
         # Get the volume for the specified lookback days
         recent_volume = ticker_data['Volume'].tail(lookback_days)
@@ -443,34 +432,30 @@ def _calculate_average_daily_volume(ticker_symbol: str, lookback_days: int = 30)
         return None
 
 
-def _calculate_30d_volume_change(ticker_symbol: str) -> Optional[float]:
+def _calculate_30d_volume_change(ticker_symbol: str, history_df: pd.DataFrame) -> Optional[float]:
     """
-    Calculates the 30-day volume change for a given ticker using yahooquery.
+    Calculates the 30-day volume change for a given ticker using pre-fetched historical data.
     This is the percentage change of the last 30-day average volume compared to the previous 30-day average volume.
 
     Args:
         ticker_symbol (str): The ticker symbol (e.g., 'AAPL').
+        history_df (pd.DataFrame): Pre-fetched historical data.
 
     Returns:
         float: The 30-day volume change percentage, or None if data is unavailable or an error occurs.
     """
     try:
         lookback_days = 30
-        total_days_needed = lookback_days * 2 + 10 # Get a bit more data to ensure two full 30-day periods
 
-        end_date = datetime.now()
-        start_date = end_date - timedelta(days=total_days_needed)
-        
-        yf_ticker = yf.Ticker(ticker_symbol)
-        ticker_data = yf_ticker.history(start=start_date.strftime('%Y-%m-%d'), end=end_date.strftime('%Y-%m-%d'))
-
-        if ticker_data.empty:
+        if history_df.empty:
             log_warning(f"No historical data available for {ticker_symbol} to calculate 30-day volume change.", "30D_VOLUME_CHANGE_CALCULATION")
             return None
 
-        if len(ticker_data) < lookback_days * 2:
+        if len(history_df) < lookback_days * 2:
             log_warning(f"Less than {lookback_days * 2} days of historical data for {ticker_symbol}. Cannot accurately calculate 30-day volume change.", "30D_VOLUME_CHANGE_CALCULATION")
             return None
+
+        ticker_data = history_df
 
         # Get the volume for the last two 30-day periods
         recent_60_days_volume = ticker_data['Volume'].tail(lookback_days * 2)
@@ -482,7 +467,7 @@ def _calculate_30d_volume_change(ticker_symbol: str) -> Optional[float]:
             log_warning(f"Previous 30-day average volume is zero for {ticker_symbol}. Cannot calculate 30-day volume change.", "30D_VOLUME_CHANGE_CALCULATION")
             return None
         
-        thirty_day_volume_change = ((current_30d_avg_volume - previous_30d_avg_volume) / previous_30d_avg_volume) / 100.0
+        thirty_day_volume_change = (current_30d_avg_volume - previous_30d_avg_volume) / previous_30d_avg_volume
 
         log_info(f"Calculated 30-day volume change for {ticker_symbol}: {thirty_day_volume_change:.4f}")
         return round(thirty_day_volume_change, 4)
@@ -584,8 +569,8 @@ def update_ticker_data_in_db(ticker_source_function, region: Optional[list] = No
                 log_info(f"Finished updating data for batch. {batch_updated_count} tickers updated/inserted in this batch.")
 
             if (i + batch_size) < len(tickers_from_db):
-                log_info("Pausing for 60 seconds before next batch...")
-                time.sleep(60) # Pause for 60 seconds between batches
+                log_info("Pausing for 15 seconds before next batch...")
+                time.sleep(15) # Pause for 15 seconds between batches
         
         log_info(f"Finished updating all ticker data. Total {total_updated_count} tickers updated/inserted across all batches.")
 
