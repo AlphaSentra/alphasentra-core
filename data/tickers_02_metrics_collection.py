@@ -189,7 +189,7 @@ def collect_ticker_data(tickers: list) -> dict:
     for ticker_symbol in tickers:
         try:
             log_info(f"Collecting data for ticker: {ticker_symbol}")
-            time.sleep(1)
+            time.sleep(5)
             ticker_obj = yf.Ticker(ticker_symbol)
             
             # Fetch history and info once
