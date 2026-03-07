@@ -1,7 +1,6 @@
 import os
 import sys
-import json
-from datetime import datetime, UTC # Changed for handling date fields and UTC timezone
+from datetime import datetime, timezone # Changed for handling date fields and UTC timezone
 import uuid # Added for generating task_id
 from bson.objectid import ObjectId # Added for generating MongoDB ObjectId
 
@@ -83,8 +82,8 @@ def get_top_equities_for_selection_analysis(region: Optional[List[str]] = None, 
                 "model_name": doc.get("ticker", "N/A"), # Use ticker from original doc
                 "recurrence": "once",
                 "task_completed": False,
-                "createdAt": datetime.now(UTC), # Use timezone-aware datetime.now(UTC)
-                "updatedAt": datetime.now(UTC), # Use timezone-aware datetime.now(UTC)
+                "createdAt": datetime.now(timezone.utc), # Use timezone-aware datetime.now(UTC)
+                "updatedAt": datetime.now(timezone.utc), # Use timezone-aware datetime.now(UTC)
                 "__v": 0
             }
             
@@ -149,8 +148,8 @@ def get_top_cryptos_for_selection_analysis(region: Optional[List[str]] = None, c
                 "model_name": doc.get("ticker", "N/A"),
                 "recurrence": "once",
                 "task_completed": False,
-                "createdAt": datetime.now(UTC),
-                "updatedAt": datetime.now(UTC),
+                "createdAt": datetime.now(timezone.utc),
+                "updatedAt": datetime.now(timezone.utc),
                 "__v": 0
             }
 
@@ -214,8 +213,8 @@ def get_top_forex_for_selection_analysis(region: Optional[List[str]] = None, cat
                 "model_name": doc.get("ticker", "N/A"),
                 "recurrence": "once",
                 "task_completed": False,
-                "createdAt": datetime.now(UTC),
-                "updatedAt": datetime.now(UTC),
+                "createdAt": datetime.now(timezone.utc),
+                "updatedAt": datetime.now(timezone.utc),
                 "__v": 0
             }
 
