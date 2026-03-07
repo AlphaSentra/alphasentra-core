@@ -57,7 +57,6 @@ def run_batch_screening():
     get_top_cryptos_for_selection_analysis(region=None, category=None)
     get_top_forex_for_selection_analysis(region=None, category=None)
     log_info("Step 3: Completed getting top tickers for selection analysis.")
-
     log_info("Batch screening process completed.")
 
 if __name__ == '__main__':
