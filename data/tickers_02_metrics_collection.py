@@ -548,6 +548,7 @@ def update_ticker_data_in_db(ticker_source_function, region: Optional[list] = No
                         update_fields["30d_volume_change"] = data["30d_volume_change"]
                     if "sector" in data and data["sector"] is not None:
                         update_fields["sector"] = data["sector"]
+                    update_fields["screener_flag"] = 1 # Set screener_flag to 1 to indicate selected among top 50 in screener
 
                     if update_fields:
                         result = collection.update_one(
