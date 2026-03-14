@@ -49,14 +49,14 @@ def run_batch_screening():
     log_info("Step 2: Completed updating ticker data in database.")
 
     # Step 3: Get top tickers for selection analysis
-    log_info("Step 3: Getting top tickers for selection analysis...")
-    get_top_equities_for_selection_analysis(region=["US"], category=["growth"])
-    get_top_equities_for_selection_analysis(region=["US"], category=["income"])
-    get_top_equities_for_selection_analysis(region=["AU"], category=["growth"])
-    get_top_equities_for_selection_analysis(region=["AU"], category=["income"])
-    get_top_cryptos_for_selection_analysis(region=None, category=None)
-    get_top_forex_for_selection_analysis(region=None, category=None)
-    log_info("Step 3: Completed getting top tickers for selection analysis.")
+    #log_info("Step 3: Getting top tickers for selection analysis...")
+    #get_top_equities_for_selection_analysis(region=["US"], category=["growth"])
+    #get_top_equities_for_selection_analysis(region=["US"], category=["income"])
+    #get_top_equities_for_selection_analysis(region=["AU"], category=["growth"])
+    #get_top_equities_for_selection_analysis(region=["AU"], category=["income"])
+    #get_top_cryptos_for_selection_analysis(region=None, category=None)
+   # get_top_forex_for_selection_analysis(region=None, category=None)
+    #log_info("Step 3: Completed getting top tickers for selection analysis.")
     log_info("Batch screening process completed.")
 
 if __name__ == '__main__':
