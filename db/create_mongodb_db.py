@@ -485,7 +485,7 @@ def create_users_collection(db):
     validator = {
         '$jsonSchema': {
             'bsonType': 'object',
-            'required': ['email', 'passcode', 'first_name','number_of_analysis', 'country', 'stocks', 'forex', 'crypto', 'commodities', 'last_login', 'created_at', 'expiry_subscription'],
+            'required': ['email', 'passcode', 'first_name','etoro_username', 'number_of_analysis', 'country', 'stocks', 'forex', 'crypto', 'commodities', 'last_login', 'created_at', 'expiry_subscription'],
             'properties': {
                 'email': {
                     'bsonType': 'string'
@@ -495,6 +495,9 @@ def create_users_collection(db):
                 },
                 'first_name': {
                     'bsonType': 'string'
+                },
+                'etoro_username': {
+                    'bsonType': ['string', 'null']
                 },
                 'country': {
                     'bsonType': 'string'
@@ -944,7 +947,7 @@ def create_asset_classes_collection(db):
     return success
 
 
-def create_alphagora_database():
+def create_alphasentra_database():
     """
     Creates the 'alphasentra-core' database and required collections with schema validation.
     Performs sequential data insertions. Returns True if all steps succeed, False otherwise.
@@ -1009,7 +1012,7 @@ if __name__ == "__main__":
         print(f"MongoDB Database: {db_name}")
         print("-" * 50)
         
-        success = create_alphagora_database()
+        success = create_alphasentra_database()
         
         if success:
             print("-" * 50)

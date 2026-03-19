@@ -9,6 +9,7 @@ import models.holistic as holistic
 import db.create_mongodb_db as create_mongodb_db
 import batch.batch_run as batch_run
 import batch.reset_dataset as reset_dataset
+import batch.db_quota as db_quota
 
 def run_fx_model_with_input():
     """
@@ -222,7 +223,7 @@ def run_db_quota_cleanup_with_confirmation():
     """
     confirm = input("Press y to run database quota and cleanup or n to cancel: ").strip().lower()
     if confirm == 'y':
-        os.system("python main.py -dblimit")
+        db_quota.purge_insights_collection()
     else:
         print("Database quota cleanup cancelled.")
 # Define menu items as tuples: (description, function)
@@ -282,7 +283,7 @@ MENU_ITEMS = [
     ("", None),
 
     ("Configure database connection settings",
-    create_mongodb_db.create_alphagora_database),
+    create_mongodb_db.create_alphasentra_database),
 
     ("Run Batch for data collection",
      run_batch_with_confirmation),
