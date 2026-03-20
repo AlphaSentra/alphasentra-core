@@ -12,6 +12,7 @@ from db.energy_data import insert_energy_commodities
 from db.metal_data import insert_metal_commodities
 from db.agriculture_data import insert_agriculture_commodities
 from db.crypto_data import insert_crypto_assets
+from db.etoro_instruments import import_etoro_instruments
 import sys
 import os
 from dotenv import load_dotenv
@@ -734,7 +735,7 @@ def insert_asset_classes_data(db):
         {"Code": "EQ", "etoro_instrumentTypeID": 5, "Description": "Equities"},
         {"Code": "ETF", "etoro_instrumentTypeID": 6, "Description": "ETFs"},
         {"Code": "IX", "etoro_instrumentTypeID": 4, "Description": "Indices"},
-        {"Code": "CO", "etoro_instrumentTypeID": 2, "Description": "Energy"},
+        {"Code": "CO", "etoro_instrumentTypeID": 2, "Description": "Commodities"},
         {"Code": "CR", "etoro_instrumentTypeID": 10, "Description": "Crypto"}
     ]
     
@@ -1128,7 +1129,8 @@ def create_alphasentra_database():
             insert_equities,
             create_weight_factors_collection,
             create_regions_collection,
-            insert_regions_data
+            insert_regions_data,
+            import_etoro_instruments
         ]
         
         # Execute operations sequentially, passing db to each
