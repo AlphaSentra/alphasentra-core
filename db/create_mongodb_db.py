@@ -758,6 +758,86 @@ def insert_asset_classes_data(db):
     except Exception as e:
         log_error("Unexpected error inserting asset classes data", "DATA_INSERTION", e)
         return False
+    
+
+def insert_regions_data(db):
+    """
+    Inserts initial regions data into the 'regions' collection.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if insertion was successful, False on error
+    """
+    collection_name = 'regions'
+    
+    print()
+    print("=" * 100)
+    print(f"Inserting regions data into '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+    
+    # Regions data to insert
+    regions_data = [
+        {"region": "Global", "etoro_exchangeID": 1, "exchange_name": "FX"},
+        {"region": "Global", "etoro_exchangeID": 2, "exchange_name": "Commodity"},
+        {"region": "Global", "etoro_exchangeID": 3, "exchange_name": "Indices (CFD)"},
+        {"region": "US", "etoro_exchangeID": 4, "exchange_name": "Nasdaq"},
+        {"region": "US", "etoro_exchangeID": 5, "exchange_name": "NYSE"},
+        {"region": "Germany", "etoro_exchangeID": 6, "exchange_name": "Frankfurt"},
+        {"region": "UK", "etoro_exchangeID": 7, "exchange_name": "London"},
+        {"region": "Global", "etoro_exchangeID": 8, "exchange_name": "Crypto"},
+        {"region": "France", "etoro_exchangeID": 9, "exchange_name": "Paris"},
+        {"region": "Spain", "etoro_exchangeID": 10, "exchange_name": "Bolsa de Madrid"},
+        {"region": "Italy", "etoro_exchangeID": 11, "exchange_name": "Borsa Italiana"},
+        {"region": "Switzerland", "etoro_exchangeID": 12, "exchange_name": "Zurich"},
+        {"region": "Norway", "etoro_exchangeID": 14, "exchange_name": "Oslo"},
+        {"region": "Sweden", "etoro_exchangeID": 15, "exchange_name": "Stockholm"},
+        {"region": "Denmark", "etoro_exchangeID": 16, "exchange_name": "Copenhagen"},
+        {"region": "Finland", "etoro_exchangeID": 17, "exchange_name": "Helsinki"},
+        {"region": "US", "etoro_exchangeID": 20, "exchange_name": "Chicago"},
+        {"region": "Hong Kong", "etoro_exchangeID": 21, "exchange_name": "Hong Kong"},
+        {"region": "Portugal", "etoro_exchangeID": 22, "exchange_name": "Lisbon"},
+        {"region": "Belgium", "etoro_exchangeID": 23, "exchange_name": "Brussels"},
+        {"region": "Saudi Arabia", "etoro_exchangeID": 24, "exchange_name": "Tadawul"},
+        {"region": "Netherlands", "etoro_exchangeID": 30, "exchange_name": "Amsterdam"},
+        {"region": "Australia", "etoro_exchangeID": 31, "exchange_name": "Sydney"},
+        {"region": "Austria", "etoro_exchangeID": 32, "exchange_name": "Vienna"},
+        {"region": "Global", "etoro_exchangeID": 33, "exchange_name": "Extended Hours Trading"},
+        {"region": "Ireland", "etoro_exchangeID": 34, "exchange_name": "Dublin EN"},
+        {"region": "Poland", "etoro_exchangeID": 36, "exchange_name": "Warsaw"},
+        {"region": "Hungary", "etoro_exchangeID": 37, "exchange_name": "Budapest"},
+        {"region": "Germany", "etoro_exchangeID": 38, "exchange_name": "Xetra ETFs"},
+        {"region": "UAE", "etoro_exchangeID": 39, "exchange_name": "Dubai Financial Market"},
+        {"region": "Global", "etoro_exchangeID": 40, "exchange_name": "Commodities"},
+        {"region": "UAE", "etoro_exchangeID": 41, "exchange_name": "Abu Dhabi"},
+        {"region": "UK", "etoro_exchangeID": 42, "exchange_name": "LSE_AIM"},
+        {"region": "UK", "etoro_exchangeID": 43, "exchange_name": "LSE AIM Auction"},
+        {"region": "UK", "etoro_exchangeID": 44, "exchange_name": "LSE Auction"},
+        {"region": "Japan", "etoro_exchangeID": 56, "exchange_name": "Tokyo Stock Exchange"}
+    ]
+    
+    try:
+        collection = db[collection_name]
+        
+        # Check if any regions already exist to avoid duplicates
+        existing_count = collection.count_documents({"region": {"$in": [item["region"] for item in regions_data]}})
+        if existing_count > 0:
+            print(f"Found {existing_count} existing regions. Skipping insertion to avoid duplicates.")
+            return True
+        
+        # Insert all regions data
+        result = collection.insert_many(regions_data)
+        print(f"Successfully inserted {len(result.inserted_ids)} regions into '{collection_name}' collection")
+        return True
+        
+    except pymongo.errors.OperationFailure as e:
+        log_error("MongoDB operation failed for inserting regions data", "MONGODB_OPERATION", e)
+        return False
+    except Exception as e:
+        log_error("Unexpected error inserting regions data", "DATA_INSERTION", e)
+        return False
 
 
 def create_weight_factors_collection(db):
@@ -898,6 +978,65 @@ def create_pipeline_collection(db):
     return success
 
 
+def create_regions_collection(db):
+    """
+    Creates the 'regions' collection with schema validation.
+    
+    Args:
+        db: MongoDB database object
+        
+    Returns:
+        bool: True if collection was created or already exists, False on error
+    """
+    collection_name = 'regions'
+    
+    print()
+    print("=" * 100)
+    print(f"Creating '{collection_name}' collection...")
+    print("=" * 100)
+    print()
+
+    # Create collection with schema validation
+    validator = {
+        '$jsonSchema': {
+            'bsonType': 'object',
+            'required': [
+                'region',
+                'etoro_exchangeID',
+                'exchange_name'
+            ],
+            'properties': {
+                'region': {
+                    'bsonType': 'string',
+                    'description': 'Region code must be a string'
+                },
+                'etoro_exchangeID': {
+                    'bsonType': 'int',
+                    'description': 'eToro exchange ID must be an integer'
+                },
+                'exchange_name': {
+                    'bsonType': 'string',
+                    'description': 'Exchange name must be a string'
+                }
+
+            }
+        }
+    }
+    
+    # No indexes specified
+    indexes = None
+    
+    # Use the generic function to create the collection
+    success = create_collection_with_schema(db, collection_name, validator, indexes)
+    
+    if success:
+        print(f"Successfully created collection '{collection_name}'")
+        print("Collection schema validation rules applied:")
+        print("   - Required fields: Code, Description")
+    
+    return success
+
+
 def create_asset_classes_collection(db):
     """
     Creates the 'asset_classes' collection with schema validation.
@@ -987,7 +1126,9 @@ def create_alphasentra_database():
             insert_agriculture_commodities,
             insert_crypto_assets,
             insert_equities,
-            create_weight_factors_collection
+            create_weight_factors_collection,
+            create_regions_collection,
+            insert_regions_data
         ]
         
         # Execute operations sequentially, passing db to each

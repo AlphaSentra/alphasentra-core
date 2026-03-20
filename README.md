@@ -98,112 +98,209 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
   $jsonSchema: {
     bsonType: 'object',
     required: [
-      'timestamp_gmt'
+      'email',
+      'passcode',
+      'first_name',
+      'etoro_username',
+      'number_of_analysis',
+      'country',
+      'stocks',
+      'forex',
+      'crypto',
+      'commodities',
+      'last_login',
+      'created_at',
+      'expiry_subscription'
     ],
     properties: {
-      title: {
+      email: {
         bsonType: 'string'
       },
-      market_outlook_narrative: {
-        bsonType: 'array',
-        items: {
-          bsonType: 'string'
-        }
+      passcode: {
+        bsonType: 'int'
       },
-      rationale: {
+      first_name: {
         bsonType: 'string'
       },
-      analysis: {
+      etoro_username: {
+        bsonType: ['string', 'null']
+      },
+      country: {
         bsonType: 'string'
       },
-      key_takeaways: {},
-      sources: {
-        bsonType: 'array',
-        items: {
-          bsonType: 'object',
-          required: [
-            'source_name',
-            'source_title'
-          ],
-          properties: {
-            source_name: {
-              bsonType: 'string'
-            },
-            source_title: {
-              bsonType: 'string'
-            }
-          }
-        }
+      stocks: {
+        bsonType: 'bool'
       },
-      recommendations: {
-        bsonType: 'array',
-        items: {
-          bsonType: 'object',
-          required: [
-            'ticker',
-            'trade_direction',
-            'bull_bear_score',
-            'stop_loss',
-            'target_price',
-            'entry_price',
-            'price'
-          ],
-          properties: {
-            ticker: {
-              bsonType: 'string'
-            },
-            trade_direction: {
-              bsonType: 'string'
-            },
-            bull_bear_score: {
-              bsonType: 'int',
-              minimum: 1,
-              maximum: 10
-            },
-            stop_loss: {
-              bsonType: 'double'
-            },
-            target_price: {
-              bsonType: 'double'
-            },
-            entry_price: {
-              bsonType: 'double'
-            },
-            price: {
-              bsonType: 'double'
-            }
-          }
-        }
+      forex: {
+        bsonType: 'bool'
       },
-      sentiment_score: {
-        bsonType: 'double',
-        minimum: -1.0,
-        maximum: 1.0
+      crypto: {
+        bsonType: 'bool'
       },
-      conviction: {
-        bsonType: 'double',
-        minimum: -1.0,
-        maximum: 1.0
+      commodities: {
+        bsonType: 'bool'
       },
-      factors: {},
-      timestamp_gmt: {
-        bsonType: 'string',
-        pattern: '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$'
+      number_of_analysis: {
+        bsonType: 'int'
       },
-      language_code: {
-        bsonType: 'string',
-        pattern: '^[a-z]{2}(-[A-Z]{2})?$'
+      created_at: {
+        bsonType: 'date'
       },
+      last_login: {
+        bsonType: ['date', 'null']
+      },
+      expiry_subscription: {
+        bsonType: ['date', 'null']
+      }
+    }
+  }
+}
+```
+
+### Tickers Validation (tickers collection):
+
+```javascript
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'ticker',
+      'ticker_tradingview',
+      'ticker_etoro',
+      'name',
+      'region',
+      'prompt',
+      'model_function'
+    ],
+    properties: {
+      ticker: {
+        bsonType: 'string'
+      },
+      ticker_tradingview: {
+        bsonType: 'string'
+      },
+      ticker_etoro: {
+        bsonType: 'string'
+      },
+      name: {
+        bsonType: 'string'
+      },
+      region: {},
+      prompt: {
+        bsonType: 'string'
+      },
+      factor: {
+        bsonType: 'string'
+      },
+      model_function: {
+        bsonType: 'string'
+      },
+      model_name: {
+        bsonType: 'string'
+      },
+      asset_class: {},
       importance: {
         bsonType: 'int',
         minimum: 1,
         maximum: 5
       },
-      asset_class: {},
-      region: {},
-      tag: {
-        'bsonType': 'string'
-      }      
+      sector: {
+        bsonType: 'string'
+      },
+      description: {
+        bsonType: 'string'
+      },
+      '1y': {
+        bsonType: 'double'
+      },
+      '6m': {
+        bsonType: 'double'
+      },
+      '3m': {
+        bsonType: 'double'
+      },
+      '1m': {
+        bsonType: 'double'
+      },
+      '1d': {
+        bsonType: 'double'
+      },
+      cashflow_health: {
+        bsonType: 'string'
+      },
+      profit_health: {
+        bsonType: 'string'
+      },
+      price_momentum: {
+        bsonType: 'string'
+      },
+      growth_health: {
+        bsonType: 'string'
+      },
+      dividend_yield: {},
+      recurrence: {
+        bsonType: 'string'
+      },
+      decimal: {
+        bsonType: 'int'
+      },
+      document_generated: {
+        bsonType: 'bool'
+      },
+      screener_flag: {
+        bsonType: 'int'
+      }
+    }
+  }
+}
+```
+
+### Regions Validation (regions collection):
+
+```javascript
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'region',
+      'etoro_exchangeID',
+      'exchange_name'
+    ],
+    properties: {
+      region: {
+        bsonType: 'string'
+      },
+      etoro_exchangeID: {
+        bsonType: 'int'
+      },
+      exchange_name: {
+        bsonType: 'string'
+      }
+    }
+  }
+}
+```
+
+### Asset Classes Validation (asset_classes collection):
+
+```javascript
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'Code',
+      'Description'
+    ],
+    properties: {
+      Code: {
+        bsonType: 'string'
+      },
+      etoro_instrumentTypeID: {
+        bsonType: 'int'
+      },
+      Description: {
+        bsonType: 'string'
+      }
     }
   }
 }

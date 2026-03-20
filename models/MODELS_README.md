@@ -27,6 +27,7 @@ The `analysis.py` module provides comprehensive instrument analysis capabilities
     - Performance metrics
     - Interactive charts (growth, financial health, etc.) for equities
     - Dividend yield data
+    - Screener flags (shortlisted tickers identification)
 
 #### Support Functions
 - `parse_ai_response(text)`: Extracts JSON from AI response

@@ -87,7 +87,6 @@ The results of every simulation are stored as a document in the `trades` collect
         "maximum_drawdown": 0.12,
         "expected_value": 8.5
     },
-    "simulation_results": "Based on 10,000 simulated trades...",
     "chart_data": {
         "time_index": [0, 1, 2, ...],
         "percentiles": {
