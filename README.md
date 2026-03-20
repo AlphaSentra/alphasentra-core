@@ -177,8 +177,13 @@ Note: To create your own prompt, use the `crypt.py` script to encrypt it with yo
       },
       sentiment_score: {
         bsonType: 'double',
-        minimum: 0,
-        maximum: 1
+        minimum: -1.0,
+        maximum: 1.0
+      },
+      conviction: {
+        bsonType: 'double',
+        minimum: -1.0,
+        maximum: 1.0
       },
       factors: {},
       timestamp_gmt: {
@@ -214,13 +219,12 @@ Importance represents how we classify the significance of the information, where
 
 We categorise asset classes as follows:
 
-- FX: Foreign Exchange pairs
-- IX: Indices
-- EQ: Equities
-- EN: Energy
-- ME: Metals
-- AG: Agriculture
-- CR: Crypto
+- **FX**: Forex
+- **EQ**: Equities
+- **ETF**: ETFs
+- **IX**: Indices
+- **CO**: Energy
+- **CR**: Crypto
 
 ### Prompt output
 

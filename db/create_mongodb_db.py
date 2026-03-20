@@ -251,6 +251,8 @@ def create_tickers_collection(db):
             'bsonType': 'object',
             'required': [
                 'ticker',
+                'ticker_tradingview',
+                'ticker_etoro',
                 'name',
                 'region',
                 'prompt',
@@ -261,6 +263,9 @@ def create_tickers_collection(db):
                     'bsonType': 'string',
                 },
                 'ticker_tradingview': {
+                    'bsonType': 'string',
+                },
+                'ticker_etoro': {
                     'bsonType': 'string',
                 },
                 'name': {
@@ -725,13 +730,12 @@ def insert_asset_classes_data(db):
     
     # Asset classes data to insert
     asset_classes_data = [
-        {"Code": "FX", "Description": "Forex"},
-        {"Code": "EQ", "Description": "Equities"},
-        {"Code": "IX", "Description": "Indices"},
-        {"Code": "EN", "Description": "Energy"},
-        {"Code": "ME", "Description": "Metal"},
-        {"Code": "AG", "Description": "Agricultural"},
-        {"Code": "CR", "Description": "Crypto"}
+        {"Code": "FX", "etoro_instrumentTypeID": 1, "Description": "Forex"},
+        {"Code": "EQ", "etoro_instrumentTypeID": 5, "Description": "Equities"},
+        {"Code": "ETF", "etoro_instrumentTypeID": 6, "Description": "ETFs"},
+        {"Code": "IX", "etoro_instrumentTypeID": 4, "Description": "Indices"},
+        {"Code": "CO", "etoro_instrumentTypeID": 2, "Description": "Energy"},
+        {"Code": "CR", "etoro_instrumentTypeID": 10, "Description": "Crypto"}
     ]
     
     try:
@@ -924,6 +928,10 @@ def create_asset_classes_collection(db):
                 'Code': {
                     'bsonType': 'string',
                     'description': 'Asset class code must be a string'
+                },
+                'etoro_instrumentTypeID': {
+                    'bsonType': 'int',
+                    'description': 'eToro instrument type ID must be an integer'
                 },
                 'Description': {
                     'bsonType': 'string',

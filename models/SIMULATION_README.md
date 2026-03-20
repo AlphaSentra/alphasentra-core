@@ -107,7 +107,7 @@ Models market dynamics including:
   - Price history recording
 
 ## Academic Constraints
-1. Sentiment cannot exceed conviction (|S| ≤ |C|)
+1. Sentiment cannot exceed conviction (|S| ≤ |C|) - *Constraint relaxed for dynamic agent behavior*
 2. Price changes depend on net order imbalance (γ=0.5) plus random noise
 3. Agent behavior follows ABM principles from financial literature:
    - Parameters reverse-engineered from initial C/S data

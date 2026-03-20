@@ -98,7 +98,7 @@ Provides comprehensive market analysis across multiple asset classes with integr
 - **Parameters**:
   - `factors`: Custom factors prompt override
   - `region`: Focus region for analysis
-  - `asset_class`: Target asset class filter
+  - `asset_class`: Target asset class filter (e.g., 'FX', 'EQ', 'IX', 'CO', 'CR', 'ETF')
   - `tag`: Custom classification tag
   - `decimal_digits`: Precision for price calculations (default: 2)
 
