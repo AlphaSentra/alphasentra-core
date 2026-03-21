@@ -2,6 +2,42 @@
 
 This document describes how eToro instrument metadata is mapped to asset classes, regions, exchanges, and external platforms (Yahoo Finance and TradingView) within the AlphaSentra-core system.
 
+## Data Flow Overview
+
+```mermaid
+graph TD
+    subgraph "Ingestion"
+        A[eToro API] -->|Fetch Metadata| B(db/etoro_instruments.py)
+        B -->|Populate| C[(etoro_instruments collection)]
+    end
+
+    subgraph "Processing & Transformation"
+        C --> D{Asset-Specific Scripts}
+        D --> E[db/equities_data.py]
+        D --> F[db/fx_data.py]
+        D --> G[db/crypto_data.py]
+        D --> H[db/commodities_data.py]
+        
+        E & F & G & H --> I[Filter & Deduplicate]
+        I --> J[Region & Asset Mapping]
+        J --> K[Symbol Translation]
+        K --> L[Config Enrichment]
+    end
+
+    subgraph "Reference Data"
+        M[(asset_classes)] -.-> J
+        N[(regions)] -.-> J
+        N -.-> K
+        O[(_config.py)] -.-> L
+    end
+
+    subgraph "Result"
+        L --> P[(tickers collection)]
+        K --> Q[Yahoo Finance Symbol]
+        K --> R[TradingView Symbol]
+    end
+```
+
 ## eToro Asset Class Identification
 
 When pulling data from the eToro API, the `etoro_instrumentTypeId` is used to identify the instrument's asset class. The `asset_classes` collection stores this mapping.
