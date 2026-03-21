@@ -1582,3 +1582,84 @@ def calculate_average_conviction(recommendations):
             return 0.0
     return 0.0
 
+def get_etoro_instrumenttypeid(code):
+    """
+    Retrieve the eToro instrumentTypeId for a given asset class code from the asset_classes collection.
+    
+    Parameters:
+    code (str): The asset class code to query
+    
+    Returns:
+    int: The instrumentTypeId if found, or None if not found or error occurs
+    """
+    try:
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        collection = db['asset_classes']
+        
+        asset_classes_data = collection.find_one({"code": code})
+        if asset_classes_data and 'etoro_instrumentTypeId' in asset_classes_data:
+            return asset_classes_data['etoro_instrumentTypeId']
+        else:
+            return None
+            
+    except Exception as e:
+        log_error("Error retrieving eToro instrumentTypeId", "ETORO_INSTRUMENT_TYPE_ID", e)
+        return None
+
+
+def get_ticker_exchange_mapping(etoro_ticker: str, etoro_exchange_id: int, platform: str = "yfinance", mapping_type: str = "auto"):
+    """
+    Reformat the etoro_ticker to either yfinance or tradingview format based on the etoro_exchange_id.
+    Queries the 'regions' collection for the appropriate suffix or prefix.
+    
+    Parameters:
+    etoro_ticker (str): The eToro ticker symbol
+    etoro_exchange_id (int): The eToro exchange ID
+    platform (str): The target platform, either 'yfinance' or 'tradingview'
+    mapping_type (str): Force the mapping to be 'suffix', 'prefix', or 'auto' (default)
+    
+    Returns:
+    str: The reformatted ticker for the specified platform.
+    """
+    try:
+        client = DatabaseManager().get_client()
+        db = client[os.getenv("MONGODB_DATABASE", "alphasentra-core")]
+        regions_coll = db['regions']
+        
+        # Get specific mapping for this exchange
+        region_doc = regions_coll.find_one({"etoro_exchangeID": etoro_exchange_id})
+        
+        if not region_doc:
+            log_warning(f"No region found for eToro exchange ID: {etoro_exchange_id}", "EXCHANGE_MAPPING")
+            return etoro_ticker
+
+        # Clean etoro_ticker by removing any existing common suffixes (e.g., .US)
+        # We only remove the part after the dot
+        clean_ticker = etoro_ticker.split('.')[0]
+        
+        # Determine target code based on platform
+        if platform.lower() == "yfinance":
+            target_code = region_doc.get("yahoo_finance_exchange_code", "")
+        elif platform.lower() == "tradingview":
+            target_code = region_doc.get("tradingview_exchange_code", "")
+        else:
+            return clean_ticker
+
+        if not target_code:
+            return clean_ticker
+
+        # Apply mapping based on mapping_type or auto-detection
+        if mapping_type.lower() == "prefix":
+            return f"{target_code}{clean_ticker}"
+        elif mapping_type.lower() == "suffix":
+            return f"{clean_ticker}{target_code}"
+        else: # auto
+            if target_code == "^" or target_code.endswith(":"):
+                return f"{target_code}{clean_ticker}"
+            else:
+                return f"{clean_ticker}{target_code}"
+
+    except Exception as e:
+        log_error("Error in get_ticker_exchange_mapping", "EXCHANGE_MAPPING", e)
+        return etoro_ticker
