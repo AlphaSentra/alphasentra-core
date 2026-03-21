@@ -8,9 +8,7 @@ import datetime
 from db.fx_data import insert_fx_pairs
 from db.equities_data import insert_equities
 from db.indices_data import insert_indices
-from db.energy_data import insert_energy_commodities
-from db.metal_data import insert_metal_commodities
-from db.agriculture_data import insert_agriculture_commodities
+from db.commodities_data import insert_commodities_asset
 from db.crypto_data import insert_crypto_assets
 from db.etoro_instruments import import_etoro_instruments
 import sys
@@ -603,7 +601,7 @@ def create_settings_collection(db):
     if success:
         print(f"Successfully created collection '{collection_name}'")
         print("Collection schema validation rules applied:")
-        print("   - Required fields: key, value, batch_id, batch_count, max_daily_batch_count")
+        print("   - Required fields: key, value, batch_id, ai_prompt_count, max_daily_ai_prompt_count")
     
     return success
 
@@ -731,19 +729,19 @@ def insert_asset_classes_data(db):
     
     # Asset classes data to insert
     asset_classes_data = [
-        {"Code": "FX", "etoro_instrumentTypeID": 1, "Description": "Forex"},
-        {"Code": "EQ", "etoro_instrumentTypeID": 5, "Description": "Equities"},
-        {"Code": "ETF", "etoro_instrumentTypeID": 6, "Description": "ETFs"},
-        {"Code": "IX", "etoro_instrumentTypeID": 4, "Description": "Indices"},
-        {"Code": "CO", "etoro_instrumentTypeID": 2, "Description": "Commodities"},
-        {"Code": "CR", "etoro_instrumentTypeID": 10, "Description": "Crypto"}
+        {"code": "FX", "etoro_instrumentTypeId": 1, "description": "Forex"},
+        {"code": "EQ", "etoro_instrumentTypeId": 5, "description": "Equities"},
+        {"code": "ETF", "etoro_instrumentTypeId": 6, "description": "ETFs"},
+        {"code": "IX", "etoro_instrumentTypeId": 4, "description": "Indices"},
+        {"code": "CO", "etoro_instrumentTypeId": 2, "description": "Commodities"},
+        {"code": "CR", "etoro_instrumentTypeId": 10, "description": "Crypto"}
     ]
     
     try:
         collection = db[collection_name]
         
         # Check if any asset classes already exist to avoid duplicates
-        existing_count = collection.count_documents({"Code": {"$in": [item["Code"] for item in asset_classes_data]}})
+        existing_count = collection.count_documents({"code": {"$in": [item["code"] for item in asset_classes_data]}})
         if existing_count > 0:
             print(f"Found {existing_count} existing asset classes. Skipping insertion to avoid duplicates.")
             return True
@@ -781,42 +779,38 @@ def insert_regions_data(db):
     
     # Regions data to insert
     regions_data = [
-        {"region": "Global", "etoro_exchangeID": 1, "exchange_name": "FX"},
-        {"region": "Global", "etoro_exchangeID": 2, "exchange_name": "Commodity"},
-        {"region": "Global", "etoro_exchangeID": 3, "exchange_name": "Indices (CFD)"},
-        {"region": "US", "etoro_exchangeID": 4, "exchange_name": "Nasdaq"},
-        {"region": "US", "etoro_exchangeID": 5, "exchange_name": "NYSE"},
-        {"region": "Germany", "etoro_exchangeID": 6, "exchange_name": "Frankfurt"},
-        {"region": "UK", "etoro_exchangeID": 7, "exchange_name": "London"},
-        {"region": "Global", "etoro_exchangeID": 8, "exchange_name": "Crypto"},
-        {"region": "France", "etoro_exchangeID": 9, "exchange_name": "Paris"},
-        {"region": "Spain", "etoro_exchangeID": 10, "exchange_name": "Bolsa de Madrid"},
-        {"region": "Italy", "etoro_exchangeID": 11, "exchange_name": "Borsa Italiana"},
-        {"region": "Switzerland", "etoro_exchangeID": 12, "exchange_name": "Zurich"},
-        {"region": "Norway", "etoro_exchangeID": 14, "exchange_name": "Oslo"},
-        {"region": "Sweden", "etoro_exchangeID": 15, "exchange_name": "Stockholm"},
-        {"region": "Denmark", "etoro_exchangeID": 16, "exchange_name": "Copenhagen"},
-        {"region": "Finland", "etoro_exchangeID": 17, "exchange_name": "Helsinki"},
-        {"region": "US", "etoro_exchangeID": 20, "exchange_name": "Chicago"},
-        {"region": "Hong Kong", "etoro_exchangeID": 21, "exchange_name": "Hong Kong"},
-        {"region": "Portugal", "etoro_exchangeID": 22, "exchange_name": "Lisbon"},
-        {"region": "Belgium", "etoro_exchangeID": 23, "exchange_name": "Brussels"},
-        {"region": "Saudi Arabia", "etoro_exchangeID": 24, "exchange_name": "Tadawul"},
-        {"region": "Netherlands", "etoro_exchangeID": 30, "exchange_name": "Amsterdam"},
-        {"region": "Australia", "etoro_exchangeID": 31, "exchange_name": "Sydney"},
-        {"region": "Austria", "etoro_exchangeID": 32, "exchange_name": "Vienna"},
-        {"region": "Global", "etoro_exchangeID": 33, "exchange_name": "Extended Hours Trading"},
-        {"region": "Ireland", "etoro_exchangeID": 34, "exchange_name": "Dublin EN"},
-        {"region": "Poland", "etoro_exchangeID": 36, "exchange_name": "Warsaw"},
-        {"region": "Hungary", "etoro_exchangeID": 37, "exchange_name": "Budapest"},
-        {"region": "Germany", "etoro_exchangeID": 38, "exchange_name": "Xetra ETFs"},
-        {"region": "UAE", "etoro_exchangeID": 39, "exchange_name": "Dubai Financial Market"},
-        {"region": "Global", "etoro_exchangeID": 40, "exchange_name": "Commodities"},
-        {"region": "UAE", "etoro_exchangeID": 41, "exchange_name": "Abu Dhabi"},
-        {"region": "UK", "etoro_exchangeID": 42, "exchange_name": "LSE_AIM"},
-        {"region": "UK", "etoro_exchangeID": 43, "exchange_name": "LSE AIM Auction"},
-        {"region": "UK", "etoro_exchangeID": 44, "exchange_name": "LSE Auction"},
-        {"region": "Japan", "etoro_exchangeID": 56, "exchange_name": "Tokyo Stock Exchange"}
+        {"region": "Global", "etoro_exchangeID": 1, "exchange_name": "FX", "yahoo_finance_exchange_code": "=X", "tradingview_exchange_code": ""},
+        {"region": "Global", "etoro_exchangeID": 2, "exchange_name": "Commodity", "yahoo_finance_exchange_code": "", "tradingview_exchange_code": ""},
+        {"region": "Global", "etoro_exchangeID": 3, "exchange_name": "Indices (CFD)", "yahoo_finance_exchange_code": "^", "tradingview_exchange_code": "INDEX:"},
+        {"region": "US", "etoro_exchangeID": 4, "exchange_name": "Nasdaq", "yahoo_finance_exchange_code": "", "tradingview_exchange_code": "NASDAQ:"},
+        {"region": "US", "etoro_exchangeID": 5, "exchange_name": "NYSE", "yahoo_finance_exchange_code": "", "tradingview_exchange_code": "NYSE:"},
+        {"region": "Germany", "etoro_exchangeID": 6, "exchange_name": "Frankfurt (Xetra)", "yahoo_finance_exchange_code": ".DE", "tradingview_exchange_code": "XETR:"},
+        {"region": "UK", "etoro_exchangeID": 7, "exchange_name": "London", "yahoo_finance_exchange_code": ".L", "tradingview_exchange_code": "LSE:"},
+        {"region": "Global", "etoro_exchangeID": 8, "exchange_name": "Crypto", "yahoo_finance_exchange_code": "-USD", "tradingview_exchange_code": "USD"},
+        {"region": "France", "etoro_exchangeID": 9, "exchange_name": "Paris", "yahoo_finance_exchange_code": ".PA", "tradingview_exchange_code": "EURONEXT:"},
+        {"region": "Spain", "etoro_exchangeID": 10, "exchange_name": "Madrid", "yahoo_finance_exchange_code": ".MC", "tradingview_exchange_code": "BME:"},
+        {"region": "Italy", "etoro_exchangeID": 11, "exchange_name": "Borsa Italiana", "yahoo_finance_exchange_code": ".MI", "tradingview_exchange_code": "MIL:"},
+        {"region": "Switzerland", "etoro_exchangeID": 12, "exchange_name": "Zurich", "yahoo_finance_exchange_code": ".SW", "tradingview_exchange_code": "SIX:"},
+        {"region": "Norway", "etoro_exchangeID": 14, "exchange_name": "Oslo", "yahoo_finance_exchange_code": ".OL", "tradingview_exchange_code": "OSL:"},
+        {"region": "Sweden", "etoro_exchangeID": 15, "exchange_name": "Stockholm", "yahoo_finance_exchange_code": ".ST", "tradingview_exchange_code": "OMXSTO:"},
+        {"region": "Denmark", "etoro_exchangeID": 16, "exchange_name": "Copenhagen", "yahoo_finance_exchange_code": ".CO", "tradingview_exchange_code": "OMXCOP:"},
+        {"region": "Finland", "etoro_exchangeID": 17, "exchange_name": "Helsinki", "yahoo_finance_exchange_code": ".HE", "tradingview_exchange_code": "OMXHEX:"},
+        {"region": "US", "etoro_exchangeID": 20, "exchange_name": "Chicago (CME/CBOT)", "yahoo_finance_exchange_code": "", "tradingview_exchange_code": "CME:"},
+        {"region": "Hong Kong", "etoro_exchangeID": 21, "exchange_name": "Hong Kong", "yahoo_finance_exchange_code": ".HK", "tradingview_exchange_code": "HKEX:"},
+        {"region": "Portugal", "etoro_exchangeID": 22, "exchange_name": "Lisbon", "yahoo_finance_exchange_code": ".LS", "tradingview_exchange_code": "EURONEXT:"},
+        {"region": "Belgium", "etoro_exchangeID": 23, "exchange_name": "Brussels", "yahoo_finance_exchange_code": ".BR", "tradingview_exchange_code": "EURONEXT:"},
+        {"region": "Saudi Arabia", "etoro_exchangeID": 24, "exchange_name": "Tadawul", "yahoo_finance_exchange_code": ".SR", "tradingview_exchange_code": "TADAWUL:"},
+        {"region": "Netherlands", "etoro_exchangeID": 30, "exchange_name": "Amsterdam", "yahoo_finance_exchange_code": ".AS", "tradingview_exchange_code": "EURONEXT:"},
+        {"region": "Australia", "etoro_exchangeID": 31, "exchange_name": "ASX (Sydney)", "yahoo_finance_exchange_code": ".AX", "tradingview_exchange_code": "ASX:"},
+        {"region": "Austria", "etoro_exchangeID": 32, "exchange_name": "Vienna", "yahoo_finance_exchange_code": ".VI", "tradingview_exchange_code": "VIE:"},
+        {"region": "Ireland", "etoro_exchangeID": 33, "exchange_name": "Dublin", "yahoo_finance_exchange_code": ".IR", "tradingview_exchange_code": "EURONEXT:"},
+        {"region": "Global", "etoro_exchangeID": 34, "exchange_name": "ETFs (CFD)", "yahoo_finance_exchange_code": "", "tradingview_exchange_code": "AMEX:"},
+        {"region": "Germany", "etoro_exchangeID": 38, "exchange_name": "Xetra ETFs", "yahoo_finance_exchange_code": ".DE", "tradingview_exchange_code": "XETR:"},
+        {"region": "UAE", "etoro_exchangeID": 39, "exchange_name": "Dubai", "yahoo_finance_exchange_code": ".DU", "tradingview_exchange_code": "DFM:"},
+        {"region": "Global", "etoro_exchangeID": 40, "exchange_name": "Commodities", "yahoo_finance_exchange_code": "=F", "tradingview_exchange_code": "COMEX:"},
+        {"region": "UAE", "etoro_exchangeID": 41, "exchange_name": "Abu Dhabi", "yahoo_finance_exchange_code": ".AD", "tradingview_exchange_code": "ADX:"},
+        {"region": "UK", "etoro_exchangeID": 42, "exchange_name": "LSE AIM", "yahoo_finance_exchange_code": ".L", "tradingview_exchange_code": "LSE:"},
+        {"region": "Japan", "etoro_exchangeID": 56, "exchange_name": "Tokyo", "yahoo_finance_exchange_code": ".T", "tradingview_exchange_code": "TSE:"}
     ]
     
     try:
@@ -1018,8 +1012,15 @@ def create_regions_collection(db):
                 'exchange_name': {
                     'bsonType': 'string',
                     'description': 'Exchange name must be a string'
+                },
+                'yahoo_finance_exchange_code': {
+                    'bsonType': 'string',
+                    'description': 'Yahoo Finance exchange code must be a string'
+                },
+                'tradingview_exchange_code': {
+                    'bsonType': 'string',
+                    'description': 'TradingView exchange code must be a string'
                 }
-
             }
         }
     }
@@ -1033,7 +1034,7 @@ def create_regions_collection(db):
     if success:
         print(f"Successfully created collection '{collection_name}'")
         print("Collection schema validation rules applied:")
-        print("   - Required fields: Code, Description")
+        print("   - Required fields: region, etoro_exchangeID, exchange_name")
     
     return success
 
@@ -1061,19 +1062,19 @@ def create_asset_classes_collection(db):
         '$jsonSchema': {
             'bsonType': 'object',
             'required': [
-                'Code',
-                'Description'
+                'code',
+                'description'
             ],
             'properties': {
-                'Code': {
+                'code': {
                     'bsonType': 'string',
                     'description': 'Asset class code must be a string'
                 },
-                'etoro_instrumentTypeID': {
+                'etoro_instrumentTypeId': {
                     'bsonType': 'int',
                     'description': 'eToro instrument type ID must be an integer'
                 },
-                'Description': {
+                'description': {
                     'bsonType': 'string',
                     'description': 'Asset class description must be a string'
                 }
@@ -1090,7 +1091,7 @@ def create_asset_classes_collection(db):
     if success:
         print(f"Successfully created collection '{collection_name}'")
         print("Collection schema validation rules applied:")
-        print("   - Required fields: Code, Description")
+        print("   - Required fields: code, description")
     
     return success
 
@@ -1120,17 +1121,15 @@ def create_alphasentra_database():
             insert_settings_data,
             insert_user_data,
             insert_asset_classes_data,
-            insert_fx_pairs,
-            #insert_indices,
-            insert_energy_commodities,
-            insert_metal_commodities,
-            insert_agriculture_commodities,
-            insert_crypto_assets,
-            insert_equities,
-            create_weight_factors_collection,
             create_regions_collection,
             insert_regions_data,
-            import_etoro_instruments
+            import_etoro_instruments,            
+            insert_fx_pairs,
+            #insert_indices,
+            insert_commodities_asset,
+            insert_crypto_assets,
+            insert_equities,
+            create_weight_factors_collection
         ]
         
         # Execute operations sequentially, passing db to each

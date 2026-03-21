@@ -8,13 +8,16 @@ parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
+from _config import EN_ENERGY_LONG_SHORT_PROMPT, EN_ENERGY_FACTORS_PROMPT
+from _config import ME_METALS_FACTORS_PROMPT, ME_METALS_LONG_SHORT_PROMPT
+from _config import AG_AGRICULTURE_FACTORS_PROMPT, AG_AGRICULTURE_LONG_SHORT_PROMPT
 from logging_utils import log_error, log_info, log_warning
-from _config import CR_CRYPTO_LONG_SHORT_PROMPT, CR_CRYPTO_FACTORS_PROMPT
 from helpers import DatabaseManager, get_etoro_instrumenttypeid, get_ticker_exchange_mapping
 
-def insert_crypto_assets(db):
+def insert_commodities_asset(db):
     """
-    Inserts crypto assets from 'etoro_instruments' into the 'tickers' collection.
+    Inserts commodities assets from 'etoro_instruments' into the 'tickers' collection,
+    categorizing them by keyword into Energy, Agriculture, or Metals.
     
     Args:
         db: MongoDB database object
@@ -25,12 +28,17 @@ def insert_crypto_assets(db):
     collection_name = 'tickers'
     etoro_collection_name = 'etoro_instruments'
     
-    # Get the eToro instrumentTypeId for "CR" (Crypto)
-    etoro_instrument_type_id = get_etoro_instrumenttypeid("CR")
+    # Get the eToro instrumentTypeId for "CO" (Commodities)
+    etoro_instrument_type_id = get_etoro_instrumenttypeid("CO")
     
     if etoro_instrument_type_id is None:
-        log_error("Could not find instrumentTypeId for 'CR'", "DATA_INSERTION")
+        log_error("Could not find instrumentTypeId for 'CO'", "DATA_INSERTION")
         return False
+
+    # Categorization keywords
+    energy_keywords = ["carbon", "oil", "gas"]
+    agri_keywords = ["cocoa", "cotton", "coffee", "corn", "sugar", "soybeans", "wheat"]
+    metal_keywords = ["aluminum", "copper", "lead", "nickel", "zinc", "palladium", "silver", "gold", "platinum"]
 
     try:
         etoro_collection = db[etoro_collection_name]
@@ -50,12 +58,12 @@ def insert_crypto_assets(db):
 
         print()
         print("=" * 100)
-        print(f"Processing and inserting crypto assets into '{collection_name}' collection...")
+        print(f"Processing and inserting commodities into '{collection_name}' collection...")
         print("=" * 100)
         print()
         
         # Mapping etoro_instruments to tickers collection structure
-        crypto_to_insert = []
+        commodities_to_insert = []
         for doc in etoro_instruments_docs:
             ticker = doc.get('SymbolFull')
             if not ticker:
@@ -64,49 +72,70 @@ def insert_crypto_assets(db):
             # Check if already exists in tickers collection to avoid duplicates
             if tickers_collection.count_documents({"ticker": ticker}) > 0:
                 continue
+                
+            symbol_full = doc.get('SymbolFull', '').lower()
             
-            log_info(f"Mapping eToro ticker '{ticker}' for crypto asset")
+            # Default values (falling back to energy if no match found)
+            prompt = EN_ENERGY_LONG_SHORT_PROMPT
+            factors = EN_ENERGY_FACTORS_PROMPT
+            asset_class = "EN"
+            
+            # Check for matches in keywords
+            if any(kw in symbol_full for kw in metal_keywords):
+                prompt = ME_METALS_LONG_SHORT_PROMPT
+                factors = ME_METALS_FACTORS_PROMPT
+                asset_class = "ME"
+            elif any(kw in symbol_full for kw in agri_keywords):
+                prompt = AG_AGRICULTURE_LONG_SHORT_PROMPT
+                factors = AG_AGRICULTURE_FACTORS_PROMPT
+                asset_class = "AG"
+            elif any(kw in symbol_full for kw in energy_keywords):
+                prompt = EN_ENERGY_LONG_SHORT_PROMPT
+                factors = EN_ENERGY_FACTORS_PROMPT
+                asset_class = "EN"
+
+            log_info(f"Mapping eToro ticker '{ticker}' for commodity asset with determined asset class '{asset_class}'")
 
             # Map fields to match the desired structure
             exchange_id = doc.get('exchangeID', doc.get('ExchangeID', 0))
             mapped_doc = {
                 "ticker": get_ticker_exchange_mapping(ticker, exchange_id, "yfinance", "auto"),
-                "ticker_tradingview": get_ticker_exchange_mapping(ticker, exchange_id, "tradingview", "suffix"),
+                "ticker_tradingview": get_ticker_exchange_mapping(ticker, exchange_id, "tradingview", "auto"),
                 "ticker_etoro": ticker,
                 "name": doc.get('InstrumentDisplayName', doc.get('SymbolFull', doc.get('Symbol'))),
                 "region": ["Global"],
-                "prompt": CR_CRYPTO_LONG_SHORT_PROMPT,
-                "factors": CR_CRYPTO_FACTORS_PROMPT,
+                "prompt": prompt,
+                "factors": factors,
                 "model_function": "run_holistic_market_model",
                 "model_name": "holistic",
-                "asset_class": "CR",
+                "asset_class": asset_class,
                 "importance": 1,
                 "recurrence": "multi",
                 "decimal": 2,
                 "document_generated": True,
                 "instrumenttypeID": etoro_instrument_type_id
             }
-            crypto_to_insert.append(mapped_doc)
+            commodities_to_insert.append(mapped_doc)
             
-        if crypto_to_insert:
-            result = tickers_collection.insert_many(crypto_to_insert)
-            log_info(f"Successfully inserted {len(result.inserted_ids)} crypto assets into '{collection_name}' collection")
+        if commodities_to_insert:
+            result = tickers_collection.insert_many(commodities_to_insert)
+            log_info(f"Successfully inserted {len(result.inserted_ids)} commodities into '{collection_name}' collection")
         else:
-            log_warning("No new crypto assets to insert.")
+            log_warning("No new commodities to insert.")
             
         return True
         
     except pymongo.errors.OperationFailure as e:
-        log_error("MongoDB operation failed for inserting crypto assets", "MONGODB_OPERATION", e)
+        log_error("MongoDB operation failed for inserting commodities", "MONGODB_OPERATION", e)
         return False
     except Exception as e:
-        log_error("Unexpected error inserting crypto assets", "DATA_INSERTION", e)
+        log_error("Unexpected error inserting commodities", "DATA_INSERTION", e)
         return False
-
+    
 if __name__ == "__main__":
     db_manager = DatabaseManager()
     client = db_manager.get_client()
     db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
     db = client[db_name]
     
-    insert_crypto_assets(db)
+    insert_commodities_asset(db)
