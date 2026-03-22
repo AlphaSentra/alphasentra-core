@@ -107,3 +107,37 @@ We categorise asset classes as follows:
 - **IX**: Indices
 - **CO**: Commodities
 - **CR**: Crypto
+
+## System Architecture
+
+The following diagram illustrates the high-level architecture and data flow of AlphaSentra:
+
+```mermaid
+graph TD
+    subgraph "User Interface"
+        UI[main.py / menu.py]
+    end
+
+    subgraph "Processing Modes"
+        UI -->|Manual Selection| MODELS[Models: Holistic, FX, etc.]
+        UI -->|Batch Flag| BATCH_RUN[batch/batch_run.py]
+        UI -->|Screening Command| BATCH_SCREEN[batch/batch_screening.py]
+    end
+
+    subgraph "Data & Analytics"
+        MODELS -->|Fetch Data| YF[yfinance / Price Data]
+        MODELS -->|Generate Insights| GEMINI[Google Gemini AI]
+        BATCH_RUN -->|Worker Processes| MODELS
+        BATCH_SCREEN -->|Pre-filter| DATA_MODULES[Data Metrics / Performance]
+    end
+
+    subgraph "Storage"
+        MODELS -->|Store Results| MONGO[(MongoDB)]
+        BATCH_RUN -->|Poll Tasks| MONGO
+        DATA_MODULES -->|Sync Metadata| MONGO
+        DB_TOOLS[db/ scripts] -->|Initialize/Manage| MONGO
+    end
+
+    GEMINI -.->|Proprietary Prompts| MODELS
+    MONGO -.->|Settings & Config| BATCH_RUN
+```

@@ -10,6 +10,7 @@ import db.create_mongodb_db as create_mongodb_db
 import batch.batch_run as batch_run
 import batch.reset_dataset as reset_dataset
 import batch.db_quota as db_quota
+import db.etoro_instruments as etoro_instruments
 
 def run_fx_model_with_input():
     """
@@ -226,6 +227,27 @@ def run_db_quota_cleanup_with_confirmation():
         db_quota.purge_insights_collection()
     else:
         print("Database quota cleanup cancelled.")
+
+def run_import_etoro_instruments_with_confirmation():
+    """
+    Run eToro instruments import with user confirmation.
+    """
+    confirm = input("Press y to import eToro instruments metadata or n to cancel: ").strip().lower()
+    if confirm == 'y':
+        etoro_instruments.run_import_etoro_instruments_with_confirmation()
+    else:
+        print("eToro instruments import cancelled.")
+
+def run_export_etoro_json_with_confirmation():
+    """
+    Run eToro instruments JSON export with user confirmation.
+    """
+    confirm = input("Press y to export non-excluded eToro instruments to JSON or n to cancel: ").strip().lower()
+    if confirm == 'y':
+        etoro_instruments.export_non_excluded_to_json()
+    else:
+        print("Export cancelled.")
+
 # Define menu items as tuples: (description, function)
 # Use None as function for separator items
 MENU_ITEMS = [
@@ -293,5 +315,8 @@ MENU_ITEMS = [
      
     ("Database Quota and Cleanup",
      run_db_quota_cleanup_with_confirmation),
+
+    ("Import eToro Instruments Metadata",
+     run_import_etoro_instruments_with_confirmation),
 
 ]
