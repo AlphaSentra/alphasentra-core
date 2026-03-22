@@ -231,7 +231,11 @@ def collect_all_tickers_performance_metrics():
     
     with ProcessPoolExecutor() as executor:
         # Correct use of executor.map
-        results = list(executor.map(_get_performance_metrics, tickers))
+        results = []
+        total_tickers = len(tickers)
+        for i, result in enumerate(executor.map(_get_performance_metrics, tickers), 1):
+            results.append(result)
+            log_info(f"Processed {i}/{total_tickers} tickers ({(i/total_tickers)*100:.2f}%)")
         
         # Filter out None results
         valid_results = [r for r in results if r is not None]
