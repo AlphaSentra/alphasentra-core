@@ -2,6 +2,44 @@
 
 This document provides an overview of the Python modules in the `models` directory.
 
+## Model Hierarchy & Workflow
+
+```mermaid
+flowchart TD
+    subgraph Analysis_Layer [Analysis & Data Processing]
+        A[analysis.py] -->|Generates| A1[Instrument Descriptions]
+        A -->|Classifies| A2[Sector Classification]
+        A -->|Grades| A3[Financial Health]
+        A -->|Visualizes| A4[Equity Charts]
+    end
+
+    subgraph Strategy_Layer [Strategy & Decision Models]
+        B[fx_long_short.py] -->|FX Specific| B1[Multi-factor Analysis]
+        C[holistic.py] -->|Cross-Asset| C1[Integrated Factor Weighting]
+        
+        B1 -->|Output| D[Trading Recommendations]
+        C1 -->|Output| D
+    end
+
+    subgraph Simulation_Layer [Simulation & Optimization]
+        D -->|Feeds into| E[montecarlo.py]
+        E -->|Internal Optimization| E1[_run_simulation_for_optimization]
+        E1 -->|Refined Params| E2[run_monte_carlo_simulation]
+        
+        F[simulation.py] -->|Agent-Based Modeling| E
+        F -->|Stochastic Noise| E
+    end
+
+    subgraph Execution_Layer [Pipeline & DB]
+        G[default.py] -->|Orchestrates| E
+        G -->|Manages| H[(MongoDB Pipeline)]
+        H -->|Triggers| G
+    end
+
+    A3 -.->|Financial Health Data| C
+    D -.->|Trade Parameters| G
+```
+
 ---
 
 ## analysis.py - Instrument Analysis Module
