@@ -9,7 +9,6 @@ This script provides functions to:
 - Remove all documents from the weight_factors collection
 - Remove all documents from the trades collection
 - Reset the ai_prompt_count in the settings collection
-- Reset the screener_flag field to 0 for all tickers in the tickers collection
 - Perform all reset operations in sequence via reset_all()
 """
 
@@ -277,37 +276,6 @@ def delete_trades():
         return False
 
 
-def reset_screener_flags():
-    """
-    Reset the screener_flag field to 0 for all documents in the tickers collection.
-    
-    Returns:
-        bool: True if successful, False otherwise
-    """
-    try:
-        logger.info("Starting reset of screener_flag field in tickers collection")
-        
-        # Get MongoDB client using DatabaseManager
-        client = DatabaseManager().get_client()
-        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
-        db = client[db_name]
-        collection = db['tickers']
-        
-        # Update all documents to set screener_flag to 0
-        result = collection.update_many(
-            filter={},
-            update={"$set": {"screener_flag": 0}}
-        )
-        
-        logger.info(f"Successfully updated {result.modified_count} documents in tickers collection")
-        logger.info("Reset of screener_flag field completed")
-        return True
-        
-    except Exception as e:
-        logger.error("Failed to reset screener_flag field", "DATABASE_OPERATION", e)
-        return False
-    
-
 def reset_all():
     """
     Call all reset and delete functions in sequence.
@@ -326,8 +294,7 @@ def reset_all():
             delete_once_pipeline() and
             remove_all_weight_factors() and
             delete_trades() and
-            reset_ai_prompt_count() and
-            reset_screener_flags()
+            reset_ai_prompt_count()
         )
         
         if success:

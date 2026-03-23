@@ -13,10 +13,43 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from logging_utils import log_info
+from logging_utils import log_info, AgLogger
+from helpers import DatabaseManager
 from data.tickers_01_performance_filter import collect_all_tickers_performance_metrics
 from data.tickers_02_metrics_collection import update_ticker_data_in_db, get_equity_tickers_from_db, get_crypto_tickers_from_db, get_fx_tickers_from_db
-from data.tickers_03_selection_analysis import get_top_equities_for_selection_analysis, get_top_cryptos_for_selection_analysis, get_top_forex_for_selection_analysis
+
+# Initialize logger
+logger = AgLogger('batch_screening')
+
+def reset_screener_flags():
+    """
+    Reset the screener_flag field to 0 for all documents in the tickers collection.
+    
+    Returns:
+        bool: True if successful, False otherwise
+    """
+    try:
+        logger.info("Starting reset of screener_flag field in tickers collection")
+        
+        # Get MongoDB client using DatabaseManager
+        client = DatabaseManager().get_client()
+        db_name = os.getenv("MONGODB_DATABASE", "alphasentra-core")
+        db = client[db_name]
+        collection = db['tickers']
+        
+        # Update all documents to set screener_flag to 0
+        result = collection.update_many(
+            filter={},
+            update={"$set": {"screener_flag": 0}}
+        )
+        
+        logger.info(f"Successfully updated {result.modified_count} documents in tickers collection")
+        logger.info("Reset of screener_flag field completed")
+        return True
+        
+    except Exception as e:
+        logger.error("Failed to reset screener_flag field", "DATABASE_OPERATION", e)
+        return False
 
 def run_batch_screening():
     """
@@ -24,11 +57,10 @@ def run_batch_screening():
 
     This function coordinates the sequential execution of several data processing steps:
     1. Calls `collect_all_tickers_performance_metrics` to gather initial performance data.
-    2. Invokes `update_ticker_data_in_db` multiple times to fetch and update detailed metrics
+    2. Calls `reset_screener_flags` to clear flags from previous runs.
+    3. Invokes `update_ticker_data_in_db` multiple times to fetch and update detailed metrics
        for equities (growth and income in US/AU regions), cryptocurrencies, and forex pairs.
-    3. Triggers `get_top_equities_for_selection_analysis`, `get_top_cryptos_for_selection_analysis`,
-       and `get_top_forex_for_selection_analysis` to identify top performers based on updated data.
-
+   
     Logging messages are used throughout the process to indicate the status and progress of each step.
     """
     log_info("Starting batch screening process...")
@@ -38,25 +70,37 @@ def run_batch_screening():
     collect_all_tickers_performance_metrics()
     log_info("Step 1: Completed collecting all tickers performance metrics.")
 
-    # Step 2: Update ticker data in DB for various categories
-    log_info("Step 2: Updating ticker data in database...")
+    # Step 2: Reset screener flags
+    log_info("Step 2: Resetting screener flags...")
+    reset_screener_flags()
+    log_info("Step 2: Completed resetting screener flags.")
+
+
+    # Step 3: Update ticker data in DB for various categories
+    log_info("Step 3: Updating ticker data in database...")
     update_ticker_data_in_db(get_equity_tickers_from_db, region=["US"], category=["growth"])
-    update_ticker_data_in_db(get_equity_tickers_from_db, region=["AU"], category=["growth"])
     update_ticker_data_in_db(get_equity_tickers_from_db, region=["US"], category=["income"])
-    update_ticker_data_in_db(get_equity_tickers_from_db, region=["AU"], category=["income"])
+
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["UK"], category=["growth"])
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["UK"], category=["income"])
+
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["Australia"], category=["growth"])
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["Australia"], category=["income"])
+
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["France"], category=["growth"])
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["France"], category=["income"])
+
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["Germany"], category=["growth"])
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["Germany"], category=["income"])
+
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["Hong Kong"], category=["growth"])
+    update_ticker_data_in_db(get_equity_tickers_from_db, region=["Hong Kong"], category=["income"])
+
+
     update_ticker_data_in_db(get_crypto_tickers_from_db, region=None, category=["crypto"])
     update_ticker_data_in_db(get_fx_tickers_from_db, region=None, category=["forex"])
-    log_info("Step 2: Completed updating ticker data in database.")
+    log_info("Step 3: Completed updating ticker data in database.")
 
-    # Step 3: Get top tickers for selection analysis
-    #log_info("Step 3: Getting top tickers for selection analysis...")
-    #get_top_equities_for_selection_analysis(region=["US"], category=["growth"])
-    #get_top_equities_for_selection_analysis(region=["US"], category=["income"])
-    #get_top_equities_for_selection_analysis(region=["AU"], category=["growth"])
-    #get_top_equities_for_selection_analysis(region=["AU"], category=["income"])
-    #get_top_cryptos_for_selection_analysis(region=None, category=None)
-   # get_top_forex_for_selection_analysis(region=None, category=None)
-    #log_info("Step 3: Completed getting top tickers for selection analysis.")
     log_info("Batch screening process completed.")
 
 if __name__ == '__main__':
