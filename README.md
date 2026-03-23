@@ -114,29 +114,47 @@ The following diagram illustrates the high-level architecture and data flow of A
 
 ```mermaid
 graph TD
-    subgraph "User Interface"
+    subgraph UI_G [User Interface]
+        direction TB
         UI[main.py / menu.py]
     end
 
-    subgraph "Processing Modes"
-        UI -->|Manual Selection| MODELS[Models: Holistic, FX, etc.]
-        UI -->|Batch Flag| BATCH_RUN[batch/batch_run.py]
-        UI -->|Screening Command| BATCH_SCREEN[batch/batch_screening.py]
+    subgraph PROC_G [Processing Modes]
+        direction TB
+        MODELS[Models: Holistic, FX, etc.]
+        BATCH_RUN[batch/batch_run.py]
+        BATCH_SCREEN[batch/batch_screening.py]
+        MODELS ~~~ BATCH_RUN ~~~ BATCH_SCREEN
     end
 
-    subgraph "Data & Analytics"
-        MODELS -->|Fetch Data| YF[yfinance / Price Data]
-        MODELS -->|Generate Insights| GEMINI[Google Gemini AI]
-        BATCH_RUN -->|Worker Processes| MODELS
-        BATCH_SCREEN -->|Pre-filter| DATA_MODULES[Data Metrics / Performance]
+    subgraph DATA_G [Data & Analytics]
+        direction TB
+        YF[yfinance / Price Data]
+        GEMINI[Google Gemini AI]
+        DATA_MODULES[Data Metrics / Performance]
+        YF ~~~ GEMINI ~~~ DATA_MODULES
     end
 
-    subgraph "Storage"
-        MODELS -->|Store Results| MONGO[(MongoDB)]
-        BATCH_RUN -->|Poll Tasks| MONGO
-        DATA_MODULES -->|Sync Metadata| MONGO
-        DB_TOOLS[db/ scripts] -->|Initialize/Manage| MONGO
+    subgraph STORE_G [Storage]
+        direction TB
+        MONGO[(MongoDB)]
+        DB_TOOLS[db/ scripts]
+        MONGO ~~~ DB_TOOLS
     end
+
+    UI -->|Manual Selection| MODELS
+    UI -->|Batch Flag| BATCH_RUN
+    UI -->|Screening Command| BATCH_SCREEN
+
+    MODELS -->|Fetch Data| YF
+    MODELS -->|Generate Insights| GEMINI
+    BATCH_RUN -->|Worker Processes| MODELS
+    BATCH_SCREEN -->|Pre-filter| DATA_MODULES
+
+    MODELS -->|Store Results| MONGO
+    BATCH_RUN -->|Poll Tasks| MONGO
+    DATA_MODULES -->|Sync Metadata| MONGO
+    DB_TOOLS -->|Initialize/Manage| MONGO
 
     GEMINI -.->|Proprietary Prompts| MODELS
     MONGO -.->|Settings & Config| BATCH_RUN
