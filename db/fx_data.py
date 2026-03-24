@@ -36,6 +36,11 @@ def insert_fx_pairs(db):
         etoro_collection = db[etoro_collection_name]
         tickers_collection = db[collection_name]
         
+        # Check if any FX instruments already exist in the 'tickers' collection
+        if tickers_collection.count_documents({"asset_class": "FX"}) > 0:
+            log_info(f"The '{collection_name}' collection already contains 'FX' assets. Skipping insertion.")
+            return True
+
         # Query etoro_instruments for non-internal instruments matching the instrumenttypeID
         query = {
             "IsInternalInstrument": False,

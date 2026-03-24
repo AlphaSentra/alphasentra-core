@@ -44,9 +44,8 @@ def insert_indices(db):
         collection = db[collection_name]
         
         # Check if any indices already exist to avoid duplicates
-        existing_count = collection.count_documents({"ticker": {"$in": [index["ticker"] for index in indices]}})
-        if existing_count > 0:
-            print(f"Found {existing_count} existing indices. Skipping insertion to avoid duplicates.")
+        if collection.count_documents({"asset_class": {"$regex": "IX"}}) > 0:
+            print(f"The '{collection_name}' collection already contains 'IX' (Index) assets. Skipping insertion.")
             return True
         
         # Insert all indices

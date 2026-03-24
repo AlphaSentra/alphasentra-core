@@ -38,6 +38,11 @@ def insert_equities(db):
         tickers_collection = db[collection_name]
         regions_collection = db['regions']
         
+        # Check if any EQ or ETF instruments already exist in the 'tickers' collection
+        if tickers_collection.count_documents({"asset_class": {"$in": ["EQ", "ETF"]}}) > 0:
+            log_info(f"The '{collection_name}' collection already contains 'EQ' or 'ETF' assets. Skipping insertion.")
+            return True
+
         # Pre-fetch regions mapping to identify the region for each exchange
         regions_docs = list(regions_collection.find({}, {"etoro_exchangeID": 1, "region": 1}))
         exchange_to_region = {doc['etoro_exchangeID']: doc['region'] for doc in regions_docs if 'etoro_exchangeID' in doc}
