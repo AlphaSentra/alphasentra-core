@@ -4,7 +4,7 @@ Store all the variables for configuration for all the models and systems.
 Tickers are primarily aligned with Yahoo Finance symbols, while corresponding TradingView and eToro identifiers are also maintained for cross-platform consistency.
 """
 # DEPLOYMENT ID
-DEPLOYMENT_ID = "ago-20260320-2213"
+DEPLOYMENT_ID = "ago-20260410-1416"
 
 # Default language for the system
 LANGUAGE='en'
