@@ -100,6 +100,88 @@ The `regions` collection is used to map eToro's `etoro_exchangeID` to specific g
 
 ---
 
+## eToro Instruments Import Process
+
+The `db/etoro_instruments.py` script orchestrates the full lifecycle of importing eToro instrument metadata into the database. The process involves fetching data from the eToro API, staging it in the `etoro_instruments` collection, identifying instruments not yet in the main `tickers` collection, and presenting them for review.
+
+### Import Workflow
+
+```mermaid
+graph TD
+    A[Start: run_import_etoro_instruments_with_confirmation] --> B{Connect to MongoDB?};
+    B-- Yes --> C[Get DatabaseManager and DB instance];
+    B-- No --> C;
+    C --> D[Call import_etoro_instruments];
+    D --> E[Fetch instruments from ETORO_API_INSTRUMENTS_METADATA];
+    E --> F{Parse API Response: List or Dict?};
+    F --> G{No instruments found?};
+    G-- Yes --> H[Log Error and Return False];
+    G-- No --> I[Log Success: Fetched X instruments];
+    I --> J[Clear existing data from 'etoro_instruments' collection];
+    J --> K[Insert fetched instruments into 'etoro_instruments' collection in batches of 1000];
+    K --> L[Call create_excluded_etoro_instruments_collection];
+    L --> M[Fetch existing 'ticker_etoro' from 'tickers' collection];
+    M --> N[Fetch existing 'SymbolFull' from 'etoro_instruments_excluded' collection];
+    N --> O{Find instruments in 'etoro_instruments' that are NOT in 'tickers' AND NOT already in 'etoro_instruments_excluded'};
+    O --> P[Add 'excluded: False' to new instruments];
+    P --> Q[Insert new excluded instruments into 'etoro_instruments_excluded' collection in batches];
+    Q --> R[Call display_non_excluded_instruments];
+    R --> S[Display table of non-excluded instruments to user];
+    S --> T{User selects action: 1/2/3/4};
+    T -- 1: Exclude --> U[Call set_etoro_instrument_excluded_status excluded=True];
+    T -- 2: Remove --> V[Delete instruments with excluded=False from 'etoro_instruments_excluded'];
+    T -- 3: Keep --> W[Log: Keeping instruments];
+    T -- 4: Export JSON --> X[Call export_non_excluded_to_json];
+    U --> Y[End Process];
+    V --> Y;
+    W --> Y;
+    X --> Y;
+    H --> Y;
+```
+
+### Step-by-Step Explanation
+
+1. **Fetch from eToro API**: The script calls `import_etoro_instruments()` which sends an HTTP GET request to the eToro API endpoint configured in `_config.py` (`ETORO_API_INSTRUMENTS_METADATA`). The response is parsed to extract a list of instruments.
+
+2. **Populate `etoro_instruments` collection**: All existing documents in the `etoro_instruments` collection are deleted, and the freshly fetched instruments are inserted in batches of 1000. This collection serves as the raw source of truth for all available eToro instruments.
+
+3. **Build `etoro_instruments_excluded` collection**: The `create_excluded_etoro_instruments_collection()` function identifies instruments that exist in `etoro_instruments` but are **not** yet present in the `tickers` collection. These are instruments that are candidates for promotion to `tickers`. They are inserted into the `etoro_instruments_excluded` collection with `excluded: False` to mark them as pending review. Already existing entries are skipped to avoid duplicates.
+
+4. **Review and Action**: The `display_non_excluded_instruments()` function shows the user a formatted table of all instruments currently pending review (`excluded: False`). The user is then prompted with four options:
+
+   **1. Exclude them (set `excluded = True`)**
+   - What it does: Marks all displayed instruments as `excluded: True` in the `etoro_instruments_excluded` collection.
+   - Effect: These instruments will **not** appear in future review cycles.
+   - Use when: You want to permanently ignore these instruments and never import them into `tickers`.
+
+   **2. Remove them (delete from excluded collection)**
+   - What it does: Deletes the displayed instruments from `etoro_instruments_excluded` entirely.
+   - Effect: On the next import run, these instruments will **reappear** in the review list (with `excluded: False`) as long as they still exist in `etoro_instruments` and remain absent from `tickers`.
+   - Use when: You accidentally included them, or you want to "undo" their staging to reconsider later. **Does not import them into `tickers`.**
+
+   **3. Keep them (do nothing)**
+   - What it does: Takes no action. The instruments remain in `etoro_instruments_excluded` with `excluded: False`.
+   - Effect: They will appear again in the next review cycle for you to decide.
+   - Use when: You are not ready to make a decision yet and want to review them again later. **Does not import them into `tickers`.**
+
+   **4. Download Importable JSON**
+   - What it does: Exports all non-excluded instruments to a file named `etoro_importable.json`. Each instrument is enriched with:
+     - `ticker`, `ticker_tradingview`, `ticker_etoro`
+     - `asset_class`, `region`
+     - `prompt`, `factors`, `model_function`, `model_name`
+   - Effect: Creates a ready-to-import JSON file.
+   - Use when: You want to **import these instruments into the `tickers` collection**. After generating the JSON, you must import it using the appropriate asset-specific script or manually into MongoDB.
+
+5. **How to import into `tickers`**: The `etoro_importable.json` file produced by option 4 is the **only path to import instruments into `tickers`** from this workflow.
+   - After choosing option 4, run the relevant asset-specific import script (e.g., `equities_data.py`, `fx_data.py`, `crypto_data.py`, `commodities_data.py`) which will read from `etoro_importable.json` or directly insert into `tickers` with proper validation, deduplication, and region/symbol resolution.
+   - Alternatively, you can manually import the JSON contents into the `tickers` collection in MongoDB.
+
+### Important Notes
+
+- **Options 1, 2, and 3 do NOT import instruments into `tickers`.** They only manage the staging collection (`etoro_instruments_excluded`).
+- **Option 4 is the only action that prepares instruments for import into `tickers`.** It generates the structured JSON file that can then be imported by the asset-specific scripts.
+- **Removing from `etoro_instruments_excluded` (option 2) does not automatically import to `tickers`.** If you remove an instrument, it will reappear in the next import cycle (with `excluded: False`) as long as it still exists in `etoro_instruments` and remains absent from `tickers`.
+
 ## Ticker Import Process
 
 The system automates the promotion of instruments from the raw `etoro_instruments` collection to the active `tickers` collection using specialized scripts for each asset class.
