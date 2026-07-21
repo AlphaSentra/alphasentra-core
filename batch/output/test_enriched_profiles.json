@@ -1,0 +1,211 @@
+[
+  {
+    "gcid": 4467918,
+    "realCID": 4190620,
+    "demoCID": 5194540,
+    "username": "GoldenEight",
+    "firstName": "Dai-Viet",
+    "middleName": null,
+    "lastName": "HUYNH",
+    "language": 1,
+    "languageIsoCode": "en-GB",
+    "country": 197,
+    "allowDisplayFullName": true,
+    "aboutMe": "𝗔𝗜-𝗤𝘂𝗮𝗻𝘁 & 𝗜𝗻𝘀𝘂𝗿𝗮𝗻𝗰𝗲 𝗜𝗻𝘀𝘁𝗿𝘂𝗺𝗲𝗻𝘁: 𝐇𝐞𝐝𝐠𝐞 𝐅𝐮𝐧𝐝 𝐒𝐭𝐲𝐥𝐞 🛡️\n\nQuantitative strategy designed for asymmetric returns. I'm hedging your stock and crypto portfolios, aiming to generate revenue during downturns. The strategy focuses on generating cash flows and stable returns.\n\n𝗧𝗵𝗲 𝗚𝗼𝗹𝗱𝗲𝗻 𝟴 𝗣𝗶𝗹𝗹𝗮𝗿𝘀 🏛️\n\n• 𝗩𝗼𝗹𝗮𝘁𝗶𝗹𝗶𝘁𝘆 𝗖𝗮𝗿𝗿𝘆: harvesting volatility risk premiums.\n• 𝗥𝗮𝘁𝗲 & 𝗧𝗲𝗿𝗺 𝗖𝗮𝗿𝗿𝘆: yield from bonds.\n• 𝗛𝗶𝗴𝗵-𝗗𝗶𝘃𝗶𝗱𝗲𝗻𝗱 𝗜𝗻𝗰𝗼𝗺𝗲: monthly cash flow.\n• 𝗗𝗼𝘄𝗻𝘀𝗶𝗱𝗲 𝗛𝗲𝗱𝗴𝗶𝗻𝗴: income assets with index protection.\n• 𝗠𝗮𝗿𝗸𝗲𝘁-𝗡𝗲𝘂𝘁𝗿𝗮𝗹: long/short strategies reducing beta.\n• 𝗔𝘀𝘆𝗺𝗺𝗲𝘁𝗿𝗶𝗰 𝗥𝗲𝘁𝘂𝗿𝗻𝘀: above-cash returns with controlled risk.\n• 𝗗𝘆𝗻𝗮𝗺𝗶𝗰 𝗗𝗲-𝗿𝗶𝘀𝗸𝗶𝗻𝗴: adjusted exposure when volatility rises.\n• 𝗠𝘂𝗹𝘁𝗶-𝗔𝘀𝘀𝗲𝘁 𝗗𝗶𝘃𝗲𝗿𝘀𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻: resilience across asset classes.",
+    "aboutMeShort": "𝗬𝗼𝘂𝗿 𝗜𝗻𝘀𝘂𝗿𝗮𝗻𝗰𝗲: 𝗬𝗼𝘂𝗿 𝗣𝗼𝗿𝘁𝗳𝗼𝗹𝗶𝗼’𝘀 𝗛𝗲𝗱𝗴𝗲 🛡️",
+    "userBio": {
+      "gcid": 4467918,
+      "aboutMe": "𝗔𝗜-𝗤𝘂𝗮𝗻𝘁 & 𝗜𝗻𝘀𝘂𝗿𝗮𝗻𝗰𝗲 𝗜𝗻𝘀𝘁𝗿𝘂𝗺𝗲𝗻𝘁: 𝐇𝐞𝐝𝐠𝐞 𝐅𝐮𝐧𝐝 𝐒𝐭𝐲𝐥𝐞 🛡️\n\nQuantitative strategy designed for asymmetric returns. I'm hedging your stock and crypto portfolios, aiming to generate revenue during downturns. The strategy focuses on generating cash flows and stable returns.\n\n𝗧𝗵𝗲 𝗚𝗼𝗹𝗱𝗲𝗻 𝟴 𝗣𝗶𝗹𝗹𝗮𝗿𝘀 🏛️\n\n• 𝗩𝗼𝗹𝗮𝘁𝗶𝗹𝗶𝘁𝘆 𝗖𝗮𝗿𝗿𝘆: harvesting volatility risk premiums.\n• 𝗥𝗮𝘁𝗲 & 𝗧𝗲𝗿𝗺 𝗖𝗮𝗿𝗿𝘆: yield from bonds.\n• 𝗛𝗶𝗴𝗵-𝗗𝗶𝘃𝗶𝗱𝗲𝗻𝗱 𝗜𝗻𝗰𝗼𝗺𝗲: monthly cash flow.\n• 𝗗𝗼𝘄𝗻𝘀𝗶𝗱𝗲 𝗛𝗲𝗱𝗴𝗶𝗻𝗴: income assets with index protection.\n• 𝗠𝗮𝗿𝗸𝗲𝘁-𝗡𝗲𝘂𝘁𝗿𝗮𝗹: long/short strategies reducing beta.\n• 𝗔𝘀𝘆𝗺𝗺𝗲𝘁𝗿𝗶𝗰 𝗥𝗲𝘁𝘂𝗿𝗻𝘀: above-cash returns with controlled risk.\n• 𝗗𝘆𝗻𝗮𝗺𝗶𝗰 𝗗𝗲-𝗿𝗶𝘀𝗸𝗶𝗻𝗴: adjusted exposure when volatility rises.\n• 𝗠𝘂𝗹𝘁𝗶-𝗔𝘀𝘀𝗲𝘁 𝗗𝗶𝘃𝗲𝗿𝘀𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻: resilience across asset classes.",
+      "aboutMeShort": "𝗬𝗼𝘂𝗿 𝗜𝗻𝘀𝘂𝗿𝗮𝗻𝗰𝗲: 𝗬𝗼𝘂𝗿 𝗣𝗼𝗿𝘁𝗳𝗼𝗹𝗶𝗼’𝘀 𝗛𝗲𝗱𝗴𝗲 🛡️",
+      "languageCode": "en",
+      "strategyID": 11
+    },
+    "whiteLabel": 9,
+    "optOut": false,
+    "homepage": null,
+    "playerStatus": null,
+    "piLevel": 2,
+    "isPi": true,
+    "avatars": [
+      {
+        "url": "https://etoro-cdn.etorostatic.com/avatars/original/4190620/18.jpg",
+        "width": 311,
+        "height": 311,
+        "type": "Original"
+      },
+      {
+        "url": "https://etoro-cdn.etorostatic.com/avatars/35X35/4190620/18.jpg",
+        "width": 35,
+        "height": 35,
+        "type": "Resized"
+      },
+      {
+        "url": "https://etoro-cdn.etorostatic.com/avatars/50X50/4190620/18.jpg",
+        "width": 50,
+        "height": 50,
+        "type": "Resized"
+      },
+      {
+        "url": "https://etoro-cdn.etorostatic.com/avatars/150X150/4190620/18.jpg",
+        "width": 150,
+        "height": 150,
+        "type": "Resized"
+      }
+    ],
+    "masterAccountCid": null,
+    "accountType": 1,
+    "fundType": null,
+    "isVerified": true,
+    "verificationLevel": 3,
+    "accountStatus": 1,
+    "gdprInfo": null,
+    "userFlowSignature": "1fa781ae072f865aace837d1e25c5c1e5114f4c29d03a0cfd06b9ac64f1d2cdd",
+    "customerRestrictions": null
+  },
+  {
+    "gcid": 10447989,
+    "realCID": 10161207,
+    "demoCID": 11748216,
+    "username": "KoraTrades",
+    "firstName": "Mimi",
+    "middleName": null,
+    "lastName": "Ho",
+    "language": 1,
+    "languageIsoCode": "en-GB",
+    "country": 12,
+    "allowDisplayFullName": true,
+    "aboutMe": "👩🏻‍💼 About Me:\n• Name: Mimi \n• Age: 40\n• Full-time Popular Investor on eToro \n• Psychology Double Major\n• CISI Level 3 in Wealth and Investing Management\n• Owned and operated a Managed Services IT business for 10 years \n• 12 years experience in investing\n\n📊 Portfolio Allocation & Strategy\n• Cryptocurrencies 50%-60%\n• Stocks & ETFs 20%-30%\n• Reserves 10%-20%\n• Adaptable and flexible to changing market conditions\n• Multi-strategy\n\n⏺️ Copying\n• Recommend a minimum of $1000 USD\n\n🗞️ Featured in:\nThe Australian Financial Review\nNews Corp\nThe Market Herald\nDaily Mail Australia\nNews.com.au\nThe Courier Mail\nThe Australian",
+    "aboutMeShort": "Crypto, tech, innovation. With a focus on mindset and investing psychology.",
+    "userBio": {
+      "gcid": 10447989,
+      "aboutMe": "👩🏻‍💼 About Me:\n• Name: Mimi \n• Age: 40\n• Full-time Popular Investor on eToro \n• Psychology Double Major\n• CISI Level 3 in Wealth and Investing Management\n• Owned and operated a Managed Services IT business for 10 years \n• 12 years experience in investing\n\n📊 Portfolio Allocation & Strategy\n• Cryptocurrencies 50%-60%\n• Stocks & ETFs 20%-30%\n• Reserves 10%-20%\n• Adaptable and flexible to changing market conditions\n• Multi-strategy\n\n⏺️ Copying\n• Recommend a minimum of $1000 USD\n\n🗞️ Featured in:\nThe Australian Financial Review\nNews Corp\nThe Market Herald\nDaily Mail Australia\nNews.com.au\nThe Courier Mail\nThe Australian",
+      "aboutMeShort": "Crypto, tech, innovation. With a focus on mindset and investing psychology.",
+      "languageCode": "en",
+      "strategyID": 5
+    },
+    "whiteLabel": 9,
+    "optOut": false,
+    "homepage": null,
+    "playerStatus": null,
+    "piLevel": 5,
+    "isPi": true,
+    "avatars": [
+      {
+        "url": "https://etoro-cdn.etorostatic.com/avatars/original/10161207/55.jpg",
+        "width": 310,
+        "height": 310,
+        "type": "Original"
+      },
+      {
+        "url": "https://etoro-cdn.etorostatic.com/avatars/35X35/10161207/55.jpg",
+        "width": 35,
+        "height": 35,
+        "type": "Resized"
+      },
+      {
+        "url": "https://etoro-cdn.etorostatic.com/avatars/50X50/10161207/55.jpg",
+        "width": 50,
+        "height": 50,
+        "type": "Resized"
+      },
+      {
+        "url": "https://etoro-cdn.etorostatic.com/avatars/150X150/10161207/55.jpg",
+        "width": 150,
+        "height": 150,
+        "type": "Resized"
+      },
+      {
+        "url": "https://etoro-cdn.etorostatic.com/web-client/img/leaders/KoraTrades.jpg",
+        "width": 720,
+        "height": 320,
+        "type": "Retouched"
+      }
+    ],
+    "masterAccountCid": null,
+    "accountType": 1,
+    "fundType": null,
+    "isVerified": true,
+    "verificationLevel": 3,
+    "accountStatus": 1,
+    "gdprInfo": null,
+    "userFlowSignature": "24b3b53827a889852f969c8a189634be8e3d9e03bc6a4691cd7fb0fdc87f9c29",
+    "customerRestrictions": [
+      {
+        "CID": 10161207,
+        "restrictionTypeID": 23,
+        "reasonID": 25,
+        "occured": "2025-05-29T08:34:25.453Z"
+      }
+    ]
+  },
+  {
+    "gcid": 1079364,
+    "realCID": 1563191,
+    "demoCID": 2515926,
+    "username": "andevyns",
+    "firstName": null,
+    "middleName": null,
+    "lastName": null,
+    "language": 1,
+    "languageIsoCode": "en-GB",
+    "country": 218,
+    "allowDisplayFullName": false,
+    "aboutMe": null,
+    "aboutMeShort": null,
+    "userBio": {
+      "gcid": 1079364,
+      "aboutMe": null,
+      "aboutMeShort": null,
+      "languageCode": null,
+      "strategyID": null
+    },
+    "whiteLabel": 1,
+    "optOut": true,
+    "homepage": null,
+    "playerStatus": null,
+    "piLevel": 0,
+    "isPi": false,
+    "avatars": [
+      {
+        "url": "https://etoro-cdn.etorostatic.com/images/avatoros/35x35/gb.png",
+        "width": 35,
+        "height": 35,
+        "type": "Resized"
+      },
+      {
+        "url": "https://etoro-cdn.etorostatic.com/images/avatoros/50x50/gb.png",
+        "width": 50,
+        "height": 50,
+        "type": "Resized"
+      },
+      {
+        "url": "https://etoro-cdn.etorostatic.com/images/avatoros/150x150/gb.png",
+        "width": 150,
+        "height": 150,
+        "type": "Resized"
+      }
+    ],
+    "masterAccountCid": null,
+    "accountType": 1,
+    "fundType": null,
+    "isVerified": false,
+    "verificationLevel": 1,
+    "accountStatus": 1,
+    "gdprInfo": null,
+    "userFlowSignature": "c45495cee093098c3c3048d5590cfdc0274fe14f6c3977a3b55b5a72bb91218a",
+    "customerRestrictions": [
+      {
+        "CID": 1563191,
+        "restrictionTypeID": 2,
+        "reasonID": 4,
+        "occured": "2017-08-07T08:15:16.397Z"
+      },
+      {
+        "CID": 1563191,
+        "restrictionTypeID": 3,
+        "reasonID": 4,
+        "occured": "2017-08-07T08:15:16.397Z"
+      }
+    ]
+  }
+]
