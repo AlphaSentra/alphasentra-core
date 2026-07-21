@@ -20,7 +20,7 @@ if env_path.exists():
         env[k.strip()] = v.strip().strip('"').strip("'")
         os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
-from Functions.etoro.auth import get_random_private_key
+from etoro.auth import get_random_private_key
 
 API_KEY = env.get('ETORO_PUBLIC_KEY', '')
 BASE_URL = 'https://public-api.etoro.com/api/v1/user-info/people/search'
