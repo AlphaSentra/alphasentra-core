@@ -84,57 +84,86 @@ def collect_all(default_page_size=1000, delay_seconds=1.0):
         for sort in sorts:
             variants.append({'period': period, 'sort': sort, 'isPopularInvestor': 'true'})
     global_total = None
+    failed_fetches = []
+    MAX_RETRY_ROUNDS = 100
 
     def _fetch(variant, page):
         params = {**variant, 'page': page, 'pageSize': default_page_size}
         for attempt in range(MAX_RETRIES + 1):
             try:
                 items, total = fetch_page(params)
+                if not items and attempt == 0:
+                    raise requests.HTTPError(response=type('R', (), {'status_code': 404, 'text': 'empty response'})())
                 return items, total
             except requests.HTTPError as exc:
                 status = exc.response.status_code if exc.response else None
-                resp_body = ''
-                if exc.response is not None:
-                    try:
-                        resp_body = exc.response.text[:200]
-                    except Exception:
-                        pass
-                print(f"  _fetch variant={variant.get('period')}/{variant.get('sort')} page={page} attempt={attempt+1} HTTP {status}: {exc} body={resp_body!r}")
-                if status in (429,) and attempt < MAX_RETRIES:
-                    _sleep_with_progress(RETRY_DELAYS[attempt], label=f"Retry {attempt+1}")
-                elif status == 404 and attempt < MAX_RETRIES:
+                if status in (429, 404) and attempt < MAX_RETRIES:
                     _sleep_with_progress(RETRY_DELAYS[attempt], label=f"Retry {attempt+1}")
                 else:
                     return [], status
             except requests.RequestException as exc:
-                print(f"  _fetch variant={variant.get('period')}/{variant.get('sort')} page={page} attempt={attempt+1} error={type(exc).__name__}: {exc}")
                 if attempt < MAX_RETRIES:
                     _sleep_with_progress(RETRY_DELAYS[attempt], label=f"Retry {attempt+1}")
                 else:
                     return [], str(exc)
         return [], 'max_retries'
 
-    for idx, variant in enumerate(variants, 1):
-        page = 1
-        while True:
-            items, total = _fetch(variant, page)
-            if isinstance(total, (str, int)) and global_total is None:
-                global_total = total if isinstance(total, int) else None
-            if not items:
-                print(f"Variant {idx} ({variant.get('period')}/{variant.get('sort')}) stopped at page {page}: empty/failed (reason={total!r})")
+    def _process_items(items, variant_name, page):
+        new = 0
+        for item in items:
+            uname = item.get('userName')
+            if not uname or uname in seen:
+                continue
+            seen[uname] = item
+            new += 1
+        print(f"Variant {variant_name} page {page}: got {len(items)}, new={new}, unique_total={len(seen)}, total={global_total}")
+        return new
+
+    retry_round = 1
+
+    while variants and retry_round <= MAX_RETRY_ROUNDS:
+        if retry_round == 1:
+            print(f"\nCollecting {len(variants)} variants with pageSize={default_page_size} ...")
+        else:
+            print(f"\n{'='*60}")
+            print(f"Retry round {retry_round}/{MAX_RETRY_ROUNDS}: retrying {len(failed_fetches)} variant/page pairs...")
+            print(f"{'='*60}\n")
+            variants = [v for v, _ in failed_fetches]
+            failed_fetches = []
+
+        still_failed = []
+
+        for idx, variant in enumerate(variants, 1):
+            page = 1
+            while True:
+                items, total = _fetch(variant, page)
+                if isinstance(total, (str, int)) and global_total is None:
+                    global_total = total if isinstance(total, int) else None
+                if not items:
+                    still_failed.append((variant, page))
+                    break
+
+                _process_items(items, idx, page)
+
+                if len(items) < default_page_size:
+                    break
+                if global_total is not None and len(seen) >= global_total:
+                    break
+                page += 1
+                time.sleep(delay_seconds)
+
+            if global_total is not None and len(seen) >= global_total:
+                variants = []
                 break
-            new = 0
-            for item in items:
-                uname = item.get('userName')
-                if not uname or uname in seen:
-                    continue
-                seen[uname] = item
-                new += 1
-            print(f"Variant {idx} page {page}: got {len(items)}, new={new}, unique_total={len(seen)}, total={total}")
-            if len(items) < default_page_size:
-                break
-            page += 1
-            time.sleep(delay_seconds)
+
+        if not still_failed:
+            break
+
+        if retry_round == 1 or len(still_failed) < len(variants):
+            failed_fetches = still_failed
+            retry_round += 1
+        else:
+            break
 
     return list(seen.values()), global_total
 
@@ -170,21 +199,12 @@ def fetch_user_profiles(investors):
                 break
             except requests.HTTPError as exc:
                 status = exc.response.status_code if exc.response else None
-                resp_body = ''
-                if exc.response is not None:
-                    try:
-                        resp_body = exc.response.text[:300]
-                    except Exception:
-                        pass
-                print(f"  Batch {batch_num}/{total_batches_num} attempt {attempt + 1}: HTTP {status} — {resp_body}")
                 if status in (401, 429, 404) and attempt < MAX_RETRIES:
                     wait = RETRY_DELAYS[attempt]
-                    print(f"    Retrying in {wait}s...")
                     _sleep_with_progress(wait, label=f"Retry {attempt+1}")
                 else:
                     break
             except requests.RequestException as exc:
-                print(f"  Batch {batch_num}/{total_batches_num} attempt {attempt + 1}: {type(exc).__name__} — {exc}")
                 if attempt < MAX_RETRIES:
                     _sleep_with_progress(RETRY_DELAYS[attempt], label=f"Retry {attempt+1}")
                 else:
@@ -199,7 +219,6 @@ def fetch_user_profiles(investors):
         if data is None:
             failed += len(batch)
             failed_usernames.extend(batch)
-            print(f"  Batch {batch_num}/{total_batches}: FAILED (no data after retries)")
             continue
 
         users = data.get('users', [])
@@ -215,11 +234,7 @@ def fetch_user_profiles(investors):
         if missing:
             failed += len(missing)
             failed_usernames.extend(missing)
-            print(f"  Batch {batch_num}/{total_batches}: returned {len(users)}/{len(batch)}, "
-                  f"enriched={enriched}, failed={failed}, missing={missing}")
-        else:
-            print(f"  Batch {batch_num}/{total_batches}: returned {len(users)}/{len(batch)}, "
-                  f"enriched={enriched}, failed={failed}")
+        print(f"  Batch {batch_num}/{total_batches}: returned {len(users)}/{len(batch)}, enriched={enriched}")
 
         if i + USERNAME_BATCH_SIZE < len(usernames):
             time.sleep(RATE_LIMIT_DELAY)
@@ -231,7 +246,7 @@ def fetch_user_profiles(investors):
         while failed_usernames and retry_round <= MAX_RETRY_ROUNDS:
             retry_batches = (len(failed_usernames) + USERNAME_BATCH_SIZE - 1) // USERNAME_BATCH_SIZE
             print(f"\n{'='*60}")
-            print(f"Retry round {retry_round}/{MAX_RETRY_ROUNDS}: retrying {len(failed_usernames)} failed usernames in {retry_batches} batches...")
+            print(f"Retry round {retry_round}/{MAX_RETRY_ROUNDS}: retrying {len(failed_usernames)} usernames...")
             print(f"{'='*60}\n")
 
             recovered = 0
@@ -244,7 +259,6 @@ def fetch_user_profiles(investors):
 
                 if data is None:
                     still_failed.extend(batch)
-                    print(f"  Retry batch {batch_num}/{retry_batches}: FAILED (no data after retries)")
                     continue
 
                 users = data.get('users', [])
@@ -259,23 +273,17 @@ def fetch_user_profiles(investors):
 
                 missing = [u for u in batch if u not in returned_usernames]
                 still_failed.extend(missing)
-                print(f"  Retry batch {batch_num}/{retry_batches}: returned {len(users)}/{len(batch)}, "
-                      f"recovered={recovered}, still_failed={len(still_failed)}")
+                print(f"  Retry batch {batch_num}/{retry_batches}: returned {len(users)}/{len(batch)}, recovered={recovered}")
 
                 if i + USERNAME_BATCH_SIZE < len(failed_usernames):
                     time.sleep(RATE_LIMIT_DELAY)
 
             if recovered == 0:
-                print(f"\n  No recoveries in round {retry_round}. Stopping retries.")
                 break
 
-            print(f"\n  Round {retry_round} complete: recovered={recovered}, remaining={len(still_failed)}")
             failed_usernames = still_failed
             failed = len(failed_usernames)
             retry_round += 1
-
-        if failed_usernames:
-            print(f"\n  Stopped after {retry_round - 1} retry rounds. {len(failed_usernames)} usernames still could not be enriched.")
 
     for inv in investors:
         uname = inv.get('userName')
@@ -284,8 +292,6 @@ def fetch_user_profiles(investors):
 
     print(f"\n{'='*60}")
     print(f"Profile enrichment complete: {enriched} enriched, {failed} failed out of {len(usernames)} investors.")
-    if failed_usernames:
-        print(f"Persistently failed usernames ({len(failed_usernames)}): {failed_usernames}")
     print(f"{'='*60}")
     return investors
 
