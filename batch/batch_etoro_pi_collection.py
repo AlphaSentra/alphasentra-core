@@ -34,6 +34,19 @@ USERNAME_BATCH_SIZE = 20
 RATE_LIMIT_DELAY = 1.1
 MAX_RETRIES = 5
 RETRY_DELAYS = [5, 10, 20, 40, 60]
+LONG_PAUSE_THRESHOLD = 250
+LONG_PAUSE_SECONDS = 60
+
+_api_call_count = 0
+
+
+def _note_api_call(count=1):
+    global _api_call_count
+    _api_call_count += count
+    if _api_call_count % LONG_PAUSE_THRESHOLD == 0:
+        import time
+        print(f"  [throttle] Reached {_api_call_count} API calls — pausing {LONG_PAUSE_SECONDS}s...")
+        time.sleep(LONG_PAUSE_SECONDS)
 
 
 def _headers():
@@ -48,6 +61,7 @@ def _headers():
 
 def fetch_page(params):
     resp = requests.get(BASE_URL, params=params, headers=_headers(), timeout=30)
+    _note_api_call()
     resp.raise_for_status()
     data = resp.json()
     items = data.get('items', [])
@@ -124,34 +138,31 @@ def fetch_user_profiles(investors):
     import time
     import json
 
-    lookup = {}
-    for inv in investors:
-        uname = inv.get('userName')
-        if uname:
-            lookup[uname] = inv
-
-    usernames = list(lookup.keys())
+    usernames = [inv.get('userName') for inv in investors if inv.get('userName')]
     if not usernames:
         print("No usernames to enrich.")
-        return
+        return investors
 
+    total_batches = (len(usernames) + USERNAME_BATCH_SIZE - 1) // USERNAME_BATCH_SIZE
     print(f"\nEnriching {len(usernames)} investors via /api/v1/user-info/people ...")
+    print(f"Batch size: {USERNAME_BATCH_SIZE}, Rate limit delay: {RATE_LIMIT_DELAY}s\n")
     enriched = 0
     failed = 0
+    profile_map = {}
 
     for i in range(0, len(usernames), USERNAME_BATCH_SIZE):
         batch = usernames[i:i + USERNAME_BATCH_SIZE]
-        max_retries = 5
-        retry_delays = [5, 10, 20, 40, 60]
+        batch_num = i // USERNAME_BATCH_SIZE + 1
         data = None
 
-        for attempt in range(max_retries + 1):
+        for attempt in range(MAX_RETRIES + 1):
             try:
                 resp = requests.get(
                     f"{USER_PROFILE_URL}?usernames={','.join(batch)}",
                     headers=_headers(),
                     timeout=30,
                 )
+                _note_api_call()
                 resp.raise_for_status()
                 data = resp.json()
                 break
@@ -160,44 +171,65 @@ def fetch_user_profiles(investors):
                 resp_body = ''
                 if exc.response is not None:
                     try:
-                        resp_body = exc.response.text[:200]
+                        resp_body = exc.response.text[:300]
                     except Exception:
                         pass
-                print(f"  _profile batch {i//USERNAME_BATCH_SIZE + 1} attempt={attempt+1} HTTP {status}: {exc} body={resp_body!r}")
-                if status in (401, 429, 404) and attempt < max_retries:
-                    time.sleep(retry_delays[attempt])
+                print(f"  Batch {batch_num}/{total_batches} attempt {attempt + 1}: HTTP {status} — {resp_body}")
+                if status in (401, 429, 404) and attempt < MAX_RETRIES:
+                    wait = RETRY_DELAYS[attempt]
+                    print(f"    Retrying in {wait}s...")
+                    time.sleep(wait)
                 else:
                     break
             except requests.RequestException as exc:
-                print(f"  _profile batch {i//USERNAME_BATCH_SIZE + 1} attempt={attempt+1} error={type(exc).__name__}: {exc}")
-                if attempt < max_retries:
-                    time.sleep(retry_delays[attempt])
+                print(f"  Batch {batch_num}/{total_batches} attempt {attempt + 1}: {type(exc).__name__} — {exc}")
+                if attempt < MAX_RETRIES:
+                    time.sleep(RETRY_DELAYS[attempt])
                 else:
                     break
 
         if data is None:
             failed += len(batch)
+            print(f"  Batch {batch_num}/{total_batches}: FAILED (no data after retries)")
             continue
 
         users = data.get('users', [])
+        returned_usernames = {u.get('username') for u in users if u.get('username')}
+
         for user in users:
             uname = user.get('username')
-            if uname and uname in lookup:
-                lookup[uname].update(user)
+            if uname:
+                profile_map[uname] = user
                 enriched += 1
 
-        batch_label = f"{i + 1}-{min(i + USERNAME_BATCH_SIZE, len(usernames))}"
-        print(f"  Batch {i//USERNAME_BATCH_SIZE + 1} [{batch_label}/{len(usernames)}]: received {len(users)} users, enriched={enriched}, failed={failed}")
-        time.sleep(RATE_LIMIT_DELAY)
+        missing = [u for u in batch if u not in returned_usernames]
+        if missing:
+            failed += len(missing)
+            print(f"  Batch {batch_num}/{total_batches}: returned {len(users)}/{len(batch)}, "
+                  f"enriched={enriched}, failed={failed}, missing={missing}")
+        else:
+            print(f"  Batch {batch_num}/{total_batches}: returned {len(users)}/{len(batch)}, "
+                  f"enriched={enriched}, failed={failed}")
 
-    print(f"\nProfile enrichment complete: {enriched} enriched, {failed} failed out of {len(usernames)} investors.")
+        if i + USERNAME_BATCH_SIZE < len(usernames):
+            time.sleep(RATE_LIMIT_DELAY)
+
+    for inv in investors:
+        uname = inv.get('userName')
+        if uname and uname in profile_map:
+            inv.update(profile_map[uname])
+
+    print(f"\n{'='*60}")
+    print(f"Profile enrichment complete: {enriched} enriched, {failed} failed out of {len(usernames)} investors.")
+    print(f"{'='*60}")
+    return investors
 
 
 all_investors, global_total = collect_all()
 print(f"\nTotal investors retrieved: {len(all_investors)}")
 print(f"API global totalItems (best observed): {global_total}")
 
-fetch_user_profiles(all_investors)
+all_investors = fetch_user_profiles(all_investors)
 
 print(f"\nSummary: collected {len(all_investors)} unique popular investors out of {global_total or 'unknown'} reported by eToro.")
 print("\nSample enriched records:")
