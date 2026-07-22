@@ -1,10 +1,12 @@
 import json
 import os
 import sys
+import time
 import uuid
 from pathlib import Path
 
 import requests
+from tqdm import tqdm
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -40,13 +42,17 @@ LONG_PAUSE_SECONDS = 60
 _api_call_count = 0
 
 
+def _sleep_with_progress(seconds, label="Waiting"):
+    for _ in tqdm(range(int(seconds * 10)), desc=label, unit="0.1s", ncols=80, leave=False):
+        time.sleep(0.1)
+
+
 def _note_api_call(count=1):
     global _api_call_count
     _api_call_count += count
     if _api_call_count % LONG_PAUSE_THRESHOLD == 0:
-        import time
         print(f"  [throttle] Reached {_api_call_count} API calls — pausing {LONG_PAUSE_SECONDS}s...")
-        time.sleep(LONG_PAUSE_SECONDS)
+        _sleep_with_progress(LONG_PAUSE_SECONDS, label="Throttle pause")
 
 
 def _headers():
@@ -70,7 +76,6 @@ def fetch_page(params):
 
 
 def collect_all(default_page_size=1000, delay_seconds=1.0):
-    import time
     seen = {}
     periods = ['CurrWeek', 'CurrMonth', 'CurrYear', 'ThreeMonthsAgo', 'OneYearAgo', 'LastYear']
     sorts = ['-copiersGain', 'userName', '-gain', '-aumValue', '-copiers', 'displayName', '-weeklyGain', 'riskScore', '-riskScore', 'username', 'fullName', '', 'copiersGain', 'gain', 'aumValue', 'copiers']
@@ -96,15 +101,15 @@ def collect_all(default_page_size=1000, delay_seconds=1.0):
                         pass
                 print(f"  _fetch variant={variant.get('period')}/{variant.get('sort')} page={page} attempt={attempt+1} HTTP {status}: {exc} body={resp_body!r}")
                 if status in (429,) and attempt < MAX_RETRIES:
-                    time.sleep(RETRY_DELAYS[attempt])
+                    _sleep_with_progress(RETRY_DELAYS[attempt], label=f"Retry {attempt+1}")
                 elif status == 404 and attempt < MAX_RETRIES:
-                    time.sleep(RETRY_DELAYS[attempt])
+                    _sleep_with_progress(RETRY_DELAYS[attempt], label=f"Retry {attempt+1}")
                 else:
                     return [], status
             except requests.RequestException as exc:
                 print(f"  _fetch variant={variant.get('period')}/{variant.get('sort')} page={page} attempt={attempt+1} error={type(exc).__name__}: {exc}")
                 if attempt < MAX_RETRIES:
-                    time.sleep(RETRY_DELAYS[attempt])
+                    _sleep_with_progress(RETRY_DELAYS[attempt], label=f"Retry {attempt+1}")
                 else:
                     return [], str(exc)
         return [], 'max_retries'
@@ -135,7 +140,6 @@ def collect_all(default_page_size=1000, delay_seconds=1.0):
 
 
 def fetch_user_profiles(investors):
-    import time
     import json
 
     usernames = [inv.get('userName') for inv in investors if inv.get('userName')]
@@ -149,12 +153,10 @@ def fetch_user_profiles(investors):
     enriched = 0
     failed = 0
     profile_map = {}
+    failed_usernames = []
 
-    for i in range(0, len(usernames), USERNAME_BATCH_SIZE):
-        batch = usernames[i:i + USERNAME_BATCH_SIZE]
-        batch_num = i // USERNAME_BATCH_SIZE + 1
-        data = None
-
+    def _request_batch(batch, batch_num, total_batches_num):
+        batch_data = None
         for attempt in range(MAX_RETRIES + 1):
             try:
                 resp = requests.get(
@@ -164,7 +166,7 @@ def fetch_user_profiles(investors):
                 )
                 _note_api_call()
                 resp.raise_for_status()
-                data = resp.json()
+                batch_data = resp.json()
                 break
             except requests.HTTPError as exc:
                 status = exc.response.status_code if exc.response else None
@@ -174,22 +176,29 @@ def fetch_user_profiles(investors):
                         resp_body = exc.response.text[:300]
                     except Exception:
                         pass
-                print(f"  Batch {batch_num}/{total_batches} attempt {attempt + 1}: HTTP {status} — {resp_body}")
+                print(f"  Batch {batch_num}/{total_batches_num} attempt {attempt + 1}: HTTP {status} — {resp_body}")
                 if status in (401, 429, 404) and attempt < MAX_RETRIES:
                     wait = RETRY_DELAYS[attempt]
                     print(f"    Retrying in {wait}s...")
-                    time.sleep(wait)
+                    _sleep_with_progress(wait, label=f"Retry {attempt+1}")
                 else:
                     break
             except requests.RequestException as exc:
-                print(f"  Batch {batch_num}/{total_batches} attempt {attempt + 1}: {type(exc).__name__} — {exc}")
+                print(f"  Batch {batch_num}/{total_batches_num} attempt {attempt + 1}: {type(exc).__name__} — {exc}")
                 if attempt < MAX_RETRIES:
-                    time.sleep(RETRY_DELAYS[attempt])
+                    _sleep_with_progress(RETRY_DELAYS[attempt], label=f"Retry {attempt+1}")
                 else:
                     break
+        return batch_data
+
+    for i in range(0, len(usernames), USERNAME_BATCH_SIZE):
+        batch = usernames[i:i + USERNAME_BATCH_SIZE]
+        batch_num = i // USERNAME_BATCH_SIZE + 1
+        data = _request_batch(batch, batch_num, total_batches)
 
         if data is None:
             failed += len(batch)
+            failed_usernames.extend(batch)
             print(f"  Batch {batch_num}/{total_batches}: FAILED (no data after retries)")
             continue
 
@@ -205,6 +214,7 @@ def fetch_user_profiles(investors):
         missing = [u for u in batch if u not in returned_usernames]
         if missing:
             failed += len(missing)
+            failed_usernames.extend(missing)
             print(f"  Batch {batch_num}/{total_batches}: returned {len(users)}/{len(batch)}, "
                   f"enriched={enriched}, failed={failed}, missing={missing}")
         else:
@@ -214,6 +224,59 @@ def fetch_user_profiles(investors):
         if i + USERNAME_BATCH_SIZE < len(usernames):
             time.sleep(RATE_LIMIT_DELAY)
 
+    if failed_usernames:
+        retry_round = 1
+        MAX_RETRY_ROUNDS = 100
+
+        while failed_usernames and retry_round <= MAX_RETRY_ROUNDS:
+            retry_batches = (len(failed_usernames) + USERNAME_BATCH_SIZE - 1) // USERNAME_BATCH_SIZE
+            print(f"\n{'='*60}")
+            print(f"Retry round {retry_round}/{MAX_RETRY_ROUNDS}: retrying {len(failed_usernames)} failed usernames in {retry_batches} batches...")
+            print(f"{'='*60}\n")
+
+            recovered = 0
+            still_failed = []
+
+            for i in range(0, len(failed_usernames), USERNAME_BATCH_SIZE):
+                batch = failed_usernames[i:i + USERNAME_BATCH_SIZE]
+                batch_num = i // USERNAME_BATCH_SIZE + 1
+                data = _request_batch(batch, batch_num, retry_batches)
+
+                if data is None:
+                    still_failed.extend(batch)
+                    print(f"  Retry batch {batch_num}/{retry_batches}: FAILED (no data after retries)")
+                    continue
+
+                users = data.get('users', [])
+                returned_usernames = {u.get('username') for u in users if u.get('username')}
+
+                for user in users:
+                    uname = user.get('username')
+                    if uname:
+                        profile_map[uname] = user
+                        enriched += 1
+                        recovered += 1
+
+                missing = [u for u in batch if u not in returned_usernames]
+                still_failed.extend(missing)
+                print(f"  Retry batch {batch_num}/{retry_batches}: returned {len(users)}/{len(batch)}, "
+                      f"recovered={recovered}, still_failed={len(still_failed)}")
+
+                if i + USERNAME_BATCH_SIZE < len(failed_usernames):
+                    time.sleep(RATE_LIMIT_DELAY)
+
+            if recovered == 0:
+                print(f"\n  No recoveries in round {retry_round}. Stopping retries.")
+                break
+
+            print(f"\n  Round {retry_round} complete: recovered={recovered}, remaining={len(still_failed)}")
+            failed_usernames = still_failed
+            failed = len(failed_usernames)
+            retry_round += 1
+
+        if failed_usernames:
+            print(f"\n  Stopped after {retry_round - 1} retry rounds. {len(failed_usernames)} usernames still could not be enriched.")
+
     for inv in investors:
         uname = inv.get('userName')
         if uname and uname in profile_map:
@@ -221,6 +284,8 @@ def fetch_user_profiles(investors):
 
     print(f"\n{'='*60}")
     print(f"Profile enrichment complete: {enriched} enriched, {failed} failed out of {len(usernames)} investors.")
+    if failed_usernames:
+        print(f"Persistently failed usernames ({len(failed_usernames)}): {failed_usernames}")
     print(f"{'='*60}")
     return investors
 
@@ -232,6 +297,3 @@ print(f"API global totalItems (best observed): {global_total}")
 all_investors = fetch_user_profiles(all_investors)
 
 print(f"\nSummary: collected {len(all_investors)} unique popular investors out of {global_total or 'unknown'} reported by eToro.")
-print("\nSample enriched records:")
-for item in all_investors[:5]:
-    print(json.dumps(item, indent=2, ensure_ascii=False))
