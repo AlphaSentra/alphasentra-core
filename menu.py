@@ -11,6 +11,7 @@ import batch.batch_run as batch_run
 import batch.reset_dataset as reset_dataset
 import batch.db_quota as db_quota
 import db.etoro_instruments as etoro_instruments
+import batch.batch_etoro_pi_collection as batch_etoro_pi_collection
 
 def run_fx_model_with_input():
     """
@@ -248,6 +249,16 @@ def run_export_etoro_json_with_confirmation():
     else:
         print("Export cancelled.")
 
+def run_etoro_pi_collection_with_confirmation():
+    """
+    Run eToro Pro Investors (PI) collection with user confirmation.
+    """
+    confirm = input("Press y to collect eToro Pro Investors or n to cancel: ").strip().lower()
+    if confirm == 'y':
+        batch_etoro_pi_collection.run_pipeline()
+    else:
+        print("eToro PI collection cancelled.")
+
 # Define menu items as tuples: (description, function)
 # Use None as function for separator items
 MENU_ITEMS = [
@@ -318,5 +329,8 @@ MENU_ITEMS = [
 
     ("Import eToro Instruments Metadata",
      run_import_etoro_instruments_with_confirmation),
+
+    ("Collect eToro Pro Investors (PI)",
+     run_etoro_pi_collection_with_confirmation),
 
 ]

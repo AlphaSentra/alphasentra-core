@@ -3,7 +3,6 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from typing import Optional
 from datetime import datetime, timedelta
-import yfinance as yf
 import time
 from concurrent.futures import ProcessPoolExecutor
 import pandas as pd
@@ -12,6 +11,9 @@ from logging_utils import log_error, log_warning, log_info
 from dotenv import load_dotenv
 import pymongo
 from db.create_mongodb_db import DatabaseManager
+from data.provider_factory import get_data_provider
+
+provider = get_data_provider()
 
 
 def get_tickers_from_db() -> list:
@@ -101,17 +103,13 @@ def _get_performance_metrics(ticker_symbol: str) -> Optional[dict]:
     three_month = None
 
     try:
-        yf_ticker = yf.Ticker(ticker_symbol)
-        
-        # 1. Fetch History once (3 months)
-        history = yf_ticker.history(period="3mo")
+        history = provider.get_history(ticker_symbol, "3mo")
         if not history.empty:
             one_week = _calculate_performance(history, 7)
             one_month = _calculate_performance(history, 30)
             three_month = _calculate_performance(history, 90)
 
-        # 2. Fetch Info
-        summary_details = yf_ticker.info
+        summary_details = provider.get_info(ticker_symbol)
         if not summary_details:
             log_warning(f"No info data found for {ticker_symbol}.", "DATA_MISSING")
             return None

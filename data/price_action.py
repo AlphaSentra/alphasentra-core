@@ -1,26 +1,17 @@
 
-import yfinance as yf
 import numpy as np
 from logging_utils import log_error, log_info
+from data.provider_factory import get_data_provider
+
+provider = get_data_provider()
 
 # Defines the default time horizon for the model
 MONTE_CARLO_MODEL_TIME_HORIZON = 252 
 
 def get_close_prices(ticker, days=90):
-    """
-    Collects the last 'days' of close prices for a given ticker from Yahoo Finance.
-
-    Args:
-      ticker: The stock ticker symbol.
-      days: The number of days of historical data to retrieve.
-
-    Returns:
-      A pandas Series of close prices, or None if an error occurs.
-    """
     try:
         log_info(f"Fetching {days} days of close prices for {ticker}...")
-        stock = yf.Ticker(ticker)
-        hist = stock.history(period=f"{days}d")
+        hist = provider.get_history(ticker, f"{days}d")
         log_info(f"Successfully fetched data for {ticker}.")
         return hist['Close']
     except Exception as e:

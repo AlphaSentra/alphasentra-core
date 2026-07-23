@@ -13,7 +13,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from dotenv import load_dotenv
 import pymongo
-import yfinance as yf
 from datetime import datetime, timedelta
 import pandas as pd
 from typing import Optional
@@ -23,6 +22,9 @@ import time
 from helpers import DatabaseManager
 from logging_utils import log_error, log_warning, log_info
 from data.treasury_yield_utils import get_tlt_dividend_yield
+from data.provider_factory import get_data_provider
+
+provider = get_data_provider()
 
 def get_equity_tickers_from_db(region: Optional[list] = None, category: Optional[list] = None) -> list:
     """
@@ -190,11 +192,10 @@ def collect_ticker_data(tickers: list) -> dict:
         try:
             log_info(f"Collecting data for ticker: {ticker_symbol}")
             time.sleep(5)
-            ticker_obj = yf.Ticker(ticker_symbol)
             
             # Fetch history and info once
-            history_df = ticker_obj.history(period="3mo")
-            info = ticker_obj.info
+            history_df = provider.get_history(ticker_symbol, "3mo")
+            info = provider.get_info(ticker_symbol)
 
             forward_pe = None
             dilution_proxy = None

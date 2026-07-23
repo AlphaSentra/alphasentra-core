@@ -71,6 +71,10 @@ ENCRYPTION_SECRET=encryption-secret
 
 Note: To create your own prompt, use the `crypt.py` script to encrypt it with your `ENCRYPTION_SECRET`.
 
+## Data Provider Abstraction
+
+AlphaSentra uses a pluggable data-provider layer for all market-data access. See [`DATA_PROVIDER_ARCHITECTURE.md`](DATA_PROVIDER_ARCHITECTURE.md) for the interface, registry, and switching instructions.
+
 ## AI Prompt Variables and Output
 
 ### Prompt input variables

@@ -3,6 +3,9 @@ Description:
 Store all the variables for configuration for all the models and systems.
 Tickers are primarily aligned with Yahoo Finance symbols, while corresponding TradingView and eToro identifiers are also maintained for cross-platform consistency.
 """
+
+DATA_PROVIDER = "yfinance"
+
 # DEPLOYMENT ID
 DEPLOYMENT_ID = "ago-20260601-1034"
 

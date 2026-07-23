@@ -42,13 +42,15 @@ This project uses the following third-party libraries:
 """
 
 
-import yfinance as yf
 import backtrader as bt
 from backtrader.indicators import ATR, ADX
 from datetime import datetime, timedelta
 import pandas as pd
 from logging_utils import log_error, log_warning, log_info
 from typing import Optional
+from data.provider_factory import get_data_provider
+
+provider = get_data_provider()
 
 def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2):
     """
@@ -80,7 +82,7 @@ def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2
                 # Fetch historical data for the last 60 days
                 end_date = datetime.now()
                 start_date = end_date - timedelta(days=60)
-                data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False, auto_adjust=False)
+                data = provider.get_price(ticker, start_date, end_date)
                 
                 if data.empty:
                     log_error(f"No data available for {ticker}")
@@ -201,7 +203,7 @@ def calculate_entry_price(tickers, trade_direction, period=5):
                 # Fetch historical data for the last 30 days (to ensure we have enough data for weekly calculations)
                 end_date = datetime.now()
                 start_date = end_date - timedelta(days=30)
-                data = yf.download(ticker, start=start_date, end=end_date, progress=False, multi_level_index=False, auto_adjust=False)
+                data = provider.get_price(ticker, start_date, end_date)
                 
                 if data.empty:
                     log_error(f"No data available for {ticker}", "ENTRY_PRICE_CALCULATION")
@@ -243,26 +245,11 @@ def calculate_entry_price(tickers, trade_direction, period=5):
 
 
 def get_current_price(ticker):
-    """
-    Get the current market price for a given ticker.
-    
-    Parameters:
-    ticker (str): Ticker symbol
-    
-    Returns:
-    float: Current market price, or None if unavailable
-    """
     try:
-        # Fetch data with multiple periods to get latest available price
-        stock = yf.Ticker(ticker)
-        
-        # Try multiple periods to get the latest available data
         periods = ['1d', '5d', '1mo', '3mo']
-        
         for period in periods:
-            data = stock.history(period=period)
+            data = provider.get_history(ticker, period)
             if not data.empty:
-                # Get the most recent closing price
                 latest_price = data['Close'].iloc[-1]
                 return float(latest_price)
         
@@ -275,21 +262,6 @@ def get_current_price(ticker):
     
 
 def calculate_performance_metrics(ticker):
-    """
-    Calculate performance metrics for a ticker using yfinance
-    
-    Parameters:
-    ticker (str): Ticker symbol
-    
-    Returns:
-    dict: Dictionary containing performance metrics with keys:
-        '1y' - 1 year percentage performance (double)
-        '6m' - 6 months percentage performance (double)
-        '3m' - 3 months percentage performance (double)
-        '1m' - 1 month percentage performance (double)
-        '1d' - previous session percentage performance (double)
-    """
-    # Handle case where ticker is passed as a list by mistake
     if isinstance(ticker, list):
         if ticker:
             ticker = ticker[0]
@@ -298,15 +270,12 @@ def calculate_performance_metrics(ticker):
             log_error("calculate_performance_metrics received an empty list", "PERFORMANCE_METRICS_CALCULATION")
             return {}
     try:
-        stock = yf.Ticker(ticker)
         end_date = datetime.now()
         
-        # Get current price
         current_price = get_current_price(ticker)
         if current_price is None:
             return {}
         
-        # Calculate performance periods
         periods = {
             '1y': end_date - timedelta(days=365),
             '6m': end_date - timedelta(days=180),
@@ -319,8 +288,7 @@ def calculate_performance_metrics(ticker):
         
         for period, start_date in periods.items():
             try:
-                # Get historical price
-                hist = stock.history(start=start_date, end=end_date, interval="1d")
+                hist = provider.get_price(ticker, start_date, end_date, interval="1d")
                 if not hist.empty:
                     start_price = hist['Close'].iloc[0]
                     performance[period] = ((current_price / start_price) - 1)
@@ -329,9 +297,8 @@ def calculate_performance_metrics(ticker):
             except Exception as e:
                 performance[period] = 0.0
         
-        # Calculate daily performance separately using previous close
         try:
-            hist = stock.history(period="2d")
+            hist = provider.get_history(ticker, "2d")
             if len(hist) >= 2:
                 prev_close = hist['Close'].iloc[-2]
                 performance['1d'] = ((current_price / prev_close) - 1)
@@ -345,22 +312,12 @@ def calculate_performance_metrics(ticker):
         return {}
 
 def get_dividend_yield(ticker):
-    """
-    Get the latest dividend yield for a given ticker from Yahoo Finance.
-    
-    Parameters:
-    ticker (str): Ticker symbol
-    
-    Returns:
-    float: Dividend yield as a double (e.g., 1% = 0.01), or None if unavailable
-    """
     try:
-        stock = yf.Ticker(ticker)
-        info = stock.info
+        info = provider.get_info(ticker)
         
         dividend_yield = info.get('dividendYield')
         if dividend_yield is not None:
-            return float(dividend_yield) / 100  # Convert percentage to decimal
+            return float(dividend_yield) / 100
         
         log_warning(f"No dividend yield data available for {ticker}", "DIVIDEND_YIELD_FETCH")
         return None
@@ -390,15 +347,14 @@ def get_growth_profitability_chart(ticker):
         dict: Highcharts/ECharts compatible dictionary or {} if data is unavailable.
     """
     try:
-        stock = yf.Ticker(ticker)
         is_annual = False
         
         # --- PHASE 1: ATTEMPT QUARTERLY (SEMI-ANNUAL) DATA ---
-        financials = stock.quarterly_financials.T
+        financials = provider.get_quarterly_financials(ticker)
         
-        if financials.empty:
+        if financials is None or financials.empty:
             log_info(f"No quarterly data for {ticker}, switching to annual. Context: GROWTH_PROFITABILITY_CHART")
-            financials = stock.financials.T
+            financials = provider.get_financials(ticker)
             is_annual = True
 
         # Identify columns dynamically (Yahoo Finance labels can vary)
@@ -411,9 +367,8 @@ def get_growth_profitability_chart(ticker):
 
         # --- PHASE 2: VALIDATE AND RESAMPLE ---
         if not revenue_col or not net_income_col:
-            # Final attempt to check annual if quarterly was missing columns
             if not is_annual:
-                financials = stock.financials.T
+                financials = provider.get_financials(ticker)
                 is_annual = True
                 revenue_col, net_income_col = get_cols(financials)
             
@@ -424,14 +379,11 @@ def get_growth_profitability_chart(ticker):
         financials.index = pd.to_datetime(financials.index)
 
         if not is_annual:
-            # Resample to Semi-Annual (2 quarters)
-            # Filter out zero/NaN revenue periods BEFORE taking the tail to ensure the x-axis is clean
             processed_data = financials.resample('2QE').sum().sort_index(ascending=True)
             processed_data = processed_data.loc[(processed_data[revenue_col] > 0) & (processed_data[net_income_col] > 0)].tail(10)
             
-            # If resampling failed to produce data points, fallback to annual
             if processed_data.empty:
-                financials = stock.financials.T
+                financials = provider.get_financials(ticker)
                 is_annual = True
                 financials.index = pd.to_datetime(financials.index)
 
@@ -535,21 +487,19 @@ def financial_health_chart(ticker):
               (numeric data) for the chart. Returns {} on total failure.
     """
     try:
-        stock = yf.Ticker(ticker)
         is_annual = False
 
         # --- 1. Data Extraction with Fallback Logic ---
-        balance_sheet = stock.quarterly_balance_sheet.T
-        cash_flow = stock.quarterly_cashflow.T
+        balance_sheet = provider.get_balance_sheet(ticker, quarterly=True)
+        cash_flow = provider.get_cashflow(ticker, quarterly=True)
         
-        # Trigger annual fallback if quarterly is empty
-        if balance_sheet.empty or cash_flow.empty:
+        if balance_sheet is None or balance_sheet.empty or cash_flow is None or cash_flow.empty:
             log_info(f"Quarterly data missing for {ticker}, attempting annual fallback. Context: FINANCIAL_HEALTH_CHART")
-            balance_sheet = stock.balance_sheet.T
-            cash_flow = stock.cashflow.T
+            balance_sheet = provider.get_balance_sheet(ticker)
+            cash_flow = provider.get_cashflow(ticker)
             is_annual = True
 
-        if balance_sheet.empty or cash_flow.empty:
+        if balance_sheet is None or balance_sheet.empty or cash_flow is None or cash_flow.empty:
             log_error(f"No financial data available for {ticker}", "FINANCIAL_HEALTH_CHART")
             return {}
 
@@ -576,8 +526,8 @@ def financial_health_chart(ticker):
             
             # If resampling didn't yield results, force annual fallback
             if financial_data.empty:
-                balance_sheet = stock.balance_sheet.T
-                cash_flow = stock.cashflow.T
+                balance_sheet = provider.get_balance_sheet(ticker)
+                cash_flow = provider.get_cashflow(ticker)
                 financial_data = get_financial_df(balance_sheet, cash_flow)
                 is_annual = True
 
@@ -653,12 +603,10 @@ def financial_health_chart(ticker):
         return {}
     
 def get_capital_structure_chart(ticker):
-    """Fetch capital structure data from Yahoo Finance and format as pie chart"""
-    import yfinance as yf
+    """Fetch capital structure data and format as pie chart"""
     try:
-        stock = yf.Ticker(ticker)
-        balance_sheet = stock.balance_sheet
-        if balance_sheet.empty:
+        balance_sheet = provider.get_balance_sheet(ticker)
+        if balance_sheet is None or balance_sheet.empty:
             return None
             
         latest = balance_sheet.iloc[:,0]
@@ -693,20 +641,15 @@ def get_dividend_history_chart(ticker):
     dict: Formatted chart data with dividend per share and dividend yield in specified format
     """
     try:
-        stock = yf.Ticker(ticker)
-        
-        # Get dividend history for last 5 years
-        dividends = stock.dividends
-        if dividends.empty:
+        dividends = provider.get_dividends(ticker)
+        if dividends is None or dividends.empty:
             log_error(f"No dividend data available for {ticker}", "DIVIDEND_HISTORY_CHART")
             return {}
         
-        # Resample to annual dividends using new frequency convention
         annual_dividends = dividends.resample('YE').sum().tail(5)
         
-        # Get historical prices for yield calculation
-        history = stock.history(period="5y")
-        if history.empty:
+        history = provider.get_history(ticker, "5y")
+        if history is None or history.empty:
             log_error(f"No price history available for {ticker}", "DIVIDEND_HISTORY_CHART")
             return {}
         

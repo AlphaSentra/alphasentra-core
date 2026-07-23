@@ -1,7 +1,7 @@
 """
-Batch eToro Popular Investors (PI) Collection Module
+Batch eToro Pro Investors (PI) Collection Module
 
-Collects eToro Popular Investor profile data in two phases:
+Collects eToro Pro Investor profile data in two phases:
   1. collect_all()         — Discovers unique investors by iterating eToro API
                             search variants (period × sort order), paginating
                             through all results.
@@ -144,7 +144,7 @@ def _headers() -> dict[str, str]:
 # ---------------------------------------------------------------------------
 
 def fetch_page(params: dict) -> tuple[list[dict], int | str | None]:
-    """Fetch a single page from the PI search endpoint.
+    """Fetch a single page from the Pro Investor search endpoint.
 
     Parameters
     ----------
@@ -174,7 +174,7 @@ def fetch_page(params: dict) -> tuple[list[dict], int | str | None]:
 
 
 def collect_all(default_page_size: int = 1000, delay_seconds: float = 1.0) -> tuple[list[dict], int | None]:
-    """Discover every unique Popular Investor by exhaustively querying all search variants.
+    """Discover every unique Pro Investor by exhaustively querying all search variants.
 
     eToro's search endpoint supports multiple ``period`` values and ``sort`` keys.
     This function generates the Cartesian product of both, paginates through every
@@ -641,14 +641,19 @@ def save_to_mongodb(investors: list[dict]) -> None:
 # Entry point
 # ---------------------------------------------------------------------------
 
-# Run the full pipeline: discover → enrich → persist.
-all_investors, global_total = collect_all()
-print(f"\nTotal investors retrieved: {len(all_investors)}")
-print(f"API global totalItems (best observed): {global_total}")
+def run_pipeline():
+    """Run the full pipeline: discover → enrich → persist."""
+    all_investors, global_total = collect_all()
+    print(f"\nTotal investors retrieved: {len(all_investors)}")
+    print(f"API global totalItems (best observed): {global_total}")
 
-all_investors = fetch_user_profiles(all_investors)
+    all_investors = fetch_user_profiles(all_investors)
 
-print(f"\nSummary: collected {len(all_investors)} unique popular investors out of "
-      f"{global_total or 'unknown'} reported by eToro.")
+    print(f"\nSummary: collected {len(all_investors)} unique popular investors out of "
+          f"{global_total or 'unknown'} reported by eToro.")
 
-save_to_mongodb(all_investors)
+    save_to_mongodb(all_investors)
+
+
+if __name__ == "__main__":
+    run_pipeline()

@@ -398,9 +398,9 @@ def run_import_etoro_instruments_with_confirmation(db=None):
 
     # 5. User action prompt
     print("\nActions for displayed instruments:")
-    print("1. Exclude them (set excluded = True)")
-    print("2. Remove them (delete from excluded collection)")
-    print("3. Keep them (do nothing)")
+    print("1. Exclude all displayed instruments (set excluded = True in etoro_instruments_excluded)")
+    print("2. Remove all displayed instruments from the excluded collection entirely")
+    print("3. Keep them as-is (no changes)")
     print("4. Download Importable JSON")
     
     choice = input("\nSelect an action (1/2/3/4): ").strip()
