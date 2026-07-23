@@ -5,15 +5,9 @@ Script to fetch and import eToro instruments metadata into MongoDB.
 
 import os
 import sys
-import requests
 import json
 
-# Add the parent directory to the Python path to ensure imports work
-current_dir = os.path.dirname(os.path.abspath(__file__))
-parent_dir = os.path.dirname(current_dir)
-if parent_dir not in sys.path:
-    sys.path.append(parent_dir)
-
+from etoro.client import EToroClient
 from _config import (
     ETORO_API_INSTRUMENTS_METADATA,
     FX_LONG_SHORT_PROMPT,
@@ -41,11 +35,15 @@ def import_etoro_instruments(db=None):
     
     try:
         # 1. Fetch data from eToro API
+        client = EToroClient(
+            api_key=os.getenv("ETORO_PUBLIC_KEY", ""),
+            max_retries=2,
+            retry_delays=[5, 30],
+            long_pause_every=50,
+            long_pause_seconds=10,
+        )
         log_info(f"Fetching eToro instruments from: {ETORO_API_INSTRUMENTS_METADATA}")
-        response = requests.get(ETORO_API_INSTRUMENTS_METADATA)
-        response.raise_for_status()
-        
-        data = response.json()
+        data = client.get_instruments()
         
         # eToro API usually returns an object with an 'InstrumentDisplayDatas' key or similar
         # Based on typical eToro API structure, we expect a list of instruments

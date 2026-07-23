@@ -5,37 +5,30 @@ This document describes how eToro instrument metadata is mapped to asset classes
 ## Data Flow Overview
 
 ```mermaid
-graph TD
-    subgraph "Ingestion"
-        A[eToro API] -->|Fetch Metadata| B(db/etoro_instruments.py)
-        B -->|Populate| C[(etoro_instruments collection)]
+graph TB
+    subgraph "etoro package [centralised API boundary]"
+        C1[etoro/client.py]
+        C2[etoro/pipeline.py]
+        C3[etoro/repository.py]
+        C4[etoro/auth.py]
+        C1 -->|uses| C4
+        C2 -->|uses| C1
+        C2 -->|uses| C3
     end
 
-    subgraph "Processing & Transformation"
-        C --> D{Asset-Specific Scripts}
-        D --> E[db/equities_data.py]
-        D --> F[db/fx_data.py]
-        D --> G[db/crypto_data.py]
-        D --> H[db/commodities_data.py]
-        
-        E & F & G & H --> I[Filter & Deduplicate]
-        I --> J[Region & Asset Mapping]
-        J --> K[Symbol Translation]
-        K --> L[Config Enrichment]
+    subgraph "Consumers"
+        D1[batch/batch_etoro_pi_collection.py]
+        D2[db/etoro_instruments.py]
     end
+    D1 -->|calls| C2
+    D2 -->|calls| C1
 
-    subgraph "Reference Data"
-        M[(asset_classes)] -.-> J
-        N[(regions)] -.-> J
-        N -.-> K
-        O[(_config.py)] -.-> L
+    subgraph "External"
+        A["eToro public API"]
+        B[(MongoDB)]
     end
-
-    subgraph "Result"
-        L --> P[(tickers collection)]
-        K --> Q[Yahoo Finance Symbol]
-        K --> R[TradingView Symbol]
-    end
+    C1 -->|HTTP| A
+    C3 -->|bulk_write| B
 ```
 
 ## eToro Asset Class Identification
@@ -141,7 +134,7 @@ graph TD
 
 ### Step-by-Step Explanation
 
-1. **Fetch from eToro API**: The script calls `import_etoro_instruments()` which sends an HTTP GET request to the eToro API endpoint configured in `_config.py` (`ETORO_API_INSTRUMENTS_METADATA`). The response is parsed to extract a list of instruments.
+1. **Fetch from eToro API**: The script calls `import_etoro_instruments()` which uses `EToroClient.get_instruments()` (`etoro/client.py`) to send an HTTP GET request to the eToro instruments metadata endpoint. The response is parsed to extract a list of instruments.
 
 2. **Populate `etoro_instruments` collection**: All existing documents in the `etoro_instruments` collection are deleted, and the freshly fetched instruments are inserted in batches of 1000. This collection serves as the raw source of truth for all available eToro instruments.
 
@@ -205,6 +198,41 @@ Specific scripts (e.g., `db/equities_data.py`, `db/fx_data.py`, etc.) perform th
 | FX | `db/fx_data.py` | Sets 4 decimal places; assigns `run_fx_model`. |
 | Crypto | `db/crypto_data.py` | Sets Global region; uses suffix mapping for TradingView. |
 | Commodities | `db/commodities_data.py` | Categorizes into Energy (EN), Agriculture (AG), or Metals (ME) based on keywords in the symbol name. |
+
+---
+
+## Pro Investor (PI) Collection Pipeline
+
+The `etoro/pipeline.py` module orchestrates the discovery, enrichment, and persistence of eToro Pro Investor profiles. All HTTP calls are routed through `etoro/client.py`, which centralises session management, header construction, key rotation, and retry/back-off logic.
+
+### Package Structure
+
+| Module | Responsibility |
+|:---|:---|
+| `etoro/client.py` | `EToroClient` — owns a `requests.Session`, builds per-request headers, handles retries and long-pause throttling |
+| `etoro/auth.py` | `get_random_private_key()` — rotates `x-user-key` values from `ETORO_PRIVATE_KEY` |
+| `etoro/repository.py` | `InvestorRepository` — `bulk_upsert()` records into the `etoro_pi` collection with `userName` as the unique key |
+| `etoro/pipeline.py` | `run_pipeline()` — orchestrates discovery → enrichment → persistence |
+| `batch/batch_etoro_pi_collection.py` | Thin CLI entry point that calls `run_pipeline()` |
+
+### Pipeline Flow
+
+```mermaid
+graph LR
+    A[batch wrapper] --> B[pipeline collect_all]
+    B -->|search pages| C[EToroClient]
+    C -->|HTTP| D[eToro search]
+    B --> E[pipeline fetch_user_profiles]
+    E -->|batch requests| C
+    C -->|HTTP| F[eToro profiles]
+    E -->|merge| G[pipeline save_to_mongodb]
+    G -->|bulk_upsert| H[InvestorRepository]
+    H -->|ReplaceOne| I[(MongoDB etoro_pi)]
+```
+
+### Consumer Integration
+
+`db/etoro_instruments.py` and any future eToro data scripts should call `EToroClient` rather than `requests.get` directly, ensuring a single retry/rate-limit policy across the entire codebase.
 
 ---
 

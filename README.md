@@ -71,6 +71,19 @@ ENCRYPTION_SECRET=encryption-secret
 
 Note: To create your own prompt, use the `crypt.py` script to encrypt it with your `ENCRYPTION_SECRET`.
 
+## eToro Integration
+
+The `etoro/` package centralises all eToro API access:
+
+- `etoro/client.py` — shared `EToroClient` with session pooling, key rotation, retry/back-off
+- `etoro/pipeline.py` — Pro Investor discovery → enrichment → persistence
+- `etoro/repository.py` — MongoDB upserts for `etoro_pi`
+- `etoro/auth.py` — `x-user-key` rotation
+
+Thin consumer scripts:
+- `batch/batch_etoro_pi_collection.py` — CLI entry point for PI collection
+- `db/etoro_instruments.py` — instrument metadata import
+
 ## Data Provider Abstraction
 
 AlphaSentra uses a pluggable data-provider layer for all market-data access. See [`DATA_PROVIDER_ARCHITECTURE.md`](DATA_PROVIDER_ARCHITECTURE.md) for the interface, registry, and switching instructions.
