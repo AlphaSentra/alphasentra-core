@@ -505,10 +505,12 @@ def financial_health_chart(ticker):
 
         # Internal helper to standardize data frames
         def get_financial_df(bs, cf):
+            bs_t = bs.T
+            cf_t = cf.T
             data_points = {
-                "Total Debt": bs.get('Total Debt', pd.Series(0, index=bs.index)),
-                "Cash and Equivalents": bs.get('Cash And Cash Equivalents', pd.Series(0, index=bs.index)),
-                "Free Cash Flow": cf.get('Free Cash Flow', pd.Series(0, index=cf.index))
+                "Total Debt": bs_t.get('Total Debt', pd.Series(0, index=bs_t.index)),
+                "Cash and Equivalents": bs_t.get('Cash And Cash Equivalents', pd.Series(0, index=bs_t.index)),
+                "Free Cash Flow": cf_t.get('Free Cash Flow', pd.Series(0, index=cf_t.index))
             }
             df = pd.DataFrame(data_points)
             df.index = pd.to_datetime(df.index)
