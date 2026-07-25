@@ -154,10 +154,20 @@ def calculate_trade_levels(tickers, trade_direction, period=14, decimal_digits=2
                 else:  # SHORT
                     target_price = entry_price - (2.0 * risk_distance)
                 
-                # Store the result
+                # Fallback to fixed percentage levels when ATR-based calculation
+                # produces invalid/zero values. Applies to all asset classes.
+                if stop_loss_price <= 0 or target_price <= 0:
+                    if trade_direction == "LONG":
+                        stop_loss_price = current_close * 0.975   # 2.5% below
+                        target_price = current_close * 1.05        # 5% above
+                    else:  # SHORT
+                        stop_loss_price = current_close * 1.025   # 2.5% above
+                        target_price = current_close * 0.95        # 5% below
+
+                # Store the result as float to satisfy MongoDB bsonType: 'double'
                 stop_loss_prices[ticker] = {
-                    'stop_loss': max(0, stop_loss_price),  # Ensure non-negative
-                    'target_price': max(0, target_price)   # Ensure non-negative
+                    'stop_loss': float(max(0, stop_loss_price)),
+                    'target_price': float(max(0, target_price))
                 }
                 
                 
