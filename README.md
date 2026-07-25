@@ -71,6 +71,27 @@ ENCRYPTION_SECRET=encryption-secret
 
 Note: To create your own prompt, use the `crypt.py` script to encrypt it with your `ENCRYPTION_SECRET`.
 
+## GitHub Actions / Repository Secrets
+
+To run the scheduled workflows in GitHub Actions, the environment variables above must be stored as **Repository secrets** so they are not exposed in logs or source control.
+
+### Setting up secrets
+
+1. Open the repository on GitHub.
+2. Go to **Settings** → **Secrets and variables** → **Actions**.
+3. Under **Repository secrets**, click **New repository secret**.
+4. Add each variable from local `.env` file as a separate secret. Use the exact names expected by the workflows, for example:
+   - `USE_MONGODB_SRV`
+   - `ETORO_PRIVATE_KEY`
+   - `ETORO_PUBLIC_KEY`
+5. Save each secret. GitHub Actions workflows can then reference them using `${{ secrets.NAME }}`.
+
+### Why use secrets
+
+- Keeps sensitive credentials out of the repository.
+- Allows workflows to create a `.env` file at runtime without committing secrets to Git.
+- Supports permissioned access via GitHub’s built-in secrets encryption.
+
 ## eToro Integration
 
 The `etoro/` package centralises all eToro API access:
