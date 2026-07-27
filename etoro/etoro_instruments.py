@@ -7,7 +7,9 @@ import os
 import sys
 import json
 
-from etoro.client import EToroClient
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from etoro.client import EToroClient, EToroAPIError
 from _config import (
     ETORO_API_INSTRUMENTS_METADATA,
     FX_LONG_SHORT_PROMPT,
@@ -96,7 +98,7 @@ def import_etoro_instruments(db=None):
         
         return True
 
-    except requests.exceptions.RequestException as e:
+    except EToroAPIError as e:
         log_error(f"Failed to fetch data from eToro API: {e}", "ETORO_API_ERROR")
         return False
     except Exception as e:

@@ -10,7 +10,7 @@ from db.equities_data import insert_equities
 from db.indices_data import insert_indices
 from db.commodities_data import insert_commodities_asset
 from db.crypto_data import insert_crypto_assets
-from db.etoro_instruments import import_etoro_instruments
+from etoro.etoro_instruments import import_etoro_instruments
 import sys
 import os
 from dotenv import load_dotenv

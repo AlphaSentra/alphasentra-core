@@ -103,7 +103,7 @@ The `etoro/` package centralises all eToro API access:
 
 Thin consumer scripts:
 - `batch/batch_etoro_pi_collection.py` — CLI entry point for PI collection
-- `db/etoro_instruments.py` — instrument metadata import
+- `etoro/etoro_instruments.py` — instrument metadata import
 
 ## Data Provider Abstraction
 

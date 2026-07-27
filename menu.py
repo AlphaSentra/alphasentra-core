@@ -10,7 +10,7 @@ import db.create_mongodb_db as create_mongodb_db
 import batch.batch_run as batch_run
 import batch.reset_dataset as reset_dataset
 import batch.db_quota as db_quota
-import db.etoro_instruments as etoro_instruments
+import etoro.etoro_instruments as etoro_instruments
 import batch.batch_etoro_pi_collection as batch_etoro_pi_collection
 
 def run_fx_model_with_input():

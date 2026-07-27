@@ -18,7 +18,7 @@ graph TB
 
     subgraph "Consumers"
         D1[batch/batch_etoro_pi_collection.py]
-        D2[db/etoro_instruments.py]
+        D2[etoro/etoro_instruments.py]
     end
     D1 -->|calls| C2
     D2 -->|calls| C1
@@ -95,7 +95,7 @@ The `regions` collection is used to map eToro's `etoro_exchangeID` to specific g
 
 ## eToro Instruments Import Process
 
-The `db/etoro_instruments.py` script orchestrates the full lifecycle of importing eToro instrument metadata into the database. The process involves fetching data from the eToro API, staging it in the `etoro_instruments` collection, identifying instruments not yet in the main `tickers` collection, and presenting them for review.
+The `etoro/etoro_instruments.py` script orchestrates the full lifecycle of importing eToro instrument metadata into the database. The process involves fetching data from the eToro API, staging it in the `etoro_instruments` collection, identifying instruments not yet in the main `tickers` collection, and presenting them for review.
 
 ### Import Workflow
 
@@ -180,7 +180,7 @@ graph TD
 The system automates the promotion of instruments from the raw `etoro_instruments` collection to the active `tickers` collection using specialized scripts for each asset class.
 
 ### 1. Raw Data Ingestion
-The `db/etoro_instruments.py` script fetches the latest metadata from the eToro API and overwrites the `etoro_instruments` collection.
+The `etoro/etoro_instruments.py` script fetches the latest metadata from the eToro API and overwrites the `etoro_instruments` collection.
 
 ### 2. Transformation & Filtering
 Specific scripts (e.g., `db/equities_data.py`, `db/fx_data.py`, etc.) perform the following transformations to populate the `tickers` collection:
@@ -232,7 +232,7 @@ graph LR
 
 ### Consumer Integration
 
-`db/etoro_instruments.py` and any future eToro data scripts should call `EToroClient` rather than `requests.get` directly, ensuring a single retry/rate-limit policy across the entire codebase.
+`etoro/etoro_instruments.py` and any future eToro data scripts should call `EToroClient` rather than `requests.get` directly, ensuring a single retry/rate-limit policy across the entire codebase.
 
 ---
 
