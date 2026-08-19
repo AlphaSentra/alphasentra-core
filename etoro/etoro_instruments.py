@@ -11,6 +11,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 from etoro.client import EToroClient, EToroAPIError
 from _config import (
+    CR_CRYPTO_LONG_SHORT_PROMPT,
+    CR_CRYPTO_FACTORS_PROMPT,
     ETORO_API_INSTRUMENTS_METADATA,
     FX_LONG_SHORT_PROMPT,
     FX_FACTORS_PROMPT,
@@ -323,7 +325,7 @@ def export_non_excluded_to_json(db=None):
             prompt = ""
             factors = ""
 
-            # Mapping based on asset code (FX=FX, IX=Indices, EQ=Equities)
+            # Mapping based on asset code (FX=FX, IX=Indices, EQ=Equities, ETF=ETFs, CR=Cryptos)
             if asset_code == "FX":
                 model_function = "run_fx_model"
                 model_name = "fx_long_short"
@@ -335,6 +337,12 @@ def export_non_excluded_to_json(db=None):
             elif asset_code == "EQ":
                 prompt = EQ_EQUITY_LONG_SHORT_PROMPT
                 factors = EQ_EQUITY_FACTORS_PROMPT
+            elif asset_code == "ETF":
+                prompt = IX_INDEX_LONG_SHORT_PROMPT
+                factors = IX_INDEX_FACTORS_PROMPT
+            elif asset_code == "CR":
+                prompt = CR_CRYPTO_LONG_SHORT_PROMPT
+                factors = CR_CRYPTO_FACTORS_PROMPT
 
             # Structure based on user requirements
             entry = {
